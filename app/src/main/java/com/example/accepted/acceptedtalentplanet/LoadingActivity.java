@@ -17,7 +17,7 @@ public class LoadingActivity extends AppCompatActivity {
     {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_loading);
        startLoading();
     }
 
@@ -31,7 +31,7 @@ public class LoadingActivity extends AppCompatActivity {
                 startActivity(intent);
                 finish();
             }
-        },1000);
+        },3000);
     }
 
 
