@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    >
+
+    <RelativeLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          >
+        <RelativeLayout
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/preImg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@android:drawable/ic_menu_revert"
+                android:background="@drawable/previousbutton"
+                android:tint="#32579a"
+                android:layout_alignTop="@+id/textView"
+                android:layout_alignBottom="@+id/textView" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/preImg"
+                android:text="Log-In"
+                android:textSize="15dp"
+                android:textStyle="bold"
+                android:textColor="#32579a"
+                android:id="@+id/textView" />
+
+        </RelativeLayout>
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:paddingBottom="10dp"
+            android:paddingTop="50dp"
+            android:text="&quot;이름을 입력해주세요!&quot;"
+            android:textColor="#aaaaaa"
+            android:textSize="15dp"
+            android:textStyle="bold|italic" />
+      </RelativeLayout>
+
+
+    <LinearLayout
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+        <EditText
+            android:id="@+id/et_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginRight="5dp"
+            android:layout_marginLeft="60dp"
+            android:hint="성"
+            android:textSize="12dp"
+            />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginRight="60dp"
+                android:layout_marginLeft="5dp"
+                android:hint="이름"
+                android:textSize="12dp"
+                />
+        </LinearLayout>
+
+    <Button
+        android:textAllCaps="false"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="70dp"
+        android:layout_marginLeft="70dp"
+        android:textStyle="bold|italic"
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp"
+        android:textColor="#32579a"
+        android:textSize="15dp"
+        android:text="Next"
+        android:background="@drawable/textbox1"
+        />
+
+</LinearLayout>
