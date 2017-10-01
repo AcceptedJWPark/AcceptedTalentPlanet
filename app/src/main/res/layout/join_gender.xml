@@ -91,19 +91,19 @@
         </LinearLayout>
 
     <Button
-        android:textAllCaps="false"
         android:layout_width="match_parent"
         android:layout_height="35dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="70dp"
         android:layout_marginLeft="70dp"
-        android:textStyle="bold|italic"
+        android:layout_marginRight="70dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/textbox1"
+        android:onClick="goNext"
         android:paddingLeft="30dp"
         android:paddingRight="30dp"
+        android:text="Next"
+        android:textAllCaps="false"
         android:textColor="#32579a"
         android:textSize="15dp"
-        android:text="Next"
-        android:background="@drawable/textbox1"
-        />
+        android:textStyle="bold|italic" />
 
 </LinearLayout>

@@ -29,7 +29,26 @@
             android:name=".MainActivity"
             android:theme="@style/AppTheme">
         </activity>
-
+        <activity
+            android:name=".RegistEmailActivity"
+            android:theme="@style/AppTheme">
+        </activity>
+        <activity
+            android:name=".RegistPasswordActivity"
+            android:theme="@style/AppTheme">
+        </activity>
+        <activity
+            android:name=".RegistNameActivity"
+            android:theme="@style/AppTheme">
+        </activity>
+        <activity
+            android:name=".RegistGenderActivity"
+            android:theme="@style/AppTheme">
+        </activity>
+        <activity
+            android:name=".RegistBirthActivity"
+            android:theme="@style/AppTheme">
+        </activity>
     </application>
     <uses-permission android:name="android.permission.INTERNET" />
 
