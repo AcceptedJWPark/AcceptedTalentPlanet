@@ -4,13 +4,16 @@ package com.example.accepted.acceptedtalentplanet;
  * Created by kwonhong on 2017-10-01.
  */
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.android.volley.NetworkResponse;
@@ -138,6 +141,8 @@ public class RegistEmailActivity extends  AppCompatActivity {
                     Log.d("result", response);
                     Log.d("response", joinCode);
                     postRequestQueue.add(sendMailRequest);
+                    LinearLayout acceptEmail = (LinearLayout)findViewById(R.id.accept_join_mail);
+                    acceptEmail.setVisibility(View.VISIBLE);
                 }
                 catch(JSONException e){
                     e.printStackTrace();
@@ -181,6 +186,21 @@ public class RegistEmailActivity extends  AppCompatActivity {
 
 
         postRequestQueue.add(postJsonRequest);
+    }
+
+    public void acceptEmail(View v){
+        EditText et_joinCode = (EditText)findViewById(R.id.et_joinCode);
+        String acceptJoinCode = et_joinCode.getText().toString();
+
+        if(acceptJoinCode.equals(joinCode)){
+            confirmEmailCheck = true;
+            Toast.makeText(getApplicationContext(), "E-Mail 인증이 완료되었습니다.", Toast.LENGTH_SHORT).show();
+            Button acceptBtn = (Button)findViewById(R.id.btnAccept);
+            acceptBtn.setBackgroundColor(Color.GRAY);
+        }
+        else{
+            Toast.makeText(getApplicationContext(), "인증번호를 다시 확인해주세요.", Toast.LENGTH_SHORT).show();
+        }
     }
 
 }
