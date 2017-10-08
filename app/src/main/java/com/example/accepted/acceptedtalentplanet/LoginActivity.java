@@ -116,6 +116,12 @@ public class LoginActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void testFunc(View v){
+        Intent intent = new Intent(this, RecyclerActivity.class);
+        startActivity(intent);
+    }
+
+
 
 
 }

@@ -49,6 +49,10 @@
             android:name=".RegistBirthActivity"
             android:theme="@style/AppTheme">
         </activity>
+        <activity
+            android:name=".RecyclerActivity"
+            android:theme="@style/AppTheme">
+        </activity>
     </application>
     <uses-permission android:name="android.permission.INTERNET" />
 
