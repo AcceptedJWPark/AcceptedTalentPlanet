@@ -44,6 +44,7 @@ public class RegistEmailActivity extends  AppCompatActivity {
         setContentView(R.layout.join_email);
 
         EditText email = (EditText)findViewById(R.id.et_join_mail);
+        findViewById(R.id.btnAccept).setOnClickListener(mClickListener);
         email.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -54,6 +55,8 @@ public class RegistEmailActivity extends  AppCompatActivity {
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 confirmEmailCheck = false;
                 joinCode = "aaaaa";
+                findViewById(R.id.btnAccept).setBackgroundColor(Color.parseColor("#32579a"));
+                findViewById(R.id.btnAccept).setOnClickListener(mClickListener);
             }
 
             @Override
@@ -197,19 +200,21 @@ public class RegistEmailActivity extends  AppCompatActivity {
         postRequestQueue.add(emailDupCheckReq);
     }
 
-    public void acceptEmail(View v){
-        EditText et_joinCode = (EditText)findViewById(R.id.et_joinCode);
-        String acceptJoinCode = et_joinCode.getText().toString();
+    Button.OnClickListener mClickListener = new View.OnClickListener(){
+        public void onClick(View v) {
+            EditText et_joinCode = (EditText) findViewById(R.id.et_joinCode);
+            String acceptJoinCode = et_joinCode.getText().toString();
 
-        if(acceptJoinCode.equals(joinCode)){
-            confirmEmailCheck = true;
-            Toast.makeText(getApplicationContext(), "E-Mail 인증이 완료되었습니다.", Toast.LENGTH_SHORT).show();
-            Button acceptBtn = (Button)findViewById(R.id.btnAccept);
-            acceptBtn.setBackgroundColor(Color.GRAY);
+            if (acceptJoinCode.equals(joinCode)) {
+                confirmEmailCheck = true;
+                Toast.makeText(getApplicationContext(), "E-Mail 인증이 완료되었습니다.", Toast.LENGTH_SHORT).show();
+                Button acceptBtn = (Button) findViewById(R.id.btnAccept);
+                acceptBtn.setBackgroundColor(Color.GRAY);
+                findViewById(R.id.btnAccept).setOnClickListener(null);
+            } else {
+                Toast.makeText(getApplicationContext(), "인증번호를 다시 확인해주세요.", Toast.LENGTH_SHORT).show();
+            }
         }
-        else{
-            Toast.makeText(getApplicationContext(), "인증번호를 다시 확인해주세요.", Toast.LENGTH_SHORT).show();
-        }
-    }
+    };
 
 }

@@ -47,11 +47,7 @@
             android:theme="@style/AppTheme" />
         <activity android:name=".HomeActivity" />
         <activity android:name=".MyprofileActivity" />
-        <activity android:name=".MytalentActivity" />
-        <activity android:name=".TsharingActivity" />
-        <activity android:name=".TalentStateActivity" />
-        <activity android:name=".MessageBoxActivity" />
-        <activity android:name=".CustCenterActivity"></activity>
+        <activity android:name=".MytalentActivity"></activity>
     </application>
 
 </manifest>
