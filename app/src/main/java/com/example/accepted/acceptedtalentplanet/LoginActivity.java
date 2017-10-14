@@ -62,7 +62,7 @@ public class LoginActivity extends AppCompatActivity {
         Log.d("userPW", userPW);
 
         RequestQueue postRequestQueue = Volley.newRequestQueue(this);
-        StringRequest postJsonRequest = new StringRequest(Request.Method.POST, "http://192.168.123.3:8080/Accepted/Login/checkLoginInfo.do", new Response.Listener<String>(){
+        StringRequest postJsonRequest = new StringRequest(Request.Method.POST, SaveSharedPreference.getServerIp() + "Login/checkLoginInfo.do", new Response.Listener<String>(){
             @Override
             public void onResponse(String response){
                 try {

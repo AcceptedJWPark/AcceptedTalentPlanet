@@ -57,7 +57,7 @@ public class RegistBirthActivity extends  AppCompatActivity {
         Log.d("Login Start", "start");
 
         RequestQueue postRequestQueue = Volley.newRequestQueue(this);
-        StringRequest postJsonRequest = new StringRequest(Request.Method.POST, "http://192.168.123.3:8080/Accepted/Regist/goRegist.do", new Response.Listener<String>(){
+        StringRequest postJsonRequest = new StringRequest(Request.Method.POST, SaveSharedPreference.getServerIp() + "Regist/goRegist.do", new Response.Listener<String>(){
             @Override
             public void onResponse(String response){
                 try {

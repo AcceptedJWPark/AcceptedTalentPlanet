@@ -114,7 +114,7 @@ public class RegistEmailActivity extends  AppCompatActivity {
         RequestFuture<String> future = RequestFuture.newFuture();
         final RequestQueue postRequestQueue = Volley.newRequestQueue(this);
 
-        final StringRequest sendMailRequest = new StringRequest(Request.Method.POST, "http://192.168.123.3:8080/Accepted/Regist/sendMail.do", new Response.Listener<String>(){
+        final StringRequest sendMailRequest = new StringRequest(Request.Method.POST, SaveSharedPreference.getServerIp() + "Regist/sendMail.do", new Response.Listener<String>(){
             @Override
             public void onResponse(String response){
 
@@ -132,7 +132,7 @@ public class RegistEmailActivity extends  AppCompatActivity {
             }
         };
 
-        final StringRequest emailCheckReq = new StringRequest(Request.Method.POST, "http://192.168.123.3:8080/Accepted/Regist/checkMail.do", new Response.Listener<String>(){
+        final StringRequest emailCheckReq = new StringRequest(Request.Method.POST, SaveSharedPreference.getServerIp() + "Regist/checkMail.do", new Response.Listener<String>(){
             @Override
             public void onResponse(String response){
                 try {
@@ -164,7 +164,7 @@ public class RegistEmailActivity extends  AppCompatActivity {
             }
         };
 
-        StringRequest emailDupCheckReq = new StringRequest(Request.Method.POST, "http://192.168.123.3:8080/Accepted/Regist/checkDupID.do", new Response.Listener<String>(){
+        StringRequest emailDupCheckReq = new StringRequest(Request.Method.POST, SaveSharedPreference.getServerIp() + "Regist/checkDupID.do", new Response.Listener<String>(){
             @Override
             public void onResponse(String response){
                 try {
