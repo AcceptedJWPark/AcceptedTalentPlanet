@@ -64,6 +64,31 @@ public class RegistEmailActivity extends  AppCompatActivity {
 
     }
 
+    public Response.ErrorListener el = new Response.ErrorListener() {
+        @Override
+        public void onErrorResponse(VolleyError error) {
+            NetworkResponse response = error.networkResponse;
+            if (error instanceof ServerError && response != null) {
+                try {
+                    String res = new String(response.data,
+                            HttpHeaderParser.parseCharset(response.headers, "utf-8"));
+                    // Now you can use any deserializer to make sense of data
+                    Log.d("res", res);
+
+                    JSONObject obj = new JSONObject(res);
+                } catch (UnsupportedEncodingException e1) {
+                    // Couldn't properly decode data to string
+                    e1.printStackTrace();
+                } catch (JSONException e2) {
+                    // returned data is not JSONObject?
+                    e2.printStackTrace();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    };
+
     public void goNext(View v){
         if(confirmEmailCheck) {
             EditText email = (EditText) findViewById(R.id.et_join_mail);
@@ -78,6 +103,7 @@ public class RegistEmailActivity extends  AppCompatActivity {
     }
 
     public void emailCheck(View v){
+
         Log.d("Login Start", "start");
         final EditText email = (EditText)findViewById(R.id.et_join_mail);
 
@@ -86,37 +112,15 @@ public class RegistEmailActivity extends  AppCompatActivity {
         Log.d("userID", jEmail);
 
         RequestFuture<String> future = RequestFuture.newFuture();
+        final RequestQueue postRequestQueue = Volley.newRequestQueue(this);
 
         final StringRequest sendMailRequest = new StringRequest(Request.Method.POST, "http://192.168.123.3:8080/Accepted/Regist/sendMail.do", new Response.Listener<String>(){
             @Override
             public void onResponse(String response){
 
             }
-        }, new Response.ErrorListener(){
-            @Override
-            public void onErrorResponse(VolleyError error){
-                NetworkResponse response = error.networkResponse;
-                if (error instanceof ServerError && response != null) {
-                    try {
-                        String res = new String(response.data,
-                                HttpHeaderParser.parseCharset(response.headers, "utf-8"));
-                        // Now you can use any deserializer to make sense of data
-                        Log.d("res", res);
-
-                        JSONObject obj = new JSONObject(res);
-                    } catch (UnsupportedEncodingException e1) {
-                        // Couldn't properly decode data to string
-                        e1.printStackTrace();
-                    } catch (JSONException e2) {
-                        // returned data is not JSONObject?
-                        e2.printStackTrace();
-                    }
-                    catch(Exception e){
-                        e.printStackTrace();
-                    }
-                }
-            }
-        }) {
+        }, el
+        ) {
             @Override
             protected Map<String, String> getParams(){
                 Map<String, String> params = new HashMap();
@@ -128,12 +132,11 @@ public class RegistEmailActivity extends  AppCompatActivity {
             }
         };
 
-        final RequestQueue postRequestQueue = Volley.newRequestQueue(this);
-        StringRequest postJsonRequest = new StringRequest(Request.Method.POST, "http://192.168.123.3:8080/Accepted/Regist/checkMail.do", new Response.Listener<String>(){
+        final StringRequest emailCheckReq = new StringRequest(Request.Method.POST, "http://192.168.123.3:8080/Accepted/Regist/checkMail.do", new Response.Listener<String>(){
             @Override
             public void onResponse(String response){
                 try {
-                    Log.d("start", "response");
+
                     JSONObject obj = new JSONObject(response);
                     joinCode = obj.getString("result");
                     //String joinCode = obj.getString("joinCode");
@@ -151,31 +154,8 @@ public class RegistEmailActivity extends  AppCompatActivity {
                     e.printStackTrace();
                 }
             }
-        }, new Response.ErrorListener(){
-            @Override
-            public void onErrorResponse(VolleyError error){
-                NetworkResponse response = error.networkResponse;
-                if (error instanceof ServerError && response != null) {
-                    try {
-                        String res = new String(response.data,
-                                HttpHeaderParser.parseCharset(response.headers, "utf-8"));
-                        // Now you can use any deserializer to make sense of data
-                        Log.d("res", res);
-
-                        JSONObject obj = new JSONObject(res);
-                    } catch (UnsupportedEncodingException e1) {
-                        // Couldn't properly decode data to string
-                        e1.printStackTrace();
-                    } catch (JSONException e2) {
-                        // returned data is not JSONObject?
-                        e2.printStackTrace();
-                    }
-                    catch(Exception e){
-                        e.printStackTrace();
-                    }
-                }
-            }
-        }) {
+        }, el
+        ) {
             @Override
             protected Map<String, String> getParams(){
                 Map<String, String> params = new HashMap();
@@ -184,8 +164,37 @@ public class RegistEmailActivity extends  AppCompatActivity {
             }
         };
 
+        StringRequest emailDupCheckReq = new StringRequest(Request.Method.POST, "http://192.168.123.3:8080/Accepted/Regist/checkDupID.do", new Response.Listener<String>(){
+            @Override
+            public void onResponse(String response){
+                try {
+                    JSONObject obj = new JSONObject(response);
+                    String result = obj.getString("result");
+                    if(result.equals("duplicated")){
+                        Toast.makeText(getApplicationContext(), "이미 가입된 E-Mail 입니다.", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    postRequestQueue.add(emailCheckReq);
 
-        postRequestQueue.add(postJsonRequest);
+                }
+                catch(JSONException e){
+                    e.printStackTrace();
+                }
+                catch(Exception e){
+                    e.printStackTrace();
+                }
+            }
+        },el
+        ) {
+            @Override
+            protected Map<String, String> getParams(){
+                Map<String, String> params = new HashMap();
+                params.put("userID", jEmail);
+                return params;
+            }
+        };
+
+        postRequestQueue.add(emailDupCheckReq);
     }
 
     public void acceptEmail(View v){

@@ -27,9 +27,15 @@ public class LoadingActivity extends AppCompatActivity {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent = new Intent(getBaseContext(), MainActivity.class);
-                startActivity(intent);
-                finish();
+                Intent intent;
+                if(SaveSharedPreference.getUserId(LoadingActivity.this).length() == 0) {
+                    intent = new Intent(getBaseContext(), MainActivity.class);
+                }else{
+                    intent = new Intent(getBaseContext(), HomeActivity.class);
+                }
+                    startActivity(intent);
+                    finish();
+
             }
         },3000);
     }

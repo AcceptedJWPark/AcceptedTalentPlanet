@@ -63,8 +63,16 @@ public class RegistBirthActivity extends  AppCompatActivity {
                 try {
                     JSONObject obj = new JSONObject(response);
                     String result = obj.getString("result");
-                    Toast.makeText(getApplicationContext(), result, Toast.LENGTH_SHORT).show();
-                    Log.d("result", response);
+                    if(result.equals("success")){
+                        Toast.makeText(getApplicationContext(), "회원가입이 완료되었습니다..", Toast.LENGTH_SHORT).show();
+                    }else{
+                        Toast.makeText(getApplicationContext(), "회원가입에 실패했습니다.", Toast.LENGTH_SHORT).show();
+                    }
+
+                    Intent intent = new Intent(getBaseContext(), LoginActivity.class);
+                    startActivity(intent);
+                    finish();
+
                 }
                 catch(JSONException e){
                     e.printStackTrace();

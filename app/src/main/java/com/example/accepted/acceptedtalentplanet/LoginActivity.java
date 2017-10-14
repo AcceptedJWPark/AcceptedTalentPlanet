@@ -68,8 +68,17 @@ public class LoginActivity extends AppCompatActivity {
                 try {
                     JSONObject obj = new JSONObject(response);
                     String result = obj.getString("result");
-                    Toast.makeText(getApplicationContext(), result, Toast.LENGTH_SHORT).show();
-                    Log.d("result", response);
+                    if(result.equals("success")){
+                        String userName = obj.getString("userName");
+                        SaveSharedPreference.setPrefUsrName(LoginActivity.this, userName);
+                        SaveSharedPreference.setPrefUsrId(LoginActivity.this, userID);
+                        Intent intent = new Intent(getBaseContext(), HomeActivity.class);
+                        startActivity(intent);
+                    }else if(result.equals("fail")){
+                        Toast.makeText(getApplicationContext(), "비밀번호를 잘못 입력하셨습니다.", Toast.LENGTH_SHORT).show();
+                    }else{
+                        Toast.makeText(getApplicationContext(), "아이디가 존재하지 않습니다.", Toast.LENGTH_SHORT).show();
+                    }
                 }
                 catch(JSONException e){
                     e.printStackTrace();
