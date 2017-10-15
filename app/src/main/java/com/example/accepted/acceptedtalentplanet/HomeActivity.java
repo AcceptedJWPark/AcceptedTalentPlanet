@@ -8,7 +8,9 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -96,7 +98,6 @@ public class HomeActivity extends AppCompatActivity {
         moreBtn = (Button) findViewById(R.id.testBtn2);
         initBtn = (Button) findViewById(R.id.testBtn2);
 
-
     }
 
     public void addBestTalentList(){
@@ -114,7 +115,7 @@ public class HomeActivity extends AppCompatActivity {
         }
 
         BestTalent_Adapter.notifyDataSetChanged();
-
+        setListViewHeight(BestTalent_listView);
     }
 
     public void initBestTalentList(){
@@ -130,6 +131,7 @@ public class HomeActivity extends AppCompatActivity {
             BestTalent_Adapter.setItem(BestTalentList);
             BestTalent_Adapter.notifyDataSetChanged();
         }
+        setListViewHeight(BestTalent_listView);
     }
 
     public void moreBtnCilcked(View v){
@@ -148,11 +150,33 @@ public class HomeActivity extends AppCompatActivity {
         initBtn.setVisibility(View.INVISIBLE);
     }
 
-    public void setListViewHeight(){
-        ListView lv = (ListView)findViewById(R.id.BestTalent_lv);
-        View listItem = BestTalent_Adapter.getView(0,null,lv);
+    public void setListViewHeight(ListView listView) {
+        ListAdapter listAdapter = listView.getAdapter();
 
-        //int totalHeight = BestTalent_Adapter.getCount() * listItem.measure();
+        if (listAdapter == null) {
+            return;
+        }
+
+        int totalHeight = 0;
+
+        int desiredWidth = View.MeasureSpec.makeMeasureSpec(listView.getWidth(), View.MeasureSpec.AT_MOST);
+
+        for (int i = 0; i < listAdapter.getCount(); i++) {
+            View listItem = listAdapter.getView(i, null, listView);
+            //listItem.measure(0, 0);
+            listItem.measure(desiredWidth, View.MeasureSpec.UNSPECIFIED);
+            Log.d("Height = ", String.valueOf(listItem.getMeasuredHeight()));
+            totalHeight += listItem.getMeasuredHeight();
+        }
+
+        Log.d("Total Height = ", String.valueOf(totalHeight));
+        ViewGroup.LayoutParams params = listView.getLayoutParams();
+
+        params.height = totalHeight + 30;
+
+        listView.setLayoutParams(params);
+        listView.requestLayout();
+
     }
 
 }
