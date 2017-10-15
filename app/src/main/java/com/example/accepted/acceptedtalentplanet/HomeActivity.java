@@ -148,6 +148,11 @@ public class HomeActivity extends AppCompatActivity {
         initBtn.setVisibility(View.INVISIBLE);
     }
 
+    public void setListViewHeight(){
+        ListView lv = (ListView)findViewById(R.id.BestTalent_lv);
+        View listItem = BestTalent_Adapter.getView(0,null,lv);
 
+        //int totalHeight = BestTalent_Adapter.getCount() * listItem.measure();
+    }
 
 }
