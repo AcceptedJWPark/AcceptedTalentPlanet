@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
@@ -22,10 +23,14 @@ public class HomeActivity extends AppCompatActivity {
     ArrayList<NewTalent_ListItem> NewTalentList;
     ArrayList<HotTalent_ListItem> HotTalentList;
     ArrayList<BestTalent_ListItem> BestTalentList;
+    ArrayList<BestTalent_ListItem> BestTalentListAll;
     NewTalent_ListView_Adapter NewTalent_Adapter;
     HotTalent_ListView_Adapter HotTalent_Adapter;
     BestTalent_ListView_Adapter BestTalent_Adapter;
     LinearLayoutManager NewTalentlayoutManager;
+
+    Button moreBtn;
+    Button initBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,22 +75,79 @@ public class HomeActivity extends AppCompatActivity {
         //Best Talent 코드
         BestTalent_listView = (ListView) findViewById(R.id.BestTalent_lv);
 
-        BestTalentList = new ArrayList<>();
-        BestTalentList.add(new BestTalent_ListItem(R.drawable.textpicture, 1, "#Piano", "정우성", "예체능 / 음악", "37건", "-", "Profile 보기"));
-        BestTalentList.add(new BestTalent_ListItem(R.drawable.textpicture, 2, "#기타", "정우성", "예체능 / 음악", "21건", "-", "Profile 보기"));
-        BestTalentList.add(new BestTalent_ListItem(R.drawable.textpicture, 3, "#영어", "정우성", "외국어 / 영어", "15건", "-", "Profile 보기"));
-        BestTalentList.add(new BestTalent_ListItem(R.drawable.textpicture, 4, "#헬스", "정우성", "예체능 / 운동", "7건", "-", "Profile 보기"));
-        BestTalentList.add(new BestTalent_ListItem(R.drawable.textpicture, 5, "#공무원 시험", "정우성", "시험 / 공무원 ", "5건", "-", "Profile 보기"));
+        BestTalentListAll = new ArrayList<>();
+        BestTalentListAll.add(new BestTalent_ListItem(R.drawable.textpicture, 1, "#Piano", "정우성", "예체능 / 음악", "37건", "-", "Profile 보기"));
+        BestTalentListAll.add(new BestTalent_ListItem(R.drawable.textpicture, 2, "#기타", "정우성", "예체능 / 음악", "21건", "-", "Profile 보기"));
+        BestTalentListAll.add(new BestTalent_ListItem(R.drawable.textpicture, 3, "#영어", "정우성", "외국어 / 영어", "15건", "-", "Profile 보기"));
+        BestTalentListAll.add(new BestTalent_ListItem(R.drawable.textpicture, 4, "#헬스", "정우성", "예체능 / 운동", "7건", "-", "Profile 보기"));
+        BestTalentListAll.add(new BestTalent_ListItem(R.drawable.textpicture, 5, "#공무원 시험", "정우성", "시험 / 공무원 ", "5건", "-", "Profile 보기"));
+        BestTalentListAll.add(new BestTalent_ListItem(R.drawable.textpicture, 6, "#공무원 시험", "정우성", "시험 / 공무원 ", "5건", "-", "Profile 보기"));
+        BestTalentListAll.add(new BestTalent_ListItem(R.drawable.textpicture, 7, "#공무원 시험", "정우성", "시험 / 공무원 ", "5건", "-", "Profile 보기"));
+        BestTalentListAll.add(new BestTalent_ListItem(R.drawable.textpicture, 8, "#공무원 시험", "정우성", "시험 / 공무원 ", "5건", "-", "Profile 보기"));
+        BestTalentListAll.add(new BestTalent_ListItem(R.drawable.textpicture, 9, "#공무원 시험", "정우성", "시험 / 공무원 ", "5건", "-", "Profile 보기"));
+
+        initBestTalentList();
 
         BestTalent_Adapter = new BestTalent_ListView_Adapter(mContext, BestTalentList);
         BestTalent_listView.setAdapter(BestTalent_Adapter);
         View footer = getLayoutInflater().inflate(R.layout.besttalent_footer, null, false);
         BestTalent_listView.addFooterView(footer);
 
-
+        moreBtn = (Button) findViewById(R.id.testBtn2);
+        initBtn = (Button) findViewById(R.id.testBtn2);
 
 
     }
+
+    public void addBestTalentList(){
+        int index = BestTalent_Adapter.getCount();
+        int cnt;
+        Log.d("addBestTalentCalled", "index = "+ index);
+        if(index + 5 <= BestTalentListAll.size())
+            cnt = 4;
+        else{
+            cnt = BestTalentListAll.size() - index - 1;
+        }
+
+        for(int i = index - 1; i < index + cnt; i++){
+            BestTalentList.add(new BestTalent_ListItem(R.drawable.textpicture, i+2, "#공무원 시험", "정우성", "시험 / 공무원 ", "5건", "-", "Profile 보기"));
+        }
+
+        BestTalent_Adapter.notifyDataSetChanged();
+
+    }
+
+    public void initBestTalentList(){
+
+        BestTalentList = new ArrayList<>();
+
+        int index = (BestTalentListAll.size() > 5)?5:BestTalentListAll.size();
+        for(int i = 0; i < index; i++){
+            BestTalentList.add(BestTalentListAll.get(i));
+        }
+
+        if(BestTalent_Adapter != null){
+            BestTalent_Adapter.setItem(BestTalentList);
+            BestTalent_Adapter.notifyDataSetChanged();
+        }
+    }
+
+    public void moreBtnCilcked(View v){
+        addBestTalentList();
+        if(BestTalent_Adapter.getCount() == BestTalentListAll.size()){
+
+            moreBtn.setVisibility(View.INVISIBLE);
+            initBtn.setVisibility(View.VISIBLE);
+        }
+    }
+
+    public void initBtnClicked(View v){
+        initBestTalentList();
+
+        moreBtn.setVisibility(View.VISIBLE);
+        initBtn.setVisibility(View.INVISIBLE);
+    }
+
 
 
 }

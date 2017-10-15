@@ -32,6 +32,9 @@ public class BestTalent_ListView_Adapter extends BaseAdapter{
         this.list_ArrayList = list_ArrayList;
     }
 
+    public void setItem(ArrayList<BestTalent_ListItem> list_ArrayList){
+        this.list_ArrayList = list_ArrayList;
+    }
 
     @Override
     public int getCount() {
