@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="TalentResister.TalentResisterActivity_Location">
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="&quot;희망 재능 공유 장소를 입력해주세요. &quot;(시/군/구 까지 입력)"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"
+        android:textSize="13dp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ex) 서울시 마포구"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="5dp"
+        android:textSize="10dp"
+        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        >
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Location 1. "
+            android:gravity="center"
+            android:textColor="#000000"
+            android:textStyle="bold"
+            android:textSize="12dp"
+            android:layout_weight="2"
+            />
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textSize="10dp"
+            android:hint="첫 번째 장소를 입력해주세요."
+            android:layout_weight="4"
+            />
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="18dp"
+            android:text="등록"
+            android:gravity="center"
+            android:background="@drawable/textbox_whitebg2dp"
+            android:textColor="#000000"
+            android:textStyle="bold"
+            android:textSize="11dp"
+            android:layout_weight="1"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        >
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Location 2. "
+            android:gravity="center"
+            android:textColor="#000000"
+            android:textStyle="bold"
+            android:textSize="12dp"
+            android:layout_weight="2"
+            />
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textSize="10dp"
+            android:hint="두 번째 장소를 입력해주세요."
+            android:layout_weight="4"
+            />
+        <Button
+            android:layout_width="0dp"
+            android:text="등록"
+            android:layout_height="18dp"
+            android:gravity="center"
+            android:background="@drawable/textbox_whitebg2dp"
+            android:textColor="#000000"
+            android:textStyle="bold"
+            android:textSize="11dp"
+            android:layout_weight="1"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        >
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Location 3. "
+            android:gravity="center"
+            android:textColor="#000000"
+            android:textStyle="bold"
+            android:textSize="12dp"
+            android:layout_weight="2"
+            />
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textSize="10dp"
+            android:hint="세 번째 장소를 입력해주세요."
+            android:layout_weight="4"
+            />
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="18dp"
+            android:text="등록"
+            android:gravity="center"
+            android:background="@drawable/textbox_whitebg2dp"
+            android:textColor="#000000"
+            android:textStyle="bold"
+            android:textSize="11dp"
+            android:layout_weight="1"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        >
+        <TextView
+            android:id="@+id/Location_key1"
+            android:layout_width="0dp"
+            android:ellipsize="end"
+            android:lines="1"
+            android:layout_height="wrap_content"
+            android:text="@string/LocationUnderLine"
+            android:gravity="center"
+            android:textColor="@color/colorPrimaryDark"
+            android:textStyle="bold|italic"
+            android:textSize="11dp"
+            android:layout_weight="1"
+            />
+        <TextView
+            android:id="@+id/Location_key2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:lines="1"
+            android:textColor="@color/colorPrimaryDark"
+            android:text="@string/LocationUnderLine"
+            android:gravity="center"
+            android:textStyle="bold|italic"
+            android:textSize="11dp"
+            android:layout_weight="1"
+            />
+        <TextView
+            android:id="@+id/Location_key3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:lines="1"
+            android:gravity="center"
+            android:text="@string/LocationUnderLine"
+            android:textColor="@color/colorPrimaryDark"
+            android:textStyle="bold|italic"
+            android:textSize="11dp"
+            android:layout_weight="1"
+            />
+    </LinearLayout>
+
+    <Button
+        android:layout_marginTop="20dp"
+        android:textAllCaps="false"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:background="#32579a"
+        android:textColor="#ffffff"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:text="Next"
+        />
+
+</LinearLayout>

@@ -90,7 +90,7 @@
         android:layout_marginLeft="70dp"
         android:layout_marginRight="70dp"
         android:layout_marginTop="10dp"
-        android:background="@drawable/textbox1"
+        android:background="@drawable/textbox_whitebg"
         android:onClick="goNext"
         android:paddingLeft="30dp"
         android:paddingRight="30dp"

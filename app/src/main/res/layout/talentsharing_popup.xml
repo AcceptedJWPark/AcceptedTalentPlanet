@@ -1,0 +1,449 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="5dp"
+    android:paddingLeft="5dp"
+    android:paddingRight="5dp"
+    android:weightSum="9.6"
+    android:background="@drawable/textbox_whitebg2dp"
+    >
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2.4"
+        android:layout_gravity="center">
+
+        <ImageView
+            android:id="@+id/popup_img"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_centerInParent="true"
+            android:adjustViewBounds="true"
+            android:src="@drawable/textpicture" />
+
+        <TextView
+            android:id="@+id/popup_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/popup_img"
+            android:layout_toRightOf="@+id/popup_img"
+            android:gravity="center"
+            android:text="+4장"
+            android:textColor="@color/myProfileText"
+            android:textSize="15dp"
+            android:textStyle="bold"
+            android:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/TalentSharing_pupupclosebtn"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="right"
+            android:adjustViewBounds="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:src="@android:drawable/ic_menu_close_clear_cancel" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.4"
+        android:gravity="center"
+        android:layout_marginBottom="5dp"
+        android:text="&quot;회원님과의 재능 매칭확률 97% 입니다.&quot;"
+        android:textColor="@color/myProfileText"
+        android:textSize="12dp"
+        android:textStyle="bold"
+        />
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.5"
+        android:background="#f5f5f5"
+        android:layout_marginLeft="2dp"
+        android:layout_marginRight="2dp"
+        android:gravity="center"
+        android:textColor="#505050"
+        android:textStyle="bold|italic"
+        android:text="회원 정보 ▼"
+        />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2.4"
+            android:orientation="vertical"
+            >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:weightSum="10">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:textColor="#000000"
+                    android:textSize="13dp"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:text="이 름" />
+
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="8"
+                    android:textColor="@color/myProfileText"
+                    android:textSize="12dp"
+                    android:paddingLeft="10dp"
+                    android:text="박종우" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:weightSum="10">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:gravity="center"
+                    android:textColor="#000000"
+                    android:textSize="13dp"
+                    android:textStyle="bold"
+                    android:text="성 별" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="8"
+                    android:paddingLeft="10dp"
+                    android:textColor="@color/myProfileText"
+                    android:textSize="12dp"
+                    android:text="남자" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:weightSum="10">
+
+                <TextView
+                    android:id="@+id/textView6"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:gravity="center"
+                    android:text="생년월일"
+                    android:textColor="#000000"
+                    android:textSize="13dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="8"
+                    android:paddingLeft="10dp"
+                    android:textColor="@color/myProfileText"
+                    android:textSize="12dp"
+                    android:text="1991.01.23" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:weightSum="10">
+
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:gravity="center"
+                    android:textColor="#000000"
+                    android:textSize="13dp"
+                    android:textStyle="bold"
+                    android:text="직 업" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="8"
+                    android:paddingLeft="10dp"
+                    android:textColor="@color/myProfileText"
+                    android:textSize="12dp"
+                    android:text="무직" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.5"
+            android:background="#f5f5f5"
+            android:gravity="center"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp"
+            android:textColor="#505050"
+            android:textStyle="bold|italic"
+            android:text="재능 정보 ▼"
+            />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2.4"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:weightSum="10">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:gravity="center"
+                android:text="키워드"
+                android:textColor="#000000"
+                android:textSize="13dp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="8">
+
+                <TextView
+                    android:id="@+id/textView7"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ellipsize="end"
+                    android:lines="1"
+                    android:paddingLeft="10dp"
+                    android:text="Guitar"
+                    android:textColor="@color/myProfileText"
+                    android:textSize="12dp" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ellipsize="end"
+                    android:lines="1"
+                    android:paddingLeft="10dp"
+                    android:text="Piano"
+                    android:textColor="@color/myProfileText"
+                    android:textSize="12dp" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ellipsize="end"
+                    android:lines="1"
+                    android:paddingLeft="10dp"
+                    android:text="Drum"
+                    android:textColor="@color/myProfileText"
+                    android:textSize="12dp" />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:weightSum="10">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:gravity="center"
+                android:text="장 소"
+                android:textColor="#000000"
+                android:textSize="13dp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="8">
+
+                <TextView
+                    android:id="@+id/textView5"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ellipsize="end"
+                    android:paddingLeft="10dp"
+                    android:lines="1"
+                    android:text="서울시 강동구"
+                    android:textColor="@color/myProfileText"
+                    android:textSize="11dp" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ellipsize="end"
+                    android:lines="1"
+                    android:paddingLeft="10dp"
+                    android:text="경기도 일산동구"
+                    android:textColor="@color/myProfileText"
+                    android:textSize="11dp" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ellipsize="end"
+                    android:paddingLeft="10dp"
+                    android:lines="1"
+                    android:text="경기도 파주시"
+                    android:textColor="@color/myProfileText"
+                    android:textSize="11dp" />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:weightSum="10">
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:gravity="center"
+                android:text="수 준"
+                android:textColor="#000000"
+                android:textSize="13dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="8"
+                android:paddingLeft="10dp"
+                android:text="시작단계(Beginner)"
+                android:textColor="@color/myProfileText"
+                android:textSize="12dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:weightSum="10">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:gravity="center"
+                android:text="Point"
+                android:textColor="#000000"
+                android:textSize="13dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="8"
+                android:paddingLeft="10dp"
+                android:text="120P"
+                android:textColor="@color/myProfileText"
+                android:textSize="12dp" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:gravity="center"
+        >
+
+        <Button
+            android:textAllCaps="false"
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:background="@drawable/textbox_bluebg"
+            android:textColor="#ffffff"
+            android:layout_marginRight="5dp"
+            android:textStyle="bold"
+            android:layout_weight="1"
+            android:text="Message"
+            />
+
+        <Button
+            android:layout_width="0dp"
+            android:background="@drawable/textbox_whitebg"
+            android:layout_height="30dp"
+            android:layout_marginLeft="5dp"
+            android:textColor="@color/colorPrimaryDark"
+            android:layout_weight="1"
+            android:textStyle="bold"
+            android:text="관심"
+            />
+
+    </LinearLayout>
+
+</LinearLayout>
+
+
+
+
+
+

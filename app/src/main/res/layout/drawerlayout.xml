@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/listboxLL"
+        android:layout_width="match_parent"
+        android:fitsSystemWindows="true"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="#ffffff"
+        android:weightSum="10.7">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:gravity="center"
+            android:background="#eeeeee"
+            android:layout_weight="1.5"
+            >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:adjustViewBounds="true"
+                    android:layout_width="0dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/textpicture"
+                    android:layout_weight="0.7" />
+
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="pjw910123@naver.com"
+                    android:layout_gravity="center"
+                    android:padding="10dp"
+                    android:textColor="#969696"
+                    android:textStyle="bold"
+                    android:layout_weight="3" />
+
+                <ImageView
+                    android:id="@+id/DrawerCloseImg"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:adjustViewBounds="true"
+                    android:layout_gravity="center"
+                    android:layout_marginRight="10dp"
+                    android:src="@android:drawable/ic_menu_close_clear_cancel">
+                </ImageView>
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/SlidingMenu_Home"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@drawable/listbox_textdesign"
+            android:layout_weight="1"
+            android:text="Home"
+            android:textStyle="bold"
+            android:gravity="center_vertical"
+            android:paddingTop="10dp"
+            android:paddingLeft="20dp"
+            android:paddingBottom="10dp"/>
+
+        <TextView
+            android:id="@+id/SlidingMenu_Profile"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@drawable/listbox_textdesign"
+            android:layout_weight="1"
+            android:text="My Profile 관리"
+            android:textStyle="bold"
+            android:gravity="center_vertical"
+            android:paddingTop="10dp"
+            android:paddingLeft="20dp"
+            android:paddingBottom="10dp"/>
+
+        <TextView
+            android:id="@+id/SlidingMenu_MyTalentResister"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@drawable/listbox_textdesign"
+            android:layout_weight="1"
+            android:text="My Talent 관리"
+            android:gravity="center_vertical"
+            android:textStyle="bold"
+            android:paddingTop="10dp"
+            android:paddingLeft="20dp"
+            android:paddingBottom="10dp" />
+
+        <TextView
+            android:id="@+id/SlidingMenu_T.Sharing"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@drawable/listbox_textdesign"
+            android:text="T . Sharing"
+            android:gravity="center_vertical"
+            android:textStyle="bold"
+            android:paddingTop="10dp"
+            android:paddingLeft="20dp"
+            android:paddingBottom="10dp"/>
+
+        <TextView
+            android:id="@+id/SlidingMenu_MyTalentProcess"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:text="나의 재능 현황"
+            android:background="@drawable/listbox_textdesign"
+            android:textStyle="bold"
+            android:gravity="center_vertical"
+            android:paddingTop="10dp"
+            android:paddingLeft="20dp"
+            android:paddingBottom="10dp"/>
+
+        <TextView
+            android:id="@+id/SlidingMenu_MessageBox"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:text="Message Box"
+            android:textStyle="bold"
+            android:gravity="center_vertical"
+            android:background="@drawable/listbox_textdesign"
+            android:paddingTop="10dp"
+            android:paddingLeft="20dp"
+            android:paddingBottom="10dp"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.1"
+            android:background="#f5f5f5">
+        </View>
+
+        <TextView
+            android:id="@+id/SlidingMenu_ServiceCenter"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:gravity="center_vertical"
+            android:layout_weight="1"
+            android:background="@drawable/listbox_textdesign"
+            android:text="고객센터"
+            android:textStyle="bold"
+            android:paddingTop="10dp"
+            android:paddingLeft="20dp"/>
+
+        <TextView
+            android:id="@+id/SlidingMenu_System"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:background="@drawable/listbox_textdesign"
+            android:text="설정"
+            android:textStyle="bold"
+            android:paddingLeft="20dp"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.1"
+            android:background="#f5f5f5">
+        </View>
+
+
+        <LinearLayout
+            android:id="@+id/SlidingMenu_LogOut"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@drawable/listbox_textdesign"
+            android:orientation="horizontal"
+            android:paddingLeft="20dp">
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.5"
+                android:gravity="center_vertical"
+                android:adjustViewBounds="true"
+                android:src="@drawable/drawerlayout_logoutimg" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="9"
+                android:paddingBottom="10dp"
+                android:gravity="center_vertical"
+                android:layout_gravity="center"
+                android:paddingLeft="15dp"
+                android:paddingTop="10dp"
+                android:text="Log-Out"/>
+
+
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

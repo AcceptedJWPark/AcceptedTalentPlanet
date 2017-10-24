@@ -10,8 +10,8 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".LoadingActivity">
+        android:theme="@style/AppTheme.NoActionBar">
+        <activity android:name=".TalentSharing.TalentSharing_Activity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -19,35 +19,57 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".LoginActivity"
+            android:name=".LoadingLogin.LoginActivity"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".JoinGenderActivity"
+            android:name=".Join.JoinGenderActivity"
             android:theme="@style/AppTheme" />
         <activity
             android:name=".MainActivity"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".RegistEmailActivity"
+            android:name=".Join.RegistEmailActivity"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".RegistPasswordActivity"
+            android:name=".Join.RegistPasswordActivity"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".RegistNameActivity"
+            android:name=".Join.RegistNameActivity"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".RegistGenderActivity"
+            android:name=".Join.RegistGenderActivity"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".RegistBirthActivity"
+            android:name=".Join.RegistBirthActivity"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".RecyclerActivity"
+            android:name=".Home.RecyclerActivity"
             android:theme="@style/AppTheme" />
-        <activity android:name=".HomeActivity" />
-        <activity android:name=".MyprofileActivity" />
-        <activity android:name=".MytalentActivity"></activity>
+        <activity android:name=".Home.HomeActivity" />
+        <activity android:name=".MyProfile.MyprofileActivity"/>
+        <activity android:name=".TalentResister.TalentResisterActivity_1"/>
+        <activity android:name=".TalentResister.TalentResisterActivity_2"/>
+        <activity android:name=".TalentResister.TalentResisterActivity_3"/>
+        <activity android:name=".TalentResister.TalentResisterActivity_4"/>
+        <activity android:name=".TalentResister.TalentResisterActivity_Level"/>
+        <activity android:name=".TalentResister.TalentResisterActivity_Location"/>
+        <activity android:name=".TalentResister.TalentResisterActivity_Point"/>
+        <activity android:name=".TalentResister.TalentResisterActivity_Talent"/>
+        <activity android:name=".TalentCondition.TalentConditionActivity_1"/>
+        <activity android:name=".TalentCondition.TalentConditionActivity_2"/>
+        <activity android:name=".TalentCondition.TalentConditionActivity_3"/>
+        <activity android:name=".TalentCondition.TalentConditionActivity_4"/>
+
+
+
+        <activity
+            android:name=".TalentSharing.TalentSharing_Popup"
+            android:theme="@style/Theme.AppCompat.Dialog">
+        </activity>
+
+
+
+
     </application>
 
 </manifest>
