@@ -7,17 +7,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <FrameLayout
-        android:id="@+id/TalentCondition_container1"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="start">
 
-        <include
-            layout="@layout/drawerlayout"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-    </FrameLayout>
 
 
 <LinearLayout
@@ -230,5 +220,15 @@
 
 </LinearLayout>
 
+    <FrameLayout
+        android:id="@+id/TalentCondition_container1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="start">
 
+        <include
+            layout="@layout/drawerlayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </FrameLayout>
 </android.support.v4.widget.DrawerLayout>

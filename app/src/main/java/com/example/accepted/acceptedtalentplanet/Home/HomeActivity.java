@@ -1,6 +1,7 @@
 package com.example.accepted.acceptedtalentplanet.Home;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -17,9 +18,13 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
+import com.example.accepted.acceptedtalentplanet.CommonFunction;
+import com.example.accepted.acceptedtalentplanet.MyProfile.MyprofileActivity;
 import com.example.accepted.acceptedtalentplanet.R;
 
 import java.util.ArrayList;
@@ -39,11 +44,10 @@ public class HomeActivity extends AppCompatActivity {
     BestTalent_ListView_Adapter BestTalent_Adapter;
     LinearLayoutManager NewTalentlayoutManager;
 
-    DrawerLayout DrawerLL;
-    FrameLayout DrawerView;
-    ImageView DrawerOpenImg;
+    DrawerLayout slidingMenuDL;
+    View drawerView;
+    ImageView imgDLOpenMenu;
     ImageView DrawerCloseImg;
-    ActionBarDrawerToggle drawerToggle;
 
     Button moreBtn;
     Button initBtn;
@@ -123,64 +127,51 @@ public class HomeActivity extends AppCompatActivity {
 
 
         //Drawer Layout Event (아무 곳이나 터치만 해도 Drawer Layout이 그냥 닫힘.)
+        slidingMenuDL = (DrawerLayout) findViewById(R.id.Home_listboxDL);
 
-        DrawerLL = (DrawerLayout) findViewById(R.id.Home_listboxDL);
-        DrawerView = (FrameLayout) findViewById(R.id.Home_container);
-        DrawerOpenImg = (ImageView) findViewById(R.id.DrawerOpenImg);
-        DrawerOpenImg.setOnClickListener(new View.OnClickListener() {
+        //ToolBar 적용하기
+        drawerView = (View) findViewById(R.id.Home_container);
+        imgDLOpenMenu = (ImageView) findViewById(R.id.DrawerOpenImg);
+        DrawerCloseImg = (ImageView) findViewById(R.id.DrawerCloseImg);
+
+
+        imgDLOpenMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                DrawerLL.openDrawer(DrawerView);
+                slidingMenuDL.openDrawer(drawerView);
+
             }
         });
 
-        DrawerCloseImg = (ImageView) findViewById(R.id.DrawerCloseImg);
         DrawerCloseImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (DrawerLL.isDrawerOpen(Gravity.LEFT)) {
-                    DrawerLL.closeDrawer(DrawerView);
-                }
+                slidingMenuDL.closeDrawer(drawerView);
             }
         });
 
-        drawerToggle = new ActionBarDrawerToggle(this, DrawerLL, R.string.open, R.string.close) {
+        CommonFunction c = new CommonFunction();
+       // c.setMenuClickEvents(mContext);
+
+        TextView tv_home = (TextView)findViewById(R.id.SlidingMenu_Home);
+        TextView tv_profile = (TextView)findViewById(R.id.SlidingMenu_Profile);
+
+        tv_home.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onDrawerOpened(View drawerView) {
-                super.onDrawerOpened(drawerView);
+            public void onClick(View view) {
+                Intent i =  new Intent(getBaseContext(), HomeActivity.class);
+                startActivity(i);
             }
+        });
+
+        tv_profile.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onDrawerClosed(View drawerView) {
-                super.onDrawerClosed(drawerView);
+            public void onClick(View view) {
+                Intent i =  new Intent(getBaseContext(), MyprofileActivity.class);
+                startActivity(i);
             }
-        };
-        DrawerLL.setDrawerListener(drawerToggle);
-    }
+        });
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu, menu);
-        return true;
-    }
-
-    @Override
-    protected void onPostCreate(Bundle savedInstanceState) {
-        super.onPostCreate(savedInstanceState);
-        drawerToggle.syncState();
-    }
-
-    @Override
-    public void onConfigurationChanged(Configuration newConfig) {
-        super.onConfigurationChanged(newConfig);
-        drawerToggle.onConfigurationChanged(newConfig);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if(drawerToggle.onOptionsItemSelected(item)) {
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
     }
 
 
