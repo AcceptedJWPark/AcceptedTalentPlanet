@@ -48,31 +48,50 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
         android:layout_weight="1.5"
-        android:gravity="center"
         android:orientation="vertical"
         android:padding="10dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="horizontal">
+            android:layout_margin="20dp"
+            >
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+            <Button
+                android:id="@+id/TalentCondition_ShowGive"
+                android:layout_width="0dp"
+                android:layout_height="30dp"
+                android:layout_marginRight="5dp"
+                android:layout_weight="1"
+                android:background="@drawable/textbox_bluebg"
                 android:gravity="center"
-                android:text="재능드림 : "
-                android:textColor="@color/colorPrimaryDark"
-                android:textSize="17dp"
-                android:textStyle="bold|italic" />
+                android:text="재능드림 보기"
+                android:textColor="#ffffff"
+                android:textSize="15dp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/TalentCondition_ShowTake"
+                android:layout_width="0dp"
+                android:layout_height="30dp"
+                android:layout_weight="1"
+                android:layout_marginLeft="5dp"
+                android:gravity="center"
+                android:text="관심재능 보기"
+                android:textColor="#bebebe"
+                android:background="@drawable/textbox_whitebg"
+                android:textSize="15dp"
+                android:textStyle="bold"
+                />
+
+        </LinearLayout>
+
+
 
             <TextView
-                android:id="@+id/TalentCondition1_Give_Condition"
-                android:layout_width="wrap_content"
+                android:id="@+id/TalentCondition_Condition"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="대기 중..."
@@ -80,32 +99,33 @@
                 android:textSize="15dp"
                 android:textStyle="bold|italic" />
 
-        </LinearLayout>
 
 
         <LinearLayout
+            android:id="@+id/TalentCondition_KeywordBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="40dp"
-            android:layout_marginRight="40dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="15dp"
+            android:visibility="visible"
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/TalentCondition1_Give_Keyword1"
+                android:id="@+id/TalentCondition_Keyword1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ellipsize="end"
-                android:lines="1"
                 android:gravity="center"
+                android:lines="1"
                 android:text="Guitar"
                 android:textColor="@color/colorPrimaryDark"
                 android:textSize="13dp"
                 android:textStyle="bold|italic" />
 
             <TextView
-                android:id="@+id/TalentCondition1_Give_Keyword2"
+                android:id="@+id/TalentCondition_Keyword2"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -118,7 +138,7 @@
                 android:textStyle="bold|italic" />
 
             <TextView
-                android:id="@+id/TalentCondition1_Give_Keyword3"
+                android:id="@+id/TalentCondition_Keyword3"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -132,54 +152,69 @@
         </LinearLayout>
 
         <TextView
-            android:id="@+id/TalentCondition1_Give_TextView1"
+            android:id="@+id/TalentCondition_TextView1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="15dp"
             android:gravity="center"
             android:text="&quot;현재 회원님의 재능드림은 대기 상태 입니다." />
 
         <TextView
-            android:id="@+id/TalentCondition1_Give_TextView2"
+            android:id="@+id/TalentCondition_TextView2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:gravity="center"
             android:text="관심 목록을 확인 또는 T.Sharing을 진행해보세요!&quot;" />
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="35dp"
-            android:orientation="horizontal">
+            android:layout_marginTop="25dp"
+            >
 
             <Button
-                android:id="@+id/TalentCondition1_Give_Button1"
-                android:layout_width="0dp"
+                android:id="@+id/TalentCondition_Button1"
+                android:layout_width="150dp"
                 android:layout_height="35dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:layout_weight="1"
                 android:background="@drawable/textbox_whitebg2dp"
                 android:gravity="center"
                 android:text="관심목록 확인"
+                android:visibility="visible"
+                android:textStyle="bold"
                 android:textColor="@color/colorPrimaryDark" />
 
 
             <Button
-                android:id="@+id/TalentCondition1_Give_Button2"
-                android:layout_width="0dp"
+                android:id="@+id/TalentCondition_Button2"
+                android:layout_width="150dp"
                 android:layout_height="35dp"
-                android:layout_gravity="center"
+                android:layout_toRightOf="@+id/TalentCondition_Button1"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:layout_weight="1"
                 android:background="#32579a"
                 android:text="T.Sharing"
+                android:textStyle="bold"
+                android:visibility="visible"
                 android:textAllCaps="false"
                 android:textColor="#ffffff" />
 
-        </LinearLayout>
+            <Button
+                android:id="@+id/TalentCondition_Button3"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="#32579a"
+                android:text="재능드림 등록하기"
+                android:textStyle="bold"
+                android:visibility="gone"
+                android:textAllCaps="false"
+                android:textColor="#ffffff" />
+
+        </RelativeLayout>
 
     </LinearLayout>
 
@@ -192,142 +227,7 @@
         android:background="#ebebeb"
         />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_weight="1.5"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:padding="10dp">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="관심재능 : "
-                android:textColor="@color/colorPrimaryDark"
-                android:textSize="17dp"
-                android:textStyle="bold|italic" />
-
-            <TextView
-                android:id="@+id/TalentCondition1_Take_Condition"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="진행 중..."
-                android:textColor="#000000"
-                android:textSize="15dp"
-                android:textStyle="bold|italic" />
-
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="40dp"
-            android:layout_marginRight="40dp"
-            android:layout_marginTop="10dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/TalentCondition1_Take_Keyword1"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:ellipsize="end"
-                android:gravity="center"
-                android:lines="1"
-                android:text="영어"
-                android:textColor="@color/colorPrimaryDark"
-                android:textSize="13dp"
-                android:textStyle="bold|italic" />
-
-            <TextView
-                android:id="@+id/TalentCondition1_Take_Keyword2"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:ellipsize="end"
-                android:gravity="center"
-                android:lines="1"
-                android:text="영어 회화"
-                android:textColor="@color/colorPrimaryDark"
-                android:textSize="13dp"
-                android:textStyle="bold|italic" />
-
-            <TextView
-                android:id="@+id/TalentCondition1_Take_Keyword3"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:ellipsize="end"
-                android:gravity="center"
-                android:lines="1"
-                android:text="영어 말하기"
-                android:textColor="@color/colorPrimaryDark"
-                android:textSize="13dp"
-                android:textStyle="bold|italic" />
-        </LinearLayout>
-
-        <TextView
-            android:id="@+id/TalentCondition1_Take_TextView1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:gravity="center"
-            android:text="&quot;현재 회원님의 관심재능은 진행 상태 입니다." />
-
-        <TextView
-            android:id="@+id/TalentCondition1_Take_TextView2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:gravity="center"
-            android:text="다음 단계를 진행해주세요!&quot;" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="35dp"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/TalentCondition1_Take_Button1"
-                android:layout_width="0dp"
-                android:layout_height="35dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_weight="1"
-                android:background="@drawable/textbox_whitebg2dp"
-                android:gravity="center"
-                android:text="완료하기"
-                android:textColor="@color/colorPrimaryDark" />
-
-
-            <Button
-                android:id="@+id/TalentCondition1_Take_Button2"
-                android:layout_width="0dp"
-                android:layout_height="35dp"
-                android:layout_gravity="center"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_weight="1"
-                android:background="#32579a"
-                android:text="취소하기"
-                android:textAllCaps="false"
-                android:textColor="#ffffff" />
-
-        </LinearLayout>
-    </LinearLayout>
 </LinearLayout>
 
 

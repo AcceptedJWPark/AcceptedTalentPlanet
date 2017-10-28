@@ -11,7 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name=".MyProfile.MyprofileActivity">
+        <activity android:name=".TalentCondition.TalentConditionActivity_1">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -46,16 +46,12 @@
             android:name=".Home.RecyclerActivity"
             android:theme="@style/AppTheme" />
         <activity android:name=".Home.HomeActivity" />
-       <!-- <activity android:name=".MyProfile.MyprofileActivity"/>-->
-        <activity android:name=".TalentResister.TalentResisterActivity_1"/>
-        <activity android:name=".TalentResister.TalentResisterActivity_2"/>
-        <activity android:name=".TalentResister.TalentResisterActivity_3"/>
-        <activity android:name=".TalentResister.TalentResisterActivity_4"/>
+        <activity android:name=".MyProfile.MyprofileActivity"/>
         <activity android:name=".TalentResister.TalentResisterActivity_Level"/>
         <activity android:name=".TalentResister.TalentResisterActivity_Location"/>
         <activity android:name=".TalentResister.TalentResisterActivity_Point"/>
         <activity android:name=".TalentResister.TalentResisterActivity_Talent"/>
-        <activity android:name=".TalentCondition.TalentConditionActivity_1"/>
+       <!-- <activity android:name=".TalentCondition.TalentConditionActivity_1"/>-->
         <activity android:name=".TalentCondition.TalentConditionActivity_2"/>
         <activity android:name=".TalentCondition.TalentConditionActivity_3"/>
         <activity android:name=".TalentCondition.TalentConditionActivity_4"/>

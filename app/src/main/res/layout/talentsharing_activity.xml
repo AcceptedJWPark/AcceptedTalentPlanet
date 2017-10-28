@@ -66,8 +66,8 @@
                 android:background="@drawable/textbox_bluebg"
                 android:text="재능드림 보기"
                 android:textColor="#bebebe"
-                android:textSize="12dp"
-                android:textStyle="bold|italic" />
+                android:textSize="15dp"
+                android:textStyle="bold" />
 
             <Button
                 android:id="@+id/TalentSharing_TakeCheck"
@@ -78,8 +78,8 @@
                 android:background="@drawable/textbox_whitebg"
                 android:text="관심재능 보기"
                 android:textColor="#bebebe"
-                android:textSize="12dp"
-                android:textStyle="bold|italic" />
+                android:textSize="15dp"
+                android:textStyle="bold" />
         </LinearLayout>
 
         <LinearLayout
