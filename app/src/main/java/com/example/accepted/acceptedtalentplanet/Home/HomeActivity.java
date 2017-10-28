@@ -56,7 +56,7 @@ public class HomeActivity extends AppCompatActivity {
         mContext = getApplicationContext();
 
         //New Talent 코드
-        NewTalent_recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+        NewTalent_recyclerView = (RecyclerView) findViewById(R.id.Home_NewTalent_recycler_view);
         NewTalent_recyclerView.setHasFixedSize(true);
 
         NewTalentlayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
@@ -75,7 +75,7 @@ public class HomeActivity extends AppCompatActivity {
         NewTalent_recyclerView.setAdapter(NewTalent_Adapter);
 
         //Hot Talent 코드
-        HotTalent_listView = (ListView) findViewById(R.id.HotTalent_lv);
+        HotTalent_listView = (ListView) findViewById(R.id.Home_HotTalent_ListView);
 
         HotTalentList = new ArrayList<>();
         HotTalentList.add(new HotTalent_ListItem("No.1", "#Piano", "예체능 / 음악", "3,781"));
@@ -89,7 +89,7 @@ public class HomeActivity extends AppCompatActivity {
 
 
         //Best Talent 코드
-        BestTalent_listView = (ListView) findViewById(R.id.BestTalent_lv);
+        BestTalent_listView = (ListView) findViewById(R.id.Home_BestTalent_ListView);
 
         BestTalentListAll = new ArrayList<>();
         BestTalentListAll.add(new BestTalent_ListItem(R.drawable.textpicture, 1, "#Piano", "정우성", "예체능 / 음악", "37건", "-", "Profile 보기"));

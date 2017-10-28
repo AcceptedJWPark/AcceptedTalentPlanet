@@ -102,7 +102,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
-                    android:background="@drawable/listbox_textdesign"
                     android:gravity="center"
                     android:orientation="horizontal"
                     android:paddingBottom="5dp"
@@ -121,6 +120,7 @@
                         android:textStyle="bold" />
 
                     <TextView
+                        android:id="@+id/MyProfile_Email"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="8"
@@ -154,6 +154,7 @@
                         android:textStyle="bold" />
 
                     <TextView
+                        android:id="@+id/MyProfile_Name"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="8"
@@ -193,6 +194,7 @@
                         android:layout_weight="8">
 
                         <TextView
+                            android:id="@+id/MyProfile_Gender"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="2.5"
@@ -203,10 +205,10 @@
                             android:textSize="12dp" />
 
                         <CheckBox
+                            android:id="@+id/MyProfile_genderNoShowCheck"
                             android:layout_width="0dp"
                             android:layout_height="18dp"
                             android:layout_weight="5.5"
-                            android:buttonTint="@color/myProfileText"
                             android:text="비공개"
                             android:textColor="@color/myProfileText"
                             android:textSize="11dp"
@@ -243,6 +245,7 @@
                         android:layout_weight="8">
 
                         <TextView
+                            android:id="@+id/MyProfile_Birthday"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="2.5"
@@ -253,11 +256,10 @@
                             android:textSize="12dp" />
 
                         <CheckBox
-                            android:id="@+id/checkBox"
+                            android:id="@+id/MyProfile_BirthdayNoShowCheck"
                             android:layout_width="0dp"
                             android:layout_height="18dp"
                             android:layout_weight="5.5"
-                            android:buttonTint="@color/myProfileText"
                             android:text="비공개"
                             android:textColor="@color/myProfileText"
                             android:textSize="11dp"
@@ -352,23 +354,27 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="8">
 
-                        <TextView
+                        <EditText
+                            android:id="@+id/MyProfile_Job"
                             android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="bottom"
+                            android:layout_height="18dp"
+                            android:layout_gravity="center"
                             android:layout_weight="2.5"
+                            android:background="@drawable/listbox_textdesign_onlywhite"
                             android:gravity="left"
                             android:paddingLeft="10dp"
+                            android:scrollHorizontally="false"
+                            android:singleLine="true"
                             android:text="무직"
                             android:textColor="@color/myProfileText"
-                            android:textSize="12dp" />
+                            android:textSize="13dp" />
 
                         <CheckBox
+                            android:id="@+id/MyProfile_JobNoShowCheck"
                             android:layout_width="0dp"
                             android:layout_height="18dp"
                             android:layout_gravity="bottom"
                             android:layout_weight="5.5"
-                            android:buttonTint="@color/myProfileText"
                             android:text="비공개"
                             android:textColor="@color/myProfileText"
                             android:textSize="11dp"
@@ -382,7 +388,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
-                    android:background="@drawable/listbox_textdesign"
                     android:gravity="top"
                     android:orientation="horizontal"
                     android:paddingBottom="5dp"
@@ -407,6 +412,7 @@
                         android:layout_weight="8">
 
                         <TextView
+                            android:id="@+id/MyProfile_GiveTalent1"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_gravity="bottom"
@@ -416,9 +422,12 @@
                             android:text="Guitar"
                             android:textColor="@color/colorPrimaryDark"
                             android:textSize="13dp"
+                            android:ellipsize="end"
+                            android:lines="1"
                             android:textStyle="bold|italic" />
 
                         <TextView
+                            android:id="@+id/MyProfile_GiveTalent2"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_gravity="bottom"
@@ -428,9 +437,12 @@
                             android:text="Piano"
                             android:textColor="@color/colorPrimaryDark"
                             android:textSize="13dp"
+                            android:ellipsize="end"
+                            android:lines="1"
                             android:textStyle="bold|italic" />
 
                         <TextView
+                            android:id="@+id/MyProfile_GiveTalent3"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_gravity="bottom"
@@ -440,6 +452,8 @@
                             android:text="Drum"
                             android:textColor="@color/colorPrimaryDark"
                             android:textSize="13dp"
+                            android:ellipsize="end"
+                            android:lines="1"
                             android:textStyle="bold|italic" />
 
                     </LinearLayout>
@@ -450,7 +464,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
-                    android:background="@drawable/listbox_textdesign"
                     android:gravity="top"
                     android:orientation="horizontal"
                     android:paddingBottom="5dp"
@@ -475,6 +488,7 @@
                         android:layout_weight="8">
 
                         <TextView
+                            android:id="@+id/MyProfile_TakeTalent1"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_gravity="bottom"
@@ -484,9 +498,12 @@
                             android:text="농구"
                             android:textColor="@color/colorPrimaryDark"
                             android:textSize="13dp"
+                            android:ellipsize="end"
+                            android:lines="1"
                             android:textStyle="bold|italic" />
 
                         <TextView
+                            android:id="@+id/MyProfile_TakeTalent2"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_gravity="bottom"
@@ -496,9 +513,12 @@
                             android:text="야구"
                             android:textColor="@color/colorPrimaryDark"
                             android:textSize="13dp"
+                            android:ellipsize="end"
+                            android:lines="1"
                             android:textStyle="bold|italic" />
 
                         <TextView
+                            android:id="@+id/MyProfile_TakeTalent3"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_gravity="bottom"
@@ -508,6 +528,8 @@
                             android:text="축구"
                             android:textColor="@color/colorPrimaryDark"
                             android:textSize="13dp"
+                            android:ellipsize="end"
+                            android:lines="1"
                             android:textStyle="bold|italic" />
                     </LinearLayout>
 

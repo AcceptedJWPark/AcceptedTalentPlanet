@@ -19,9 +19,9 @@ import java.util.ArrayList;
  * Created by Accepted on 2017-10-24.
  */
 
-public class TalentSharing_Activity extends AppCompatActivity {
-    ArrayList<TalentSharing_ListItem> TalentSharingList;
-    TalentSharing_ListAdapter TalentSharing_Adapter;
+public class TalentSharingActivity extends AppCompatActivity {
+    ArrayList<TalentSharingListItem> TalentSharingList;
+    TalentSharingListAdapter TalentSharing_Adapter;
     Context mContext;
     ListView TalentSharingListView;
     LinearLayout TalentShringSearchingOpen;
@@ -45,22 +45,22 @@ public class TalentSharing_Activity extends AppCompatActivity {
         TalentSharingListView = (ListView) findViewById(R.id.TalentSharing_LV);
         TalentSharingList = new ArrayList<>();
 
-        TalentSharingList.add(new TalentSharing_ListItem(R.drawable.textpicture, "박종우", "Guitar","Drum","Piano", "93%", "Profile 보기"));
-        TalentSharingList.add(new TalentSharing_ListItem(R.drawable.textpicture, "정우성", "Guitar","Vocal","Piano", "84%", "Profile 보기"));
-        TalentSharingList.add(new TalentSharing_ListItem(R.drawable.textpicture, "민권홍", "Guitar","노래","Piano", "75%", "Profile 보기"));
-        TalentSharingList.add(new TalentSharing_ListItem(R.drawable.textpicture, "김용인", "Guitar","Drum","기타", "71%", "Profile 보기"));
-        TalentSharingList.add(new TalentSharing_ListItem(R.drawable.textpicture, "김진만", "Guitar","기타","Piano", "68%", "Profile 보기"));
-        TalentSharingList.add(new TalentSharing_ListItem(R.drawable.textpicture, "배대명", "Guitar","Drum","통기타", "67%", "Profile 보기"));
-        TalentSharingList.add(new TalentSharing_ListItem(R.drawable.textpicture, "우승제", "기타연주","기타독주","Piano", "60%", "Profile 보기"));
-        TalentSharingList.add(new TalentSharing_ListItem(R.drawable.textpicture, "유성택", "일렉기타","기타","기타연습", "55%", "Profile 보기"));
+        TalentSharingList.add(new TalentSharingListItem(R.drawable.textpicture, "박종우", "Guitar","Drum","Piano", "7.12km", "Profile 보기"));
+        TalentSharingList.add(new TalentSharingListItem(R.drawable.textpicture, "정우성", "Guitar","Vocal","Piano", "10.2km", "Profile 보기"));
+        TalentSharingList.add(new TalentSharingListItem(R.drawable.textpicture, "민권홍", "Guitar","노래","Piano", "13km", "Profile 보기"));
+        TalentSharingList.add(new TalentSharingListItem(R.drawable.textpicture, "김용인", "Guitar","Drum","기타", "15km", "Profile 보기"));
+        TalentSharingList.add(new TalentSharingListItem(R.drawable.textpicture, "김진만", "Guitar","기타","Piano", "16km", "Profile 보기"));
+        TalentSharingList.add(new TalentSharingListItem(R.drawable.textpicture, "배대명", "Guitar","Drum","통기타", "16.7km", "Profile 보기"));
+        TalentSharingList.add(new TalentSharingListItem(R.drawable.textpicture, "우승제", "기타연주","기타독주","Piano", "31km", "Profile 보기"));
+        TalentSharingList.add(new TalentSharingListItem(R.drawable.textpicture, "유성택", "일렉기타","기타","기타연습", "45km", "Profile 보기"));
 
 
-        TalentSharing_Adapter = new TalentSharing_ListAdapter(mContext, TalentSharingList);
+        TalentSharing_Adapter = new TalentSharingListAdapter(mContext, TalentSharingList);
         TalentSharingListView.setAdapter(TalentSharing_Adapter);
 
 
-        TalentShringSearchingBox = (LinearLayout) findViewById(R.id.searchingBoxLL);
-        TalentShringSearchingOpen = (LinearLayout) findViewById(R.id.searchingBoxOpen);
+        TalentShringSearchingBox = (LinearLayout) findViewById(R.id.TalentSharing_searchingBoxLL);
+        TalentShringSearchingOpen = (LinearLayout) findViewById(R.id.TalentSharing_searchingBoxOpen);
         TalentShringSearchingOpen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -79,11 +79,11 @@ public class TalentSharing_Activity extends AppCompatActivity {
             }
         });
 
-        profileShowBtn = (Button) findViewById(R.id.dkdlTLqkf);
+        profileShowBtn = (Button) findViewById(R.id.TalentSharing_ShowProfile);
         profileShowBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(TalentSharing_Activity.this, TalentSharing_Popup.class);
+                Intent intent = new Intent(TalentSharingActivity.this, TalentSharingPopup.class);
                 startActivity(intent);
             }
         });

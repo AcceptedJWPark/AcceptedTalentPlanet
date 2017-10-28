@@ -44,7 +44,7 @@ public class RegistEmailActivity extends  AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.join_email);
 
-        EditText email = (EditText)findViewById(R.id.et_join_mail);
+        EditText email = (EditText)findViewById(R.id.Join_Email);
         findViewById(R.id.btnAccept).setOnClickListener(mClickListener);
         email.addTextChangedListener(new TextWatcher() {
             @Override
@@ -95,7 +95,7 @@ public class RegistEmailActivity extends  AppCompatActivity {
 
     public void goNext(View v){
         if(confirmEmailCheck) {
-            EditText email = (EditText) findViewById(R.id.et_join_mail);
+            EditText email = (EditText) findViewById(R.id.Join_Email);
             Intent intent = new Intent(this, RegistPasswordActivity.class);
             intent.putExtra("email", email.getText().toString());
 
@@ -109,7 +109,7 @@ public class RegistEmailActivity extends  AppCompatActivity {
     public void emailCheck(View v){
 
         Log.d("Login Start", "start");
-        final EditText email = (EditText)findViewById(R.id.et_join_mail);
+        final EditText email = (EditText)findViewById(R.id.Join_Email);
 
         final String jEmail = email.getText().toString();
 
@@ -203,8 +203,8 @@ public class RegistEmailActivity extends  AppCompatActivity {
 
     Button.OnClickListener mClickListener = new View.OnClickListener(){
         public void onClick(View v) {
-            EditText et_joinCode = (EditText) findViewById(R.id.et_joinCode);
-            String acceptJoinCode = et_joinCode.getText().toString();
+            EditText Home_joinCode = (EditText) findViewById(R.id.Join_joinCode);
+            String acceptJoinCode = Home_joinCode.getText().toString();
 
             if (acceptJoinCode.equals(joinCode)) {
                 confirmEmailCheck = true;

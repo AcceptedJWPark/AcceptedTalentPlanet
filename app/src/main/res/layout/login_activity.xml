@@ -37,11 +37,12 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_below="@id/Title_L">
+        android:layout_marginTop="19dp"
+        android:layout_below="@+id/Title_L"
+        android:layout_alignParentStart="true">
 
         <EditText
-            android:id="@+id/et_email"
+            android:id="@+id/Login_ID"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="E-mail"
@@ -54,7 +55,7 @@
         </EditText>
 
         <EditText
-            android:id="@+id/et_pawd"
+            android:id="@+id/Login_Password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Password"

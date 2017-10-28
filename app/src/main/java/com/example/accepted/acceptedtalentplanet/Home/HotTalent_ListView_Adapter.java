@@ -50,10 +50,10 @@ public class HotTalent_ListView_Adapter extends BaseAdapter{
         if(view == null) {
             view = LayoutInflater.from(context).inflate(R.layout.home_hottalent_listviewbg, null);
 
-            listView_rank = view.findViewById(R.id.listView_Rank);
-            listView_talent = view.findViewById(R.id.listView_Talent);
-            listView_category = view.findViewById(R.id.listView_Category);
-            listView_number = view.findViewById(R.id.listView_Number);
+            listView_rank = view.findViewById(R.id.Home_HotTalent_Rank);
+            listView_talent = view.findViewById(R.id.Home_HotTalent_Talent);
+            listView_category = view.findViewById(R.id.Home_HotTalent_Category);
+            listView_number = view.findViewById(R.id.Home_HotTalent_Number);
         }
 
             listView_rank.setText(list_ArrayList.get(position).getRank());

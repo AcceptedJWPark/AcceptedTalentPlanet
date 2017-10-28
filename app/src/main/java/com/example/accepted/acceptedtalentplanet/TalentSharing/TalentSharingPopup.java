@@ -15,7 +15,7 @@ import com.example.accepted.acceptedtalentplanet.R;
  * Created by Accepted on 2017-10-24.
  */
 
-public class TalentSharing_Popup extends FragmentActivity{
+public class TalentSharingPopup extends FragmentActivity{
 
     ImageView talentSharing_pupupclosebtn;
 
@@ -40,7 +40,7 @@ public class TalentSharing_Popup extends FragmentActivity{
 
             @Override
             public void onClick(View view) {
-                TalentSharing_Popup.this.finish();
+                TalentSharingPopup.this.finish();
             }
         });
     }

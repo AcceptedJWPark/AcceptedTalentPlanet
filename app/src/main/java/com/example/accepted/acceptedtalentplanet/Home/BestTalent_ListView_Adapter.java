@@ -58,14 +58,14 @@ public class BestTalent_ListView_Adapter extends BaseAdapter{
         if(view == null) {
             view = LayoutInflater.from(context).inflate(R.layout.home_besttalent_listviewbg, null);
         }
-            listView_picture = view.findViewById(R.id.BestTalent_homeImage);
-            listView_rank = view.findViewById(R.id.BestTalent_homeRank);
-            listView_talent = view.findViewById(R.id.BestTalent_homeTalent);
-            listView_name = view.findViewById(R.id.BestTalent_homeName);
-            listView_category = view.findViewById(R.id.BestTalent_homeCategory);
-            listView_number = view.findViewById(R.id.BestTalent_homeNumber);
-            listView_profile = view.findViewById(R.id.BestTalent_homeProfile);
-            listView_bar = view.findViewById(R.id.BestTalent_homeBar);
+            listView_picture = view.findViewById(R.id.Home_BestTalent_Picture);
+            listView_rank = view.findViewById(R.id.Home_BestTalent_Rank);
+            listView_talent = view.findViewById(R.id.Home_BestTalent_Talent);
+            listView_name = view.findViewById(R.id.Home_BestTalent_Name);
+            listView_category = view.findViewById(R.id.Home_BestTalent_Category);
+            listView_number = view.findViewById(R.id.Home_BestTalent_Number);
+            listView_profile = view.findViewById(R.id.Home_BestTalent_showProfile);
+            listView_bar = view.findViewById(R.id.Home_BestTalent_bar);
 
             listView_picture.setImageResource(list_ArrayList.get(position).getPicture());
             listView_rank.setText(String.valueOf(list_ArrayList.get(position).getRank()));

@@ -60,9 +60,9 @@ public class NewTalent_ListView_Adapter extends RecyclerView.Adapter<NewTalent_L
         public ViewHolder(View view)
         {
             super(view);
-            imageView = view.findViewById(R.id.NewTalent_Picture);
-            textName = view.findViewById(R.id.NewTalent_Name);
-            textTalent = view.findViewById(R.id.NewTalent_Talent);
+            imageView = view.findViewById(R.id.Home_NewTalent_Picture);
+            textName = view.findViewById(R.id.Home_NewTalent_Name);
+            textTalent = view.findViewById(R.id.Home_NewTalent_Talent);
         }
     }
 

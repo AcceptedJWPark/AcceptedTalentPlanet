@@ -11,7 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name=".TalentSharing.TalentSharing_Activity">
+        <activity android:name=".MyProfile.MyprofileActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -46,7 +46,7 @@
             android:name=".Home.RecyclerActivity"
             android:theme="@style/AppTheme" />
         <activity android:name=".Home.HomeActivity" />
-        <activity android:name=".MyProfile.MyprofileActivity"/>
+       <!-- <activity android:name=".MyProfile.MyprofileActivity"/>-->
         <activity android:name=".TalentResister.TalentResisterActivity_1"/>
         <activity android:name=".TalentResister.TalentResisterActivity_2"/>
         <activity android:name=".TalentResister.TalentResisterActivity_3"/>
@@ -63,7 +63,7 @@
 
 
         <activity
-            android:name=".TalentSharing.TalentSharing_Popup"
+            android:name=".TalentSharing.TalentSharingPopup"
             android:theme="@style/Theme.AppCompat.Dialog">
         </activity>
 

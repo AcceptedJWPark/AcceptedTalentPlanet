@@ -22,7 +22,7 @@
         android:layout_weight="0.6"
         >
         <ImageView
-            android:id="@+id/BestTalent_homeImage"
+            android:id="@+id/Home_BestTalent_Picture"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:adjustViewBounds="true"
@@ -37,7 +37,7 @@
         android:layout_weight="0.4"
         >
             <TextView
-                android:id="@+id/BestTalent_homeRank"
+                android:id="@+id/Home_BestTalent_Rank"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
@@ -46,7 +46,7 @@
                 android:text="1" />
 
             <TextView
-                android:id="@+id/BestTalent_homeBar"
+                android:id="@+id/Home_BestTalent_bar"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
@@ -64,7 +64,7 @@
         android:paddingLeft="5dp"
     >
     <TextView
-        android:id="@+id/BestTalent_homeTalent"
+        android:id="@+id/Home_BestTalent_Talent"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:textColor="#000000"
@@ -73,7 +73,7 @@
         android:text="#기타" />
 
     <TextView
-        android:id="@+id/BestTalent_homeName"
+        android:id="@+id/Home_BestTalent_Name"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center|left"
@@ -90,7 +90,7 @@
         android:layout_weight="1"
         >
         <TextView
-            android:id="@+id/BestTalent_homeNumber"
+            android:id="@+id/Home_BestTalent_Number"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center|left"
@@ -99,7 +99,7 @@
             android:text="37건 완료" />
 
         <TextView
-            android:id="@+id/BestTalent_homeCategory"
+            android:id="@+id/Home_BestTalent_Category"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center|left"
@@ -116,7 +116,7 @@
         >
         <Button
             android:textAllCaps="false"
-            android:id="@+id/BestTalent_homeProfile"
+            android:id="@+id/Home_BestTalent_showProfile"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:gravity="center|left"

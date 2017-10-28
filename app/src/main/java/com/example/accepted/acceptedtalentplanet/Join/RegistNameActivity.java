@@ -25,8 +25,8 @@ public class RegistNameActivity extends  AppCompatActivity {
     }
 
     public void goNext(View v){
-        EditText first_name = (EditText)findViewById(R.id.et_first_name) ;
-        EditText last_name = (EditText)findViewById(R.id.et_last_name) ;
+        EditText first_name = (EditText)findViewById(R.id.Join_FirstName) ;
+        EditText last_name = (EditText)findViewById(R.id.Join_LastName) ;
 
         Intent intent = new Intent(this, RegistGenderActivity.class);
         intent.putExtra("email", email);

@@ -51,9 +51,9 @@ public class RegistBirthActivity extends  AppCompatActivity {
     }
 
     public void goRegist(View v){
-        EditText birthYear = (EditText)findViewById(R.id.et_join_birth_year);
-        EditText birthMonth = (EditText)findViewById(R.id.et_join_birth_month);
-        EditText birthDay = (EditText)findViewById(R.id.et_join_birth_day);
+        EditText birthYear = (EditText)findViewById(R.id.Join_Birth_Year);
+        EditText birthMonth = (EditText)findViewById(R.id.Join_Birth_Month);
+        EditText birthDay = (EditText)findViewById(R.id.Join_Birth_Day);
         birth = birthYear.getText().toString() + birthMonth.getText().toString() + birthDay.getText().toString();
 
 

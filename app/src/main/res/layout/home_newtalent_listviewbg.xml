@@ -24,15 +24,15 @@
         android:weightSum="1">
 
         <ImageView
-            android:id="@+id/NewTalent_Picture"
-            android:layout_width="wrap_content"
+            android:id="@+id/Home_NewTalent_Picture"
+            android:layout_width="100dp"
             android:layout_height="100dp"
             android:adjustViewBounds="true"
             android:src="@drawable/textpicture"
             android:layout_weight="1.40" />
 
         <TextView
-            android:id="@+id/NewTalent_Talent"
+            android:id="@+id/Home_NewTalent_Talent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="#기타"
@@ -42,7 +42,7 @@
             android:textStyle="bold|italic" />
 
         <TextView
-            android:id="@+id/NewTalent_Name"
+            android:id="@+id/Home_NewTalent_Name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="박종우"

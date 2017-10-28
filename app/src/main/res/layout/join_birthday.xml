@@ -62,38 +62,54 @@
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="50dp"
-            android:layout_marginRight="50dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
             >
 
         <EditText
-            android:id="@+id/et_join_birth_year"
-            android:layout_width="match_parent"
+            android:id="@+id/Join_Birth_Year"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:hint="YYYY  Ex)1991"
+            android:layout_weight="1.5"
+            android:hint="YYYY"
+            android:gravity="center"
             android:inputType="number"
             android:textSize="12dp" />
 
         <EditText
-            android:id="@+id/et_join_birth_month"
-            android:layout_width="match_parent"
+            android:id="@+id/Join_Birth_Month"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
             android:layout_weight="1"
             android:hint="MM"
+            android:gravity="center"
             android:inputType="number"
             android:textSize="12dp" />
 
         <EditText
-            android:id="@+id/et_join_birth_day"
-            android:layout_width="match_parent"
+            android:id="@+id/Join_Birth_Day"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:hint="DD"
+            android:gravity="center"
             android:inputType="number"
-            android:textSize="12dp" />
+            android:textSize="12dp"/>
+
+
+        <CheckBox
+            android:id="@+id/Join_BirthDayNoShowCheck"
+            android:layout_weight="1.5"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorPrimaryDark"
+            android:text="비공개"
+            android:background="#ffffff"
+            android:textSize="12dp"
+            android:textStyle="bold"
+            />
 
 
     </LinearLayout>
@@ -101,8 +117,8 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="35dp"
-        android:layout_marginLeft="50dp"
-        android:layout_marginRight="50dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
         android:layout_marginTop="10dp"
         android:background="@drawable/textbox_whitebg"
         android:onClick="goRegist"
@@ -112,6 +128,7 @@
         android:textAllCaps="false"
         android:textColor="#32579a"
         android:textSize="15dp"
-        android:textStyle="bold|italic" />
+        android:textStyle="bold|italic"
+        />
 
 </LinearLayout>

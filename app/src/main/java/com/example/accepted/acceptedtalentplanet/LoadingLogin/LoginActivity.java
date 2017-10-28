@@ -45,7 +45,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_activity);
 
-        editText= (EditText) findViewById(R.id.et_email);
+        editText= (EditText) findViewById(R.id.Login_ID);
         editText.requestFocus();
 
         InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -56,8 +56,8 @@ public class LoginActivity extends AppCompatActivity {
 
     public void loginClicked(View v){
         Log.d("Login Start", "start");
-        EditText email = (EditText)findViewById(R.id.et_email);
-        EditText pawd = (EditText)findViewById(R.id.et_pawd);
+        EditText email = (EditText)findViewById(R.id.Login_ID);
+        EditText pawd = (EditText)findViewById(R.id.Login_Password);
 
         final String userID = email.getText().toString();
         final String userPW = pawd.getText().toString();

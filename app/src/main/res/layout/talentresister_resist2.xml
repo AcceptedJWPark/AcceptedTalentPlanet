@@ -136,6 +136,7 @@
                     android:textStyle="bold" />
 
                 <TextView
+                    android:id="@+id/TalentResister2_Take_Keyword1"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1.5"
@@ -149,6 +150,7 @@
                     android:textStyle="bold|italic" />
 
                 <TextView
+                    android:id="@+id/TalentResister2_Take_Keyword2"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1.5"
@@ -162,6 +164,7 @@
                     android:textStyle="bold|italic" />
 
                 <TextView
+                    android:id="@+id/TalentResister2_Take_Keyword3"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1.5"
@@ -193,6 +196,7 @@
                     android:textStyle="bold" />
 
                 <TextView
+                    android:id="@+id/TalentResister2_Take_Location1"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1.5"
@@ -206,6 +210,7 @@
                     android:textStyle="bold|italic" />
 
                 <TextView
+                    android:id="@+id/TalentResister2_Take_Location2"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1.5"
@@ -219,6 +224,7 @@
                     android:textStyle="bold|italic" />
 
                 <TextView
+                    android:id="@+id/TalentResister2_Take_Location3"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1.5"
@@ -248,6 +254,7 @@
                     android:textStyle="bold" />
 
                 <TextView
+                    android:id="@+id/TalentResister2_Take_Level"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="4.5"
@@ -278,6 +285,7 @@
                     android:textStyle="bold" />
 
                 <TextView
+                    android:id="@+id/TalentResister2_Take_Point"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="4.5"

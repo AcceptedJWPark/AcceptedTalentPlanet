@@ -73,7 +73,7 @@
                 />
 
             <TextView
-                android:id="@+id/txt_NewTakeTalentList"
+                android:id="@+id/Home_NewTalent_TakeTalent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="관심"
@@ -89,8 +89,8 @@
                 android:layout_height="wrap_content"
                 android:text="|"
                 android:textSize="15dp"
-                android:layout_alignBaseline="@+id/txt_NewTakeTalentList"
-                android:layout_toLeftOf="@+id/txt_NewGiveTalentList"
+                android:layout_alignBaseline="@+id/Home_NewTalent_TakeTalent"
+                android:layout_toLeftOf="@+id/Home_NewTalent_GiveTalent"
                 android:layout_gravity="right"
                 android:textStyle="bold"
                 android:layout_marginLeft="5dp"
@@ -99,11 +99,11 @@
                 />
 
             <TextView
-                android:id="@+id/txt_NewGiveTalentList"
+                android:id="@+id/Home_NewTalent_GiveTalent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="드림"
-                android:layout_alignBaseline="@+id/txt_NewTakeTalentList"
+                android:layout_alignBaseline="@+id/Home_NewTalent_TakeTalent"
                 android:layout_alignParentRight="true"
                 android:textSize="10dp"
                 android:layout_gravity="right"
@@ -121,7 +121,7 @@
                 android:layout_marginRight="30dp">
 
                 <android.support.v7.widget.RecyclerView
-                    android:id="@+id/recycler_view"
+                    android:id="@+id/Home_NewTalent_recycler_view"
                     app:layoutManager="LinearLayoutManager"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -163,7 +163,7 @@
                     />
 
                 <TextView
-                    android:id="@+id/txt_HotTakeTalentList"
+                    android:id="@+id/Home_HotTalent_TakeTalent"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="관심"
@@ -179,8 +179,8 @@
                     android:layout_height="wrap_content"
                     android:text="|"
                     android:textSize="15dp"
-                    android:layout_alignBaseline="@+id/txt_HotTakeTalentList"
-                    android:layout_toLeftOf="@+id/txt_HotGiveTalentList"
+                    android:layout_alignBaseline="@+id/Home_HotTalent_TakeTalent"
+                    android:layout_toLeftOf="@+id/Home_HotTalent_GiveTalent"
                     android:layout_gravity="right"
                     android:textStyle="bold"
                     android:layout_marginLeft="5dp"
@@ -189,11 +189,11 @@
                     />
 
                 <TextView
-                    android:id="@+id/txt_HotGiveTalentList"
+                    android:id="@+id/Home_HotTalent_GiveTalent"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="드림"
-                    android:layout_alignBaseline="@+id/txt_HotTakeTalentList"
+                    android:layout_alignBaseline="@+id/Home_HotTalent_TakeTalent"
                     android:layout_alignParentRight="true"
                     android:textSize="10dp"
                     android:layout_gravity="right"
@@ -203,7 +203,7 @@
                     />
 
                 <ListView
-                    android:id="@+id/HotTalent_lv"
+                    android:id="@+id/Home_HotTalent_ListView"
                     android:layout_width="match_parent"
                     android:layout_height="170dp"
                     android:layout_marginLeft="30dp"
@@ -246,7 +246,7 @@
                     />
 
                 <ListView
-                    android:id="@+id/BestTalent_lv"
+                    android:id="@+id/Home_BestTalent_ListView"
                     android:layout_width="match_parent"
                     android:layout_height="310dp"
                     android:layout_marginLeft="30dp"

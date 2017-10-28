@@ -64,7 +64,7 @@
         android:orientation="horizontal">
 
         <EditText
-            android:id="@+id/et_join_mail"
+            android:id="@+id/Join_Email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="70dp"
@@ -104,7 +104,7 @@
             android:orientation="horizontal">
 
             <EditText
-                android:id="@+id/et_joinCode"
+                android:id="@+id/Join_joinCode"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="70dp"

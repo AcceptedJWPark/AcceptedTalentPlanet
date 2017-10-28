@@ -25,7 +25,7 @@ public class RegistGenderActivity extends  AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.join_gender);
 
-        genderSpinner = (Spinner) findViewById(R.id.genderSpinner);
+        genderSpinner = (Spinner) findViewById(R.id.Join_genderSpinner);
         genderSpinner.setPrompt("성별 선택");
         ArrayAdapter<CharSequence> adapter = new ArrayAdapter<CharSequence>(this,R.layout.join_genderspinner,mobileNetworkTypes);
 
@@ -39,7 +39,7 @@ public class RegistGenderActivity extends  AppCompatActivity {
     }
 
     public void goNext(View v){
-        Spinner gender = (Spinner)findViewById(R.id.genderSpinner);
+        Spinner gender = (Spinner)findViewById(R.id.Join_genderSpinner);
 
         Intent intent = new Intent(this, RegistBirthActivity.class);
         intent.putExtra("email", email);

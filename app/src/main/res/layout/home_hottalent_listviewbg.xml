@@ -15,7 +15,7 @@
     android:orientation="vertical"
     >
     <TextView
-        android:id="@+id/listView_Rank"
+        android:id="@+id/Home_HotTalent_Rank"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="No.1"
@@ -32,7 +32,7 @@
     android:layout_height="wrap_content"
     android:layout_weight="4">
         <TextView
-        android:id="@+id/listView_Talent"
+        android:id="@+id/Home_HotTalent_Talent"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="#Piano"
@@ -50,7 +50,7 @@
     android:layout_height="wrap_content"
     android:layout_weight="4">
     <TextView
-        android:id="@+id/listView_Category"
+        android:id="@+id/Home_HotTalent_Category"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="예체능 / 음악"
@@ -68,7 +68,7 @@
         android:gravity="right"
         >
         <TextView
-        android:id="@+id/listView_Number"
+        android:id="@+id/Home_HotTalent_Number"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="3,784 건"

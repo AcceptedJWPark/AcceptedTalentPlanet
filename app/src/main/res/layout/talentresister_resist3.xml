@@ -88,6 +88,7 @@
                 android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/TalentResister3_Give_Keyword1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1.5"
@@ -101,6 +102,7 @@
                 android:textStyle="bold|italic" />
 
             <TextView
+                android:id="@+id/TalentResister3_Give_Keyword2"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1.5"
@@ -114,6 +116,7 @@
                 android:textStyle="bold|italic" />
 
             <TextView
+                android:id="@+id/TalentResister3_Give_Keyword3"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1.5"
@@ -145,6 +148,7 @@
                 android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/TalentResister3_Give_Location1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1.5"
@@ -158,6 +162,7 @@
                 android:textStyle="bold|italic" />
 
             <TextView
+                android:id="@+id/TalentResister3_Give_Location2"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1.5"
@@ -171,6 +176,7 @@
                 android:textStyle="bold|italic" />
 
             <TextView
+                android:id="@+id/TalentResister3_Give_Location3"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1.5"
@@ -201,6 +207,7 @@
                 android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/TalentResister3_Give_Level"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="4.5"
@@ -232,7 +239,7 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/textView3"
+                android:id="@+id/TalentResister3_Give_Point"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="4.5"
