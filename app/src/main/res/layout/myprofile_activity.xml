@@ -7,30 +7,31 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
-    android:theme="@style/AppTheme.NoActionBar"
-    android:background="#ffffff">
 
-
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:contentInsetStart="0dp"
-        android:contentInsetLeft="0dp"
-        app:contentInsetLeft="0dp"
-        app:contentInsetStart="0dp"
-        android:fitsSystemWindows="true"
-        >
-        <include
+        android:layout_height="match_parent"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:orientation="vertical"
+        android:theme="@style/AppTheme.NoActionBar"
+        android:background="#ffffff">
+
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            layout="@layout/toolbarlayout"/>
-    </android.support.v7.widget.Toolbar>
+            android:contentInsetStart="0dp"
+            android:contentInsetLeft="0dp"
+            app:contentInsetLeft="0dp"
+            app:contentInsetStart="0dp"
+            android:fitsSystemWindows="true"
+            >
+            <include
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                layout="@layout/toolbarlayout"/>
+        </android.support.v7.widget.Toolbar>
 
 
 
@@ -75,16 +76,12 @@
                 android:gravity="center_vertical"
                 android:orientation="vertical">
 
-                <TextView
+                <View
                     android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="0.7"
+                    android:layout_height="2dp"
                     android:background="#f5f5f5"
-                    android:gravity="center"
-                    android:text="My Account ▼"
-                    android:textColor="#505050"
-                    android:textStyle="bold|italic">
-                </TextView>
+                    >
+                </View>
                 <!--, 필수 공개 레이아웃(E-mail)-->
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -305,15 +302,12 @@
                 android:gravity="center_vertical"
                 android:orientation="vertical">
 
-                <TextView
+                <View
                     android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="0.7"
+                    android:layout_height="2dp"
                     android:background="#f5f5f5"
-                    android:gravity="center"
-                    android:text="Options ▼"
-                    android:textColor="#505050"
-                    android:textStyle="bold|italic"></TextView>
+                    >
+                </View>
 
                 <!--, 선택 공개 레이아웃(직업)-->
                 <LinearLayout
@@ -454,7 +448,6 @@
                     android:layout_weight="1"
                     android:gravity="top"
                     android:orientation="horizontal"
-                    android:paddingBottom="5dp"
                     android:paddingLeft="10dp"
                     android:paddingTop="10dp"
                     android:weightSum="10">
@@ -521,14 +514,22 @@
                             android:textStyle="bold|italic" />
                     </LinearLayout>
 
+
                 </LinearLayout>
 
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="#f5f5f5"
+                    >
+                </View>
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="0.3">
+                android:layout_weight="0.3"
+                android:baselineAligned="false">
 
                 <Button
                     android:layout_width="match_parent"
@@ -547,7 +548,7 @@
 
         </LinearLayout>
 
-</LinearLayout>
+    </LinearLayout>
 
     <FrameLayout
         android:id="@+id/MyProfile_container"
@@ -560,5 +561,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
     </FrameLayout>
+
 
 </android.support.v4.widget.DrawerLayout>
