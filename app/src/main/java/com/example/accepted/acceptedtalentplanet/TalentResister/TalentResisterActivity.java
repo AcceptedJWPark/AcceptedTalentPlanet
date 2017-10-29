@@ -189,6 +189,12 @@ public class TalentResisterActivity extends AppCompatActivity {
 
         //ToolBar 적용하기
     }
+
+    public void registTalent(View v){
+        Intent i = new Intent(mContext, TalentResisterActivity_Talent.class);
+        i.putExtra("talentFlag", TalentResister_Give);
+        startActivity(i);
+    }
     public void slideMenuHome(View v){
         Intent i = new Intent(mContext, HomeActivity.class);
         startActivity(i);

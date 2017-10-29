@@ -53,17 +53,18 @@
             android:hint="첫 번째 KeyWord 입력해주세요."
             android:layout_weight="5"
             />
+
         <Button
             android:layout_width="0dp"
             android:layout_height="18dp"
-            android:text="등록"
-            android:gravity="center"
-            android:background="@drawable/textbox_whitebg2dp"
-            android:textColor="#000000"
-            android:textStyle="bold"
-            android:textSize="11dp"
             android:layout_weight="1"
-            />
+            android:background="@drawable/textbox_whitebg2dp"
+            android:gravity="center"
+            android:onClick="registTalent1"
+            android:text="등록"
+            android:textColor="#000000"
+            android:textSize="11dp"
+            android:textStyle="bold" />
     </LinearLayout>
 
     <LinearLayout
@@ -92,17 +93,18 @@
             android:hint="두 번째 KeyWord 입력해주세요."
             android:layout_weight="5"
             />
+
         <Button
             android:layout_width="0dp"
             android:layout_height="18dp"
-            android:text="등록"
-            android:gravity="center"
-            android:background="@drawable/textbox_whitebg2dp"
-            android:textColor="#000000"
-            android:textStyle="bold"
-            android:textSize="11dp"
             android:layout_weight="1"
-            />
+            android:background="@drawable/textbox_whitebg2dp"
+            android:gravity="center"
+            android:onClick="registTalent2"
+            android:text="등록"
+            android:textColor="#000000"
+            android:textSize="11dp"
+            android:textStyle="bold" />
     </LinearLayout>
 
     <LinearLayout
@@ -137,6 +139,7 @@
             android:layout_weight="1"
             android:background="@drawable/textbox_whitebg2dp"
             android:gravity="center"
+            android:onClick="registTalent3"
             android:text="등록"
             android:textColor="#000000"
             android:textSize="11dp"
@@ -193,15 +196,15 @@
     </LinearLayout>
 
     <Button
-        android:layout_marginTop="20dp"
-        android:textAllCaps="false"
         android:layout_width="match_parent"
         android:layout_height="35dp"
-        android:background="#32579a"
-        android:textColor="#ffffff"
         android:layout_marginLeft="40dp"
         android:layout_marginRight="40dp"
+        android:layout_marginTop="20dp"
+        android:background="#32579a"
+        android:onClick="goNext"
         android:text="Next"
-        />
+        android:textAllCaps="false"
+        android:textColor="#ffffff" />
 
 </LinearLayout>

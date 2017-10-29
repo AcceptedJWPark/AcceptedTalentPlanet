@@ -23,7 +23,6 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.example.accepted.acceptedtalentplanet.CommonFunction;
 import com.example.accepted.acceptedtalentplanet.LoadingLogin.LoginActivity;
 import com.example.accepted.acceptedtalentplanet.MyProfile.MyprofileActivity;
 import com.example.accepted.acceptedtalentplanet.R;

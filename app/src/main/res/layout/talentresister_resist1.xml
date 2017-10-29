@@ -351,30 +351,30 @@
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
                 android:layout_alignParentRight="true"
-                android:background="@color/colorPrimaryDark"
-                android:text="재능드림 수정하기"
-                android:layout_marginTop="15dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
+                android:layout_marginTop="15dp"
+                android:background="@color/colorPrimaryDark"
+                android:onClick="registTalent"
+                android:text="재능드림 수정하기"
                 android:textColor="#ffffff"
-                android:visibility="invisible"
                 android:textStyle="bold"
-                />
+                android:visibility="invisible" />
 
             <Button
                 android:id="@+id/TalentResister_Take_ModifyBtn"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
                 android:layout_alignParentRight="true"
-                android:background="@color/colorPrimaryDark"
-                android:text="관심재능 수정하기"
-                android:layout_marginTop="15dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
-                android:visibility="visible"
+                android:layout_marginTop="15dp"
+                android:background="@color/colorPrimaryDark"
+                android:onClick="registTalent"
+                android:text="관심재능 수정하기"
                 android:textColor="#ffffff"
                 android:textStyle="bold"
-                />
+                android:visibility="visible" />
 
 
         </RelativeLayout>
