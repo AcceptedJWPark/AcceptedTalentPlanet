@@ -11,7 +11,13 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 
+import com.example.accepted.acceptedtalentplanet.Home.HomeActivity;
+import com.example.accepted.acceptedtalentplanet.LoadingLogin.LoginActivity;
+import com.example.accepted.acceptedtalentplanet.MyProfile.MyprofileActivity;
 import com.example.accepted.acceptedtalentplanet.R;
+import com.example.accepted.acceptedtalentplanet.SaveSharedPreference;
+import com.example.accepted.acceptedtalentplanet.TalentCondition.TalentConditionActivity_1;
+import com.example.accepted.acceptedtalentplanet.TalentResister.TalentResisterActivity;
 
 import java.util.ArrayList;
 
@@ -32,6 +38,7 @@ public class TalentSharingActivity extends AppCompatActivity {
     DrawerLayout slidingMenuDL;
     View drawerView;
     ImageView imgDLOpenMenu;
+    ImageView DrawerCloseImg;
 
 
 
@@ -79,19 +86,15 @@ public class TalentSharingActivity extends AppCompatActivity {
             }
         });
 
-        profileShowBtn = (Button) findViewById(R.id.TalentSharing_ShowProfile);
-        profileShowBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(TalentSharingActivity.this, TalentSharingPopup.class);
-                startActivity(intent);
-            }
-        });
+
 
         //ToolBar 적용하기
         slidingMenuDL = (DrawerLayout) findViewById(R.id.TalentSharing_listboxDL);
         drawerView = (View) findViewById(R.id.TalentSharing_container);
         imgDLOpenMenu = (ImageView) findViewById(R.id.DrawerOpenImg);
+        DrawerCloseImg = (ImageView) findViewById(R.id.DrawerCloseImg);
+
+
         imgDLOpenMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -100,6 +103,45 @@ public class TalentSharingActivity extends AppCompatActivity {
             }
         });
 
+        DrawerCloseImg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                slidingMenuDL.closeDrawer(drawerView);
+            }
+        });
+
+    }
+
+    public void slideMenuHome(View v){
+        Intent i = new Intent(mContext, HomeActivity.class);
+        startActivity(i);
+    }
+
+    public void slideMenuProfile(View v){
+        Intent i = new Intent(mContext, MyprofileActivity.class);
+        startActivity(i);
+    }
+
+    public void slideMenuTalent(View v){
+        Intent i = new Intent(mContext, TalentResisterActivity.class);
+        startActivity(i);
+    }
+
+    public void slideMenuTS(View v){
+        Intent i = new Intent(mContext, TalentSharingActivity.class);
+        startActivity(i);
+    }
+
+    public void slideMenuMyTalent(View v){
+        Intent i = new Intent(mContext, TalentConditionActivity_1.class);
+        startActivity(i);
+    }
+
+    public void slideMenuLogout(View v){
+        SaveSharedPreference.clearUserInfo(mContext);
+        Intent i = new Intent(mContext, LoginActivity.class);
+        startActivity(i);
+        finish();
     }
 
 }

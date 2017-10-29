@@ -33,7 +33,7 @@ public class LoadingActivity extends AppCompatActivity {
             public void run() {
                 Intent intent;
                 if(SaveSharedPreference.getUserId(LoadingActivity.this).length() == 0) {
-                    intent = new Intent(getBaseContext(), MainActivity.class);
+                    intent = new Intent(getBaseContext(), LoginActivity.class);
                 }else{
                     intent = new Intent(getBaseContext(), HomeActivity.class);
                 }

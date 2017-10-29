@@ -37,7 +37,7 @@ import java.util.Map;
  */
 
 public class LoginActivity extends AppCompatActivity {
-
+    private InputMethodManager imm;
     private EditText editText;
 
     @Override
@@ -48,7 +48,7 @@ public class LoginActivity extends AppCompatActivity {
         editText= (EditText) findViewById(R.id.Login_ID);
         editText.requestFocus();
 
-        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY);
 
 
@@ -77,6 +77,7 @@ public class LoginActivity extends AppCompatActivity {
                         SaveSharedPreference.setPrefUsrName(LoginActivity.this, userName);
                         SaveSharedPreference.setPrefUsrId(LoginActivity.this, userID);
                         Intent intent = new Intent(getBaseContext(), HomeActivity.class);
+                        hideKeyboard();
                         startActivity(intent);
                     }else if(result.equals("fail")){
                         Toast.makeText(getApplicationContext(), "비밀번호를 잘못 입력하셨습니다.", Toast.LENGTH_SHORT).show();
@@ -132,6 +133,10 @@ public class LoginActivity extends AppCompatActivity {
     public void testFunc(View v){
         Intent intent = new Intent(this, RecyclerActivity.class);
         startActivity(intent);
+    }
+
+    private void hideKeyboard(){
+        imm.hideSoftInputFromInputMethod(this.getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
     }
 
 

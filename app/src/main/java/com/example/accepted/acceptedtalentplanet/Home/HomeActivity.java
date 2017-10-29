@@ -24,8 +24,13 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.accepted.acceptedtalentplanet.CommonFunction;
+import com.example.accepted.acceptedtalentplanet.LoadingLogin.LoginActivity;
 import com.example.accepted.acceptedtalentplanet.MyProfile.MyprofileActivity;
 import com.example.accepted.acceptedtalentplanet.R;
+import com.example.accepted.acceptedtalentplanet.SaveSharedPreference;
+import com.example.accepted.acceptedtalentplanet.TalentCondition.TalentConditionActivity_1;
+import com.example.accepted.acceptedtalentplanet.TalentResister.TalentResisterActivity;
+import com.example.accepted.acceptedtalentplanet.TalentSharing.TalentSharingActivity;
 
 import java.util.ArrayList;
 
@@ -150,28 +155,6 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
-        CommonFunction c = new CommonFunction();
-       // c.setMenuClickEvents(mContext);
-
-        TextView tv_home = (TextView)findViewById(R.id.SlidingMenu_Home);
-        TextView tv_profile = (TextView)findViewById(R.id.SlidingMenu_Profile);
-
-        tv_home.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i =  new Intent(getBaseContext(), HomeActivity.class);
-                startActivity(i);
-            }
-        });
-
-        tv_profile.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i =  new Intent(getBaseContext(), MyprofileActivity.class);
-                startActivity(i);
-            }
-        });
-
     }
 
 
@@ -260,6 +243,36 @@ public class HomeActivity extends AppCompatActivity {
 
     }
 
+    public void slideMenuHome(View v){
+        Intent i = new Intent(mContext, HomeActivity.class);
+        startActivity(i);
+    }
 
+    public void slideMenuProfile(View v){
+        Intent i = new Intent(mContext, MyprofileActivity.class);
+        startActivity(i);
+    }
+
+    public void slideMenuTalent(View v){
+        Intent i = new Intent(mContext, TalentResisterActivity.class);
+        startActivity(i);
+    }
+
+    public void slideMenuTS(View v){
+        Intent i = new Intent(mContext, TalentSharingActivity.class);
+        startActivity(i);
+    }
+
+    public void slideMenuMyTalent(View v){
+        Intent i = new Intent(mContext, TalentConditionActivity_1.class);
+        startActivity(i);
+    }
+
+    public void slideMenuLogout(View v){
+        SaveSharedPreference.clearUserInfo(mContext);
+        Intent i = new Intent(mContext, LoginActivity.class);
+        startActivity(i);
+        finish();
+    }
 
 }

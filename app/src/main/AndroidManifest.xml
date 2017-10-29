@@ -47,6 +47,7 @@
             android:theme="@style/AppTheme" />
         <activity android:name=".Home.HomeActivity" />
         <activity android:name=".MyProfile.MyprofileActivity"/>
+        <activity android:name=".TalentResister.TalentResisterActivity"/>
         <activity android:name=".TalentResister.TalentResisterActivity_Level"/>
         <activity android:name=".TalentResister.TalentResisterActivity_Location"/>
         <activity android:name=".TalentResister.TalentResisterActivity_Point"/>
@@ -55,6 +56,7 @@
         <activity android:name=".TalentCondition.TalentConditionActivity_2"/>
         <activity android:name=".TalentCondition.TalentConditionActivity_3"/>
         <activity android:name=".TalentCondition.TalentConditionActivity_4"/>
+        <activity android:name=".TalentSharing.TalentSharingActivity"/>
 
 
 

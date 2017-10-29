@@ -64,40 +64,43 @@
             android:id="@+id/SlidingMenu_Home"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:background="@drawable/listbox_textdesign"
             android:layout_weight="1"
-            android:text="Home"
-            android:textStyle="bold"
+            android:background="@drawable/listbox_textdesign"
             android:gravity="center_vertical"
-            android:paddingTop="10dp"
+            android:onClick="slideMenuHome"
+            android:paddingBottom="10dp"
             android:paddingLeft="20dp"
-            android:paddingBottom="10dp"/>
+            android:paddingTop="10dp"
+            android:text="Home"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/SlidingMenu_Profile"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:background="@drawable/listbox_textdesign"
             android:layout_weight="1"
-            android:text="My Profile 관리"
-            android:textStyle="bold"
+            android:background="@drawable/listbox_textdesign"
             android:gravity="center_vertical"
-            android:paddingTop="10dp"
+            android:onClick="slideMenuProfile"
+            android:paddingBottom="10dp"
             android:paddingLeft="20dp"
-            android:paddingBottom="10dp"/>
+            android:paddingTop="10dp"
+            android:text="My Profile 관리"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/SlidingMenu_MyTalentResister"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:background="@drawable/listbox_textdesign"
             android:layout_weight="1"
-            android:text="My Talent 관리"
+            android:background="@drawable/listbox_textdesign"
             android:gravity="center_vertical"
-            android:textStyle="bold"
-            android:paddingTop="10dp"
+            android:onClick="slideMenuTalent"
+            android:paddingBottom="10dp"
             android:paddingLeft="20dp"
-            android:paddingBottom="10dp" />
+            android:paddingTop="10dp"
+            android:text="My Talent 관리"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/SlidingMenu_T.Sharing"
@@ -105,25 +108,27 @@
             android:layout_height="0dp"
             android:layout_weight="1"
             android:background="@drawable/listbox_textdesign"
-            android:text="T . Sharing"
             android:gravity="center_vertical"
-            android:textStyle="bold"
-            android:paddingTop="10dp"
+            android:onClick="slideMenuTS"
+            android:paddingBottom="10dp"
             android:paddingLeft="20dp"
-            android:paddingBottom="10dp"/>
+            android:paddingTop="10dp"
+            android:text="T . Sharing"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/SlidingMenu_MyTalentProcess"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:text="나의 재능 현황"
             android:background="@drawable/listbox_textdesign"
-            android:textStyle="bold"
             android:gravity="center_vertical"
-            android:paddingTop="10dp"
+            android:onClick="slideMenuMyTalent"
+            android:paddingBottom="10dp"
             android:paddingLeft="20dp"
-            android:paddingBottom="10dp"/>
+            android:paddingTop="10dp"
+            android:text="나의 재능 현황"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/SlidingMenu_MessageBox"
@@ -196,13 +201,14 @@
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="9"
-                android:paddingBottom="10dp"
-                android:gravity="center_vertical"
                 android:layout_gravity="center"
+                android:layout_weight="9"
+                android:gravity="center_vertical"
+                android:onClick="slideMenuLogout"
+                android:paddingBottom="10dp"
                 android:paddingLeft="15dp"
                 android:paddingTop="10dp"
-                android:text="Log-Out"/>
+                android:text="Log-Out" />
 
 
         </LinearLayout>

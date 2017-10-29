@@ -1,5 +1,6 @@
 package com.example.accepted.acceptedtalentplanet.MyProfile;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -13,7 +14,12 @@ import android.widget.TextView;
 
 import com.example.accepted.acceptedtalentplanet.CommonFunction;
 import com.example.accepted.acceptedtalentplanet.Home.HomeActivity;
+import com.example.accepted.acceptedtalentplanet.LoadingLogin.LoginActivity;
 import com.example.accepted.acceptedtalentplanet.R;
+import com.example.accepted.acceptedtalentplanet.SaveSharedPreference;
+import com.example.accepted.acceptedtalentplanet.TalentCondition.TalentConditionActivity_1;
+import com.example.accepted.acceptedtalentplanet.TalentResister.TalentResisterActivity;
+import com.example.accepted.acceptedtalentplanet.TalentSharing.TalentSharingActivity;
 
 public class MyprofileActivity extends AppCompatActivity {
 
@@ -21,14 +27,14 @@ public class MyprofileActivity extends AppCompatActivity {
     View drawerView;
     ImageView imgDLOpenMenu;
     ImageView DrawerCloseImg;
-
+    Context mContext;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.myprofile_activity);
-
+        mContext = getApplicationContext();
         slidingMenuDL = (DrawerLayout) findViewById(R.id.MyProfile_listboxDL);
 
         //ToolBar 적용하기
@@ -52,9 +58,39 @@ public class MyprofileActivity extends AppCompatActivity {
             }
         });
 
-        CommonFunction c = new CommonFunction();
-        c.setMenuClickEvents(getBaseContext());
 
+    }
+
+    public void slideMenuHome(View v){
+        Intent i = new Intent(mContext, HomeActivity.class);
+        startActivity(i);
+    }
+
+    public void slideMenuProfile(View v){
+        Intent i = new Intent(mContext, MyprofileActivity.class);
+        startActivity(i);
+    }
+
+    public void slideMenuTalent(View v){
+        Intent i = new Intent(mContext, TalentResisterActivity.class);
+        startActivity(i);
+    }
+
+    public void slideMenuTS(View v){
+        Intent i = new Intent(mContext, TalentSharingActivity.class);
+        startActivity(i);
+    }
+
+    public void slideMenuMyTalent(View v){
+        Intent i = new Intent(mContext, TalentConditionActivity_1.class);
+        startActivity(i);
+    }
+
+    public void slideMenuLogout(View v){
+        SaveSharedPreference.clearUserInfo(mContext);
+        Intent i = new Intent(mContext, LoginActivity.class);
+        startActivity(i);
+        finish();
     }
 
 }

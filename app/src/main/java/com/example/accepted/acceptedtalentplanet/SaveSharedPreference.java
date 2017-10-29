@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
+import static android.text.TextUtils.isEmpty;
+
 /**
  * Created by kwonhong on 2017-10-14.
  */
@@ -40,6 +42,10 @@ public class SaveSharedPreference {
         SharedPreferences.Editor editor = getSharedPreferences(ctx).edit();
         editor.clear();
         editor.commit();
+    }
+
+    public static boolean checkSession(){
+        return !isEmpty(PREF_USER_ID);
     }
 
     public static String getServerIp(){

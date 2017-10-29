@@ -1,5 +1,6 @@
 package com.example.accepted.acceptedtalentplanet;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -19,7 +20,7 @@ import com.example.accepted.acceptedtalentplanet.TalentSharing.TalentSharingActi
  * Created by kwonhong on 2017-10-28.
  */
 
-public class CommonFunction extends AppCompatActivity {
+public class CommonFunction extends Activity {
     public void setMenuClickEvents(Context c){
         final Context context = c;
         TextView tv_home = (TextView)findViewById(R.id.SlidingMenu_Home);
@@ -32,13 +33,13 @@ public class CommonFunction extends AppCompatActivity {
         TextView tv_setting = (TextView)findViewById(R.id.SlidingMenu_System);
         LinearLayout tv_logout = (LinearLayout)findViewById(R.id.SlidingMenu_LogOut);
 
-        tv_home.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-               Intent i =  new Intent(context, HomeActivity.class);
-                startActivity(i);
-            }
-        });
+//        tv_home.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//               Intent i =  new Intent(context, HomeActivity.class);
+//                startActivity(i);
+//            }
+//        });
 
         tv_profile.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -80,13 +81,14 @@ public class CommonFunction extends AppCompatActivity {
             }
         });
 
-        tv_home.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                SaveSharedPreference.clearUserInfo(context);
-                Intent i =  new Intent(context, LoginActivity.class);
-                startActivity(i);
-            }
-        });
+//        tv_home.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                SaveSharedPreference.clearUserInfo(context);
+//                Intent i =  new Intent(context, LoginActivity.class);
+//                startActivity(i);
+//            }
+//        });
     }
+
 }
