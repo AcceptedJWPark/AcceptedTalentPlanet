@@ -155,6 +155,8 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
+        ((TextView) findViewById(R.id.DrawerUserID)).setText(SaveSharedPreference.getUserId(mContext));
+
     }
 
 

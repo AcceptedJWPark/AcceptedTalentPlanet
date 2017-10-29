@@ -37,6 +37,7 @@
 
 
                 <TextView
+                    android:id="@+id/DrawerUserID"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="pjw910123@naver.com"
