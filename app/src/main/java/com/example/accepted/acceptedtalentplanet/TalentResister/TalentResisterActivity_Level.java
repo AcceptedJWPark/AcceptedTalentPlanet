@@ -11,12 +11,16 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.TextView;
 
+import com.example.accepted.acceptedtalentplanet.MyTalent;
 import com.example.accepted.acceptedtalentplanet.R;
 
 public class TalentResisterActivity_Level extends AppCompatActivity implements CompoundButton.OnCheckedChangeListener {
     private String Talent1, Talent2, Talent3;
     private String Location1, Location2, Location3;
     private boolean TalentRegister_Flag;
+    private boolean HavingDataFlag;
+    private MyTalent Data;
+    private int Level;
     CheckBox[] cbs = new CheckBox[5];
     CheckBox cb1, cb2, cb3, cb4, cb5;
 
@@ -26,12 +30,20 @@ public class TalentResisterActivity_Level extends AppCompatActivity implements C
         setContentView(R.layout.talentresister_level);
         Intent i = getIntent();
         TalentRegister_Flag = i.getBooleanExtra("talentFlag", true);
+        HavingDataFlag = i.getBooleanExtra("HavingDataFlag", false);
+
         Talent1 = i.getStringExtra("talent1");
         Talent2 = i.getStringExtra("talent2");
         Talent3 = i.getStringExtra("talent3");
+
         Location1 = i.getStringExtra("loc1");
         Location2 = i.getStringExtra("loc2");
         Location3 = i.getStringExtra("loc3");
+
+        if(HavingDataFlag){
+            Data = (MyTalent) i.getSerializableExtra("Data");
+            Level = Data.getIntegerLevel();
+        }
 
         cb1 = (CheckBox)findViewById(R.id.TalentResister_Talent_Level1);
         cb2 = (CheckBox)findViewById(R.id.TalentResister_Talent_Level2);
@@ -44,6 +56,8 @@ public class TalentResisterActivity_Level extends AppCompatActivity implements C
         cbs[2] = cb3;
         cbs[3] = cb4;
         cbs[4] = cb5;
+
+        cbs[Level-1].setChecked(true);
 
         for(int index = 0; index < 5; index ++)
             cbs[index].setOnCheckedChangeListener(this);
@@ -109,6 +123,10 @@ public class TalentResisterActivity_Level extends AppCompatActivity implements C
         i.putExtra("loc2", Location2);
         i.putExtra("loc3", Location3);
         i.putExtra("level", findLevel());
+        i.putExtra("HavingDataFlag", HavingDataFlag);
+        if(HavingDataFlag){
+            i.putExtra("Data", Data);
+        }
         startActivity(i);
 
     }

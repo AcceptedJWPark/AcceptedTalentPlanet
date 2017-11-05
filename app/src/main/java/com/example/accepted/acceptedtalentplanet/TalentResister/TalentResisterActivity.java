@@ -70,6 +70,8 @@ public class TalentResisterActivity extends AppCompatActivity {
     boolean TalentResister_Give;
     boolean TalentResister_Take;
     boolean TalentFlag = true;
+    int G_Level;
+    int T_Level;
 
     String TalentResister_Give_Keyword[] = {"Guitar", "Piano", "Drum"};
     String TalentResister_Give_Location[] = {"경기도 파주시 광탄면", "서울특별시 마포구 상수동", "경기도 고양시 일산동구"};
@@ -186,6 +188,18 @@ public class TalentResisterActivity extends AppCompatActivity {
     public void registTalent(View v){
         Intent i = new Intent(mContext, TalentResisterActivity_Talent.class);
         i.putExtra("talentFlag", TalentFlag);
+        if(TalentFlag) {
+            i.putExtra("HavingDataFlag", TalentResister_Give);
+            if (TalentResister_Give) {
+                i.putExtra("Data", TalentGive);
+            }
+        }else{
+            i.putExtra("HavingDataFlag", TalentResister_Take);
+            if(TalentResister_Take){
+                i.putExtra("Data", TalentTake);
+            }
+        }
+
         startActivity(i);
     }
     public void slideMenuHome(View v){
@@ -232,9 +246,10 @@ public class TalentResisterActivity extends AppCompatActivity {
                         JSONObject o = obj.getJSONObject(index);
                         if(o.getString("TALENT_FLAG").equals("Y")){
                             TalentGive.setMyTalent(o.getString("TALENT_KEYWORD1"), o.getString("TALENT_KEYWORD2"), o.getString("TALENT_KEYWORD3"), o.getString("LOCATION1"), o.getString("LOCATION2"), o.getString("LOCATION3"), o.getString("T_POINT"), o.getString("LEVEL"));
-                            Log.d("TalentGive = ", TalentGive.getLevel());
+                            G_Level = Integer.parseInt(o.getString("LEVEL"));
                         }else{
                             TalentTake.setMyTalent(o.getString("TALENT_KEYWORD1"), o.getString("TALENT_KEYWORD2"), o.getString("TALENT_KEYWORD3"), o.getString("LOCATION1"), o.getString("LOCATION2"), o.getString("LOCATION3"), o.getString("T_POINT"), o.getString("LEVEL"));
+                            T_Level = Integer.parseInt(o.getString("LEVEL"));
                         }
 
                     }

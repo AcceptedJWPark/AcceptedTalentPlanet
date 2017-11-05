@@ -22,6 +22,7 @@ import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.accepted.acceptedtalentplanet.LoadingLogin.LoginActivity;
+import com.example.accepted.acceptedtalentplanet.MyTalent;
 import com.example.accepted.acceptedtalentplanet.R;
 import com.example.accepted.acceptedtalentplanet.SaveSharedPreference;
 
@@ -37,6 +38,9 @@ public class TalentResisterActivity_Point extends AppCompatActivity {
     private String Talent1, Talent2, Talent3;
     private String Location1, Location2, Location3;
     private boolean TalentRegister_Flag;
+    private boolean HavingDataFlag;
+    private MyTalent Data;
+    private int Point;
     private int level;
 
     @Override
@@ -55,6 +59,13 @@ public class TalentResisterActivity_Point extends AppCompatActivity {
         Location2 = i.getStringExtra("loc2");
         Location3 = i.getStringExtra("loc3");
         level = i.getIntExtra("level", 1);
+        HavingDataFlag = i.getBooleanExtra("HavingDataFlag", false);
+        if(HavingDataFlag)
+        {
+            Data = (MyTalent)i.getSerializableExtra("Data");
+            Point = Data.getPoint();
+            ((EditText)findViewById(R.id.TalentResister_Talent_Point)).setText(String.valueOf(Point));
+        }
 
         TextView PointKey1= (TextView) findViewById(R.id.Point_key1);
         SpannableString Point_content1 = new SpannableString(Talent1);

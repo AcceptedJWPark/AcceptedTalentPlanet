@@ -1,10 +1,13 @@
 package com.example.accepted.acceptedtalentplanet;
 
+import java.io.Serializable;
+import java.util.Objects;
+
 /**
  * Created by kwonhong on 2017-11-05.
  */
 
-public class MyTalent {
+public class MyTalent implements Serializable{
     String Keyword1, Keyword2, Keyword3;
     String Location1, Location2, Location3;
     String Point;
@@ -53,6 +56,10 @@ public class MyTalent {
             default:
                 return "전문가(Professional)";
         }
+    }
+
+    public int getIntegerLevel(){
+        return Integer.parseInt(Level);
     }
 
     public boolean getCompFlag(){
