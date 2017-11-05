@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.SpannableString;
 import android.text.style.UnderlineSpan;
+import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -45,7 +46,7 @@ public class TalentResisterActivity_Level extends AppCompatActivity implements C
         cbs[4] = cb5;
 
         for(int index = 0; index < 5; index ++)
-            cbs[0].setOnCheckedChangeListener(this);
+            cbs[index].setOnCheckedChangeListener(this);
 
         TextView LevelKey1= (TextView) findViewById(R.id.Level_key1);
         SpannableString Level_content1 = new SpannableString(Talent1);

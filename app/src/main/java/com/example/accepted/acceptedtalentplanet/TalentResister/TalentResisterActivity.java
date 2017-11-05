@@ -7,19 +7,40 @@ import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.android.volley.NetworkResponse;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.ServerError;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.HttpHeaderParser;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.accepted.acceptedtalentplanet.Home.HomeActivity;
 import com.example.accepted.acceptedtalentplanet.LoadingLogin.LoginActivity;
 import com.example.accepted.acceptedtalentplanet.MyProfile.MyprofileActivity;
+import com.example.accepted.acceptedtalentplanet.MyTalent;
 import com.example.accepted.acceptedtalentplanet.R;
 import com.example.accepted.acceptedtalentplanet.SaveSharedPreference;
 import com.example.accepted.acceptedtalentplanet.TalentCondition.TalentConditionActivity_1;
 import com.example.accepted.acceptedtalentplanet.TalentSharing.TalentSharingActivity;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.UnsupportedEncodingException;
+import java.util.HashMap;
+import java.util.Map;
 
 public class TalentResisterActivity extends AppCompatActivity {
 
@@ -27,6 +48,8 @@ public class TalentResisterActivity extends AppCompatActivity {
     View drawerView;
     ImageView imgDLOpenMenu;
     ImageView DrawerCloseImg;
+    MyTalent TalentGive;
+    MyTalent TalentTake;
 
     Context mContext;
 
@@ -46,6 +69,7 @@ public class TalentResisterActivity extends AppCompatActivity {
     LinearLayout TalentResister_Box;
     boolean TalentResister_Give;
     boolean TalentResister_Take;
+    boolean TalentFlag = true;
 
     String TalentResister_Give_Keyword[] = {"Guitar", "Piano", "Drum"};
     String TalentResister_Give_Location[] = {"경기도 파주시 광탄면", "서울특별시 마포구 상수동", "경기도 고양시 일산동구"};
@@ -81,44 +105,12 @@ public class TalentResisterActivity extends AppCompatActivity {
         TalentResister_Give = true;
         TalentResister_Take = true;
 
-        ShowGiveBtnClicked();
+        TalentGive = new MyTalent();
+        TalentTake = new MyTalent();
+        getMyTalent();
+//        Log.d("TalentGive2 = ",TalentGive.getLevel());
 
 
-        TalentResister_ShowGiveBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ShowGiveBtnClicked();
-            }
-        });
-
-        TalentResister_ShowTakeBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ShowTakeBtnClicked();
-            }
-        });
-
-        slidingMenuDL = (DrawerLayout) findViewById(R.id.TalentResister1_listboxDL);
-
-        drawerView = (View) findViewById(R.id.TalentResister_container1);
-        imgDLOpenMenu = (ImageView) findViewById(R.id.DrawerOpenImg);
-        DrawerCloseImg = (ImageView) findViewById(R.id.DrawerCloseImg);
-
-
-        imgDLOpenMenu.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                slidingMenuDL.openDrawer(drawerView);
-
-            }
-        });
-
-        DrawerCloseImg.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                slidingMenuDL.closeDrawer(drawerView);
-            }
-        });
 
 
     }
@@ -153,6 +145,7 @@ public class TalentResisterActivity extends AppCompatActivity {
             TalentResister_Level.setText(TalentResister_Give_Level);
             TalentResister_Point.setText(Integer.toString(TalentResister_Give_Point) + "P");
         }
+        TalentFlag = true;
     }
 
     public void ShowTakeBtnClicked () {
@@ -185,14 +178,14 @@ public class TalentResisterActivity extends AppCompatActivity {
             TalentResister_Level.setText(TalentResister_Take_Level);
             TalentResister_Point.setText(Integer.toString(TalentResister_Take_Point) + "P");
         }
-
+        TalentFlag = false;
 
         //ToolBar 적용하기
     }
 
     public void registTalent(View v){
         Intent i = new Intent(mContext, TalentResisterActivity_Talent.class);
-        i.putExtra("talentFlag", TalentResister_Give);
+        i.putExtra("talentFlag", TalentFlag);
         startActivity(i);
     }
     public void slideMenuHome(View v){
@@ -225,6 +218,120 @@ public class TalentResisterActivity extends AppCompatActivity {
         Intent i = new Intent(mContext, LoginActivity.class);
         startActivity(i);
         finish();
+    }
+
+    public void getMyTalent(){
+
+        RequestQueue postRequestQueue = Volley.newRequestQueue(this);
+        StringRequest postJsonRequest = new StringRequest(Request.Method.POST, SaveSharedPreference.getServerIp() + "TalentRegist/getMyTalent.do", new Response.Listener<String>(){
+            @Override
+            public void onResponse(String response){
+                try {
+                    JSONArray obj = new JSONArray(response);
+                    for(int index = 0; index < obj.length(); index++) {
+                        JSONObject o = obj.getJSONObject(index);
+                        if(o.getString("TALENT_FLAG").equals("Y")){
+                            TalentGive.setMyTalent(o.getString("TALENT_KEYWORD1"), o.getString("TALENT_KEYWORD2"), o.getString("TALENT_KEYWORD3"), o.getString("LOCATION1"), o.getString("LOCATION2"), o.getString("LOCATION3"), o.getString("T_POINT"), o.getString("LEVEL"));
+                            Log.d("TalentGive = ", TalentGive.getLevel());
+                        }else{
+                            TalentTake.setMyTalent(o.getString("TALENT_KEYWORD1"), o.getString("TALENT_KEYWORD2"), o.getString("TALENT_KEYWORD3"), o.getString("LOCATION1"), o.getString("LOCATION2"), o.getString("LOCATION3"), o.getString("T_POINT"), o.getString("LEVEL"));
+                        }
+
+                    }
+
+                    if(!TalentGive.getCompFlag())
+                        TalentResister_Give = false;
+                    else{
+                        TalentResister_Give_Keyword = TalentGive.getKeywordArray();
+                        TalentResister_Give_Location = TalentGive.getLocationArray();
+                        TalentResister_Give_Point = TalentGive.getPoint();
+                        TalentResister_Give_Level = TalentGive.getLevel();
+                    }
+
+                    if(!TalentTake.getCompFlag())
+                        TalentResister_Take = false;
+                    else{
+                        TalentResister_Take_Keyword = TalentTake.getKeywordArray();
+                        TalentResister_Take_Location = TalentTake.getLocationArray();
+                        TalentResister_Take_Point = TalentTake.getPoint();
+                        TalentResister_Take_Level = TalentTake.getLevel();
+
+                    }
+                    ShowGiveBtnClicked();
+
+
+                    TalentResister_ShowGiveBtn.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            ShowGiveBtnClicked();
+                        }
+                    });
+
+                    TalentResister_ShowTakeBtn.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            ShowTakeBtnClicked();
+                        }
+                    });
+
+                    slidingMenuDL = (DrawerLayout) findViewById(R.id.TalentResister1_listboxDL);
+
+                    drawerView = (View) findViewById(R.id.TalentResister_container1);
+                    imgDLOpenMenu = (ImageView) findViewById(R.id.DrawerOpenImg);
+                    DrawerCloseImg = (ImageView) findViewById(R.id.DrawerCloseImg);
+
+
+                    imgDLOpenMenu.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            slidingMenuDL.openDrawer(drawerView);
+
+                        }
+                    });
+
+                    DrawerCloseImg.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            slidingMenuDL.closeDrawer(drawerView);
+                        }
+                    });
+                    Log.d("TalentGive = ", TalentGive.getLevel());
+                }
+                catch(JSONException e){
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener(){
+            @Override
+            public void onErrorResponse(VolleyError error){
+                NetworkResponse response = error.networkResponse;
+                if (error instanceof ServerError && response != null) {
+                    try {
+                        String res = new String(response.data,
+                                HttpHeaderParser.parseCharset(response.headers, "utf-8"));
+                        // Now you can use any deserializer to make sense of data
+                        Log.d("res", res);
+
+                        JSONObject obj = new JSONObject(res);
+                    } catch (UnsupportedEncodingException e1) {
+                        // Couldn't properly decode data to string
+                        e1.printStackTrace();
+                    } catch (JSONException e2) {
+                        // returned data is not JSONObject?
+                        e2.printStackTrace();
+                    }
+                }
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams(){
+                Map<String, String> params = new HashMap();
+                params.put("userID", SaveSharedPreference.getUserId(mContext));
+                return params;
+            }
+        };
+
+        postRequestQueue.add(postJsonRequest);
     }
 
 
