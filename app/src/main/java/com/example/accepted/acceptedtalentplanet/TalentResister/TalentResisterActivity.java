@@ -111,7 +111,7 @@ public class TalentResisterActivity extends AppCompatActivity {
         TalentTake = new MyTalent();
         getMyTalent();
 
-
+        ((TextView) findViewById(R.id.DrawerUserID)).setText(SaveSharedPreference.getUserId(mContext));
 
 
     }
@@ -182,6 +182,7 @@ public class TalentResisterActivity extends AppCompatActivity {
         TalentFlag = false;
 
         //ToolBar 적용하기
+
     }
 
     public void registTalent(View v){

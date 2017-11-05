@@ -109,7 +109,7 @@ public class TalentConditionActivity_1 extends AppCompatActivity {
                 slidingMenuDL.closeDrawer(drawerView);
             }
         });
-
+        ((TextView) findViewById(R.id.DrawerUserID)).setText(SaveSharedPreference.getUserId(mContext));
     }
 
     public void ShowGiveBtnClicked() {

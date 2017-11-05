@@ -474,13 +474,13 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="bottom"
                             android:layout_weight="1"
+                            android:ellipsize="end"
                             android:gravity="left"
+                            android:lines="1"
                             android:paddingLeft="10dp"
                             android:text="농구"
                             android:textColor="@color/colorPrimaryDark"
                             android:textSize="13dp"
-                            android:ellipsize="end"
-                            android:lines="1"
                             android:textStyle="bold|italic" />
 
                         <TextView
@@ -489,13 +489,13 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="bottom"
                             android:layout_weight="1"
+                            android:ellipsize="end"
                             android:gravity="left"
+                            android:lines="1"
                             android:paddingLeft="10dp"
                             android:text="야구"
                             android:textColor="@color/colorPrimaryDark"
                             android:textSize="13dp"
-                            android:ellipsize="end"
-                            android:lines="1"
                             android:textStyle="bold|italic" />
 
                         <TextView
@@ -504,13 +504,13 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="bottom"
                             android:layout_weight="1"
+                            android:ellipsize="end"
                             android:gravity="left"
+                            android:lines="1"
                             android:paddingLeft="10dp"
                             android:text="축구"
                             android:textColor="@color/colorPrimaryDark"
                             android:textSize="13dp"
-                            android:ellipsize="end"
-                            android:lines="1"
                             android:textStyle="bold|italic" />
                     </LinearLayout>
 
