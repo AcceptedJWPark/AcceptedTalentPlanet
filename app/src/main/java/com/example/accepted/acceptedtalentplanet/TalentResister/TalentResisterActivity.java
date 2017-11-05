@@ -110,7 +110,6 @@ public class TalentResisterActivity extends AppCompatActivity {
         TalentGive = new MyTalent();
         TalentTake = new MyTalent();
         getMyTalent();
-//        Log.d("TalentGive2 = ",TalentGive.getLevel());
 
 
 
@@ -310,7 +309,6 @@ public class TalentResisterActivity extends AppCompatActivity {
                             slidingMenuDL.closeDrawer(drawerView);
                         }
                     });
-                    Log.d("TalentGive = ", TalentGive.getLevel());
                 }
                 catch(JSONException e){
                     e.printStackTrace();

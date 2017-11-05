@@ -49,6 +49,10 @@ public class TalentResisterActivity_Location extends AppCompatActivity {
             SpannableString Location_content3 = new SpannableString(Loc[2]);
             Location_content3.setSpan(new UnderlineSpan(), 0, Location_content3.length(), 0);
             LocationKey3.setText(Location_content3);
+
+            Location1 = Loc[0];
+            Location2 = Loc[1];
+            Location3 = Loc[2];
         }
     }
 
