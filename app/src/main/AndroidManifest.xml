@@ -52,13 +52,20 @@
         <activity android:name=".TalentResister.TalentResisterActivity_Location"/>
         <activity android:name=".TalentResister.TalentResisterActivity_Point"/>
         <activity android:name=".TalentResister.TalentResisterActivity_Talent"/>
-        <activity android:name=".TalentCondition.TalentConditionActivity_1"/>
-        <activity android:name=".TalentCondition.TalentConditionActivity_2"/>
-        <activity android:name=".TalentCondition.TalentConditionActivity_3"/>
-        <activity android:name=".TalentCondition.TalentConditionActivity_4"/>
+        <activity android:name=".TalentCondition.TalentConditionActivity"/>
         <activity android:name=".TalentSharing.TalentSharingActivity"/>
 
-
+        <activity android:name=".CustomerService.CustomerService_MainActivity"/>
+        <activity android:name=".CustomerService.CustomerService_FaqActivity"/>
+        <activity android:name=".CustomerService.CustomerService_IntroductionActivity"/>
+        <activity android:name=".CustomerService.CustomerService_VersionActivity"/>
+        <activity android:name=".CustomerService.CustomerService_NoticeActivity"/>
+        <activity android:name=".CustomerService.CustomerService_OnebyOneQuestionActivity"/>
+        <activity android:name=".CustomerService.CustomerService_OnebyOneQuestionListActivity"/>
+        <activity android:name=".CustomerService.CustomerService_UpdateActivity"/>
+        <activity android:name=".CustomerService.CustomerService_ClaimActivity"/>
+        <activity android:name=".CustomerService.CustomerService_ClaimListActivity"/>
+        <activity android:name=".CustomerService.CustomerService_Claim_SharingListActivity"/>
 
         <activity
             android:name=".TalentSharing.TalentSharingPopup"

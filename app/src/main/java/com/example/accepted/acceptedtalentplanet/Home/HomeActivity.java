@@ -2,32 +2,27 @@ package com.example.accepted.acceptedtalentplanet.Home;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.res.Configuration;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.view.Gravity;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.accepted.acceptedtalentplanet.CustomerService.CustomerService_ClaimActivity;
+import com.example.accepted.acceptedtalentplanet.CustomerService.CustomerService_MainActivity;
 import com.example.accepted.acceptedtalentplanet.LoadingLogin.LoginActivity;
 import com.example.accepted.acceptedtalentplanet.MyProfile.MyprofileActivity;
 import com.example.accepted.acceptedtalentplanet.R;
 import com.example.accepted.acceptedtalentplanet.SaveSharedPreference;
-import com.example.accepted.acceptedtalentplanet.TalentCondition.TalentConditionActivity_1;
+import com.example.accepted.acceptedtalentplanet.TalentCondition.TalentConditionActivity;
 import com.example.accepted.acceptedtalentplanet.TalentResister.TalentResisterActivity;
 import com.example.accepted.acceptedtalentplanet.TalentSharing.TalentSharingActivity;
 
@@ -135,7 +130,7 @@ public class HomeActivity extends AppCompatActivity {
 
         //ToolBar 적용하기
         drawerView = (View) findViewById(R.id.Home_container);
-        imgDLOpenMenu = (ImageView) findViewById(R.id.DrawerOpenImg);
+        imgDLOpenMenu = (ImageView) findViewById(R.id.ActionBar_Listview);
         DrawerCloseImg = (ImageView) findViewById(R.id.DrawerCloseImg);
 
 
@@ -265,7 +260,7 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     public void slideMenuMyTalent(View v){
-        Intent i = new Intent(mContext, TalentConditionActivity_1.class);
+        Intent i = new Intent(mContext, TalentConditionActivity.class);
         startActivity(i);
     }
 
@@ -274,6 +269,11 @@ public class HomeActivity extends AppCompatActivity {
         Intent i = new Intent(mContext, LoginActivity.class);
         startActivity(i);
         finish();
+    }
+
+    public void slideMenuCustomerService(View v){
+        Intent i = new Intent(mContext, CustomerService_MainActivity.class);
+        startActivity(i);
     }
 
 }

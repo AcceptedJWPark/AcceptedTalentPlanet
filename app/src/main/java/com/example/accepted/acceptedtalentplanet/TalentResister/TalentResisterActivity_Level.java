@@ -40,11 +40,6 @@ public class TalentResisterActivity_Level extends AppCompatActivity implements C
         Location2 = i.getStringExtra("loc2");
         Location3 = i.getStringExtra("loc3");
 
-        if(HavingDataFlag){
-            Data = (MyTalent) i.getSerializableExtra("Data");
-            Level = Data.getIntegerLevel();
-        }
-
         cb1 = (CheckBox)findViewById(R.id.TalentResister_Talent_Level1);
         cb2 = (CheckBox)findViewById(R.id.TalentResister_Talent_Level2);
         cb3 = (CheckBox)findViewById(R.id.TalentResister_Talent_Level3);
@@ -57,7 +52,13 @@ public class TalentResisterActivity_Level extends AppCompatActivity implements C
         cbs[3] = cb4;
         cbs[4] = cb5;
 
-        cbs[Level-1].setChecked(true);
+        if(HavingDataFlag){
+            Data = (MyTalent) i.getSerializableExtra("Data");
+            Level = Data.getIntegerLevel();
+            cbs[Level-1].setChecked(true);
+        }
+
+
 
         for(int index = 0; index < 5; index ++)
             cbs[index].setOnCheckedChangeListener(this);
