@@ -12,12 +12,13 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.accepted.acceptedtalentplanet.CustomerService.CustomerService_MainActivity;
 import com.example.accepted.acceptedtalentplanet.Home.HomeActivity;
 import com.example.accepted.acceptedtalentplanet.LoadingLogin.LoginActivity;
 import com.example.accepted.acceptedtalentplanet.MyProfile.MyprofileActivity;
 import com.example.accepted.acceptedtalentplanet.R;
 import com.example.accepted.acceptedtalentplanet.SaveSharedPreference;
-import com.example.accepted.acceptedtalentplanet.TalentCondition.TalentConditionActivity_1;
+import com.example.accepted.acceptedtalentplanet.TalentCondition.TalentConditionActivity;
 import com.example.accepted.acceptedtalentplanet.TalentResister.TalentResisterActivity;
 
 import java.util.ArrayList;
@@ -53,12 +54,12 @@ public class TalentSharingActivity extends AppCompatActivity {
         TalentSharingListView = (ListView) findViewById(R.id.TalentSharing_LV);
         TalentSharingList = new ArrayList<>();
 
-        TalentSharingList.add(new TalentSharingListItem(R.drawable.textpicture, "박종우", "Guitar","Drum","Piano", "7.12km", "Profile 보기"));
-        TalentSharingList.add(new TalentSharingListItem(R.drawable.textpicture, "정우성", "Guitar","Vocal","Piano", "10.2km", "Profile 보기"));
+        TalentSharingList.add(new TalentSharingListItem(R.drawable.textpicture, "박종우", "Guitar","Drum","Piano", "7km", "Profile 보기"));
+        TalentSharingList.add(new TalentSharingListItem(R.drawable.textpicture, "정우성", "Guitar","Vocal","Piano", "10km", "Profile 보기"));
         TalentSharingList.add(new TalentSharingListItem(R.drawable.textpicture, "민권홍", "Guitar","노래","Piano", "13km", "Profile 보기"));
         TalentSharingList.add(new TalentSharingListItem(R.drawable.textpicture, "김용인", "Guitar","Drum","기타", "15km", "Profile 보기"));
         TalentSharingList.add(new TalentSharingListItem(R.drawable.textpicture, "김진만", "Guitar","기타","Piano", "16km", "Profile 보기"));
-        TalentSharingList.add(new TalentSharingListItem(R.drawable.textpicture, "배대명", "Guitar","Drum","통기타", "16.7km", "Profile 보기"));
+        TalentSharingList.add(new TalentSharingListItem(R.drawable.textpicture, "배대명", "Guitar","Drum","통기타", "17km", "Profile 보기"));
         TalentSharingList.add(new TalentSharingListItem(R.drawable.textpicture, "우승제", "기타연주","기타독주","Piano", "31km", "Profile 보기"));
         TalentSharingList.add(new TalentSharingListItem(R.drawable.textpicture, "유성택", "일렉기타","기타","기타연습", "45km", "Profile 보기"));
 
@@ -69,6 +70,7 @@ public class TalentSharingActivity extends AppCompatActivity {
 
         TalentShringSearchingBox = (LinearLayout) findViewById(R.id.TalentSharing_searchingBoxLL);
         TalentShringSearchingOpen = (LinearLayout) findViewById(R.id.TalentSharing_searchingBoxOpen);
+        TalentShringSearchingBox.setVisibility(View.GONE);
         TalentShringSearchingOpen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -92,7 +94,7 @@ public class TalentSharingActivity extends AppCompatActivity {
         //ToolBar 적용하기
         slidingMenuDL = (DrawerLayout) findViewById(R.id.TalentSharing_listboxDL);
         drawerView = (View) findViewById(R.id.TalentSharing_container);
-        imgDLOpenMenu = (ImageView) findViewById(R.id.DrawerOpenImg);
+        imgDLOpenMenu = (ImageView) findViewById(R.id.ActionBar_Listview);
         DrawerCloseImg = (ImageView) findViewById(R.id.DrawerCloseImg);
 
 
@@ -135,7 +137,7 @@ public class TalentSharingActivity extends AppCompatActivity {
     }
 
     public void slideMenuMyTalent(View v){
-        Intent i = new Intent(mContext, TalentConditionActivity_1.class);
+        Intent i = new Intent(mContext, TalentConditionActivity.class);
         startActivity(i);
     }
 
@@ -145,5 +147,11 @@ public class TalentSharingActivity extends AppCompatActivity {
         startActivity(i);
         finish();
     }
+
+    public void slideMenuCustomerService(View v){
+        Intent i = new Intent(mContext, CustomerService_MainActivity.class);
+        startActivity(i);
+    }
+
 
 }

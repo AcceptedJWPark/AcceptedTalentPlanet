@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#466496</color>
-    <color name="colorPrimaryDark">#32578e</color>
+    <color name="colorPrimaryDark">#bebebe</color>
     <color name="myProfileText">#787878</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="background">#50f5f5f5</color>
+    <color name="textColor">#505050</color>
 </resources>

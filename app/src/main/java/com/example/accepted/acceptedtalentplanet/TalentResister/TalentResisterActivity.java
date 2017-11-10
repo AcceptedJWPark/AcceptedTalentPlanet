@@ -10,11 +10,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
@@ -25,13 +23,15 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.accepted.acceptedtalentplanet.CustomerService.CustomerService_ClaimActivity;
+import com.example.accepted.acceptedtalentplanet.CustomerService.CustomerService_MainActivity;
 import com.example.accepted.acceptedtalentplanet.Home.HomeActivity;
 import com.example.accepted.acceptedtalentplanet.LoadingLogin.LoginActivity;
 import com.example.accepted.acceptedtalentplanet.MyProfile.MyprofileActivity;
 import com.example.accepted.acceptedtalentplanet.MyTalent;
 import com.example.accepted.acceptedtalentplanet.R;
 import com.example.accepted.acceptedtalentplanet.SaveSharedPreference;
-import com.example.accepted.acceptedtalentplanet.TalentCondition.TalentConditionActivity_1;
+import com.example.accepted.acceptedtalentplanet.TalentCondition.TalentConditionActivity;
 import com.example.accepted.acceptedtalentplanet.TalentSharing.TalentSharingActivity;
 
 import org.json.JSONArray;
@@ -119,10 +119,10 @@ public class TalentResisterActivity extends AppCompatActivity {
     public void ShowGiveBtnClicked () {
         if (TalentResister_Give == false) {
             TalentResister_Box.setVisibility(View.GONE);
-            TalentResister_ShowTakeBtn.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.textbox_whitebg));
-            TalentResister_ShowGiveBtn.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.textbox_bluebg));
-            TalentResister_ShowTakeBtn.setTextColor(Color.parseColor("#bebebe"));
-            TalentResister_ShowGiveBtn.setTextColor(Color.parseColor("#ffffff"));
+            TalentResister_ShowTakeBtn.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.small_button_whitebackground));
+            TalentResister_ShowGiveBtn.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.small_button_graybackground));
+            TalentResister_ShowTakeBtn.setTextColor(Color.parseColor("#d2d2d2"));
+            TalentResister_ShowGiveBtn.setTextColor(Color.parseColor("#505050"));
             TalentResister_textView.setText("\"재능드림이 등록되지 않았습니다.\n\n 재능드림을 등록하여 회원님의 재능을 공유해주세요!\"");
             TalentResister_Give_modifyBtn.setVisibility(View.VISIBLE);
             TalentResister_Take_modifyBtn.setVisibility(View.INVISIBLE);
@@ -130,10 +130,10 @@ public class TalentResisterActivity extends AppCompatActivity {
         }
         else {
             TalentResister_Box.setVisibility(View.VISIBLE);
-            TalentResister_ShowTakeBtn.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.textbox_whitebg));
-            TalentResister_ShowGiveBtn.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.textbox_bluebg));
-            TalentResister_ShowTakeBtn.setTextColor(Color.parseColor("#bebebe"));
-            TalentResister_ShowGiveBtn.setTextColor(Color.parseColor("#ffffff"));
+            TalentResister_ShowTakeBtn.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.small_button_whitebackground));
+            TalentResister_ShowGiveBtn.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.small_button_graybackground));
+            TalentResister_ShowTakeBtn.setTextColor(Color.parseColor("#d2d2d2"));
+            TalentResister_ShowGiveBtn.setTextColor(Color.parseColor("#505050"));
             TalentResister_textView.setText("\"재능드림을 통해 회원님의 재능을 공유해주세요!\"");
             TalentResister_Give_modifyBtn.setVisibility(View.VISIBLE);
             TalentResister_Take_modifyBtn.setVisibility(View.INVISIBLE);
@@ -152,10 +152,10 @@ public class TalentResisterActivity extends AppCompatActivity {
     public void ShowTakeBtnClicked () {
         if (TalentResister_Take == false) {
             TalentResister_Box.setVisibility(View.GONE);
-            TalentResister_ShowGiveBtn.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.textbox_whitebg));
-            TalentResister_ShowTakeBtn.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.textbox_bluebg));
-            TalentResister_ShowGiveBtn.setTextColor(Color.parseColor("#bebebe"));
-            TalentResister_ShowTakeBtn.setTextColor(Color.parseColor("#ffffff"));
+            TalentResister_ShowGiveBtn.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.small_button_whitebackground));
+            TalentResister_ShowTakeBtn.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.small_button_graybackground));
+            TalentResister_ShowGiveBtn.setTextColor(Color.parseColor("#d2d2d2"));
+            TalentResister_ShowTakeBtn.setTextColor(Color.parseColor("#505050"));
             TalentResister_textView.setText("\"관심재능이 등록되지 않았습니다.\n\n 관심재능을 등록하여 회원님의 관심사를 시작해보세요!\"");
             TalentResister_Take_modifyBtn.setVisibility(View.VISIBLE);
             TalentResister_Give_modifyBtn.setVisibility(View.INVISIBLE);
@@ -163,10 +163,10 @@ public class TalentResisterActivity extends AppCompatActivity {
         }
         else {
             TalentResister_Box.setVisibility(View.VISIBLE);
-            TalentResister_ShowGiveBtn.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.textbox_whitebg));
-            TalentResister_ShowTakeBtn.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.textbox_bluebg));
-            TalentResister_ShowGiveBtn.setTextColor(Color.parseColor("#bebebe"));
-            TalentResister_ShowTakeBtn.setTextColor(Color.parseColor("#ffffff"));
+            TalentResister_ShowGiveBtn.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.small_button_whitebackground));
+            TalentResister_ShowTakeBtn.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.small_button_graybackground));
+            TalentResister_ShowGiveBtn.setTextColor(Color.parseColor("#d2d2d2"));
+            TalentResister_ShowTakeBtn.setTextColor(Color.parseColor("#505050"));
             TalentResister_textView.setText("\"관심재능을 통해 회원님의 관심사를 시작해보세요!\"");
             TalentResister_Take_modifyBtn.setVisibility(View.VISIBLE);
             TalentResister_Give_modifyBtn.setVisibility(View.INVISIBLE);
@@ -202,6 +202,7 @@ public class TalentResisterActivity extends AppCompatActivity {
 
         startActivity(i);
     }
+
     public void slideMenuHome(View v){
         Intent i = new Intent(mContext, HomeActivity.class);
         startActivity(i);
@@ -223,7 +224,7 @@ public class TalentResisterActivity extends AppCompatActivity {
     }
 
     public void slideMenuMyTalent(View v){
-        Intent i = new Intent(mContext, TalentConditionActivity_1.class);
+        Intent i = new Intent(mContext, TalentConditionActivity.class);
         startActivity(i);
     }
 
@@ -232,6 +233,12 @@ public class TalentResisterActivity extends AppCompatActivity {
         Intent i = new Intent(mContext, LoginActivity.class);
         startActivity(i);
         finish();
+    }
+
+
+    public void slideMenuCustomerService(View v){
+        Intent i = new Intent(mContext, CustomerService_MainActivity.class);
+        startActivity(i);
     }
 
     public void getMyTalent(){
@@ -292,7 +299,7 @@ public class TalentResisterActivity extends AppCompatActivity {
                     slidingMenuDL = (DrawerLayout) findViewById(R.id.TalentResister1_listboxDL);
 
                     drawerView = (View) findViewById(R.id.TalentResister_container1);
-                    imgDLOpenMenu = (ImageView) findViewById(R.id.DrawerOpenImg);
+                    imgDLOpenMenu = (ImageView) findViewById(R.id.ActionBar_Listview);
                     DrawerCloseImg = (ImageView) findViewById(R.id.DrawerCloseImg);
 
 

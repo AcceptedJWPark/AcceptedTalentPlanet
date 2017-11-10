@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="#ffffff"
     tools:context="TalentResister.TalentResisterActivity_Level">
 
 
@@ -15,7 +16,8 @@
         android:text="&quot;등록하신 아래 재능에 대한 본인의 수준을 선택해주세요.&quot;"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="20dp"
-        android:textSize="13dp"
+        android:textColor="@color/textColor"
+        android:textSize="14dp"
         />
 
     <LinearLayout
@@ -30,10 +32,11 @@
             android:id="@+id/Level_key1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@string/LevelUnderLine"
+            android:ellipsize="end"
+            android:lines="1"
             android:gravity="center"
-            android:textColor="@color/colorPrimaryDark"
-            android:textStyle="bold|italic"
+            android:textColor="@color/textColor"
+            android:textStyle="bold"
             android:textSize="13dp"
             android:layout_weight="1"
             />
@@ -41,10 +44,11 @@
             android:id="@+id/Level_key2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textColor="@color/colorPrimaryDark"
-            android:text="@string/LevelUnderLine"
+            android:ellipsize="end"
+            android:lines="1"
             android:gravity="center"
-            android:textStyle="bold|italic"
+            android:textColor="@color/textColor"
+            android:textStyle="bold"
             android:textSize="13dp"
             android:layout_weight="1"
             />
@@ -52,10 +56,11 @@
             android:id="@+id/Level_key3"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:lines="1"
             android:gravity="center"
-            android:text="@string/LevelUnderLine"
-            android:textColor="@color/colorPrimaryDark"
-            android:textStyle="bold|italic"
+            android:textColor="@color/textColor"
+            android:textStyle="bold"
             android:textSize="13dp"
             android:layout_weight="1"
             />
@@ -66,15 +71,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
         android:gravity="top|center"
         >
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:layout_marginLeft="7dp"
-            android:layout_marginRight="7dp"
             android:orientation="vertical">
             <CheckBox
                 android:id="@+id/TalentResister_Talent_Level1"
@@ -86,15 +91,14 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:textColor="#000000"
-                android:textSize="10dp"
+                android:textSize="12dp"
                 android:text="시작단계\nBeginner"
                 />
         </LinearLayout>
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="7dp"
-            android:layout_marginRight="7dp"
             android:gravity="center"
             android:orientation="vertical">
 
@@ -108,16 +112,15 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:textColor="#000000"
-                android:textSize="10dp"
+                android:textSize="12dp"
                 android:text="초급\nElementary"
                 />
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="7dp"
-            android:layout_marginRight="7dp"
             android:gravity="center"
             android:orientation="vertical">
             <CheckBox
@@ -130,15 +133,14 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:textColor="#000000"
-                android:textSize="10dp"
+                android:textSize="12dp"
                 android:text="중급\nIntermediate"
                 />
         </LinearLayout>
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="7dp"
-            android:layout_marginRight="7dp"
             android:gravity="center"
             android:orientation="vertical">
             <CheckBox
@@ -151,15 +153,14 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:textColor="#000000"
-                android:textSize="10dp"
+                android:textSize="12dp"
                 android:text="상급\nMaster"
                 />
         </LinearLayout>
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="7dp"
-            android:layout_marginRight="7dp"
             android:gravity="center"
             android:orientation="vertical">
             <CheckBox
@@ -172,7 +173,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:textColor="#000000"
-                android:textSize="10dp"
+                android:textSize="12dp"
                 android:text="전문가\nProfessional"
                 />
         </LinearLayout>
@@ -180,15 +181,17 @@
 
     <Button
         android:layout_width="match_parent"
-        android:layout_height="35dp"
+        android:layout_height="30dp"
         android:layout_gravity="center"
         android:layout_marginLeft="40dp"
         android:layout_marginRight="40dp"
         android:layout_marginTop="20dp"
-        android:background="#32579a"
+        android:background="@drawable/big_button_background"
         android:onClick="goNext"
-        android:text="Next"
+        android:text="다 음"
+        android:textSize="15dp"
         android:textAllCaps="false"
-        android:textColor="#ffffff" />
+        android:textStyle="bold"
+        android:textColor="@color/textColor" />
 
 </LinearLayout>

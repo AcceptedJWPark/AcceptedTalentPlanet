@@ -25,8 +25,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@android:drawable/ic_menu_revert"
-                android:background="@drawable/previousbutton"
-                android:tint="#32579a"
+                android:background="@drawable/nobackground"
+                android:tint="@color/textColor"
                 android:layout_alignTop="@+id/textView"
                 android:layout_alignBottom="@+id/textView" />
 
@@ -37,7 +37,7 @@
                 android:text="이름"
                 android:textSize="15dp"
                 android:textStyle="bold"
-                android:textColor="#32579a"
+                android:textColor="@color/textColor"
                 android:id="@+id/textView" />
 
         </RelativeLayout>
@@ -50,9 +50,9 @@
             android:paddingBottom="10dp"
             android:paddingTop="50dp"
             android:text="&quot;ID로 사용 될 E-mail을 입력해주세요!&quot;"
-            android:textColor="#aaaaaa"
-            android:textSize="15dp"
-            android:textStyle="bold|italic" />
+            android:textColor="@color/textColor"
+            android:textSize="14dp"
+            />
 
       </RelativeLayout>
 
@@ -79,11 +79,11 @@
             android:layout_marginLeft="10dp"
             android:layout_marginRight="70dp"
             android:layout_weight="4"
-            android:background="@drawable/textbox_bluebg"
+            android:background="@drawable/small_button_graybackground"
             android:onClick="emailCheck"
             android:text="E-mail 인증"
             android:textAllCaps="false"
-            android:textColor="#ffffff"
+            android:textColor="@color/textColor"
             android:textSize="12dp"
             android:textStyle="bold" />
 
@@ -119,31 +119,31 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="70dp"
                 android:layout_weight="4"
-                android:background="@drawable/textbox_bluebg"
+                android:background="@drawable/small_button_graybackground"
                 android:onClick="acceptEmail"
                 android:text="인증완료"
                 android:textAllCaps="false"
-                android:textColor="#ffffff"
+                android:textColor="@color/textColor"
                 android:textSize="12dp"
-                android:textStyle="bold|italic" />
+                android:textStyle="bold" />
 
         </LinearLayout>
 
         <Button
             android:layout_width="match_parent"
-            android:layout_height="35dp"
+            android:layout_height="30dp"
             android:layout_marginLeft="70dp"
             android:layout_marginRight="70dp"
             android:layout_marginTop="10dp"
-            android:background="@drawable/textbox_whitebg"
+            android:background="@drawable/big_button_background"
             android:onClick="goNext"
             android:paddingLeft="30dp"
             android:paddingRight="30dp"
-            android:text="Next"
+            android:text="다 음"
             android:textAllCaps="false"
-            android:textColor="#32579a"
+            android:textColor="@color/textColor"
             android:textSize="15dp"
-            android:textStyle="bold|italic" />
+            />
 
 
     </LinearLayout>

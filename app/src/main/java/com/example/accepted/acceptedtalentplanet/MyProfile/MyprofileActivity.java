@@ -3,14 +3,11 @@ package com.example.accepted.acceptedtalentplanet.MyProfile;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.android.volley.NetworkResponse;
@@ -22,16 +19,17 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.accepted.acceptedtalentplanet.CustomerService.CustomerService_ClaimActivity;
+import com.example.accepted.acceptedtalentplanet.CustomerService.CustomerService_MainActivity;
 import com.example.accepted.acceptedtalentplanet.Home.HomeActivity;
 import com.example.accepted.acceptedtalentplanet.LoadingLogin.LoginActivity;
 import com.example.accepted.acceptedtalentplanet.MyProfileData;
 import com.example.accepted.acceptedtalentplanet.R;
 import com.example.accepted.acceptedtalentplanet.SaveSharedPreference;
-import com.example.accepted.acceptedtalentplanet.TalentCondition.TalentConditionActivity_1;
+import com.example.accepted.acceptedtalentplanet.TalentCondition.TalentConditionActivity;
 import com.example.accepted.acceptedtalentplanet.TalentResister.TalentResisterActivity;
 import com.example.accepted.acceptedtalentplanet.TalentSharing.TalentSharingActivity;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -58,7 +56,7 @@ public class MyprofileActivity extends AppCompatActivity {
 
         //ToolBar 적용하기
         drawerView = (View) findViewById(R.id.MyProfile_container);
-        imgDLOpenMenu = (ImageView) findViewById(R.id.DrawerOpenImg);
+        imgDLOpenMenu = (ImageView) findViewById(R.id.ActionBar_Listview);
         DrawerCloseImg = (ImageView) findViewById(R.id.DrawerCloseImg);
 
         myProfile = new MyProfileData();
@@ -103,7 +101,7 @@ public class MyprofileActivity extends AppCompatActivity {
     }
 
     public void slideMenuMyTalent(View v){
-        Intent i = new Intent(mContext, TalentConditionActivity_1.class);
+        Intent i = new Intent(mContext, TalentConditionActivity.class);
         startActivity(i);
     }
 
@@ -113,6 +111,14 @@ public class MyprofileActivity extends AppCompatActivity {
         startActivity(i);
         finish();
     }
+
+
+    public void slideMenuCustomerService(View v){
+        Intent i = new Intent(mContext, CustomerService_MainActivity.class);
+        startActivity(i);
+    }
+
+
 
     public void getMyProfile(){
         RequestQueue postRequestQueue = Volley.newRequestQueue(this);

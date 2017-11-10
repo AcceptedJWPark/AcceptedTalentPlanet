@@ -4,68 +4,144 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#eee"
-    android:weightSum="10">
+    android:background="#ffffff"
+    >
 
-            <LinearLayout
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#f5f5f5"
+        android:paddingBottom="8dp"
+        android:paddingTop="8dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="Talent Planet 소개 (3/3)"
+            android:textColor="@color/textColor"
+            android:textSize="17dp"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:adjustViewBounds="true"
+        android:padding="10dp"
+        android:src="@drawable/introduction3" />
+
+    <LinearLayout
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:orientation="vertical">
+
+        <TextView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
+            android:layout_height="wrap_content"
+            android:text="재능은 &quot;어떤 일을 하는데 필요한 재주와 능력&quot;으로 정의됩니다."
+            android:textSize="12dp"
             android:gravity="center"
-            android:layout_weight="0.4"
-            >
-            <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Talent Planet은 취미, 정보공유, 소모임 등"
-            android:textSize="15dp"
-            android:layout_marginBottom="3dp"
-            android:textStyle="bold|italic"
             />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="다양한 활동의 장이 마련되어 있습니다."
-                    android:textSize="15dp"
-                    android:textStyle="bold|italic"
-                    android:layout_marginBottom="10dp"
-                    />
-
-            <TextView
-            android:layout_width="wrap_content"
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="&quot;당신의 재능을 공유해주세요.&quot;"
-            android:textSize="21dp"
-            android:textStyle="bold|italic"
+            android:layout_marginTop="15dp"
+            android:text="재능을 정의하는데 실력이나 경력, 특별한 자격증 등의 기준은 없어보입니다."
+            android:textSize="12dp"
+            android:gravity="center"/>
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:text="새로운 도전을 하는 사람에게는 해당 분야의 경험자는 모두 &quot;재능인&quot;이겠지요."
+            android:textSize="12dp"
+            android:gravity="center"
             />
 
-                <Button
-                    android:id="@+id/StartBtn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:onClick="clickStart"
-                    android:paddingLeft="20dp"
-                    android:paddingRight="20dp"
-                    android:text="TalentPlanet 시작하기"
-                    android:textAllCaps="false"
-                    android:textStyle="bold|italic" />
-        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:text="우리 모두는 누군가의 선생님이 될 수 있고 또 제자가 될 수 있습니다."
+            android:textSize="12dp"
+            android:gravity="center"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="&quot;정말 배우는데는 선생이나 교실이나 화려한 전통 따위나 돈도 필요"
+            android:textSize="12dp"
+            android:gravity="center"
+            />
+
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="없거든요. 필요한건 단지 자신을 개선하고자 하는 사람들 뿐입니다.&quot;"
+            android:textSize="12dp"
+            android:gravity="center"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="20dp"
+            android:text="- 영화 Accpeted 중 -"
+            android:layout_gravity="right"
+            android:textSize="12dp" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="bottom"
+
+        android:orientation="vertical"
+        >
+
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="9.7">
+            android:orientation="horizontal"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:gravity="bottom"
+            >
 
-            <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="Accepted ⓒompany : TalentPlanet 2017"
-            android:textSize="13dp"
-            android:textStyle="bold"
-            android:textColor="#000"
-            android:gravity="center"
-            />
+            <Button
+                android:id="@+id/TalnetPlanetIntro3PreBtn"
+                android:layout_width="0dp"
+                android:layout_height="25dp"
+                android:layout_weight="1"
+                android:layout_marginBottom="20dp"
+                android:text="돌아가기"
+                android:onClick="clickStart"
+                android:background="@drawable/big_button_background"
+                android:textColor="@color/textColor"
+                android:textStyle="bold"
+                />
         </LinearLayout>
+
     </LinearLayout>
+
+
+</LinearLayout>

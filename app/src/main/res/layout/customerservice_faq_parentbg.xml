@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+
+    <TextView
+        android:id="@+id/CustomerService_FAQparent_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="재능공유는 어떻게 이루어지나요?"
+        android:textSize="14dp"
+        android:paddingLeft="15dp"
+        android:paddingTop="20dp"
+        android:ellipsize="end"
+        android:lines="1"
+        android:paddingBottom="20dp"
+        android:layout_marginLeft="20dp"
+        android:textColor="@color/textColor"
+        android:textStyle="bold"
+        />
+
+
+</LinearLayout>

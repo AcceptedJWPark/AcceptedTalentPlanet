@@ -14,6 +14,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="#ffffff"
     tools:context="com.example.accepted.acceptedtalentplanet.TalentSharing.TalentSharingActivity">
 
     <LinearLayout
@@ -24,7 +25,7 @@
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="50dp"
             android:contentInsetStart="0dp"
             android:contentInsetLeft="0dp"
             app:contentInsetLeft="0dp"
@@ -33,75 +34,39 @@
             >
             <include
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="50dp"
                 layout="@layout/toolbarlayout"/>
         </android.support.v7.widget.Toolbar>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
-            android:layout_marginTop="20dp"
-            android:orientation="horizontal">
 
-            <Button
-                android:id="@+id/TalentSharing_GiveCheck"
-                android:layout_width="0dp"
-                android:layout_height="30dp"
-                android:layout_marginRight="5dp"
-                android:layout_weight="1"
-                android:background="@drawable/textbox_bluebg"
-                android:text="재능드림 보기"
-                android:textColor="#bebebe"
-                android:textSize="15dp"
-                android:textStyle="bold" />
-
-            <Button
-                android:id="@+id/TalentSharing_TakeCheck"
-                android:layout_width="0dp"
-                android:layout_height="30dp"
-                android:layout_marginLeft="5dp"
-                android:layout_weight="1"
-                android:background="@drawable/textbox_whitebg"
-                android:text="관심재능 보기"
-                android:textColor="#bebebe"
-                android:textSize="15dp"
-                android:textStyle="bold" />
-        </LinearLayout>
 
         <LinearLayout
             android:id="@+id/TalentSharing_searchingBoxOpen"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:background="@drawable/textbox_graybg_grayedge"
+            android:background="@drawable/big_button_background"
             android:gravity="center"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
             android:onClick="searchBoxOpen"
             android:orientation="horizontal"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp">
+            >
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="검색조건 변경 "
-                android:textColor="#505050"
+                android:text="검색조건 변경"
+                android:paddingTop="5dp"
+                android:layout_gravity="center_vertical"
+                android:paddingBottom="5dp"
+                android:textColor="@color/textColor"
                 android:textSize="12dp"
                 android:textStyle="bold" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="▼" />
 
         </LinearLayout>
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1.5dp"
-            android:background="#d2d2d2"
-            android:paddingBottom="5dp" />
 
 
         </LinearLayout>
@@ -126,7 +91,7 @@
                 android:id="@+id/TalentSharing_searchingBoxLL"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#ffffff"
+                android:background="#f9f9f9"
                 android:orientation="vertical"
                 android:visibility="visible"
                 >
@@ -134,15 +99,46 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="5dp"
+                    android:layout_marginBottom="10dp"
                     android:layout_marginTop="10dp"
                     android:gravity="center"
-                    android:paddingLeft="15dp"
-                    android:paddingRight="15dp"
-                    android:text="&quot;아래 검색조건을 변경하여 서칭이 가능합니다.&quot;"
-                    android:textColor="#505050"
+                    android:text="&quot;아래 검색조건을 변경하여 재능 검색이 가능합니다.&quot;"
+                    android:textColor="@color/textColor"
                     android:textSize="13dp"
-                    android:textStyle="bold" />
+                    />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginBottom="5dp"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/TalentSharing_GiveCheck"
+                        android:layout_width="0dp"
+                        android:layout_height="30dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/small_button_graybackground"
+                        android:text="재능드림 보기"
+                        android:textColor="@color/textColor"
+                        android:textSize="13dp"
+                        android:textStyle="bold" />
+
+                    <Button
+                        android:id="@+id/TalentSharing_TakeCheck"
+                        android:layout_width="0dp"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/small_button_whitebackground"
+                        android:text="관심재능 보기"
+                        android:textColor="#d2d2d2"
+                        android:textSize="13dp"
+                        android:textStyle="bold" />
+                </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -155,9 +151,9 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="left"
-                        android:text="Keyword"
+                        android:text="키워드"
                         android:textColor="#000000"
-                        android:textSize="12dp"
+                        android:textSize="13dp"
                         android:textStyle="bold" />
 
                     <EditText
@@ -171,7 +167,7 @@
                         android:text="Guitar"
                         android:textColor="@color/colorPrimaryDark"
                         android:textSize="12dp"
-                        android:textStyle="bold|italic" />
+                        />
 
                     <EditText
                         android:id="@+id/TalentSharing_serchingBox_Keyword2"
@@ -184,7 +180,7 @@
                         android:text="Piano"
                         android:textColor="@color/colorPrimaryDark"
                         android:textSize="12dp"
-                        android:textStyle="bold|italic" />
+                        />
 
                     <EditText
                         android:id="@+id/TalentSharing_serchingBox_Keyword3"
@@ -197,7 +193,7 @@
                         android:text="Drum"
                         android:textColor="@color/colorPrimaryDark"
                         android:textSize="12dp"
-                        android:textStyle="bold|italic" />
+                        />
 
 
                 </LinearLayout>
@@ -215,7 +211,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="left"
-                        android:text="Location"
+                        android:text="장 소"
                         android:textColor="#000000"
                         android:textSize="13dp"
                         android:textStyle="bold" />
@@ -225,13 +221,12 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1.5"
-                        android:ellipsize="end"
                         android:gravity="center"
-                        android:lines="1"
-                        android:text="경기도 파주시"
+                        android:singleLine="true"
+                        android:text="경기도 파주시 광탄면"
                         android:textColor="@color/colorPrimaryDark"
                         android:textSize="12dp"
-                        android:textStyle="bold|italic" />
+                        />
 
                     <EditText
                         android:id="@+id/TalentSharing_serchingBox_Location2"
@@ -241,10 +236,10 @@
                         android:gravity="center"
                         android:scrollHorizontally="false"
                         android:singleLine="true"
-                        android:text="경기도 일산동구"
+                        android:text="경기도 고양시 일산동구 정발산동"
                         android:textColor="@color/colorPrimaryDark"
                         android:textSize="12dp"
-                        android:textStyle="bold|italic" />
+                        />
 
                     <EditText
                         android:id="@+id/TalentSharing_serchingBox_Location3"
@@ -254,10 +249,10 @@
                         android:gravity="center"
                         android:scrollHorizontally="false"
                         android:singleLine="true"
-                        android:text="서울시 마포구"
+                        android:text="서울시 마포구 상수동"
                         android:textColor="@color/colorPrimaryDark"
                         android:textSize="12dp"
-                        android:textStyle="bold|italic" />
+                        />
                 </LinearLayout>
 
 
@@ -273,7 +268,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="left"
-                        android:text="Level"
+                        android:text="수 준"
                         android:textColor="#000000"
                         android:textSize="13dp"
                         android:textStyle="bold" />
@@ -283,13 +278,12 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="4.5"
-                        android:ellipsize="end"
                         android:gravity="center"
-                        android:lines="1"
+                        android:singleLine="true"
                         android:text="중급 (Intermediate)"
                         android:textColor="@color/colorPrimaryDark"
                         android:textSize="12dp"
-                        android:textStyle="bold|italic" />
+                        />
 
                 </LinearLayout>
 
@@ -305,7 +299,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="left"
-                        android:text="Point"
+                        android:text="포인트"
                         android:textColor="#000000"
                         android:textSize="13dp"
                         android:textStyle="bold" />
@@ -315,32 +309,87 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="4.5"
-                        android:ellipsize="end"
                         android:gravity="center"
-                        android:lines="1"
+                        android:singleLine="true"
                         android:text="350P"
                         android:textColor="@color/colorPrimaryDark"
                         android:textSize="12dp"
-                        android:textStyle="bold|italic" />
+                        />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="15dp"
+                    android:paddingRight="15dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="left"
+                        android:text="성 별"
+                        android:textColor="#000000"
+                        android:textSize="13dp"
+                        android:textStyle="bold" />
+
+                    <CheckBox
+                        android:id="@+id/TalentSharing_serchingBox_Gender_Male"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.5"
+                        android:text="남자"
+                        android:layout_marginLeft="5dp"
+                        android:textColor="@color/textColor"
+                        android:textSize="12dp"
+                        />
+
+                    <CheckBox
+                        android:id="@+id/TalentSharing_serchingBox_Gender_Female"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.5"
+                        android:text="여자"
+                        android:layout_marginLeft="5dp"
+                        android:textColor="@color/textColor"
+                        android:textSize="12dp"
+                        />
+
+                    <CheckBox
+                        android:id="@+id/TalentSharing_serchingBox_Gender_Both"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.5"
+                        android:text="무관"
+                        android:layout_marginLeft="5dp"
+                        android:textColor="@color/textColor"
+                        android:textSize="12dp"
+                        />
+
 
                 </LinearLayout>
 
                 <Button
                     android:id="@+id/searchingBtn"
                     android:layout_width="match_parent"
-                    android:layout_height="35dp"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="10dp"
                     android:layout_marginBottom="10dp"
                     android:layout_marginLeft="15dp"
                     android:layout_marginRight="15dp"
-                    android:background="@drawable/textbox_bluebg"
+                    android:background="@drawable/big_button_background"
                     android:text="저장 후 검색"
-                    android:textColor="#ffffff" />
+                    android:textSize="15dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/textColor" />
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1.5dp"
                     android:background="#d2d2d2"
                     android:paddingBottom="5dp" />
+
             </LinearLayout>
 
 

@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="#ffffff"
     tools:context="TalentResister.TalentResisterActivity_Location">
 
 
@@ -14,7 +15,8 @@
         android:text="&quot;희망 재능 공유 장소를 입력해주세요. &quot;(읍/면/동 까지 입력)"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="20dp"
-        android:textSize="13dp"
+        android:textColor="@color/textColor"
+        android:textSize="14dp"
         />
 
     <TextView
@@ -23,7 +25,7 @@
         android:text="Ex) 서울시 마포구 상수동"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="5dp"
-        android:textSize="10dp"
+        android:textSize="12dp"
         />
     <LinearLayout
         android:layout_width="match_parent"
@@ -36,32 +38,32 @@
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Location 1. "
+            android:text="장소 1. "
             android:gravity="center"
-            android:textColor="#000000"
+            android:textColor="@color/textColor"
             android:textStyle="bold"
-            android:textSize="12dp"
-            android:layout_weight="2"
+            android:textSize="13dp"
+            android:layout_weight="1.5"
             />
         <EditText
             android:id="@+id/TalentResister_Talent_Location1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textSize="10dp"
+            android:textSize="12dp"
             android:hint="첫 번째 장소를 입력해주세요."
             android:layout_weight="4"
             />
 
         <Button
             android:layout_width="0dp"
-            android:layout_height="18dp"
+            android:layout_height="20dp"
             android:layout_weight="1"
-            android:background="@drawable/textbox_whitebg2dp"
+            android:background="@drawable/small_button_whitebackground"
             android:gravity="center"
             android:onClick="registLocation1"
             android:text="등록"
             android:textColor="#000000"
-            android:textSize="11dp"
+            android:textSize="12dp"
             android:textStyle="bold" />
     </LinearLayout>
 
@@ -76,32 +78,32 @@
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Location 2. "
+            android:text="장소 2. "
             android:gravity="center"
-            android:textColor="#000000"
+            android:textColor="@color/textColor"
             android:textStyle="bold"
-            android:textSize="12dp"
-            android:layout_weight="2"
+            android:textSize="13dp"
+            android:layout_weight="1.5"
             />
         <EditText
             android:id="@+id/TalentResister_Talent_Location2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textSize="10dp"
+            android:textSize="12dp"
             android:hint="두 번째 장소를 입력해주세요."
             android:layout_weight="4"
             />
 
         <Button
             android:layout_width="0dp"
-            android:layout_height="18dp"
+            android:layout_height="20dp"
             android:layout_weight="1"
-            android:background="@drawable/textbox_whitebg2dp"
+            android:background="@drawable/small_button_whitebackground"
             android:gravity="center"
             android:onClick="registLocation2"
             android:text="등록"
             android:textColor="#000000"
-            android:textSize="11dp"
+            android:textSize="12dp"
             android:textStyle="bold" />
     </LinearLayout>
 
@@ -116,32 +118,32 @@
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Location 3. "
+            android:text="장소 3. "
             android:gravity="center"
-            android:textColor="#000000"
+            android:textColor="@color/textColor"
             android:textStyle="bold"
-            android:textSize="12dp"
-            android:layout_weight="2"
+            android:textSize="13dp"
+            android:layout_weight="1.5"
             />
         <EditText
             android:id="@+id/TalentResister_Talent_Location3"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textSize="10dp"
+            android:textSize="12dp"
             android:hint="세 번째 장소를 입력해주세요."
             android:layout_weight="4"
             />
 
         <Button
             android:layout_width="0dp"
-            android:layout_height="18dp"
+            android:layout_height="20dp"
             android:layout_weight="1"
-            android:background="@drawable/textbox_whitebg2dp"
+            android:background="@drawable/small_button_whitebackground"
             android:gravity="center"
             android:onClick="registLocation3"
             android:text="등록"
             android:textColor="#000000"
-            android:textSize="11dp"
+            android:textSize="12dp"
             android:textStyle="bold" />
     </LinearLayout>
 
@@ -159,11 +161,12 @@
             android:ellipsize="end"
             android:lines="1"
             android:layout_height="wrap_content"
-            android:text="@string/LocationUnderLine"
             android:gravity="center"
-            android:textColor="@color/colorPrimaryDark"
-            android:textStyle="bold|italic"
-            android:textSize="11dp"
+            android:textColor="@color/textColor"
+            android:textStyle="bold"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:textSize="12dp"
             android:layout_weight="1"
             />
         <TextView
@@ -172,11 +175,11 @@
             android:layout_height="wrap_content"
             android:ellipsize="end"
             android:lines="1"
-            android:textColor="@color/colorPrimaryDark"
-            android:text="@string/LocationUnderLine"
-            android:gravity="center"
-            android:textStyle="bold|italic"
-            android:textSize="11dp"
+            android:textColor="@color/textColor"
+            android:textStyle="bold"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:textSize="12dp"
             android:layout_weight="1"
             />
         <TextView
@@ -186,24 +189,27 @@
             android:ellipsize="end"
             android:lines="1"
             android:gravity="center"
-            android:text="@string/LocationUnderLine"
-            android:textColor="@color/colorPrimaryDark"
-            android:textStyle="bold|italic"
-            android:textSize="11dp"
+            android:textColor="@color/textColor"
+            android:textStyle="bold"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:textSize="12dp"
             android:layout_weight="1"
             />
     </LinearLayout>
 
     <Button
         android:layout_width="match_parent"
-        android:layout_height="35dp"
+        android:layout_height="30dp"
         android:layout_marginLeft="40dp"
+        android:textSize="15dp"
         android:layout_marginRight="40dp"
         android:layout_marginTop="20dp"
-        android:background="#32579a"
+        android:background="@drawable/big_button_background"
         android:onClick="goNext"
-        android:text="Next"
+        android:text="다 음"
         android:textAllCaps="false"
-        android:textColor="#ffffff" />
+        android:textStyle="bold"
+        android:textColor="@color/textColor" />
 
 </LinearLayout>
