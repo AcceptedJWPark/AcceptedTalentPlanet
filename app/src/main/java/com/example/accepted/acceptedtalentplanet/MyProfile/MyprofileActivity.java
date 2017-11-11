@@ -45,6 +45,7 @@ public class MyprofileActivity extends AppCompatActivity {
     ImageView DrawerCloseImg;
     Context mContext;
     MyProfileData myProfile;
+    TextView ToolbarTxt;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -78,6 +79,10 @@ public class MyprofileActivity extends AppCompatActivity {
 
         ((TextView) findViewById(R.id.DrawerUserID)).setText(SaveSharedPreference.getUserId(mContext));
         getMyProfile();
+
+        ToolbarTxt = (TextView) findViewById(R.id.toolbarTxt);
+        ToolbarTxt.setText("My Profile");
+
     }
 
     public void slideMenuHome(View v){

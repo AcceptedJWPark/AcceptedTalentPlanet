@@ -38,7 +38,38 @@
                 layout="@layout/toolbarlayout"/>
         </android.support.v7.widget.Toolbar>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
 
+            <Button
+                android:id="@+id/TalentSharing_GiveCheck"
+                android:layout_width="0dp"
+                android:layout_height="30dp"
+                android:layout_marginRight="5dp"
+                android:layout_weight="1"
+                android:background="@drawable/small_button_graybackground"
+                android:text="재능드림 보기"
+                android:textColor="@color/textColor"
+                android:textSize="13dp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/TalentSharing_TakeCheck"
+                android:layout_width="0dp"
+                android:layout_height="30dp"
+                android:layout_marginLeft="5dp"
+                android:layout_weight="1"
+                android:background="@drawable/small_button_whitebackground"
+                android:text="관심재능 보기"
+                android:textColor="#d2d2d2"
+                android:textSize="13dp"
+                android:textStyle="bold" />
+        </LinearLayout>
 
         <LinearLayout
             android:id="@+id/TalentSharing_searchingBoxOpen"
@@ -47,8 +78,10 @@
             android:layout_marginTop="10dp"
             android:background="@drawable/big_button_background"
             android:gravity="center"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:onClick="searchBoxOpen"
             android:orientation="horizontal"
             >
@@ -57,9 +90,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="검색조건 변경"
-                android:paddingTop="5dp"
                 android:layout_gravity="center_vertical"
-                android:paddingBottom="5dp"
                 android:textColor="@color/textColor"
                 android:textSize="12dp"
                 android:textStyle="bold" />
@@ -107,43 +138,14 @@
                     android:textSize="13dp"
                     />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginBottom="5dp"
-                    android:orientation="horizontal">
 
-                    <Button
-                        android:id="@+id/TalentSharing_GiveCheck"
-                        android:layout_width="0dp"
-                        android:layout_height="30dp"
-                        android:layout_marginRight="5dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/small_button_graybackground"
-                        android:text="재능드림 보기"
-                        android:textColor="@color/textColor"
-                        android:textSize="13dp"
-                        android:textStyle="bold" />
-
-                    <Button
-                        android:id="@+id/TalentSharing_TakeCheck"
-                        android:layout_width="0dp"
-                        android:layout_height="30dp"
-                        android:layout_marginLeft="5dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/small_button_whitebackground"
-                        android:text="관심재능 보기"
-                        android:textColor="#d2d2d2"
-                        android:textSize="13dp"
-                        android:textStyle="bold" />
-                </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingLeft="15dp"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
                     android:paddingRight="15dp">
 
                     <TextView
@@ -202,6 +204,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
                     android:paddingLeft="15dp"
                     android:paddingRight="15dp">
 
@@ -225,7 +229,7 @@
                         android:singleLine="true"
                         android:text="경기도 파주시 광탄면"
                         android:textColor="@color/colorPrimaryDark"
-                        android:textSize="12dp"
+                        android:textSize="11dp"
                         />
 
                     <EditText
@@ -238,7 +242,7 @@
                         android:singleLine="true"
                         android:text="경기도 고양시 일산동구 정발산동"
                         android:textColor="@color/colorPrimaryDark"
-                        android:textSize="12dp"
+                        android:textSize="11dp"
                         />
 
                     <EditText
@@ -251,7 +255,7 @@
                         android:singleLine="true"
                         android:text="서울시 마포구 상수동"
                         android:textColor="@color/colorPrimaryDark"
-                        android:textSize="12dp"
+                        android:textSize="11dp"
                         />
                 </LinearLayout>
 
@@ -260,6 +264,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
                     android:paddingLeft="15dp"
                     android:paddingRight="15dp">
 
@@ -280,10 +286,11 @@
                         android:layout_weight="4.5"
                         android:gravity="center"
                         android:singleLine="true"
-                        android:text="중급 (Intermediate)"
+                        android:text="중급 (Intermediate) ~"
                         android:textColor="@color/colorPrimaryDark"
                         android:textSize="12dp"
                         />
+
 
                 </LinearLayout>
 
@@ -291,6 +298,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
                     android:paddingLeft="15dp"
                     android:paddingRight="15dp">
 
@@ -305,10 +314,32 @@
                         android:textStyle="bold" />
 
                     <EditText
-                        android:id="@+id/TalentSharing_serchingBox_Point"
+                        android:id="@+id/TalentSharing_serchingBox_LowerLimit"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="4.5"
+                        android:layout_weight="2"
+                        android:gravity="center"
+                        android:singleLine="true"
+                        android:text="200P"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textSize="12dp"
+                        />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.5"
+                        android:gravity="center"
+                        android:text="~"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textSize="13dp"
+                        android:textStyle="bold" />
+
+                    <EditText
+                        android:id="@+id/TalentSharing_serchingBox_Point_UpperLimit"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
                         android:gravity="center"
                         android:singleLine="true"
                         android:text="350P"
@@ -318,57 +349,6 @@
 
                 </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="15dp"
-                    android:paddingRight="15dp">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="left"
-                        android:text="성 별"
-                        android:textColor="#000000"
-                        android:textSize="13dp"
-                        android:textStyle="bold" />
-
-                    <CheckBox
-                        android:id="@+id/TalentSharing_serchingBox_Gender_Male"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1.5"
-                        android:text="남자"
-                        android:layout_marginLeft="5dp"
-                        android:textColor="@color/textColor"
-                        android:textSize="12dp"
-                        />
-
-                    <CheckBox
-                        android:id="@+id/TalentSharing_serchingBox_Gender_Female"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1.5"
-                        android:text="여자"
-                        android:layout_marginLeft="5dp"
-                        android:textColor="@color/textColor"
-                        android:textSize="12dp"
-                        />
-
-                    <CheckBox
-                        android:id="@+id/TalentSharing_serchingBox_Gender_Both"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1.5"
-                        android:text="무관"
-                        android:layout_marginLeft="5dp"
-                        android:textColor="@color/textColor"
-                        android:textSize="12dp"
-                        />
-
-
-                </LinearLayout>
 
                 <Button
                     android:id="@+id/searchingBtn"
