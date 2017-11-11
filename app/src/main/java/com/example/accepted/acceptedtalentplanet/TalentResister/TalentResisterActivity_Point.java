@@ -99,7 +99,9 @@ public class TalentResisterActivity_Point extends AppCompatActivity {
                     String result = obj.getString("result");
                     if(result.equals("success")){
                         Toast.makeText(getApplicationContext(), "등록이 완료되었습니다..", Toast.LENGTH_SHORT).show();
-                    }else{
+                    }else if(result.equals("TalentRegistFail")){
+                        Toast.makeText(getApplicationContext(), "재능 등록이 실패했습니다.", Toast.LENGTH_SHORT).show();
+                    }else {
                         Toast.makeText(getApplicationContext(), "등록이 실패했습니다.", Toast.LENGTH_SHORT).show();
                     }
 
