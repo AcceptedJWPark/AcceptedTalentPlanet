@@ -58,7 +58,7 @@
         android:textColor="@color/textColor"
         android:textStyle="bold"
         android:gravity="center_vertical"
-        android:textSize="12dp"
+        android:textSize="11.5dp"
         android:paddingLeft="5dp"
         android:text="회원 정보"
         />
@@ -83,18 +83,18 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
                     android:textColor="#000000"
-                    android:textSize="14dp"
+                    android:textSize="13dp"
                     android:textStyle="bold"
                     android:gravity="center"
                     android:text="이 름" />
 
                 <TextView
-                    android:id="@+id/textView3"
+                    android:id="@+id/TalentSharingPopup_UserName"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="8"
                     android:textColor="@color/textColor"
-                    android:textSize="13dp"
+                    android:textSize="12dp"
                     android:paddingLeft="10dp"
                     android:text="박종우" />
             </LinearLayout>
@@ -114,7 +114,7 @@
                     android:layout_weight="2"
                     android:gravity="center"
                     android:textColor="#000000"
-                    android:textSize="14dp"
+                    android:textSize="13dp"
                     android:textStyle="bold"
                     android:text="성 별" />
 
@@ -125,7 +125,7 @@
                     android:layout_weight="8"
                     android:paddingLeft="10dp"
                     android:textColor="@color/textColor"
-                    android:textSize="13dp"
+                    android:textSize="12dp"
                     android:text="남자" />
             </LinearLayout>
 
@@ -145,7 +145,7 @@
                     android:gravity="center"
                     android:text="생년월일"
                     android:textColor="#000000"
-                    android:textSize="14dp"
+                    android:textSize="13dp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -155,7 +155,7 @@
                     android:layout_weight="8"
                     android:paddingLeft="10dp"
                     android:textColor="@color/textColor"
-                    android:textSize="13dp"
+                    android:textSize="12dp"
                     android:text="1991.01.23" />
             </LinearLayout>
 
@@ -174,7 +174,7 @@
                     android:layout_weight="2"
                     android:gravity="center"
                     android:textColor="#000000"
-                    android:textSize="14dp"
+                    android:textSize="13dp"
                     android:textStyle="bold"
                     android:text="직 업" />
 
@@ -185,7 +185,7 @@
                     android:layout_weight="8"
                     android:paddingLeft="10dp"
                     android:textColor="@color/textColor"
-                    android:textSize="13dp"
+                    android:textSize="12dp"
                     android:text="무직" />
             </LinearLayout>
 
@@ -200,7 +200,7 @@
         android:textColor="@color/textColor"
         android:textStyle="bold"
         android:gravity="center_vertical"
-        android:textSize="12dp"
+        android:textSize="11.5dp"
         android:paddingLeft="5dp"
         android:text="재능 드림"
         />
@@ -227,7 +227,7 @@
                 android:gravity="center"
                 android:text="키워드"
                 android:textColor="#000000"
-                android:textSize="14dp"
+                android:textSize="13dp"
                 android:textStyle="bold" />
 
             <LinearLayout
@@ -236,7 +236,7 @@
                 android:layout_weight="8">
 
                 <TextView
-                    android:id="@+id/textView7"
+                    android:id="@+id/TalentSharingPopup_Keyword1"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -245,7 +245,7 @@
                     android:paddingLeft="10dp"
                     android:text="Guitar"
                     android:textColor="@color/textColor"
-                    android:textSize="13dp" />
+                    android:textSize="12dp" />
 
                 <TextView
                     android:id="@+id/TalentSharingPopup_Keyword2"
