@@ -58,7 +58,7 @@
         android:textColor="@color/textColor"
         android:textStyle="bold"
         android:gravity="center_vertical"
-        android:textSize="12dp"
+        android:textSize="11.5dp"
         android:paddingLeft="5dp"
         android:text="회원 정보"
         />
@@ -83,7 +83,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
                     android:textColor="#000000"
-                    android:textSize="14dp"
+                    android:textSize="13dp"
                     android:textStyle="bold"
                     android:gravity="center"
                     android:text="이 름" />
@@ -94,7 +94,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="8"
                     android:textColor="@color/textColor"
-                    android:textSize="13dp"
+                    android:textSize="12dp"
                     android:paddingLeft="10dp"
                     android:text="박종우" />
             </LinearLayout>
@@ -114,7 +114,7 @@
                     android:layout_weight="2"
                     android:gravity="center"
                     android:textColor="#000000"
-                    android:textSize="14dp"
+                    android:textSize="13dp"
                     android:textStyle="bold"
                     android:text="성 별" />
 
@@ -124,7 +124,7 @@
                     android:layout_weight="8"
                     android:paddingLeft="10dp"
                     android:textColor="@color/textColor"
-                    android:textSize="13dp"
+                    android:textSize="12dp"
                     android:text="남자" />
             </LinearLayout>
 
@@ -144,7 +144,7 @@
                     android:gravity="center"
                     android:text="생년월일"
                     android:textColor="#000000"
-                    android:textSize="14dp"
+                    android:textSize="13dp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -153,7 +153,7 @@
                     android:layout_weight="8"
                     android:paddingLeft="10dp"
                     android:textColor="@color/textColor"
-                    android:textSize="13dp"
+                    android:textSize="12dp"
                     android:text="1991.01.23" />
             </LinearLayout>
 
@@ -172,7 +172,7 @@
                     android:layout_weight="2"
                     android:gravity="center"
                     android:textColor="#000000"
-                    android:textSize="14dp"
+                    android:textSize="13dp"
                     android:textStyle="bold"
                     android:text="직 업" />
 
@@ -182,7 +182,7 @@
                     android:layout_weight="8"
                     android:paddingLeft="10dp"
                     android:textColor="@color/textColor"
-                    android:textSize="13dp"
+                    android:textSize="12dp"
                     android:text="무직" />
             </LinearLayout>
 
@@ -197,7 +197,7 @@
         android:textColor="@color/textColor"
         android:textStyle="bold"
         android:gravity="center_vertical"
-        android:textSize="12dp"
+        android:textSize="11.5dp"
         android:paddingLeft="5dp"
         android:text="재능 드림"
         />
@@ -224,7 +224,7 @@
                 android:gravity="center"
                 android:text="키워드"
                 android:textColor="#000000"
-                android:textSize="14dp"
+                android:textSize="13dp"
                 android:textStyle="bold" />
 
             <LinearLayout
@@ -242,7 +242,7 @@
                     android:paddingLeft="10dp"
                     android:text="Guitar"
                     android:textColor="@color/textColor"
-                    android:textSize="13dp" />
+                    android:textSize="12dp" />
 
                 <TextView
                     android:layout_width="0dp"
@@ -253,7 +253,7 @@
                     android:paddingLeft="10dp"
                     android:text="Piano"
                     android:textColor="@color/textColor"
-                    android:textSize="13dp" />
+                    android:textSize="12dp" />
 
                 <TextView
                     android:layout_width="0dp"
@@ -264,7 +264,7 @@
                     android:paddingLeft="10dp"
                     android:text="Drum"
                     android:textColor="@color/textColor"
-                    android:textSize="13dp" />
+                    android:textSize="12dp" />
 
             </LinearLayout>
 
@@ -294,7 +294,7 @@
                 android:layout_gravity="top"
                 android:text="장 소"
                 android:textColor="#000000"
-                android:textSize="14dp"
+                android:textSize="13dp"
                 android:textStyle="bold" />
 
                 <View
@@ -329,7 +329,7 @@
                     android:lines="1"
                     android:text="서울시 마포구 상수동"
                     android:textColor="@color/textColor"
-                    android:textSize="13dp" />
+                    android:textSize="12dp" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -341,7 +341,7 @@
                     android:paddingLeft="10dp"
                     android:text="경기도 고양시 일산동구 정발산동"
                     android:textColor="@color/textColor"
-                    android:textSize="13dp" />
+                    android:textSize="12dp" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -353,7 +353,7 @@
                     android:lines="1"
                     android:text="경기도 파주시 광탄면"
                     android:textColor="@color/textColor"
-                    android:textSize="13dp" />
+                    android:textSize="12dp" />
 
             </LinearLayout>
 
@@ -376,7 +376,7 @@
                 android:gravity="center"
                 android:text="수 준"
                 android:textColor="#000000"
-                android:textSize="14dp"
+                android:textSize="13dp"
                 android:textStyle="bold" />
 
             <TextView
@@ -386,7 +386,7 @@
                 android:paddingLeft="10dp"
                 android:text="시작단계(Beginner)"
                 android:textColor="@color/textColor"
-                android:textSize="13dp" />
+                android:textSize="12dp" />
         </LinearLayout>
 
         <LinearLayout
@@ -404,7 +404,7 @@
                 android:gravity="center"
                 android:text="포인트"
                 android:textColor="#000000"
-                android:textSize="14dp"
+                android:textSize="13dp"
                 android:textStyle="bold" />
 
             <TextView
@@ -414,7 +414,7 @@
                 android:paddingLeft="10dp"
                 android:text="120P"
                 android:textColor="@color/textColor"
-                android:textSize="13dp" />
+                android:textSize="12dp" />
         </LinearLayout>
 
     </LinearLayout>
@@ -436,7 +436,7 @@
             android:background="@drawable/big_button_background"
             android:textColor="@color/textColor"
             android:layout_marginRight="5dp"
-            android:textSize="15dp"
+            android:textSize="14dp"
             android:textStyle="bold"
             android:layout_weight="1"
             android:text="Message"
@@ -447,7 +447,7 @@
             android:background="@drawable/big_button_background"
             android:layout_height="30dp"
             android:layout_marginLeft="5dp"
-            android:textSize="15dp"
+            android:textSize="14dp"
             android:textColor="@color/textColor"
             android:layout_weight="1"
             android:textStyle="bold"

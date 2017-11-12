@@ -148,6 +148,7 @@
             android:textColor="@color/textColor"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
+            android:textSize="13dp"
             android:text="선택"
             />
     </RelativeLayout>

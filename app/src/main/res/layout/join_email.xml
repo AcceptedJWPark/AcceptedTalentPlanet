@@ -67,7 +67,7 @@
             android:id="@+id/Join_Email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="70dp"
+            android:layout_marginLeft="60dp"
             android:layout_weight="3"
             android:hint="E-mail"
             android:inputType="textEmailAddress"
@@ -77,14 +77,14 @@
             android:layout_width="match_parent"
             android:layout_height="25dp"
             android:layout_marginLeft="10dp"
-            android:layout_marginRight="70dp"
+            android:layout_marginRight="60dp"
             android:layout_weight="4"
             android:background="@drawable/small_button_graybackground"
             android:onClick="emailCheck"
             android:text="E-mail 인증"
             android:textAllCaps="false"
             android:textColor="@color/textColor"
-            android:textSize="12dp"
+            android:textSize="14dp"
             android:textStyle="bold" />
 
     </LinearLayout>
@@ -107,7 +107,7 @@
                 android:id="@+id/Join_joinCode"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="70dp"
+                android:layout_marginLeft="60dp"
                 android:layout_weight="3"
                 android:hint="인증번호 입력"
                 android:textSize="12dp" />
@@ -117,14 +117,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="25dp"
                 android:layout_marginLeft="10dp"
-                android:layout_marginRight="70dp"
+                android:layout_marginRight="60dp"
                 android:layout_weight="4"
                 android:background="@drawable/small_button_graybackground"
                 android:onClick="acceptEmail"
                 android:text="인증완료"
                 android:textAllCaps="false"
                 android:textColor="@color/textColor"
-                android:textSize="12dp"
+                android:textSize="14dp"
                 android:textStyle="bold" />
 
         </LinearLayout>
