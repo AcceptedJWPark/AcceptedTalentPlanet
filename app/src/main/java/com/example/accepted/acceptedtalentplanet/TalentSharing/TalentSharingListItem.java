@@ -11,7 +11,11 @@ public class TalentSharingListItem {
     private String talent1;
     private String talent2;
     private String talent3;
+    private String talentID;
+    private boolean isGiveTalent;
+    private String status_flag;
     private String distance;
+    private String userID;
     private String showProfile;
 
     public int getPicture() {
@@ -34,6 +38,14 @@ public class TalentSharingListItem {
         return talent3;
     }
 
+    public String getTalentID(){
+        return talentID;
+    }
+    
+    public boolean getTalentFlag() { return isGiveTalent; }
+    
+    public String getStatusFlag() { return status_flag; }
+    
     public String getdistance() {
         return distance;
     }
@@ -41,6 +53,8 @@ public class TalentSharingListItem {
     public String getShowProfile() {
         return showProfile;
     }
+
+    public String getUserID(){ return userID; }
 
     public void setPicture(int picture) {
         this.picture = picture;
@@ -62,6 +76,14 @@ public class TalentSharingListItem {
         this.talent3 = talent3;
     }
 
+    public void setTalentID(String talentID){
+        this.talentID = talentID;
+    }
+
+    public void setTalentFlag(String isGiveTalent) { this.isGiveTalent = (isGiveTalent.equals("Y")) ? true : false; }
+
+    public void setStatusFlag(String status_flag) { this.status_flag = status_flag; }
+
     public void setdistance(String distance) {
         this.distance = distance;
     }
@@ -70,15 +92,21 @@ public class TalentSharingListItem {
         this.showProfile = showProfile;
     }
 
-    public TalentSharingListItem(int pictire, String name, String talent1, String talent2, String talent3, String distance, String showProfile)
+    public void setUserID(String userID) { this.userID = userID; }
+
+    public TalentSharingListItem(int pictire, String name, String talent1, String talent2, String talent3, String talentID, String isGiveTalent, String status_flag, String distance, String showProfile, String userID)
     {
         this.picture = pictire;
         this.name = name;
         this.talent1 = talent1;
         this.talent2 = talent2;
         this.talent3 = talent3;
+        this.talentID = talentID;
+        this.isGiveTalent = (isGiveTalent.equals("Y")) ? true : false;
+        this.status_flag = status_flag;
         this.distance = distance;
         this.showProfile = showProfile;
+        this.userID = userID;
     }
 
 }

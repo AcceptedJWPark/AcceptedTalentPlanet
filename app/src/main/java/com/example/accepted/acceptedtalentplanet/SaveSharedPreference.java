@@ -51,4 +51,19 @@ public class SaveSharedPreference {
     public static String getServerIp(){
         return SERVER_IP;
     }
+
+    public static String getLevel(String Level){
+        switch(Level){
+            case "1":
+                return "시작단계(Beginner)";
+            case "2":
+                return "초급(Elementary)";
+            case "3":
+                return "중급(Intermediate)";
+            case "4":
+                return "상급(Master)";
+            default:
+                return "전문가(Professional)";
+        }
+    }
 }

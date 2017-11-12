@@ -89,7 +89,7 @@
                     android:text="이 름" />
 
                 <TextView
-                    android:id="@+id/textView3"
+                    android:id="@+id/TalentSharingPopup_UserName"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="8"
@@ -119,6 +119,7 @@
                     android:text="성 별" />
 
                 <TextView
+                    android:id="@+id/TalentSharingPopup_UserGender"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="8"
@@ -148,6 +149,7 @@
                     android:textStyle="bold" />
 
                 <TextView
+                    android:id="@+id/TalentSharingPopup_UserBirth"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="8"
@@ -177,6 +179,7 @@
                     android:text="직 업" />
 
                 <TextView
+                    android:id="@+id/TalentSharingPopup_UserJob"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="8"
@@ -233,7 +236,7 @@
                 android:layout_weight="8">
 
                 <TextView
-                    android:id="@+id/textView7"
+                    android:id="@+id/TalentSharingPopup_Keyword1"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -245,6 +248,7 @@
                     android:textSize="12dp" />
 
                 <TextView
+                    android:id="@+id/TalentSharingPopup_Keyword2"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -256,6 +260,7 @@
                     android:textSize="12dp" />
 
                 <TextView
+                    android:id="@+id/TalentSharingPopup_Keyword3"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -319,7 +324,7 @@
                 >
 
                 <TextView
-                    android:id="@+id/textView5"
+                    android:id="@+id/TalentSharingPopup_Location1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -332,6 +337,7 @@
                     android:textSize="12dp" />
 
                 <TextView
+                    android:id="@+id/TalentSharingPopup_Location2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -344,6 +350,7 @@
                     android:textSize="12dp" />
 
                 <TextView
+                    android:id="@+id/TalentSharingPopup_Location3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -380,6 +387,7 @@
                 android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/TalentSharingPopup_Level"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="8"
@@ -408,6 +416,7 @@
                 android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/TalentSharingPopup_Point"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="8"
