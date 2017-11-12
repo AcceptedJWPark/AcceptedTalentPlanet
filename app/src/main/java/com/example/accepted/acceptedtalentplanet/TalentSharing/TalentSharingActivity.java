@@ -2,7 +2,9 @@ package com.example.accepted.acceptedtalentplanet.TalentSharing;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -250,7 +252,23 @@ public class TalentSharingActivity extends AppCompatActivity {
 
     Button.OnClickListener changeTalentFlag = new View.OnClickListener(){
         public void onClick(View v){
+            Button giveButton = (Button)findViewById(R.id.TalentSharing_GiveCheck);
+            Button takeButton = (Button)findViewById(R.id.TalentSharing_TakeCheck);
+
             isGiveTalent = (((Button)v).getId() == R.id.TalentSharing_GiveCheck) ? true : false;
+
+            if(isGiveTalent){
+                giveButton.setBackground(ContextCompat.getDrawable(mContext, R.drawable.small_button_graybackground));
+                giveButton.setTextColor(getResources().getColor(R.color.textColor));
+                takeButton.setBackground(ContextCompat.getDrawable(mContext, R.drawable.small_button_whitebackground));
+                takeButton.setTextColor(Color.parseColor("#d2d2d2"));
+            }else{
+                takeButton.setBackground(ContextCompat.getDrawable(mContext, R.drawable.small_button_graybackground));
+                takeButton.setTextColor(getResources().getColor(R.color.textColor));
+                giveButton.setBackground(ContextCompat.getDrawable(mContext, R.drawable.small_button_whitebackground));
+                giveButton.setTextColor(Color.parseColor("#d2d2d2"));
+            }
+
             TalentSharingList.clear();
             TalentSharingListItem tmp;
             for(int index = 0; index < OriginTalentSharingList.size(); index++){
