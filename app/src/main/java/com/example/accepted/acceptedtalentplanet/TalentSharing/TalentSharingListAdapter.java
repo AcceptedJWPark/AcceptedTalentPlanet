@@ -53,6 +53,7 @@ public class TalentSharingListAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View view, ViewGroup viewGroup) {
+        final int index = position;
         if(view == null) {
             view = LayoutInflater.from(context).inflate(R.layout.talentsharing_listviewbg, null);
 
@@ -70,6 +71,7 @@ public class TalentSharingListAdapter extends BaseAdapter {
                 @Override
                 public void onClick(View view) {
                     Intent intent = new Intent(context, TalentSharingPopup.class);
+                    intent.putExtra("TalentID", ((TalentSharingListItem)getItem(index)).getTalentID());
                     context.startActivity(intent);
                 }
             });

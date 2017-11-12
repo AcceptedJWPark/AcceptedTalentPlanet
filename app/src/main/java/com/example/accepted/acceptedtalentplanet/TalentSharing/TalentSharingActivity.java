@@ -46,6 +46,7 @@ import java.util.Map;
  */
 
 public class TalentSharingActivity extends AppCompatActivity {
+    ArrayList<TalentSharingListItem> OriginTalentSharingList;
     ArrayList<TalentSharingListItem> TalentSharingList;
     TalentSharingListAdapter TalentSharing_Adapter;
     Context mContext;
@@ -79,6 +80,7 @@ public class TalentSharingActivity extends AppCompatActivity {
 
         TalentSharingListView = (ListView) findViewById(R.id.TalentSharing_LV);
         TalentSharingList = new ArrayList<>();
+        OriginTalentSharingList = new ArrayList<>();
 
         getTalentSharing();
 
@@ -129,10 +131,17 @@ public class TalentSharingActivity extends AppCompatActivity {
                 try {
 
                     JSONArray obj = new JSONArray(response);
+                    TalentSharingList.clear();
                     for (int index = 0; index < obj.length(); index++) {
                         JSONObject o = obj.getJSONObject(index);
-                        TalentSharingList.add(new TalentSharingListItem(R.drawable.textpicture, o.getString("USER_NAME"), o.getString("TALENT_KEYWORD1"), o.getString("TALENT_KEYWORD2"), o.getString("TALENT_KEYWORD3"), "0km", "Profile 보기"));
-
+                        OriginTalentSharingList.add(new TalentSharingListItem(R.drawable.textpicture, o.getString("USER_NAME"), o.getString("TALENT_KEYWORD1"), o.getString("TALENT_KEYWORD2"), o.getString("TALENT_KEYWORD3"), o.getString("TALENT_ID"), o.getString("TALENT_FLAG"), o.getString("STATUS_FLAG"),"0km", "Profile 보기", o.getString("USER_ID")));
+                        if(isGiveTalent){
+                            if(o.getString("TALENT_FLAG").equals("Y"))
+                            TalentSharingList.add(new TalentSharingListItem(R.drawable.textpicture, o.getString("USER_NAME"), o.getString("TALENT_KEYWORD1"), o.getString("TALENT_KEYWORD2"), o.getString("TALENT_KEYWORD3"), o.getString("TALENT_ID"), o.getString("TALENT_FLAG"), o.getString("STATUS_FLAG"),"0km", "Profile 보기", o.getString("USER_ID")));
+                        }
+                        else{
+                            TalentSharingList.add(new TalentSharingListItem(R.drawable.textpicture, o.getString("USER_NAME"), o.getString("TALENT_KEYWORD1"), o.getString("TALENT_KEYWORD2"), o.getString("TALENT_KEYWORD3"), o.getString("TALENT_ID"), o.getString("TALENT_FLAG"), o.getString("STATUS_FLAG"),"0km", "Profile 보기", o.getString("USER_ID")));
+                        }
                     }
 
 
@@ -196,6 +205,10 @@ public class TalentSharingActivity extends AppCompatActivity {
                         }
                     });
                     ((TextView) findViewById(R.id.DrawerUserID)).setText(SaveSharedPreference.getUserId(mContext));
+
+
+                    ((Button)findViewById(R.id.TalentSharing_GiveCheck)).setOnClickListener(changeTalentFlag);
+                    ((Button)findViewById(R.id.TalentSharing_TakeCheck)).setOnClickListener(changeTalentFlag);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -234,6 +247,24 @@ public class TalentSharingActivity extends AppCompatActivity {
         postRequestQueue.add(postJsonRequest);
 
     }
+
+    Button.OnClickListener changeTalentFlag = new View.OnClickListener(){
+        public void onClick(View v){
+            isGiveTalent = (((Button)v).getId() == R.id.TalentSharing_GiveCheck) ? true : false;
+            TalentSharingList.clear();
+            TalentSharingListItem tmp;
+            for(int index = 0; index < OriginTalentSharingList.size(); index++){
+                tmp = OriginTalentSharingList.get(index);
+                if(tmp.getTalentFlag() && isGiveTalent)
+                    TalentSharingList.add(tmp);
+                else if(tmp.getTalentFlag() == false && isGiveTalent == false)
+                    TalentSharingList.add(tmp);
+            }
+
+            TalentSharing_Adapter = new TalentSharingListAdapter(mContext, TalentSharingList);
+            TalentSharingListView.setAdapter(TalentSharing_Adapter);
+        }
+    };
 
 }
 
