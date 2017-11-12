@@ -51,10 +51,15 @@ public class HomeActivity extends AppCompatActivity {
     Button moreBtn;
     Button initBtn;
 
+    TextView ToolbarTxt;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_activity);
+
+        ToolbarTxt = (TextView) findViewById(R.id.toolbarTxt);
+        ToolbarTxt.setText("Home");
 
         mContext = getApplicationContext();
 

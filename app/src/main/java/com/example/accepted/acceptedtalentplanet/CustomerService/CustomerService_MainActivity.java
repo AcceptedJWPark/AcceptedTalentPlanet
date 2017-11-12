@@ -3,9 +3,12 @@ package com.example.accepted.acceptedtalentplanet.CustomerService;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.example.accepted.acceptedtalentplanet.Home.HomeActivity;
 import com.example.accepted.acceptedtalentplanet.LoadingLogin.LoginActivity;
@@ -33,9 +36,21 @@ public class CustomerService_MainActivity extends AppCompatActivity {
     LinearLayout CustomerService_Claim;
     LinearLayout CustomerService_ClaimList;
 
+    DrawerLayout slidingMenuDL;
+    View drawerView;
+    ImageView imgDLOpenMenu;
+    ImageView DrawerCloseImg;
+
+    TextView ToolbarTxt;
+
+
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.customerservice_activity);
+
+        ToolbarTxt = (TextView) findViewById(R.id.toolbarTxt);
+        ToolbarTxt.setText("고객센터");
 
         CustomerService_Introduction = (LinearLayout) findViewById(R.id.CustomerService_IntroductionLL);
         CustomerService_Introduction.setOnClickListener(new View.OnClickListener() {
@@ -120,7 +135,30 @@ public class CustomerService_MainActivity extends AppCompatActivity {
             }
         });
 
+
+        slidingMenuDL = (DrawerLayout) findViewById(R.id.CustomerService_listboxDL);
+        drawerView = (View) findViewById(R.id.CustomerService_container);
+        imgDLOpenMenu = (ImageView) findViewById(R.id.ActionBar_Listview);
+        DrawerCloseImg = (ImageView) findViewById(R.id.DrawerCloseImg);
+        imgDLOpenMenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                slidingMenuDL.openDrawer(drawerView);
+
+            }
+        });
+        DrawerCloseImg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                slidingMenuDL.closeDrawer(drawerView);
+            }
+        });
+       /* ((TextView) findViewById(R.id.DrawerUserID)).setText(SaveSharedPreference.getUserId(mContext));*/
+
     }
+
+
+
 
     public void slideMenuHome(View v){
         Intent i = new Intent(mContext, HomeActivity.class);

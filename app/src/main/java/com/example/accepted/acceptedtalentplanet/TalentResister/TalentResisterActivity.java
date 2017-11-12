@@ -83,11 +83,18 @@ public class TalentResisterActivity extends AppCompatActivity {
     String TalentResister_Take_Level = "상급(Advanced)";
     int TalentResister_Take_Point = 350;
 
+    TextView ToolbarTxt;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.talentresister_resist1);
+
+        ToolbarTxt = (TextView) findViewById(R.id.toolbarTxt);
+        ToolbarTxt.setText("My Talent 관리");
+
         mContext = getApplicationContext();
+
 
         TalentResister_ShowGiveBtn = (Button) findViewById(R.id.TalentResister_ShowGive);
         TalentResister_ShowTakeBtn = (Button) findViewById(R.id.TalentResister_ShowTake);

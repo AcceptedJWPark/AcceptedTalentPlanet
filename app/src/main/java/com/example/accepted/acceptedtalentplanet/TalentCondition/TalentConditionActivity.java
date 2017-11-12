@@ -55,11 +55,17 @@ public class TalentConditionActivity extends AppCompatActivity {
     int GiveTalentConditionCode = 1;
     int TakeTalentConditionCode = 3;
 
+    TextView ToolbarTxt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.talentcondition_activity);
+
+
+        ToolbarTxt = (TextView) findViewById(R.id.toolbarTxt);
+        ToolbarTxt.setText("나의 재능 현황");
+
         mContext = getApplicationContext();
         Talent_Give_Condition = (TextView) findViewById(R.id.TalentCondition_Give_Condition);
         TalentCondition_Give_Keyword1 = (TextView) findViewById(R.id.TalentCondition_Give_Keyword1);

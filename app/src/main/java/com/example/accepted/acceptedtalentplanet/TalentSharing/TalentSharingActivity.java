@@ -60,6 +60,8 @@ public class TalentSharingActivity extends AppCompatActivity {
     ImageView imgDLOpenMenu;
     ImageView DrawerCloseImg;
 
+    TextView ToolbarTxt;
+
     // 검색조건 관련 변수
     String Keyword1, Keyword2, Keyword3, Location1, Location2, Location3;
     int Level, Point;
@@ -71,6 +73,9 @@ public class TalentSharingActivity extends AppCompatActivity {
         setContentView(R.layout.talentsharing_activity);
 
         mContext = getApplicationContext();
+
+        ToolbarTxt = (TextView) findViewById(R.id.toolbarTxt);
+        ToolbarTxt.setText("T.Sharing");
 
         TalentSharingListView = (ListView) findViewById(R.id.TalentSharing_LV);
         TalentSharingList = new ArrayList<>();

@@ -114,6 +114,7 @@
         <EditText
             android:id="@+id/TalentResister_Talent_Point"
             android:layout_width="100dp"
+            android:gravity="center"
             android:layout_height="wrap_content"
             android:inputType="number" />
 
