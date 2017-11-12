@@ -63,6 +63,7 @@ public class TalentSharingActivity extends AppCompatActivity {
     // 검색조건 관련 변수
     String Keyword1, Keyword2, Keyword3, Location1, Location2, Location3;
     int Level, Point;
+    boolean isGiveTalent = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -228,4 +229,8 @@ public class TalentSharingActivity extends AppCompatActivity {
         postRequestQueue.add(postJsonRequest);
 
     }
+
 }
+
+
+
