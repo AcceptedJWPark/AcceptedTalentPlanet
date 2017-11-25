@@ -15,6 +15,7 @@ import com.example.accepted.acceptedtalentplanet.CustomerService.CustomerService
 import com.example.accepted.acceptedtalentplanet.Home.Home_Activity;
 import com.example.accepted.acceptedtalentplanet.LoadingLogin.Login_Activity;
 import com.example.accepted.acceptedtalentplanet.MyProfile.MyProfile_Activity;
+import com.example.accepted.acceptedtalentplanet.MyTalent;
 import com.example.accepted.acceptedtalentplanet.R;
 import com.example.accepted.acceptedtalentplanet.SaveSharedPreference;
 import com.example.accepted.acceptedtalentplanet.TalentResister.TalentResister_Activity;
@@ -49,8 +50,10 @@ public class TalentCondition_Activity extends AppCompatActivity {
     LinearLayout TalentCondition_Take_KeywordBox;
     boolean TalentCondition_Give;
     boolean TalentCondition_Take;
-    String TalentCondition_Give_Keyword[] = {"Guitar", "Piano", "Drum"};
-    String TalentCondition_Take_Keyword[] = {"영어", "영어 회화", "영어 독학"};
+    String TalentCondition_Give_Keyword[];
+    String TalentCondition_Take_Keyword[];
+
+    MyTalent GiveTalent, TakeTalent;
     int GiveTalentConditionCode = 1;
     int TakeTalentConditionCode = 3;
 
@@ -66,6 +69,10 @@ public class TalentCondition_Activity extends AppCompatActivity {
         ToolbarTxt.setText("나의 재능 현황");
 
         mContext = getApplicationContext();
+
+        GiveTalent = SaveSharedPreference.getGiveTalentData(mContext);
+        TakeTalent = SaveSharedPreference.getTakeTalentData(mContext);
+
         Talent_Give_Condition = (TextView) findViewById(R.id.TalentCondition_Give_Condition);
         TalentCondition_Give_Keyword1 = (TextView) findViewById(R.id.TalentCondition_Give_Keyword1);
         TalentCondition_Give_Keyword2 = (TextView) findViewById(R.id.TalentCondition_Give_Keyword2);
@@ -88,9 +95,15 @@ public class TalentCondition_Activity extends AppCompatActivity {
         TalentCondition_Take_btn03 = (Button) findViewById(R.id.TalentCondition_Take_Button3);
         TalentCondition_Take_KeywordBox = (LinearLayout) findViewById(R.id.TalentCondition_Take_KeywordBox);
 
-        TalentCondition_Give = true;
-        TalentCondition_Take = false;
 
+        TalentCondition_Give = (GiveTalent == null)?false : true;
+        TalentCondition_Take = (TakeTalent == null)?false : true;
+
+        if(TalentCondition_Give)
+            TalentCondition_Give_Keyword = GiveTalent.getKeywordArray();
+
+        if(TalentCondition_Take)
+            TalentCondition_Take_Keyword = TakeTalent.getKeywordArray();
 
         //ToolBar 적용하기
         slidingMenuDL = (DrawerLayout) findViewById(R.id.TalentCondition1_listboxDL);
@@ -124,6 +137,14 @@ public class TalentCondition_Activity extends AppCompatActivity {
             TalentCondition_Give_btn03.setVisibility(View.VISIBLE);
             Talent_Give_Condition.setText("미등록");
             TalentCondition_Give_btn03.setText("재능드림 등록하기");
+            TalentCondition_Give_btn03.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent i = new Intent(mContext, TalentResister_Activity.class);
+                    startActivity(i);
+                    finish();
+                }
+            });
         } else
 
         {
@@ -154,6 +175,14 @@ public class TalentCondition_Activity extends AppCompatActivity {
                 TalentCondition_Give_Text2.setText("재능 재등록 또는 재능 수정하기를 진행해주세요!\"");
                 TalentCondition_Give_btn01.setText("재능드림 재등록");
                 TalentCondition_Give_btn02.setText("재능드림 수정하기");
+                TalentCondition_Give_btn02.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent i = new Intent(mContext, TalentResister_Activity.class);
+                        startActivity(i);
+                        finish();
+                    }
+                });
                 Talent_Give_Condition.setText("완료");
             }
         }
@@ -167,6 +196,15 @@ public class TalentCondition_Activity extends AppCompatActivity {
             TalentCondition_Take_btn03.setVisibility(View.VISIBLE);
             Talent_Take_Condition.setText("미등록");
             TalentCondition_Take_btn03.setText("관심재능 등록하기");
+            TalentCondition_Take_btn03.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent i = new Intent(mContext, TalentResister_Activity.class);
+                    i.putExtra("GiveFlag", false);
+                    startActivity(i);
+                    finish();
+                }
+            });
         } else
 
         {
@@ -197,6 +235,15 @@ public class TalentCondition_Activity extends AppCompatActivity {
                 TalentCondition_Take_Text2.setText("재능 재등록 또는 재능 수정하기를 진행해주세요!\"");
                 TalentCondition_Take_btn01.setText("관심재능 재등록");
                 TalentCondition_Take_btn02.setText("관심재능 수정하기");
+                TalentCondition_Take_btn02.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent i = new Intent(mContext, TalentResister_Activity.class);
+                        i.putExtra("GiveFlag", false);
+                        startActivity(i);
+                        finish();
+                    }
+                });
                 Talent_Take_Condition.setText("완료");
             }
         }
