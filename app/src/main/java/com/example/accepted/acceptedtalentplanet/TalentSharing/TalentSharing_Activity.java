@@ -29,12 +29,13 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.accepted.acceptedtalentplanet.Home.Home_Activity;
 import com.example.accepted.acceptedtalentplanet.LoadingLogin.Login_Activity;
-import com.example.accepted.acceptedtalentplanet.LocationList.LocationList;
+import com.example.accepted.acceptedtalentplanet.TalentResister.TalentResister_LocationList;
 import com.example.accepted.acceptedtalentplanet.MyProfile.MyProfile_Activity;
 import com.example.accepted.acceptedtalentplanet.R;
 import com.example.accepted.acceptedtalentplanet.SaveSharedPreference;
 import com.example.accepted.acceptedtalentplanet.TalentCondition.TalentCondition_Activity;
 import com.example.accepted.acceptedtalentplanet.TalentResister.TalentResister_Activity;
+import com.example.accepted.acceptedtalentplanet.TalentSearching.TalentSearching_Activity;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -55,11 +56,6 @@ public class TalentSharing_Activity extends AppCompatActivity {
     TalentSharing_ListAdapter TalentSharing_Adapter;
     Context mContext;
     ListView TalentSharingListView;
-    LinearLayout TalentShringSearchingOpen;
-    LinearLayout TalentShringSearchingBox;
-    Button searchingBtn;
-    Button profileShowBtn;
-    AutoCompleteTextView Location_EditTxt;
 
     DrawerLayout slidingMenuDL;
     View drawerView;
@@ -69,8 +65,6 @@ public class TalentSharing_Activity extends AppCompatActivity {
     TextView ToolbarTxt;
 
     // 검색조건 관련 변수
-    String Keyword1, Keyword2, Keyword3, Location1, Location2, Location3;
-    int Level, Point;
     boolean isGiveTalent = true;
 
     @Override
@@ -89,20 +83,10 @@ public class TalentSharing_Activity extends AppCompatActivity {
         getTalentSharing();
 
 
-
-        LocationList locationList = new LocationList();
-
-        String Location_List[] = locationList.Location_List;
-        ArrayAdapter<String> Location_ListAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line,Location_List);
-        Location_EditTxt = (AutoCompleteTextView) findViewById(R.id.TalentSharing_serchingBox_Location1);
-        Location_EditTxt.setAdapter(Location_ListAdapter);
-
-
-
     }
 
-    public void slideMenuHome(View v){
-        Intent i = new Intent(mContext, Home_Activity.class);
+    public void slideMenuTalentSearching(View v){
+        Intent i = new Intent(mContext, TalentSearching_Activity.class);
         startActivity(i);
     }
 
@@ -164,38 +148,6 @@ public class TalentSharing_Activity extends AppCompatActivity {
                     TalentSharingListView.setAdapter(TalentSharing_Adapter);
 
 
-                    TalentShringSearchingBox = (LinearLayout) findViewById(R.id.TalentSharing_searchingBoxLL);
-                    TalentShringSearchingOpen = (LinearLayout) findViewById(R.id.TalentSharing_searchingBoxOpen);
-                    TalentShringSearchingBox.setVisibility(View.GONE);
-                    TalentShringSearchingOpen.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            if (TalentShringSearchingBox.getVisibility() == View.GONE) {
-                                TalentShringSearchingBox.setVisibility(View.VISIBLE);
-                            } else if (TalentShringSearchingBox.getVisibility() == View.VISIBLE)
-                                TalentShringSearchingBox.setVisibility(View.GONE);
-                        }
-                    });
-                    TalentShringSearchingBox = (LinearLayout) findViewById(R.id.TalentSharing_searchingBoxLL);
-                    TalentShringSearchingOpen = (LinearLayout) findViewById(R.id.TalentSharing_searchingBoxOpen);
-                    TalentShringSearchingBox.setVisibility(View.GONE);
-                    TalentShringSearchingOpen.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            if (TalentShringSearchingBox.getVisibility() == View.GONE) {
-                                TalentShringSearchingBox.setVisibility(View.VISIBLE);
-                            } else if (TalentShringSearchingBox.getVisibility() == View.VISIBLE)
-                                TalentShringSearchingBox.setVisibility(View.GONE);
-                        }
-                    });
-
-                    searchingBtn = (Button) findViewById(R.id.searchingBtn);
-                    searchingBtn.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            TalentShringSearchingBox.setVisibility(View.GONE);
-                        }
-                    });
 
 
                     //ToolBar 적용하기

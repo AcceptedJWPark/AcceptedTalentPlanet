@@ -1,10 +1,10 @@
-package com.example.accepted.acceptedtalentplanet.LocationList;
+package com.example.accepted.acceptedtalentplanet.TalentResister;
 
 /**
  * Created by Accepted on 2017-11-22.
  */
 
-public class LocationList {
+public class TalentResister_LocationList {
 
     public static String[] Location_List = new String[]
             {

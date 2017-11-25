@@ -36,6 +36,7 @@
     <dimen name="ListView_ChildTxt_Signature">12.5dp</dimen>
 
     <dimen name="SpinnerTxt">12.5dp</dimen>
+    <dimen name="TalentSearching_SpinnerTxt">11.5dp</dimen>
 
     <dimen name="Page_ItemTitle">12.5dp</dimen>
     <dimen name="Page_ItemSubTitle">11.5dp</dimen>
@@ -59,13 +60,13 @@
 
 
     <!-- 키보드 자판 가림 현상 방지 ScrollView 사용 Activity-->
-    <dimen name="ScrollView_BigBtn">30dp</dimen>
+    <dimen name="ScrollView_BigBtn">25dp</dimen>
 
     <dimen name="MyProfile_Toolbar">40dp</dimen>
     <dimen name="MyProfile_Picture_Layout">110dp</dimen>
     <dimen name="MyProfile_PictureSize">90dp</dimen>
-    <dimen name="MyProfile_Divider">17dp</dimen>
-    <dimen name="MyProfile_List_Layout">40dp</dimen>
+    <dimen name="MyProfile_Divider">20dp</dimen>
+    <dimen name="MyProfile_List_Layout">50dp</dimen>
 
 
     <dimen name="Claim_Divider">12dp</dimen>
@@ -76,9 +77,7 @@
 
 
     <dimen name="TalentSharing_BtnLayout">30dp</dimen>
-    <dimen name="TalentSharing_ListLayout">35dp</dimen>
-
-
+    <dimen name="TalentSharing_ListLayout2">50dp</dimen>
 
 
 

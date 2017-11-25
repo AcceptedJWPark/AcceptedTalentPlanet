@@ -42,10 +42,6 @@
         <activity
             android:name=".Join.Join_Birth_Activity"
             android:theme="@style/AppTheme" />
-        <activity
-            android:name=".Home.Home_RecyclerActivity"
-            android:theme="@style/AppTheme" />
-        <activity android:name=".Home.Home_Activity" />
         <activity android:name=".MyProfile.MyProfile_Activity"/>
         <activity android:name=".TalentResister.TalentResister_Activity"/>
         <activity android:name=".TalentResister.TalentResister_Level_Activity"/>
@@ -76,6 +72,8 @@
             />
 
         <activity android:name=".CustomerService.CustomerService_Claim_SharingListActivity"/>
+        <activity android:name=".TalentSearching.TalentSearching_SearchingPage_Activity"/>
+        <activity android:name=".TalentSearching.TalentSearching_Activity"/>
 
         <activity
             android:name=".TalentSharing.TalentSharing_Popup_Activity"

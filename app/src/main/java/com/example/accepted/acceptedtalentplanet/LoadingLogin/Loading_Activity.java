@@ -9,6 +9,7 @@ import android.view.WindowManager;
 import com.example.accepted.acceptedtalentplanet.Home.Home_Activity;
 import com.example.accepted.acceptedtalentplanet.R;
 import com.example.accepted.acceptedtalentplanet.SaveSharedPreference;
+import com.example.accepted.acceptedtalentplanet.TalentSharing.TalentSharing_Activity;
 
 /**
  * Created by Accepted on 2017-09-20.
@@ -34,7 +35,7 @@ public class Loading_Activity extends AppCompatActivity {
                 if(SaveSharedPreference.getUserId(Loading_Activity.this).length() == 0) {
                     intent = new Intent(getBaseContext(), Login_Activity.class);
                 }else{
-                    intent = new Intent(getBaseContext(), Home_Activity.class);
+                    intent = new Intent(getBaseContext(), TalentSharing_Activity.class);
                 }
                     startActivity(intent);
                     finish();

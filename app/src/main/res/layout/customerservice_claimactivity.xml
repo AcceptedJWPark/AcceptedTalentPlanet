@@ -118,7 +118,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
                             android:layout_weight="1"
-                            android:background="@drawable/small_button_whitebackground"
+                            android:background="@drawable/spinner_background"
                             android:gravity="center"
                             android:text="공유 내역보기"
                             android:textColor="@color/textColor"
@@ -165,7 +165,7 @@
                             android:layout_height="0dp"
                             android:layout_gravity="center"
                             android:layout_weight="1"
-                            android:background="@drawable/small_button_whitebackground"
+                            android:background="@drawable/spinner_background"
                             android:gravity="center"
                             android:padding="3dp"
 

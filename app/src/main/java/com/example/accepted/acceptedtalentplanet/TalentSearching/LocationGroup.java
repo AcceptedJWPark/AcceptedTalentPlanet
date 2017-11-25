@@ -315,35 +315,34 @@ public class LocationGroup {
                     "울릉군",
 
             };
-   public static String[] gyungbuk_SmallCategory = new String[]
+    public static String[] gyungbuk_SmallCategory = new String[]
             {
-            "전체",
-            "창원시",
-            "진주시",
-            "통영시",
-            "사천시",
-            "김해시",
-            "밀양시",
-            "거제시",
-            "양산시",
-            "의령군",
-            "함안군",
-            "창녕군",
-            "고성군",
-            "남해군",
-            "하동군",
-            "산청군",
-            "함양군",
-            "거창군",
-            "합천군",
-            "전체"
+                    "전체",
+                    "창원시",
+                    "진주시",
+                    "통영시",
+                    "사천시",
+                    "김해시",
+                    "밀양시",
+                    "거제시",
+                    "양산시",
+                    "의령군",
+                    "함안군",
+                    "창녕군",
+                    "고성군",
+                    "남해군",
+                    "하동군",
+                    "산청군",
+                    "함양군",
+                    "거창군",
+                    "합천군",
+                    "전체"
             };
     public static String[] jeju_SmallCategory = new String[]
             {
                     "제주시",
                     "서귀포시",
             };
-
 
 
 

@@ -27,6 +27,7 @@ import com.example.accepted.acceptedtalentplanet.R;
 import com.example.accepted.acceptedtalentplanet.SaveSharedPreference;
 import com.example.accepted.acceptedtalentplanet.TalentCondition.TalentCondition_Activity;
 import com.example.accepted.acceptedtalentplanet.TalentResister.TalentResister_Activity;
+import com.example.accepted.acceptedtalentplanet.TalentSearching.TalentSearching_Activity;
 import com.example.accepted.acceptedtalentplanet.TalentSharing.TalentSharing_Activity;
 
 import org.json.JSONException;
@@ -84,8 +85,8 @@ public class MyProfile_Activity extends AppCompatActivity {
 
     }
 
-    public void slideMenuHome(View v){
-        Intent i = new Intent(mContext, Home_Activity.class);
+    public void slideMenuTalentSearching(View v){
+        Intent i = new Intent(mContext, TalentSearching_Activity.class);
         startActivity(i);
     }
 

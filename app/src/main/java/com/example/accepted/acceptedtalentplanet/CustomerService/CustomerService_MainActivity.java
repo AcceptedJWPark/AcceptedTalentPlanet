@@ -17,6 +17,7 @@ import com.example.accepted.acceptedtalentplanet.R;
 import com.example.accepted.acceptedtalentplanet.SaveSharedPreference;
 import com.example.accepted.acceptedtalentplanet.TalentCondition.TalentCondition_Activity;
 import com.example.accepted.acceptedtalentplanet.TalentResister.TalentResister_Activity;
+import com.example.accepted.acceptedtalentplanet.TalentSearching.TalentSearching_Activity;
 import com.example.accepted.acceptedtalentplanet.TalentSharing.TalentSharing_Activity;
 
 /**
@@ -165,9 +166,8 @@ public class CustomerService_MainActivity extends AppCompatActivity {
 
     //CustomerService Activity에서는 mContext를 왜 getApplicationContext로 대체해야 작동하는지??
 
-    public void slideMenuHome(View v){
-
-        Intent i = new Intent(mContext, Home_Activity.class);
+    public void slideMenuTalentSearching(View v){
+        Intent i = new Intent(mContext, TalentSearching_Activity.class);
         startActivity(i);
     }
 

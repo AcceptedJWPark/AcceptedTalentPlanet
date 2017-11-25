@@ -4,17 +4,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.text.SpannableString;
-import android.text.style.UnderlineSpan;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.accepted.acceptedtalentplanet.LocationList.LocationList;
 import com.example.accepted.acceptedtalentplanet.MyTalent;
 import com.example.accepted.acceptedtalentplanet.R;
 
@@ -32,7 +28,7 @@ public class TalentResister_Location_Activity extends AppCompatActivity {
     Context mContext;
     ListView location_ListView;
     ArrayList<String> location_ArrayList;
-    Talent_Location_Adapter talentLocation_Adapter;
+    TalentResister_Location_Adapter talentLocation_Adapter;
     Button location_addBtn;
 
 
@@ -46,8 +42,8 @@ public class TalentResister_Location_Activity extends AppCompatActivity {
 
         mContext = getApplicationContext();
 
-        LocationList locationList = new LocationList();
-        final String Location_List[] = locationList.Location_List;
+        TalentResister_LocationList talentResisterLocationList = new TalentResister_LocationList();
+        final String Location_List[] = talentResisterLocationList.Location_List;
         ArrayAdapter<String> Location_ListAdapter = new ArrayAdapter<String>(getBaseContext(), android.R.layout.simple_dropdown_item_1line,Location_List);
         Location_autoEdit1 = (AutoCompleteTextView) findViewById(R.id.TalentResister_Location);
         Location_autoEdit1.setAdapter(Location_ListAdapter);
@@ -76,7 +72,7 @@ public class TalentResister_Location_Activity extends AppCompatActivity {
         }
 
 
-        talentLocation_Adapter = new Talent_Location_Adapter(mContext, location_ArrayList);
+        talentLocation_Adapter = new TalentResister_Location_Adapter(mContext, location_ArrayList);
         location_ListView.setAdapter(talentLocation_Adapter);
 
         location_addBtn = (Button) findViewById(R.id.addLoctionBtn);
@@ -95,7 +91,7 @@ public class TalentResister_Location_Activity extends AppCompatActivity {
                 }
                 location_ArrayList.add(Location_autoEdit1.getText().toString());
                 Location_autoEdit1.setText("");
-                talentLocation_Adapter = new Talent_Location_Adapter(getBaseContext(), location_ArrayList);
+                talentLocation_Adapter = new TalentResister_Location_Adapter(getBaseContext(), location_ArrayList);
                 location_ListView.setAdapter(talentLocation_Adapter);
             }
         });

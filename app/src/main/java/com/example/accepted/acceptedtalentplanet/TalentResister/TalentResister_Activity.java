@@ -31,6 +31,7 @@ import com.example.accepted.acceptedtalentplanet.MyTalent;
 import com.example.accepted.acceptedtalentplanet.R;
 import com.example.accepted.acceptedtalentplanet.SaveSharedPreference;
 import com.example.accepted.acceptedtalentplanet.TalentCondition.TalentCondition_Activity;
+import com.example.accepted.acceptedtalentplanet.TalentSearching.TalentSearching_Activity;
 import com.example.accepted.acceptedtalentplanet.TalentSharing.TalentSharing_Activity;
 
 import org.json.JSONArray;
@@ -74,15 +75,15 @@ public class TalentResister_Activity extends AppCompatActivity {
     int G_Level;
     int T_Level;
 
-    String TalentResister_Give_Keyword[] = {"Guitar", "Piano", "Drum"};
-    String TalentResister_Give_Location[] = {"경기도 파주시 광탄면", "서울특별시 마포구 상수동", "경기도 고양시 일산동구"};
-    String TalentResister_Give_Level = "중급(Intermediate)";
-    int TalentResister_Give_Point = 150;
+    String TalentResister_Give_Keyword[];
+    String TalentResister_Give_Location[];
+    String TalentResister_Give_Level;
+    int TalentResister_Give_Point;
 
-    String TalentResister_Take_Keyword[] = {"영어", "영어 회화", "영어 독학"};
-    String TalentResister_Take_Location[] = {"부산광역시 해운대구 해운대동", "서울특별시 서대문구 창천동", "서울특별시 용산구 보광동"};
-    String TalentResister_Take_Level = "상급(Advanced)";
-    int TalentResister_Take_Point = 350;
+    String TalentResister_Take_Keyword[];
+    String TalentResister_Take_Location[];
+    String TalentResister_Take_Level;
+    int TalentResister_Take_Point;
 
     TextView ToolbarTxt;
 
@@ -95,6 +96,11 @@ public class TalentResister_Activity extends AppCompatActivity {
         ToolbarTxt.setText("My Talent 관리");
 
         mContext = getApplicationContext();
+
+        Intent i = getIntent();
+        TalentFlag = i.getBooleanExtra("GiveFlag", true);
+
+
 
 
         TalentResister_ShowGiveBtn = (Button) findViewById(R.id.TalentResister_ShowGive);
@@ -220,8 +226,8 @@ public class TalentResister_Activity extends AppCompatActivity {
         startActivity(i);
     }
 
-    public void slideMenuHome(View v){
-        Intent i = new Intent(mContext, Home_Activity.class);
+    public void slideMenuTalentSearching(View v){
+        Intent i = new Intent(mContext, TalentSearching_Activity.class);
         startActivity(i);
     }
 
@@ -271,9 +277,11 @@ public class TalentResister_Activity extends AppCompatActivity {
                         if(o.getString("TALENT_FLAG").equals("Y")){
                             TalentGive.setMyTalent(o.getString("TALENT_KEYWORD1"), o.getString("TALENT_KEYWORD2"), o.getString("TALENT_KEYWORD3"), o.getString("LOCATION1"), o.getString("LOCATION2"), o.getString("LOCATION3"), o.getString("T_POINT"), o.getString("LEVEL"));
                             G_Level = Integer.parseInt(o.getString("LEVEL"));
+                            SaveSharedPreference.setGiveTalentData(mContext, TalentGive);
                         }else{
                             TalentTake.setMyTalent(o.getString("TALENT_KEYWORD1"), o.getString("TALENT_KEYWORD2"), o.getString("TALENT_KEYWORD3"), o.getString("LOCATION1"), o.getString("LOCATION2"), o.getString("LOCATION3"), o.getString("T_POINT"), o.getString("LEVEL"));
                             T_Level = Integer.parseInt(o.getString("LEVEL"));
+                            SaveSharedPreference.setTakeTalentData(mContext, TalentTake);
                         }
 
                     }
@@ -296,7 +304,10 @@ public class TalentResister_Activity extends AppCompatActivity {
                         TalentResister_Take_Level = TalentTake.getLevel();
 
                     }
-                    ShowGiveBtnClicked();
+                    if(TalentFlag)
+                        ShowGiveBtnClicked();
+                    else
+                        ShowTakeBtnClicked();
 
 
                     TalentResister_ShowGiveBtn.setOnClickListener(new View.OnClickListener() {

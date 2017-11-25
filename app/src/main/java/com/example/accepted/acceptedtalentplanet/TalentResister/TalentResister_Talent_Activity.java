@@ -4,14 +4,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.text.SpannableString;
-import android.text.style.UnderlineSpan;
 import android.view.View;
-import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.accepted.acceptedtalentplanet.MyTalent;
@@ -31,7 +27,7 @@ public class TalentResister_Talent_Activity extends AppCompatActivity {
     Context mContext;
     ListView talent_ListView;
     ArrayList<String> talent_ArrayList;
-    Talent_Location_Adapter talentLocation_Adapter;
+    TalentResister_Location_Adapter talentLocation_Adapter;
     Button talent_addBtn;
 
 
@@ -54,27 +50,13 @@ public class TalentResister_Talent_Activity extends AppCompatActivity {
         if(HavingDataFlag){
             Data = (MyTalent)i.getSerializableExtra("Data");
             TalentArr = Data.getKeywordArray();
-            TextView TalentKey1= (TextView) findViewById(R.id.Talent_key1);
-            SpannableString content1 = new SpannableString(TalentArr[0]);
-            content1.setSpan(new UnderlineSpan(), 0, content1.length(), 0);
-            TalentKey1.setText(content1);
-
-            TextView TalentKey2 = (TextView) findViewById(R.id.Talent_key2);
-            SpannableString content2 = new SpannableString(TalentArr[1]);
-            content2.setSpan(new UnderlineSpan(), 0, content2.length(), 0);
-            TalentKey2.setText(content2);
-
-            TextView TalentKey3 = (TextView) findViewById(R.id.Talent_key3);
-            SpannableString content3 = new SpannableString(TalentArr[2]);
-            content3.setSpan(new UnderlineSpan(), 0, content3.length(), 0);
-            TalentKey3.setText(content3);
 
             for(int index = 0; index < TalentArr.length; index++)
                 talent_ArrayList.add(TalentArr[index]);
         }
 
 
-        talentLocation_Adapter = new Talent_Location_Adapter(mContext, talent_ArrayList);
+        talentLocation_Adapter = new TalentResister_Location_Adapter(mContext, talent_ArrayList);
         talent_ListView.setAdapter(talentLocation_Adapter);
 
         talent_addBtn = (Button) findViewById(R.id.addTalentBtn);
@@ -95,7 +77,7 @@ public class TalentResister_Talent_Activity extends AppCompatActivity {
                 }
                 talent_ArrayList.add(Talent_autoEdit.getText().toString());
                 Talent_autoEdit.setText("");
-                talentLocation_Adapter = new Talent_Location_Adapter(getBaseContext(), talent_ArrayList);
+                talentLocation_Adapter = new TalentResister_Location_Adapter(getBaseContext(), talent_ArrayList);
                 talent_ListView.setAdapter(talentLocation_Adapter);
             }
         });

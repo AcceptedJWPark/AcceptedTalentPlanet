@@ -17,12 +17,12 @@ import java.util.ArrayList;
  * Created by Accepted on 2017-11-23.
  */
 
-public class Talent_Location_Adapter extends BaseAdapter {
+public class TalentResister_Location_Adapter extends BaseAdapter {
 
     Context context;
     private ArrayList<String> arrayList;
 
-    public Talent_Location_Adapter(Context context, ArrayList<String> arrayList)
+    public TalentResister_Location_Adapter(Context context, ArrayList<String> arrayList)
     {
         this.context = context;
         this.arrayList = arrayList;

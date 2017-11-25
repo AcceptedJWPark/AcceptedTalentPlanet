@@ -19,11 +19,11 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.accepted.acceptedtalentplanet.Home.Home_Activity;
 import com.example.accepted.acceptedtalentplanet.Home.Home_RecyclerActivity;
 import com.example.accepted.acceptedtalentplanet.Join.Join_Email_Activity;
 import com.example.accepted.acceptedtalentplanet.R;
 import com.example.accepted.acceptedtalentplanet.SaveSharedPreference;
+import com.example.accepted.acceptedtalentplanet.TalentSharing.TalentSharing_Activity;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -38,7 +38,6 @@ import java.util.Map;
 
 public class Login_Activity extends AppCompatActivity {
     private InputMethodManager imm;
-    private EditText editText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,7 +72,7 @@ public class Login_Activity extends AppCompatActivity {
                         String userName = obj.getString("userName");
                         SaveSharedPreference.setPrefUsrName(Login_Activity.this, userName);
                         SaveSharedPreference.setPrefUsrId(Login_Activity.this, userID);
-                        Intent intent = new Intent(getBaseContext(), Home_Activity.class);
+                        Intent intent = new Intent(getBaseContext(), TalentSharing_Activity.class);
                         startActivity(intent);
                     }else if(result.equals("fail")){
                         Toast.makeText(getApplicationContext(), "비밀번호를 잘못 입력하셨습니다.", Toast.LENGTH_SHORT).show();
@@ -126,10 +125,6 @@ public class Login_Activity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void testFunc(View v){
-        Intent intent = new Intent(this, Home_RecyclerActivity.class);
-        startActivity(intent);
-    }
 
 
 

@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
+import com.google.gson.Gson;
+
 import static android.text.TextUtils.isEmpty;
 
 /**
@@ -15,6 +17,8 @@ public class SaveSharedPreference {
     static final String PREF_USER_ID = "userid";
     static final String SERVER_IP = "http://13.124.141.242/Accepted/";
     static final String SERVER_IP2 = "http://192.168.123.3:8080/Accepted/";
+    static final String PREF_GIVE_DATA = "giveData";
+    static final String PREF_TAKE_DATA = "takeData";
     static SharedPreferences getSharedPreferences(Context ctx){
         return PreferenceManager.getDefaultSharedPreferences(ctx);
     }
@@ -65,5 +69,35 @@ public class SaveSharedPreference {
             default:
                 return "전문가(Professional)";
         }
+    }
+
+    public static void setGiveTalentData(Context ctx, MyTalent Data){
+        SharedPreferences.Editor editor = getSharedPreferences(ctx).edit();
+        Gson gson = new Gson();
+        String json = gson.toJson(Data);
+        editor.putString(PREF_GIVE_DATA, json);
+        editor.commit();
+    }
+
+    public static MyTalent getGiveTalentData(Context ctx){
+        Gson gson = new Gson();
+        String json = getSharedPreferences(ctx).getString(PREF_GIVE_DATA, "");
+        MyTalent data = gson.fromJson(json, MyTalent.class);
+        return data;
+    }
+
+    public static void setTakeTalentData(Context ctx, MyTalent Data){
+        SharedPreferences.Editor editor = getSharedPreferences(ctx).edit();
+        Gson gson = new Gson();
+        String json = gson.toJson(Data);
+        editor.putString(PREF_TAKE_DATA, json);
+        editor.commit();
+    }
+
+    public static MyTalent getTakeTalentData(Context ctx){
+        Gson gson = new Gson();
+        String json = getSharedPreferences(ctx).getString(PREF_TAKE_DATA, "");
+        MyTalent data = gson.fromJson(json, MyTalent.class);
+        return data;
     }
 }
