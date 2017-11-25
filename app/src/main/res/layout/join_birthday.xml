@@ -5,24 +5,25 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#ffffff"
+    android:weightSum="24"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
     >
 
-    <RelativeLayout
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          >
         <RelativeLayout
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
-            android:layout_marginTop="5dp"
-            android:layout_marginLeft="5dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:gravity="center_vertical"
+            android:paddingLeft="5dp"
+            android:layout_weight="2"
+            >
 
         <ImageView
             android:id="@+id/preImg"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/Toolbar_Pre_Img"
+            android:layout_height="@dimen/Toolbar_Pre_Img"
             android:src="@android:drawable/ic_menu_revert"
             android:background="@drawable/nobackground"
             android:tint="@color/textColor"
@@ -34,7 +35,7 @@
             android:layout_height="wrap_content"
             android:layout_toRightOf="@+id/preImg"
             android:text="성별"
-            android:textSize="15dp"
+            android:textSize="@dimen/Toolbar_Pre_Txt"
             android:textStyle="bold"
             android:textColor="@color/textColor"
             android:id="@+id/textView" />
@@ -44,24 +45,22 @@
 
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="2"
             android:layout_gravity="center"
             android:gravity="center"
-            android:paddingBottom="10dp"
-            android:paddingTop="50dp"
-            android:text="&quot;생년월일을 입력해주세요!&quot;"
             android:textColor="@color/textColor"
-            android:textSize="14dp"
+            android:textSize="@dimen/Page_Txt"
+            android:text="&quot;생년월일을 입력해주세요!&quot;"
             />
 
-      </RelativeLayout>
 
 
     <LinearLayout
-            android:layout_marginTop="5dp"
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1.5"
             android:layout_marginLeft="40dp"
             android:layout_marginRight="40dp"
             >
@@ -74,7 +73,7 @@
             android:hint="YYYY"
             android:gravity="center"
             android:inputType="number"
-            android:textSize="12dp" />
+            android:textSize="@dimen/Edit_Hint" />
 
         <EditText
             android:id="@+id/Join_Birth_Month"
@@ -86,7 +85,8 @@
             android:hint="MM"
             android:gravity="center"
             android:inputType="number"
-            android:textSize="12dp" />
+            android:textSize="@dimen/Edit_Hint"
+            />
 
         <EditText
             android:id="@+id/Join_Birth_Day"
@@ -96,37 +96,38 @@
             android:hint="DD"
             android:gravity="center"
             android:inputType="number"
-            android:textSize="12dp"/>
-
+            android:textSize="@dimen/Edit_Hint"
+            />
 
         <CheckBox
             android:id="@+id/Join_BirthDayNoShowCheck"
             android:layout_weight="1.5"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textColor="@color/colorPrimaryDark"
+            android:textColor="@color/textColor"
             android:text="비공개"
             android:background="#ffffff"
-            android:textSize="12dp"
+            android:textSize="@dimen/CheckBox_Txt"
             android:textStyle="bold"
             />
-
-
     </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.5"/>
 
     <Button
         android:layout_width="match_parent"
-        android:layout_height="30dp"
+        android:layout_height="0dp"
+        android:layout_weight="1.3"
         android:layout_marginLeft="40dp"
         android:layout_marginRight="40dp"
-        android:layout_marginTop="10dp"
         android:background="@drawable/big_button_background"
         android:onClick="goRegist"
-        android:paddingLeft="30dp"
-        android:paddingRight="30dp"
         android:text="가입 완료"
         android:textColor="@color/textColor"
-        android:textSize="15dp"
+        android:textSize="@dimen/BigBtn"
         android:textStyle="bold"
         />
 

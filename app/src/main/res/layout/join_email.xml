@@ -5,25 +5,25 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#ffffff"
+    android:weightSum="24"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
     >
 
     <RelativeLayout
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:orientation="vertical"
-          >
-        <RelativeLayout
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginTop="5dp"
-            android:layout_marginLeft="5dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:gravity="center_vertical"
+        android:paddingLeft="5dp"
+        android:layout_weight="2"
+        >
 
             <ImageView
                 android:id="@+id/preImg"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="@dimen/Toolbar_Pre_Img"
+                android:layout_height="@dimen/Toolbar_Pre_Img"
                 android:src="@android:drawable/ic_menu_revert"
                 android:background="@drawable/nobackground"
                 android:tint="@color/textColor"
@@ -35,7 +35,7 @@
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@+id/preImg"
                 android:text="이름"
-                android:textSize="15dp"
+                android:textSize="13dp"
                 android:textStyle="bold"
                 android:textColor="@color/textColor"
                 android:id="@+id/textView" />
@@ -44,105 +44,149 @@
 
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="2"
             android:layout_gravity="center"
             android:gravity="center"
-            android:paddingBottom="10dp"
-            android:paddingTop="50dp"
-            android:text="&quot;ID로 사용 될 E-mail을 입력해주세요!&quot;"
             android:textColor="@color/textColor"
-            android:textSize="14dp"
+            android:textSize="@dimen/Page_Txt"
+            android:text="&quot;ID로 사용 될 E-mail을 입력해주세요!&quot;"
             />
 
-      </RelativeLayout>
 
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
+        android:layout_height="0dp"
+        android:layout_weight="1.6"
+        android:layout_marginLeft="60dp"
+        android:layout_marginRight="60dp"
         android:orientation="horizontal">
 
         <EditText
             android:id="@+id/Join_Email"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="60dp"
-            android:layout_weight="3"
+            android:layout_weight="6"
             android:hint="E-mail"
             android:inputType="textEmailAddress"
-            android:textSize="12dp" />
+            android:textSize="@dimen/Edit_Hint" />
 
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="25dp"
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
             android:layout_marginLeft="10dp"
-            android:layout_marginRight="60dp"
-            android:layout_weight="4"
-            android:background="@drawable/small_button_graybackground"
-            android:onClick="emailCheck"
-            android:text="E-mail 인증"
-            android:textAllCaps="false"
-            android:textColor="@color/textColor"
-            android:textSize="14dp"
-            android:textStyle="bold" />
+            android:orientation="vertical"
+            >
+
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="0.07"/>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                android:background="@drawable/small_button_graybackground"
+                android:text="E-mail 인증"
+                android:textAllCaps="false"
+                android:textColor="@color/textColor"
+                android:textSize="@dimen/ListView_Btn"
+                android:textStyle="bold"
+                android:onClick="emailCheck"
+                />
+
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="0.07"/>
+
+        </LinearLayout>
+
+
 
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/accept_join_mail"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
+        android:layout_height="0dp"
+        android:layout_weight="3.2"
         android:orientation="vertical"
-        android:visibility="invisible">
+        android:visibility="visible">
 
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1.6"
+            android:layout_marginLeft="60dp"
+            android:layout_marginRight="60dp"
             android:orientation="horizontal">
 
             <EditText
                 android:id="@+id/Join_joinCode"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="60dp"
-                android:layout_weight="3"
+                android:layout_weight="6"
                 android:hint="인증번호 입력"
-                android:textSize="12dp" />
+                android:textSize="@dimen/Edit_Hint"
+                />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:layout_marginLeft="10dp"
+                android:orientation="vertical"
+                >
+
+                <View
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.07"/>
 
             <Button
                 android:id="@+id/btnAccept"
                 android:layout_width="match_parent"
                 android:layout_height="25dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="60dp"
-                android:layout_weight="4"
                 android:background="@drawable/small_button_graybackground"
-                android:onClick="acceptEmail"
-                android:text="인증완료"
+                android:text="인증 완료"
                 android:textAllCaps="false"
                 android:textColor="@color/textColor"
-                android:textSize="14dp"
-                android:textStyle="bold" />
+                android:textSize="@dimen/ListView_Btn"
+                android:textStyle="bold"
+                android:onClick="acceptEmail"
+                />
+
+                <View
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.07"/>
+
+         </LinearLayout>
 
         </LinearLayout>
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.5"/>
+
         <Button
             android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:layout_marginLeft="70dp"
-            android:layout_marginRight="70dp"
-            android:layout_marginTop="10dp"
+            android:layout_height="0dp"
+            android:layout_weight="1.3"
+            android:layout_marginLeft="60dp"
+            android:layout_marginRight="60dp"
             android:background="@drawable/big_button_background"
             android:onClick="goNext"
-            android:paddingLeft="30dp"
-            android:paddingRight="30dp"
             android:text="다 음"
             android:textAllCaps="false"
             android:textColor="@color/textColor"
-            android:textSize="15dp"
+            android:textSize="@dimen/BigBtn"
+            android:textStyle="bold"
             />
 
 

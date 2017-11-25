@@ -3,7 +3,7 @@
     android:layout_height="wrap_content"
     android:gravity="center"
     android:background="#ffffff"
-    android:textSize="14dp"
+    android:textSize="@dimen/GiveorTakeBtn"
     android:textColor="@color/textColor"
     android:textStyle="bold"
     android:paddingBottom="3dp"

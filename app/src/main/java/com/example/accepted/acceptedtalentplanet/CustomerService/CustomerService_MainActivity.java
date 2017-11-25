@@ -10,14 +10,14 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.example.accepted.acceptedtalentplanet.Home.HomeActivity;
-import com.example.accepted.acceptedtalentplanet.LoadingLogin.LoginActivity;
-import com.example.accepted.acceptedtalentplanet.MyProfile.MyprofileActivity;
+import com.example.accepted.acceptedtalentplanet.Home.Home_Activity;
+import com.example.accepted.acceptedtalentplanet.LoadingLogin.Login_Activity;
+import com.example.accepted.acceptedtalentplanet.MyProfile.MyProfile_Activity;
 import com.example.accepted.acceptedtalentplanet.R;
 import com.example.accepted.acceptedtalentplanet.SaveSharedPreference;
-import com.example.accepted.acceptedtalentplanet.TalentCondition.TalentConditionActivity;
-import com.example.accepted.acceptedtalentplanet.TalentResister.TalentResisterActivity;
-import com.example.accepted.acceptedtalentplanet.TalentSharing.TalentSharingActivity;
+import com.example.accepted.acceptedtalentplanet.TalentCondition.TalentCondition_Activity;
+import com.example.accepted.acceptedtalentplanet.TalentResister.TalentResister_Activity;
+import com.example.accepted.acceptedtalentplanet.TalentSharing.TalentSharing_Activity;
 
 /**
  * Created by Accepted on 2017-10-31.
@@ -48,6 +48,8 @@ public class CustomerService_MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.customerservice_activity);
+
+        mContext = getApplicationContext();
 
         ToolbarTxt = (TextView) findViewById(R.id.toolbarTxt);
         ToolbarTxt.setText("고객센터");
@@ -140,6 +142,7 @@ public class CustomerService_MainActivity extends AppCompatActivity {
         drawerView = (View) findViewById(R.id.CustomerService_container);
         imgDLOpenMenu = (ImageView) findViewById(R.id.ActionBar_Listview);
         DrawerCloseImg = (ImageView) findViewById(R.id.DrawerCloseImg);
+
         imgDLOpenMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -147,6 +150,7 @@ public class CustomerService_MainActivity extends AppCompatActivity {
 
             }
         });
+
         DrawerCloseImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -159,39 +163,40 @@ public class CustomerService_MainActivity extends AppCompatActivity {
 
 
 
+    //CustomerService Activity에서는 mContext를 왜 getApplicationContext로 대체해야 작동하는지??
 
     public void slideMenuHome(View v){
-        Intent i = new Intent(mContext, HomeActivity.class);
+
+        Intent i = new Intent(mContext, Home_Activity.class);
         startActivity(i);
     }
 
     public void slideMenuProfile(View v){
-        Intent i = new Intent(mContext, MyprofileActivity.class);
+        Intent i = new Intent(mContext, MyProfile_Activity.class);
         startActivity(i);
     }
 
     public void slideMenuTalent(View v){
-        Intent i = new Intent(mContext, TalentResisterActivity.class);
+        Intent i = new Intent(mContext, TalentResister_Activity.class);
         startActivity(i);
     }
 
     public void slideMenuTS(View v){
-        Intent i = new Intent(mContext, TalentSharingActivity.class);
+        Intent i = new Intent(mContext, TalentSharing_Activity.class);
         startActivity(i);
     }
 
     public void slideMenuMyTalent(View v){
-        Intent i = new Intent(mContext, TalentConditionActivity.class);
+        Intent i = new Intent(mContext, TalentCondition_Activity.class);
         startActivity(i);
     }
 
     public void slideMenuLogout(View v){
         SaveSharedPreference.clearUserInfo(mContext);
-        Intent i = new Intent(mContext, LoginActivity.class);
+        Intent i = new Intent(mContext, Login_Activity.class);
         startActivity(i);
         finish();
     }
-
 
     public void slideMenuCustomerService(View v){
         Intent i = new Intent(mContext, CustomerService_MainActivity.class);

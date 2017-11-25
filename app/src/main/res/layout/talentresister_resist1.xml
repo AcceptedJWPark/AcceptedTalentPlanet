@@ -16,37 +16,45 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#ffffff"
-    android:weightSum="2"
+    android:weightSum="24"
     >
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:contentInsetStart="0dp"
-        android:contentInsetLeft="0dp"
-        app:contentInsetLeft="0dp"
-        app:contentInsetStart="0dp"
-        android:fitsSystemWindows="true"
-        >
-        <include
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            layout="@layout/toolbarlayout"/>
-    </android.support.v7.widget.Toolbar>
+            android:layout_height="0dp"
+            android:layout_weight="1.8"
+            android:contentInsetStart="0dp"
+            android:contentInsetLeft="0dp"
+            app:contentInsetLeft="0dp"
+            app:contentInsetStart="0dp"
+            android:fitsSystemWindows="true"
+            >
+            <include
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                layout="@layout/toolbarlayout"/>
+        </android.support.v7.widget.Toolbar>
 
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.3"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="20dp"
+                android:layout_height="0dp"
+                android:layout_weight="1.3"
+                android:gravity="center"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
                 >
 
                 <Button
                     android:id="@+id/TalentResister_ShowGive"
                     android:layout_width="0dp"
-                    android:layout_height="30dp"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="재능드림 보기"
@@ -60,7 +68,7 @@
                 <Button
                     android:id="@+id/TalentResister_ShowTake"
                     android:layout_width="0dp"
-                    android:layout_height="30dp"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:layout_marginLeft="5dp"
                     android:gravity="center"
@@ -76,18 +84,29 @@
         <TextView
             android:id="@+id/TalentResister_MainTextView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
-            android:layout_marginBottom="10dp"
+            android:layout_height="0dp"
+            android:layout_weight="1.7"
             android:gravity="center"
-            android:textSize="14dp"
+            android:textSize="13dp"
+            android:visibility="gone"
             android:textColor="@color/textColor"
             android:text="&quot;회원님의 재능을 공유해주세요!&quot;" />
 
+
+        <TextView
+            android:id="@+id/TalentResister_NoTalent_TextView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="3.5"
+            android:visibility="visible"
+            android:gravity="center"
+            android:textSize="13dp"
+            android:textColor="@color/textColor"
+            android:text="&quot;회원님의 재능을 공유해주세요!&quot;" />
         <View
                 android:layout_width="match_parent"
-                android:layout_height="5dp"
+                android:layout_height="0dp"
+            android:layout_weight="0.1"
                 android:background="@drawable/divider_background"
                 />
 
@@ -95,7 +114,7 @@
             android:id="@+id/TalentResister_boxLL"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1.3"
+            android:layout_weight="12"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
             android:visibility="visible"
@@ -107,7 +126,7 @@
                 android:layout_marginRight="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="1"
+                android:layout_weight="1.8"
                 >
 
                 <TextView
@@ -118,7 +137,7 @@
                     android:text="키워드"
                     android:paddingLeft="5dp"
                     android:textColor="#000000"
-                    android:textSize="14dp"
+                    android:textSize="13dp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -132,7 +151,7 @@
                     android:paddingLeft="15dp"
                     android:text="Guitar"
                     android:textColor="@color/textColor"
-                    android:textSize="13dp"
+                    android:textSize="12dp"
                     />
 
                 <TextView
@@ -146,7 +165,7 @@
                     android:paddingLeft="15dp"
                     android:text="Piano"
                     android:textColor="@color/textColor"
-                    android:textSize="13dp"
+                    android:textSize="12dp"
                     />
 
                 <TextView
@@ -160,7 +179,7 @@
                     android:paddingLeft="15dp"
                     android:text="Drum"
                     android:textColor="@color/textColor"
-                    android:textSize="13dp"
+                    android:textSize="12dp"
                     />
 
 
@@ -169,7 +188,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="2"
+                android:layout_weight="3.6"
                 android:orientation="horizontal"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
@@ -186,10 +205,10 @@
                         android:layout_height="0dp"
                         android:layout_weight="1"
                         android:gravity="left|center_vertical"
-                        android:text="장소"
+                        android:text="장 소"
                         android:paddingLeft="5dp"
                         android:textColor="#000000"
-                        android:textSize="14dp"
+                        android:textSize="13dp"
                         android:textStyle="bold"
                         />
 
@@ -225,7 +244,7 @@
                         android:paddingLeft="15dp"
                         android:text="경기도 파주시 광탄면"
                         android:textColor="@color/textColor"
-                        android:textSize="13dp"
+                        android:textSize="12dp"
                         />
 
                     <TextView
@@ -239,7 +258,7 @@
                         android:paddingLeft="15dp"
                         android:text="경기도 고양시 일산동구 정발산동"
                         android:textColor="@color/textColor"
-                        android:textSize="13dp"
+                        android:textSize="12dp"
                         />
 
                     <TextView
@@ -253,7 +272,7 @@
                         android:paddingLeft="15dp"
                         android:text="서울시 마포구 상수동"
                         android:textColor="@color/textColor"
-                        android:textSize="13dp"
+                        android:textSize="12dp"
                         />
 
                 </LinearLayout>
@@ -264,7 +283,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="1"
+                android:layout_weight="1.8"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 >
@@ -274,10 +293,10 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:gravity="left|center_vertical"
-                    android:text="수준"
+                    android:text="수 준"
                     android:paddingLeft="5dp"
                     android:textColor="#000000"
-                    android:textSize="14dp"
+                    android:textSize="13dp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -291,7 +310,7 @@
                     android:paddingLeft="15dp"
                     android:text="중급 (Intermediate)"
                     android:textColor="@color/textColor"
-                    android:textSize="13dp"
+                    android:textSize="12dp"
                     />
 
             </LinearLayout>
@@ -299,7 +318,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="1"
+                android:layout_weight="1.8"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 >
@@ -312,7 +331,7 @@
                     android:text="포인트"
                     android:paddingLeft="5dp"
                     android:textColor="#000000"
-                    android:textSize="14dp"
+                    android:textSize="13dp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -326,7 +345,7 @@
                     android:paddingLeft="15dp"
                     android:text="150P"
                     android:textColor="@color/textColor"
-                    android:textSize="13dp"
+                    android:textSize="12dp"
                     />
 
             </LinearLayout>
@@ -335,17 +354,22 @@
         </LinearLayout>
 
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.5"/>
+
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:gravity="center"
-            android:layout_weight="0.2"
+            android:layout_weight="1.3"
             >
 
             <Button
                 android:id="@+id/TalentResister_Give_ModifyBtn"
                 android:layout_width="match_parent"
-                android:layout_height="30dp"
+                android:layout_height="match_parent"
                 android:layout_alignParentRight="true"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
@@ -359,11 +383,11 @@
             <Button
                 android:id="@+id/TalentResister_Take_ModifyBtn"
                 android:layout_width="match_parent"
-                android:layout_height="30dp"
+                android:layout_height="match_parent"
                 android:layout_alignParentRight="true"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
-                android:textSize="15dp"
+                android:textSize="14dp"
                 android:background="@drawable/big_button_background"
                 android:onClick="registTalent"
                 android:text="관심재능 수정하기"

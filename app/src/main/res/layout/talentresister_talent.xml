@@ -6,35 +6,115 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="#ffffff"
-    tools:context="TalentResister.TalentResisterActivity_Talent">
+    tools:context=".TalentResister.TalentResister_Talent_Activity"
+    android:weightSum="24"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    >
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.3"/>
 
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="&quot;입력한 KeyWord를 통해 재능 공유 매칭이 이루어집니다.&quot;"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="20dp"
-        android:textSize="14dp"
-        />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Ex) 기타,  기타 연주,  기타 독학"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="5dp"
-        android:textSize="12dp"
-        />
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1.8"
+        android:orientation="vertical"
+        >
+
+
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="&quot;입력한 키워드를 통해 재능 매칭이 됩니다. (최대 3개 입력)&quot;"
+            android:layout_gravity="center_horizontal"
+            android:textSize="@dimen/Page_Txt"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:text="Ex) 기타,  기타 연주,  기타 독학"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="5dp"
+            android:textSize="@dimen/Page_Txt_Example"
+            />
+
+
+    </LinearLayout>
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.3"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:gravity="center"
         android:orientation="horizontal"
-        android:layout_marginTop="20dp"
+        android:padding="5dp"
+        android:layout_marginLeft="80dp"
+        android:layout_marginRight="80dp"
+        >
+
+        <EditText
+            android:id="@+id/TalentResister_Talent"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:dropDownWidth="match_parent"
+            android:textSize="@dimen/Edit_Hint"
+            android:paddingLeft="5dp"
+            android:maxLines="1"
+            android:hint="재능 등록"
+            android:layout_weight="4"
+            />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            >
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.1"/>
+
+            <Button
+                android:id="@+id/addTalentBtn"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.7"
+                android:background="@drawable/small_button_whitebackground"
+                android:gravity="center"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:text="등록"
+                android:textColor="#000000"
+                android:textSize="@dimen/ListView_Btn"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1.6"
+        android:orientation="horizontal"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
+        android:visibility="gone"
         >
         <TextView
             android:layout_width="0dp"
@@ -43,38 +123,63 @@
             android:gravity="center"
             android:textColor="#000000"
             android:textStyle="bold"
-            android:textSize="13dp"
+            android:textSize="@dimen/Page_ItemTitle"
             android:layout_weight="1.5"
             />
         <EditText
             android:id="@+id/TalentResister_Talent_Keyword1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textSize="12dp"
+            android:textSize="@dimen/Edit_Hint"
+            android:maxLines="1"
             android:hint="첫 번째 KeyWord 입력해주세요."
             android:layout_weight="5"
             />
 
-        <Button
+        <LinearLayout
             android:layout_width="0dp"
-            android:layout_height="20dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            >
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.5"/>
+
+
+            <Button
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
             android:layout_weight="1"
             android:background="@drawable/small_button_whitebackground"
             android:gravity="center"
             android:onClick="registTalent1"
             android:text="등록"
             android:textColor="@color/textColor"
-            android:textSize="12dp"
+            android:textSize="@dimen/ListView_Btn"
             android:textStyle="bold" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.5"/>
+
+    </LinearLayout>
+
+
+
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1.6"
         android:orientation="horizontal"
-        android:layout_marginTop="5dp"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
+        android:visibility="gone"
         >
         <TextView
             android:layout_width="0dp"
@@ -83,37 +188,59 @@
             android:gravity="center"
             android:textColor="#000000"
             android:textStyle="bold"
-            android:textSize="12dp"
+            android:textSize="@dimen/Page_ItemTitle"
             android:layout_weight="1.5"
             />
         <EditText
             android:id="@+id/TalentResister_Talent_Keyword2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textSize="12dp"
+            android:textSize="@dimen/Edit_Hint"
+            android:maxLines="1"
             android:hint="두 번째 KeyWord 입력해주세요."
             android:layout_weight="5"
             />
 
-        <Button
+        <LinearLayout
             android:layout_width="0dp"
-            android:layout_height="20dp"
             android:layout_weight="1"
-            android:background="@drawable/small_button_whitebackground"
-            android:gravity="center"
-            android:onClick="registTalent2"
-            android:text="등록"
-            android:textColor="@color/textColor"
-            android:textSize="12dp"
-            android:textStyle="bold" />
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            >
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.5"/>
+
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:background="@drawable/small_button_whitebackground"
+                android:gravity="center"
+                android:onClick="registTalent2"
+                android:text="등록"
+                android:textColor="@color/textColor"
+                android:textSize="@dimen/ListView_Btn"
+                android:textStyle="bold" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.5"/>
+
+        </LinearLayout>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1.6"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
-        android:layout_marginTop="5dp"
+        android:visibility="gone"
         android:orientation="horizontal">
 
         <TextView
@@ -123,7 +250,7 @@
             android:gravity="center"
             android:text="키워드 3. "
             android:textColor="#000000"
-            android:textSize="13dp"
+            android:textSize="@dimen/Page_ItemTitle"
             android:textStyle="bold" />
 
         <EditText
@@ -131,79 +258,121 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="5"
+            android:maxLines="1"
             android:hint="세 번째 KeyWord 입력해주세요."
-            android:textSize="12dp" />
+            android:textSize="@dimen/Edit_Hint"
+            />
 
-        <Button
+        <LinearLayout
             android:layout_width="0dp"
-            android:layout_height="20dp"
             android:layout_weight="1"
-            android:background="@drawable/small_button_whitebackground"
-            android:gravity="center"
-            android:onClick="registTalent3"
-            android:text="등록"
-            android:textColor="@color/textColor"
-            android:textSize="12dp"
-            android:textStyle="bold" />
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            >
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.5"/>
+
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:background="@drawable/small_button_whitebackground"
+                android:gravity="center"
+                android:onClick="registTalent3"
+                android:text="등록"
+                android:textColor="@color/textColor"
+                android:textSize="@dimen/ListView_Btn"
+                android:textStyle="bold" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.5"/>
+
+        </LinearLayout>
     </LinearLayout>
+
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="15dp"
+        android:layout_height="0dp"
         android:layout_marginLeft="40dp"
         android:layout_marginRight="40dp"
-        >
+        android:layout_weight="1.3"
+        android:gravity="center"
+        android:visibility="gone"
+        android:orientation="horizontal">
+
         <TextView
             android:id="@+id/Talent_key1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:ellipsize="end"
-            android:lines="1"
-            android:gravity="center"
-            android:textColor="@color/textColor"
-            android:textStyle="bold"
-            android:textSize="13dp"
             android:layout_weight="1"
-            />
+            android:ellipsize="end"
+            android:gravity="center"
+            android:lines="1"
+            android:textColor="@color/textColor"
+            android:textSize="@dimen/Page_ItemSubTitle"
+            android:textStyle="bold" />
+
         <TextView
             android:id="@+id/Talent_key2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:ellipsize="end"
-            android:lines="1"
-            android:gravity="center"
-            android:textColor="@color/textColor"
-            android:textStyle="bold"
-            android:textSize="13dp"
             android:layout_weight="1"
-            />
+            android:ellipsize="end"
+            android:gravity="center"
+            android:lines="1"
+            android:textColor="@color/textColor"
+            android:textSize="@dimen/Page_ItemSubTitle"
+            android:textStyle="bold" />
+
         <TextView
             android:id="@+id/Talent_key3"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:gravity="center"
+            android:layout_weight="1"
             android:ellipsize="end"
+            android:gravity="center"
             android:lines="1"
             android:textColor="@color/textColor"
-            android:textStyle="bold"
-            android:textSize="13dp"
-            android:layout_weight="1"
-            />
+            android:textSize="@dimen/Page_ItemSubTitle"
+            android:textStyle="bold" />
     </LinearLayout>
 
+
+    <ListView
+        android:id="@+id/talent_ListView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="4"
+        android:layout_marginLeft="80dp"
+        android:layout_marginRight="80dp"
+        android:dividerHeight="0dp"
+        android:divider="#ffffff"
+        >
+    </ListView>
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.5"/>
     <Button
         android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:layout_marginTop="20dp"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginLeft="80dp"
+        android:layout_marginRight="80dp"
         android:background="@drawable/big_button_background"
         android:onClick="goNext"
         android:text="다 음"
         android:textAllCaps="false"
-        android:textSize="15dp"
+        android:textSize="@dimen/BigBtn"
         android:textStyle="bold"
         android:textColor="@color/textColor" />
 

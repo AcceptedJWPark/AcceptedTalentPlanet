@@ -59,6 +59,7 @@ public class CustomerService_FaqActivity extends AppCompatActivity {
         arrayGroup.add("특정 회원과 지속적으로 재능공유를 하고 싶어요.");
         arrayGroup.add("특정 지역의 재능 리스트를 볼 수 있나요?");
         arrayGroup.add("특정 성별의 재능 리스트만을 볼 수 있나요?");
+        arrayGroup.add("장소 입력에 주소가 나타나지 않네요");
 
         ArrayList<String> arrayList1 = new ArrayList<String>();
         arrayList1.add("리스트 1의 TextView");
@@ -101,6 +102,9 @@ public class CustomerService_FaqActivity extends AppCompatActivity {
         ArrayList<String> arrayList13 = new ArrayList<String>();
         arrayList13.add("리스트 3의 TextView");
 
+        ArrayList<String> arrayList14 = new ArrayList<String>();
+        arrayList14.add("리스트 3의 TextView");
+
 
         arrayChild.put(arrayGroup.get(0),arrayList1);
         arrayChild.put(arrayGroup.get(1),arrayList2);
@@ -115,6 +119,7 @@ public class CustomerService_FaqActivity extends AppCompatActivity {
         arrayChild.put(arrayGroup.get(10),arrayList11);
         arrayChild.put(arrayGroup.get(11),arrayList12);
         arrayChild.put(arrayGroup.get(12),arrayList13);
+        arrayChild.put(arrayGroup.get(13),arrayList13);
     }
 
 

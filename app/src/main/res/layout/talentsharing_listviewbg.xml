@@ -11,13 +11,17 @@
     <ImageView
         android:id="@+id/TalentSharing_Picture"
         android:layout_width="0dp"
-        android:adjustViewBounds="true"
         android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
         android:layout_weight="1"
         android:gravity="center"
         android:src="@drawable/textpicture"
-        android:textStyle="bold|italic"
     />
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="0.3"/>
 
     <LinearLayout
         android:layout_width="0dp"
@@ -28,22 +32,20 @@
 
         <TextView
             android:id="@+id/TalentSharing_Name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="left"
-            android:layout_marginLeft="15dp"
-            android:layout_marginBottom="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center|left"
             android:text="박종우"
-            android:textSize="15dp"
+            android:textSize="@dimen/ListView_TitleorName"
             android:textColor="#000000"
             android:textStyle="bold" />
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"
             android:gravity="center"
-            android:layout_marginTop="5dp"
             android:orientation="horizontal">
 
             <TextView
@@ -52,10 +54,11 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ellipsize="end"
+                android:gravity="left"
                 android:lines="1"
                 android:text="Guitar"
                 android:textColor="@color/textColor"
-                android:textSize="13dp"
+                android:textSize="@dimen/ListView_SecondLine"
                 />
 
             <TextView
@@ -64,10 +67,11 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Vocal"
+                android:gravity="left"
                 android:ellipsize="end"
                 android:lines="1"
                 android:textColor="@color/textColor"
-                android:textSize="13dp"
+                android:textSize="@dimen/ListView_SecondLine"
                 />
 
             <TextView
@@ -75,11 +79,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:gravity="left"
                 android:text="Dance"
                 android:ellipsize="end"
                 android:lines="1"
                 android:textColor="@color/textColor"
-                android:textSize="13dp"
+                android:textSize="@dimen/ListView_SecondLine"
                 />
         </LinearLayout>
     </LinearLayout>
@@ -89,18 +94,17 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="93%"
-        android:layout_weight="1.1"
+        android:layout_weight="1"
         android:textStyle="bold"
-        android:gravity="left"
+        android:gravity="center"
         android:textColor="@color/textColor"
-        android:textSize="14dp"
-        android:layout_gravity="center"
+        android:textSize="@dimen/ListView_SubTitle"
         />
 
         <Button
             android:id="@+id/TalentSharing_ShowProfile"
         android:textAllCaps="false"
-        android:layout_weight="1.5"
+        android:layout_weight="2"
         android:layout_width="0dp"
         android:layout_height="25dp"
         android:text="Profile 보기"
@@ -108,7 +112,7 @@
         android:onClick="talentSharing_pupupclosebtn"
         android:textColor="@color/textColor"
         android:background="@drawable/small_button_whitebackground"
-        android:textSize="12dp"
+        android:textSize="@dimen/ListView_Btn"
         android:textStyle="bold"
         />
 

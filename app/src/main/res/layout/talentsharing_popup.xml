@@ -5,75 +5,127 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#ffffff"
-    android:weightSum="16"
+    android:weightSum="24"
     >
 
-
-    <RelativeLayout
+    <View
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="3.6"
+        android:layout_weight="0.3"/>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="4.7"
+        android:orientation="horizontal"
         android:layout_gravity="center">
 
-        <ImageView
-            android:id="@+id/popup_img"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_centerInParent="true"
-            android:adjustViewBounds="true"
-            android:src="@drawable/textpicture" />
 
-        <TextView
-            android:id="@+id/popup_txt"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/popup_img"
-            android:layout_toRightOf="@+id/popup_img"
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"/>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
             android:gravity="center"
-            android:text="+4장"
-            android:textColor="@color/myProfileText"
-            android:textSize="15dp"
-            android:textStyle="bold"
-            android:visibility="visible" />
+            >
 
-        <ImageView
-            android:id="@+id/TalentSharing_pupupclosebtn"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_gravity="right"
-            android:adjustViewBounds="true"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="10dp"
-            android:src="@android:drawable/ic_menu_close_clear_cancel" />
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    >
 
-    </RelativeLayout>
+    <ImageView
+        android:id="@+id/popup_img"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2.3"
+        android:adjustViewBounds="true"
+        android:src="@drawable/textpicture" />
 
-
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.1"/>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.5"
+        android:layout_weight="0.4"
+        android:gravity="center"
+        android:text="+4장"
+        android:textStyle="bold"
+        android:textSize="@dimen/Page_Txt"
+        android:textColor="@color/textColor"
+        />
+
+
+
+</LinearLayout>
+
+
+
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:orientation="horizontal"
+            >
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"/>
+
+            <ImageView
+                android:id="@+id/TalentSharing_pupupclosebtn"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.3"
+                android:adjustViewBounds="true"
+                android:tint="@color/textColor"
+                android:src="@android:drawable/ic_menu_close_clear_cancel" />
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.3"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.7"
         android:background="@drawable/divider_background"
         android:textColor="@color/textColor"
         android:textStyle="bold"
         android:gravity="center_vertical"
-        android:textSize="11.5dp"
+        android:textSize="11dp"
         android:paddingLeft="5dp"
         android:text="회원 정보"
         />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="4"
-            android:orientation="vertical"
-            >
 
-            <LinearLayout
+
+
+    <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="1"
+                android:layout_weight="1.55"
                 android:gravity="center"
                 android:orientation="horizontal"
                 android:weightSum="10">
@@ -81,9 +133,9 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="2"
+                    android:layout_weight="1.9"
                     android:textColor="#000000"
-                    android:textSize="13dp"
+                    android:textSize="@dimen/Popup_ItemTitle"
                     android:textStyle="bold"
                     android:gravity="center"
                     android:text="이 름" />
@@ -94,7 +146,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="8"
                     android:textColor="@color/textColor"
-                    android:textSize="12dp"
+                    android:textSize="@dimen/Popup_ItemSubTitle"
                     android:paddingLeft="10dp"
                     android:text="박종우" />
             </LinearLayout>
@@ -103,7 +155,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="1"
+                android:layout_weight="1.55"
                 android:gravity="center"
                 android:orientation="horizontal"
                 android:weightSum="10">
@@ -114,7 +166,7 @@
                     android:layout_weight="2"
                     android:gravity="center"
                     android:textColor="#000000"
-                    android:textSize="13dp"
+                    android:textSize="@dimen/Popup_ItemTitle"
                     android:textStyle="bold"
                     android:text="성 별" />
 
@@ -125,14 +177,14 @@
                     android:layout_weight="8"
                     android:paddingLeft="10dp"
                     android:textColor="@color/textColor"
-                    android:textSize="12dp"
+                    android:textSize="@dimen/Popup_ItemSubTitle"
                     android:text="남자" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="1"
+                android:layout_weight="1.55"
                 android:gravity="center"
                 android:orientation="horizontal"
                 android:weightSum="10">
@@ -145,7 +197,7 @@
                     android:gravity="center"
                     android:text="생년월일"
                     android:textColor="#000000"
-                    android:textSize="13dp"
+                    android:textSize="@dimen/Popup_ItemTitle"
                     android:textStyle="bold" />
 
                 <TextView
@@ -155,14 +207,14 @@
                     android:layout_weight="8"
                     android:paddingLeft="10dp"
                     android:textColor="@color/textColor"
-                    android:textSize="12dp"
+                    android:textSize="@dimen/Popup_ItemSubTitle"
                     android:text="1991.01.23" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="1"
+                android:layout_weight="1.55"
                 android:gravity="center"
                 android:orientation="horizontal"
                 android:weightSum="10">
@@ -174,7 +226,7 @@
                     android:layout_weight="2"
                     android:gravity="center"
                     android:textColor="#000000"
-                    android:textSize="13dp"
+                    android:textSize="@dimen/Popup_ItemTitle"
                     android:textStyle="bold"
                     android:text="직 업" />
 
@@ -185,37 +237,31 @@
                     android:layout_weight="8"
                     android:paddingLeft="10dp"
                     android:textColor="@color/textColor"
-                    android:textSize="12dp"
+                    android:textSize="@dimen/Popup_ItemSubTitle"
                     android:text="무직" />
             </LinearLayout>
 
-        </LinearLayout>
 
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.5"
+        android:layout_weight="0.7"
         android:background="@drawable/divider_background"
         android:textColor="@color/textColor"
         android:textStyle="bold"
         android:gravity="center_vertical"
-        android:textSize="11.5dp"
+        android:textSize="11dp"
         android:paddingLeft="5dp"
         android:text="재능 드림"
         />
 
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="6"
-        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1"
+            android:layout_weight="1.55"
             android:gravity="center"
             android:orientation="horizontal"
             android:weightSum="10">
@@ -227,7 +273,7 @@
                 android:gravity="center"
                 android:text="키워드"
                 android:textColor="#000000"
-                android:textSize="13dp"
+                android:textSize="@dimen/Popup_ItemTitle"
                 android:textStyle="bold" />
 
             <LinearLayout
@@ -245,7 +291,8 @@
                     android:paddingLeft="10dp"
                     android:text="Guitar"
                     android:textColor="@color/textColor"
-                    android:textSize="12dp" />
+                    android:textSize="@dimen/Popup_ItemSubTitle"
+                    />
 
                 <TextView
                     android:id="@+id/TalentSharingPopup_Keyword2"
@@ -257,7 +304,8 @@
                     android:paddingLeft="10dp"
                     android:text="Piano"
                     android:textColor="@color/textColor"
-                    android:textSize="12dp" />
+                    android:textSize="@dimen/Popup_ItemSubTitle"
+                    />
 
                 <TextView
                     android:id="@+id/TalentSharingPopup_Keyword3"
@@ -269,7 +317,8 @@
                     android:paddingLeft="10dp"
                     android:text="Drum"
                     android:textColor="@color/textColor"
-                    android:textSize="12dp" />
+                    android:textSize="@dimen/Popup_ItemSubTitle"
+                    />
 
             </LinearLayout>
 
@@ -279,7 +328,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="3"
+            android:layout_weight="4.65"
             android:gravity="center"
             android:orientation="horizontal"
             android:weightSum="10">
@@ -299,7 +348,7 @@
                 android:layout_gravity="top"
                 android:text="장 소"
                 android:textColor="#000000"
-                android:textSize="13dp"
+                android:textSize="@dimen/Popup_ItemTitle"
                 android:textStyle="bold" />
 
                 <View
@@ -334,7 +383,8 @@
                     android:lines="1"
                     android:text="서울시 마포구 상수동"
                     android:textColor="@color/textColor"
-                    android:textSize="12dp" />
+                    android:textSize="@dimen/Popup_ItemSubTitle"
+                    />
 
                 <TextView
                     android:id="@+id/TalentSharingPopup_Location2"
@@ -347,7 +397,8 @@
                     android:paddingLeft="10dp"
                     android:text="경기도 고양시 일산동구 정발산동"
                     android:textColor="@color/textColor"
-                    android:textSize="12dp" />
+                    android:textSize="@dimen/Popup_ItemSubTitle"
+                    />
 
                 <TextView
                     android:id="@+id/TalentSharingPopup_Location3"
@@ -360,7 +411,8 @@
                     android:lines="1"
                     android:text="경기도 파주시 광탄면"
                     android:textColor="@color/textColor"
-                    android:textSize="12dp" />
+                    android:textSize="@dimen/Popup_ItemSubTitle"
+                    />
 
             </LinearLayout>
 
@@ -370,7 +422,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1"
+            android:layout_weight="1.55"
             android:gravity="center"
             android:orientation="horizontal"
             android:weightSum="10">
@@ -383,7 +435,7 @@
                 android:gravity="center"
                 android:text="수 준"
                 android:textColor="#000000"
-                android:textSize="13dp"
+                android:textSize="@dimen/Popup_ItemTitle"
                 android:textStyle="bold" />
 
             <TextView
@@ -394,13 +446,14 @@
                 android:paddingLeft="10dp"
                 android:text="시작단계(Beginner)"
                 android:textColor="@color/textColor"
-                android:textSize="12dp" />
+                android:textSize="@dimen/Popup_ItemSubTitle"
+                />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1"
+            android:layout_weight="1.55"
             android:gravity="center"
             android:orientation="horizontal"
             android:weightSum="10">
@@ -412,7 +465,7 @@
                 android:gravity="center"
                 android:text="포인트"
                 android:textColor="#000000"
-                android:textSize="13dp"
+                android:textSize="@dimen/Popup_ItemTitle"
                 android:textStyle="bold" />
 
             <TextView
@@ -423,15 +476,20 @@
                 android:paddingLeft="10dp"
                 android:text="120P"
                 android:textColor="@color/textColor"
-                android:textSize="12dp" />
+                android:textSize="@dimen/Popup_ItemSubTitle"
+                />
         </LinearLayout>
 
-    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.25"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1.4"
+        android:layout_weight="1.3"
         android:orientation="horizontal"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
@@ -441,11 +499,11 @@
         <Button
             android:textAllCaps="false"
             android:layout_width="0dp"
-            android:layout_height="30dp"
+            android:layout_height="match_parent"
             android:background="@drawable/big_button_background"
             android:textColor="@color/textColor"
             android:layout_marginRight="5dp"
-            android:textSize="14dp"
+            android:textSize="@dimen/Popup_BigBtn"
             android:textStyle="bold"
             android:layout_weight="1"
             android:text="Message"
@@ -454,9 +512,9 @@
         <Button
             android:layout_width="0dp"
             android:background="@drawable/big_button_background"
-            android:layout_height="30dp"
+            android:layout_height="match_parent"
             android:layout_marginLeft="5dp"
-            android:textSize="14dp"
+            android:textSize="@dimen/Popup_BigBtn"
             android:textColor="@color/textColor"
             android:layout_weight="1"
             android:textStyle="bold"
@@ -464,7 +522,10 @@
             />
 
     </LinearLayout>
-
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.25"/>
 </LinearLayout>
 
 

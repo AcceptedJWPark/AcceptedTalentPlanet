@@ -1,62 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    android:padding="5dp"
+    >
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="10dp"
-        >
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+
 
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="8"
             android:orientation="vertical"
+
             >
 
             <TextView
                 android:id="@+id/CustomerService_ClaimList_Title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
                 android:text="박종우님과 &quot;기타, 기타 연주, Guitar&quot; 진행의 건"
                 android:textColor="#000000"
                 android:textStyle="bold"
                 android:ellipsize="end"
                 android:lines="1"
-                android:layout_marginLeft="25dp"
-                android:layout_marginRight="10dp"
-                android:textSize="15dp"
+                android:textSize="@dimen/List_Title"
                 />
 
             <TextView
                 android:id="@+id/CustomerService_ClaimList_RegistDate"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:ellipsize="end"
                 android:lines="1"
-                android:textSize="13dp"
-                android:paddingLeft="30dp"
+                android:gravity="center_vertical"
+                android:textSize="@dimen/ListView_SecondLine"
+                android:paddingLeft="5dp"
                 android:layout_marginTop="5dp"
                 android:text="2017.11.03 16:24 등록"
                 />
 
         </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_weight="2"
+        >
+
+        <View
+            android:layout_height="0dp"
+            android:layout_width="match_parent"
+            android:layout_weight="0.2"/>
+
+
         <TextView
             android:id="@+id/CustomerService_ClaimList_Condition"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="2"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
             android:text="조치 완료"
-            android:textSize="13dp"
+            android:textSize="@dimen/ListView_Btn"
             android:background="@drawable/small_button_whitebackground"
             android:textColor="@color/textColor"
             android:gravity="center"
             />
 
+        <View
+            android:layout_height="0dp"
+            android:layout_width="match_parent"
+            android:layout_weight="0.2"/>
+
     </LinearLayout>
+
 
 
 </LinearLayout>

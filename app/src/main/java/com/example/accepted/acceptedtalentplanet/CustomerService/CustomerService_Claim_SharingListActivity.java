@@ -45,7 +45,7 @@ public class CustomerService_Claim_SharingListActivity extends AppCompatActivity
         ClaimListArrayList_Take.add(new CustomerService_Claim_Sharing_Item("박종우", "2017.11.06 15:31 등록", "Guitar", "기타 연주", "기타","진행"));
         ClaimListArrayList_Take.add(new CustomerService_Claim_Sharing_Item("민권홍", "2017.11.06 15:34 등록", "Piano", "피아노 연주", "피아노","완료"));
 
-        ClaimListArrayListAdapter = new CustomerService_Claim_Sharing_Adapter(this, R.layout.customerservice_claim_sharinglist_childview, ClaimListArrayList_Take, this);
+        ClaimListArrayListAdapter = new CustomerService_Claim_Sharing_Adapter(this, R.layout.customerservice_claim_sharinglist_childbg, ClaimListArrayList_Take, this);
         ClaimListArrayTakeListView.setAdapter(ClaimListArrayListAdapter);
 
         ClaimListArrayGiveListView = (ListView) findViewById(R.id.CustomerService_Claim_SharingGiveLV);
@@ -56,7 +56,7 @@ public class CustomerService_Claim_SharingListActivity extends AppCompatActivity
         ClaimListArrayList_Give.add(new CustomerService_Claim_Sharing_Item("배대명", "2018.01.06 18:34 등록", "비트박스", "BeatBox", "북치기박치기","완료"));
         ClaimListArrayList_Give.add(new CustomerService_Claim_Sharing_Item("배대명", "2018.01.06 18:34 등록", "비트박스", "BeatBox", "북치기박네네네네네치기","완료"));
 
-        ClaimListArrayListAdapter = new CustomerService_Claim_Sharing_Adapter(this, R.layout.customerservice_claim_sharinglist_childview, ClaimListArrayList_Give, this);
+        ClaimListArrayListAdapter = new CustomerService_Claim_Sharing_Adapter(this, R.layout.customerservice_claim_sharinglist_childbg, ClaimListArrayList_Give, this);
         ClaimListArrayGiveListView.setAdapter(ClaimListArrayListAdapter);
 
 

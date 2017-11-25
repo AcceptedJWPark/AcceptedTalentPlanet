@@ -3,7 +3,10 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    >
 
     <LinearLayout
         android:id="@+id/listboxLL"
@@ -12,14 +15,14 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:background="#ffffff"
-        android:weightSum="10.7">
+        android:weightSum="21.1">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:gravity="center"
             android:background="#f5f5f5"
-            android:layout_weight="1.5"
+            android:layout_weight="3"
             >
 
             <LinearLayout
@@ -45,6 +48,7 @@
                     android:padding="10dp"
                     android:textColor="@color/textColor"
                     android:textStyle="bold"
+                    android:textSize="@dimen/BigBtn"
                     android:layout_weight="3" />
 
                 <ImageView
@@ -62,18 +66,23 @@
             </LinearLayout>
         </LinearLayout>
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.1"
+            android:background="@drawable/divider_background">
+        </View>
+
         <TextView
             android:id="@+id/SlidingMenu_Home"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1"
+            android:layout_weight="2"
             android:background="@drawable/list_drawer_background"
             android:gravity="center_vertical"
             android:onClick="slideMenuHome"
-            android:paddingBottom="10dp"
-            android:textSize="14dp"
+            android:textSize="@dimen/List_Title"
             android:paddingLeft="20dp"
-            android:paddingTop="10dp"
             android:text="Home"
             android:textStyle="bold" />
 
@@ -81,14 +90,12 @@
             android:id="@+id/SlidingMenu_Profile"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1"
+            android:layout_weight="2"
             android:background="@drawable/list_drawer_background"
             android:gravity="center_vertical"
             android:onClick="slideMenuProfile"
-            android:paddingBottom="10dp"
             android:paddingLeft="20dp"
-            android:textSize="14dp"
-            android:paddingTop="10dp"
+            android:textSize="@dimen/List_Title"
             android:text="My Profile 관리"
             android:textStyle="bold" />
 
@@ -96,13 +103,12 @@
             android:id="@+id/SlidingMenu_MyTalentResister"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1"
+            android:layout_weight="2"
             android:background="@drawable/list_drawer_background"
             android:gravity="center_vertical"
             android:onClick="slideMenuTalent"
-            android:paddingBottom="10dp"
+            android:textSize="@dimen/List_Title"
             android:paddingLeft="20dp"
-            android:paddingTop="10dp"
             android:text="My Talent 관리"
             android:textStyle="bold" />
 
@@ -110,14 +116,12 @@
             android:id="@+id/SlidingMenu_T.Sharing"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1"
-            android:textSize="14dp"
+            android:layout_weight="2"
             android:background="@drawable/list_drawer_background"
             android:gravity="center_vertical"
             android:onClick="slideMenuTS"
-            android:paddingBottom="10dp"
+            android:textSize="@dimen/List_Title"
             android:paddingLeft="20dp"
-            android:paddingTop="10dp"
             android:text="T . Sharing"
             android:textStyle="bold" />
 
@@ -125,14 +129,12 @@
             android:id="@+id/SlidingMenu_MyTalentProcess"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1"
+            android:layout_weight="2"
             android:background="@drawable/list_drawer_background"
             android:gravity="center_vertical"
             android:onClick="slideMenuMyTalent"
-            android:paddingBottom="10dp"
+            android:textSize="@dimen/List_Title"
             android:paddingLeft="20dp"
-            android:textSize="14dp"
-            android:paddingTop="10dp"
             android:text="나의 재능 현황"
             android:textStyle="bold" />
 
@@ -140,15 +142,14 @@
             android:id="@+id/SlidingMenu_MessageBox"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1"
+            android:layout_weight="2"
             android:text="Message Box"
             android:textStyle="bold"
             android:gravity="center_vertical"
             android:background="@drawable/list_drawer_background"
-            android:paddingTop="10dp"
-            android:textSize="14dp"
+            android:textSize="@dimen/List_Title"
             android:paddingLeft="20dp"
-            android:paddingBottom="10dp"/>
+            />
 
         <View
             android:layout_width="match_parent"
@@ -162,22 +163,21 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:gravity="center_vertical"
-            android:layout_weight="1"
+            android:layout_weight="2"
             android:background="@drawable/list_drawer_background"
             android:text="고객센터"
-            android:textSize="14dp"
+            android:textSize="@dimen/List_Title"
             android:onClick="slideMenuCustomerService"
             android:textStyle="bold"
-            android:paddingTop="10dp"
             android:paddingLeft="20dp"/>
 
         <TextView
             android:id="@+id/SlidingMenu_System"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1"
+            android:layout_weight="2"
             android:gravity="center_vertical"
-            android:textSize="14dp"
+            android:textSize="@dimen/List_Title"
             android:background="@drawable/list_drawer_background"
             android:text="설정"
             android:textStyle="bold"
@@ -195,7 +195,7 @@
             android:id="@+id/SlidingMenu_LogOut"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1"
+            android:layout_weight="2"
             android:background="@drawable/list_drawer_background"
             android:orientation="horizontal"
             android:paddingLeft="20dp">
@@ -213,7 +213,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_weight="9"
-                android:textSize="14dp"
+                android:textSize="@dimen/List_Title"
+                android:textStyle="bold"
                 android:gravity="center_vertical"
                 android:onClick="slideMenuLogout"
                 android:paddingBottom="10dp"

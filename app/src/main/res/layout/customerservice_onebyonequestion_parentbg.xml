@@ -1,63 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    android:padding="5dp"
+    >
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="10dp"
-        >
+    <View
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
 
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="9"
+            android:layout_weight="8"
             android:orientation="vertical"
             >
 
             <TextView
                 android:id="@+id/CustomerService_Question_Title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:text="T.Sharing 클릭시 오류가 발생합니다. 원인이 무엇인지 궁금하며 조속히 해결 바랍니다."
                 android:ellipsize="end"
                 android:lines="1"
                 android:textColor="#000000"
                 android:textStyle="bold"
-                android:layout_marginLeft="25dp"
-                android:textSize="13dp"
+                android:textSize="@dimen/List_Title"
                 />
 
             <TextView
                 android:id="@+id/CustomerService_Question_RegistDate"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:ellipsize="end"
                 android:lines="1"
-                android:textSize="12dp"
-                android:paddingLeft="30dp"
+                android:textSize="@dimen/ListView_SecondLine"
+                android:paddingLeft="5dp"
                 android:layout_marginTop="5dp"
                 android:text="2017.11.03 16:24 등록"
                 />
 
         </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_weight="2"
+        android:layout_marginLeft="5dp"
+        >
+
+        <View
+            android:layout_height="0dp"
+            android:layout_width="match_parent"
+            android:layout_weight="0.2"/>
+
         <TextView
             android:id="@+id/CustomerService_Question_AnswerorNot"
-            android:layout_width="0dp"
-            android:layout_height="35dp"
-            android:layout_weight="2"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
             android:text="답변 완료"
-            android:layout_marginRight="10dp"
-            android:layout_marginLeft="15dp"
             android:background="@drawable/small_button_graybackground"
             android:textColor="#000000"
+            android:textSize="@dimen/ListView_Btn"
             android:gravity="center"
             android:layout_gravity="center"
             />
+        <View
+            android:layout_height="0dp"
+            android:layout_width="match_parent"
+            android:layout_weight="0.2"/>
 
     </LinearLayout>
+
 
 
 </LinearLayout>

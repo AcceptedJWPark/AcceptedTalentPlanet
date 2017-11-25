@@ -3,47 +3,80 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:weightSum="24"
+    >
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.3"/>
 
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:padding="10dp">
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        >
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.3"></View>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1.3">
 
         <Button
             android:id="@+id/CustomerService_Claim_SharingTakeBtn"
             android:layout_width="0dp"
-            android:layout_height="30dp"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@drawable/small_button_graybackground"
             android:layout_marginRight="5dp"
             android:text="관심재능 보기"
             android:textColor="@color/textColor"
-            android:textSize="14dp"
+            android:textSize="@dimen/GiveorTakeBtn"
             android:textStyle="bold"
             />
 
         <Button
             android:id="@+id/CustomerService_Claim_SharingGiveBtn"
             android:layout_width="0dp"
-            android:layout_height="30dp"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@drawable/small_button_whitebackground"
             android:layout_marginLeft="5dp"
             android:text="재능드림 보기"
-            android:textSize="14dp"
+            android:textSize="@dimen/GiveorTakeBtn"
             android:textColor="#d2d2d2"
             android:textStyle="bold"
             />
+
+
+
+        </LinearLayout>
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.3"></View>
 
     </LinearLayout>
 
     <ListView
         android:id="@+id/CustomerService_Claim_SharingTakeLV"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="22.7"
         android:visibility="visible"
         >
 
@@ -53,7 +86,8 @@
     <ListView
         android:id="@+id/CustomerService_Claim_SharingGiveLV"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="22.7"
         android:visibility="gone"
         >
 

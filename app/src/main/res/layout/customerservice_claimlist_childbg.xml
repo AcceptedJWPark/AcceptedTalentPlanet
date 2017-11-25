@@ -7,13 +7,21 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#f5f5f5"
+
     >
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:background="#eeeeee"/>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:weightSum="24"
+            >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
     <TextView
         android:id="@+id/CustomerService_ClaimListQuestion"
@@ -22,16 +30,20 @@
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
         android:paddingTop="10dp"
-        android:background="#ffffff"
+        android:background="@drawable/divider_background"
         android:lineSpacingExtra="15dp"
         android:paddingBottom="10dp"
-        android:textSize="11.5dp"
+        android:textSize="@dimen/ListView_ChildTxt_Question"
         android:text="2018 2월 부로 Talent Planet Test가 시작되었습니다. \n2018년 3월 부로 Service 오픈 예정이오니, 많은 관심 부탁드립니다.\n"
         />
+
+            </LinearLayout>
     <View
         android:layout_width="match_parent"
-        android:layout_height="2dp"
+        android:layout_height="0dp"
+        android:layout_weight="0.1"
         android:background="#eeeeee"/>
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -40,28 +52,30 @@
         android:padding="5dp"
         android:textColor="#000000"
         android:background="#eeeeee"
-        android:textSize="14dp"
+        android:textSize="@dimen/List_Title"
         />
-    <TextView
-        android:id="@+id/CustomerService_ClaimListAnswer"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp"
-        android:paddingTop="10dp"
-        android:lineSpacingExtra="15dp"
-        android:paddingBottom="10dp"
-        android:textColor="#000000"
-        android:background="#96f5f5f5"
-        android:textSize="14dp"
-        android:text="2018 2월 부로 Talent Planet Test가 시작되었습니다. \n2018년 3월 부로 Service 오픈 예정이오니, 많은 관심 부탁드립니다."
-        />
+
+
+        <TextView
+            android:id="@+id/CustomerService_ClaimListAnswer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:lineSpacingExtra="15dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:background="#96f5f5f5"
+            android:textColor="#000000"
+            android:textSize="@dimen/ListView_ChildTxt_Answer"
+            android:text="2018 2월 부로 Talent Planet Test가 시작되었습니다. \n2018년 3월 부로 Service 오픈 예정이오니, 많은 관심 부탁드립니다."
+            />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="- Talent Planet 개발자 배상"
-        android:textSize="13dp"
+        android:textSize="@dimen/ListView_ChildTxt_Signature"
         android:textColor="#000000"
         android:textStyle="bold"
         android:gravity="right"
@@ -70,5 +84,5 @@
 
         />
 
-
+    </LinearLayout>
 </LinearLayout>

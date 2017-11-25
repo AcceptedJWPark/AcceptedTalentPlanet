@@ -4,16 +4,42 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#32579a">
+    android:background="#f0f0f0"
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Loading"
-        android:src="@drawable/loadinglogo"
-        android:gravity="center"
-        android:layout_marginLeft="25dp"
-        android:layout_marginRight="25dp"
-        />
+
+    >
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        >
+
+        <TextView
+            android:id="@+id/Title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Talent Planet"
+            android:textStyle="bold"
+            android:textSize="40dp"
+            />
+
+        <TextView
+            android:id="@+id/SubTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="재능을 나누는 사람들"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:layout_alignRight="@+id/Title"
+            android:textSize="20dp"
+            android:layout_below="@+id/Title"
+            />
+
+
+    </RelativeLayout>
+
+
 
 </RelativeLayout>

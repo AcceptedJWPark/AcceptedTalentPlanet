@@ -6,35 +6,58 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="#ffffff"
-    tools:context="TalentResister.TalentResisterActivity_Point">
+    tools:context=".TalentResister.TalentResister_Point_Activity"
+    android:weightSum="24"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    >
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.3"/>
 
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="&quot;아래 재능에 대한 공유 포인트를 입력해주세요.&quot;"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="20dp"
-        android:textSize="14dp"
-        android:textColor="@color/textColor"
-        />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="(1회 공유포인트는 최대 500P로 제한됩니다.)"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="5dp"
-        android:textSize="12dp"
-        />
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:orientation="vertical"
+        >
+
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:text="&quot;아래 재능에 대한 공유 포인트를 입력해주세요.&quot;"
+            android:layout_gravity="center_horizontal"
+            android:textSize="@dimen/Page_Txt"
+            android:textColor="@color/textColor"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:text="(1회 공유포인트는 최대 500P로 제한됩니다.)"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="5dp"
+            android:textSize="@dimen/Page_Txt_Example"
+            />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1.3"
         android:orientation="horizontal"
-        android:layout_marginTop="15dp"
+        android:gravity="center"
         android:layout_marginLeft="40dp"
         android:layout_marginRight="40dp"
         >
+
         <TextView
             android:id="@+id/Point_key1"
             android:layout_width="0dp"
@@ -44,7 +67,7 @@
             android:gravity="center"
             android:textColor="@color/textColor"
             android:textStyle="bold"
-            android:textSize="13dp"
+            android:textSize="@dimen/Page_ItemSubTitle"
             android:layout_weight="1"
             />
         <TextView
@@ -56,7 +79,7 @@
             android:gravity="center"
             android:textColor="@color/textColor"
             android:textStyle="bold"
-            android:textSize="13dp"
+            android:textSize="@dimen/Page_ItemSubTitle"
             android:layout_weight="1"
             />
         <TextView
@@ -68,24 +91,24 @@
             android:lines="1"
             android:textColor="@color/textColor"
             android:textStyle="bold"
-            android:textSize="13dp"
+            android:textSize="@dimen/Page_ItemSubTitle"
             android:layout_weight="1"
             />
     </LinearLayout>
 
     <LinearLayout
-        android:layout_marginTop="10dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1.3"
         android:orientation="horizontal"
-        android:gravity="top|center"
+        android:gravity="center"
         >
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="현재 회원님의 Point는 "
-            android:textSize="12dp"
+            android:textSize="@dimen/Page_Txt"
             />
         <TextView
             android:layout_width="wrap_content"
@@ -93,54 +116,81 @@
             android:text="340P"
             android:textColor="@color/textColor"
             android:textStyle="bold"
-            android:textSize="13dp"
+            android:textSize="@dimen/Page_ItemTitle"
             />
         <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text=" 입니다."
-        android:textSize="12dp"
+        android:textSize="@dimen/Page_Txt"
         />
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_height="0dp"
+        android:layout_weight="1.5"
         android:gravity="top|center"
         android:orientation="horizontal">
 
-        <EditText
-            android:id="@+id/TalentResister_Talent_Point"
-            android:layout_width="100dp"
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.7"/>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
             android:gravity="center"
-            android:layout_height="wrap_content"
-            android:inputType="number" />
+            android:orientation="horizontal"
+            >
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Point"
-            android:textColor="@color/textColor"
-            android:textSize="13dp"
-            android:textStyle="bold" />
+            <EditText
+                android:id="@+id/TalentResister_Talent_Point"
+                android:layout_width="0dp"
+                android:layout_weight="3"
+                android:gravity="center"
+                android:maxLines="1"
+                android:layout_height="wrap_content"
+                android:inputType="number" />
 
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="Point"
+                android:textColor="@color/textColor"
+                android:textSize="@dimen/Page_ItemTitle"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.7"/>
 
     </LinearLayout>
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.5"/>
+
     <Button
         android:layout_width="match_parent"
-        android:layout_height="30dp"
+        android:layout_height="0dp"
+        android:layout_weight="1.3"
         android:layout_gravity="center"
         android:layout_marginLeft="40dp"
         android:layout_marginRight="40dp"
-        android:layout_marginTop="20dp"
         android:background="@drawable/big_button_background"
         android:onClick="goSave"
         android:text="등록 완료"
         android:textAllCaps="false"
-        android:textSize="15dp"
+        android:textSize="@dimen/BigBtn"
         android:textStyle="bold"
         android:textColor="@color/textColor" />
 

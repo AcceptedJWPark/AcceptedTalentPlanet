@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<resources>
+
+    <dimen name="ToolbarTxt">16.5dp</dimen>
+    <dimen name="Toolbar_Pre_Txt">12.5dp</dimen>
+    <dimen name="Toolbar_Pre_Img">25dp</dimen>
+
+
+    <dimen name="Toolbar_Img">20dp</dimen>
+
+    <dimen name="List_Title">12dp</dimen>
+    <dimen name="List_SubTitle">11.5dp</dimen>
+    <dimen name="Divider">11.5dp</dimen>
+
+    <dimen name="GiveorTakeBtn">12.5dp</dimen>
+
+    <dimen name="Edit_Hint">11dp</dimen>
+    <dimen name="CheckBox_Txt">11.5dp</dimen>
+
+    <dimen name="BigBtn">13.5dp</dimen>
+
+    <dimen name="Popup_ItemTitle">11.5dp</dimen>
+    <dimen name="Popup_ItemSubTitle">10.5dp</dimen>
+    <dimen name="Popup_Txt">11.5dp</dimen>
+    <dimen name="Popup_Divider">10.5dp</dimen>
+    <dimen name="Popup_BigBtn">12.5dp</dimen>
+
+    <dimen name="ListView_TitleorName">13.5dp</dimen>
+    <dimen name="ListView_SubTitle">11.5dp</dimen>
+    <dimen name="ListView_SecondLine">11.5dp</dimen>
+    <dimen name="ListView_Btn">11.5dp</dimen>
+    <dimen name="ListView_ChildTxt_Question">11.5dp</dimen>
+    <dimen name="ListView_ChildTxt_Answer">12.5dp</dimen>
+    <dimen name="ListView_ChildTxt_Signature">12.5dp</dimen>
+
+    <dimen name="SpinnerTxt">12.5dp</dimen>
+
+    <dimen name="Page_ItemTitle">12.5dp</dimen>
+    <dimen name="Page_ItemSubTitle">11.5dp</dimen>
+    <dimen name="Page_Txt">12.5dp</dimen>
+    <dimen name="Page_Txt_BelowPicture">10dp</dimen>
+    <dimen name="Page_Txt_Example">11.5dp</dimen>
+
+    <dimen name="Introduction">11dp</dimen>
+
+    <dimen name="LogIn_Title">30dp</dimen>
+    <dimen name="LogIn_Edit_Hint">12.5dp</dimen>
+    <dimen name="LogIn_PageTxt">12.5dp</dimen>
+    <dimen name="LogIn_SmallBtn">12.5dp</dimen>
+    <dimen name="LogIn_AccetedTxt">12.5dp</dimen>
+
+    <dimen name="TalentCondition_Title">15.5dp</dimen>
+    <dimen name="TalentCondition_SubTitle">13.5dp</dimen>
+
+    <dimen name="TalentSharing_Searching_Location_Hint">10.5dp</dimen>
+
+
+
+    <!-- 키보드 자판 가림 현상 방지 ScrollView 사용 Activity-->
+    <dimen name="ScrollView_BigBtn">30dp</dimen>
+
+    <dimen name="MyProfile_Toolbar">40dp</dimen>
+    <dimen name="MyProfile_Picture_Layout">110dp</dimen>
+    <dimen name="MyProfile_PictureSize">90dp</dimen>
+    <dimen name="MyProfile_Divider">17dp</dimen>
+    <dimen name="MyProfile_List_Layout">40dp</dimen>
+
+
+    <dimen name="Claim_Divider">12dp</dimen>
+    <dimen name="Claim_Divider2">5dp</dimen>
+    <dimen name="Claim_List_BtnLayout">30dp</dimen>
+    <dimen name="Claim_List_Layout2">30dp</dimen>
+    <dimen name="Claim_Edit_Layout">120dp</dimen>
+
+
+    <dimen name="TalentSharing_BtnLayout">30dp</dimen>
+    <dimen name="TalentSharing_ListLayout2">50dp</dimen>
+
+
+
+
+</resources>

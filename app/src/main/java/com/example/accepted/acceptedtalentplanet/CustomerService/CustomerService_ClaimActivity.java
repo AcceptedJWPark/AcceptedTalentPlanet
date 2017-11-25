@@ -5,7 +5,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -22,13 +24,15 @@ public class CustomerService_ClaimActivity extends AppCompatActivity {
     TextView CustomerService_Claim_SharingList;
     TextView CustomerService_Claim_SharingTalentTitle;
     LinearLayout CustomerService_Claim_PreBtn;
-    String text;
+    EditText Claim_EditTxt;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.customerservice_claimactivity);
+
+
 
         CustomerService_Claim_Spinner = (Spinner) findViewById(R.id.CustomerService_Claim_Spinner);
         ArrayAdapter adapter = ArrayAdapter.createFromResource(this, R.array.CustomerService_ClaimSpinnerList, R.layout.customerservice_claim_spinnertext);
@@ -51,6 +55,10 @@ public class CustomerService_ClaimActivity extends AppCompatActivity {
             }
         });
 
+        Claim_EditTxt = (EditText) findViewById(R.id.Claim_EditTxt);
+        Claim_EditTxt.setPrivateImeOptions("defaultInputmode=korean;");
+
+
     }
 
 
@@ -63,5 +71,6 @@ public class CustomerService_ClaimActivity extends AppCompatActivity {
             }
     }
     }
+
 
 

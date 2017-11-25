@@ -41,7 +41,7 @@ public class RegistGenderActivity extends  AppCompatActivity {
     public void goNext(View v){
         Spinner gender = (Spinner)findViewById(R.id.Join_genderSpinner);
 
-        Intent intent = new Intent(this, RegistBirthActivity.class);
+        Intent intent = new Intent(this, Join_Birth_Activity.class);
         intent.putExtra("email", email);
         intent.putExtra("pw", pw);
         intent.putExtra("name", name);

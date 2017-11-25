@@ -11,7 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name=".LoadingLogin.LoadingActivity">
+        <activity android:name=".LoadingLogin.Loading_Activity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -19,41 +19,45 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".LoadingLogin.LoginActivity"
+            android:name=".LoadingLogin.Login_Activity"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".Join.JoinGenderActivity"
+            android:name=".Join.Join_Gender_Activity"
             android:theme="@style/AppTheme" />
         <activity
             android:name=".MainActivity"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".Join.RegistEmailActivity"
+            android:name=".Join.Join_Email_Activity"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".Join.RegistPasswordActivity"
+            android:name=".Join.Join_Password_Activity"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".Join.RegistNameActivity"
+            android:name=".Join.Join_Name_Activity"
             android:theme="@style/AppTheme" />
         <activity
             android:name=".Join.RegistGenderActivity"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".Join.RegistBirthActivity"
+            android:name=".Join.Join_Birth_Activity"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".Home.RecyclerActivity"
+            android:name=".Home.Home_RecyclerActivity"
             android:theme="@style/AppTheme" />
-        <activity android:name=".Home.HomeActivity" />
-        <activity android:name=".MyProfile.MyprofileActivity"/>
-        <activity android:name=".TalentResister.TalentResisterActivity"/>
-        <activity android:name=".TalentResister.TalentResisterActivity_Level"/>
-        <activity android:name=".TalentResister.TalentResisterActivity_Location"/>
-        <activity android:name=".TalentResister.TalentResisterActivity_Point"/>
-        <activity android:name=".TalentResister.TalentResisterActivity_Talent"/>
-        <activity android:name=".TalentCondition.TalentConditionActivity"/>
-        <activity android:name=".TalentSharing.TalentSharingActivity"/>
+        <activity android:name=".Home.Home_Activity" />
+        <activity android:name=".MyProfile.MyProfile_Activity"/>
+        <activity android:name=".TalentResister.TalentResister_Activity"/>
+        <activity android:name=".TalentResister.TalentResister_Level_Activity"/>
+        <activity
+            android:name=".TalentResister.TalentResister_Location_Activity"
+            android:windowSoftInputMode="adjustNothing"/>
+        <activity android:name=".TalentResister.TalentResister_Point_Activity"/>
+        <activity android:name=".TalentResister.TalentResister_Talent_Activity"
+            android:windowSoftInputMode="adjustNothing"/>
+
+        <activity android:name=".TalentCondition.TalentCondition_Activity"/>
+        <activity android:name=".TalentSharing.TalentSharing_Activity"/>
 
         <activity android:name=".CustomerService.CustomerService_MainActivity"/>
         <activity android:name=".CustomerService.CustomerService_FaqActivity"/>
@@ -63,12 +67,18 @@
         <activity android:name=".CustomerService.CustomerService_OnebyOneQuestionActivity"/>
         <activity android:name=".CustomerService.CustomerService_OnebyOneQuestionListActivity"/>
         <activity android:name=".CustomerService.CustomerService_UpdateActivity"/>
-        <activity android:name=".CustomerService.CustomerService_ClaimActivity"/>
-        <activity android:name=".CustomerService.CustomerService_ClaimListActivity"/>
+        <activity
+            android:name=".CustomerService.CustomerService_ClaimActivity"
+            />
+
+        <activity android:name=".CustomerService.CustomerService_ClaimListActivity"
+
+            />
+
         <activity android:name=".CustomerService.CustomerService_Claim_SharingListActivity"/>
 
         <activity
-            android:name=".TalentSharing.TalentSharingPopup"
+            android:name=".TalentSharing.TalentSharing_Popup_Activity"
             android:theme="@style/Theme.AppCompat.Dialog">
         </activity>
 

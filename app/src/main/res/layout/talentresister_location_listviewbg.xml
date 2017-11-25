@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/TalentSharing_ListLayout"
+        android:orientation="horizontal"
+        android:layout_weight="1.5"
+        >
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="3"
+            android:layout_height="wrap_content"/>
+
+
+        <TextView
+            android:id="@+id/LocationList_Text"
+            android:layout_width="0dp"
+            android:layout_weight="7"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:textSize="@dimen/Page_ItemSubTitle"
+            android:text="경기도 파주시 광탄면"
+            />
+        
+        <ImageView
+            android:id="@+id/LocationList_Delete"
+            android:layout_width="0dp"
+            android:layout_weight="0.8"
+            android:layout_height="match_parent"
+            android:src="@android:drawable/ic_menu_close_clear_cancel"
+            />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="3"
+            android:layout_height="wrap_content"/>
+        
+        
+        
+        
+    </LinearLayout>
+  
+
+
+</LinearLayout>

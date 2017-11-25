@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
-import com.example.accepted.acceptedtalentplanet.LoadingLogin.LoginActivity;
+import com.example.accepted.acceptedtalentplanet.LoadingLogin.Login_Activity;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void clickStart(View view){
-        Intent intent = new Intent(this, LoginActivity.class);
+        Intent intent = new Intent(this, Login_Activity.class);
         startActivity(intent);
     }
 

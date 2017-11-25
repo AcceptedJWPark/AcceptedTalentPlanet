@@ -61,17 +61,17 @@ public class CustomerService_OnebyOneQuestionListActivity extends AppCompatActiv
                 "해당 문제에 대해 현재 원인 파악 중이며 빠른 시일 내에 해결 조치 하도록 하겠습니다. 불편을 끼쳐드려 죄송합니다."));
 
 
-       /*
-       GroupDataList.add(new CustomerService_OnebyOneQuetiontItem(
+
+       /* GroupDataList.add(new CustomerService_OnebyOneQuetiontItem(
                 "문의 내용 (서버에서 받아오기)",
                 "답변 대기/완료",
                 "등록 시간"));
-                sizeList ++;
+        sizeList ++;
         ChildDataList.add(new ArrayList<CustomerService_OnebyOneAnswerItem>());
         ChildDataList.get(sizeList).add(new CustomerService_OnebyOneAnswerItem(
                 "문의 내용 (서버에서 받아오기)",
-                "답변 내용"));
-                */
+                "답변 내용"));*/
+
 
     }
 

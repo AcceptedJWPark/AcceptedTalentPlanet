@@ -5,76 +5,88 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="#ffffff"
+    android:weightSum="24"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
     >
 
-    <RelativeLayout
+    <LinearLayout
+        android:id="@+id/claim_toolbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingTop="8dp"
-        android:paddingBottom="8dp"
+        android:layout_height="0dp"
+        android:layout_weight="1.8"
+        android:gravity="center"
         android:background="#f5f5f5"
         >
 
-        <LinearLayout
-            android:id="@+id/CustomerService_OnebyOneQuesition_PreBtn"
+        <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:layout_centerVertical="true"
             >
 
-            <ImageView
+            <LinearLayout
+                android:id="@+id/CustomerService_OnebyOneQuesition_PreBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:tint="@color/textColor"
-                android:src="@android:drawable/ic_menu_revert"
-                />
+                android:gravity="center"
+                >
+
+                <ImageView
+                    android:layout_width="@dimen/Toolbar_Pre_Img"
+                    android:layout_height="@dimen/Toolbar_Pre_Img"
+                    android:tint="@color/textColor"
+                    android:src="@android:drawable/ic_menu_revert"
+                    android:textSize="@dimen/Toolbar_Pre_Txt"
+
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="이전"
+                    android:textColor="@color/textColor"
+                    android:textStyle="bold"
+                    android:textSize="@dimen/Toolbar_Pre_Txt"
+                    />
+
+            </LinearLayout>
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="이전"
+                android:text="1:1 문의하기"
+                android:textStyle="bold"
+                android:textSize="@dimen/ToolbarTxt"
+                android:gravity="center"
+                android:layout_centerInParent="true"
                 android:textColor="@color/textColor"
-                android:textStyle="normal|bold"
-                android:textSize="15dp"
                 />
 
-        </LinearLayout>
+        </RelativeLayout>
 
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="1:1 문의하기"
-            android:gravity="center"
-            android:textStyle="bold"
-            android:textSize="17dp"
-            android:textColor="@color/textColor"
-            android:layout_centerVertical="true"
-            android:layout_alignParentStart="true" />
-
-    </RelativeLayout>
+    </LinearLayout>
 
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
+        android:layout_height="0dp"
+        android:layout_weight="2"
         android:gravity="center"
         android:textColor="@color/textColor"
-        android:textSize="14dp"
+        android:textSize="@dimen/Page_Txt"
         android:text="답변 내용은 &quot;나의 문의내역&quot;에서 확인 할 수 있습니다."
         />
 
 
+
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:layout_marginRight="30dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="20dp"
+        android:layout_height="0dp"
+        android:layout_weight="6"
+        android:layout_marginRight="40dp"
+        android:layout_marginLeft="40dp"
         android:background="@drawable/edittext_background"
         android:orientation="vertical"
         >
@@ -84,6 +96,8 @@
             android:layout_height="match_parent"
             android:layout_margin="10dp"
             android:gravity="top"
+            android:hint="내용을 입력해주세요. 1000자로 제한됩니다."
+            android:textSize="@dimen/Edit_Hint"
             android:background="#ffffff"
             />
         
@@ -95,6 +109,7 @@
             android:layout_alignParentBottom="true"
             android:layout_toLeftOf="@id/bar"
             android:textColor="#000000"
+            android:textSize="@dimen/Edit_Hint"
             android:layout_marginRight="3dp"
             android:layout_marginBottom="3dp"
             />
@@ -104,10 +119,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="/"
+            android:textSize="@dimen/Edit_Hint"
             android:layout_alignParentBottom="true"
             android:layout_toLeftOf="@id/text1000limit"
             android:layout_marginRight="3dp"
-
             android:layout_marginBottom="3dp"
             />
 
@@ -116,6 +131,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="1,000"
+            android:textSize="@dimen/Edit_Hint"
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
             android:layout_marginRight="5dp"
@@ -124,14 +140,20 @@
 
     </RelativeLayout>
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.5"></View>
+
     <Button
         android:layout_width="match_parent"
-        android:layout_height="30dp"
+        android:layout_height="0dp"
+        android:layout_weight="1.3"
         android:background="@drawable/big_button_background"
-        android:layout_marginTop="15dp"
-        android:layout_marginRight="30dp"
-        android:layout_marginLeft="30dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginLeft="40dp"
         android:text="문의하기"
+        android:textSize="14dp"
         android:textColor="@color/textColor"
         android:textStyle="bold"
         />

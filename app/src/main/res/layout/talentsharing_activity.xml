@@ -15,367 +15,397 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="#ffffff"
-    tools:context="com.example.accepted.acceptedtalentplanet.TalentSharing.TalentSharingActivity">
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    tools:context="com.example.accepted.acceptedtalentplanet.TalentSharing.TalentSharing_Activity">
 
-    <LinearLayout
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
+        android:layout_height="@dimen/MyProfile_Toolbar"
+        android:contentInsetStart="0dp"
+        android:contentInsetLeft="0dp"
+        app:contentInsetLeft="0dp"
+        app:contentInsetStart="0dp"
+        android:fitsSystemWindows="true"
+        >
+        <include
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:contentInsetStart="0dp"
-            android:contentInsetLeft="0dp"
-            app:contentInsetLeft="0dp"
-            app:contentInsetStart="0dp"
-            android:fitsSystemWindows="true"
-            >
-            <include
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                layout="@layout/toolbarlayout"/>
-        </android.support.v7.widget.Toolbar>
+            android:layout_height="match_parent"
+            layout="@layout/toolbarlayout"/>
+    </android.support.v7.widget.Toolbar>
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/Claim_Divider2"
+        />
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        >
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="35dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="10dp"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/TalentSharing_GiveCheck"
-                android:layout_width="0dp"
-                android:layout_height="30dp"
-                android:layout_marginRight="5dp"
-                android:layout_weight="1"
-                android:background="@drawable/small_button_graybackground"
-                android:text="재능드림 보기"
-                android:textColor="@color/textColor"
-                android:textSize="13dp"
-                android:textStyle="bold" />
-
-            <Button
-                android:id="@+id/TalentSharing_TakeCheck"
-                android:layout_width="0dp"
-                android:layout_height="30dp"
-                android:layout_marginLeft="5dp"
-                android:layout_weight="1"
-                android:background="@drawable/small_button_whitebackground"
-                android:text="관심재능 보기"
-                android:textColor="#d2d2d2"
-                android:textSize="13dp"
-                android:textStyle="bold" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/TalentSharing_searchingBoxOpen"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/big_button_background"
-            android:gravity="center"
-            android:paddingTop="5dp"
-            android:paddingBottom="5dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:onClick="searchBoxOpen"
-            android:orientation="horizontal"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
             >
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="검색조건 변경"
-                android:layout_gravity="center_vertical"
-                android:textColor="@color/textColor"
-                android:textSize="12dp"
-                android:textStyle="bold" />
-
-
-        </LinearLayout>
-
-
-
-        </LinearLayout>
-
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <ListView
-                android:id="@+id/TalentSharing_LV"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:padding="3dp"
-                android:layout_marginTop="2dp"
-                android:layout_marginBottom="2dp"
-                >
-
-
-            </ListView>
 
             <LinearLayout
-                android:id="@+id/TalentSharing_searchingBoxLL"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#f9f9f9"
-                android:orientation="vertical"
-                android:visibility="visible"
+                android:layout_height="@dimen/TalentSharing_BtnLayout"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/TalentSharing_GiveCheck"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/small_button_graybackground"
+                    android:text="재능드림 보기"
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/GiveorTakeBtn"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/TalentSharing_TakeCheck"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/small_button_whitebackground"
+                    android:text="관심재능 보기"
+                    android:textColor="#d2d2d2"
+                    android:textSize="@dimen/GiveorTakeBtn"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/Claim_Divider2"
+                />
+
+            <LinearLayout
+                android:id="@+id/TalentSharing_searchingBoxOpen"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/ScrollView_BigBtn"
+                android:background="@drawable/big_button_background"
+                android:gravity="center"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:onClick="searchBoxOpen"
+                android:orientation="horizontal"
                 >
 
                 <TextView
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:layout_marginTop="10dp"
-                    android:gravity="center"
-                    android:text="&quot;아래 검색조건을 변경하여 재능 검색이 가능합니다.&quot;"
+                    android:text="검색조건 변경"
+                    android:layout_gravity="center_vertical"
                     android:textColor="@color/textColor"
-                    android:textSize="13dp"
-                    />
+                    android:textSize="@dimen/BigBtn"
+                    android:textStyle="bold" />
 
-
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="15dp"
-                    android:paddingTop="5dp"
-                    android:paddingBottom="5dp"
-                    android:paddingRight="15dp">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="left"
-                        android:text="키워드"
-                        android:textColor="#000000"
-                        android:textSize="13dp"
-                        android:textStyle="bold" />
-
-                    <EditText
-                        android:id="@+id/TalentSharing_serchingBox_Keyword1"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1.5"
-                        android:gravity="center"
-                        android:scrollHorizontally="false"
-                        android:singleLine="true"
-                        android:text="Guitar"
-                        android:textColor="@color/colorPrimaryDark"
-                        android:textSize="12dp"
-                        />
-
-                    <EditText
-                        android:id="@+id/TalentSharing_serchingBox_Keyword2"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1.5"
-                        android:gravity="center"
-                        android:scrollHorizontally="false"
-                        android:singleLine="true"
-                        android:text="Piano"
-                        android:textColor="@color/colorPrimaryDark"
-                        android:textSize="12dp"
-                        />
-
-                    <EditText
-                        android:id="@+id/TalentSharing_serchingBox_Keyword3"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1.5"
-                        android:gravity="center"
-                        android:scrollHorizontally="false"
-                        android:singleLine="true"
-                        android:text="Drum"
-                        android:textColor="@color/colorPrimaryDark"
-                        android:textSize="12dp"
-                        />
-
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:paddingTop="5dp"
-                    android:paddingBottom="5dp"
-                    android:paddingLeft="15dp"
-                    android:paddingRight="15dp">
-
-                    <TextView
-                        android:id="@+id/textView4"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="left"
-                        android:text="장 소"
-                        android:textColor="#000000"
-                        android:textSize="13dp"
-                        android:textStyle="bold" />
-
-                    <EditText
-                        android:id="@+id/TalentSharing_serchingBox_Location1"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1.5"
-                        android:gravity="center"
-                        android:singleLine="true"
-                        android:text="경기도 파주시 광탄면"
-                        android:textColor="@color/colorPrimaryDark"
-                        android:textSize="11dp"
-                        />
-
-                    <EditText
-                        android:id="@+id/TalentSharing_serchingBox_Location2"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1.5"
-                        android:gravity="center"
-                        android:scrollHorizontally="false"
-                        android:singleLine="true"
-                        android:text="경기도 고양시 일산동구 정발산동"
-                        android:textColor="@color/colorPrimaryDark"
-                        android:textSize="11dp"
-                        />
-
-                    <EditText
-                        android:id="@+id/TalentSharing_serchingBox_Location3"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1.5"
-                        android:gravity="center"
-                        android:scrollHorizontally="false"
-                        android:singleLine="true"
-                        android:text="서울시 마포구 상수동"
-                        android:textColor="@color/colorPrimaryDark"
-                        android:textSize="11dp"
-                        />
-                </LinearLayout>
-
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:paddingTop="5dp"
-                    android:paddingBottom="5dp"
-                    android:paddingLeft="15dp"
-                    android:paddingRight="15dp">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="left"
-                        android:text="수 준"
-                        android:textColor="#000000"
-                        android:textSize="13dp"
-                        android:textStyle="bold" />
-
-                    <EditText
-                        android:id="@+id/TalentSharing_serchingBox_Level"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="4.5"
-                        android:gravity="center"
-                        android:singleLine="true"
-                        android:text="중급 (Intermediate) ~"
-                        android:textColor="@color/colorPrimaryDark"
-                        android:textSize="12dp"
-                        />
-
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:paddingTop="5dp"
-                    android:paddingBottom="5dp"
-                    android:paddingLeft="15dp"
-                    android:paddingRight="15dp">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="left"
-                        android:text="포인트"
-                        android:textColor="#000000"
-                        android:textSize="13dp"
-                        android:textStyle="bold" />
-
-                    <EditText
-                        android:id="@+id/TalentSharing_serchingBox_LowerLimit"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="2"
-                        android:gravity="center"
-                        android:singleLine="true"
-                        android:text="200P"
-                        android:textColor="@color/colorPrimaryDark"
-                        android:textSize="12dp"
-                        />
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.5"
-                        android:gravity="center"
-                        android:text="~"
-                        android:textColor="@color/colorPrimaryDark"
-                        android:textSize="13dp"
-                        android:textStyle="bold" />
-
-                    <EditText
-                        android:id="@+id/TalentSharing_serchingBox_Point_UpperLimit"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="2"
-                        android:gravity="center"
-                        android:singleLine="true"
-                        android:text="350P"
-                        android:textColor="@color/colorPrimaryDark"
-                        android:textSize="12dp"
-                        />
-
-                </LinearLayout>
-
-
-                <Button
-                    android:id="@+id/searchingBtn"
-                    android:layout_width="match_parent"
-                    android:layout_height="30dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="10dp"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginRight="15dp"
-                    android:background="@drawable/big_button_background"
-                    android:text="저장 후 검색"
-                    android:textSize="15dp"
-                    android:textStyle="bold"
-                    android:textColor="@color/textColor" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1.5dp"
-                    android:background="#d2d2d2"
-                    android:paddingBottom="5dp" />
 
             </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/Claim_Divider2"
+                />
 
 
-        </FrameLayout>
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                >
 
-    </LinearLayout>
+                <ListView
+                    android:id="@+id/TalentSharing_LV"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="3dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="2dp"
+                    >
+                </ListView>
+
+                <LinearLayout
+                    android:id="@+id/TalentSharing_searchingBoxLL"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#f9f9f9"
+                    android:orientation="vertical"
+                    android:visibility="visible"
+                    >
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/Claim_Divider2"
+                        android:background="@drawable/divider_background"
+                        />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/Claim_Divider2"
+                        />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/TalentSharing_BtnLayout"
+                        android:gravity="center"
+                        android:text="&quot;아래 검색조건을 변경하여 재능 검색이 가능합니다.&quot;"
+                        android:textColor="@color/textColor"
+                        android:textSize="@dimen/Page_Txt"
+                        />
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/Claim_Divider2"
+                        />
+
+
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/TalentSharing_ListLayout2"
+                        android:paddingLeft="15dp"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
+                        android:paddingRight="15dp">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="left"
+                            android:text="키워드"
+                            android:textColor="#000000"
+                            android:textSize="@dimen/Page_ItemTitle"
+                            android:textStyle="bold" />
+
+                        <EditText
+                            android:id="@+id/TalentSharing_serchingBox_Keyword1"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1.5"
+                            android:gravity="center"
+                            android:scrollHorizontally="false"
+                            android:singleLine="true"
+                            android:text="Guitar"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:textSize="@dimen/Edit_Hint"
+                            />
+
+                        <EditText
+                            android:id="@+id/TalentSharing_serchingBox_Keyword2"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1.5"
+                            android:gravity="center"
+                            android:scrollHorizontally="false"
+                            android:singleLine="true"
+                            android:text="Piano"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:textSize="@dimen/Edit_Hint"
+                            />
+
+                        <EditText
+                            android:id="@+id/TalentSharing_serchingBox_Keyword3"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1.5"
+                            android:gravity="center"
+                            android:scrollHorizontally="false"
+                            android:singleLine="true"
+                            android:text="Drum"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:textSize="@dimen/Edit_Hint"
+                            />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/TalentSharing_ListLayout2"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
+                        android:paddingLeft="15dp"
+                        android:paddingRight="15dp">
+
+                        <TextView
+                            android:id="@+id/textView4"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="left"
+                            android:text="장 소"
+                            android:textColor="#000000"
+                            android:textSize="@dimen/Page_ItemTitle"
+                            android:textStyle="bold" />
+
+                        <AutoCompleteTextView
+                            android:id="@+id/TalentSharing_serchingBox_Location1"
+                            android:layout_width="0dp"
+                            android:dropDownWidth="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1.5"
+                            android:gravity="center"
+                            android:singleLine="true"
+                            android:text="경기도 파주시 광탄면"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:textSize="@dimen/Edit_Hint"
+                            />
+
+                        <EditText
+                            android:id="@+id/TalentSharing_serchingBox_Location2"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1.5"
+                            android:gravity="center"
+                            android:scrollHorizontally="false"
+                            android:singleLine="true"
+                            android:text="경기도 고양시 일산동구 정발산동"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:textSize="@dimen/Edit_Hint"
+                            />
+
+                        <EditText
+                            android:id="@+id/TalentSharing_serchingBox_Location3"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1.5"
+                            android:gravity="center"
+                            android:scrollHorizontally="false"
+                            android:singleLine="true"
+                            android:text="서울시 마포구 상수동"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:textSize="@dimen/Edit_Hint"
+                            />
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/TalentSharing_ListLayout2"
+                        android:paddingLeft="15dp"
+                        android:paddingRight="15dp">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="left"
+                            android:text="수 준"
+                            android:textColor="#000000"
+                            android:textSize="@dimen/Page_ItemTitle"
+                            android:textStyle="bold" />
+
+                        <EditText
+                            android:id="@+id/TalentSharing_serchingBox_Level"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="4.5"
+                            android:gravity="center"
+                            android:singleLine="true"
+                            android:text="중급 (Intermediate) ~"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:textSize="@dimen/Edit_Hint"
+                            />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/TalentSharing_ListLayout2"
+                        android:paddingLeft="15dp"
+                        android:paddingRight="15dp">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="left"
+                            android:text="포인트"
+                            android:textColor="#000000"
+                            android:textSize="@dimen/Page_ItemTitle"
+                            android:textStyle="bold" />
+
+                        <EditText
+                            android:id="@+id/TalentSharing_serchingBox_LowerLimit"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:gravity="center"
+                            android:singleLine="true"
+                            android:text="200P"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:textSize="@dimen/Edit_Hint"
+                            />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.5"
+                            android:gravity="center"
+                            android:text="~"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:textSize="@dimen/Page_Txt"
+                            android:textStyle="bold" />
+
+                        <EditText
+                            android:id="@+id/TalentSharing_serchingBox_Point_UpperLimit"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:gravity="center"
+                            android:singleLine="true"
+                            android:text="350P"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:textSize="@dimen/Edit_Hint"
+                            />
+
+                    </LinearLayout>
+
+                    <Button
+                        android:id="@+id/searchingBtn"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/ScrollView_BigBtn"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"
+                        android:background="@drawable/big_button_background"
+                        android:text="저장 후 검색"
+                        android:textSize="@dimen/BigBtn"
+                        android:textStyle="bold"
+                        android:textColor="@color/textColor" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/Claim_Divider2"
+                        android:background="@drawable/divider_background"
+                        />
+
+
+                </LinearLayout>
+
+            </FrameLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>
+
+
     <FrameLayout
         android:id="@+id/TalentSharing_container"
         android:layout_width="match_parent"
@@ -388,8 +418,6 @@
             android:layout_height="match_parent" />
     </FrameLayout>
 </android.support.v4.widget.DrawerLayout>
-
-
 
 
 
