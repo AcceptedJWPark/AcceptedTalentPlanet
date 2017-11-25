@@ -13,11 +13,12 @@ public class MyTalent implements Serializable{
     String Point;
     String Level;
     boolean compFlag = false;
+    GeoPoint[] gp;
     public MyTalent()
     {
 
     };
-    public void setMyTalent(String Keyword1, String Keyword2, String Keyword3, String Location1, String Location2, String Location3, String Point, String Level){
+    public void setMyTalent(String Keyword1, String Keyword2, String Keyword3, String Location1, String Location2, String Location3, String Point, String Level, GeoPoint[] gp){
         this.Keyword1 = Keyword1;
         this.Keyword2 = Keyword2;
         this.Keyword3 = Keyword3;
@@ -27,6 +28,7 @@ public class MyTalent implements Serializable{
         this.Point = Point;
         this.Level = Level;
         this.compFlag = true;
+        this.gp = gp;
     };
 
     public String[] getKeywordArray(){
@@ -65,5 +67,7 @@ public class MyTalent implements Serializable{
     public boolean getCompFlag(){
         return compFlag;
     }
+
+    public GeoPoint[] getArrGeoPoint() { return gp; }
 
 }
