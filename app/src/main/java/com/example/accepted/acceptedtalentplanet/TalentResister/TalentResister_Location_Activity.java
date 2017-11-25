@@ -12,6 +12,7 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.accepted.acceptedtalentplanet.LocationList.LocationList;
 import com.example.accepted.acceptedtalentplanet.MyTalent;
@@ -54,9 +55,27 @@ public class TalentResister_Location_Activity extends AppCompatActivity {
 
         location_ListView = (ListView) findViewById(R.id.location_ListView);
         location_ArrayList = new ArrayList<>();
-        location_ArrayList.add("경기도 파주시 광탄면");
-        location_ArrayList.add("서울특별시 마포구 상수동");
-        location_ArrayList.add("경기도 일산동구 정발산동");
+
+
+
+        Intent i = getIntent();
+        Talent1 = i.getStringExtra("talent1");
+        Talent2 = i.getStringExtra("talent2");
+        Talent3 = i.getStringExtra("talent3");
+
+        TalentRegister_Flag = i.getBooleanExtra("talentFlag", true);
+        HavingDataFlag = i.getBooleanExtra("HavingDataFlag", false);
+
+        if(HavingDataFlag) {
+            Data = (MyTalent)i.getSerializableExtra("Data");
+            Loc = Data.getLocationArray();
+
+            for(int index = 0; index < Loc.length; index++)
+                location_ArrayList.add(Loc[index]);
+
+        }
+
+
         talentLocation_Adapter = new Talent_Location_Adapter(mContext, location_ArrayList);
         location_ListView.setAdapter(talentLocation_Adapter);
 
@@ -82,74 +101,18 @@ public class TalentResister_Location_Activity extends AppCompatActivity {
         });
 
 
-        Intent i = getIntent();
-        Talent1 = i.getStringExtra("talent1");
-        Talent2 = i.getStringExtra("talent2");
-        Talent3 = i.getStringExtra("talent3");
-
-        TalentRegister_Flag = i.getBooleanExtra("talentFlag", true);
-        HavingDataFlag = i.getBooleanExtra("HavingDataFlag", false);
-
-        if(HavingDataFlag) {
-            Data = (MyTalent)i.getSerializableExtra("Data");
-            Loc = Data.getLocationArray();
-            TextView LocationKey1 = (TextView) findViewById(R.id.Location_key1);
-            SpannableString Location_content1 = new SpannableString(Loc[0]);
-            Location_content1.setSpan(new UnderlineSpan(), 0, Location_content1.length(), 0);
-            LocationKey1.setText(Location_content1);
-
-            TextView LocationKey2 = (TextView) findViewById(R.id.Location_key2);
-            SpannableString Location_content2 = new SpannableString(Loc[1]);
-            Location_content2.setSpan(new UnderlineSpan(), 0, Location_content2.length(), 0);
-            LocationKey2.setText(Location_content2);
-
-            TextView LocationKey3 = (TextView) findViewById(R.id.Location_key3);
-            SpannableString Location_content3 = new SpannableString(Loc[2]);
-            Location_content3.setSpan(new UnderlineSpan(), 0, Location_content3.length(), 0);
-            LocationKey3.setText(Location_content3);
-
-            Location1 = Loc[0];
-            Location2 = Loc[1];
-            Location3 = Loc[2];
-        }
-
-
     }
 
-    public void registLocation1(View v){
-
-        TextView LocationKey1= (TextView) findViewById(R.id.TalentResister_Talent_Location1);
-        TextView LocationKey2= (TextView) findViewById(R.id.Location_key1);
-        Location1 = LocationKey1.getText().toString();
-        SpannableString content1 = new SpannableString(Location1);
-        content1.setSpan(new UnderlineSpan(), 0, content1.length(), 0);
-        LocationKey2.setText(content1);
-
-    }
-
-    public void registLocation2(View v){
-
-        TextView LocationKey1= (TextView) findViewById(R.id.TalentResister_Talent_Location2);
-        TextView LocationKey2= (TextView) findViewById(R.id.Location_key2);
-        Location2 = LocationKey1.getText().toString();
-        SpannableString content1 = new SpannableString(Location2);
-        content1.setSpan(new UnderlineSpan(), 0, content1.length(), 0);
-        LocationKey2.setText(content1);
-
-    }
-
-    public void registLocation3(View v){
-
-        TextView LocationKey1= (TextView) findViewById(R.id.TalentResister_Talent_Location3);
-        TextView LocationKey2= (TextView) findViewById(R.id.Location_key3);
-        Location3 = LocationKey1.getText().toString();
-        SpannableString content1 = new SpannableString(Location3);
-        content1.setSpan(new UnderlineSpan(), 0, content1.length(), 0);
-        LocationKey2.setText(content1);
-
-    }
 
     public void goNext(View v){
+        if(location_ArrayList.size() < 3){
+            Toast.makeText(getApplicationContext(), "장소는 3개를 입력해주세요.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        Location1 = location_ArrayList.get(0);
+        Location2 = location_ArrayList.get(1);
+        Location3 = location_ArrayList.get(2);
         Intent i = new Intent(this, TalentResister_Level_Activity.class);
         i.putExtra("talentFlag", TalentRegister_Flag);
         i.putExtra("talent1", Talent1);
