@@ -90,15 +90,6 @@ public class TalentSharing_Activity extends AppCompatActivity {
         OriginTalentSharingList = new ArrayList<>();
         getTalentSharing();
 
-
-
-        LocationList locationList = new LocationList();
-
-        String Location_List[] = locationList.Location_List;
-        ArrayAdapter<String> Location_ListAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line,Location_List);
-        Location_EditTxt = (AutoCompleteTextView) findViewById(R.id.TalentSharing_serchingBox_Location1);
-        Location_EditTxt.setAdapter(Location_ListAdapter);
-
     }
 
     public void slideMenuTalentSearching(View v){

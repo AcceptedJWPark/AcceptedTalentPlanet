@@ -153,6 +153,7 @@
                 android:layout_weight="3"
                 android:gravity="center"
                 android:singleLine="true"
+                android:textSize="@dimen/CheckBox_Txt"
                 android:layout_height="match_parent"
                 android:inputType="number" />
 
