@@ -3,6 +3,9 @@ package com.example.accepted.acceptedtalentplanet.TalentSharing;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.location.Address;
+import android.location.Geocoder;
+import android.location.Location;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -27,10 +30,12 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.accepted.acceptedtalentplanet.GeoPoint;
 import com.example.accepted.acceptedtalentplanet.Home.Home_Activity;
 import com.example.accepted.acceptedtalentplanet.LoadingLogin.Login_Activity;
 import com.example.accepted.acceptedtalentplanet.TalentResister.TalentResister_LocationList;
 import com.example.accepted.acceptedtalentplanet.MyProfile.MyProfile_Activity;
+import com.example.accepted.acceptedtalentplanet.MyTalent;
 import com.example.accepted.acceptedtalentplanet.R;
 import com.example.accepted.acceptedtalentplanet.SaveSharedPreference;
 import com.example.accepted.acceptedtalentplanet.TalentCondition.TalentCondition_Activity;
@@ -41,9 +46,12 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -133,13 +141,14 @@ public class TalentSharing_Activity extends AppCompatActivity {
                     TalentSharingList.clear();
                     for (int index = 0; index < obj.length(); index++) {
                         JSONObject o = obj.getJSONObject(index);
-                        OriginTalentSharingList.add(new TalentSharing_ListItem(R.drawable.textpicture, o.getString("USER_NAME"), o.getString("TALENT_KEYWORD1"), o.getString("TALENT_KEYWORD2"), o.getString("TALENT_KEYWORD3"), o.getString("TALENT_ID"), o.getString("TALENT_FLAG"), o.getString("STATUS_FLAG"),"0km", "Profile 보기", o.getString("USER_ID")));
+                        TalentSharing_ListItem target = new TalentSharing_ListItem(R.drawable.textpicture, o.getString("USER_NAME"), o.getString("TALENT_KEYWORD1"), o.getString("TALENT_KEYWORD2"), o.getString("TALENT_KEYWORD3"), o.getString("TALENT_ID"), o.getString("TALENT_FLAG"), o.getString("STATUS_FLAG"),findMinDistanceBetween(o.getString("GP_LAT1"), o.getString("GP_LNG1"), o.getString("GP_LAT2"), o.getString("GP_LNG2"), o.getString("GP_LAT3"), o.getString("GP_LNG3"), o.getString("TALENT_FLAG").equals("Y")), "Profile 보기", o.getString("USER_ID"));
+                        OriginTalentSharingList.add(target);
                         if(isGiveTalent){
                             if(o.getString("TALENT_FLAG").equals("Y"))
-                            TalentSharingList.add(new TalentSharing_ListItem(R.drawable.textpicture, o.getString("USER_NAME"), o.getString("TALENT_KEYWORD1"), o.getString("TALENT_KEYWORD2"), o.getString("TALENT_KEYWORD3"), o.getString("TALENT_ID"), o.getString("TALENT_FLAG"), o.getString("STATUS_FLAG"),"0km", "Profile 보기", o.getString("USER_ID")));
+                            TalentSharingList.add(target);
                         }
                         else{
-                            TalentSharingList.add(new TalentSharing_ListItem(R.drawable.textpicture, o.getString("USER_NAME"), o.getString("TALENT_KEYWORD1"), o.getString("TALENT_KEYWORD2"), o.getString("TALENT_KEYWORD3"), o.getString("TALENT_ID"), o.getString("TALENT_FLAG"), o.getString("STATUS_FLAG"),"0km", "Profile 보기", o.getString("USER_ID")));
+                            TalentSharingList.add(target);
                         }
                     }
 
@@ -248,6 +257,68 @@ public class TalentSharing_Activity extends AppCompatActivity {
             TalentSharingListView.setAdapter(TalentSharing_Adapter);
         }
     };
+
+    private GeoPoint findGeoPoint(String address) {
+        Geocoder geocoder = new Geocoder(this);
+        Address addr;
+        GeoPoint location = null;
+        try {
+            List<Address> listAddress = geocoder.getFromLocationName(address, 1);
+            if (listAddress.size() > 0) { // 주소값이 존재 하면
+                addr = listAddress.get(0); // Address형태로
+                double lat = addr.getLatitude();
+                double lng = addr.getLongitude();
+                location = new GeoPoint(lat, lng);
+
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return location;
+    }
+
+    String findMinDistanceBetween(String lat1, String lng1, String lat2, String lng2, String lat3, String lng3,  boolean isGive){
+        MyTalent mt;
+        if(isGive)
+            mt = SaveSharedPreference.getGiveTalentData(mContext);
+        else
+            mt = SaveSharedPreference.getTakeTalentData(mContext);
+
+        if(mt == null){
+            return "0km";
+        }
+
+        double[] arrDistance = new double[9];
+        GeoPoint[] arrGp = mt.getArrGeoPoint();
+        GeoPoint[] arrGp2 = new GeoPoint[3];
+        arrGp2[0] = new GeoPoint(Double.valueOf(lat1), Double.valueOf(lng1));
+        arrGp2[1] = new GeoPoint(Double.valueOf(lat2), Double.valueOf(lng2));
+        arrGp2[2] = new GeoPoint(Double.valueOf(lat3), Double.valueOf(lng3));
+        GeoPoint gp, gp2;
+        int index = 0;
+
+        for(int i = 0; i < 3; i++){
+            gp = arrGp[i];
+            for(int j = 0; j < 3; j++){
+                gp2 = arrGp2[j];
+                double distance = 0;
+                Location locationA = new Location("A");
+                locationA.setLatitude(gp.getLat());
+                locationA.setLongitude(gp.getLng());
+                Location locationB = new Location("B");
+                locationB.setLatitude(gp2.getLat());
+                locationB.setLongitude(gp2.getLng());
+                distance = locationA.distanceTo(locationB);
+
+                arrDistance[index++] = distance;
+            }
+        }
+
+        Arrays.sort(arrDistance);
+
+        return String.format("%.1f", arrDistance[0] / 1000) + "km";
+
+    }
 
 }
 

@@ -2,6 +2,8 @@ package com.example.accepted.acceptedtalentplanet.TalentResister;
 
 import android.content.Context;
 import android.content.Intent;
+import android.location.Address;
+import android.location.Geocoder;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.SpannableString;
@@ -21,6 +23,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.accepted.acceptedtalentplanet.GeoPoint;
 import com.example.accepted.acceptedtalentplanet.MyTalent;
 import com.example.accepted.acceptedtalentplanet.R;
 import com.example.accepted.acceptedtalentplanet.SaveSharedPreference;
@@ -28,8 +31,10 @@ import com.example.accepted.acceptedtalentplanet.SaveSharedPreference;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class TalentResister_Point_Activity extends AppCompatActivity {
@@ -41,6 +46,8 @@ public class TalentResister_Point_Activity extends AppCompatActivity {
     private MyTalent Data;
     private int Point;
     private int level;
+
+    GeoPoint[] arrGp = new GeoPoint[3];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +64,9 @@ public class TalentResister_Point_Activity extends AppCompatActivity {
         Location1 = i.getStringExtra("loc1");
         Location2 = i.getStringExtra("loc2");
         Location3 = i.getStringExtra("loc3");
+        arrGp[0] = findGeoPoint(Location1);
+        arrGp[1] = findGeoPoint(Location2);
+        arrGp[2] = findGeoPoint(Location3);
         level = i.getIntExtra("level", 1);
         HavingDataFlag = i.getBooleanExtra("HavingDataFlag", false);
         if(HavingDataFlag)
@@ -149,6 +159,22 @@ public class TalentResister_Point_Activity extends AppCompatActivity {
                 params.put("level", String.valueOf(level));
                 params.put("point", point);
                 params.put("talentFlag", talentFlag);
+                params.put("gpLat1", String.valueOf(arrGp[0].getLat()));
+                params.put("gpLat2", String.valueOf(arrGp[1].getLat()));
+                params.put("gpLat3", String.valueOf(arrGp[2].getLat()));
+                params.put("gpLng1", String.valueOf(arrGp[0].getLng()));
+                params.put("gpLng2", String.valueOf(arrGp[1].getLng()));
+                params.put("gpLng3", String.valueOf(arrGp[2].getLng()));
+
+                Log.d(String.valueOf(arrGp[0].getLat()), String.valueOf(arrGp[0].getLng()));
+                MyTalent mt = new MyTalent();
+                mt.setMyTalent(Talent1, Talent2, Talent3, Location1, Location2, Location3, point, String.valueOf(level), arrGp);
+                if(TalentRegister_Flag)
+                    SaveSharedPreference.setGiveTalentData(mContext, mt);
+                else
+                    SaveSharedPreference.setTakeTalentData(mContext, mt);
+
+
                 return params;
             }
         };
@@ -156,4 +182,23 @@ public class TalentResister_Point_Activity extends AppCompatActivity {
         postRequestQueue.add(postJsonRequest);
     }
 
+    private GeoPoint findGeoPoint(String address) {
+        Geocoder geocoder = new Geocoder(this);
+        Address addr;
+        GeoPoint location = null;
+        try {
+            List<Address> listAddress = geocoder.getFromLocationName(address, 1);
+            if (listAddress.size() > 0) { // 주소값이 존재 하면
+                addr = listAddress.get(0); // Address형태로
+                double lat = addr.getLatitude();
+                double lng = addr.getLongitude();
+                location = new GeoPoint(lat, lng);
+
+                Log.d("Location Log", address + " : " + lat + ", " +lng);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return location;
+    }
 }

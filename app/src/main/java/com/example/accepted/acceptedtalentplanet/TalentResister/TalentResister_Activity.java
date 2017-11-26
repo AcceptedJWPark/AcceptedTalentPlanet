@@ -3,6 +3,8 @@ package com.example.accepted.acceptedtalentplanet.TalentResister;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.location.Address;
+import android.location.Geocoder;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -24,6 +26,7 @@ import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.accepted.acceptedtalentplanet.CustomerService.CustomerService_MainActivity;
+import com.example.accepted.acceptedtalentplanet.GeoPoint;
 import com.example.accepted.acceptedtalentplanet.Home.Home_Activity;
 import com.example.accepted.acceptedtalentplanet.LoadingLogin.Login_Activity;
 import com.example.accepted.acceptedtalentplanet.MyProfile.MyProfile_Activity;
@@ -39,8 +42,10 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.w3c.dom.Text;
 
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class TalentResister_Activity extends AppCompatActivity {
@@ -122,9 +127,69 @@ public class TalentResister_Activity extends AppCompatActivity {
         TalentResister_Give = true;
         TalentResister_Take = true;
 
-        TalentGive = new MyTalent();
-        TalentTake = new MyTalent();
-        getMyTalent();
+        TalentGive = SaveSharedPreference.getGiveTalentData(mContext);
+        TalentTake = SaveSharedPreference.getTakeTalentData(mContext);
+
+        if(TalentGive == null)
+            TalentResister_Give = false;
+        else{
+            TalentResister_Give_Keyword = TalentGive.getKeywordArray();
+            TalentResister_Give_Location = TalentGive.getLocationArray();
+            TalentResister_Give_Point = TalentGive.getPoint();
+            TalentResister_Give_Level = TalentGive.getLevel();
+        }
+
+        if(TalentTake == null)
+            TalentResister_Take = false;
+        else{
+            TalentResister_Take_Keyword = TalentTake.getKeywordArray();
+            TalentResister_Take_Location = TalentTake.getLocationArray();
+            TalentResister_Take_Point = TalentTake.getPoint();
+            TalentResister_Take_Level = TalentTake.getLevel();
+
+        }
+
+        if(TalentFlag)
+            ShowGiveBtnClicked();
+        else
+            ShowTakeBtnClicked();
+
+
+        TalentResister_ShowGiveBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ShowGiveBtnClicked();
+            }
+        });
+
+        TalentResister_ShowTakeBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ShowTakeBtnClicked();
+            }
+        });
+
+        slidingMenuDL = (DrawerLayout) findViewById(R.id.TalentResister1_listboxDL);
+
+        drawerView = (View) findViewById(R.id.TalentResister_container1);
+        imgDLOpenMenu = (ImageView) findViewById(R.id.ActionBar_Listview);
+        DrawerCloseImg = (ImageView) findViewById(R.id.DrawerCloseImg);
+
+
+        imgDLOpenMenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                slidingMenuDL.openDrawer(drawerView);
+
+            }
+        });
+
+        DrawerCloseImg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                slidingMenuDL.closeDrawer(drawerView);
+            }
+        });
 
         ((TextView) findViewById(R.id.DrawerUserID)).setText(SaveSharedPreference.getUserId(mContext));
 
@@ -263,125 +328,5 @@ public class TalentResister_Activity extends AppCompatActivity {
         Intent i = new Intent(mContext, CustomerService_MainActivity.class);
         startActivity(i);
     }
-
-    public void getMyTalent(){
-
-        RequestQueue postRequestQueue = Volley.newRequestQueue(this);
-        StringRequest postJsonRequest = new StringRequest(Request.Method.POST, SaveSharedPreference.getServerIp() + "TalentRegist/getMyTalent.do", new Response.Listener<String>(){
-            @Override
-            public void onResponse(String response){
-                try {
-                    JSONArray obj = new JSONArray(response);
-                    for(int index = 0; index < obj.length(); index++) {
-                        JSONObject o = obj.getJSONObject(index);
-                        if(o.getString("TALENT_FLAG").equals("Y")){
-                            TalentGive.setMyTalent(o.getString("TALENT_KEYWORD1"), o.getString("TALENT_KEYWORD2"), o.getString("TALENT_KEYWORD3"), o.getString("LOCATION1"), o.getString("LOCATION2"), o.getString("LOCATION3"), o.getString("T_POINT"), o.getString("LEVEL"));
-                            G_Level = Integer.parseInt(o.getString("LEVEL"));
-                            SaveSharedPreference.setGiveTalentData(mContext, TalentGive);
-                        }else{
-                            TalentTake.setMyTalent(o.getString("TALENT_KEYWORD1"), o.getString("TALENT_KEYWORD2"), o.getString("TALENT_KEYWORD3"), o.getString("LOCATION1"), o.getString("LOCATION2"), o.getString("LOCATION3"), o.getString("T_POINT"), o.getString("LEVEL"));
-                            T_Level = Integer.parseInt(o.getString("LEVEL"));
-                            SaveSharedPreference.setTakeTalentData(mContext, TalentTake);
-                        }
-
-                    }
-
-                    if(!TalentGive.getCompFlag())
-                        TalentResister_Give = false;
-                    else{
-                        TalentResister_Give_Keyword = TalentGive.getKeywordArray();
-                        TalentResister_Give_Location = TalentGive.getLocationArray();
-                        TalentResister_Give_Point = TalentGive.getPoint();
-                        TalentResister_Give_Level = TalentGive.getLevel();
-                    }
-
-                    if(!TalentTake.getCompFlag())
-                        TalentResister_Take = false;
-                    else{
-                        TalentResister_Take_Keyword = TalentTake.getKeywordArray();
-                        TalentResister_Take_Location = TalentTake.getLocationArray();
-                        TalentResister_Take_Point = TalentTake.getPoint();
-                        TalentResister_Take_Level = TalentTake.getLevel();
-
-                    }
-                    if(TalentFlag)
-                        ShowGiveBtnClicked();
-                    else
-                        ShowTakeBtnClicked();
-
-
-                    TalentResister_ShowGiveBtn.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            ShowGiveBtnClicked();
-                        }
-                    });
-
-                    TalentResister_ShowTakeBtn.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            ShowTakeBtnClicked();
-                        }
-                    });
-
-                    slidingMenuDL = (DrawerLayout) findViewById(R.id.TalentResister1_listboxDL);
-
-                    drawerView = (View) findViewById(R.id.TalentResister_container1);
-                    imgDLOpenMenu = (ImageView) findViewById(R.id.ActionBar_Listview);
-                    DrawerCloseImg = (ImageView) findViewById(R.id.DrawerCloseImg);
-
-
-                    imgDLOpenMenu.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            slidingMenuDL.openDrawer(drawerView);
-
-                        }
-                    });
-
-                    DrawerCloseImg.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            slidingMenuDL.closeDrawer(drawerView);
-                        }
-                    });
-                }
-                catch(JSONException e){
-                    e.printStackTrace();
-                }
-            }
-        }, new Response.ErrorListener(){
-            @Override
-            public void onErrorResponse(VolleyError error){
-                NetworkResponse response = error.networkResponse;
-                if (error instanceof ServerError && response != null) {
-                    try {
-                        String res = new String(response.data,
-                                HttpHeaderParser.parseCharset(response.headers, "utf-8"));
-                        // Now you can use any deserializer to make sense of data
-                        Log.d("res", res);
-
-                        JSONObject obj = new JSONObject(res);
-                    } catch (UnsupportedEncodingException e1) {
-                        // Couldn't properly decode data to string
-                        e1.printStackTrace();
-                    } catch (JSONException e2) {
-                        // returned data is not JSONObject?
-                        e2.printStackTrace();
-                    }
-                }
-            }
-        }) {
-            @Override
-            protected Map<String, String> getParams(){
-                Map<String, String> params = new HashMap();
-                params.put("userID", SaveSharedPreference.getUserId(mContext));
-                return params;
-            }
-        };
-
-        postRequestQueue.add(postJsonRequest);
-    }
-
 
 }
