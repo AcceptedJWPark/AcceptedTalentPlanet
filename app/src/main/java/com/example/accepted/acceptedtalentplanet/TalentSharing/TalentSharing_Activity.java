@@ -90,7 +90,6 @@ public class TalentSharing_Activity extends AppCompatActivity {
         OriginTalentSharingList = new ArrayList<>();
         getTalentSharing();
 
-
     }
 
     public void slideMenuTalentSearching(View v){

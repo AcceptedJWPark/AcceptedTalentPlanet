@@ -1,10 +1,12 @@
 package com.example.accepted.acceptedtalentplanet;
 
+import java.io.Serializable;
+
 /**
  * Created by kwonhong on 2017-11-25.
  */
 
-public class GeoPoint {
+public class GeoPoint implements Serializable {
     double lat, lng;
 
     public GeoPoint(double lat, double lng){
