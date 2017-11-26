@@ -12,19 +12,19 @@
     android:focusableInTouchMode="true"
     >
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.3"/>
+
 
     <LinearLayout
+        android:id="@+id/TalentResister_Talent_Txt_LL"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1.8"
+        android:layout_height="50dp"
         android:orientation="vertical"
         >
 
-
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.3"/>
 
 
         <TextView
@@ -46,20 +46,20 @@
             android:layout_marginTop="5dp"
             android:textSize="@dimen/Page_Txt_Example"
             />
-
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.3"/>
 
     </LinearLayout>
 
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.3"/>
+
 
     <LinearLayout
+        android:id="@+id/TalentResister_TalentLL"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="2"
+        android:layout_height="50dp"
         android:gravity="center"
         android:orientation="horizontal"
         android:padding="5dp"
@@ -109,20 +109,17 @@
 
 
 
+        <ListView
+            android:id="@+id/talent_ListView"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_marginLeft="80dp"
+            android:layout_marginRight="80dp"
+            android:dividerHeight="0dp"
+            android:divider="#ffffff"
+            >
+        </ListView>
 
-
-
-
-    <ListView
-        android:id="@+id/talent_ListView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="80dp"
-        android:layout_marginRight="80dp"
-        android:dividerHeight="0dp"
-        android:divider="#ffffff"
-        >
-    </ListView>
 
 
     <View
@@ -130,9 +127,9 @@
         android:layout_height="0dp"
         android:layout_weight="0.5"/>
     <Button
+        android:id="@+id/TalentResister_Talent_Btn"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_height="30dp"
         android:layout_marginLeft="80dp"
         android:layout_marginRight="80dp"
         android:background="@drawable/big_button_background"

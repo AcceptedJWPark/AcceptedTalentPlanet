@@ -47,7 +47,9 @@
         <activity android:name=".TalentResister.TalentResister_Level_Activity"/>
         <activity
             android:name=".TalentResister.TalentResister_Location_Activity"
-            android:windowSoftInputMode="adjustNothing"/>
+            android:windowSoftInputMode="adjustPan"
+
+            />
         <activity android:name=".TalentResister.TalentResister_Point_Activity"/>
         <activity android:name=".TalentResister.TalentResister_Talent_Activity"
             android:windowSoftInputMode="adjustNothing"/>

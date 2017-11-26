@@ -37,6 +37,7 @@
 
     <dimen name="SpinnerTxt">12.5dp</dimen>
     <dimen name="TalentSearching_SpinnerTxt">11.5dp</dimen>
+    <dimen name="TalentResister_SpinnerTxt">12dp</dimen>
 
     <dimen name="Page_ItemTitle">12.5dp</dimen>
     <dimen name="Page_ItemSubTitle">11.5dp</dimen>

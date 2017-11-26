@@ -4,10 +4,18 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.DisplayMetrics;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -31,9 +39,9 @@ public class TalentResister_Location_Activity extends AppCompatActivity {
     TalentResister_Location_Adapter talentLocation_Adapter;
     Button location_addBtn;
 
-
-
-
+    LinearLayout TalentResister_LocationLL;
+    LinearLayout TalentResister_Location_Txt_LL;
+    Button TalentResister_Location_Btn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,15 +52,49 @@ public class TalentResister_Location_Activity extends AppCompatActivity {
 
         TalentResister_LocationList talentResisterLocationList = new TalentResister_LocationList();
         final String Location_List[] = talentResisterLocationList.Location_List;
-        ArrayAdapter<String> Location_ListAdapter = new ArrayAdapter<String>(getBaseContext(), android.R.layout.simple_dropdown_item_1line,Location_List);
+        ArrayAdapter<String> Location_ListAdapter = new ArrayAdapter<String>(getBaseContext(), R.layout.talentresister_location_spinnertext,Location_List);
         Location_autoEdit1 = (AutoCompleteTextView) findViewById(R.id.TalentResister_Location);
         Location_autoEdit1.setAdapter(Location_ListAdapter);
+
+        Location_autoEdit1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                InputMethodManager in = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                in.hideSoftInputFromWindow(view.getApplicationWindowToken(), 0);
+            }
+        });
+
+
+        TalentResister_LocationLL = (LinearLayout) findViewById(R.id.TalentResister_LocationLL);
+        TalentResister_Location_Txt_LL = (LinearLayout) findViewById(R.id.TalentResister_Location_Txt_LL);
+        TalentResister_Location_Btn = (Button) findViewById(R.id.TalentResister_Location_Btn);
+
+        DisplayMetrics metrics = new DisplayMetrics();
+        WindowManager windowManager = (WindowManager) getApplicationContext().getSystemService(Context.WINDOW_SERVICE);
+        windowManager.getDefaultDisplay().getMetrics(metrics);
+
+        int TalentResister_LocationLL_height = metrics.heightPixels/12;
+        int TalentResister_Location_Txt_LL_height = metrics.heightPixels/10;
+        int TalentResister_Location_Btn_height = metrics.heightPixels/24;
+
+        ViewGroup.LayoutParams params1 = TalentResister_LocationLL.getLayoutParams();
+        ViewGroup.LayoutParams params2 = TalentResister_Location_Txt_LL.getLayoutParams();
+        ViewGroup.LayoutParams params3 = TalentResister_Location_Btn.getLayoutParams();
+
+        params1.height = TalentResister_LocationLL_height;
+        params2.height = TalentResister_Location_Txt_LL_height;
+        params3.height = TalentResister_Location_Btn_height;
+
+        TalentResister_LocationLL.setLayoutParams(params1);
+        TalentResister_Location_Txt_LL.setLayoutParams(params2);
+        TalentResister_Location_Btn.setLayoutParams(params3);
+
 
 
         location_ListView = (ListView) findViewById(R.id.location_ListView);
         location_ArrayList = new ArrayList<>();
 
-
+        set_Location_ListViewHeightBasedOnItems(location_ListView);
 
         Intent i = getIntent();
         Talent1 = i.getStringExtra("talent1");
@@ -122,6 +164,30 @@ public class TalentResister_Location_Activity extends AppCompatActivity {
             i.putExtra("Data", Data);
         }
         startActivity(i);
+
+    }
+
+    public void set_Location_ListViewHeightBasedOnItems(ListView listView)
+    {
+        ListAdapter listAdapter = listView.getAdapter();
+        if(listAdapter == null)
+        {
+            return;
+        }
+        int numberOfItems = listAdapter.getCount();
+        int totalItemsHeight = 0;
+        for (int itemPos = 0; itemPos < numberOfItems; itemPos++) {
+            View item = listAdapter.getView(itemPos, null, listView);
+            item.measure(0, 0);
+            totalItemsHeight += item.getMeasuredHeight();
+        }
+
+        int totalDividersHeight = listView.getDividerHeight() *  (numberOfItems - 1);
+
+        ViewGroup.LayoutParams params = listView.getLayoutParams();
+        params.height = totalItemsHeight + totalDividersHeight;
+        listView.setLayoutParams(params);
+        listView.requestLayout();
 
     }
 
