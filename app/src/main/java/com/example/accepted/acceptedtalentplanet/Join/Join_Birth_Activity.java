@@ -3,11 +3,13 @@ package com.example.accepted.acceptedtalentplanet.Join;
 /**
  * Created by kwonhong on 2017-10-01.
  */
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -38,6 +40,12 @@ public class Join_Birth_Activity extends  AppCompatActivity {
     public String name;
     public String gender;
     public String birth;
+
+    EditText birthYear;
+    EditText birthMonth;
+    EditText birthDay;
+
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.join_birthday);
@@ -47,14 +55,41 @@ public class Join_Birth_Activity extends  AppCompatActivity {
         name = intent.getStringExtra("name");
         gender = intent.getStringExtra("gender");
 
+        birthYear = (EditText)findViewById(R.id.Join_Birth_Year);
+        birthMonth = (EditText)findViewById(R.id.Join_Birth_Month);
+        birthDay = (EditText)findViewById(R.id.Join_Birth_Day);
+
+        birthYear.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                hideKeyboard(v);
+            }
+        });
+
+        birthMonth.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                hideKeyboard(v);
+            }
+        });
+
+        birthDay.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                hideKeyboard(v);
+            }
+        });
+
         Log.d("result", "email = " + email + ", pw = " + pw + ", name" + name + ", gender = " + gender);
     }
 
     public void goRegist(View v){
-        EditText birthYear = (EditText)findViewById(R.id.Join_Birth_Year);
-        EditText birthMonth = (EditText)findViewById(R.id.Join_Birth_Month);
-        EditText birthDay = (EditText)findViewById(R.id.Join_Birth_Day);
+        birthYear = (EditText)findViewById(R.id.Join_Birth_Year);
+        birthMonth = (EditText)findViewById(R.id.Join_Birth_Month);
+        birthDay = (EditText)findViewById(R.id.Join_Birth_Day);
         birth = birthYear.getText().toString() + birthMonth.getText().toString() + birthDay.getText().toString();
+
+
 
 
         Log.d("Login Start", "start");
@@ -117,6 +152,11 @@ public class Join_Birth_Activity extends  AppCompatActivity {
         };
 
         postRequestQueue.add(postJsonRequest);
+    }
+
+    public void hideKeyboard(View view) {
+        InputMethodManager inputMethodManager =(InputMethodManager)getSystemService(Activity.INPUT_METHOD_SERVICE);
+        inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
 
 }

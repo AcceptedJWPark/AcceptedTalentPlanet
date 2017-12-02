@@ -35,7 +35,7 @@ public class Loading_Activity extends AppCompatActivity {
                 if(SaveSharedPreference.getUserId(Loading_Activity.this).length() == 0) {
                     intent = new Intent(getBaseContext(), Login_Activity.class);
                 }else{
-                    intent = new Intent(getBaseContext(), TalentSharing_Activity.class);
+                    intent = new Intent(getBaseContext(), Home_Activity.class);
                 }
                     startActivity(intent);
                     finish();

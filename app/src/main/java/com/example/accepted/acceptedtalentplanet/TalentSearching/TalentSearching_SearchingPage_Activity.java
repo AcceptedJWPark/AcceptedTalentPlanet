@@ -1,14 +1,28 @@
 package com.example.accepted.acceptedtalentplanet.TalentSearching;
 
+import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.example.accepted.acceptedtalentplanet.R;
+import com.example.accepted.acceptedtalentplanet.TalentResister.TalentResister_Location_Adapter;
+
+import java.util.ArrayList;
 
 /**
  * Created by Accepted on 2017-11-24.
@@ -21,12 +35,34 @@ public class TalentSearching_SearchingPage_Activity extends AppCompatActivity {
     Spinner level_start;
     Spinner level_end;
     Button TalentSearching_SaveBtn;
+    EditText TalentSearching_KeywordInput;
+    EditText TalentSearching_PointInput1;
+    EditText TalentSearching_PointInput2;
+
+    ListView TalentSearching_KeywordListView;
+
+    ArrayList<String> TalentSearching_talent_ArrayList;
+    TalentResister_Location_Adapter TalentSearching_talent_Adapter;
+    Button keyword_addBtn;
+    TextView TalentSearching_TxtView;
+    LinearLayout TalentSearching_LL1;
+    LinearLayout TalentSearching_LL2;
+    LinearLayout TalentSearching_LL3;
+    LinearLayout TalentSearching_LL4;
+    View TalentSearching_Devider;
+
+
+    Context mContext;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.talentsearching_searchingpage_activity);
+
+        mContext = getApplicationContext();
+
+
 
         LocationGroup talentSearching_locationGroup = new LocationGroup();
         String location_bigCategory[] = talentSearching_locationGroup.location_BigCategory;
@@ -48,12 +84,12 @@ public class TalentSearching_SearchingPage_Activity extends AppCompatActivity {
         final String gyungnam_smallCategory[] = talentSearching_locationGroup.gyungnam_SmallCategory;
         final String jeju_smallCategory[] = talentSearching_locationGroup.jeju_SmallCategory;
 
-        final String level_startList[] = {"시작단계", "초급 수준", "중급 수준", "상급 수준", "전문가 수준"};
-        final String level_end1List[] = {"시작단계", "초급 수준", "중급 수준", "상급 수준", "전문가 수준"};
-        final String level_end2List[] = {"초급 수준", "중급 수준", "상급 수준", "전문가 수준"};
-        final String level_end3List[] = {"중급 수준", "상급 수준", "전문가 수준"};
-        final String level_end4List[] = {"상급 수준", "전문가 수준"};
-        final String level_end5List[] = {"전문가 수준"};
+        final String level_startList[] = {"시작 단계", "초급 이상", "중급 이상", "상급 이상", "전문가 이상"};
+        final String level_end1List[] = {"시작 단계", "초급 이하", "중급 이하", "상급 이하", "전문가 이하"};
+        final String level_end2List[] = {"초급 이하", "중급 이하", "상급 이하", "전문가 이하"};
+        final String level_end3List[] = {"중급 이하", "상급 이하", "전문가 이하"};
+        final String level_end4List[] = {"상급 이하", "전문가 이하"};
+        final String level_end5List[] = {"전문가 이하"};
 
         level_start = (Spinner) findViewById(R.id.level_start_spinner);
         level_end = (Spinner) findViewById(R.id.level_end_spinner);
@@ -66,24 +102,24 @@ public class TalentSearching_SearchingPage_Activity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
             {
 
-                if (level_start.getSelectedItem().toString() == "시작단계") {
+                if (level_start.getSelectedItem().toString() == "시작 단계") {
                     ArrayAdapter<CharSequence> level_end_spinner_adapter = new ArrayAdapter<CharSequence>(getBaseContext(), R.layout.talentsearching_location_spinnertext, level_end1List);
                     level_end_spinner_adapter.setDropDownViewResource(R.layout.talentsearching_location_spinnertext);
                     level_end.setAdapter(level_end_spinner_adapter);
                 }
 
-                else if (level_start.getSelectedItem().toString() == "초급 수준") {
+                else if (level_start.getSelectedItem().toString() == "초급 이상") {
                     ArrayAdapter<CharSequence> level_end_spinner_adapter = new ArrayAdapter<CharSequence>(getBaseContext(), R.layout.talentsearching_location_spinnertext, level_end2List);
                     level_end_spinner_adapter.setDropDownViewResource(R.layout.talentsearching_location_spinnertext);
                     level_end.setAdapter(level_end_spinner_adapter);
                 }
-                else if (level_start.getSelectedItem().toString() == "중급 수준") {
+                else if (level_start.getSelectedItem().toString() == "중급 이상") {
                     ArrayAdapter<CharSequence> level_end_spinner_adapter = new ArrayAdapter<CharSequence>(getBaseContext(), R.layout.talentsearching_location_spinnertext, level_end3List);
                     level_end_spinner_adapter.setDropDownViewResource(R.layout.talentsearching_location_spinnertext);
                     level_end.setAdapter(level_end_spinner_adapter);
                 }
 
-                else if (level_start.getSelectedItem().toString() == "상급 수준") {
+                else if (level_start.getSelectedItem().toString() == "상급 이상") {
                     ArrayAdapter<CharSequence> level_end_spinner_adapter = new ArrayAdapter<CharSequence>(getBaseContext(), R.layout.talentsearching_location_spinnertext, level_end4List);
                     level_end_spinner_adapter.setDropDownViewResource(R.layout.talentsearching_location_spinnertext);
                     level_end.setAdapter(level_end_spinner_adapter);
@@ -100,6 +136,66 @@ public class TalentSearching_SearchingPage_Activity extends AppCompatActivity {
             public void onNothingSelected(AdapterView<?> parent)
             {
 
+            }
+        });
+
+
+
+
+        TalentSearching_KeywordInput = (EditText) findViewById(R.id.TalentSearching_KeywordInput);
+        TalentSearching_PointInput1 = (EditText) findViewById(R.id.TalentSearching_PointInput1);
+        TalentSearching_PointInput2 = (EditText) findViewById(R.id.TalentSearching_PointInput2);
+
+
+        TalentSearching_KeywordInput.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            public void onFocusChange(View v, boolean hasFocus) {
+                if(!hasFocus)
+                {
+                    hideKeyboard(v);
+                }
+            }
+        });
+        TalentSearching_PointInput1.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            public void onFocusChange(View v, boolean hasFocus) {
+                if(!hasFocus)
+                {
+                    hideKeyboard(v);
+                }
+            }
+        });
+        TalentSearching_PointInput2.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            public void onFocusChange(View v, boolean hasFocus) {
+                if(!hasFocus)
+                {
+                    hideKeyboard(v);
+                }
+            }
+        });
+
+        TalentSearching_KeywordListView = (ListView) findViewById(R.id.TalentSearching_KeywordListView);
+        TalentSearching_talent_ArrayList = new ArrayList<>();
+        TalentSearching_talent_Adapter = new TalentResister_Location_Adapter(mContext, TalentSearching_talent_ArrayList);
+        TalentSearching_KeywordListView.setAdapter(TalentSearching_talent_Adapter);
+
+        keyword_addBtn = (Button) findViewById(R.id.keyword_addBtn);
+        TalentSearching_KeywordInput = (EditText) findViewById(R.id.TalentSearching_KeywordInput);
+        keyword_addBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (TalentSearching_KeywordInput.getText().toString().length()==0)
+                {
+                    return;
+                }
+                if(TalentSearching_talent_ArrayList.size()>=3)
+                {
+                    return;
+                }
+                TalentSearching_talent_ArrayList.add(TalentSearching_KeywordInput.getText().toString());
+                TalentSearching_KeywordInput.setText("");
+                TalentSearching_talent_Adapter = new TalentResister_Location_Adapter(getBaseContext(), TalentSearching_talent_ArrayList);
+                TalentSearching_KeywordListView.setAdapter(TalentSearching_talent_Adapter);
+                TalentSearching_talent_Adapter.notifyDataSetChanged();
             }
         });
 
@@ -269,8 +365,57 @@ public class TalentSearching_SearchingPage_Activity extends AppCompatActivity {
             }
         });
 
+        DisplayMetrics metrics = new DisplayMetrics();
+        WindowManager windowManager = (WindowManager) getApplicationContext().getSystemService(Context.WINDOW_SERVICE);
+        windowManager.getDefaultDisplay().getMetrics(metrics);
+
+        TalentSearching_TxtView = (TextView) findViewById(R.id.TalentSearching_TxtView);
+        TalentSearching_LL1 = (LinearLayout) findViewById(R.id.TalentSearching_LL1);
+        TalentSearching_LL2 = (LinearLayout) findViewById(R.id.TalentSearching_LL2);
+        TalentSearching_LL3 = (LinearLayout) findViewById(R.id.TalentSearching_LL3);
+        TalentSearching_LL4 = (LinearLayout) findViewById(R.id.TalentSearching_LL4);
+        TalentSearching_Devider = findViewById(R.id.TalentSearching_Devider);
+
+        int TalentSearching_Txt_height = (int) (metrics.heightPixels*0.083);
+        int TalentSearching_LL_height = (int) (metrics.heightPixels*0.04);
+        int TalentSearching_Devider_height = (int) (metrics.heightPixels*0.021);
+        int TalentSearching_Btn_height = (int) (metrics.heightPixels*0.042);
+
+        ViewGroup.LayoutParams params1 = TalentSearching_TxtView.getLayoutParams();
+        ViewGroup.LayoutParams params2 = TalentSearching_LL1.getLayoutParams();
+        ViewGroup.LayoutParams params3 = TalentSearching_LL2.getLayoutParams();
+        ViewGroup.LayoutParams params4 = TalentSearching_LL3.getLayoutParams();
+        ViewGroup.LayoutParams params5 = TalentSearching_LL4.getLayoutParams();
+        ViewGroup.LayoutParams params6 = TalentSearching_Devider.getLayoutParams();
+        ViewGroup.LayoutParams params7 = TalentSearching_SaveBtn.getLayoutParams();
+
+        params1.height = TalentSearching_Txt_height;
+        params2.height = TalentSearching_LL_height;
+        params3.height = TalentSearching_LL_height;
+        params4.height = TalentSearching_LL_height;
+        params5.height = TalentSearching_LL_height;
+        params6.height = TalentSearching_Devider_height;
+        params7.height = TalentSearching_Btn_height;
+
+        TalentSearching_TxtView.setLayoutParams(params1);
+        TalentSearching_LL1.setLayoutParams(params2);
+        TalentSearching_LL2.setLayoutParams(params3);
+        TalentSearching_LL3.setLayoutParams(params4);
+        TalentSearching_LL4.setLayoutParams(params5);
+        TalentSearching_Devider.setLayoutParams(params6);
+        TalentSearching_SaveBtn.setLayoutParams(params7);
+
 
 
 
     }
+
+
+
+    public void hideKeyboard(View view) {
+        InputMethodManager inputMethodManager =(InputMethodManager)getSystemService(Activity.INPUT_METHOD_SERVICE);
+        inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
+    }
+
+
 }

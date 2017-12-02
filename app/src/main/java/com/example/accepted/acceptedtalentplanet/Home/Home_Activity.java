@@ -21,8 +21,10 @@ import com.example.accepted.acceptedtalentplanet.LoadingLogin.Login_Activity;
 import com.example.accepted.acceptedtalentplanet.MyProfile.MyProfile_Activity;
 import com.example.accepted.acceptedtalentplanet.R;
 import com.example.accepted.acceptedtalentplanet.SaveSharedPreference;
+import com.example.accepted.acceptedtalentplanet.System.System_Activity;
 import com.example.accepted.acceptedtalentplanet.TalentCondition.TalentCondition_Activity;
 import com.example.accepted.acceptedtalentplanet.TalentResister.TalentResister_Activity;
+import com.example.accepted.acceptedtalentplanet.TalentSearching.TalentSearching_Activity;
 import com.example.accepted.acceptedtalentplanet.TalentSharing.TalentSharing_Activity;
 
 import java.util.ArrayList;
@@ -241,8 +243,8 @@ public class Home_Activity extends AppCompatActivity {
 
     }
 
-    public void slideMenuHome(View v){
-        Intent i = new Intent(mContext, Home_Activity.class);
+    public void slideMenuTalentSearching(View v){
+        Intent i = new Intent(mContext, TalentSearching_Activity.class);
         startActivity(i);
     }
 
@@ -278,4 +280,8 @@ public class Home_Activity extends AppCompatActivity {
         startActivity(i);
     }
 
+    public void slideMenuSystem(View v){
+        Intent i = new Intent(mContext, System_Activity.class);
+        startActivity(i);
+    }
 }

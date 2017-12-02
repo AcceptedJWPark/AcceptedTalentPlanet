@@ -1,5 +1,6 @@
 package com.example.accepted.acceptedtalentplanet.TalentResister;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.location.Address;
@@ -10,6 +11,7 @@ import android.text.SpannableString;
 import android.text.style.UnderlineSpan;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -46,6 +48,7 @@ public class TalentResister_Point_Activity extends AppCompatActivity {
     private MyTalent Data;
     private int Point;
     private int level;
+    EditText TalentResister_Talent_Point;
 
     GeoPoint[] arrGp = new GeoPoint[3];
 
@@ -68,6 +71,16 @@ public class TalentResister_Point_Activity extends AppCompatActivity {
         arrGp[1] = findGeoPoint(Location2);
         arrGp[2] = findGeoPoint(Location3);
         level = i.getIntExtra("level", 1);
+
+        TalentResister_Talent_Point = (EditText) findViewById(R.id.TalentResister_Talent_Point);
+        TalentResister_Talent_Point.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                hideKeyboard(v);
+            }
+        });
+
+
         HavingDataFlag = i.getBooleanExtra("HavingDataFlag", false);
         if(HavingDataFlag)
         {
@@ -201,4 +214,10 @@ public class TalentResister_Point_Activity extends AppCompatActivity {
         }
         return location;
     }
+
+    public void hideKeyboard(View view) {
+        InputMethodManager inputMethodManager =(InputMethodManager)getSystemService(Activity.INPUT_METHOD_SERVICE);
+        inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
+    }
+
 }

@@ -33,6 +33,7 @@ import com.example.accepted.acceptedtalentplanet.MyProfile.MyProfile_Activity;
 import com.example.accepted.acceptedtalentplanet.MyTalent;
 import com.example.accepted.acceptedtalentplanet.R;
 import com.example.accepted.acceptedtalentplanet.SaveSharedPreference;
+import com.example.accepted.acceptedtalentplanet.System.System_Activity;
 import com.example.accepted.acceptedtalentplanet.TalentCondition.TalentCondition_Activity;
 import com.example.accepted.acceptedtalentplanet.TalentSearching.TalentSearching_Activity;
 import com.example.accepted.acceptedtalentplanet.TalentSharing.TalentSharing_Activity;
@@ -323,10 +324,15 @@ public class TalentResister_Activity extends AppCompatActivity {
         finish();
     }
 
-
     public void slideMenuCustomerService(View v){
         Intent i = new Intent(mContext, CustomerService_MainActivity.class);
         startActivity(i);
     }
+
+    public void slideMenuSystem(View v){
+        Intent i = new Intent(mContext, System_Activity.class);
+        startActivity(i);
+    }
+
 
 }

@@ -14,6 +14,8 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/MyProfile_Toolbar"
         android:gravity="center"
+        android:clickable="true"
+        android:focusableInTouchMode="true"
         android:background="#f5f5f5"
         >
 
@@ -68,26 +70,33 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:fillViewport="true">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
+            android:clickable="true"
+            android:focusableInTouchMode="true"
             >
 
             <LinearLayout
+                android:id="@+id/claim_LL1"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="100dp"
                 android:orientation="vertical">
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/Claim_Divider" />
+                    android:layout_height="0dp"
+                    android:layout_weight="0.5"
+                    />
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/Claim_List_BtnLayout"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
                     android:layout_marginLeft="40dp"
                     android:layout_marginRight="40dp"
                     android:gravity="center"
@@ -105,19 +114,12 @@
                         android:textSize="@dimen/Page_ItemTitle"
                         android:textStyle="bold" />
 
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="5"
-                        android:orientation="vertical">
-
-
 
                         <TextView
                             android:id="@+id/CustomerService_Claim_SharingList"
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="1"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="5"
                             android:background="@drawable/spinner_background"
                             android:gravity="center"
                             android:text="공유 내역보기"
@@ -125,16 +127,18 @@
                             android:textSize="@dimen/GiveorTakeBtn"
                             android:textStyle="bold" />
 
-                    </LinearLayout>
                 </LinearLayout>
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/Claim_Divider" />
+                    android:layout_height="0dp"
+                    android:layout_weight="0.3"
+                    />
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/Claim_List_BtnLayout"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
                     android:layout_marginLeft="40dp"
                     android:layout_marginRight="40dp"
                     android:gravity="center"
@@ -152,52 +156,45 @@
                         android:textSize="@dimen/Page_ItemTitle"
                         android:textStyle="bold" />
 
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="5"
-                        android:orientation="vertical">
 
 
                         <Spinner
                             android:id="@+id/CustomerService_Claim_Spinner"
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
                             android:layout_gravity="center"
-                            android:layout_weight="1"
+                            android:layout_weight="5"
                             android:background="@drawable/spinner_background"
                             android:gravity="center"
                             android:padding="3dp"
 
                             />
 
-
-                    </LinearLayout>
-
-
                 </LinearLayout>
+
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/Claim_Divider"/>
+                    android:layout_height="0dp"
+                    android:layout_weight="0.5"
+                    />
+
             </LinearLayout>
 
 
 
 
             <View
+                android:id="@+id/claim_Devider1"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/Claim_Divider2"
                 android:background="#eeeeee"
                 />
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/Claim_Divider2"/>
 
             <TextView
-                android:id="@+id/CustomerService_Claim_SharingTalentTitle"
+                android:id="@+id/claim_Txt1"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/Claim_List_BtnLayout"
+                android:layout_height="50dp"
                 android:text="&quot;공유 내역보기에서 신고 대상을 선택해주세요.&quot;"
                 android:gravity="center"
                 android:ellipsize="end"
@@ -206,11 +203,9 @@
                 android:textSize="@dimen/Page_Txt"
                 />
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/Claim_Divider2"/>
 
             <LinearLayout
+                android:id="@+id/claim_LL2"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/Claim_Edit_Layout"
                 android:gravity="center"
@@ -230,7 +225,8 @@
                         android:id="@+id/Claim_EditTxt"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_margin="10dp"
+                        android:layout_margin="7dp"
+                        android:padding="3dp"
                         android:gravity="top"
                         android:hint="내용을 입력해주세요. 1000자로 제한됩니다."
                         android:textSize="@dimen/Edit_Hint"
@@ -280,12 +276,14 @@
 
 
             <View
+                android:id="@+id/claim_Devider2"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/Claim_Divider"/>
 
 
 
             <LinearLayout
+                android:id="@+id/claim_LL3"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/Claim_List_Layout2"
                 android:layout_marginLeft="40dp"
@@ -322,32 +320,37 @@
             </LinearLayout>
 
             <View
+                android:id="@+id/claim_Devider3"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/Claim_Divider"/>
 
+            <LinearLayout
+                android:id="@+id/claim_LL4"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/Claim_List_Layout2"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp">
 
 
             <Button
                 android:id="@+id/CustomerService_ClaimBtn"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/ScrollView_BigBtn"
+                android:layout_height="match_parent"
                 android:text="신고 하기"
                 android:textStyle="bold"
                 android:gravity="center"
                 android:textColor="@color/textColor"
-                android:layout_marginLeft="40dp"
-                android:layout_marginRight="40dp"
                 android:background="@drawable/big_button_background"
                 android:textSize="@dimen/BigBtn"
                 />
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/Claim_Divider2"/>
+            </LinearLayout>
+
 
             <TextView
+                android:id="@+id/claim_Txt2"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/Claim_List_BtnLayout"
+                android:layout_height="50dp"
                 android:text="신고 결과는 &quot;신고내역&quot;에서 조회 할 수 있습니다."
                 android:layout_below="@id/CustomerService_ClaimBtn"
                 android:textSize="@dimen/Page_Txt"
@@ -355,9 +358,6 @@
                 android:gravity="center"
                 />
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/Claim_Divider2"/>
 
         </LinearLayout>
 

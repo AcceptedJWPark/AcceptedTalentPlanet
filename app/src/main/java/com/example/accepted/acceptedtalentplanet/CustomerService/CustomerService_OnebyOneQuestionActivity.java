@@ -1,8 +1,11 @@
 package com.example.accepted.acceptedtalentplanet.CustomerService;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 
 import com.example.accepted.acceptedtalentplanet.R;
@@ -14,6 +17,7 @@ import com.example.accepted.acceptedtalentplanet.R;
 public class CustomerService_OnebyOneQuestionActivity extends AppCompatActivity {
 
 LinearLayout CustomerService_OnebyOneQuesition_PreBtn;
+EditText onebyonequestion_EditTxt;
 
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -28,6 +32,23 @@ LinearLayout CustomerService_OnebyOneQuesition_PreBtn;
             }
         });
 
+        onebyonequestion_EditTxt = (EditText) findViewById(R.id.onebyonequestion_EditTxt);
+        onebyonequestion_EditTxt.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if(!hasFocus)
+                {
+                    hideKeyboard(v);
+                }
+
+            }
+        });
+
+    }
+
+    public void hideKeyboard(View view) {
+        InputMethodManager inputMethodManager =(InputMethodManager)getSystemService(Activity.INPUT_METHOD_SERVICE);
+        inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
 
 

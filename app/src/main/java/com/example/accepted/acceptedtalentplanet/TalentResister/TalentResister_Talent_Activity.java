@@ -1,5 +1,6 @@
 package com.example.accepted.acceptedtalentplanet.TalentResister;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,6 +9,7 @@ import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -92,11 +94,9 @@ public class TalentResister_Talent_Activity extends AppCompatActivity {
 
         talentLocation_Adapter = new TalentResister_Location_Adapter(mContext, talent_ArrayList);
         talent_ListView.setAdapter(talentLocation_Adapter);
-        set_Talent_ListViewHeightBasedOnItems(talent_ListView);
 
         talent_addBtn = (Button) findViewById(R.id.addTalentBtn);
         Talent_autoEdit = (EditText) findViewById(R.id.TalentResister_Talent);
-
         talent_addBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -114,6 +114,17 @@ public class TalentResister_Talent_Activity extends AppCompatActivity {
                 Talent_autoEdit.setText("");
                 talentLocation_Adapter = new TalentResister_Location_Adapter(getBaseContext(), talent_ArrayList);
                 talent_ListView.setAdapter(talentLocation_Adapter);
+            }
+        });
+
+        Talent_autoEdit.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if(!hasFocus)
+                {
+                    hideKeyboard(v);
+                }
+
             }
         });
 
@@ -145,30 +156,13 @@ public class TalentResister_Talent_Activity extends AppCompatActivity {
 
     }
 
-
-
-    public void set_Talent_ListViewHeightBasedOnItems(ListView listView)
-    {
-        ListAdapter listAdapter = listView.getAdapter();
-        if(listAdapter == null)
-        {
-            return;
-        }
-        int numberOfItems = listAdapter.getCount();
-        int totalItemsHeight = 0;
-        for (int itemPos = 0; itemPos < numberOfItems; itemPos++) {
-            View item = listAdapter.getView(itemPos, null, listView);
-            item.measure(0, 0);
-            totalItemsHeight += item.getMeasuredHeight();
-        }
-
-        int totalDividersHeight = listView.getDividerHeight() *  (numberOfItems - 1);
-
-        ViewGroup.LayoutParams params = listView.getLayoutParams();
-        params.height = totalItemsHeight + totalDividersHeight;
-        listView.setLayoutParams(params);
-        listView.requestLayout();
-
+    public void hideKeyboard(View view) {
+        InputMethodManager inputMethodManager =(InputMethodManager)getSystemService(Activity.INPUT_METHOD_SERVICE);
+        inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
+
+
+
+
 
 }

@@ -33,6 +33,7 @@ import com.android.volley.toolbox.Volley;
 import com.example.accepted.acceptedtalentplanet.GeoPoint;
 import com.example.accepted.acceptedtalentplanet.Home.Home_Activity;
 import com.example.accepted.acceptedtalentplanet.LoadingLogin.Login_Activity;
+import com.example.accepted.acceptedtalentplanet.System.System_Activity;
 import com.example.accepted.acceptedtalentplanet.TalentResister.TalentResister_LocationList;
 import com.example.accepted.acceptedtalentplanet.MyProfile.MyProfile_Activity;
 import com.example.accepted.acceptedtalentplanet.MyTalent;
@@ -128,6 +129,12 @@ public class TalentSharing_Activity extends AppCompatActivity {
         Intent i = new Intent(mContext, CustomerService_MainActivity.class);
         startActivity(i);
     }
+
+    public void slideMenuSystem(View v){
+        Intent i = new Intent(mContext, System_Activity.class);
+        startActivity(i);
+    }
+
 
     public void getTalentSharing() {
         RequestQueue postRequestQueue = Volley.newRequestQueue(this);

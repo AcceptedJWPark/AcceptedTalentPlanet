@@ -25,7 +25,10 @@
             android:name=".Join.Join_Gender_Activity"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".MainActivity"
+        android:name=".MainActivity"
+        android:theme="@style/AppTheme" />
+        <activity
+            android:name=".Home.Home_Activity"
             android:theme="@style/AppTheme" />
         <activity
             android:name=".Join.Join_Email_Activity"
@@ -65,6 +68,8 @@
         <activity android:name=".CustomerService.CustomerService_OnebyOneQuestionActivity"/>
         <activity android:name=".CustomerService.CustomerService_OnebyOneQuestionListActivity"/>
         <activity android:name=".CustomerService.CustomerService_UpdateActivity"/>
+        <activity android:name=".CustomerService.CustomerService_Manual_AnswerList_Activity"/>
+        <activity android:name=".CustomerService.CustomerService_ManualActivity"/>
         <activity
             android:name=".CustomerService.CustomerService_ClaimActivity"
             />
@@ -74,12 +79,21 @@
             />
 
         <activity android:name=".CustomerService.CustomerService_Claim_SharingListActivity"/>
-        <activity android:name=".TalentSearching.TalentSearching_SearchingPage_Activity"/>
+        <activity android:name=".TalentSearching.TalentSearching_SearchingPage_Activity"
+            android:windowSoftInputMode="adjustNothing"/>
         <activity android:name=".TalentSearching.TalentSearching_Activity"/>
 
         <activity
             android:name=".TalentSharing.TalentSharing_Popup_Activity"
             android:theme="@style/Theme.AppCompat.Dialog">
+        </activity>
+
+        <activity
+            android:name=".System.System_Activity">
+        </activity>
+
+        <activity
+            android:name=".InterestingList.InterestingList_Activity">
         </activity>
 
 

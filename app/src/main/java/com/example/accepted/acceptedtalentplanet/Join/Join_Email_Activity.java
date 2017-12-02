@@ -3,6 +3,7 @@ package com.example.accepted.acceptedtalentplanet.Join;
 /**
  * Created by kwonhong on 2017-10-01.
  */
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -11,6 +12,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -44,6 +46,7 @@ public class Join_Email_Activity extends  AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.join_email);
 
+        EditText emailCheck = (EditText) findViewById(R.id.Join_joinCode);
         EditText email = (EditText)findViewById(R.id.Join_Email);
         findViewById(R.id.btnAccept).setOnClickListener(mClickListener);
         email.addTextChangedListener(new TextWatcher() {
@@ -66,6 +69,27 @@ public class Join_Email_Activity extends  AppCompatActivity {
             }
         });
 
+
+        emailCheck.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if(!hasFocus)
+                {
+                    hideKeyboard(v);
+                }
+
+            }
+        });
+        email.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if(!hasFocus)
+                {
+                    hideKeyboard(v);
+                }
+
+            }
+        });
     }
 
     public Response.ErrorListener el = new Response.ErrorListener() {
@@ -217,5 +241,10 @@ public class Join_Email_Activity extends  AppCompatActivity {
             }
         }
     };
+
+    public void hideKeyboard(View view) {
+        InputMethodManager inputMethodManager =(InputMethodManager)getSystemService(Activity.INPUT_METHOD_SERVICE);
+        inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
+    }
 
 }
