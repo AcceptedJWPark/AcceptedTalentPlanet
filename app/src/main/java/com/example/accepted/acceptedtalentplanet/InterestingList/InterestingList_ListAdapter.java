@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.accepted.acceptedtalentplanet.R;
+import com.example.accepted.acceptedtalentplanet.TalentSharing.TalentSharing_Popup_Activity;
 
 import java.util.ArrayList;
 
@@ -28,8 +29,9 @@ public class InterestingList_ListAdapter extends BaseAdapter {
     TextView listView_talent2;
     TextView listView_talent3;
     TextView listView_talentType;
-    TextView Interesting_RegistDate;
     Button Interesting_List_ShowProfile;
+    TextView Interesting_RegistDate;
+    Button listView_showProfile;
 
     public InterestingList_ListAdapter(Context context, ArrayList<InterestingList_ListItem> list_ArrayList) {
         this.context = context;
