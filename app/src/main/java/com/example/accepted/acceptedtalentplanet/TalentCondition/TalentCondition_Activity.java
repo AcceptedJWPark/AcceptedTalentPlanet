@@ -15,11 +15,13 @@ import android.widget.TextView;
 
 import com.example.accepted.acceptedtalentplanet.CustomerService.CustomerService_MainActivity;
 import com.example.accepted.acceptedtalentplanet.Home.Home_Activity;
+import com.example.accepted.acceptedtalentplanet.InterestingList.Interesting_Activity;
 import com.example.accepted.acceptedtalentplanet.LoadingLogin.Login_Activity;
 import com.example.accepted.acceptedtalentplanet.MyProfile.MyProfile_Activity;
 import com.example.accepted.acceptedtalentplanet.MyTalent;
 import com.example.accepted.acceptedtalentplanet.R;
 import com.example.accepted.acceptedtalentplanet.SaveSharedPreference;
+import com.example.accepted.acceptedtalentplanet.System.System_Activity;
 import com.example.accepted.acceptedtalentplanet.TalentResister.TalentResister_Activity;
 import com.example.accepted.acceptedtalentplanet.TalentSearching.TalentSearching_Activity;
 import com.example.accepted.acceptedtalentplanet.TalentSharing.TalentSharing_Activity;
@@ -102,6 +104,21 @@ public class TalentCondition_Activity extends AppCompatActivity {
         TalentCondition_Take_btn03 = (Button) findViewById(R.id.TalentCondition_Take_Button3);
         TalentCondition_Take_KeywordBox = (LinearLayout) findViewById(R.id.TalentCondition_Take_KeywordBox);
 
+        TalentCondition_Give_btn01.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext, Interesting_Activity.class);
+                startActivity(intent);
+            }
+        });
+
+        TalentCondition_Take_btn01.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext, Interesting_Activity.class);
+                startActivity(intent);
+            }
+        });
 
         TalentCondition_Give = (GiveTalent == null)?false : true;
         TalentCondition_Take = (TakeTalent == null)?false : true;
@@ -169,8 +186,7 @@ public class TalentCondition_Activity extends AppCompatActivity {
 
         if (TalentCondition_Give == false) {
             TalentCondition_Give_KeywordBox.setVisibility(View.GONE);
-            TalentCondition_Give_Text1.setText("\"재능드림이 등록되지 않았습니다.");
-            TalentCondition_Give_Text2.setText("재능드림을 등록하여 회원님의 재능을 공유해주세요!\"");
+            TalentCondition_Give_Text2.setText("재능드림이 등록되지 않았습니다.\n\n재능드림을 등록하여 회원님의 재능을 공유해주세요!\"");
             TalentCondition_Give_btn01.setVisibility(View.GONE);
             TalentCondition_Give_btn02.setVisibility(View.GONE);
             TalentCondition_Give_btn03.setVisibility(View.VISIBLE);
@@ -225,8 +241,7 @@ public class TalentCondition_Activity extends AppCompatActivity {
 
         if (TalentCondition_Take == false) {
             TalentCondition_Take_KeywordBox.setVisibility(View.GONE);
-            TalentCondition_Take_Text1.setText("\"관심재능이 등록되지 않았습니다.");
-            TalentCondition_Take_Text2.setText("관심재능을 등록하여 회원님의 재능을 공유해주세요!\"");
+            TalentCondition_Take_Text2.setText("관심재능이 등록되지 않았습니다.\n\n관심재능을 등록하여 회원님의 재능을 공유해주세요!\"");
             TalentCondition_Take_btn01.setVisibility(View.GONE);
             TalentCondition_Take_btn02.setVisibility(View.GONE);
             TalentCondition_Take_btn03.setVisibility(View.VISIBLE);
@@ -289,6 +304,7 @@ public class TalentCondition_Activity extends AppCompatActivity {
         Intent i = new Intent(mContext, TalentSearching_Activity.class);
         startActivity(i);
     }
+
     public void slideMenuProfile(View v){
         Intent i = new Intent(mContext, MyProfile_Activity.class);
         startActivity(i);
@@ -316,9 +332,14 @@ public class TalentCondition_Activity extends AppCompatActivity {
         finish();
     }
 
-
     public void slideMenuCustomerService(View v){
         Intent i = new Intent(mContext, CustomerService_MainActivity.class);
         startActivity(i);
     }
+
+    public void slideMenuSystem(View v){
+        Intent i = new Intent(mContext, System_Activity.class);
+        startActivity(i);
+    }
+
 }

@@ -15,6 +15,7 @@ import com.example.accepted.acceptedtalentplanet.LoadingLogin.Login_Activity;
 import com.example.accepted.acceptedtalentplanet.MyProfile.MyProfile_Activity;
 import com.example.accepted.acceptedtalentplanet.R;
 import com.example.accepted.acceptedtalentplanet.SaveSharedPreference;
+import com.example.accepted.acceptedtalentplanet.System.System_Activity;
 import com.example.accepted.acceptedtalentplanet.TalentCondition.TalentCondition_Activity;
 import com.example.accepted.acceptedtalentplanet.TalentResister.TalentResister_Activity;
 import com.example.accepted.acceptedtalentplanet.TalentSearching.TalentSearching_Activity;
@@ -36,6 +37,7 @@ public class CustomerService_MainActivity extends AppCompatActivity {
     LinearLayout CustomerService_OnebyOneQuestionList;
     LinearLayout CustomerService_Claim;
     LinearLayout CustomerService_ClaimList;
+    LinearLayout CustomerService_ManualLL;
 
     DrawerLayout slidingMenuDL;
     View drawerView;
@@ -138,6 +140,17 @@ public class CustomerService_MainActivity extends AppCompatActivity {
             }
         });
 
+        CustomerService_ManualLL = (LinearLayout) findViewById(R.id.CustomerService_ManualLL);
+        CustomerService_ManualLL.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), CustomerService_ManualActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
+
 
         slidingMenuDL = (DrawerLayout) findViewById(R.id.CustomerService_listboxDL);
         drawerView = (View) findViewById(R.id.CustomerService_container);
@@ -158,13 +171,10 @@ public class CustomerService_MainActivity extends AppCompatActivity {
                 slidingMenuDL.closeDrawer(drawerView);
             }
         });
-       /* ((TextView) findViewById(R.id.DrawerUserID)).setText(SaveSharedPreference.getUserId(mContext));*/
+        ((TextView) findViewById(R.id.DrawerUserID)).setText(SaveSharedPreference.getUserId(mContext));
 
     }
 
-
-
-    //CustomerService Activity에서는 mContext를 왜 getApplicationContext로 대체해야 작동하는지??
 
     public void slideMenuTalentSearching(View v){
         Intent i = new Intent(mContext, TalentSearching_Activity.class);
@@ -200,6 +210,11 @@ public class CustomerService_MainActivity extends AppCompatActivity {
 
     public void slideMenuCustomerService(View v){
         Intent i = new Intent(mContext, CustomerService_MainActivity.class);
+        startActivity(i);
+    }
+
+    public void slideMenuSystem(View v){
+        Intent i = new Intent(mContext, System_Activity.class);
         startActivity(i);
     }
 }

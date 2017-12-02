@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="24"
+    android:orientation="vertical"
+    android:background="#ffffff"
+    >
+
+    <ExpandableListView
+        android:id="@+id/CustomerService_Manual_ELV"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="23"
+        >
+
+    </ExpandableListView>
+
+    <Button
+        android:id="@+id/CustomerService_manual_answerList_PreBtn"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginLeft="40dp"
+        android:background="@drawable/big_button_background"
+        android:text="뒤로 가기"
+        android:textSize="@dimen/BigBtn"
+        android:textColor="@color/textColor"
+        />
+
+</LinearLayout>

@@ -8,6 +8,7 @@
     android:background="#ffffff"
     tools:context=".TalentResister.TalentResister_Talent_Activity"
     android:weightSum="24"
+    android:clickable="true"
     android:focusable="true"
     android:focusableInTouchMode="true"
     >
@@ -112,7 +113,7 @@
         <ListView
             android:id="@+id/talent_ListView"
             android:layout_width="match_parent"
-            android:layout_height="80dp"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="80dp"
             android:layout_marginRight="80dp"
             android:dividerHeight="0dp"

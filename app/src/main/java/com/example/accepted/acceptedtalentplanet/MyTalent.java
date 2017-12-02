@@ -42,7 +42,12 @@ public class MyTalent implements Serializable{
     }
 
     public int getPoint(){
-        return Integer.parseInt(Point);
+        try {
+            return Integer.parseInt(Point);
+        }
+        catch(Exception e){
+            return 0;
+        }
     }
 
     public String getLevel(){

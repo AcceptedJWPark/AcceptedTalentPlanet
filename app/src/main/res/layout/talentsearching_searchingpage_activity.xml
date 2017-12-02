@@ -1,365 +1,266 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+
+<ScrollView android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="#ffffff"
-    android:weightSum="24"
-    >
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.3"/>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1.3"
-        android:gravity="center"
-        android:textSize="@dimen/Page_Txt"
-        android:textColor="@color/textColor"
-        android:text="&quot;아래 검색 조건을 입력해주세요!&quot;"
-
-        />
-
+    android:fillViewport="true"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:background="#ffffff"
+        android:clickable="true"
         android:focusable="true"
         android:focusableInTouchMode="true"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp"
-        >
+        android:orientation="vertical"
+        android:weightSum="24">
 
         <TextView
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="left|center"
-            android:text="키워드"
-            android:textStyle="bold"
-            android:textSize="@dimen/Page_ItemTitle"
+            android:id="@+id/TalentSearching_TxtView"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:text="&quot;아래 검색 조건을 입력해주세요!&quot;"
             android:textColor="@color/textColor"
+            android:textSize="@dimen/Page_Txt"
             />
 
 
         <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="5.2"
-            android:orientation="vertical"
+            android:id="@+id/TalentSearching_LL1"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:focusable="true"
+            android:layout_marginBottom="10dp"
+            android:focusableInTouchMode="true"
             >
 
-           
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="left|center"
+                android:text="키워드"
+                android:textColor="@color/textColor"
+                android:textSize="@dimen/Page_ItemTitle"
+                android:textStyle="bold" />
 
 
             <EditText
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
+                android:id="@+id/TalentSearching_KeywordInput"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="4"
                 android:background="@drawable/small_button_whitebackground"
                 android:gravity="left|center"
+                android:paddingLeft="10dp"
                 android:singleLine="true"
-                android:hint="키워드1, 키워드2, 키워드3..."
-                android:paddingLeft="5dp"
-                android:paddingBottom="3dp"
-                android:paddingTop="3dp"
-                android:textSize="@dimen/TalentSearching_SpinnerTxt"
-                />
+                android:textColor="@color/textColor"
+                android:textColorHint="@color/textColor"
+                android:textSize="@dimen/TalentSearching_SpinnerTxt" />
 
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.2" />
+
+            <Button
+                android:id="@+id/keyword_addBtn"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:background="@drawable/small_button_whitebackground"
+                android:text="등 록"
+                android:textColor="@color/textColor"
+                android:textSize="@dimen/ListView_Btn" />
+        </LinearLayout>
+
+
+        <ListView
+            android:id="@+id/TalentSearching_KeywordListView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:divider="#ffffff"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:dividerHeight="0dp">
+        </ListView>
+
+
+
+
+        <LinearLayout
+            android:id="@+id/TalentSearching_LL2"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            >
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="left|center"
+                android:text="장 소"
+                android:textColor="@color/textColor"
+                android:textSize="@dimen/Page_ItemTitle"
+                android:textStyle="bold" />
+
+
+                <Spinner
+                    android:id="@+id/location_bigcategory_spinner"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2.5"
+                    android:background="@drawable/small_button_whitebackground"
+                    android:paddingLeft="3dp"
+                    android:paddingRight="3dp" />
+
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.2" />
+
+
+                <Spinner
+                    android:id="@+id/location_smallcategory_spinner"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2.5"
+                    android:background="@drawable/small_button_whitebackground"
+                    android:paddingLeft="3dp"
+                    android:paddingRight="3dp" />
 
 
         </LinearLayout>
-        
-        
 
-    </LinearLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.4"/>
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp"
-        >
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="left|center"
-            android:text="장 소"
-            android:textStyle="bold"
-            android:textSize="@dimen/Page_ItemTitle"
-            android:textColor="@color/textColor"
-            />
 
         <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="2.5"
-            android:orientation="vertical"
+            android:id="@+id/TalentSearching_LL3"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
             >
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="left|center"
+                android:text="수 준"
+                android:textColor="@color/textColor"
+                android:textSize="@dimen/Page_ItemTitle"
+                android:textStyle="bold" />
 
 
             <Spinner
-                android:id="@+id/location_bigcategory_spinner"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:paddingLeft="3dp"
-                android:paddingRight="3dp"
+                android:id="@+id/level_start_spinner"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2.5"
                 android:background="@drawable/small_button_whitebackground"
-                />
+                android:paddingLeft="3dp"
+                android:paddingRight="3dp" />
 
-        </LinearLayout>
+            <View
+                android:layout_width="0dp"
+                android:layout_height="27dp"
+                android:layout_weight="0.2" />
 
-        <View
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="0.2"/>
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="2.5"
-            android:orientation="vertical"
-            >
 
             <Spinner
-                android:id="@+id/location_smallcategory_spinner"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:paddingLeft="3dp"
-                android:paddingRight="3dp"
+                android:id="@+id/level_end_spinner"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2.5"
                 android:background="@drawable/small_button_whitebackground"
-                />
+                android:paddingLeft="3dp"
+                android:paddingRight="3dp" />
+
 
         </LinearLayout>
 
-    </LinearLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.4"/>
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp"
-        >
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="left|center"
-            android:text="수 준"
-            android:textStyle="bold"
-            android:textSize="@dimen/Page_ItemTitle"
-            android:textColor="@color/textColor"
-            />
-
 
         <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="2.5"
-            android:orientation="vertical"
+            android:id="@+id/TalentSearching_LL4"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
             >
 
-
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:orientation="horizontal"
-                >
-
-                <Spinner
-                    android:id="@+id/level_start_spinner"
+                <TextView
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:paddingLeft="3dp"
-                    android:paddingRight="3dp"
+                    android:gravity="left|center"
+                    android:text="포인트"
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/Page_ItemTitle"
+                    android:textStyle="bold" />
+
+
+                <EditText
+                    android:id="@+id/TalentSearching_PointInput1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2.5"
                     android:background="@drawable/small_button_whitebackground"
-                    />
+                    android:gravity="center"
+                    android:hint="이상"
+                    android:inputType="number"
+                    android:textColor="@color/textColor"
+                    android:textColorHint="@color/textColor"
+                    android:textSize="@dimen/TalentSearching_SpinnerTxt" />
 
-            </LinearLayout>
 
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.2" />
 
+                <EditText
+                    android:id="@+id/TalentSearching_PointInput2"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2.5"
+                    android:background="@drawable/small_button_whitebackground"
+                    android:gravity="center"
+                    android:hint="이하"
+                    android:inputType="number"
+                    android:textColor="@color/textColor"
+                    android:textColorHint="@color/textColor"
+                    android:textSize="@dimen/TalentSearching_SpinnerTxt" />
 
         </LinearLayout>
 
         <View
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="0.2"/>
+            android:id="@+id/TalentSearching_Devider"
+            android:layout_width="match_parent"
+            android:layout_height="10dp" />
 
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="2.5"
-            android:orientation="vertical"
-            >
-
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:orientation="horizontal"
-                >
-
-                <Spinner
-                    android:id="@+id/level_end_spinner"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:paddingLeft="3dp"
-                    android:paddingRight="3dp"
-                    android:background="@drawable/small_button_whitebackground"
-                    />
-
-            </LinearLayout>
-
-
-        </LinearLayout>
-
-    </LinearLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.4"/>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp"
-        >
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="left|center"
-            android:text="포인트"
-            android:textStyle="bold"
-            android:textSize="@dimen/Page_ItemTitle"
+        <Button
+            android:id="@+id/TalentSearching_SaveBtn"
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:textSize="@dimen/BigBtn"
+            android:background="@drawable/big_button_background"
+            android:text="저장 후 검색"
             android:textColor="@color/textColor"
-            />
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="2.5"
-            android:orientation="vertical"
-            >
-
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:orientation="horizontal"
-                >
-
-                <EditText
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:background="@drawable/small_button_whitebackground"
-                    android:gravity="center"
-                    android:inputType="number"
-                    android:paddingBottom="5dp"
-                    android:paddingTop="5dp"
-                    android:textSize="@dimen/TalentSearching_SpinnerTxt" />
-
-
-            </LinearLayout>
-
-
-
-        </LinearLayout>
-
-        <View
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="0.2"/>
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="2.5"
-            android:orientation="vertical"
-            >
-
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:orientation="horizontal"
-                >
-
-                <EditText
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:background="@drawable/small_button_whitebackground"
-                    android:gravity="center"
-                    android:inputType="number"
-                    android:paddingBottom="5dp"
-                    android:paddingTop="5dp"
-                    android:textSize="@dimen/TalentSearching_SpinnerTxt" />
-
-
-            </LinearLayout>
-
-
-        </LinearLayout>
+            android:textStyle="bold" />
 
 
     </LinearLayout>
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.5"/>
-
-    <Button
-        android:id="@+id/TalentSearching_SaveBtn"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp"
-        android:layout_gravity="center"
-        android:textSize="@dimen/BigBtn"
-        android:background="@drawable/big_button_background"
-        android:text="저장 후 검색"
-        android:textColor="@color/textColor"
-        android:textStyle="bold" />
-
-
-</LinearLayout>
+</ScrollView>

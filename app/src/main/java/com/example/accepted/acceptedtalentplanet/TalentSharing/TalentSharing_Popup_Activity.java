@@ -49,11 +49,8 @@ public class TalentSharing_Popup_Activity extends FragmentActivity{
 
         int width = (int) (display.getWidth() * 1);
         int height = (int) (display.getHeight() * 0.9);
-
         getWindow().getAttributes().width = width;
         getWindow().getAttributes().height = height;
-
-
 
         talentSharing_pupupclosebtn = (ImageView) findViewById(R.id.TalentSharing_pupupclosebtn);
         talentSharing_pupupclosebtn.setOnClickListener(new View.OnClickListener() {

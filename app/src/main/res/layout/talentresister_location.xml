@@ -8,6 +8,7 @@
     android:background="#ffffff"
     tools:context=".TalentResister.TalentResister_Location_Activity"
     android:weightSum="24"
+    android:clickable="true"
     android:focusable="true"
     android:focusableInTouchMode="true"
     >

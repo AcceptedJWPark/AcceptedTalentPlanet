@@ -69,6 +69,10 @@
 
 </LinearLayout>
 
+
+
+
+
         </LinearLayout>
 
         <LinearLayout
@@ -97,10 +101,6 @@
 
     </LinearLayout>
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.3"/>
 
     <TextView
         android:layout_width="match_parent"
@@ -114,9 +114,6 @@
         android:paddingLeft="5dp"
         android:text="회원 정보"
         />
-
-
-
 
     <LinearLayout
                 android:layout_width="match_parent"
@@ -249,7 +246,7 @@
         android:gravity="center_vertical"
         android:textSize="11dp"
         android:paddingLeft="5dp"
-        android:text="재능 드림"
+        android:text="재능 정보"
         />
 
 
@@ -480,12 +477,12 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.25"/>
+        android:layout_weight="0.4"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1.3"
+        android:layout_weight="1"
         android:orientation="horizontal"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
@@ -506,22 +503,24 @@
             />
 
         <Button
+            android:id="@+id/Popup_ProgressorCancel"
             android:layout_width="0dp"
             android:background="@drawable/big_button_background"
             android:layout_height="match_parent"
             android:layout_marginLeft="5dp"
             android:textSize="@dimen/Popup_BigBtn"
+            android:onClick="btnClicked"
             android:textColor="@color/textColor"
             android:layout_weight="1"
             android:textStyle="bold"
-            android:text="관심"
+            android:text="진행 또는 취소"
             />
 
     </LinearLayout>
     <View
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.25"/>
+        android:layout_weight="0.4"/>
 </LinearLayout>
 
 

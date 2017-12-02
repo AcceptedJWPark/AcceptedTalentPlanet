@@ -1,5 +1,6 @@
 package com.example.accepted.acceptedtalentplanet.TalentResister;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -55,12 +56,13 @@ public class TalentResister_Location_Activity extends AppCompatActivity {
         ArrayAdapter<String> Location_ListAdapter = new ArrayAdapter<String>(getBaseContext(), R.layout.talentresister_location_spinnertext,Location_List);
         Location_autoEdit1 = (AutoCompleteTextView) findViewById(R.id.TalentResister_Location);
         Location_autoEdit1.setAdapter(Location_ListAdapter);
+        Location_autoEdit1.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            public void onFocusChange(View v, boolean hasFocus) {
+                if(!hasFocus)
+                {
+                    hideKeyboard(v);
+                }
 
-        Location_autoEdit1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                InputMethodManager in = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                in.hideSoftInputFromWindow(view.getApplicationWindowToken(), 0);
             }
         });
 
@@ -94,7 +96,6 @@ public class TalentResister_Location_Activity extends AppCompatActivity {
         location_ListView = (ListView) findViewById(R.id.location_ListView);
         location_ArrayList = new ArrayList<>();
 
-        set_Location_ListViewHeightBasedOnItems(location_ListView);
 
         Intent i = getIntent();
         Talent1 = i.getStringExtra("talent1");
@@ -116,7 +117,6 @@ public class TalentResister_Location_Activity extends AppCompatActivity {
 
         talentLocation_Adapter = new TalentResister_Location_Adapter(mContext, location_ArrayList);
         location_ListView.setAdapter(talentLocation_Adapter);
-
         location_addBtn = (Button) findViewById(R.id.addLoctionBtn);
         location_addBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -137,6 +137,7 @@ public class TalentResister_Location_Activity extends AppCompatActivity {
                 location_ListView.setAdapter(talentLocation_Adapter);
             }
         });
+
 
 
     }
@@ -166,29 +167,10 @@ public class TalentResister_Location_Activity extends AppCompatActivity {
         startActivity(i);
 
     }
-
-    public void set_Location_ListViewHeightBasedOnItems(ListView listView)
-    {
-        ListAdapter listAdapter = listView.getAdapter();
-        if(listAdapter == null)
-        {
-            return;
-        }
-        int numberOfItems = listAdapter.getCount();
-        int totalItemsHeight = 0;
-        for (int itemPos = 0; itemPos < numberOfItems; itemPos++) {
-            View item = listAdapter.getView(itemPos, null, listView);
-            item.measure(0, 0);
-            totalItemsHeight += item.getMeasuredHeight();
-        }
-
-        int totalDividersHeight = listView.getDividerHeight() *  (numberOfItems - 1);
-
-        ViewGroup.LayoutParams params = listView.getLayoutParams();
-        params.height = totalItemsHeight + totalDividersHeight;
-        listView.setLayoutParams(params);
-        listView.requestLayout();
-
+    public void hideKeyboard(View view) {
+        InputMethodManager inputMethodManager =(InputMethodManager)getSystemService(Activity.INPUT_METHOD_SERVICE);
+        inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
+
 
 }
