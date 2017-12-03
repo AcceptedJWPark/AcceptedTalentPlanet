@@ -13,6 +13,7 @@ public class InterestingList_ListItem {
     private String talent3;
     private String talentType;
     private String registDate;
+    private String talentID;
 
     public int getPicture() {
         return picture;
@@ -41,6 +42,8 @@ public class InterestingList_ListItem {
     public String getTalentType() {
         return talentType;
     }
+
+    public String getTalentID() { return talentID; }
 
 
     public void setPicture(int picture) {
@@ -71,8 +74,10 @@ public class InterestingList_ListItem {
         this.registDate = registDate;
     }
 
+    public void setTalentID(String talentID) { this.talentID = talentID; }
 
-    public InterestingList_ListItem(int pictire, String name, String talent1, String talent2, String talent3, String talentType, String registDate )
+
+    public InterestingList_ListItem(int pictire, String name, String talent1, String talent2, String talent3, String talentType, String registDate, String talentID )
     {
         this.picture = pictire;
         this.name = name;
@@ -81,6 +86,7 @@ public class InterestingList_ListItem {
         this.talent3 = talent3;
         this.talentType = talentType;
         this.registDate = registDate;
+        this.talentID = talentID;
     }
 
 }

@@ -28,15 +28,6 @@ public class Interesting_Activity extends AppCompatActivity {
         InterestingList_ArrayList = new ArrayList<>();
 
         InterestingList_Adapter = new InterestingList_ListAdapter(mContext, InterestingList_ArrayList);
-
-        InterestingList_ArrayList.add(new InterestingList_ListItem(R.drawable.textpicture,"박종우","기타","피아노","드럼", "관심 재능","2017.11.30. 14:19 등록"));
-        InterestingList_ArrayList.add(new InterestingList_ListItem(R.drawable.textpicture,"박종우","기타","피아노","드럼","관심 재능","2017.11.30. 14:19 등록"));
-        InterestingList_ArrayList.add(new InterestingList_ListItem(R.drawable.textpicture,"박종우","기타","피아노","드럼","재능 드림","2017.11.30. 14:19 등록"));
-        InterestingList_ArrayList.add(new InterestingList_ListItem(R.drawable.textpicture,"박종우","기타","피아노","드럼","관심 재능","2017.11.30. 14:19 등록"));
-        InterestingList_ArrayList.add(new InterestingList_ListItem(R.drawable.textpicture,"박종우","기타","피아노","드럼","재능 드림","2017.11.30. 14:19 등록"));
-        InterestingList_ArrayList.add(new InterestingList_ListItem(R.drawable.textpicture,"박종우","기타","피아노","드럼","재능 드림","2017.11.30. 14:19 등록"));
-        InterestingList_ArrayList.add(new InterestingList_ListItem(R.drawable.textpicture,"박종우","기타","피아노","드럼","관심 재능","2017.11.30. 14:19 등록"));
-        InterestingList_ArrayList.add(new InterestingList_ListItem(R.drawable.textpicture,"박종우","기타","피아노","드럼","재능 드림","2017.11.30. 14:19 등록"));
         Interesting_List.setAdapter(InterestingList_Adapter);
 
 

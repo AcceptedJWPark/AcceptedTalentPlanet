@@ -147,7 +147,7 @@ public class TalentSharing_Activity extends AppCompatActivity {
                     TalentSharingList.clear();
                     for (int index = 0; index < obj.length(); index++) {
                         JSONObject o = obj.getJSONObject(index);
-                        TalentSharing_ListItem target = new TalentSharing_ListItem(R.drawable.textpicture, o.getString("USER_NAME"), o.getString("TALENT_KEYWORD1"), o.getString("TALENT_KEYWORD2"), o.getString("TALENT_KEYWORD3"), o.getString("TALENT_ID"), o.getString("TALENT_FLAG"), o.getString("STATUS_FLAG"),findMinDistanceBetween(o.getString("GP_LAT1"), o.getString("GP_LNG1"), o.getString("GP_LAT2"), o.getString("GP_LNG2"), o.getString("GP_LAT3"), o.getString("GP_LNG3"), o.getString("TALENT_FLAG").equals("Y")), "Profile 보기", o.getString("USER_ID"));
+                        TalentSharing_ListItem target = new TalentSharing_ListItem(R.drawable.textpicture, o.getString("USER_NAME"), o.getString("TALENT_KEYWORD1"), o.getString("TALENT_KEYWORD2"), o.getString("TALENT_KEYWORD3"), o.getString("seq"), o.getString("TALENT_FLAG"), o.getString("STATUS_FLAG"),findMinDistanceBetween(o.getString("GP_LAT1"), o.getString("GP_LNG1"), o.getString("GP_LAT2"), o.getString("GP_LNG2"), o.getString("GP_LAT3"), o.getString("GP_LNG3"), o.getString("TALENT_FLAG").equals("Y")), "Profile 보기", o.getString("USER_ID"));
                         OriginTalentSharingList.add(target);
                         if(isGiveTalent){
                             if(o.getString("TALENT_FLAG").equals("Y"))

@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import com.example.accepted.acceptedtalentplanet.CustomerService.CustomerService_MainActivity;
 import com.example.accepted.acceptedtalentplanet.Home.Home_Activity;
+import com.example.accepted.acceptedtalentplanet.InterestingList.InterestingList_Activity;
 import com.example.accepted.acceptedtalentplanet.InterestingList.Interesting_Activity;
 import com.example.accepted.acceptedtalentplanet.LoadingLogin.Login_Activity;
 import com.example.accepted.acceptedtalentplanet.MyProfile.MyProfile_Activity;
@@ -107,7 +108,8 @@ public class TalentCondition_Activity extends AppCompatActivity {
         TalentCondition_Give_btn01.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(mContext, Interesting_Activity.class);
+                Intent intent = new Intent(mContext, InterestingList_Activity.class);
+                intent.putExtra("TalentFlag", "Give");
                 startActivity(intent);
             }
         });
@@ -115,7 +117,9 @@ public class TalentCondition_Activity extends AppCompatActivity {
         TalentCondition_Take_btn01.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(mContext, Interesting_Activity.class);
+                Intent intent = new Intent(mContext, InterestingList_Activity.class);
+                intent.putExtra("TalentFlag", "Take");
+
                 startActivity(intent);
             }
         });

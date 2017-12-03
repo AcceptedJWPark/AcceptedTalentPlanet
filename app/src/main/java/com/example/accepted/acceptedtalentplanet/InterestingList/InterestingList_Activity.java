@@ -63,21 +63,83 @@ public class InterestingList_Activity extends AppCompatActivity {
 
     ArrayList<InterestingList_ListItem> InterestingList_ArrayList;
     InterestingList_ListAdapter InterestingList_Adapter;
-
+    boolean giveTalentFlag = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.interestinglist_activity);
+        giveTalentFlag = getIntent().getStringExtra("TalentFlag").equals("Give");
 
         mContext = getApplicationContext();
         Interesting_List = (ListView) findViewById(R.id.Interesting_List);
         InterestingList_ArrayList = new ArrayList<>();
 
-        InterestingList_Adapter = new InterestingList_ListAdapter(mContext, InterestingList_ArrayList);
+        getInterestList();
 
-        InterestingList_ArrayList.add(new InterestingList_ListItem(R.drawable.textpicture,"박종우","기타","피아노","드럼","2017.11.30. 14:19 등록"));
-        Interesting_List.setAdapter(InterestingList_Adapter);
+    }
+
+    public void getInterestList() {
+        RequestQueue postRequestQueue = Volley.newRequestQueue(this);
+        StringRequest postJsonRequest = new StringRequest(Request.Method.POST, SaveSharedPreference.getServerIp() + "Interest/getInterestList.do", new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+
+                    JSONArray obj = new JSONArray(response);
+                    InterestingList_ArrayList.clear();
+                    String str = (giveTalentFlag)?"재능드림":"관심재능";
+                    for (int index = 0; index < obj.length(); index++) {
+                        JSONObject o = obj.getJSONObject(index);
+                        InterestingList_ListItem target = new InterestingList_ListItem(R.drawable.textpicture, o.getString("USER_NAME"), o.getString("TALENT_KEYWORD1"), o.getString("TALENT_KEYWORD2"), o.getString("TALENT_KEYWORD3"), str, o.getString("CREATION_DATE") + " 등록", o.getString("TALENT_ID"));
+
+                        InterestingList_ArrayList.add(target);
+
+                    }
+
+                    InterestingList_Adapter = new InterestingList_ListAdapter(mContext, InterestingList_ArrayList);
+
+                    Interesting_List.setAdapter(InterestingList_Adapter);
+
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                NetworkResponse response = error.networkResponse;
+                if (error instanceof ServerError && response != null) {
+                    try {
+                        String res = new String(response.data,
+                                HttpHeaderParser.parseCharset(response.headers, "utf-8"));
+                        // Now you can use any deserializer to make sense of data
+                        Log.d("res", res);
+
+                        JSONArray obj = new JSONArray(res);
+                    } catch (UnsupportedEncodingException e1) {
+                        // Couldn't properly decode data to string
+                        e1.printStackTrace();
+                    } catch (JSONException e2) {
+                        // returned data is not JSONObject?
+                        e2.printStackTrace();
+                    }
+                }
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap();
+                params.put("userID", SaveSharedPreference.getUserId(mContext));
+                params.put("talentFlag", (giveTalentFlag)?"Give":"Take");
+                return params;
+            }
+        };
+
+
+        postRequestQueue.add(postJsonRequest);
+
     }
 
 }

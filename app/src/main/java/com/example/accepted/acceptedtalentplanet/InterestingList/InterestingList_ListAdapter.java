@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.accepted.acceptedtalentplanet.R;
+import com.example.accepted.acceptedtalentplanet.TalentSharing.TalentSharing_ListItem;
 import com.example.accepted.acceptedtalentplanet.TalentSharing.TalentSharing_Popup_Activity;
 
 import java.util.ArrayList;
@@ -72,6 +73,7 @@ public class InterestingList_ListAdapter extends BaseAdapter {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(context, InterestingList_Popup.class);
+                    intent.putExtra("TalentID", ((InterestingList_ListItem)getItem(index)).getTalentID());
                     context.startActivity(intent);
 
                 }

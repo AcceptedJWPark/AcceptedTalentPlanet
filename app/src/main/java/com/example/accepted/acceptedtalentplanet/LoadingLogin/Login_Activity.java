@@ -19,12 +19,15 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.accepted.acceptedtalentplanet.GeoPoint;
 import com.example.accepted.acceptedtalentplanet.Home.Home_RecyclerActivity;
 import com.example.accepted.acceptedtalentplanet.Join.Join_Email_Activity;
+import com.example.accepted.acceptedtalentplanet.MyTalent;
 import com.example.accepted.acceptedtalentplanet.R;
 import com.example.accepted.acceptedtalentplanet.SaveSharedPreference;
 import com.example.accepted.acceptedtalentplanet.TalentSharing.TalentSharing_Activity;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -38,11 +41,12 @@ import java.util.Map;
 
 public class Login_Activity extends AppCompatActivity {
     private InputMethodManager imm;
-
+    private Context mContext;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_activity);
+        mContext = getApplicationContext();
 
         imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY);
@@ -72,6 +76,7 @@ public class Login_Activity extends AppCompatActivity {
                         String userName = obj.getString("userName");
                         SaveSharedPreference.setPrefUsrName(Login_Activity.this, userName);
                         SaveSharedPreference.setPrefUsrId(Login_Activity.this, userID);
+                        getMyTalent();
                         Intent intent = new Intent(getBaseContext(), TalentSharing_Activity.class);
                         startActivity(intent);
                     }else if(result.equals("fail")){
@@ -127,7 +132,74 @@ public class Login_Activity extends AppCompatActivity {
 
 
 
+    public void getMyTalent(){
 
+
+
+        RequestQueue postRequestQueue = Volley.newRequestQueue(this);
+        StringRequest postJsonRequest = new StringRequest(Request.Method.POST, SaveSharedPreference.getServerIp() + "TalentRegist/getMyTalent.do", new Response.Listener<String>(){
+            @Override
+            public void onResponse(String response){
+                try {
+                    JSONArray jsonArray = new JSONArray(response);
+
+                    for(int i = 0; i < jsonArray.length(); i++){
+                        JSONObject obj = jsonArray.getJSONObject(i);
+
+                        GeoPoint[] gpArr = new GeoPoint[3];
+                        gpArr[0] = new GeoPoint(Double.parseDouble(obj.getString("GP_LAT1")), Double.parseDouble(obj.getString("GP_LNG1")));
+                        gpArr[1] = new GeoPoint(Double.parseDouble(obj.getString("GP_LAT2")), Double.parseDouble(obj.getString("GP_LNG2")));
+                        gpArr[2] = new GeoPoint(Double.parseDouble(obj.getString("GP_LAT3")), Double.parseDouble(obj.getString("GP_LNG3")));
+
+                        MyTalent talent = new MyTalent();
+                        talent.setMyTalent(obj.getString("TALENT_KEYWORD1"), obj.getString("TALENT_KEYWORD2"), obj.getString("TALENT_KEYWORD3"), obj.getString("LOCATION1"), obj.getString("LOCATION2"), obj.getString("LOCATION1"), obj.getString("T_POINT"), obj.getString("LEVEL"), gpArr);
+                        if(obj.getString("TALENT_FLAG").equals("Y")){
+                            SaveSharedPreference.setGiveTalentData(mContext, talent);
+                        }else{
+                            SaveSharedPreference.setTakeTalentData(mContext, talent);
+                        }
+
+                    }
+
+                }
+                catch(JSONException e){
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener(){
+            @Override
+            public void onErrorResponse(VolleyError error){
+                NetworkResponse response = error.networkResponse;
+                if (error instanceof ServerError && response != null) {
+                    try {
+                        String res = new String(response.data,
+                                HttpHeaderParser.parseCharset(response.headers, "utf-8"));
+                        // Now you can use any deserializer to make sense of data
+                        Log.d("res", res);
+
+                        JSONObject obj = new JSONObject(res);
+                    } catch (UnsupportedEncodingException e1) {
+                        // Couldn't properly decode data to string
+                        e1.printStackTrace();
+                    } catch (JSONException e2) {
+                        // returned data is not JSONObject?
+                        e2.printStackTrace();
+                    }
+                }
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams(){
+                Map<String, String> params = new HashMap();
+                params.put("userID", SaveSharedPreference.getUserId(mContext));
+
+
+                return params;
+            }
+        };
+
+        postRequestQueue.add(postJsonRequest);
+    }
 
 
 
