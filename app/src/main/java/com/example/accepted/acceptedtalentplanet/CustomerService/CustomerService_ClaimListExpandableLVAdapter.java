@@ -1,9 +1,11 @@
 package com.example.accepted.acceptedtalentplanet.CustomerService;
 
 import android.content.Context;
+import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -70,13 +72,23 @@ public class CustomerService_ClaimListExpandableLVAdapter extends BaseExpandable
     public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
         View v = convertView;
 
+
+
         String QuestionTitle = arrayGroup.get(groupPosition).getClaimTitle();
         String ResistDate = arrayGroup.get(groupPosition).getRegistDate();
         String AnswerorNot = arrayGroup.get(groupPosition).getAnswerorNot();
 
         if(v==null) {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            v=(LinearLayout) inflater.inflate(R.layout.customerservice_claimlist_parentbg, null);
+            v=(LinearLayout) inflater.inflate(R.layout.customerservice_claimlist_parentbg,  parent,false);
+
+            DisplayMetrics metrics = new DisplayMetrics();
+            WindowManager windowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+            windowManager.getDefaultDisplay().getMetrics(metrics);
+            int Interesting_ListView_height = (int) (metrics.heightPixels*0.08);
+            ViewGroup.LayoutParams params1 = v.getLayoutParams();
+            params1.height = Interesting_ListView_height;
+            v.setLayoutParams(params1);
 
         }
         TextView textGroup1 = (TextView) v.findViewById(R.id.CustomerService_ClaimList_Title);
@@ -86,6 +98,8 @@ public class CustomerService_ClaimListExpandableLVAdapter extends BaseExpandable
         textGroup2.setText(ResistDate);
         textGroup3.setText(AnswerorNot);
         return v;
+
+
     }
 
     @Override

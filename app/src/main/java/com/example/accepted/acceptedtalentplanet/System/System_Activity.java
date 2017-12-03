@@ -11,11 +11,14 @@ import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.TextView;
 
+import com.example.accepted.acceptedtalentplanet.Alarm.Alarm_Activity;
 import com.example.accepted.acceptedtalentplanet.CustomerService.CustomerService_MainActivity;
+import com.example.accepted.acceptedtalentplanet.FriendList.FriendList_Activity;
 import com.example.accepted.acceptedtalentplanet.LoadingLogin.Login_Activity;
 import com.example.accepted.acceptedtalentplanet.MyProfile.MyProfile_Activity;
 import com.example.accepted.acceptedtalentplanet.R;
 import com.example.accepted.acceptedtalentplanet.SaveSharedPreference;
+import com.example.accepted.acceptedtalentplanet.SharingList.SharingList_Activity;
 import com.example.accepted.acceptedtalentplanet.TalentCondition.TalentCondition_Activity;
 import com.example.accepted.acceptedtalentplanet.TalentResister.TalentResister_Activity;
 import com.example.accepted.acceptedtalentplanet.TalentSearching.TalentSearching_Activity;
@@ -30,10 +33,13 @@ public class System_Activity extends AppCompatActivity {
     View drawerView;
     ImageView imgDLOpenMenu;
     ImageView DrawerCloseImg;
+    ImageView ActionBar_AlarmView;
+
     TextView ToolbarTxt;
 
     Switch System_MessageRing_Switch;
     Switch System_ConditionRing_Switch;
+    Switch System_Answer_Switch;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,7 +66,14 @@ public class System_Activity extends AppCompatActivity {
         drawerView = (View) findViewById(R.id.System_container);
         imgDLOpenMenu = (ImageView) findViewById(R.id.ActionBar_Listview);
         DrawerCloseImg = (ImageView) findViewById(R.id.DrawerCloseImg);
-
+        ActionBar_AlarmView = (ImageView) findViewById(R.id.ActionBar_AlarmView);
+        ActionBar_AlarmView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext, Alarm_Activity.class);
+                startActivity(intent);
+            }
+        });
 
         imgDLOpenMenu.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,6 +89,8 @@ public class System_Activity extends AppCompatActivity {
                 slidingMenuDL.closeDrawer(drawerView);
             }
         });
+
+
         ((TextView) findViewById(R.id.DrawerUserID)).setText(SaveSharedPreference.getUserId(mContext));
 
 
@@ -103,6 +118,20 @@ public class System_Activity extends AppCompatActivity {
                 }
                 else
                     System_ConditionRing_Switch.setText("꺼짐");
+            }
+        });
+
+        System_Answer_Switch = (Switch) findViewById(R.id.System_Answer_Switch);
+        System_Answer_Switch.setChecked(true);
+        System_Answer_Switch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (System_Answer_Switch.isChecked())
+                {
+                    System_Answer_Switch.setText("켜짐");
+                }
+                else
+                    System_Answer_Switch.setText("꺼짐");
             }
         });
     }
@@ -148,6 +177,17 @@ public class System_Activity extends AppCompatActivity {
         Intent i = new Intent(mContext, System_Activity.class);
         startActivity(i);
     }
+
+    public void slideMenuTalentSharingList(View v){
+        Intent i = new Intent(mContext, SharingList_Activity.class);
+        startActivity(i);
+    }
+
+    public void slideFriendList(View v){
+        Intent i = new Intent(mContext, FriendList_Activity.class);
+        startActivity(i);
+    }
+
 
 }
 

@@ -78,7 +78,7 @@
 
             />
 
-        <activity android:name=".CustomerService.CustomerService_Claim_SharingListActivity"/>
+        <activity android:name=".SharingList.SharingList_Activity"/>
         <activity android:name=".TalentSearching.TalentSearching_SearchingPage_Activity"
             android:windowSoftInputMode="adjustNothing"/>
         <activity android:name=".TalentSearching.TalentSearching_Activity"/>
@@ -93,15 +93,23 @@
         </activity>
 
         <activity
-            android:name=".InterestingList.InterestingList_Activity">
+            android:name=".InterestingList.InterestingList_Activity"
+            >
         </activity>
-
 
         <activity
-            android:name=".InterestingList.InterestingList_Popup">
+            android:name=".InterestingList.InterestingList_Popup"
+            android:theme="@style/Theme.AppCompat.Dialog"
+            >
         </activity>
 
+        <activity
+            android:name=".Alarm.Alarm_Activity">
+        </activity>
 
+        <activity
+            android:name=".FriendList.FriendList_Activity">
+        </activity>
     </application>
 
 </manifest>

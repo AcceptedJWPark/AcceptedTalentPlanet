@@ -14,9 +14,13 @@ public class InterestingList_ListItem {
     private String talentType;
     private String registDate;
     private String talentID;
+    private int GiveTake_CODE;
 
     public int getPicture() {
         return picture;
+    }
+    public int getGiveTake_CODE() {
+        return GiveTake_CODE;
     }
 
     public String getName() {
@@ -46,6 +50,9 @@ public class InterestingList_ListItem {
     public String getTalentID() { return talentID; }
 
 
+    public void setGiveTake_CODE(int GiveTake_CODE) {
+        this.GiveTake_CODE = GiveTake_CODE;
+    }
     public void setPicture(int picture) {
         this.picture = picture;
     }
@@ -77,7 +84,7 @@ public class InterestingList_ListItem {
     public void setTalentID(String talentID) { this.talentID = talentID; }
 
 
-    public InterestingList_ListItem(int pictire, String name, String talent1, String talent2, String talent3, String talentType, String registDate, String talentID )
+    public InterestingList_ListItem(int pictire, String name, String talent1, String talent2, String talent3, String talentType, String registDate, String talentID, int GiveTake_CODE )
     {
         this.picture = pictire;
         this.name = name;
@@ -87,6 +94,7 @@ public class InterestingList_ListItem {
         this.talentType = talentType;
         this.registDate = registDate;
         this.talentID = talentID;
+        this.GiveTake_CODE = GiveTake_CODE;
     }
 
 }

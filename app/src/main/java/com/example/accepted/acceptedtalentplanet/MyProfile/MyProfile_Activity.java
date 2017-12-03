@@ -27,12 +27,15 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.accepted.acceptedtalentplanet.Alarm.Alarm_Activity;
 import com.example.accepted.acceptedtalentplanet.CustomerService.CustomerService_MainActivity;
+import com.example.accepted.acceptedtalentplanet.FriendList.FriendList_Activity;
 import com.example.accepted.acceptedtalentplanet.Home.Home_Activity;
 import com.example.accepted.acceptedtalentplanet.LoadingLogin.Login_Activity;
 import com.example.accepted.acceptedtalentplanet.MyProfileData;
 import com.example.accepted.acceptedtalentplanet.R;
 import com.example.accepted.acceptedtalentplanet.SaveSharedPreference;
+import com.example.accepted.acceptedtalentplanet.SharingList.SharingList_Activity;
 import com.example.accepted.acceptedtalentplanet.System.System_Activity;
 import com.example.accepted.acceptedtalentplanet.TalentCondition.TalentCondition_Activity;
 import com.example.accepted.acceptedtalentplanet.TalentResister.TalentResister_Activity;
@@ -52,6 +55,7 @@ public class MyProfile_Activity extends AppCompatActivity {
     View drawerView;
     ImageView imgDLOpenMenu;
     ImageView DrawerCloseImg;
+    ImageView ActionBar_AlarmView;
     Context mContext;
     MyProfileData myProfile;
     TextView ToolbarTxt;
@@ -99,6 +103,7 @@ public class MyProfile_Activity extends AppCompatActivity {
         drawerView = (View) findViewById(R.id.MyProfile_container);
         imgDLOpenMenu = (ImageView) findViewById(R.id.ActionBar_Listview);
         DrawerCloseImg = (ImageView) findViewById(R.id.DrawerCloseImg);
+        ActionBar_AlarmView = (ImageView) findViewById(R.id.ActionBar_AlarmView);
 
         myProfile = new MyProfileData();
 
@@ -118,6 +123,15 @@ public class MyProfile_Activity extends AppCompatActivity {
                 slidingMenuDL.closeDrawer(drawerView);
             }
         });
+
+        ActionBar_AlarmView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext, Alarm_Activity.class);
+                startActivity(intent);
+            }
+        });
+
 
         ((TextView) findViewById(R.id.DrawerUserID)).setText(SaveSharedPreference.getUserId(mContext));
         getMyProfile();
@@ -237,6 +251,17 @@ public class MyProfile_Activity extends AppCompatActivity {
         Intent i = new Intent(mContext, System_Activity.class);
         startActivity(i);
     }
+
+    public void slideMenuTalentSharingList(View v){
+        Intent i = new Intent(mContext, SharingList_Activity.class);
+        startActivity(i);
+    }
+
+    public void slideFriendList(View v){
+        Intent i = new Intent(mContext, FriendList_Activity.class);
+        startActivity(i);
+    }
+
 
 
 

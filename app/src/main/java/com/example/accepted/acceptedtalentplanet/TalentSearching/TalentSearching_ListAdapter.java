@@ -2,9 +2,11 @@ package com.example.accepted.acceptedtalentplanet.TalentSearching;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -29,7 +31,6 @@ public class TalentSearching_ListAdapter extends BaseAdapter {
     TextView listView_talent1;
     TextView listView_talent2;
     TextView listView_talent3;
-    Button listView_showProfile;
 
     public TalentSearching_ListAdapter(Context context, ArrayList<TalentSearching_ListItem> list_ArrayList) {
         this.context = context;
@@ -56,15 +57,22 @@ public class TalentSearching_ListAdapter extends BaseAdapter {
     public View getView(int position, View view, ViewGroup viewGroup) {
         final int index = position;
         if(view == null) {
-            view = LayoutInflater.from(context).inflate(R.layout.talentsearching_listviewbg, null);
+            view = LayoutInflater.from(context).inflate(R.layout.talentsearching_listviewbg,viewGroup,false);
+
+            DisplayMetrics metrics = new DisplayMetrics();
+            WindowManager windowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+            windowManager.getDefaultDisplay().getMetrics(metrics);
+            int Interesting_ListView_height = (int) (metrics.heightPixels*0.12);
+
+            ViewGroup.LayoutParams params1 = view.getLayoutParams();
+            params1.height = Interesting_ListView_height;
+            view.setLayoutParams(params1);
 
             listView_picture = view.findViewById(R.id.TalentSearching_Picture);
             listView_name = view.findViewById(R.id.TalentSearching_Name);
             listView_talent1 = view.findViewById(R.id.TalentSearching_Keyword1);
             listView_talent2 = view.findViewById(R.id.TalentSearching_Keyword2);
             listView_talent3 = view.findViewById(R.id.TalentSearching_Keyword3);
-            listView_showProfile = view.findViewById(R.id.TalentSearching_ShowProfile);
-
             final String text = String.valueOf(list_ArrayList.get(position));
 
 

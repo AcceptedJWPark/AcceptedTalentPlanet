@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="60dp"
     android:background="#ffffff"
     android:padding="5dp"
     android:gravity="center"
@@ -11,22 +11,19 @@
     <ImageView
         android:id="@+id/TalentSharing_Picture"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:adjustViewBounds="true"
         android:layout_weight="1"
         android:gravity="center"
         android:src="@drawable/textpicture"
     />
 
-    <View
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="0.3"/>
 
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="fill_parent"
-        android:layout_weight="4"
+        android:layout_weight="5"
+        android:layout_marginLeft="10dp"
         android:gravity="center_vertical"
         android:orientation="vertical">
 
@@ -34,7 +31,7 @@
             android:id="@+id/TalentSharing_Name"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1"
+            android:layout_weight="0.8"
             android:gravity="center|left"
             android:text="박종우"
             android:textSize="@dimen/ListView_TitleorName"
@@ -42,7 +39,7 @@
             android:textStyle="bold" />
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:layout_weight="1"
             android:gravity="center"
@@ -52,39 +49,50 @@
                 android:id="@+id/TalentSharing_Keyword1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:ellipsize="end"
                 android:gravity="left"
-                android:lines="1"
                 android:text="Guitar"
                 android:textColor="@color/textColor"
                 android:textSize="@dimen/ListView_SecondLine"
+                android:singleLine="true"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:background="#f5f5f5"
                 />
 
             <TextView
                 android:id="@+id/TalentSharing_Keyword2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:text="Vocal"
-                android:gravity="left"
-                android:ellipsize="end"
-                android:lines="1"
+                android:gravity="center"
                 android:textColor="@color/textColor"
                 android:textSize="@dimen/ListView_SecondLine"
+                android:singleLine="true"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:background="#f5f5f5"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
                 />
 
             <TextView
                 android:id="@+id/TalentSharing_Keyword3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="left"
                 android:text="Dance"
-                android:ellipsize="end"
-                android:lines="1"
+                android:gravity="center"
                 android:textColor="@color/textColor"
                 android:textSize="@dimen/ListView_SecondLine"
+                android:singleLine="true"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:background="#f5f5f5"
                 />
         </LinearLayout>
     </LinearLayout>
@@ -92,73 +100,16 @@
     <TextView
         android:id="@+id/TalentSharing_Distance"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="93%"
+        android:layout_height="match_parent"
+        android:text="9km"
         android:layout_weight="1"
-        android:textStyle="bold"
+        android:singleLine="true"
         android:gravity="center"
-        android:textColor="@color/textColor"
-        android:textSize="@dimen/ListView_SubTitle"
+        android:textStyle="bold"
+        android:textSize="@dimen/ListView_TitleorName"
+        android:textColor="#000000"
         />
 
-    <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="2"
-        android:gravity="center"
-        android:orientation="horizontal"
-        >
-        <View
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="0.1"
-            />
-
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            >
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="0.35"
-                />
-
-        <Button
-            android:id="@+id/TalentSharing_ShowProfile"
-            android:textAllCaps="false"
-            android:layout_weight="1"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:text="Profile 보기"
-            android:gravity="center"
-            android:onClick="talentSharing_pupupclosebtn"
-            android:textColor="@color/textColor"
-            android:background="@drawable/small_button_whitebackground"
-            android:textSize="@dimen/ListView_Btn"
-            android:textStyle="bold"
-            />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="0.35"
-                />
-
-        </LinearLayout>
-
-        <View
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="0.1"
-            />
-
-
-    </LinearLayout>
 
 
 </LinearLayout>

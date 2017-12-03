@@ -10,11 +10,14 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.example.accepted.acceptedtalentplanet.Alarm.Alarm_Activity;
+import com.example.accepted.acceptedtalentplanet.FriendList.FriendList_Activity;
 import com.example.accepted.acceptedtalentplanet.Home.Home_Activity;
 import com.example.accepted.acceptedtalentplanet.LoadingLogin.Login_Activity;
 import com.example.accepted.acceptedtalentplanet.MyProfile.MyProfile_Activity;
 import com.example.accepted.acceptedtalentplanet.R;
 import com.example.accepted.acceptedtalentplanet.SaveSharedPreference;
+import com.example.accepted.acceptedtalentplanet.SharingList.SharingList_Activity;
 import com.example.accepted.acceptedtalentplanet.System.System_Activity;
 import com.example.accepted.acceptedtalentplanet.TalentCondition.TalentCondition_Activity;
 import com.example.accepted.acceptedtalentplanet.TalentResister.TalentResister_Activity;
@@ -43,6 +46,7 @@ public class CustomerService_MainActivity extends AppCompatActivity {
     View drawerView;
     ImageView imgDLOpenMenu;
     ImageView DrawerCloseImg;
+    ImageView ActionBar_AlarmView;
 
     TextView ToolbarTxt;
 
@@ -156,6 +160,7 @@ public class CustomerService_MainActivity extends AppCompatActivity {
         drawerView = (View) findViewById(R.id.CustomerService_container);
         imgDLOpenMenu = (ImageView) findViewById(R.id.ActionBar_Listview);
         DrawerCloseImg = (ImageView) findViewById(R.id.DrawerCloseImg);
+        ActionBar_AlarmView = (ImageView) findViewById(R.id.ActionBar_AlarmView);
 
         imgDLOpenMenu.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -171,7 +176,17 @@ public class CustomerService_MainActivity extends AppCompatActivity {
                 slidingMenuDL.closeDrawer(drawerView);
             }
         });
+
+        ActionBar_AlarmView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext, Alarm_Activity.class);
+                startActivity(intent);
+            }
+        });
+
         ((TextView) findViewById(R.id.DrawerUserID)).setText(SaveSharedPreference.getUserId(mContext));
+
 
     }
 
@@ -217,4 +232,15 @@ public class CustomerService_MainActivity extends AppCompatActivity {
         Intent i = new Intent(mContext, System_Activity.class);
         startActivity(i);
     }
+
+    public void slideMenuTalentSharingList(View v){
+        Intent i = new Intent(mContext, SharingList_Activity.class);
+        startActivity(i);
+    }
+
+    public void slideFriendList(View v){
+        Intent i = new Intent(mContext, FriendList_Activity.class);
+        startActivity(i);
+    }
+
 }

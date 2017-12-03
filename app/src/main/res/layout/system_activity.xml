@@ -62,6 +62,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="8"
                     android:gravity="center_vertical"
+                    android:textColor="@color/textColor"
                     android:text="Message 알람 설정"
                     android:textSize="@dimen/List_Title"
                     />
@@ -103,6 +104,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="8"
                 android:gravity="center_vertical"
+                android:textColor="@color/textColor"
                 android:text="재능상태 알람 설정"
                 android:textSize="@dimen/List_Title"
                 />
@@ -122,6 +124,54 @@
                 tools:checked="true" />
 
         </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.05"
+            android:background="#f2f2f2"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1.5"
+            android:paddingLeft="12dp"
+            android:paddingRight="12dp"
+            android:orientation="horizontal"
+            >
+
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="8"
+                android:gravity="center_vertical"
+                android:text="답변여부 알람 설정"
+                android:textSize="@dimen/List_Title"
+                android:textColor="@color/textColor"
+                />
+
+            <Switch
+                android:id="@+id/System_Answer_Switch"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:checked="false"
+                android:gravity="center"
+                android:textColor="@color/textColor"
+                android:text="켜짐"
+                android:textSize="@dimen/List_Title"
+                android:textOff="꺼짐"
+                android:textOn="켜짐"
+                tools:checked="true" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.05"
+            android:background="#f2f2f2"/>
 
 
         <TextView
@@ -150,6 +200,7 @@
                 android:layout_weight="8"
                 android:gravity="center_vertical"
                 android:text="비밀번호 변경"
+                android:textColor="@color/textColor"
                 android:textSize="@dimen/List_Title"
                 />
 
@@ -178,6 +229,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="8"
                 android:gravity="center_vertical"
+                android:textColor="@color/textColor"
                 android:text="휴면 계정 설정"
                 android:textSize="@dimen/List_Title"
                 />

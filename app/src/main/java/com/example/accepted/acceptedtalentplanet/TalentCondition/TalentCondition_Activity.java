@@ -13,19 +13,26 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.example.accepted.acceptedtalentplanet.Alarm.Alarm_Activity;
 import com.example.accepted.acceptedtalentplanet.CustomerService.CustomerService_MainActivity;
+import com.example.accepted.acceptedtalentplanet.FriendList.FriendList_Activity;
 import com.example.accepted.acceptedtalentplanet.Home.Home_Activity;
 import com.example.accepted.acceptedtalentplanet.InterestingList.InterestingList_Activity;
-import com.example.accepted.acceptedtalentplanet.InterestingList.Interesting_Activity;
 import com.example.accepted.acceptedtalentplanet.LoadingLogin.Login_Activity;
 import com.example.accepted.acceptedtalentplanet.MyProfile.MyProfile_Activity;
 import com.example.accepted.acceptedtalentplanet.MyTalent;
 import com.example.accepted.acceptedtalentplanet.R;
 import com.example.accepted.acceptedtalentplanet.SaveSharedPreference;
+import com.example.accepted.acceptedtalentplanet.SharingList.SharingList_Activity;
 import com.example.accepted.acceptedtalentplanet.System.System_Activity;
 import com.example.accepted.acceptedtalentplanet.TalentResister.TalentResister_Activity;
 import com.example.accepted.acceptedtalentplanet.TalentSearching.TalentSearching_Activity;
 import com.example.accepted.acceptedtalentplanet.TalentSharing.TalentSharing_Activity;
+import com.example.accepted.acceptedtalentplanet.TalentSharing.TalentSharing_Popup_Activity;
+
+import org.w3c.dom.Text;
+
+import static android.view.View.GONE;
 
 public class TalentCondition_Activity extends AppCompatActivity {
 
@@ -33,41 +40,29 @@ public class TalentCondition_Activity extends AppCompatActivity {
     View drawerView;
     ImageView imgDLOpenMenu;
     ImageView DrawerCloseImg;
-    Context mContext;
-    TextView Talent_Give_Condition;
-    TextView TalentCondition_Give_Keyword1;
-    TextView TalentCondition_Give_Keyword2;
-    TextView TalentCondition_Give_Keyword3;
-    TextView TalentCondition_Give_Text1;
-    TextView TalentCondition_Give_Text2;
-    Button TalentCondition_Give_btn01;
-    Button TalentCondition_Give_btn02;
-    Button TalentCondition_Give_btn03;
+    ImageView ActionBar_AlarmView;
 
     Button TalentCondition_ShowGive;
     Button TalentCondition_ShowTake;
-    LinearLayout Talent_Give_ConditionBox;
-    LinearLayout Talent_Take_ConditionBox;
 
-    LinearLayout TalentCondition_Give_KeywordBox;
-    TextView Talent_Take_Condition;
-    TextView TalentCondition_Take_Keyword1;
-    TextView TalentCondition_Take_Keyword2;
-    TextView TalentCondition_Take_Keyword3;
-    TextView TalentCondition_Take_Text1;
-    TextView TalentCondition_Take_Text2;
-    Button TalentCondition_Take_btn01;
-    Button TalentCondition_Take_btn02;
-    Button TalentCondition_Take_btn03;
-    LinearLayout TalentCondition_Take_KeywordBox;
-    boolean TalentCondition_Give;
-    boolean TalentCondition_Take;
-    String TalentCondition_Give_Keyword[];
-    String TalentCondition_Take_Keyword[];
+    Context mContext;
 
-    MyTalent GiveTalent, TakeTalent;
-    int GiveTalentConditionCode = 1;
-    int TakeTalentConditionCode = 3;
+    TextView TalentCondition_Condition;
+    TextView TalentCondition_TakeorGiveTalent;
+
+    TextView TalentCondition_TextView;
+
+    Button TalentCondition_Button1;
+    Button TalentCondition_Button2;
+    Button TalentCondition_Button3;
+
+    LinearLayout TalentCondition_PictureLL;
+
+    Boolean TalentCondition_Give_Registed = true;
+    Boolean TalentCondition_Take_Registed = true;
+
+    int GiveTalentConditionCode = 3;
+    int TakeTalentConditionCode = 2;
 
     TextView ToolbarTxt;
 
@@ -79,66 +74,56 @@ public class TalentCondition_Activity extends AppCompatActivity {
 
         ToolbarTxt = (TextView) findViewById(R.id.toolbarTxt);
         ToolbarTxt.setText("나의 재능 현황");
-
         mContext = getApplicationContext();
 
-        GiveTalent = SaveSharedPreference.getGiveTalentData(mContext);
-        TakeTalent = SaveSharedPreference.getTakeTalentData(mContext);
 
-        Talent_Give_Condition = (TextView) findViewById(R.id.TalentCondition_Give_Condition);
-        TalentCondition_Give_Keyword1 = (TextView) findViewById(R.id.TalentCondition_Give_Keyword1);
-        TalentCondition_Give_Keyword2 = (TextView) findViewById(R.id.TalentCondition_Give_Keyword2);
-        TalentCondition_Give_Keyword3 = (TextView) findViewById(R.id.TalentCondition_Give_Keyword3);
-        TalentCondition_Give_Text2 = (TextView) findViewById(R.id.TalentCondition_Give_TextView2);
-        TalentCondition_Give_btn01 = (Button) findViewById(R.id.TalentCondition_Give_Button1);
-        TalentCondition_Give_btn02 = (Button) findViewById(R.id.TalentCondition_Give_Button2);
-        TalentCondition_Give_btn03 = (Button) findViewById(R.id.TalentCondition_Give_Button3);
-        TalentCondition_Give_KeywordBox = (LinearLayout) findViewById(R.id.TalentCondition_Give_KeywordBox);
+        TalentCondition_Condition = (TextView) findViewById(R.id.TalentCondition_Condition);
+        TalentCondition_TakeorGiveTalent = (TextView)findViewById(R.id.TalentCondition_TakeorGiveTalent);
+        TalentCondition_TextView = (TextView) findViewById(R.id.TalentCondition_TextView);
 
-        Talent_Take_Condition = (TextView) findViewById(R.id.TalentCondition_Take_Condition);
-        TalentCondition_Take_Keyword1 = (TextView) findViewById(R.id.TalentCondition_Take_Keyword1);
-        TalentCondition_Take_Keyword2 = (TextView) findViewById(R.id.TalentCondition_Take_Keyword2);
-        TalentCondition_Take_Keyword3 = (TextView) findViewById(R.id.TalentCondition_Take_Keyword3);
-        TalentCondition_Take_Text2 = (TextView) findViewById(R.id.TalentCondition_Take_TextView2);
-        TalentCondition_Take_btn01 = (Button) findViewById(R.id.TalentCondition_Take_Button1);
-        TalentCondition_Take_btn02 = (Button) findViewById(R.id.TalentCondition_Take_Button2);
-        TalentCondition_Take_btn03 = (Button) findViewById(R.id.TalentCondition_Take_Button3);
-        TalentCondition_Take_KeywordBox = (LinearLayout) findViewById(R.id.TalentCondition_Take_KeywordBox);
+        TalentCondition_Button1 = (Button) findViewById(R.id.TalentCondition_Button1);
+        TalentCondition_Button2 = (Button) findViewById(R.id.TalentCondition_Button2);
+        TalentCondition_Button3 = (Button) findViewById(R.id.TalentCondition_Button3);
+        TalentCondition_PictureLL = (LinearLayout) findViewById(R.id.TalentCondition_PictureLL);
 
-        TalentCondition_Give_btn01.setOnClickListener(new View.OnClickListener() {
+        TalentCondition_Give_Registed(TalentCondition_Give_Registed,GiveTalentConditionCode);
+
+        TalentCondition_ShowGive = (Button) findViewById(R.id.TalentCondition_ShowGive);
+        TalentCondition_ShowGive.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(mContext, InterestingList_Activity.class);
-                intent.putExtra("TalentFlag", "Give");
-                startActivity(intent);
+                TalentCondition_ShowGive.setBackground(ContextCompat.getDrawable(mContext, R.drawable.small_button_graybackground));
+                TalentCondition_ShowGive.setTextColor(getResources().getColor(R.color.textColor));
+                TalentCondition_ShowTake.setBackground(ContextCompat.getDrawable(mContext, R.drawable.small_button_whitebackground));
+                TalentCondition_ShowTake.setTextColor(Color.parseColor("#d2d2d2"));
+                TalentCondition_Give_Registed(TalentCondition_Give_Registed,GiveTalentConditionCode);
             }
         });
 
-        TalentCondition_Take_btn01.setOnClickListener(new View.OnClickListener() {
+        TalentCondition_ShowTake = (Button) findViewById(R.id.TalentCondition_ShowTake);
+        TalentCondition_ShowTake.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(mContext, InterestingList_Activity.class);
-                intent.putExtra("TalentFlag", "Take");
-
-                startActivity(intent);
+                TalentCondition_ShowTake.setBackground(ContextCompat.getDrawable(mContext, R.drawable.small_button_graybackground));
+                TalentCondition_ShowTake.setTextColor(getResources().getColor(R.color.textColor));
+                TalentCondition_ShowGive.setBackground(ContextCompat.getDrawable(mContext, R.drawable.small_button_whitebackground));
+                TalentCondition_ShowGive.setTextColor(Color.parseColor("#d2d2d2"));
+                    TalentCondition_Take_Registed(TalentCondition_Take_Registed, TakeTalentConditionCode);
             }
         });
 
-        TalentCondition_Give = (GiveTalent == null)?false : true;
-        TalentCondition_Take = (TakeTalent == null)?false : true;
-
-        if(TalentCondition_Give)
-            TalentCondition_Give_Keyword = GiveTalent.getKeywordArray();
-
-        if(TalentCondition_Take)
-            TalentCondition_Take_Keyword = TakeTalent.getKeywordArray();
-
-        //ToolBar 적용하기
         slidingMenuDL = (DrawerLayout) findViewById(R.id.TalentCondition1_listboxDL);
         drawerView = (View) findViewById(R.id.TalentCondition_container1);
         imgDLOpenMenu = (ImageView) findViewById(R.id.ActionBar_Listview);
         DrawerCloseImg = (ImageView) findViewById(R.id.DrawerCloseImg);
-
+        ActionBar_AlarmView = (ImageView) findViewById(R.id.ActionBar_AlarmView);
+        ActionBar_AlarmView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext, Alarm_Activity.class);
+                startActivity(intent);
+            }
+        });
 
         imgDLOpenMenu.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -157,150 +142,13 @@ public class TalentCondition_Activity extends AppCompatActivity {
         ((TextView) findViewById(R.id.DrawerUserID)).setText(SaveSharedPreference.getUserId(mContext));
 
 
-        TalentCondition_ShowGive = (Button) findViewById(R.id.TalentCondition_ShowGive);
-        TalentCondition_ShowTake = (Button) findViewById(R.id.TalentCondition_ShowTake);
-        Talent_Give_ConditionBox = (LinearLayout) findViewById(R.id.Talent_Give_ConditionBox);
-        Talent_Take_ConditionBox = (LinearLayout) findViewById(R.id.Talent_Take_ConditionBox);
-
-        TalentCondition_ShowGive.setOnClickListener(new View.OnClickListener() {
+        TalentCondition_PictureLL.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Talent_Give_ConditionBox.setVisibility(View.VISIBLE);
-                Talent_Take_ConditionBox.setVisibility(View.GONE);
-                TalentCondition_ShowGive.setBackground(ContextCompat.getDrawable(mContext, R.drawable.small_button_graybackground));
-                TalentCondition_ShowGive.setTextColor(getResources().getColor(R.color.textColor));
-                TalentCondition_ShowTake.setBackground(ContextCompat.getDrawable(mContext, R.drawable.small_button_whitebackground));
-                TalentCondition_ShowTake.setTextColor(Color.parseColor("#d2d2d2"));
+                Intent intent = new Intent(mContext, TalentSharing_Popup_Activity.class);
+                startActivity(intent);
             }
         });
-
-        TalentCondition_ShowTake.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Talent_Take_ConditionBox.setVisibility(View.VISIBLE);
-                Talent_Give_ConditionBox.setVisibility(View.GONE);
-                TalentCondition_ShowTake.setBackground(ContextCompat.getDrawable(mContext, R.drawable.small_button_graybackground));
-                TalentCondition_ShowTake.setTextColor(getResources().getColor(R.color.textColor));
-                TalentCondition_ShowGive.setBackground(ContextCompat.getDrawable(mContext, R.drawable.small_button_whitebackground));
-                TalentCondition_ShowGive.setTextColor(Color.parseColor("#d2d2d2"));
-            }
-        });
-
-
-
-        if (TalentCondition_Give == false) {
-            TalentCondition_Give_KeywordBox.setVisibility(View.GONE);
-            TalentCondition_Give_Text2.setText("재능드림이 등록되지 않았습니다.\n\n재능드림을 등록하여 회원님의 재능을 공유해주세요!\"");
-            TalentCondition_Give_btn01.setVisibility(View.GONE);
-            TalentCondition_Give_btn02.setVisibility(View.GONE);
-            TalentCondition_Give_btn03.setVisibility(View.VISIBLE);
-            Talent_Give_Condition.setText("미등록");
-            TalentCondition_Give_btn03.setText("재능드림 등록하기");
-            TalentCondition_Give_btn03.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Intent i = new Intent(mContext, TalentResister_Activity.class);
-                    startActivity(i);
-                    finish();
-                }
-            });
-        } else
-
-        {
-            TalentCondition_Give_KeywordBox.setVisibility(View.VISIBLE);
-            TalentCondition_Give_btn01.setVisibility(View.VISIBLE);
-            TalentCondition_Give_btn02.setVisibility(View.VISIBLE);
-            TalentCondition_Give_btn03.setVisibility(View.GONE);
-            TalentCondition_Give_Keyword1.setText(TalentCondition_Give_Keyword[0]);
-            TalentCondition_Give_Keyword2.setText(TalentCondition_Give_Keyword[1]);
-            TalentCondition_Give_Keyword3.setText(TalentCondition_Give_Keyword[2]);
-
-            if (GiveTalentConditionCode == 1) {
-                TalentCondition_Give_Text2.setText("관심목록 확인 또는 T.Sharing을 확인해보세요!\"");
-                TalentCondition_Give_btn01.setText("관심목록 확인");
-                TalentCondition_Give_btn02.setText("T.Sharing");
-                Talent_Give_Condition.setText("대기 중...");
-
-
-            } else if (GiveTalentConditionCode == 2) {
-                TalentCondition_Give_Text2.setText("다음 단계를 진행해주세요!\"");
-                TalentCondition_Give_btn01.setText("완료 하기");
-                TalentCondition_Give_btn02.setText("취소 하기");
-                Talent_Give_Condition.setText("진행 중...");
-            } else if (GiveTalentConditionCode == 3) {
-                TalentCondition_Give_Text2.setText("재능 재등록 또는 재능 수정하기를 진행해주세요!\"");
-                TalentCondition_Give_btn01.setText("재능드림 재등록");
-                TalentCondition_Give_btn02.setText("재능드림 수정하기");
-                TalentCondition_Give_btn02.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        Intent i = new Intent(mContext, TalentResister_Activity.class);
-                        startActivity(i);
-                        finish();
-                    }
-                });
-                Talent_Give_Condition.setText("완료");
-            }
-        }
-
-        if (TalentCondition_Take == false) {
-            TalentCondition_Take_KeywordBox.setVisibility(View.GONE);
-            TalentCondition_Take_Text2.setText("관심재능이 등록되지 않았습니다.\n\n관심재능을 등록하여 회원님의 재능을 공유해주세요!\"");
-            TalentCondition_Take_btn01.setVisibility(View.GONE);
-            TalentCondition_Take_btn02.setVisibility(View.GONE);
-            TalentCondition_Take_btn03.setVisibility(View.VISIBLE);
-            Talent_Take_Condition.setText("미등록");
-            TalentCondition_Take_btn03.setText("관심재능 등록하기");
-            TalentCondition_Take_btn03.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Intent i = new Intent(mContext, TalentResister_Activity.class);
-                    i.putExtra("GiveFlag", false);
-                    startActivity(i);
-                    finish();
-                }
-            });
-        } else
-
-        {
-            TalentCondition_Take_KeywordBox.setVisibility(View.VISIBLE);
-            TalentCondition_Take_btn01.setVisibility(View.VISIBLE);
-            TalentCondition_Take_btn02.setVisibility(View.VISIBLE);
-            TalentCondition_Take_btn03.setVisibility(View.GONE);
-            TalentCondition_Take_Keyword1.setText(TalentCondition_Take_Keyword[0]);
-            TalentCondition_Take_Keyword2.setText(TalentCondition_Take_Keyword[1]);
-            TalentCondition_Take_Keyword3.setText(TalentCondition_Take_Keyword[2]);
-
-            if (TakeTalentConditionCode == 1) {
-                TalentCondition_Take_Text2.setText("관심목록 확인 또는 T.Sharing을 확인해보세요!\"");
-                TalentCondition_Take_btn01.setText("관심목록 확인");
-                TalentCondition_Take_btn02.setText("T.Sharing");
-                Talent_Take_Condition.setText("대기 중...");
-
-
-            } else if (TakeTalentConditionCode == 2) {
-                TalentCondition_Take_Text2.setText("다음 단계를 진행해주세요!\"");
-                TalentCondition_Take_btn01.setText("완료 하기");
-                TalentCondition_Take_btn02.setText("취소 하기");
-                Talent_Take_Condition.setText("진행 중...");
-            } else if (TakeTalentConditionCode == 3) {
-                TalentCondition_Take_Text2.setText("재능 재등록 또는 재능 수정하기를 진행해주세요!\"");
-                TalentCondition_Take_btn01.setText("관심재능 재등록");
-                TalentCondition_Take_btn02.setText("관심재능 수정하기");
-                TalentCondition_Take_btn02.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        Intent i = new Intent(mContext, TalentResister_Activity.class);
-                        i.putExtra("GiveFlag", false);
-                        startActivity(i);
-                        finish();
-                    }
-                });
-                Talent_Take_Condition.setText("완료");
-            }
-        }
-        
-        
     }
 
 
@@ -344,6 +192,174 @@ public class TalentCondition_Activity extends AppCompatActivity {
     public void slideMenuSystem(View v){
         Intent i = new Intent(mContext, System_Activity.class);
         startActivity(i);
+    }
+
+    public void slideMenuTalentSharingList(View v){
+        Intent i = new Intent(mContext, SharingList_Activity.class);
+        startActivity(i);
+    }
+
+    public void slideFriendList(View v){
+        Intent i = new Intent(mContext, FriendList_Activity.class);
+        startActivity(i);
+    }
+
+
+
+    public void TalentCondition_Give_Registed(boolean check_GiveTalent, int Code)
+    {
+        if (!check_GiveTalent) {
+            TalentCondition_TextView.setText("재능드림을 등록하여 회원님의 재능을 공유해주세요!");
+            TalentCondition_PictureLL.setVisibility(GONE);
+            TalentCondition_Button1.setVisibility(GONE);
+            TalentCondition_Button2.setVisibility(GONE);
+            TalentCondition_Button3.setVisibility(View.VISIBLE);
+            TalentCondition_Condition.setText("미등록");
+            TalentCondition_Button3.setText("재능드림 등록하기");
+            TalentCondition_Button3.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent i = new Intent(mContext, TalentResister_Activity.class);
+                    startActivity(i);
+                    finish();
+                }
+            });
+        }
+        else
+        {
+        switch (Code)
+        {
+            case 1: {
+                TalentCondition_TakeorGiveTalent.setText("재능드림 : ");
+                TalentCondition_TextView.setText("관심목록 확인 또는 T.Sharing을 확인해보세요!");
+                TalentCondition_Button1.setText("관심목록 확인");
+                TalentCondition_Button2.setText("T.Sharing");
+                TalentCondition_Button1.setVisibility(View.VISIBLE);
+                TalentCondition_Button2.setVisibility(View.VISIBLE);
+                TalentCondition_Button3.setVisibility(GONE);
+                TalentCondition_PictureLL.setVisibility(GONE);
+                TalentCondition_Condition.setText("대기 중...");
+                TalentCondition_Button1.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(mContext,InterestingList_Activity.class);
+                        intent.putExtra("TalentFlag","Give");
+                        startActivity(intent);
+                    }
+                });
+                TalentCondition_Button2.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        //TODO:TalentSharing에서 재능드림 버튼 포커스 이동
+                        Intent intent = new Intent(mContext,TalentSharing_Activity.class);
+                        startActivity(intent);
+                    }
+                });
+                break;
+            }
+            case 2: {
+                TalentCondition_TakeorGiveTalent.setText("재능드림 : ");
+                TalentCondition_TextView.setText("재능을 공유하였다면 완료하기 버튼을 눌러주세요!");
+                TalentCondition_Button1.setText("완료 하기");
+                TalentCondition_Button2.setText("진행 취소");
+                TalentCondition_Button1.setVisibility(View.VISIBLE);
+                TalentCondition_Button2.setVisibility(View.VISIBLE);
+                TalentCondition_PictureLL.setVisibility(View.VISIBLE);
+                TalentCondition_Button3.setVisibility(GONE);
+                TalentCondition_Condition.setText("진행 중...");
+                break;
+            }
+            case 3: {
+                TalentCondition_TakeorGiveTalent.setText("재능드림 : ");
+                TalentCondition_TextView.setText("재능 재등록을 진행해야 회원님의 재능이 활성화 됩니다.");
+                TalentCondition_Button1.setText("재능드림 재등록");
+                TalentCondition_Button2.setText("재능드림 수정하기");
+                TalentCondition_Button1.setVisibility(View.VISIBLE);
+                TalentCondition_Button2.setVisibility(View.VISIBLE);
+                TalentCondition_PictureLL.setVisibility(View.VISIBLE);
+                TalentCondition_Button3.setVisibility(GONE);
+                TalentCondition_Condition.setText("완료");
+                break;
+            }
+
+        }
+    }
+    }
+
+    public void TalentCondition_Take_Registed(boolean check_TakeTalent, int Code) {
+        if (!check_TakeTalent) {
+            TalentCondition_TextView.setText("관심재능을 등록하여 회원님의 재능을 공유해주세요!");
+            TalentCondition_PictureLL.setVisibility(GONE);
+            TalentCondition_Button1.setVisibility(GONE);
+            TalentCondition_Button2.setVisibility(GONE);
+            TalentCondition_Button3.setVisibility(View.VISIBLE);
+            TalentCondition_Condition.setText("미등록");
+            TalentCondition_Button3.setText("관심재능 등록하기");
+            TalentCondition_Button3.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent i = new Intent(mContext, TalentResister_Activity.class);
+                    startActivity(i);
+                    finish();
+                }
+            });
+        } else {
+            switch (Code) {
+                case 1: {
+                    TalentCondition_TakeorGiveTalent.setText("관심재능 : ");
+                    TalentCondition_TextView.setText("관심목록 확인 또는 T.Sharing을 확인해보세요!");
+                    TalentCondition_Button1.setText("관심목록 확인");
+                    TalentCondition_Button2.setText("T.Sharing");
+                    TalentCondition_Button1.setVisibility(View.VISIBLE);
+                    TalentCondition_Button2.setVisibility(View.VISIBLE);
+                    TalentCondition_Button3.setVisibility(GONE);
+                    TalentCondition_PictureLL.setVisibility(GONE);
+                    TalentCondition_Condition.setText("대기 중...");
+                    TalentCondition_Button1.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent intent = new Intent(mContext, InterestingList_Activity.class);
+                            intent.putExtra("TalentFlag", "Take");
+                            startActivity(intent);
+                        }
+                    });
+                    TalentCondition_Button2.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            //TODO:TalentSharing에서 관심재능 버튼 포커스 이동
+                            Intent intent = new Intent(mContext, TalentSharing_Activity.class);
+                            startActivity(intent);
+                        }
+                    });
+                    break;
+                }
+                case 2: {
+                    TalentCondition_TakeorGiveTalent.setText("관심재능 : ");
+                    TalentCondition_TextView.setText("재능을 공유하였다면 완료하기 버튼을 눌러주세요!");
+                    TalentCondition_Button1.setText("완료 하기");
+                    TalentCondition_Button2.setText("진행 취소");
+                    TalentCondition_Button1.setVisibility(View.VISIBLE);
+                    TalentCondition_Button2.setVisibility(View.VISIBLE);
+                    TalentCondition_PictureLL.setVisibility(View.VISIBLE);
+                    TalentCondition_Button3.setVisibility(GONE);
+                    TalentCondition_Condition.setText("진행 중...");
+                    break;
+                }
+                case 3: {
+                    TalentCondition_TakeorGiveTalent.setText("관심재능 : ");
+                    TalentCondition_TextView.setText("재능 재등록을 진행해야 회원님의 재능이 활성화 됩니다.");
+                    TalentCondition_Button1.setText("관심재능 재등록");
+                    TalentCondition_Button2.setText("관심재능 수정하기");
+                    TalentCondition_Button1.setVisibility(View.VISIBLE);
+                    TalentCondition_Button2.setVisibility(View.VISIBLE);
+                    TalentCondition_PictureLL.setVisibility(View.VISIBLE);
+                    TalentCondition_Button3.setVisibility(GONE);
+                    TalentCondition_Condition.setText("완료");
+                    break;
+                }
+
+            }
+        }
     }
 
 }

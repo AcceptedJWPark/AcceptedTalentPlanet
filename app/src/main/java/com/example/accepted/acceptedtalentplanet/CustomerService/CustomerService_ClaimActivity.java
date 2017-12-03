@@ -19,8 +19,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.accepted.acceptedtalentplanet.R;
-
-import org.w3c.dom.Text;
+import com.example.accepted.acceptedtalentplanet.SharingList.SharingList_Activity;
 
 /**
  * Created by Accepted on 2017-10-31.
@@ -64,8 +63,8 @@ public class CustomerService_ClaimActivity extends AppCompatActivity {
         CustomerService_Claim_SharingList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), CustomerService_Claim_SharingListActivity.class);
-                startActivityForResult(intent, 1);
+                Intent intent = new Intent(getApplicationContext(), SharingList_Activity.class);
+                startActivity(intent);
             }
         });
 

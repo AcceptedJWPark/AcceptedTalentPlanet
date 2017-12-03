@@ -14,11 +14,14 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.accepted.acceptedtalentplanet.Alarm.Alarm_Activity;
 import com.example.accepted.acceptedtalentplanet.CustomerService.CustomerService_MainActivity;
+import com.example.accepted.acceptedtalentplanet.FriendList.FriendList_Activity;
 import com.example.accepted.acceptedtalentplanet.LoadingLogin.Login_Activity;
 import com.example.accepted.acceptedtalentplanet.MyProfile.MyProfile_Activity;
 import com.example.accepted.acceptedtalentplanet.R;
 import com.example.accepted.acceptedtalentplanet.SaveSharedPreference;
+import com.example.accepted.acceptedtalentplanet.SharingList.SharingList_Activity;
 import com.example.accepted.acceptedtalentplanet.System.System_Activity;
 import com.example.accepted.acceptedtalentplanet.TalentCondition.TalentCondition_Activity;
 import com.example.accepted.acceptedtalentplanet.TalentResister.TalentResister_Activity;
@@ -39,6 +42,7 @@ public class TalentSearching_Activity extends AppCompatActivity {
     View drawerView;
     ImageView imgDLOpenMenu;
     ImageView DrawerCloseImg;
+    ImageView ActionBar_AlarmView;
 
     TextView ToolbarTxt;
 
@@ -55,17 +59,14 @@ public class TalentSearching_Activity extends AppCompatActivity {
 
         talentSearching_listItemArrayList = new ArrayList<>();
         talentSearching_listAdapter = new TalentSearching_ListAdapter(mContext, talentSearching_listItemArrayList);
-        talentSearching_listItemArrayList.add(new TalentSearching_ListItem(R.drawable.textpicture,"정우성1","기타","피아노","드럼"));
-        talentSearching_listItemArrayList.add(new TalentSearching_ListItem(R.drawable.textpicture,"정우성2","기타","피아노","드럼"));
-        talentSearching_listItemArrayList.add(new TalentSearching_ListItem(R.drawable.textpicture,"정우성3","기타","피아노","드럼"));
-        talentSearching_listItemArrayList.add(new TalentSearching_ListItem(R.drawable.textpicture,"정우성4","기타","피아노","드럼"));
-        talentSearching_listItemArrayList.add(new TalentSearching_ListItem(R.drawable.textpicture,"정우성5","기타","피아노","드럼"));
-        talentSearching_listItemArrayList.add(new TalentSearching_ListItem(R.drawable.textpicture,"정우성6","기타","피아노","드럼"));
-        talentSearching_listItemArrayList.add(new TalentSearching_ListItem(R.drawable.textpicture,"정우성7","기타","피아노","드럼"));
-        talentSearching_listItemArrayList.add(new TalentSearching_ListItem(R.drawable.textpicture,"정우성8","기타","피아노","드럼"));
-        talentSearching_listItemArrayList.add(new TalentSearching_ListItem(R.drawable.textpicture,"정우성9","기타","피아노","드럼"));
-        talentSearching_listItemArrayList.add(new TalentSearching_ListItem(R.drawable.textpicture,"정우성10","기타","피아노","드럼"));
-        talentSearching_listItemArrayList.add(new TalentSearching_ListItem(R.drawable.textpicture,"정우성11","기타","피아노","드럼"));
+        talentSearching_listItemArrayList.add(new TalentSearching_ListItem(R.drawable.textpicture,"박종우","기타","기타 연습","기타 독주"));
+        talentSearching_listItemArrayList.add(new TalentSearching_ListItem(R.drawable.textpicture,"민권홍","피아노","피아노 연주","Piano"));
+        talentSearching_listItemArrayList.add(new TalentSearching_ListItem(R.drawable.textpicture,"유성택","복싱","권투","격투기"));
+        talentSearching_listItemArrayList.add(new TalentSearching_ListItem(R.drawable.textpicture,"임하슬람","기타","피아노","드럼"));
+        talentSearching_listItemArrayList.add(new TalentSearching_ListItem(R.drawable.textpicture,"김정태","공무원 시험","공무원 9급","공무원 7급"));
+        talentSearching_listItemArrayList.add(new TalentSearching_ListItem(R.drawable.textpicture,"우승제","축구","풋살","축구 프리킥"));
+        talentSearching_listItemArrayList.add(new TalentSearching_ListItem(R.drawable.textpicture,"김용인","먹방","아프리카 bj","먹는 방송"));
+        talentSearching_listItemArrayList.add(new TalentSearching_ListItem(R.drawable.textpicture,"배대명","비트박스","BeatBox","북치기 박치기"));
 
         TalentSearching_ListView = (ListView) findViewById(R.id.TalentSearching_ListView);
         TalentSearching_ListView.setAdapter(talentSearching_listAdapter);
@@ -94,10 +95,6 @@ public class TalentSearching_Activity extends AppCompatActivity {
                     }
                 });
 
-
-
-
-
                 ToolbarTxt = (TextView) findViewById(R.id.toolbarTxt);
         ToolbarTxt.setText("재능 검색");
 
@@ -115,6 +112,15 @@ public class TalentSearching_Activity extends AppCompatActivity {
         drawerView = (View) findViewById(R.id.TalentSearching_container);
         imgDLOpenMenu = (ImageView) findViewById(R.id.ActionBar_Listview);
         DrawerCloseImg = (ImageView) findViewById(R.id.DrawerCloseImg);
+        ActionBar_AlarmView = (ImageView) findViewById(R.id.ActionBar_AlarmView);
+        ActionBar_AlarmView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext, Alarm_Activity.class);
+                startActivity(intent);
+            }
+        });
+
 
 
         imgDLOpenMenu.setOnClickListener(new View.OnClickListener() {
@@ -177,6 +183,17 @@ public class TalentSearching_Activity extends AppCompatActivity {
         Intent i = new Intent(mContext, System_Activity.class);
         startActivity(i);
     }
+
+    public void slideMenuTalentSharingList(View v){
+        Intent i = new Intent(mContext, SharingList_Activity.class);
+        startActivity(i);
+    }
+
+    public void slideFriendList(View v){
+        Intent i = new Intent(mContext, FriendList_Activity.class);
+        startActivity(i);
+    }
+
 
 
 }

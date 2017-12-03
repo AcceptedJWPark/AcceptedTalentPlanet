@@ -6,7 +6,10 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
+import android.view.Display;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -42,11 +45,26 @@ public class InterestingList_Popup extends FragmentActivity {
     ImageView talentSharing_popupclosebtn;
     private InterestingList_Dialog mInterestingList_Dialog;
 
+    ImageView InteresteingList_addfriendList_on;
+    ImageView InteresteingList_addfriendList_off;
+
+    boolean addedFriend = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.interested_popup);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        setContentView(R.layout.interestinglist_popup);
+
+        Display display = ((WindowManager) getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();
+        mContext = getApplicationContext();
+        int width = (int) (display.getWidth() * 1);
+        int height = (int) (display.getHeight() * 0.9);
+        getWindow().getAttributes().width = width;
+        getWindow().getAttributes().height = height;
+
+
         String talentID = getIntent().getStringExtra("TalentID");
         mContext = getApplicationContext();
         talentSharing_popupclosebtn = (ImageView) findViewById(R.id.TalentSharing_pupupclosebtn);
@@ -54,6 +72,35 @@ public class InterestingList_Popup extends FragmentActivity {
             @Override
             public void onClick(View view) {
                 InterestingList_Popup.this.finish();
+            }
+        });
+
+        InteresteingList_addfriendList_on = findViewById(R.id.InterestedPopup_addfriendList_on);
+        InteresteingList_addfriendList_off = findViewById(R.id.InterestedPopup_addfriendList_off);
+
+        if (addedFriend) {
+            InteresteingList_addfriendList_on.setVisibility(View.VISIBLE);
+            InteresteingList_addfriendList_off.setVisibility(View.GONE);
+        }
+        else {
+            InteresteingList_addfriendList_on.setVisibility(View.GONE);
+            InteresteingList_addfriendList_off.setVisibility(View.VISIBLE);
+        }
+
+        InteresteingList_addfriendList_on.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                InteresteingList_addfriendList_on.setVisibility(View.GONE);
+                InteresteingList_addfriendList_off.setVisibility(View.VISIBLE);
+                Toast.makeText(mContext,"친구 목록에서 삭제되었습니다.",Toast.LENGTH_SHORT).show();
+            }
+        });
+        InteresteingList_addfriendList_off.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                InteresteingList_addfriendList_off.setVisibility(View.GONE);
+                InteresteingList_addfriendList_on.setVisibility(View.VISIBLE);
+                Toast.makeText(mContext,"친구 목록에 추가되었습니다.",Toast.LENGTH_SHORT).show();
             }
         });
 

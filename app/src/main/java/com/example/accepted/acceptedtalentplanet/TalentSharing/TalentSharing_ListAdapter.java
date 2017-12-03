@@ -2,9 +2,11 @@ package com.example.accepted.acceptedtalentplanet.TalentSharing;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -55,7 +57,16 @@ public class TalentSharing_ListAdapter extends BaseAdapter {
     public View getView(int position, View view, ViewGroup viewGroup) {
         final int index = position;
         if(view == null) {
-            view = LayoutInflater.from(context).inflate(R.layout.talentsharing_listviewbg, null);
+            view = LayoutInflater.from(context).inflate(R.layout.talentsharing_listviewbg, viewGroup,false);
+
+            DisplayMetrics metrics = new DisplayMetrics();
+            WindowManager windowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+            windowManager.getDefaultDisplay().getMetrics(metrics);
+            int Interesting_ListView_height = (int) (metrics.heightPixels*0.12);
+
+            ViewGroup.LayoutParams params1 = view.getLayoutParams();
+            params1.height = Interesting_ListView_height;
+            view.setLayoutParams(params1);
 
             listView_picture = view.findViewById(R.id.TalentSharing_Picture);
             listView_name = view.findViewById(R.id.TalentSharing_Name);
@@ -63,11 +74,11 @@ public class TalentSharing_ListAdapter extends BaseAdapter {
             listView_talent2 = view.findViewById(R.id.TalentSharing_Keyword2);
             listView_talent3 = view.findViewById(R.id.TalentSharing_Keyword3);
             listView_distance = view.findViewById(R.id.TalentSharing_Distance);
-            listView_showProfile = view.findViewById(R.id.TalentSharing_ShowProfile);
 
             final String text = String.valueOf(list_ArrayList.get(position));
 
-            listView_showProfile.setOnClickListener(new View.OnClickListener() {
+            //TODO: 재능 드림, 관심 재능에 따라 프로필 팝업 두 번째 구분자 텍스트 변경
+            view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     Intent intent = new Intent(context, TalentSharing_Popup_Activity.class);
@@ -83,7 +94,6 @@ public class TalentSharing_ListAdapter extends BaseAdapter {
         listView_talent2.setText(list_ArrayList.get(position).getTalent2());
         listView_talent3.setText(list_ArrayList.get(position).getTalent3());
         listView_distance.setText(list_ArrayList.get(position).getdistance());
-        listView_showProfile.setText(list_ArrayList.get(position).getShowProfile());
 
         return view;
     }

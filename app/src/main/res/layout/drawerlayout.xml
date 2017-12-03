@@ -15,26 +15,31 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:background="#ffffff"
-        android:weightSum="21.1">
+        android:weightSum="24">
+
+
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:gravity="center"
             android:background="#f5f5f5"
-            android:layout_weight="3"
+            android:layout_weight="2.6"
             >
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
                 android:orientation="horizontal">
 
                 <ImageView
                     android:adjustViewBounds="true"
                     android:layout_width="0dp"
                     android:layout_marginLeft="10dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
                     android:src="@drawable/textpicture"
                     android:layout_weight="0.7" />
 
@@ -66,6 +71,7 @@
             </LinearLayout>
         </LinearLayout>
 
+
         <View
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -74,38 +80,60 @@
         </View>
 
 
-
         <TextView
             android:id="@+id/SlidingMenu_Profile"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="2"
+            android:layout_weight="1.9"
             android:background="@drawable/list_drawer_background"
             android:gravity="center_vertical"
             android:onClick="slideMenuProfile"
             android:paddingLeft="20dp"
             android:textSize="@dimen/List_Title"
-            android:text="My Profile 관리"
+            android:text="My Profile"
             android:textStyle="bold" />
+
+
 
         <TextView
             android:id="@+id/SlidingMenu_MyTalentResister"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="2"
+            android:layout_weight="1.9"
             android:background="@drawable/list_drawer_background"
             android:gravity="center_vertical"
             android:onClick="slideMenuTalent"
             android:textSize="@dimen/List_Title"
             android:paddingLeft="20dp"
-            android:text="My Talent 관리"
+            android:text="My Talent"
             android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/SlidingMenu_MyTalentProcess"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1.9"
+            android:background="@drawable/list_drawer_background"
+            android:gravity="center_vertical"
+            android:onClick="slideMenuMyTalent"
+            android:textSize="@dimen/List_Title"
+            android:paddingLeft="20dp"
+            android:text="나의 재능 현황"
+            android:textStyle="bold" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.1"
+            android:background="@drawable/divider_background">
+        </View>
+
 
         <TextView
             android:id="@+id/SlidingMenu_T.Sharing"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="2"
+            android:layout_weight="1.9"
             android:background="@drawable/list_drawer_background"
             android:gravity="center_vertical"
             android:onClick="slideMenuTS"
@@ -118,37 +146,56 @@
             android:id="@+id/SlidingMenu_Home"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="2"
+            android:layout_weight="1.9"
             android:background="@drawable/list_drawer_background"
             android:gravity="center_vertical"
             android:onClick="slideMenuTalentSearching"
-            android:textSize="@dimen/List_Title"
             android:paddingLeft="20dp"
             android:text="재능 검색"
+            android:textSize="@dimen/List_Title"
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/SlidingMenu_MyTalentProcess"
+            android:id="@+id/SlidingMenu_SharingList"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="2"
+            android:layout_weight="1.9"
             android:background="@drawable/list_drawer_background"
             android:gravity="center_vertical"
-            android:onClick="slideMenuMyTalent"
-            android:textSize="@dimen/List_Title"
+            android:onClick="slideMenuTalentSharingList"
             android:paddingLeft="20dp"
-            android:text="나의 재능 현황"
+            android:text="재능공유 내역"
+            android:textSize="@dimen/List_Title"
             android:textStyle="bold" />
 
-
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.1"
+            android:background="@drawable/divider_background">
+        </View>
 
         <TextView
             android:id="@+id/SlidingMenu_MessageBox"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="2"
+            android:layout_weight="1.9"
             android:text="Message Box"
             android:textStyle="bold"
+            android:gravity="center_vertical"
+            android:background="@drawable/list_drawer_background"
+            android:textSize="@dimen/List_Title"
+            android:paddingLeft="20dp"
+            />
+
+        <TextView
+            android:id="@+id/SlidingMenu_FriendList"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1.9"
+            android:text="친구 목록"
+            android:textStyle="bold"
+            android:onClick="slideFriendList"
             android:gravity="center_vertical"
             android:background="@drawable/list_drawer_background"
             android:textSize="@dimen/List_Title"
@@ -167,7 +214,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:gravity="center_vertical"
-            android:layout_weight="2"
+            android:layout_weight="1.9"
             android:background="@drawable/list_drawer_background"
             android:text="고객센터"
             android:textSize="@dimen/List_Title"
@@ -179,7 +226,7 @@
             android:id="@+id/SlidingMenu_System"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="2"
+            android:layout_weight="1.9"
             android:onClick="slideMenuSystem"
             android:gravity="center_vertical"
             android:textSize="@dimen/List_Title"
@@ -200,7 +247,7 @@
             android:id="@+id/SlidingMenu_LogOut"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="2"
+            android:layout_weight="1.9"
             android:background="@drawable/list_drawer_background"
             android:orientation="horizontal"
             android:paddingLeft="20dp">

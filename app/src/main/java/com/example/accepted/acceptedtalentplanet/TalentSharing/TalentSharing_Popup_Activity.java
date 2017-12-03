@@ -40,9 +40,16 @@ import java.util.Map;
 public class TalentSharing_Popup_Activity extends FragmentActivity{
 
     ImageView talentSharing_pupupclosebtn;
+    ImageView TalentSharingPopup_addfriendList_on;
+    ImageView TalentSharingPopup_addfriendList_off;
+
     boolean hasFlag = false;
     Context mContext;
     Button interestBtn;
+
+    boolean addedFriend = false;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,6 +70,39 @@ public class TalentSharing_Popup_Activity extends FragmentActivity{
             @Override
             public void onClick(View view) {
                 TalentSharing_Popup_Activity.this.finish();
+            }
+        });
+
+
+        //TODO:친구 추천이 되어있는지 안되어있는지 확인하는 로직 필요
+        TalentSharingPopup_addfriendList_on = findViewById(R.id.TalentSharingPopup_addfriendList_on);
+        TalentSharingPopup_addfriendList_off = findViewById(R.id.TalentSharingPopup_addfriendList_off);
+
+        if (addedFriend) {
+            TalentSharingPopup_addfriendList_on.setVisibility(View.VISIBLE);
+            TalentSharingPopup_addfriendList_off.setVisibility(View.GONE);
+        }
+        else {
+            TalentSharingPopup_addfriendList_on.setVisibility(View.GONE);
+            TalentSharingPopup_addfriendList_off.setVisibility(View.VISIBLE);
+        }
+
+        TalentSharingPopup_addfriendList_on.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                    TalentSharingPopup_addfriendList_on.setVisibility(View.GONE);
+                    TalentSharingPopup_addfriendList_off.setVisibility(View.VISIBLE);
+                    Toast.makeText(mContext,"친구 목록에서 삭제되었습니다.",Toast.LENGTH_SHORT).show();
+                addedFriend = false;
+                }
+        });
+        TalentSharingPopup_addfriendList_off.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                    TalentSharingPopup_addfriendList_off.setVisibility(View.GONE);
+                    TalentSharingPopup_addfriendList_on.setVisibility(View.VISIBLE);
+                    Toast.makeText(mContext,"친구 목록에 추가되었습니다.",Toast.LENGTH_SHORT).show();
+                addedFriend = true;
             }
         });
 

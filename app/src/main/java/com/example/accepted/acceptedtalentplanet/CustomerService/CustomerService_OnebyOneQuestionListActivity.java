@@ -51,9 +51,10 @@ public class CustomerService_OnebyOneQuestionListActivity extends AppCompatActiv
 
         int sizeList = 0;
 
+        //TODO: 신고하기에서 신고내용이 신고내역의 ChildView 제목으로 들어가게 해야함.
         GroupDataList.add(new CustomerService_OnebyOneQuetiontItem(
                 "T.Sharing 클릭시 오류가 발생합니다. 원인이 무엇인지 궁금하며 조속히 해결 바랍니다.",
-                "답변 완료",
+                "[답변 완료]",
                 "2017.11.05 13:42 등록"));
         ChildDataList.add(new ArrayList<CustomerService_OnebyOneAnswerItem>());
         ChildDataList.get(sizeList).add(new CustomerService_OnebyOneAnswerItem(

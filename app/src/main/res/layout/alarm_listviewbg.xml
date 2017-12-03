@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="60dp"
+    android:background="#ffffff"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
+    android:paddingTop="5dp"
+    android:paddingBottom="5dp"
+    android:gravity="center"
+    android:weightSum="4.5"
+    >
+    <ImageView
+        android:id="@+id/Alarm_Picture"
+        android:layout_width="0dp"
+        android:layout_weight="0.5"
+        android:layout_height="match_parent"
+        android:adjustViewBounds="true"
+        android:gravity="center"
+        android:src="@drawable/textpicture"
+    />
+
+    <View
+        android:id="@+id/TrashView1"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="0.1"/>
+
+    <LinearLayout
+        android:id="@+id/alarm_TxtLL"
+        android:layout_width="0dp"
+        android:layout_weight="3.5"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:paddingRight="5dp"
+            android:orientation="horizontal"
+            >
+
+        <TextView
+            android:id="@+id/Alarm_Name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center|left"
+            android:text="박종우"
+            android:singleLine="true"
+            android:textSize="@dimen/ListView_TitleorName"
+            android:textColor="#000000"
+            android:textStyle="bold" />
+
+
+
+        <TextView
+            android:id="@+id/Alarm_Txt"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center|left"
+            android:text="님이 재능드림에 관심을 취소하였습니다."
+            android:singleLine="true"
+            android:textSize="@dimen/ListView_TitleorName"
+            android:textColor="#000000"
+            android:textStyle="bold"
+            />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+            <TextView
+            android:id="@+id/Alarm_RegistDate1"
+            android:layout_width="wrap_content"
+            android:textColor="@color/textColor"
+            android:layout_height="match_parent"
+            android:gravity="center|left"
+            android:paddingLeft="5dp"
+            android:text="2017.11.30. 12:32"
+            android:textSize="@dimen/ListView_SubTitle"
+            />
+            <TextView
+                android:id="@+id/Alarm_RegistDate2"
+                android:layout_width="wrap_content"
+                android:textColor="@color/textColor"
+                android:layout_height="match_parent"
+                android:gravity="center|left"
+                android:paddingLeft="5dp"
+                android:text="등록"
+                android:textSize="@dimen/ListView_SubTitle"
+                />
+        </LinearLayout>
+
+    </LinearLayout>
+
+        <ImageView
+            android:id="@+id/Alarm_DeleteList"
+            android:layout_weight="0.5"
+            android:layout_width="0dp"
+            android:padding="5dp"
+            android:src="@android:drawable/presence_busy"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            />
+
+</LinearLayout>
+
+

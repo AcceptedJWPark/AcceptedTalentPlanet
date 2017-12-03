@@ -18,10 +18,12 @@
             android:weightSum="24"
             >
 
-            <LinearLayout
+            <View
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_height="0dp"
+                android:layout_weight="0.1"
+                android:background="#eeeeee"/>
+
 
     <TextView
         android:id="@+id/CustomerService_ClaimListQuestion"
@@ -30,14 +32,13 @@
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
         android:paddingTop="10dp"
-        android:background="@drawable/divider_background"
+        android:background="#ffffff"
         android:lineSpacingExtra="15dp"
         android:paddingBottom="10dp"
         android:textSize="@dimen/ListView_ChildTxt_Question"
         android:text="2018 2월 부로 Talent Planet Test가 시작되었습니다. \n2018년 3월 부로 Service 오픈 예정이오니, 많은 관심 부탁드립니다.\n"
         />
 
-            </LinearLayout>
     <View
         android:layout_width="match_parent"
         android:layout_height="0dp"

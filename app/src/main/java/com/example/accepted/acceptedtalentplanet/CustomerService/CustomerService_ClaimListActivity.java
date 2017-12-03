@@ -51,9 +51,11 @@ public class CustomerService_ClaimListActivity extends AppCompatActivity {
 
         int sizeList = 0;
 
+        //TODO: 신고하기에서 신고내용이 신고내역의 ChildView 제목으로 들어가게 해야함.
+        //TODO: 신고하기, 신고내역 다시 작성해야 할 듯.
         GroupDataList.add(new CustomerService_ClaimListQuestionItem(
-                "박종우님과 \"Guitar, 기타 연주, 기타\" 진행의 건",
-                "조치 완료",
+                "이 분이 완료 버튼을 누르지 않아 다음 단계로 진행이 안되네요.",
+                "[조치 완료]",
                 "2017.11.05 13:42 등록"));
         ChildDataList.add(new ArrayList<CustomerService_ClaimListAnswerItem>());
         ChildDataList.get(sizeList).add(new CustomerService_ClaimListAnswerItem(

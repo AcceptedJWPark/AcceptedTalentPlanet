@@ -93,7 +93,7 @@ public class CustomerService_FaqActivity extends AppCompatActivity {
 
 
         ArrayList<String> arrayList11 = new ArrayList<String>();
-        arrayList11.add("리스트 3의 TextView");
+        arrayList11.add("친구 등록을 할 수 있습니다. ");
 
 
         ArrayList<String> arrayList12 = new ArrayList<String>();

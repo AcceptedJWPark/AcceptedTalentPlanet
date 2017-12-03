@@ -10,10 +10,14 @@ import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -65,6 +69,8 @@ public class InterestingList_Activity extends AppCompatActivity {
     InterestingList_ListAdapter InterestingList_Adapter;
     boolean giveTalentFlag = false;
 
+    LinearLayout InterestingList_PreBtn;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,6 +83,16 @@ public class InterestingList_Activity extends AppCompatActivity {
 
         getInterestList();
 
+        InterestingList_PreBtn = (LinearLayout) findViewById(R.id.InterestingList_PreBtn);
+        InterestingList_PreBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
+
+
     }
 
     public void getInterestList() {
@@ -88,10 +104,10 @@ public class InterestingList_Activity extends AppCompatActivity {
 
                     JSONArray obj = new JSONArray(response);
                     InterestingList_ArrayList.clear();
-                    String str = (giveTalentFlag)?"재능드림":"관심재능";
+                    String str = (!giveTalentFlag)?"재능드림":"관심재능";
                     for (int index = 0; index < obj.length(); index++) {
                         JSONObject o = obj.getJSONObject(index);
-                        InterestingList_ListItem target = new InterestingList_ListItem(R.drawable.textpicture, o.getString("USER_NAME"), o.getString("TALENT_KEYWORD1"), o.getString("TALENT_KEYWORD2"), o.getString("TALENT_KEYWORD3"), str, o.getString("CREATION_DATE") + " 등록", o.getString("TALENT_ID"));
+                        InterestingList_ListItem target = new InterestingList_ListItem(R.drawable.textpicture, o.getString("USER_NAME"), o.getString("TALENT_KEYWORD1"), o.getString("TALENT_KEYWORD2"), o.getString("TALENT_KEYWORD3"), "["+str+"]", o.getString("CREATION_DATE") + " 등록", o.getString("TALENT_ID"),1);
 
                         InterestingList_ArrayList.add(target);
 

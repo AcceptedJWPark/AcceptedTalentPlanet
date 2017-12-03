@@ -20,6 +20,7 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.accepted.acceptedtalentplanet.Alarm.Alarm_Activity;
 import com.example.accepted.acceptedtalentplanet.CustomerService.CustomerService_MainActivity;
 import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
@@ -30,9 +31,11 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.accepted.acceptedtalentplanet.FriendList.FriendList_Activity;
 import com.example.accepted.acceptedtalentplanet.GeoPoint;
 import com.example.accepted.acceptedtalentplanet.Home.Home_Activity;
 import com.example.accepted.acceptedtalentplanet.LoadingLogin.Login_Activity;
+import com.example.accepted.acceptedtalentplanet.SharingList.SharingList_Activity;
 import com.example.accepted.acceptedtalentplanet.System.System_Activity;
 import com.example.accepted.acceptedtalentplanet.TalentResister.TalentResister_LocationList;
 import com.example.accepted.acceptedtalentplanet.MyProfile.MyProfile_Activity;
@@ -70,11 +73,15 @@ public class TalentSharing_Activity extends AppCompatActivity {
     View drawerView;
     ImageView imgDLOpenMenu;
     ImageView DrawerCloseImg;
+    ImageView ActionBar_AlarmView;
 
     TextView ToolbarTxt;
+    TextView TalentSharing_PageTxt;
 
     // 검색조건 관련 변수
     boolean isGiveTalent = true;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,55 +93,42 @@ public class TalentSharing_Activity extends AppCompatActivity {
         ToolbarTxt = (TextView) findViewById(R.id.toolbarTxt);
         ToolbarTxt.setText("T.Sharing");
 
+        //ToolBar 적용하기
+        slidingMenuDL = (DrawerLayout) findViewById(R.id.TalentSharing_listboxDL);
+        drawerView = (View) findViewById(R.id.TalentSharing_container);
+        imgDLOpenMenu = (ImageView) findViewById(R.id.ActionBar_Listview);
+        DrawerCloseImg = (ImageView) findViewById(R.id.DrawerCloseImg);
+        ActionBar_AlarmView = (ImageView) findViewById(R.id.ActionBar_AlarmView);
+        ActionBar_AlarmView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext, Alarm_Activity.class);
+                startActivity(intent);
+            }
+        });
+        imgDLOpenMenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                slidingMenuDL.openDrawer(drawerView);
+            }
+        });
+
+        DrawerCloseImg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                slidingMenuDL.closeDrawer(drawerView);
+            }
+        });
+        ((TextView) findViewById(R.id.DrawerUserID)).setText(SaveSharedPreference.getUserId(mContext));
+
+
         TalentSharingListView = (ListView) findViewById(R.id.TalentSharing_LV);
         TalentSharingList = new ArrayList<>();
         OriginTalentSharingList = new ArrayList<>();
         getTalentSharing();
 
-    }
 
-    public void slideMenuTalentSearching(View v){
-        Intent i = new Intent(mContext, TalentSearching_Activity.class);
-        startActivity(i);
     }
-
-    public void slideMenuProfile(View v){
-        Intent i = new Intent(mContext, MyProfile_Activity.class);
-        startActivity(i);
-    }
-
-    public void slideMenuTalent(View v){
-        Intent i = new Intent(mContext, TalentResister_Activity.class);
-        startActivity(i);
-    }
-
-    public void slideMenuTS(View v){
-        Intent i = new Intent(mContext, TalentSharing_Activity.class);
-        startActivity(i);
-    }
-
-    public void slideMenuMyTalent(View v){
-        Intent i = new Intent(mContext, TalentCondition_Activity.class);
-        startActivity(i);
-    }
-
-    public void slideMenuLogout(View v){
-        SaveSharedPreference.clearUserInfo(mContext);
-        Intent i = new Intent(mContext, Login_Activity.class);
-        startActivity(i);
-        finish();
-    }
-
-    public void slideMenuCustomerService(View v){
-        Intent i = new Intent(mContext, CustomerService_MainActivity.class);
-        startActivity(i);
-    }
-
-    public void slideMenuSystem(View v){
-        Intent i = new Intent(mContext, System_Activity.class);
-        startActivity(i);
-    }
-
 
     public void getTalentSharing() {
         RequestQueue postRequestQueue = Volley.newRequestQueue(this);
@@ -158,36 +152,8 @@ public class TalentSharing_Activity extends AppCompatActivity {
                         }
                     }
 
-
                     TalentSharing_Adapter = new TalentSharing_ListAdapter(mContext, TalentSharingList);
                     TalentSharingListView.setAdapter(TalentSharing_Adapter);
-
-
-
-
-                    //ToolBar 적용하기
-                    slidingMenuDL = (DrawerLayout) findViewById(R.id.TalentSharing_listboxDL);
-                    drawerView = (View) findViewById(R.id.TalentSharing_container);
-                    imgDLOpenMenu = (ImageView) findViewById(R.id.ActionBar_Listview);
-                    DrawerCloseImg = (ImageView) findViewById(R.id.DrawerCloseImg);
-
-
-                    imgDLOpenMenu.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            slidingMenuDL.openDrawer(drawerView);
-
-                        }
-                    });
-
-                    DrawerCloseImg.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            slidingMenuDL.closeDrawer(drawerView);
-                        }
-                    });
-                    ((TextView) findViewById(R.id.DrawerUserID)).setText(SaveSharedPreference.getUserId(mContext));
-
 
                     ((Button)findViewById(R.id.TalentSharing_GiveCheck)).setOnClickListener(changeTalentFlag);
                     ((Button)findViewById(R.id.TalentSharing_TakeCheck)).setOnClickListener(changeTalentFlag);
@@ -234,19 +200,23 @@ public class TalentSharing_Activity extends AppCompatActivity {
         public void onClick(View v){
             Button giveButton = (Button)findViewById(R.id.TalentSharing_GiveCheck);
             Button takeButton = (Button)findViewById(R.id.TalentSharing_TakeCheck);
+            TalentSharing_PageTxt = (TextView)findViewById(R.id.TalentSharing_PageTxt);
 
             isGiveTalent = (((Button)v).getId() == R.id.TalentSharing_GiveCheck) ? true : false;
 
+            //TODO:1) 아래 TalentSharing_PageTxt에 회원이름 들어가야함 2) 초기화 시켜야함 (클릭 되어지는 이벤트에 따라 텍스트 다름)
             if(isGiveTalent){
                 giveButton.setBackground(ContextCompat.getDrawable(mContext, R.drawable.small_button_graybackground));
                 giveButton.setTextColor(getResources().getColor(R.color.textColor));
                 takeButton.setBackground(ContextCompat.getDrawable(mContext, R.drawable.small_button_whitebackground));
                 takeButton.setTextColor(Color.parseColor("#d2d2d2"));
+                TalentSharing_PageTxt.setText("박종우님의 재능을 공유할 수 있는 회원리스트 입니다.");
             }else{
                 takeButton.setBackground(ContextCompat.getDrawable(mContext, R.drawable.small_button_graybackground));
                 takeButton.setTextColor(getResources().getColor(R.color.textColor));
                 giveButton.setBackground(ContextCompat.getDrawable(mContext, R.drawable.small_button_whitebackground));
                 giveButton.setTextColor(Color.parseColor("#d2d2d2"));
+                TalentSharing_PageTxt.setText("박종우님께 재능을 공유할 수 있는 회원리스트 입니다.");
             }
 
             TalentSharingList.clear();
@@ -325,6 +295,59 @@ public class TalentSharing_Activity extends AppCompatActivity {
         return String.format("%.1f", arrDistance[0] / 1000) + "km";
 
     }
+
+    public void slideMenuTalentSearching(View v){
+        Intent i = new Intent(mContext, TalentSearching_Activity.class);
+        startActivity(i);
+    }
+
+    public void slideMenuProfile(View v){
+        Intent i = new Intent(mContext, MyProfile_Activity.class);
+        startActivity(i);
+    }
+
+    public void slideMenuTalent(View v){
+        Intent i = new Intent(mContext, TalentResister_Activity.class);
+        startActivity(i);
+    }
+
+    public void slideMenuTS(View v){
+        Intent i = new Intent(mContext, TalentSharing_Activity.class);
+        startActivity(i);
+    }
+
+    public void slideMenuMyTalent(View v){
+        Intent i = new Intent(mContext, TalentCondition_Activity.class);
+        startActivity(i);
+    }
+
+    public void slideMenuLogout(View v){
+        SaveSharedPreference.clearUserInfo(mContext);
+        Intent i = new Intent(mContext, Login_Activity.class);
+        startActivity(i);
+        finish();
+    }
+
+    public void slideMenuCustomerService(View v){
+        Intent i = new Intent(mContext, CustomerService_MainActivity.class);
+        startActivity(i);
+    }
+
+    public void slideMenuSystem(View v){
+        Intent i = new Intent(mContext, System_Activity.class);
+        startActivity(i);
+    }
+
+    public void slideMenuTalentSharingList(View v){
+        Intent i = new Intent(mContext, SharingList_Activity.class);
+        startActivity(i);
+    }
+
+    public void slideFriendList(View v){
+        Intent i = new Intent(mContext, FriendList_Activity.class);
+        startActivity(i);
+    }
+
 
 }
 

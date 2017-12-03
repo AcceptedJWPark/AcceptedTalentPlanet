@@ -7,6 +7,7 @@
     android:background="#ffffff"
     android:weightSum="24"
     android:focusable="true"
+    android:clickable="true"
     android:focusableInTouchMode="true"
     >
 
