@@ -2,9 +2,15 @@ package com.example.accepted.acceptedtalentplanet;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.preference.PreferenceManager;
+import android.support.v4.content.ContextCompat;
 
 import com.google.gson.Gson;
+
+import java.io.ByteArrayOutputStream;
 
 import static android.text.TextUtils.isEmpty;
 
@@ -99,5 +105,20 @@ public class SaveSharedPreference {
         String json = getSharedPreferences(ctx).getString(PREF_TAKE_DATA, "");
         MyTalent data = gson.fromJson(json, MyTalent.class);
         return data;
+    }
+
+    public static byte[] getFileDataFromDrawable(Context ctx, int id){
+        Drawable drawable = ContextCompat.getDrawable(ctx, id);
+        Bitmap bitmap = ((BitmapDrawable) drawable).getBitmap();
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG, 0, byteArrayOutputStream);
+        return byteArrayOutputStream.toByteArray();
+    }
+
+    public static byte[] getFileDataFromDrawable(Context ctx, Drawable drawable){
+        Bitmap bitmap = ((BitmapDrawable) drawable).getBitmap();
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 80, byteArrayOutputStream);
+        return byteArrayOutputStream.toByteArray();
     }
 }
