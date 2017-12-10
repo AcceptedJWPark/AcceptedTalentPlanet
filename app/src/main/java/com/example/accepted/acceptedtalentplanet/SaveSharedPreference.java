@@ -25,6 +25,10 @@ public class SaveSharedPreference {
     static final String SERVER_IP2 = "http://192.168.123.3:8080/Accepted/";
     static final String PREF_GIVE_DATA = "giveData";
     static final String PREF_TAKE_DATA = "takeData";
+    static final String PREF_GEO_POINT1 = "geoPoint1";
+    static final String PREF_GEO_POINT2 = "geoPoint2";
+    static final String PREF_GEO_POINT3 = "geoPoint3";
+
     static SharedPreferences getSharedPreferences(Context ctx){
         return PreferenceManager.getDefaultSharedPreferences(ctx);
     }
@@ -62,8 +66,8 @@ public class SaveSharedPreference {
         return SERVER_IP;
     }
 
-    public static String getLevel(String Level){
-        switch(Level){
+    public static String getLevel(String Level) {
+        switch (Level) {
             case "1":
                 return "시작단계(Beginner)";
             case "2":
@@ -76,6 +80,7 @@ public class SaveSharedPreference {
                 return "전문가(Professional)";
         }
     }
+
 
     public static void setGiveTalentData(Context ctx, MyTalent Data){
         SharedPreferences.Editor editor = getSharedPreferences(ctx).edit();
@@ -104,6 +109,32 @@ public class SaveSharedPreference {
         Gson gson = new Gson();
         String json = getSharedPreferences(ctx).getString(PREF_TAKE_DATA, "");
         MyTalent data = gson.fromJson(json, MyTalent.class);
+        return data;
+    }
+
+    public static void setGeoPointArr(Context ctx, GeoPoint[] Data){
+        SharedPreferences.Editor editor = getSharedPreferences(ctx).edit();
+        Gson gson = new Gson();
+        String json = gson.toJson(Data[0]);
+        editor.putString(PREF_GEO_POINT1, json);
+        json = gson.toJson(Data[1]);
+        editor.putString(PREF_GEO_POINT2, json);
+        json = gson.toJson(Data[2]);
+        editor.putString(PREF_GEO_POINT3, json);
+        editor.commit();
+    }
+
+    public static GeoPoint[] getGeoPointArr(Context ctx){
+        Gson gson = new Gson();
+        GeoPoint[] data = new GeoPoint[3];
+
+        String json = getSharedPreferences(ctx).getString(PREF_GEO_POINT1, "");
+        data[0] = gson.fromJson(json, GeoPoint.class);
+        json = getSharedPreferences(ctx).getString(PREF_GEO_POINT2, "");
+        data[1] = gson.fromJson(json, GeoPoint.class);
+        json = getSharedPreferences(ctx).getString(PREF_GEO_POINT3, "");
+        data[2] = gson.fromJson(json, GeoPoint.class);
+
         return data;
     }
 

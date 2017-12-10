@@ -67,9 +67,7 @@ public class TalentResister_Point_Activity extends AppCompatActivity {
         Location1 = i.getStringExtra("loc1");
         Location2 = i.getStringExtra("loc2");
         Location3 = i.getStringExtra("loc3");
-        arrGp[0] = findGeoPoint(Location1);
-        arrGp[1] = findGeoPoint(Location2);
-        arrGp[2] = findGeoPoint(Location3);
+        arrGp = SaveSharedPreference.getGeoPointArr(mContext);
         level = i.getIntExtra("level", 1);
 
         TalentResister_Talent_Point = (EditText) findViewById(R.id.TalentResister_Talent_Point);

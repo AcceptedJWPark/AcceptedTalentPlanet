@@ -3,9 +3,13 @@ package com.example.accepted.acceptedtalentplanet.TalentResister;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.location.Address;
+import android.location.Geocoder;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
@@ -20,10 +24,14 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.example.accepted.acceptedtalentplanet.GeoPoint;
 import com.example.accepted.acceptedtalentplanet.MyTalent;
 import com.example.accepted.acceptedtalentplanet.R;
+import com.example.accepted.acceptedtalentplanet.SaveSharedPreference;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class TalentResister_Location_Activity extends AppCompatActivity {
     private String Talent1, Talent2, Talent3;
@@ -32,6 +40,7 @@ public class TalentResister_Location_Activity extends AppCompatActivity {
     private boolean HavingDataFlag;
     private MyTalent Data;
     private String[] Loc;
+    private GeoPoint[] arrGp = new GeoPoint[3];
     AutoCompleteTextView Location_autoEdit1;
 
     Context mContext;
@@ -161,6 +170,8 @@ public class TalentResister_Location_Activity extends AppCompatActivity {
         i.putExtra("loc2", Location2);
         i.putExtra("loc3", Location3);
         i.putExtra("HavingDataFlag", HavingDataFlag);
+        GetLocationGeoPointTask asyncTask = new GetLocationGeoPointTask();
+        asyncTask.execute();
         if(HavingDataFlag){
             i.putExtra("Data", Data);
         }
@@ -170,6 +181,60 @@ public class TalentResister_Location_Activity extends AppCompatActivity {
     public void hideKeyboard(View view) {
         InputMethodManager inputMethodManager =(InputMethodManager)getSystemService(Activity.INPUT_METHOD_SERVICE);
         inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
+    }
+
+    private class GetLocationGeoPointTask extends AsyncTask<Void, Void, Void> {
+        @Override
+        protected void onPreExecute(){
+
+        }
+
+        @Override
+        protected Void doInBackground(Void... voids){
+            try{
+                arrGp[0] = findGeoPoint(Location1);
+                arrGp[1] = findGeoPoint(Location2);
+                arrGp[2] = findGeoPoint(Location3);
+                SaveSharedPreference.setGeoPointArr(mContext, arrGp);
+            }catch(Exception e){
+                e.printStackTrace();
+            }
+
+            return null;
+        }
+
+        @Override
+        protected void onProgressUpdate(Void...values){
+            super.onProgressUpdate(values);
+        }
+
+        @Override
+        protected void onPostExecute(Void s){
+            super.onPostExecute(s);
+        }
+
+
+
+    }
+
+    private GeoPoint findGeoPoint(String address) {
+        Geocoder geocoder = new Geocoder(this);
+        Address addr;
+        GeoPoint location = null;
+        try {
+            List<Address> listAddress = geocoder.getFromLocationName(address, 1);
+            if (listAddress.size() > 0) { // 주소값이 존재 하면
+                addr = listAddress.get(0); // Address형태로
+                double lat = addr.getLatitude();
+                double lng = addr.getLongitude();
+                location = new GeoPoint(lat, lng);
+
+                Log.d("Location Log", address + " : " + lat + ", " +lng);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return location;
     }
 
 
