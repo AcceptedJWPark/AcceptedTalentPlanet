@@ -32,15 +32,7 @@ public class SharingList_Adapter extends BaseAdapter{
 
     ArrayList<SharingList_Item> list_ArrayList;
 
-    TextView SharingList_ConditionType;
-    TextView SharingList_Name;
-    TextView SharingList_RegistDate;
-    TextView SharingList_Keyword1;
-    TextView SharingList_Keyword2;
-    TextView SharingList_Keyword3;
-    TextView SharingList_Txt;
-    Spinner SharingList_Spinner;
-    RelativeLayout SharingList_SpinnerRL;
+
 
 
     public SharingList_Adapter(Context context, ArrayList<SharingList_Item> list_ArrayList) {
@@ -68,17 +60,31 @@ public class SharingList_Adapter extends BaseAdapter{
     public View getView(int position, View view, ViewGroup viewGroup) {
 
         if(view == null) {
-            view = LayoutInflater.from(context).inflate(R.layout.sharinglist_listviewbg, viewGroup,false);
+            view = LayoutInflater.from(context).inflate(R.layout.sharinglist_listviewbg, viewGroup, false);
+        }
 
-            SharingList_ConditionType = view.findViewById(R.id.SharingList_ConditionType);
-            SharingList_Name= view.findViewById(R.id.SharingList_Name);
-            SharingList_RegistDate= view.findViewById(R.id.SharingList_RegistDate);
-            SharingList_Keyword1= view.findViewById(R.id.SharingList_Keyword1);
-            SharingList_Keyword2= view.findViewById(R.id.SharingList_Keyword2);
-            SharingList_Keyword3= view.findViewById(R.id.SharingList_Keyword3);
-            SharingList_Txt= view.findViewById(R.id.SharingList_Txt);
-            SharingList_Spinner = view.findViewById(R.id.SharingList_Spinner);
-            SharingList_SpinnerRL = view.findViewById(R.id.SharingList_SpinnerRL);
+        TextView SharingList_ConditionType;
+        TextView SharingList_Name;
+        TextView SharingList_RegistDate;
+        TextView SharingList_Keyword1;
+        TextView SharingList_Keyword2;
+        TextView SharingList_Keyword3;
+        TextView SharingList_Txt;
+        final Spinner SharingList_Spinner;
+        RelativeLayout SharingList_SpinnerRL;
+
+        SharingList_ConditionType = view.findViewById(R.id.SharingList_ConditionType);
+        SharingList_Name= view.findViewById(R.id.SharingList_Name);
+        SharingList_RegistDate= view.findViewById(R.id.SharingList_RegistDate);
+        SharingList_Keyword1= view.findViewById(R.id.SharingList_Keyword1);
+        SharingList_Keyword2= view.findViewById(R.id.SharingList_Keyword2);
+        SharingList_Keyword3= view.findViewById(R.id.SharingList_Keyword3);
+        SharingList_Txt= view.findViewById(R.id.SharingList_Txt);
+        SharingList_Spinner = view.findViewById(R.id.SharingList_Spinner);
+        SharingList_SpinnerRL = view.findViewById(R.id.SharingList_SpinnerRL);
+
+
+
 
             DisplayMetrics metrics = new DisplayMetrics();
             WindowManager windowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
@@ -88,7 +94,6 @@ public class SharingList_Adapter extends BaseAdapter{
             params1.height = Interesting_ListView_height;
             view.setLayoutParams(params1);
 
-            //TODO:리스트 뷰에 스피너 클릭 시 해당 아이템의 스피너가 열리지 않음. 맨 밑에있는 아이템의 스피너가 열리는 듯 함
             ArrayAdapter adapter = ArrayAdapter.createFromResource(context, R.array.SharingList_SpinnerList, R.layout.sharinglist_spinnertext);
             SharingList_Spinner.setAdapter(adapter);
             SharingList_SpinnerRL.setOnClickListener(new View.OnClickListener() {
@@ -98,7 +103,7 @@ public class SharingList_Adapter extends BaseAdapter{
                     SharingList_Spinner.performClick();
                 }
             });
-        }
+
 
 
         SharingList_Name.setText(list_ArrayList.get(position).getname());

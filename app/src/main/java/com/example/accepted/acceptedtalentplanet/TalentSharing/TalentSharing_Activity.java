@@ -144,11 +144,12 @@ public class TalentSharing_Activity extends AppCompatActivity {
                         TalentSharing_ListItem target = new TalentSharing_ListItem(R.drawable.textpicture, o.getString("USER_NAME"), o.getString("TALENT_KEYWORD1"), o.getString("TALENT_KEYWORD2"), o.getString("TALENT_KEYWORD3"), o.getString("seq"), o.getString("TALENT_FLAG"), o.getString("STATUS_FLAG"),findMinDistanceBetween(o.getString("GP_LAT1"), o.getString("GP_LNG1"), o.getString("GP_LAT2"), o.getString("GP_LNG2"), o.getString("GP_LAT3"), o.getString("GP_LNG3"), o.getString("TALENT_FLAG").equals("Y")), "Profile 보기", o.getString("USER_ID"));
                         OriginTalentSharingList.add(target);
                         if(isGiveTalent){
-                            if(o.getString("TALENT_FLAG").equals("Y"))
-                            TalentSharingList.add(target);
+                            if(o.getString("TALENT_FLAG").equals("N"))
+                                TalentSharingList.add(target);
                         }
                         else{
-                            TalentSharingList.add(target);
+                            if(o.getString("TALENT_FLAG").equals("Y"))
+                                TalentSharingList.add(target);
                         }
                     }
 
@@ -204,28 +205,27 @@ public class TalentSharing_Activity extends AppCompatActivity {
 
             isGiveTalent = (((Button)v).getId() == R.id.TalentSharing_GiveCheck) ? true : false;
 
-            //TODO:1) 아래 TalentSharing_PageTxt에 회원이름 들어가야함 2) 초기화 시켜야함 (클릭 되어지는 이벤트에 따라 텍스트 다름)
             if(isGiveTalent){
                 giveButton.setBackground(ContextCompat.getDrawable(mContext, R.drawable.small_button_graybackground));
                 giveButton.setTextColor(getResources().getColor(R.color.textColor));
                 takeButton.setBackground(ContextCompat.getDrawable(mContext, R.drawable.small_button_whitebackground));
                 takeButton.setTextColor(Color.parseColor("#d2d2d2"));
-                TalentSharing_PageTxt.setText("박종우님의 재능을 공유할 수 있는 회원리스트 입니다.");
+                TalentSharing_PageTxt.setText(SaveSharedPreference.getUserName(mContext) + "님의 재능을 공유할 수 있는 회원리스트 입니다.");
             }else{
                 takeButton.setBackground(ContextCompat.getDrawable(mContext, R.drawable.small_button_graybackground));
                 takeButton.setTextColor(getResources().getColor(R.color.textColor));
                 giveButton.setBackground(ContextCompat.getDrawable(mContext, R.drawable.small_button_whitebackground));
                 giveButton.setTextColor(Color.parseColor("#d2d2d2"));
-                TalentSharing_PageTxt.setText("박종우님께 재능을 공유할 수 있는 회원리스트 입니다.");
+                TalentSharing_PageTxt.setText(SaveSharedPreference.getUserName(mContext) + "님께 재능을 공유할 수 있는 회원리스트 입니다.");
             }
 
             TalentSharingList.clear();
             TalentSharing_ListItem tmp;
             for(int index = 0; index < OriginTalentSharingList.size(); index++){
                 tmp = OriginTalentSharingList.get(index);
-                if(tmp.getTalentFlag() && isGiveTalent)
+                if(tmp.getTalentFlag() && !isGiveTalent)
                     TalentSharingList.add(tmp);
-                else if(tmp.getTalentFlag() == false && isGiveTalent == false)
+                else if(tmp.getTalentFlag() == false && isGiveTalent)
                     TalentSharingList.add(tmp);
             }
 
@@ -234,24 +234,6 @@ public class TalentSharing_Activity extends AppCompatActivity {
         }
     };
 
-    private GeoPoint findGeoPoint(String address) {
-        Geocoder geocoder = new Geocoder(this);
-        Address addr;
-        GeoPoint location = null;
-        try {
-            List<Address> listAddress = geocoder.getFromLocationName(address, 1);
-            if (listAddress.size() > 0) { // 주소값이 존재 하면
-                addr = listAddress.get(0); // Address형태로
-                double lat = addr.getLatitude();
-                double lng = addr.getLongitude();
-                location = new GeoPoint(lat, lng);
-
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return location;
-    }
 
     String findMinDistanceBetween(String lat1, String lng1, String lat2, String lng2, String lat3, String lng3,  boolean isGive){
         MyTalent mt;

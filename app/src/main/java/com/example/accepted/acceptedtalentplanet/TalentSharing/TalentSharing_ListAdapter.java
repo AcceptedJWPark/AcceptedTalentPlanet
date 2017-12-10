@@ -77,7 +77,6 @@ public class TalentSharing_ListAdapter extends BaseAdapter {
 
             final String text = String.valueOf(list_ArrayList.get(position));
 
-            //TODO: 재능 드림, 관심 재능에 따라 프로필 팝업 두 번째 구분자 텍스트 변경
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

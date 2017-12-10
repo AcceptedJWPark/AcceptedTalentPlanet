@@ -120,6 +120,7 @@ public class TalentSharing_Popup_Activity extends FragmentActivity{
                     JSONObject obj = new JSONObject(response);
                     Log.d("result", response);
                     String Gender = (obj.getString("GENDER").equals("남")) ? "남자" : "여자";
+                    String TalentText = obj.getString("TALENT_FLAG").equals("Y") ? "재능드림" : "관심재능";
                     ((TextView)findViewById(R.id.TalentSharingPopup_UserName)).setText(obj.getString("USER_NAME"));
                     ((TextView)findViewById(R.id.TalentSharingPopup_UserGender)).setText(Gender);
                     ((TextView)findViewById(R.id.TalentSharingPopup_UserBirth)).setText(obj.getString("USER_BIRTH"));
@@ -132,8 +133,10 @@ public class TalentSharing_Popup_Activity extends FragmentActivity{
                     ((TextView)findViewById(R.id.TalentSharingPopup_Location3)).setText(obj.getString("LOCATION3"));
                     ((TextView)findViewById(R.id.TalentSharingPopup_Level)).setText(SaveSharedPreference.getLevel(obj.getString("LEVEL")));
                     ((TextView)findViewById(R.id.TalentSharingPopup_Point)).setText(obj.getString("T_POINT")+"P");
-                    hasFlag = (obj.getString("HAS_FLAG").equals("NONE"))? false : true;
+                    ((TextView)findViewById(R.id.TalentSharing_TypeText)).setText(TalentText);
 
+                    hasFlag = (obj.getString("HAS_FLAG").equals("N"))? false : true;
+                    Log.d("hasFlag", String.valueOf(hasFlag));
                     interestBtn = (Button)findViewById(R.id.TalentSharing_Interest_Button);
                     if(!hasFlag){
                         interestBtn.setOnClickListener(new View.OnClickListener() {

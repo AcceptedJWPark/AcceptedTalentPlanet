@@ -107,7 +107,8 @@ public class InterestingList_Activity extends AppCompatActivity {
                     String str = (!giveTalentFlag)?"재능드림":"관심재능";
                     for (int index = 0; index < obj.length(); index++) {
                         JSONObject o = obj.getJSONObject(index);
-                        InterestingList_ListItem target = new InterestingList_ListItem(R.drawable.textpicture, o.getString("USER_NAME"), o.getString("TALENT_KEYWORD1"), o.getString("TALENT_KEYWORD2"), o.getString("TALENT_KEYWORD3"), "["+str+"]", o.getString("CREATION_DATE") + " 등록", o.getString("TALENT_ID"),1);
+                        int type = Integer.parseInt(o.getString("TYPE_FLAG"));
+                        InterestingList_ListItem target = new InterestingList_ListItem(R.drawable.textpicture, o.getString("USER_NAME"), o.getString("TALENT_KEYWORD1"), o.getString("TALENT_KEYWORD2"), o.getString("TALENT_KEYWORD3"), "["+str+"]", o.getString("CREATION_DATE") + " 등록", o.getString("TALENT_ID"),type);
 
                         InterestingList_ArrayList.add(target);
 

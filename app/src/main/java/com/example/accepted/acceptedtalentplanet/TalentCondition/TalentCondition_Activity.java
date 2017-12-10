@@ -7,12 +7,22 @@ import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.android.volley.NetworkResponse;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.ServerError;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.HttpHeaderParser;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.accepted.acceptedtalentplanet.Alarm.Alarm_Activity;
 import com.example.accepted.acceptedtalentplanet.CustomerService.CustomerService_MainActivity;
 import com.example.accepted.acceptedtalentplanet.FriendList.FriendList_Activity;
@@ -28,9 +38,18 @@ import com.example.accepted.acceptedtalentplanet.System.System_Activity;
 import com.example.accepted.acceptedtalentplanet.TalentResister.TalentResister_Activity;
 import com.example.accepted.acceptedtalentplanet.TalentSearching.TalentSearching_Activity;
 import com.example.accepted.acceptedtalentplanet.TalentSharing.TalentSharing_Activity;
+import com.example.accepted.acceptedtalentplanet.TalentSharing.TalentSharing_ListAdapter;
+import com.example.accepted.acceptedtalentplanet.TalentSharing.TalentSharing_ListItem;
 import com.example.accepted.acceptedtalentplanet.TalentSharing.TalentSharing_Popup_Activity;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.w3c.dom.Text;
+
+import java.io.UnsupportedEncodingException;
+import java.util.HashMap;
+import java.util.Map;
 
 import static android.view.View.GONE;
 
@@ -58,11 +77,11 @@ public class TalentCondition_Activity extends AppCompatActivity {
 
     LinearLayout TalentCondition_PictureLL;
 
-    Boolean TalentCondition_Give_Registed = true;
-    Boolean TalentCondition_Take_Registed = true;
+    Boolean TalentCondition_Give_Registed = false;
+    Boolean TalentCondition_Take_Registed = false;
 
-    int GiveTalentConditionCode = 3;
-    int TakeTalentConditionCode = 2;
+    int GiveTalentConditionCode = 0;
+    int TakeTalentConditionCode = 0;
 
     TextView ToolbarTxt;
 
@@ -86,7 +105,7 @@ public class TalentCondition_Activity extends AppCompatActivity {
         TalentCondition_Button3 = (Button) findViewById(R.id.TalentCondition_Button3);
         TalentCondition_PictureLL = (LinearLayout) findViewById(R.id.TalentCondition_PictureLL);
 
-        TalentCondition_Give_Registed(TalentCondition_Give_Registed,GiveTalentConditionCode);
+
 
         TalentCondition_ShowGive = (Button) findViewById(R.id.TalentCondition_ShowGive);
         TalentCondition_ShowGive.setOnClickListener(new View.OnClickListener() {
@@ -149,6 +168,8 @@ public class TalentCondition_Activity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        getMyTalent();
     }
 
 
@@ -360,6 +381,88 @@ public class TalentCondition_Activity extends AppCompatActivity {
 
             }
         }
+    }
+
+    public void getMyTalent() {
+        RequestQueue postRequestQueue = Volley.newRequestQueue(this);
+        StringRequest postJsonRequest = new StringRequest(Request.Method.POST, SaveSharedPreference.getServerIp() + "TalentCondition/getMyTalent.do", new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+
+                    JSONArray obj = new JSONArray(response);
+                    for (int index = 0; index < obj.length(); index++) {
+                        JSONObject o = obj.getJSONObject(index);
+                        if(o.getString("TALENT_FLAG").equals("Y")){
+                            TalentCondition_Give_Registed = true;
+                            String status = o.getString("STATUS_FLAG");
+                            switch (status){
+                                case "P":
+                                    GiveTalentConditionCode = 1;
+                                    break;
+                                case "M":
+                                    GiveTalentConditionCode = 2;
+                                    break;
+                                case "C":
+                                    GiveTalentConditionCode = 3;
+                                    break;
+                            }
+                        }else{
+                            TalentCondition_Take_Registed = true;
+                            String status = o.getString("STATUS_FLAG");
+                            switch (status){
+                                case "P":
+                                    TakeTalentConditionCode = 1;
+                                    break;
+                                case "M":
+                                    TakeTalentConditionCode = 2;
+                                    break;
+                                case "C":
+                                    TakeTalentConditionCode = 3;
+                                    break;
+                            }
+                        }
+                    }
+                    Log.d("LOG >>>>" , TalentCondition_Give_Registed + ", " + GiveTalentConditionCode + ", " + TalentCondition_Take_Registed + ", " + TakeTalentConditionCode);
+                    TalentCondition_Give_Registed(TalentCondition_Give_Registed,GiveTalentConditionCode);
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                NetworkResponse response = error.networkResponse;
+                if (error instanceof ServerError && response != null) {
+                    try {
+                        String res = new String(response.data,
+                                HttpHeaderParser.parseCharset(response.headers, "utf-8"));
+                        // Now you can use any deserializer to make sense of data
+                        Log.d("res", res);
+
+                        JSONObject obj = new JSONObject(res);
+                    } catch (UnsupportedEncodingException e1) {
+                        // Couldn't properly decode data to string
+                        e1.printStackTrace();
+                    } catch (JSONException e2) {
+                        // returned data is not JSONObject?
+                        e2.printStackTrace();
+                    }
+                }
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap();
+                params.put("userID", SaveSharedPreference.getUserId(mContext));
+                return params;
+            }
+        };
+
+
+        postRequestQueue.add(postJsonRequest);
+
     }
 
 }
