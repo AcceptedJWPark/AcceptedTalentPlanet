@@ -53,7 +53,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="신고 하기"
+                android:text="자주하는 질문"
                 android:textStyle="bold"
                 android:textSize="@dimen/ToolbarTxt"
                 android:gravity="center"

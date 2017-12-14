@@ -37,19 +37,6 @@
                 android:textSize="@dimen/List_Title"
                 />
 
-            <TextView
-                android:id="@+id/CustomerService_ClaimList_RegistDate"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:ellipsize="end"
-                android:lines="1"
-                android:gravity="center_vertical"
-                android:textSize="@dimen/ListView_SecondLine"
-                android:paddingLeft="5dp"
-                android:layout_marginTop="5dp"
-                android:text="2017.11.03 16:24 등록"
-                />
 
         </LinearLayout>
 

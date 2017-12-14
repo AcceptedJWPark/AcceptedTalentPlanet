@@ -39,7 +39,8 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="0.7"
-            android:paddingLeft="5dp"
+            android:paddingLeft="10dp"
+            android:textStyle="bold"
             android:gravity="center_vertical"
             android:text="알람 설정"
             android:textSize="@dimen/Divider"
@@ -50,7 +51,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1.5"
+            android:layout_weight="1.8"
             android:paddingLeft="12dp"
             android:paddingRight="12dp"
             android:orientation="horizontal"
@@ -65,6 +66,7 @@
                     android:textColor="@color/textColor"
                     android:text="Message 알람 설정"
                     android:textSize="@dimen/List_Title"
+                    android:textStyle="bold"
                     />
 
             <Switch
@@ -92,7 +94,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1.5"
+            android:layout_weight="1.8"
             android:paddingLeft="12dp"
             android:paddingRight="12dp"
             android:orientation="horizontal"
@@ -107,6 +109,7 @@
                 android:textColor="@color/textColor"
                 android:text="재능상태 알람 설정"
                 android:textSize="@dimen/List_Title"
+                android:textStyle="bold"
                 />
 
             <Switch
@@ -134,7 +137,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1.5"
+            android:layout_weight="1.8"
             android:paddingLeft="12dp"
             android:paddingRight="12dp"
             android:orientation="horizontal"
@@ -149,6 +152,7 @@
                 android:text="답변여부 알람 설정"
                 android:textSize="@dimen/List_Title"
                 android:textColor="@color/textColor"
+                android:textStyle="bold"
                 />
 
             <Switch
@@ -180,14 +184,15 @@
             android:layout_weight="0.7"
             android:gravity="center_vertical"
             android:text="계정 설정"
-            android:paddingLeft="5dp"
+            android:paddingLeft="10dp"
+            android:textStyle="bold"
             android:textSize="@dimen/Divider"
             android:background="@drawable/divider_background"/>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1.5"
+            android:layout_weight="1.8"
             android:paddingLeft="12dp"
             android:paddingRight="12dp"
             android:orientation="horizontal"
@@ -201,6 +206,7 @@
                 android:gravity="center_vertical"
                 android:text="비밀번호 변경"
                 android:textColor="@color/textColor"
+                android:textStyle="bold"
                 android:textSize="@dimen/List_Title"
                 />
 
@@ -217,7 +223,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1.5"
+            android:layout_weight="1.8"
             android:paddingLeft="12dp"
             android:paddingRight="12dp"
             android:orientation="horizontal"
@@ -227,10 +233,23 @@
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="8"
+                android:layout_weight="7.5"
                 android:gravity="center_vertical"
                 android:textColor="@color/textColor"
                 android:text="휴면 계정 설정"
+                android:textStyle="bold"
+                android:textSize="@dimen/List_Title"
+                />
+
+            <TextView
+                android:id="@+id/System_AcountActivateorNot"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2.5"
+                android:checked="false"
+                android:gravity="center"
+                android:textColor="@color/textColor"
+                android:text="계정 활성화 중"
                 android:textSize="@dimen/List_Title"
                 />
 

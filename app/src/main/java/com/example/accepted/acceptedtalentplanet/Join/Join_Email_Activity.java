@@ -59,7 +59,6 @@ public class Join_Email_Activity extends  AppCompatActivity {
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 confirmEmailCheck = false;
                 joinCode = "aaaaa";
-                findViewById(R.id.btnAccept).setBackgroundColor(Color.parseColor("#32579a"));
                 findViewById(R.id.btnAccept).setOnClickListener(mClickListener);
             }
 
@@ -234,7 +233,6 @@ public class Join_Email_Activity extends  AppCompatActivity {
                 confirmEmailCheck = true;
                 Toast.makeText(getApplicationContext(), "E-Mail 인증이 완료되었습니다.", Toast.LENGTH_SHORT).show();
                 Button acceptBtn = (Button) findViewById(R.id.btnAccept);
-                acceptBtn.setBackgroundColor(Color.GRAY);
                 findViewById(R.id.btnAccept).setOnClickListener(null);
             } else {
                 Toast.makeText(getApplicationContext(), "인증번호를 다시 확인해주세요.", Toast.LENGTH_SHORT).show();

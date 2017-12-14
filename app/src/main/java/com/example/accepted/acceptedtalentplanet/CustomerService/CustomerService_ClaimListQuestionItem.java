@@ -8,7 +8,6 @@ public class CustomerService_ClaimListQuestionItem {
 
     private String ClaimTitle;
     private String AnswerorNot;
-    private String RegistDate;
 
     public String getClaimTitle() {
         return ClaimTitle;
@@ -18,9 +17,6 @@ public class CustomerService_ClaimListQuestionItem {
         return AnswerorNot;
     }
 
-    public String getRegistDate() {
-        return RegistDate;
-    }
 
     public void setClaimTitle(String ClaimTitle) {
         this.ClaimTitle = ClaimTitle;
@@ -30,15 +26,11 @@ public class CustomerService_ClaimListQuestionItem {
         this.AnswerorNot = AnswerorNot;
     }
 
-    public void setRegistDate(String RegistDate) {
-        this.RegistDate = RegistDate;
-    }
 
     public CustomerService_ClaimListQuestionItem(String ClaimTitle, String AnswerorNot, String RegistDate)
     {
         this.ClaimTitle = ClaimTitle;
         this.AnswerorNot = AnswerorNot;
-        this.RegistDate = RegistDate;
     }
 
 }

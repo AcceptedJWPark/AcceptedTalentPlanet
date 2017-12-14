@@ -52,7 +52,7 @@ public class Alarm_Activity extends AppCompatActivity {
         Alarm_ArrayList = new ArrayList<>();
 
         Alarm_List = (ListView) findViewById(R.id.Alarm_List);
-        Alarm_Adapter = new Alarm_Adapter(mContext, Alarm_ArrayList);
+        Alarm_Adapter = new Alarm_Adapter(Alarm_Activity.this, Alarm_ArrayList);
         Alarm_ArrayList.add(new Alarm_ListItem(R.drawable.textpicture,"박종우","2017.12.03 10:24", 1,1));
         Alarm_ArrayList.add(new Alarm_ListItem(R.drawable.textpicture,"민권홍","2017.12.03 12:45", 1,2));
         Alarm_ArrayList.add(new Alarm_ListItem(R.drawable.textpicture,"김진만","2017.12.04 14:16", 2,1));

@@ -93,7 +93,7 @@
                     android:textStyle="bold"
                     android:gravity="center_vertical"
                     android:textSize="@dimen/Divider"
-                    android:paddingLeft="5dp"
+                    android:paddingLeft="10dp"
                     android:text="계정 정보"
                     />
 
@@ -357,7 +357,7 @@
                     android:textStyle="bold"
                     android:gravity="center_vertical"
                     android:textSize="@dimen/Divider"
-                    android:paddingLeft="5dp"
+                    android:paddingLeft="10dp"
                     android:text="추가 정보"
                     />
                 <!--, 선택 공개 레이아웃(직업)-->

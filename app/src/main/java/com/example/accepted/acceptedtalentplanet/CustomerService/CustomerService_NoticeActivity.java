@@ -23,8 +23,8 @@ public class CustomerService_NoticeActivity extends AppCompatActivity {
     private HashMap<CustomerService_NoticeListItem, ArrayList<String>> arrayChild = new HashMap<>();
 
     LinearLayout CustomerService_Notice_PreBtn;
-    
-    
+
+    //TODO : 공지사항 서버에 입력하고 확인 하는 방법
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -46,7 +46,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingLeft="5dp"
+            android:paddingLeft="10dp"
             android:text="서비스 정보"
             android:textSize="@dimen/Divider"
             android:textStyle="bold" />
@@ -68,7 +68,7 @@
             android:paddingLeft="10dp"
             android:paddingTop="2dp"
             android:textStyle="bold"
-            android:text="Talent Planet 소개"
+            android:text="Talented 소개"
             android:textColor="@color/textColor"
             android:textSize="@dimen/List_Title"
             />
@@ -195,7 +195,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingLeft="5dp"
+            android:paddingLeft="10dp"
             android:textStyle="bold"
             android:textSize="@dimen/Divider"
             android:text="도움말" />
@@ -217,7 +217,7 @@
             android:paddingLeft="10dp"
             android:textStyle="bold"
             android:paddingTop="2dp"
-            android:text="Talent Planet 사용하기"
+            android:text="Talented 사용하기"
             android:textColor="@color/textColor"
             android:textSize="@dimen/List_Title"
             />
@@ -275,7 +275,7 @@
             android:paddingBottom="2dp"
             android:paddingLeft="10dp"
             android:paddingTop="2dp"
-            android:text="1:1 질문하기"
+            android:text="1:1 문의하기"
             android:textStyle="bold"
             android:textColor="@color/textColor"
             android:textSize="@dimen/List_Title"
@@ -329,7 +329,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingLeft="5dp"
+            android:paddingLeft="10dp"
             android:textSize="@dimen/Divider"
             android:textStyle="bold"
             android:text="신고하기" />

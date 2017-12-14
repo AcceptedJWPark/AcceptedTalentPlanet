@@ -46,6 +46,8 @@ public class System_Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.system_activity);
 
+        //TODO:계정활성화 여부 확인하는 로직 필요 (다이얼로그 띄우기 활성화 할 건지 말건지)
+
         mContext = getApplicationContext();
 
 

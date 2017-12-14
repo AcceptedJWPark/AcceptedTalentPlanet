@@ -44,17 +44,18 @@ public class CustomerService_UpdateActivity extends AppCompatActivity {
     }
 
 
+    //TODO : 업데이트 내역을 서버에서 확인하고 서버에 입력해서 답변 다는 방법?
     private void setArrayData()
     {
 
         arrayGroup.add(new CustomerService_UpdateListItem
                 ("Application Service Open",
-                "Talent Planet Service Open : Mar.2018 \n Version : 1.01 \n",
+                "Talent Planet Service Open : Mar.2018 \n Version : 1.01",
                 "Mar.2018"));
 
 
         ArrayList<String> arrayList1 = new ArrayList<String>();
-        arrayList1.add("Talent Planet Service Open : Mar.2018 \n Version : 1.01 \n");
+        arrayList1.add("Talent Planet Service Open : Mar.2018 \n Version : 1.01");
 
 
         arrayChild.put(arrayGroup.get(0),arrayList1);

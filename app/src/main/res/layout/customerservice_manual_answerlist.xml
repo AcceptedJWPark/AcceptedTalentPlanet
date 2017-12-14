@@ -3,10 +3,11 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:weightSum="24"
     android:orientation="vertical"
     android:background="#ffffff"
+    android:weightSum="24"
     >
+
 
     <ExpandableListView
         android:id="@+id/CustomerService_Manual_ELV"

@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ExpandableListView;
 import android.widget.LinearLayout;
@@ -27,11 +28,17 @@ public class CustomerService_ManualActivity extends AppCompatActivity {
     TextView CustomerService_manual_TSharing;
     TextView CustomerService_manual_TCondition;
     TextView CustomerService_manual_TSearching;
+    TextView CustomerService_manual_Message;
     TextView CustomerService_manual_CustomerService;
     TextView CustomerService_manual_System;
-    TextView CustomerService_manual_Message;
+    TextView CustomerService_manual_Alarm;
+    TextView CustomerService_manual_FriendList;
+    TextView CustomerService_manual_SharingList;
+    TextView CustomerService_manual_InterestingList;
 
-    EditText CustomerService_Manual_EditTxt;
+
+    LinearLayout CustomerService_Manual_PreBtn;
+    Button CustomerService_manual_onebyoneQuestionBtn;
 
 
     @Override
@@ -47,6 +54,27 @@ public class CustomerService_ManualActivity extends AppCompatActivity {
         CustomerService_manual_CustomerService = (TextView) findViewById(R.id.CustomerService_manual_CustomerService);
         CustomerService_manual_System = (TextView) findViewById(R.id.CustomerService_manual_System);
         CustomerService_manual_Message = (TextView) findViewById(R.id.CustomerService_manual_Message);
+        CustomerService_manual_Alarm = (TextView) findViewById(R.id.CustomerService_manual_Alarm);
+        CustomerService_manual_FriendList = (TextView) findViewById(R.id.CustomerService_manual_FriendList);
+        CustomerService_manual_SharingList = (TextView) findViewById(R.id.CustomerService_manual_SharingList);
+        CustomerService_manual_InterestingList = (TextView) findViewById(R.id.CustomerService_manual_InterestingList);
+
+        //TODO : 메시지 매뉴얼 작성해야 함 (차후)
+        CustomerService_manual_onebyoneQuestionBtn = (Button) findViewById(R.id.CustomerService_manual_onebyoneQuestionBtn);
+        CustomerService_manual_onebyoneQuestionBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(),CustomerService_OnebyOneQuestionActivity.class);
+                startActivity(i);
+            }
+        });
+        CustomerService_Manual_PreBtn = (LinearLayout) findViewById(R.id.CustomerService_Manual_PreBtn);
+        CustomerService_Manual_PreBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         CustomerService_manual_MyProfile.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -114,18 +142,44 @@ public class CustomerService_ManualActivity extends AppCompatActivity {
             }
         });
 
-
-        CustomerService_Manual_EditTxt = (EditText) findViewById(R.id.CustomerService_Manual_EditTxt);
-        CustomerService_Manual_EditTxt.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+        CustomerService_manual_Alarm.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if(!hasFocus)
-                {
-                    hideKeyboard(v);
-                }
-
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(),CustomerService_Manual_AnswerList_Activity.class);
+                intent.putExtra("Value","Alarm");
+                startActivity(intent);
             }
         });
+
+        CustomerService_manual_FriendList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(),CustomerService_Manual_AnswerList_Activity.class);
+                intent.putExtra("Value","FriendList");
+                startActivity(intent);
+            }
+        });
+
+        CustomerService_manual_SharingList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(),CustomerService_Manual_AnswerList_Activity.class);
+                intent.putExtra("Value","SharingList");
+                startActivity(intent);
+            }
+        });
+
+        CustomerService_manual_InterestingList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(),CustomerService_Manual_AnswerList_Activity.class);
+                intent.putExtra("Value","InterestingList");
+                startActivity(intent);
+            }
+        });
+
+
+
 
     }
 

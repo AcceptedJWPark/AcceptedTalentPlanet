@@ -92,17 +92,37 @@
         android:orientation="vertical"
         >
 
+        <android.support.v4.widget.NestedScrollView
+            android:id="@+id/OnebyOneQuestion_EditTxtScrollView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="3dp"
+            android:padding="3dp"
+            android:background="#ffffff"
+            android:fillViewport="true"
+            android:layout_above="@+id/OnebyOneQuestion_EditTxtLimitLL"
+            >
+
         <EditText
             android:id="@+id/onebyonequestion_EditTxt"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="10dp"
             android:gravity="top"
             android:hint="내용을 입력해주세요. 1000자로 제한됩니다."
             android:textSize="@dimen/Edit_Hint"
             android:background="#ffffff"
+            android:maxLength="1000"
             />
-        
+        </android.support.v4.widget.NestedScrollView>
+
+        <LinearLayout
+            android:id="@+id/OnebyOneQuestion_EditTxtLimitLL"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:gravity="right"
+            >
+
         <TextView
             android:id="@+id/CustomerService_onebyoneTextLimit"
             android:layout_width="wrap_content"
@@ -122,6 +142,7 @@
             android:layout_height="wrap_content"
             android:text="/"
             android:textSize="@dimen/Edit_Hint"
+            android:textColor="#000000"
             android:layout_alignParentBottom="true"
             android:layout_toLeftOf="@id/text1000limit"
             android:layout_marginRight="3dp"
@@ -134,12 +155,13 @@
             android:layout_height="wrap_content"
             android:text="1,000"
             android:textSize="@dimen/Edit_Hint"
+            android:textColor="#000000"
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
             android:layout_marginRight="5dp"
             android:layout_marginBottom="3dp"
             />
-
+        </LinearLayout>
     </RelativeLayout>
 
     <View

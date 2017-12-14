@@ -75,7 +75,6 @@ public class CustomerService_ClaimListExpandableLVAdapter extends BaseExpandable
 
 
         String QuestionTitle = arrayGroup.get(groupPosition).getClaimTitle();
-        String ResistDate = arrayGroup.get(groupPosition).getRegistDate();
         String AnswerorNot = arrayGroup.get(groupPosition).getAnswerorNot();
 
         if(v==null) {
@@ -92,10 +91,8 @@ public class CustomerService_ClaimListExpandableLVAdapter extends BaseExpandable
 
         }
         TextView textGroup1 = (TextView) v.findViewById(R.id.CustomerService_ClaimList_Title);
-        TextView textGroup2 = (TextView) v.findViewById(R.id.CustomerService_ClaimList_RegistDate);
         TextView textGroup3 = (TextView) v.findViewById(R.id.CustomerService_ClaimList_Condition);
         textGroup1.setText(QuestionTitle);
-        textGroup2.setText(ResistDate);
         textGroup3.setText(AnswerorNot);
         return v;
 
@@ -107,18 +104,29 @@ public class CustomerService_ClaimListExpandableLVAdapter extends BaseExpandable
 
         View v = convertView;
 
-        String Question = arrayChild.get(groupPosition).get(childPosition).getQuestion();
-        String Answer = arrayChild.get(groupPosition).get(childPosition).getAnswer();
+        String Claim_Name = arrayChild.get(groupPosition).get(childPosition).getClaim_Name();
+        String Claim_Type = arrayChild.get(groupPosition).get(childPosition).getClaim_Type();
+        String Claim_RegistDate = arrayChild.get(groupPosition).get(childPosition).getClaim_RegistDate();
+        String Claim = arrayChild.get(groupPosition).get(childPosition).getClaim();
+        String Claim_Answer = arrayChild.get(groupPosition).get(childPosition).getClaim_Answer();
 
         if(v==null)
         {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             v=(LinearLayout) inflater.inflate(R.layout.customerservice_claimlist_childbg, null);
         }
-        TextView textQuestion = (TextView) v.findViewById(R.id.CustomerService_ClaimListQuestion);
-        TextView textAnswer = (TextView) v.findViewById(R.id.CustomerService_ClaimListAnswer);
-        textQuestion.setText(Question);
-        textAnswer.setText(Answer);
+        TextView CustomerService_ClaimListName = (TextView) v.findViewById(R.id.CustomerService_ClaimListName);
+        TextView CustomerService_ClaimType = (TextView) v.findViewById(R.id.CustomerService_ClaimType);
+        TextView CustomerService_Date = (TextView) v.findViewById(R.id.CustomerService_Date);
+        TextView CustomerService_ClaimListClaim = (TextView) v.findViewById(R.id.CustomerService_ClaimListClaim);
+        TextView CustomerService_ClaimListAnswer = v.findViewById(R.id.CustomerService_ClaimListAnswer);
+
+        CustomerService_ClaimListName.setText(Claim_Name);
+        CustomerService_ClaimType.setText(Claim_Type);
+        CustomerService_Date.setText(Claim_RegistDate);
+        CustomerService_ClaimListClaim.setText(Claim);
+        CustomerService_ClaimListAnswer.setText(Claim_Answer);
+
         return v;
     }
 

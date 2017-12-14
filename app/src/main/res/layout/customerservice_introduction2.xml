@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#ffffff"
+    android:weightSum="24"
     >
 
 
@@ -26,7 +27,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="TalentPlanet 소개 (2/3)"
+                android:text="Talented 소개 (2/3)"
                 android:textStyle="bold"
                 android:textSize="@dimen/ToolbarTxt"
                 android:gravity="center"
@@ -62,44 +63,13 @@
         android:gravity="center|top"
         android:orientation="vertical">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Talent Planet은 취미를 시작하거나 새로운 분야에 도전,"
-                android:textSize="@dimen/Introduction"
-                android:textColor="@color/textColor" />
-
-            <TextView
-                android:id="@+id/textView2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:text="나아가 현재의 재능을 향상시키기 위한 재능공유 플랫폼 입니다."
-                android:textSize="@dimen/Introduction"
-                android:textColor="@color/textColor" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:text="Talent Planet은 남녀노소 쉽게 사용 될 수 있도록 개발되었고,"
+                android:text="Talented는 서로의 재능을 부담 없이 주고 받는 재능 공유 플랫폼 입니다."
                 android:textSize="@dimen/Introduction"
-                android:textColor="@color/textColor"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:text="사용자들에게 금전적인 부담은 전혀 없을 것입니다."
-                android:textSize="@dimen/Introduction"
-                android:textColor="@color/textColor" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:text="대신, 관심재능을 진행하기 위해서는 재능드림을 해주셔야 합니다."
-                android:textSize="@dimen/Introduction"
+                android:textStyle="bold"
                 android:textColor="@color/textColor" />
 
             <TextView
@@ -107,7 +77,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
-                android:text="용기 있게 도전하고 재능을 공유하는 보람을 느끼시기 바랍니다."
+                android:textStyle="bold"
+                android:text="용기 있게 배우고, 가르치는 보람을 느끼시기 바랍니다."
                 android:textSize="@dimen/Introduction"
                 android:textColor="@color/textColor" />
 

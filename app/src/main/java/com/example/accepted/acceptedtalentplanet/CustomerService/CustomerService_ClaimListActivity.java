@@ -51,17 +51,21 @@ public class CustomerService_ClaimListActivity extends AppCompatActivity {
 
         int sizeList = 0;
 
-        //TODO: 신고하기에서 신고내용이 신고내역의 ChildView 제목으로 들어가게 해야함.
-        //TODO: 신고하기, 신고내역 다시 작성해야 할 듯.
+        //TODO: 신고할 때 공유내역이 있으면 신고 내역에 공유 내역이 제목으로, 없으면 신고 내용이 제목으로 되어야 함
+        //TODO: 신고하기 버튼에 공유내역 없을 시 Dialog 달아야 함 ("공유 내역과 첨부 파일이 없으면 조치가 어려울 수 있습니다.")
+        //TODO: 신고 대상(공유 내역), 신고 유형, 신고 일자, 신고 내용이 신고 내역으로 들어가야 함. 없으면 공유 내역 없으면 신고 대상 "-"
         GroupDataList.add(new CustomerService_ClaimListQuestionItem(
                 "이 분이 완료 버튼을 누르지 않아 다음 단계로 진행이 안되네요.",
                 "[조치 완료]",
                 "2017.11.05 13:42 등록"));
         ChildDataList.add(new ArrayList<CustomerService_ClaimListAnswerItem>());
         ChildDataList.get(sizeList).add(new CustomerService_ClaimListAnswerItem(
+                "박종우님과 재능 드림 기타, 기타 연주, 기타 독주 진행의 건",
+                "금품 요구",
+                "2017.12.11 22:20",
                 "이 분이 완료 버튼을 누르지 않아 다음 단계로 진행이 안되네요.",
-                "해당 사용자에게 경고 메세지를 보냈습니다. 회원님의 포인트는 정상적으로 추가 되었습니다."));
-
+                "해당 신고에 대해 확인 중에 있습니다. 조속히 처리하도록 하겠습니다."
+        ));
 
        /*
        GroupDataList.add(new CustomerService_OnebyOneQuetiontItem(

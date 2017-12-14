@@ -59,6 +59,8 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1.6"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
         android:layout_marginLeft="60dp"
         android:layout_marginRight="60dp"
         android:orientation="horizontal">
@@ -66,7 +68,7 @@
         <EditText
             android:id="@+id/Join_Email"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="6"
             android:hint="E-mail"
             android:inputType="textEmailAddress"
@@ -83,11 +85,12 @@
             <View
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
-                android:layout_weight="0.07"/>
+                android:layout_weight="0.1"/>
 
             <Button
                 android:layout_width="match_parent"
-                android:layout_height="25dp"
+                android:layout_height="0dp"
+                android:layout_weight="1"
                 android:background="@drawable/small_button_graybackground"
                 android:text="E-mail 인증"
                 android:textAllCaps="false"
@@ -100,7 +103,7 @@
             <View
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
-                android:layout_weight="0.07"/>
+                android:layout_weight="0.1"/>
 
         </LinearLayout>
 
@@ -112,15 +115,17 @@
         android:id="@+id/accept_join_mail"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="3.2"
+        android:layout_weight="2.9"
         android:orientation="vertical"
-        android:visibility="visible">
+        android:visibility="gone">
 
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1.6"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
             android:layout_marginLeft="60dp"
             android:layout_marginRight="60dp"
             android:orientation="horizontal">
@@ -128,11 +133,12 @@
             <EditText
                 android:id="@+id/Join_joinCode"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="6"
                 android:hint="인증번호 입력"
                 android:textSize="@dimen/Edit_Hint"
                 />
+
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -145,12 +151,13 @@
                 <View
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
-                    android:layout_weight="0.07"/>
+                    android:layout_weight="0.1"/>
 
             <Button
                 android:id="@+id/btnAccept"
                 android:layout_width="match_parent"
-                android:layout_height="25dp"
+                android:layout_height="0dp"
+                android:layout_weight="1"
                 android:background="@drawable/small_button_graybackground"
                 android:text="인증 완료"
                 android:textAllCaps="false"
@@ -163,7 +170,7 @@
                 <View
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
-                    android:layout_weight="0.07"/>
+                    android:layout_weight="0.1"/>
 
          </LinearLayout>
 

@@ -104,7 +104,8 @@
         </activity>
 
         <activity
-            android:name=".Alarm.Alarm_Activity">
+            android:name=".Alarm.Alarm_Activity"
+            >
         </activity>
 
         <activity

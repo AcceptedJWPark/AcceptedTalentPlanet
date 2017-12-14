@@ -60,6 +60,7 @@ public class TalentResister_Location_Activity extends AppCompatActivity {
 
         mContext = getApplicationContext();
 
+        //TODO:입력한 장소가 Location List에 있는지 확인하고 없으면 다이얼로그 띄우기
         TalentResister_LocationList talentResisterLocationList = new TalentResister_LocationList();
         final String Location_List[] = talentResisterLocationList.Location_List;
         ArrayAdapter<String> Location_ListAdapter = new ArrayAdapter<String>(getBaseContext(), R.layout.talentresister_location_spinnertext,Location_List);

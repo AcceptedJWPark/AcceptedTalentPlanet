@@ -95,6 +95,7 @@ public class InterestingList_Activity extends AppCompatActivity {
 
     }
 
+    //TODO:관심 목록에서 보낸 관심일 때는 프로필 팝업창의 "진행 또는 취소"버튼 비활성화 처리
     public void getInterestList() {
         RequestQueue postRequestQueue = Volley.newRequestQueue(this);
         StringRequest postJsonRequest = new StringRequest(Request.Method.POST, SaveSharedPreference.getServerIp() + "Interest/getInterestList.do", new Response.Listener<String>() {

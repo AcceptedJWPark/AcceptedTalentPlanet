@@ -54,7 +54,6 @@ public class FriendList_Activity extends AppCompatActivity {
         //TODO:각 리스트 뷰에 해당 회원 프로필 팝업 클릭 이벤트
         Friendlist_arrayList_Give.add(new FriendList_Item(R.drawable.textpicture,"박종우","기타","기타 연주","기타 연습",1,1));
         Friendlist_arrayList_Give.add(new FriendList_Item(R.drawable.textpicture, "민권홍","스타크래프트","스타 리마스터","스타크래프트 파이썬",2,1));
-
         Friendlist_arrayList_Take.add(new FriendList_Item(R.drawable.textpicture,"우승제","드럼","드럼 연주","드럼 독학",1,2));
         Friendlist_arrayList_Take.add(new FriendList_Item(R.drawable.textpicture, "김용인","영어","영어 말하기","영어 스피킹",2,2));
         Friendlist_arrayList_Take.add(new FriendList_Item(R.drawable.textpicture,"배대명","수학1","미분과 적분","미적분",2,2));

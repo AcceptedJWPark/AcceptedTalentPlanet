@@ -2,9 +2,13 @@ package com.example.accepted.acceptedtalentplanet.CustomerService;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,7 +47,10 @@ public class CustomerService_ClaimActivity extends AppCompatActivity {
     View claim_Devider3;
     TextView claim_Txt1;
     TextView claim_Txt2;
+    TextView CustomerService_onebyoneTextLimit;
     Context context;
+
+    Button CustomerService_ClaimBtn;
 
 
     @Override
@@ -77,6 +84,7 @@ public class CustomerService_ClaimActivity extends AppCompatActivity {
         });
 
         Claim_EditTxt = (EditText) findViewById(R.id.Claim_EditTxt);
+        CustomerService_onebyoneTextLimit = (TextView) findViewById(R.id.CustomerService_onebyoneTextLimit);
         Claim_EditTxt.setPrivateImeOptions("defaultInputmode=korean;");
         Claim_EditTxt.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
@@ -85,6 +93,22 @@ public class CustomerService_ClaimActivity extends AppCompatActivity {
                 {
                     hideKeyboard(v);
                 }
+
+            }
+        });
+        Claim_EditTxt.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                CustomerService_onebyoneTextLimit.setText(String.valueOf(s.length()));
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
 
             }
         });
@@ -99,7 +123,32 @@ public class CustomerService_ClaimActivity extends AppCompatActivity {
         claim_Devider3 = findViewById(R.id.claim_Devider3);
         claim_Txt1 = (TextView) findViewById(R.id.claim_Txt1);
         claim_Txt2 = (TextView) findViewById(R.id.claim_Txt2);
+
         claim_LL4 = (LinearLayout) findViewById(R.id.claim_LL4);
+        CustomerService_ClaimBtn = (Button) findViewById(R.id.CustomerService_ClaimBtn);
+        CustomerService_ClaimBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder AlarmDeleteDialog = new AlertDialog.Builder(CustomerService_ClaimActivity.this);
+                AlarmDeleteDialog.setMessage("신고하시겠습니까?")
+                        .setPositiveButton("신고하기", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                Toast.makeText(context,"신고하기 클릭 됨",Toast.LENGTH_SHORT).show();
+                                dialog.cancel();
+                            }
+                        })
+                        .setNegativeButton("취소하기", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                Toast.makeText(context,"취소하기 클릭 됨",Toast.LENGTH_SHORT).show();
+                                dialog.cancel();
+                            }
+                        });
+                AlertDialog alertDialog = AlarmDeleteDialog.create();
+                alertDialog.show();
+    }
+        });
 
         DisplayMetrics metrics = new DisplayMetrics();
         WindowManager windowManager = (WindowManager) getApplicationContext().getSystemService(Context.WINDOW_SERVICE);
@@ -150,13 +199,6 @@ public class CustomerService_ClaimActivity extends AppCompatActivity {
         claim_Txt1.setLayoutParams(params9);
         claim_Txt2.setLayoutParams(params10);
 
-        Button CustomerService_ClaimBtn = (Button) findViewById(R.id.CustomerService_ClaimBtn);
-        CustomerService_ClaimBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(context, "클릭됨",Toast.LENGTH_LONG).show();
-            }
-        });
     }
 
 

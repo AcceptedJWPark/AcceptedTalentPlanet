@@ -1,11 +1,13 @@
 package com.example.accepted.acceptedtalentplanet.TalentCondition;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -13,6 +15,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
@@ -77,11 +80,11 @@ public class TalentCondition_Activity extends AppCompatActivity {
 
     LinearLayout TalentCondition_PictureLL;
 
-    Boolean TalentCondition_Give_Registed = false;
-    Boolean TalentCondition_Take_Registed = false;
+    Boolean TalentCondition_Give_Registed = true;
+    Boolean TalentCondition_Take_Registed = true;
 
-    int GiveTalentConditionCode = 0;
-    int TakeTalentConditionCode = 0;
+    int GiveTalentConditionCode = 2;
+    int TakeTalentConditionCode = 2;
 
     TextView ToolbarTxt;
 
@@ -105,6 +108,7 @@ public class TalentCondition_Activity extends AppCompatActivity {
         TalentCondition_Button3 = (Button) findViewById(R.id.TalentCondition_Button3);
         TalentCondition_PictureLL = (LinearLayout) findViewById(R.id.TalentCondition_PictureLL);
 
+        TalentCondition_Give_Registed(TalentCondition_Give_Registed,GiveTalentConditionCode);
 
 
         TalentCondition_ShowGive = (Button) findViewById(R.id.TalentCondition_ShowGive);
@@ -169,7 +173,7 @@ public class TalentCondition_Activity extends AppCompatActivity {
             }
         });
 
-        getMyTalent();
+     /*   getMyTalent();*/
     }
 
 
@@ -227,8 +231,7 @@ public class TalentCondition_Activity extends AppCompatActivity {
 
 
 
-    public void TalentCondition_Give_Registed(boolean check_GiveTalent, int Code)
-    {
+    public void TalentCondition_Give_Registed(boolean check_GiveTalent, int Code) {
         if (!check_GiveTalent) {
             TalentCondition_TextView.setText("재능드림을 등록하여 회원님의 재능을 공유해주세요!");
             TalentCondition_PictureLL.setVisibility(GONE);
@@ -245,67 +248,112 @@ public class TalentCondition_Activity extends AppCompatActivity {
                     finish();
                 }
             });
-        }
-        else
-        {
-        switch (Code)
-        {
-            case 1: {
-                TalentCondition_TakeorGiveTalent.setText("재능드림 : ");
-                TalentCondition_TextView.setText("관심목록 확인 또는 T.Sharing을 확인해보세요!");
-                TalentCondition_Button1.setText("관심목록 확인");
-                TalentCondition_Button2.setText("T.Sharing");
-                TalentCondition_Button1.setVisibility(View.VISIBLE);
-                TalentCondition_Button2.setVisibility(View.VISIBLE);
-                TalentCondition_Button3.setVisibility(GONE);
-                TalentCondition_PictureLL.setVisibility(GONE);
-                TalentCondition_Condition.setText("대기 중...");
-                TalentCondition_Button1.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent intent = new Intent(mContext,InterestingList_Activity.class);
-                        intent.putExtra("TalentFlag","Give");
-                        startActivity(intent);
-                    }
-                });
-                TalentCondition_Button2.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        //TODO:TalentSharing에서 재능드림 버튼 포커스 이동
-                        Intent intent = new Intent(mContext,TalentSharing_Activity.class);
-                        startActivity(intent);
-                    }
-                });
-                break;
-            }
-            case 2: {
-                TalentCondition_TakeorGiveTalent.setText("재능드림 : ");
-                TalentCondition_TextView.setText("재능을 공유하였다면 완료하기 버튼을 눌러주세요!");
-                TalentCondition_Button1.setText("완료 하기");
-                TalentCondition_Button2.setText("진행 취소");
-                TalentCondition_Button1.setVisibility(View.VISIBLE);
-                TalentCondition_Button2.setVisibility(View.VISIBLE);
-                TalentCondition_PictureLL.setVisibility(View.VISIBLE);
-                TalentCondition_Button3.setVisibility(GONE);
-                TalentCondition_Condition.setText("진행 중...");
-                break;
-            }
-            case 3: {
-                TalentCondition_TakeorGiveTalent.setText("재능드림 : ");
-                TalentCondition_TextView.setText("재능 재등록을 진행해야 회원님의 재능이 활성화 됩니다.");
-                TalentCondition_Button1.setText("재능드림 재등록");
-                TalentCondition_Button2.setText("재능드림 수정하기");
-                TalentCondition_Button1.setVisibility(View.VISIBLE);
-                TalentCondition_Button2.setVisibility(View.VISIBLE);
-                TalentCondition_PictureLL.setVisibility(View.VISIBLE);
-                TalentCondition_Button3.setVisibility(GONE);
-                TalentCondition_Condition.setText("완료");
-                break;
-            }
+        } else {
+            switch (Code) {
+                case 1: {
+                    TalentCondition_TakeorGiveTalent.setText("재능드림 : ");
+                    TalentCondition_TextView.setText("관심목록 확인 또는 T.Sharing을 확인해보세요!");
+                    TalentCondition_Button1.setText("관심목록 확인");
+                    TalentCondition_Button2.setText("T.Sharing");
+                    TalentCondition_Button1.setVisibility(View.VISIBLE);
+                    TalentCondition_Button2.setVisibility(View.VISIBLE);
+                    TalentCondition_Button3.setVisibility(GONE);
+                    TalentCondition_PictureLL.setVisibility(GONE);
+                    TalentCondition_Condition.setText("대기 중...");
+                    TalentCondition_Button1.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent intent = new Intent(mContext, InterestingList_Activity.class);
+                            intent.putExtra("TalentFlag", "Give");
+                            startActivity(intent);
+                        }
+                    });
+                    TalentCondition_Button2.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            //TODO:TalentSharing에서 재능드림 버튼 포커스 이동
+                            Intent intent = new Intent(mContext, TalentSharing_Activity.class);
+                            startActivity(intent);
+                        }
+                    });
+                    break;
+                }
+                case 2: {
+                    TalentCondition_TakeorGiveTalent.setText("재능드림 : ");
+                    TalentCondition_TextView.setText("재능을 공유하였다면 완료하기 버튼을 눌러주세요!");
+                    TalentCondition_Button1.setText("완료 하기");
+                    TalentCondition_Button2.setText("진행 취소");
+                    TalentCondition_Button1.setVisibility(View.VISIBLE);
+                    TalentCondition_Button2.setVisibility(View.VISIBLE);
+                    TalentCondition_PictureLL.setVisibility(View.VISIBLE);
+                    TalentCondition_Button3.setVisibility(GONE);
+                    TalentCondition_Condition.setText("진행 중...");
+                    final AlertDialog.Builder AlarmDeleteDialog = new AlertDialog.Builder(TalentCondition_Activity.this);
+                    TalentCondition_Button1.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            AlarmDeleteDialog.setMessage("재능공유 완료 시 포인트 공유가 이루어집니다.")
+                                    .setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            Toast.makeText(mContext, "확인 클림 됨", Toast.LENGTH_SHORT).show();
+                                            dialog.cancel();
+                                        }
+                                    })
+                                    .setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            Toast.makeText(mContext, "취소 클림 됨", Toast.LENGTH_SHORT).show();
+                                            dialog.cancel();
+                                        }
+                                    });
+                            AlertDialog alertDialog = AlarmDeleteDialog.create();
+                            alertDialog.show();
+                        }
+                    });
+                    TalentCondition_Button2.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            AlarmDeleteDialog.setMessage("진행 취소 하시겠습니까?")
+                                    .setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            Toast.makeText(mContext, "확인 클림 됨", Toast.LENGTH_SHORT).show();
+                                            dialog.cancel();
+                                        }
+                                    })
+                                    .setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            Toast.makeText(mContext, "취소 클림 됨", Toast.LENGTH_SHORT).show();
+                                            dialog.cancel();
+                                        }
+                                    });
+                            AlertDialog alertDialog = AlarmDeleteDialog.create();
+                            alertDialog.show();
+                        }
+                    });
+                    break;
+                }
 
+
+                case 3: {
+                    TalentCondition_TakeorGiveTalent.setText("재능드림 : ");
+                    TalentCondition_TextView.setText("재능 재등록을 진행해야 회원님의 재능이 활성화 됩니다.");
+                    TalentCondition_Button1.setText("재능드림 재등록");
+                    TalentCondition_Button2.setText("재능드림 수정하기");
+                    TalentCondition_Button1.setVisibility(View.VISIBLE);
+                    TalentCondition_Button2.setVisibility(View.VISIBLE);
+                    TalentCondition_PictureLL.setVisibility(View.VISIBLE);
+                    TalentCondition_Button3.setVisibility(GONE);
+                    TalentCondition_Condition.setText("완료");
+                    break;
+                }
+
+            }
         }
     }
-    }
+
 
     public void TalentCondition_Take_Registed(boolean check_TakeTalent, int Code) {
         if (!check_TakeTalent) {
@@ -364,6 +412,51 @@ public class TalentCondition_Activity extends AppCompatActivity {
                     TalentCondition_PictureLL.setVisibility(View.VISIBLE);
                     TalentCondition_Button3.setVisibility(GONE);
                     TalentCondition_Condition.setText("진행 중...");
+                    final AlertDialog.Builder AlarmDeleteDialog = new AlertDialog.Builder(TalentCondition_Activity.this);
+                    TalentCondition_Button1.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            AlarmDeleteDialog.setMessage("재능공유 완료 시 포인트 공유가 이루어집니다.")
+                                    .setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            Toast.makeText(mContext, "확인 클림 됨", Toast.LENGTH_SHORT).show();
+                                            dialog.cancel();
+                                        }
+                                    })
+                                    .setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            Toast.makeText(mContext, "취소 클림 됨", Toast.LENGTH_SHORT).show();
+                                            dialog.cancel();
+                                        }
+                                    });
+                            AlertDialog alertDialog = AlarmDeleteDialog.create();
+                            alertDialog.show();
+                        }
+                    });
+                    TalentCondition_Button2.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            AlarmDeleteDialog.setMessage("진행 취소 하시겠습니까?")
+                                    .setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            Toast.makeText(mContext, "확인 클림 됨", Toast.LENGTH_SHORT).show();
+                                            dialog.cancel();
+                                        }
+                                    })
+                                    .setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            Toast.makeText(mContext, "취소 클림 됨", Toast.LENGTH_SHORT).show();
+                                            dialog.cancel();
+                                        }
+                                    });
+                            AlertDialog alertDialog = AlarmDeleteDialog.create();
+                            alertDialog.show();
+                        }
+                    });
                     break;
                 }
                 case 3: {
@@ -383,7 +476,7 @@ public class TalentCondition_Activity extends AppCompatActivity {
         }
     }
 
-    public void getMyTalent() {
+   /* public void getMyTalent() {
         RequestQueue postRequestQueue = Volley.newRequestQueue(this);
         StringRequest postJsonRequest = new StringRequest(Request.Method.POST, SaveSharedPreference.getServerIp() + "TalentCondition/getMyTalent.do", new Response.Listener<String>() {
             @Override
@@ -463,6 +556,6 @@ public class TalentCondition_Activity extends AppCompatActivity {
 
         postRequestQueue.add(postJsonRequest);
 
-    }
+    }*/
 
 }

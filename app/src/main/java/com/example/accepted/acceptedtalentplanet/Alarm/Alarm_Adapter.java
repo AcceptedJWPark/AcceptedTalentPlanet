@@ -1,7 +1,10 @@
 package com.example.accepted.acceptedtalentplanet.Alarm;
 
+import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
+import android.content.DialogInterface;
+import android.support.v7.app.AlertDialog;
+import android.support.v7.view.ContextThemeWrapper;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,13 +14,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
-import com.example.accepted.acceptedtalentplanet.CustomerService.CustomerService_ClaimListActivity;
-import com.example.accepted.acceptedtalentplanet.CustomerService.CustomerService_OnebyOneQuestionListActivity;
-import com.example.accepted.acceptedtalentplanet.InterestingList.InterestingList_Activity;
 import com.example.accepted.acceptedtalentplanet.R;
-import com.example.accepted.acceptedtalentplanet.TalentCondition.TalentCondition_Activity;
-import com.example.accepted.acceptedtalentplanet.TalentSharing.TalentSharing_Popup_Activity;
 
 import java.util.ArrayList;
 
@@ -28,12 +25,7 @@ import java.util.ArrayList;
 public class Alarm_Adapter extends BaseAdapter {
 
     private ArrayList<Alarm_ListItem> list_ArrayList = new ArrayList<Alarm_ListItem>();
-
-
-    LinearLayout alarm_TxtLL;
-
     Context mContext;
-
 
     public Alarm_Adapter(Context context, ArrayList<Alarm_ListItem> list_ArrayList) {
         this.mContext = context;
@@ -70,6 +62,7 @@ public class Alarm_Adapter extends BaseAdapter {
     @Override
     public View getView(final int position, View convertView, ViewGroup viewGroup) {
 
+
         View view = convertView;
         ViewHolder holder;
         view = null;
@@ -95,20 +88,43 @@ public class Alarm_Adapter extends BaseAdapter {
             holder.Alarm_RegistDate2 = view.findViewById(R.id.Alarm_RegistDate2);
             holder.Alarm_DeleteList = view.findViewById(R.id.Alarm_DeleteList);
             holder.alarm_TxtLL = view.findViewById(R.id.alarm_TxtLL);
-            holder.Alarm_DeleteList.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                list_ArrayList.remove(position);
-            }
-        });
+
             view.setTag(holder);
         }else
         {
             holder=(ViewHolder) view.getTag();
         }
+
         holder.Alarm_Picture.setImageResource(list_ArrayList.get(position).getpicture());
         holder.Alarm_Name.setText(list_ArrayList.get(position).getName());
         holder.Alarm_RegistDate1.setText(list_ArrayList.get(position).getregistDate1());
+        holder.Alarm_DeleteList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+        AlertDialog.Builder AlarmDeleteDialog = new AlertDialog.Builder(mContext);
+        AlarmDeleteDialog.setMessage("알람을 삭제 하시겠습니까?")
+        .setPositiveButton("삭제", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                list_ArrayList.remove(position);
+                notifyDataSetChanged();
+                dialog.cancel();
+            }
+        })
+                .setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+                AlertDialog alertDialog = AlarmDeleteDialog.create();
+                alertDialog.show();
+            }
+        });
+
+
+
 
         switch (list_ArrayList.get(position).getactivityChange_CODE()) {
             case 1:
@@ -199,6 +215,8 @@ public class Alarm_Adapter extends BaseAdapter {
                         break;
                     }
         }
+
+
         return view;
     }
 

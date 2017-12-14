@@ -1,12 +1,17 @@
 package com.example.accepted.acceptedtalentplanet.SharingList;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Button;
@@ -14,6 +19,7 @@ import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.example.accepted.acceptedtalentplanet.CustomerService.CustomerService_ClaimActivity;
 import com.example.accepted.acceptedtalentplanet.InterestingList.InterestingList_Activity;
 import com.example.accepted.acceptedtalentplanet.R;
 import com.example.accepted.acceptedtalentplanet.TalentCondition.TalentCondition_Activity;
@@ -29,10 +35,7 @@ import java.util.ArrayList;
 public class SharingList_Adapter extends BaseAdapter{
 
     Context context;
-
     ArrayList<SharingList_Item> list_ArrayList;
-
-
 
 
     public SharingList_Adapter(Context context, ArrayList<SharingList_Item> list_ArrayList) {
@@ -57,7 +60,7 @@ public class SharingList_Adapter extends BaseAdapter{
     }
 
     @Override
-    public View getView(int position, View view, ViewGroup viewGroup) {
+    public View getView(final int position, View view, ViewGroup viewGroup) {
 
         if(view == null) {
             view = LayoutInflater.from(context).inflate(R.layout.sharinglist_listviewbg, viewGroup, false);
@@ -83,9 +86,6 @@ public class SharingList_Adapter extends BaseAdapter{
         SharingList_Spinner = view.findViewById(R.id.SharingList_Spinner);
         SharingList_SpinnerRL = view.findViewById(R.id.SharingList_SpinnerRL);
 
-
-
-
             DisplayMetrics metrics = new DisplayMetrics();
             WindowManager windowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
             windowManager.getDefaultDisplay().getMetrics(metrics);
@@ -97,14 +97,62 @@ public class SharingList_Adapter extends BaseAdapter{
             ArrayAdapter adapter = ArrayAdapter.createFromResource(context, R.array.SharingList_SpinnerList, R.layout.sharinglist_spinnertext);
             SharingList_Spinner.setAdapter(adapter);
             SharingList_SpinnerRL.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    SharingList_Spinner.setFocusableInTouchMode(true);
-                    SharingList_Spinner.performClick();
+            @Override
+            public void onClick(View v) {
+                SharingList_Spinner.setFocusableInTouchMode(true);
+                SharingList_Spinner.performClick();
+            }
+        });
+
+            //TODO:스피너 클릭이벤트 순서가 뒤죽 박죽 된 것 같음
+            //TODO:프로필 보기 눌렀을 때 한번에 안눌리고 있음 클릭 이벤트에 문제가 있는 듯 함;;
+            //TODO:내역삭제를 누르면 Profile 보기가 리스트 뷰 개수 만큼 팝업이 됨?
+        SharingList_Spinner.setSelection(0,false);
+        SharingList_Spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int spinner_position, long id) {
+                    switch (spinner_position) {
+                        case 0: {
+                            Intent i = new Intent(context, TalentSharing_Popup_Activity.class);
+                            context.startActivity(i);
+                            break;
+                        }
+                        case 1: {
+                            AlertDialog.Builder AlarmDeleteDialog = new AlertDialog.Builder(context);
+                            AlarmDeleteDialog.setMessage("공유·관심 내역을 삭제 하시겠습니까?")
+                                    .setPositiveButton("삭제", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            list_ArrayList.remove(position);
+                                            notifyDataSetChanged();
+                                            dialog.cancel();
+                                        }
+                                    })
+                                    .setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            dialog.cancel();
+                                        }
+                                    });
+                            AlertDialog alertDialog = AlarmDeleteDialog.create();
+                            alertDialog.show();
+                            break;
+                        }
+                        case 2: {
+                            Intent i = new Intent(context, CustomerService_ClaimActivity.class);
+                            context.startActivity(i);
+                            break;
+                        }
+                    }
                 }
-            });
 
 
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+
+            }
+        });
 
         SharingList_Name.setText(list_ArrayList.get(position).getname());
         SharingList_RegistDate.setText(list_ArrayList.get(position).getRegistDate());
@@ -114,17 +162,29 @@ public class SharingList_Adapter extends BaseAdapter{
 
         switch (list_ArrayList.get(position).getTalentConditionType_CODE()){
             case 1: {
+                SharingList_ConditionType.setText("[받은 관심]");
+                SharingList_Txt.setText("관심을 받았습니다.");
+                break;
+            }
+
+            case 2: {
+                SharingList_ConditionType.setText("[보낸 관심]");
+                SharingList_Txt.setText("관심을 보냈습니다.");
+                break;
+            }
+
+            case 3: {
                 SharingList_ConditionType.setText("[진행 중]");
                 SharingList_Txt.setText("진행 중입니다.");
                 break;
             }
-                case 2:{
+                case 4:{
                     SharingList_ConditionType.setText("[공유 완료]");
                     SharingList_Txt.setText("완료 하였습니다.");
                     break;
                 }
 
-            case 3:{
+            case 5:{
                 SharingList_ConditionType.setText("[진행 취소]");
                 SharingList_Txt.setText("진행 취소하였습니다.");
                 break;

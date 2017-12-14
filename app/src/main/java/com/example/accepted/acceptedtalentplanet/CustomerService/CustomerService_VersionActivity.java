@@ -14,6 +14,7 @@ import com.example.accepted.acceptedtalentplanet.R;
 public class CustomerService_VersionActivity extends AppCompatActivity {
 
 
+    //TODO:버전 정보 최신 VS 사용자 버전 다르면 활성화, 같으면 비활성화
     LinearLayout CustomerService_Version_PreBtn;
 
     protected void onCreate(Bundle savedInstanceState) {
