@@ -15,6 +15,7 @@ public class SharingList_Item {
     private String Keyword2;
     private String Keyword3;
     private String name;
+    private String TalentID;
 
     public int TalentType_CODE() {
         return TalentType_CODE;
@@ -36,6 +37,9 @@ public class SharingList_Item {
     }
     public String getname() {
         return name;
+    }
+    public String getTalentID(){
+        return TalentID;
     }
 
     public void setTalentType_CODE(int TalentType_CODE) {
@@ -61,7 +65,8 @@ public class SharingList_Item {
     }
 
 
-    public SharingList_Item(String name,int TalentConditionType_CODE, String RegistDate, String Keyword1,String Keyword2,String Keyword3,int TalentType_CODE)
+
+    public SharingList_Item(String name,int TalentConditionType_CODE, String RegistDate, String Keyword1,String Keyword2,String Keyword3,int TalentType_CODE, String TalentID)
         {
             this.name = name;
             this.TalentConditionType_CODE = TalentConditionType_CODE;
@@ -70,6 +75,7 @@ public class SharingList_Item {
             this.Keyword2 = Keyword2;
             this.Keyword3 = Keyword3;
             this.TalentType_CODE = TalentType_CODE;
+            this.TalentID = TalentID;
         }
 
 }

@@ -36,7 +36,7 @@ public class SharingList_Adapter extends BaseAdapter{
 
     Context context;
     ArrayList<SharingList_Item> list_ArrayList;
-
+    ArrayAdapter adapter = null;
 
     public SharingList_Adapter(Context context, ArrayList<SharingList_Item> list_ArrayList) {
         this.context = context;
@@ -64,132 +64,147 @@ public class SharingList_Adapter extends BaseAdapter{
 
         if(view == null) {
             view = LayoutInflater.from(context).inflate(R.layout.sharinglist_listviewbg, viewGroup, false);
-        }
+            adapter = ArrayAdapter.createFromResource(context, R.array.SharingList_SpinnerList, R.layout.sharinglist_spinnertext);
 
-        TextView SharingList_ConditionType;
-        TextView SharingList_Name;
-        TextView SharingList_RegistDate;
-        TextView SharingList_Keyword1;
-        TextView SharingList_Keyword2;
-        TextView SharingList_Keyword3;
-        TextView SharingList_Txt;
-        final Spinner SharingList_Spinner;
-        RelativeLayout SharingList_SpinnerRL;
 
-        SharingList_ConditionType = view.findViewById(R.id.SharingList_ConditionType);
-        SharingList_Name= view.findViewById(R.id.SharingList_Name);
-        SharingList_RegistDate= view.findViewById(R.id.SharingList_RegistDate);
-        SharingList_Keyword1= view.findViewById(R.id.SharingList_Keyword1);
-        SharingList_Keyword2= view.findViewById(R.id.SharingList_Keyword2);
-        SharingList_Keyword3= view.findViewById(R.id.SharingList_Keyword3);
-        SharingList_Txt= view.findViewById(R.id.SharingList_Txt);
-        SharingList_Spinner = view.findViewById(R.id.SharingList_Spinner);
-        SharingList_SpinnerRL = view.findViewById(R.id.SharingList_SpinnerRL);
+            TextView SharingList_ConditionType;
+            TextView SharingList_Name;
+            TextView SharingList_RegistDate;
+            TextView SharingList_Keyword1;
+            TextView SharingList_Keyword2;
+            TextView SharingList_Keyword3;
+            TextView SharingList_Txt;
+            final Spinner SharingList_Spinner;
+            RelativeLayout SharingList_SpinnerRL;
+
+            SharingList_ConditionType = view.findViewById(R.id.SharingList_ConditionType);
+            SharingList_Name = view.findViewById(R.id.SharingList_Name);
+            SharingList_RegistDate = view.findViewById(R.id.SharingList_RegistDate);
+            SharingList_Keyword1 = view.findViewById(R.id.SharingList_Keyword1);
+            SharingList_Keyword2 = view.findViewById(R.id.SharingList_Keyword2);
+            SharingList_Keyword3 = view.findViewById(R.id.SharingList_Keyword3);
+            SharingList_Txt = view.findViewById(R.id.SharingList_Txt);
+            SharingList_Spinner = view.findViewById(R.id.SharingList_Spinner);
+            SharingList_SpinnerRL = view.findViewById(R.id.SharingList_SpinnerRL);
 
             DisplayMetrics metrics = new DisplayMetrics();
             WindowManager windowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
             windowManager.getDefaultDisplay().getMetrics(metrics);
-            int Interesting_ListView_height = (int) (metrics.heightPixels*0.10);
+            int Interesting_ListView_height = (int) (metrics.heightPixels * 0.10);
             ViewGroup.LayoutParams params1 = view.getLayoutParams();
             params1.height = Interesting_ListView_height;
             view.setLayoutParams(params1);
 
-            ArrayAdapter adapter = ArrayAdapter.createFromResource(context, R.array.SharingList_SpinnerList, R.layout.sharinglist_spinnertext);
+
             SharingList_Spinner.setAdapter(adapter);
             SharingList_SpinnerRL.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                SharingList_Spinner.setFocusableInTouchMode(true);
-                SharingList_Spinner.performClick();
-            }
-        });
+                @Override
+                public void onClick(View v) {
+                    SharingList_Spinner.setFocusableInTouchMode(true);
+                    SharingList_Spinner.performClick();
+                }
+            });
 
             //TODO:스피너 클릭이벤트 순서가 뒤죽 박죽 된 것 같음
             //TODO:프로필 보기 눌렀을 때 한번에 안눌리고 있음 클릭 이벤트에 문제가 있는 듯 함;;
             //TODO:내역삭제를 누르면 Profile 보기가 리스트 뷰 개수 만큼 팝업이 됨?
-        SharingList_Spinner.setSelection(0,false);
-        SharingList_Spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int spinner_position, long id) {
-                    switch (spinner_position) {
-                        case 0: {
-                            Intent i = new Intent(context, TalentSharing_Popup_Activity.class);
-                            context.startActivity(i);
-                            break;
+
+            SharingList_Spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                boolean isFirst = true;
+                @Override
+                public void onItemSelected(AdapterView<?> parent, View view, int spinner_position, long id) {
+                    Log.d("asdfasdf", "aaaaaa1" + isFirst);
+                    if(!isFirst) {
+                        switch (spinner_position) {
+                            case 0:
+
+                                Intent i = new Intent(context, TalentSharing_Popup_Activity.class);
+
+                                i.putExtra("TalentID", list_ArrayList.get(position).getTalentID());
+                                context.startActivity(i);
+                                break;
+
+                            case 1:
+                                AlertDialog.Builder AlarmDeleteDialog = new AlertDialog.Builder(context);
+                                AlarmDeleteDialog.setMessage("공유·관심 내역을 삭제 하시겠습니까?")
+                                        .setPositiveButton("삭제", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int which) {
+                                                list_ArrayList.remove(position);
+                                                notifyDataSetChanged();
+                                                dialog.cancel();
+                                            }
+                                        })
+                                        .setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int which) {
+                                                dialog.cancel();
+                                            }
+                                        });
+                                AlertDialog alertDialog = AlarmDeleteDialog.create();
+                                alertDialog.show();
+                                break;
+
+                            case 2:
+                                Intent b = new Intent(context, CustomerService_ClaimActivity.class);
+                                context.startActivity(b);
+                                break;
+
                         }
-                        case 1: {
-                            AlertDialog.Builder AlarmDeleteDialog = new AlertDialog.Builder(context);
-                            AlarmDeleteDialog.setMessage("공유·관심 내역을 삭제 하시겠습니까?")
-                                    .setPositiveButton("삭제", new DialogInterface.OnClickListener() {
-                                        @Override
-                                        public void onClick(DialogInterface dialog, int which) {
-                                            list_ArrayList.remove(position);
-                                            notifyDataSetChanged();
-                                            dialog.cancel();
-                                        }
-                                    })
-                                    .setNegativeButton("취소", new DialogInterface.OnClickListener() {
-                                        @Override
-                                        public void onClick(DialogInterface dialog, int which) {
-                                            dialog.cancel();
-                                        }
-                                    });
-                            AlertDialog alertDialog = AlarmDeleteDialog.create();
-                            alertDialog.show();
-                            break;
-                        }
-                        case 2: {
-                            Intent i = new Intent(context, CustomerService_ClaimActivity.class);
-                            context.startActivity(i);
-                            break;
-                        }
+                    }else{
+                        isFirst = false;
+                        Log.d("asdfasdf", "aaaaaa");
+                        SharingList_Spinner.setSelected(true);
+                        notifyDataSetChanged();
+
                     }
                 }
 
 
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
+                @Override
+                public void onNothingSelected(AdapterView<?> parent) {
 
 
-            }
-        });
+                }
+            });
 
-        SharingList_Name.setText(list_ArrayList.get(position).getname());
-        SharingList_RegistDate.setText(list_ArrayList.get(position).getRegistDate());
-        SharingList_Keyword1.setText(list_ArrayList.get(position).getKeyword1());
-        SharingList_Keyword2.setText(list_ArrayList.get(position).getKeyword2());
-        SharingList_Keyword3.setText(list_ArrayList.get(position).getKeyword3());
+            SharingList_Name.setText(list_ArrayList.get(position).getname());
+            SharingList_RegistDate.setText(list_ArrayList.get(position).getRegistDate());
+            SharingList_Keyword1.setText(list_ArrayList.get(position).getKeyword1());
+            SharingList_Keyword2.setText(list_ArrayList.get(position).getKeyword2());
+            SharingList_Keyword3.setText(list_ArrayList.get(position).getKeyword3());
 
-        switch (list_ArrayList.get(position).getTalentConditionType_CODE()){
-            case 1: {
-                SharingList_ConditionType.setText("[받은 관심]");
-                SharingList_Txt.setText("관심을 받았습니다.");
-                break;
-            }
+            switch (list_ArrayList.get(position).getTalentConditionType_CODE()) {
+                case 1: {
+                    SharingList_ConditionType.setText("[받은 관심]");
+                    SharingList_Txt.setText("관심을 받았습니다.");
+                    break;
+                }
 
-            case 2: {
-                SharingList_ConditionType.setText("[보낸 관심]");
-                SharingList_Txt.setText("관심을 보냈습니다.");
-                break;
-            }
+                case 2: {
+                    SharingList_ConditionType.setText("[보낸 관심]");
+                    SharingList_Txt.setText("관심을 보냈습니다.");
+                    break;
+                }
 
-            case 3: {
-                SharingList_ConditionType.setText("[진행 중]");
-                SharingList_Txt.setText("진행 중입니다.");
-                break;
-            }
-                case 4:{
+                case 3: {
+                    SharingList_ConditionType.setText("[진행 중]");
+                    SharingList_Txt.setText("진행 중입니다.");
+                    break;
+                }
+                case 4: {
                     SharingList_ConditionType.setText("[공유 완료]");
                     SharingList_Txt.setText("완료 하였습니다.");
                     break;
                 }
 
-            case 5:{
-                SharingList_ConditionType.setText("[진행 취소]");
-                SharingList_Txt.setText("진행 취소하였습니다.");
-                break;
+                case 5: {
+                    SharingList_ConditionType.setText("[진행 취소]");
+                    SharingList_Txt.setText("진행 취소하였습니다.");
+                    break;
+                }
             }
-    }
+        }
 
         return view;
     }

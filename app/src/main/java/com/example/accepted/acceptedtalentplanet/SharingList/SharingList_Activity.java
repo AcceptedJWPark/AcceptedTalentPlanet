@@ -29,7 +29,8 @@ public class SharingList_Activity extends AppCompatActivity {
     ListView SharingList_ListView_Take;
     ArrayList<SharingList_Item> SharingList_arrayList_Give;
     ArrayList<SharingList_Item> SharingList_arrayList_Take;
-    SharingList_Adapter SharingList_Adapter;
+    SharingList_Adapter SharingList_Adapter1;
+    SharingList_Adapter SharingList_Adapter2;
     LinearLayout SharingList_PreBtn;
 
     Button SharingList_ShowGive;
@@ -47,27 +48,27 @@ public class SharingList_Activity extends AppCompatActivity {
         SharingList_ListView_Take = (ListView) findViewById(R.id.SharingList_ListView_Take);
 
         SharingList_arrayList_Give = new ArrayList<>();
-        SharingList_Adapter = new SharingList_Adapter(SharingList_Activity.this, SharingList_arrayList_Give);
-        SharingList_ListView_Give.setAdapter(SharingList_Adapter);
+        SharingList_Adapter1 = new SharingList_Adapter(SharingList_Activity.this, SharingList_arrayList_Give);
+        SharingList_ListView_Give.setAdapter(SharingList_Adapter1);
 
         SharingList_arrayList_Take = new ArrayList<>();
-        SharingList_Adapter = new SharingList_Adapter(SharingList_Activity.this, SharingList_arrayList_Take);
-        SharingList_ListView_Take.setAdapter(SharingList_Adapter);
+        SharingList_Adapter2 = new SharingList_Adapter(SharingList_Activity.this, SharingList_arrayList_Take);
+        SharingList_ListView_Take.setAdapter(SharingList_Adapter2);
 
         //TODO:한 개의 어레이 리스트와 어뎁터로 두 개의 리스트뷰에 적용 시킬 수는 없나?
-        SharingList_arrayList_Give.add(new SharingList_Item("박종우"+"님과 ",3,"2017.12.02 04:14","기타","기타 연주","기타 독학",1));
-        SharingList_arrayList_Give.add(new SharingList_Item("민권홍"+"님과 ",4,"2017.12.03 11:22","스타크래프트","스타 리마스터","스타크래프트 파이썬",1));
-        SharingList_arrayList_Give.add(new SharingList_Item("배대명"+"님과 ",4,"2017.12.04 13:01","농구","길거리 농구","농구 드리블",1));
-        SharingList_arrayList_Give.add(new SharingList_Item("우승제"+"님과 ",5,"2017.12.04 19:22","축구","축구 드리블","축구 프리킥",1));
-        SharingList_arrayList_Give.add(new SharingList_Item("우승제"+"님의 ",1,"2017.12.07 19:22","축구","축구 드리블","축구 프리킥",1));
-        SharingList_arrayList_Give.add(new SharingList_Item("우승제"+"님의 ",2,"2017.12.09 19:22","수학","수능 수학","미적분",1));
+        SharingList_arrayList_Give.add(new SharingList_Item("박종우"+"님과 ",3,"2017.12.02 04:14","기타","기타 연주","기타 독학",1, "1"));
+        SharingList_arrayList_Give.add(new SharingList_Item("민권홍"+"님과 ",4,"2017.12.03 11:22","스타크래프트","스타 리마스터","스타크래프트 파이썬",1, "2"));
+        SharingList_arrayList_Give.add(new SharingList_Item("배대명"+"님과 ",4,"2017.12.04 13:01","농구","길거리 농구","농구 드리블",1, "3"));
+        SharingList_arrayList_Give.add(new SharingList_Item("우승제"+"님과 ",5,"2017.12.04 19:22","축구","축구 드리블","축구 프리킥",1, "2"));
+        SharingList_arrayList_Give.add(new SharingList_Item("우승제"+"님의 ",1,"2017.12.07 19:22","축구","축구 드리블","축구 프리킥",1, "1"));
+        SharingList_arrayList_Give.add(new SharingList_Item("우승제"+"님의 ",2,"2017.12.09 19:22","수학","수능 수학","미적분",1, "3"));
 
-        SharingList_arrayList_Take.add(new SharingList_Item("유성택"+"님과 ",1,"2017.12.01 14:24","노래","보컬","오디션",2));
-        SharingList_arrayList_Take.add(new SharingList_Item("유성택"+"님과 ",2,"2017.12.03 14:24","연기","뮤지컬","공연",2));
-        SharingList_arrayList_Take.add(new SharingList_Item("유성택"+"님과 ",3,"2017.12.03 14:24","드럼","드럼 연주","드럼 독학",2));
-        SharingList_arrayList_Take.add(new SharingList_Item("김진만"+"님과 ",4,"2017.12.04 14:24","영어","영어 말하기","영어 스피킹",2));
-        SharingList_arrayList_Take.add(new SharingList_Item("임하슬람"+"님과 ",4,"2017.12.02 14:24","수학1","미분과 적분","미적분",2));
-        SharingList_arrayList_Take.add(new SharingList_Item("윤택"+"님과 ",5,"2017.12.02 14:24","공무원 시험","공무원 7급","공무원 9급",2));
+        SharingList_arrayList_Take.add(new SharingList_Item("유성택"+"님과 ",1,"2017.12.01 14:24","노래","보컬","오디션",2, "1"));
+        SharingList_arrayList_Take.add(new SharingList_Item("유성택"+"님과 ",2,"2017.12.03 14:24","연기","뮤지컬","공연",2, "2"));
+        SharingList_arrayList_Take.add(new SharingList_Item("유성택"+"님과 ",3,"2017.12.03 14:24","드럼","드럼 연주","드럼 독학",2, "3"));
+        SharingList_arrayList_Take.add(new SharingList_Item("김진만"+"님과 ",4,"2017.12.04 14:24","영어","영어 말하기","영어 스피킹",2, "4"));
+        SharingList_arrayList_Take.add(new SharingList_Item("임하슬람"+"님과 ",4,"2017.12.02 14:24","수학1","미분과 적분","미적분",2, "5"));
+        SharingList_arrayList_Take.add(new SharingList_Item("윤택"+"님과 ",5,"2017.12.02 14:24","공무원 시험","공무원 7급","공무원 9급",2, "6"));
 
 
 

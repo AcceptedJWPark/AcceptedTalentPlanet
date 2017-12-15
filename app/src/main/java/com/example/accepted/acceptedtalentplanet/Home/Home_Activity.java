@@ -300,6 +300,7 @@ public class Home_Activity extends AppCompatActivity {
 
     public void slideMenuTalentSharingList(View v){
         Intent i = new Intent(mContext, SharingList_Activity.class);
+        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(i);
     }
 
