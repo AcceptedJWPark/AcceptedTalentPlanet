@@ -30,6 +30,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -42,6 +43,7 @@ public class TalentSharing_Popup_Activity extends FragmentActivity{
     ImageView talentSharing_pupupclosebtn;
     ImageView TalentSharingPopup_addfriendList_on;
     ImageView TalentSharingPopup_addfriendList_off;
+    String UserID;
 
     boolean hasFlag = false;
     Context mContext;
@@ -78,30 +80,25 @@ public class TalentSharing_Popup_Activity extends FragmentActivity{
         TalentSharingPopup_addfriendList_on = findViewById(R.id.TalentSharingPopup_addfriendList_on);
         TalentSharingPopup_addfriendList_off = findViewById(R.id.TalentSharingPopup_addfriendList_off);
 
-        if (addedFriend) {
-            TalentSharingPopup_addfriendList_on.setVisibility(View.VISIBLE);
-            TalentSharingPopup_addfriendList_off.setVisibility(View.GONE);
-        }
-        else {
-            TalentSharingPopup_addfriendList_on.setVisibility(View.GONE);
-            TalentSharingPopup_addfriendList_off.setVisibility(View.VISIBLE);
-        }
 
         TalentSharingPopup_addfriendList_on.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                    TalentSharingPopup_addfriendList_on.setVisibility(View.GONE);
-                    TalentSharingPopup_addfriendList_off.setVisibility(View.VISIBLE);
-                    Toast.makeText(mContext,"친구 목록에서 삭제되었습니다.",Toast.LENGTH_SHORT).show();
+                TalentSharingPopup_addfriendList_on.setVisibility(View.GONE);
+                TalentSharingPopup_addfriendList_off.setVisibility(View.VISIBLE);
+                Toast.makeText(mContext,"친구 목록에서 삭제되었습니다.",Toast.LENGTH_SHORT).show();
+                SaveSharedPreference.removeFriend(mContext, UserID);
                 addedFriend = false;
                 }
         });
+
         TalentSharingPopup_addfriendList_off.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                    TalentSharingPopup_addfriendList_off.setVisibility(View.GONE);
-                    TalentSharingPopup_addfriendList_on.setVisibility(View.VISIBLE);
-                    Toast.makeText(mContext,"친구 목록에 추가되었습니다.",Toast.LENGTH_SHORT).show();
+                TalentSharingPopup_addfriendList_off.setVisibility(View.GONE);
+                TalentSharingPopup_addfriendList_on.setVisibility(View.VISIBLE);
+                Toast.makeText(mContext,"친구 목록에 추가되었습니다.",Toast.LENGTH_SHORT).show();
+                SaveSharedPreference.putFriend(mContext, UserID);
                 addedFriend = true;
             }
         });
@@ -134,6 +131,10 @@ public class TalentSharing_Popup_Activity extends FragmentActivity{
                     ((TextView)findViewById(R.id.TalentSharingPopup_Level)).setText(SaveSharedPreference.getLevel(obj.getString("LEVEL")));
                     ((TextView)findViewById(R.id.TalentSharingPopup_Point)).setText(obj.getString("T_POINT")+"P");
                     ((TextView)findViewById(R.id.TalentSharing_TypeText)).setText(TalentText);
+                    UserID = obj.getString("USER_ID");
+                    ArrayList<String> friendList = SaveSharedPreference.getFriendList(mContext);
+
+                    addedFriend = (friendList.contains(UserID))?true:false;
 
                     hasFlag = (obj.getString("HAS_FLAG").equals("N"))? false : true;
                     Log.d("hasFlag", String.valueOf(hasFlag));
@@ -145,6 +146,15 @@ public class TalentSharing_Popup_Activity extends FragmentActivity{
                                 sendInterest(talentID);
                             }
                         });
+                    }
+
+                    if (addedFriend) {
+                        TalentSharingPopup_addfriendList_on.setVisibility(View.VISIBLE);
+                        TalentSharingPopup_addfriendList_off.setVisibility(View.GONE);
+                    }
+                    else {
+                        TalentSharingPopup_addfriendList_on.setVisibility(View.GONE);
+                        TalentSharingPopup_addfriendList_off.setVisibility(View.VISIBLE);
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
