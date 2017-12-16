@@ -130,7 +130,7 @@
 
 
         <TextView
-            android:id="@+id/SlidingMenu_T.Sharing"
+            android:id="@+id/SlidingMenu_TSharing"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1.9"
@@ -143,7 +143,7 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/SlidingMenu_Home"
+            android:id="@+id/SlidingMenu_TalentSearching"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1.9"

@@ -12,7 +12,6 @@ import android.widget.TextView;
 
 import com.example.accepted.acceptedtalentplanet.Alarm.Alarm_Activity;
 import com.example.accepted.acceptedtalentplanet.FriendList.FriendList_Activity;
-import com.example.accepted.acceptedtalentplanet.Home.Home_Activity;
 import com.example.accepted.acceptedtalentplanet.LoadingLogin.Login_Activity;
 import com.example.accepted.acceptedtalentplanet.MyProfile.MyProfile_Activity;
 import com.example.accepted.acceptedtalentplanet.R;
@@ -50,8 +49,6 @@ public class CustomerService_MainActivity extends AppCompatActivity {
 
     TextView ToolbarTxt;
 
-
-
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.customerservice_activity);
@@ -60,6 +57,7 @@ public class CustomerService_MainActivity extends AppCompatActivity {
 
         ToolbarTxt = (TextView) findViewById(R.id.toolbarTxt);
         ToolbarTxt.setText("고객센터");
+
 
         CustomerService_Introduction = (LinearLayout) findViewById(R.id.CustomerService_IntroductionLL);
         CustomerService_Introduction.setOnClickListener(new View.OnClickListener() {
@@ -189,8 +187,6 @@ public class CustomerService_MainActivity extends AppCompatActivity {
 
 
     }
-
-
     public void slideMenuTalentSearching(View v){
         Intent i = new Intent(mContext, TalentSearching_Activity.class);
         startActivity(i);

@@ -6,7 +6,6 @@
     android:background="#f5f5f5"
     >
 
-
     <ImageView
         android:id="@+id/ActionBar_Listview"
         android:layout_width="@dimen/Toolbar_Img"

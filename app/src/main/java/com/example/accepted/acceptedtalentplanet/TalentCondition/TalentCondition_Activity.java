@@ -80,11 +80,11 @@ public class TalentCondition_Activity extends AppCompatActivity {
 
     LinearLayout TalentCondition_PictureLL;
 
-    Boolean TalentCondition_Give_Registed = true;
+    Boolean TalentCondition_Give_Registed = false;
     Boolean TalentCondition_Take_Registed = true;
 
-    int GiveTalentConditionCode = 2;
-    int TakeTalentConditionCode = 2;
+    int GiveTalentConditionCode = 1;
+    int TakeTalentConditionCode = 3;
 
     TextView ToolbarTxt;
 

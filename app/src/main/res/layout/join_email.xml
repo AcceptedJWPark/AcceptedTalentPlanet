@@ -69,7 +69,7 @@
             android:id="@+id/Join_Email"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="6"
+            android:layout_weight="7"
             android:hint="E-mail"
             android:inputType="textEmailAddress"
             android:textSize="@dimen/Edit_Hint" />
@@ -117,7 +117,7 @@
         android:layout_height="0dp"
         android:layout_weight="2.9"
         android:orientation="vertical"
-        android:visibility="gone">
+        >
 
 
         <LinearLayout
@@ -134,7 +134,7 @@
                 android:id="@+id/Join_joinCode"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="6"
+                android:layout_weight="7"
                 android:hint="인증번호 입력"
                 android:textSize="@dimen/Edit_Hint"
                 />

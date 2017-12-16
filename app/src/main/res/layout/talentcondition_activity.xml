@@ -116,15 +116,9 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="4.5"
-            android:orientation="vertical"
+            android:orientation="horizontal"
             >
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="0.8"
-                android:orientation="horizontal"
-                >
                 <View
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
@@ -135,7 +129,9 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="2"
-                    android:padding="5dp"
+                    android:paddingTop="5dp"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
                     android:orientation="vertical"
                     >
 
@@ -159,13 +155,13 @@
                         android:textColor="@color/textColor"
                         android:textSize="@dimen/ListView_Btn" />
 
-                </LinearLayout>
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="3.7"/>
-            </LinearLayout>
 
+
+            </LinearLayout>
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="3.7"/>
 
         </LinearLayout>
 
@@ -176,7 +172,8 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1.5"
-            android:gravity="center|top"
+            android:gravity="center"
+            android:textStyle="bold"
             android:text="관심목록 확인 또는 T.Sharing을 진행해보세요!"
             android:textColor="@color/textColor"
             android:textSize="@dimen/Page_Txt" />
