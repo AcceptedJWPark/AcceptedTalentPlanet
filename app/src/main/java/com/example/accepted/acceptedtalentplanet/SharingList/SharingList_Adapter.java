@@ -27,6 +27,7 @@ import com.example.accepted.acceptedtalentplanet.TalentSharing.TalentSharing_Lis
 import com.example.accepted.acceptedtalentplanet.TalentSharing.TalentSharing_Popup_Activity;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Accepted on 2017-09-29.
@@ -36,11 +37,17 @@ public class SharingList_Adapter extends BaseAdapter{
 
     Context context;
     ArrayList<SharingList_Item> list_ArrayList;
-    ArrayAdapter adapter = null;
+    MySpinnerAdapter adapter = null;
+    ArrayList<MyModel> models;
 
     public SharingList_Adapter(Context context, ArrayList<SharingList_Item> list_ArrayList) {
         this.context = context;
         this.list_ArrayList = list_ArrayList;
+        models = new ArrayList<>();
+        models.add(new MyModel("보기"));
+        models.add(new MyModel("Profile 보기"));
+        models.add(new MyModel("내역 삭제"));
+        models.add(new MyModel("신고 하기"));
     }
 
 
@@ -51,7 +58,7 @@ public class SharingList_Adapter extends BaseAdapter{
 
     @Override
     public Object getItem(int position) {
-        return position;
+        return list_ArrayList.get(position);
     }
 
     @Override
@@ -64,7 +71,7 @@ public class SharingList_Adapter extends BaseAdapter{
 
         if(view == null) {
             view = LayoutInflater.from(context).inflate(R.layout.sharinglist_listviewbg, viewGroup, false);
-            adapter = ArrayAdapter.createFromResource(context, R.array.SharingList_SpinnerList, R.layout.sharinglist_spinnertext);
+            adapter = new MySpinnerAdapter(context, models);
 
 
             TextView SharingList_ConditionType;
@@ -105,18 +112,24 @@ public class SharingList_Adapter extends BaseAdapter{
                 }
             });
 
+
             //TODO:스피너 클릭이벤트 순서가 뒤죽 박죽 된 것 같음
             //TODO:프로필 보기 눌렀을 때 한번에 안눌리고 있음 클릭 이벤트에 문제가 있는 듯 함;;
             //TODO:내역삭제를 누르면 Profile 보기가 리스트 뷰 개수 만큼 팝업이 됨?
+            SharingList_Spinner.setSelection(0, true);
 
             SharingList_Spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                boolean isFirst = true;
                 @Override
                 public void onItemSelected(AdapterView<?> parent, View view, int spinner_position, long id) {
-                    Log.d("asdfasdf", "aaaaaa1" + isFirst);
-                    if(!isFirst) {
+
+                    if (spinner_position == 0) {
+                        return;
+                    } else {
+                        spinner_position = spinner_position - 1;
+                    }
+
                         switch (spinner_position) {
-                            case 0:
+                            case 1:
 
                                 Intent i = new Intent(context, TalentSharing_Popup_Activity.class);
 
@@ -124,12 +137,13 @@ public class SharingList_Adapter extends BaseAdapter{
                                 context.startActivity(i);
                                 break;
 
-                            case 1:
+                            case 2:
                                 AlertDialog.Builder AlarmDeleteDialog = new AlertDialog.Builder(context);
                                 AlarmDeleteDialog.setMessage("공유·관심 내역을 삭제 하시겠습니까?")
                                         .setPositiveButton("삭제", new DialogInterface.OnClickListener() {
                                             @Override
                                             public void onClick(DialogInterface dialog, int which) {
+                                                Log.d("Delete Position = ", String.valueOf(position));
                                                 list_ArrayList.remove(position);
                                                 notifyDataSetChanged();
                                                 dialog.cancel();
@@ -145,19 +159,14 @@ public class SharingList_Adapter extends BaseAdapter{
                                 alertDialog.show();
                                 break;
 
-                            case 2:
+                            case 3:
                                 Intent b = new Intent(context, CustomerService_ClaimActivity.class);
                                 context.startActivity(b);
                                 break;
 
                         }
-                    }else{
-                        isFirst = false;
-                        Log.d("asdfasdf", "aaaaaa");
-                        SharingList_Spinner.setSelected(true);
-                        notifyDataSetChanged();
 
-                    }
+                    SharingList_Spinner.setSelection(0, true);
                 }
 
 
@@ -208,5 +217,6 @@ public class SharingList_Adapter extends BaseAdapter{
 
         return view;
     }
+
 
 }

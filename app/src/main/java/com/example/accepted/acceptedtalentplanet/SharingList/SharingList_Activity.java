@@ -25,11 +25,11 @@ import java.util.List;
 public class SharingList_Activity extends AppCompatActivity {
 
     Context mContext;
-    ListView SharingList_ListView_Give;
+    public ListView SharingList_ListView_Give;
     ListView SharingList_ListView_Take;
     ArrayList<SharingList_Item> SharingList_arrayList_Give;
     ArrayList<SharingList_Item> SharingList_arrayList_Take;
-    SharingList_Adapter SharingList_Adapter1;
+    public SharingList_Adapter SharingList_Adapter1;
     SharingList_Adapter SharingList_Adapter2;
     LinearLayout SharingList_PreBtn;
 
@@ -107,6 +107,12 @@ public class SharingList_Activity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onResume(){
+        super.onResume();
+        SharingList_Adapter1.notifyDataSetChanged();
+        SharingList_Adapter2.notifyDataSetChanged();
+    }
 
 
 
