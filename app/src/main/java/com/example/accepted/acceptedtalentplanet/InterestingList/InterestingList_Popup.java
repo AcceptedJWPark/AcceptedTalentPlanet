@@ -47,8 +47,10 @@ public class InterestingList_Popup extends FragmentActivity {
 
     ImageView InteresteingList_addfriendList_on;
     ImageView InteresteingList_addfriendList_off;
-
+    String talentID;
+    String profileUserID;
     boolean addedFriend = false;
+    boolean giveTakeCode = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,7 +67,9 @@ public class InterestingList_Popup extends FragmentActivity {
         getWindow().getAttributes().height = height;
 
 
-        String talentID = getIntent().getStringExtra("TalentID");
+        talentID = getIntent().getStringExtra("TalentID");
+        giveTakeCode = (getIntent().getIntExtra("codeGiveTake", 1) == 1)?true:false;
+
         mContext = getApplicationContext();
         talentSharing_popupclosebtn = (ImageView) findViewById(R.id.TalentSharing_pupupclosebtn);
         talentSharing_popupclosebtn.setOnClickListener(new View.OnClickListener() {
@@ -120,6 +124,7 @@ public class InterestingList_Popup extends FragmentActivity {
                         .setPositiveButton("진행하기", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
+                                doSharingTalent(talentID);
                                 Toast.makeText(mContext,"진행 하기 클릭",Toast.LENGTH_SHORT).show();
                                 dialog.cancel();
                             }
@@ -152,9 +157,7 @@ public class InterestingList_Popup extends FragmentActivity {
 
         private View.OnClickListener ProgressListener = new View.OnClickListener() {
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "진행버튼 클릭",
-                        Toast.LENGTH_SHORT).show();
-
+                doSharingTalent(talentID);
             }
         };
 
@@ -188,6 +191,7 @@ public class InterestingList_Popup extends FragmentActivity {
                     ((TextView)findViewById(R.id.TalentSharingPopup_Location3)).setText(obj.getString("LOCATION3"));
                     ((TextView)findViewById(R.id.TalentSharingPopup_Level)).setText(SaveSharedPreference.getLevel(obj.getString("LEVEL")));
                     ((TextView)findViewById(R.id.TalentSharingPopup_Point)).setText(obj.getString("T_POINT")+"P");
+                    profileUserID = obj.getString("USER_ID");
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -218,6 +222,57 @@ public class InterestingList_Popup extends FragmentActivity {
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap();
                 params.put("talentID", TalentID);
+                return params;
+            }
+        };
+
+
+        postRequestQueue.add(postJsonRequest);
+
+    }
+
+    public void doSharingTalent(final String talentID) {
+        final String TalentID = talentID;
+        RequestQueue postRequestQueue = Volley.newRequestQueue(this);
+        StringRequest postJsonRequest = new StringRequest(Request.Method.POST, SaveSharedPreference.getServerIp() + "TalentSharing/doSharingTalent.do", new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONObject obj = new JSONObject(response);
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                NetworkResponse response = error.networkResponse;
+                if (error instanceof ServerError && response != null) {
+                    try {
+                        String res = new String(response.data,
+                                HttpHeaderParser.parseCharset(response.headers, "utf-8"));
+                        // Now you can use any deserializer to make sense of data
+                        Log.d("res", res);
+
+                        JSONObject obj = new JSONObject(res);
+                    } catch (UnsupportedEncodingException e1) {
+                        // Couldn't properly decode data to string
+                        e1.printStackTrace();
+                    } catch (JSONException e2) {
+                        // returned data is not JSONObject?
+                        e2.printStackTrace();
+                    }
+                }
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap();
+                params.put("talentID", TalentID);
+
+                String userID = (giveTakeCode)? SaveSharedPreference.getUserId(mContext) : profileUserID;
+                params.put("userID", userID);
                 return params;
             }
         };

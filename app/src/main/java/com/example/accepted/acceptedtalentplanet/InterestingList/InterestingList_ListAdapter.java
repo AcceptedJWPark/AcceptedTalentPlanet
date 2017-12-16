@@ -78,6 +78,7 @@ public class InterestingList_ListAdapter extends BaseAdapter {
                 public void onClick(View v) {
                     Intent intent = new Intent(context, InterestingList_Popup.class);
                     intent.putExtra("TalentID", ((InterestingList_ListItem)getItem(index)).getTalentID());
+                    intent.putExtra("codeGiveTake", list_ArrayList.get(index).getGiveTake_CODE());
                     context.startActivity(intent);
                 }
             });

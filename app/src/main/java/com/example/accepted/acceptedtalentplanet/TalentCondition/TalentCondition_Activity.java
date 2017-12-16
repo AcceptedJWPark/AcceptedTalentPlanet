@@ -173,7 +173,7 @@ public class TalentCondition_Activity extends AppCompatActivity {
             }
         });
 
-     /*   getMyTalent();*/
+        getMyTalent();
     }
 
 
@@ -476,7 +476,7 @@ public class TalentCondition_Activity extends AppCompatActivity {
         }
     }
 
-   /* public void getMyTalent() {
+    public void getMyTalent() {
         RequestQueue postRequestQueue = Volley.newRequestQueue(this);
         StringRequest postJsonRequest = new StringRequest(Request.Method.POST, SaveSharedPreference.getServerIp() + "TalentCondition/getMyTalent.do", new Response.Listener<String>() {
             @Override
@@ -556,6 +556,6 @@ public class TalentCondition_Activity extends AppCompatActivity {
 
         postRequestQueue.add(postJsonRequest);
 
-    }*/
+    }
 
 }
