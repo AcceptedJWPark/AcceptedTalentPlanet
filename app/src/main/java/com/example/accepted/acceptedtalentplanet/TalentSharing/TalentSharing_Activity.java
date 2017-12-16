@@ -19,6 +19,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.accepted.acceptedtalentplanet.Alarm.Alarm_Activity;
 import com.example.accepted.acceptedtalentplanet.CustomerService.CustomerService_MainActivity;
@@ -78,6 +79,10 @@ public class TalentSharing_Activity extends AppCompatActivity {
     TextView ToolbarTxt;
     TextView TalentSharing_PageTxt;
 
+    Button TalentSharing_GiveCheck;
+    Button TalentSharing_TakeCheck;
+
+
     // 검색조건 관련 변수
     boolean isGiveTalent = true;
 
@@ -121,6 +126,8 @@ public class TalentSharing_Activity extends AppCompatActivity {
         });
         ((TextView) findViewById(R.id.DrawerUserID)).setText(SaveSharedPreference.getUserId(mContext));
 
+        TalentSharing_GiveCheck = (Button) findViewById(R.id.TalentSharing_GiveCheck);
+        TalentSharing_TakeCheck = (Button) findViewById(R.id.TalentSharing_TakeCheck);
 
         TalentSharingListView = (ListView) findViewById(R.id.TalentSharing_LV);
         TalentSharingList = new ArrayList<>();
@@ -156,8 +163,23 @@ public class TalentSharing_Activity extends AppCompatActivity {
                     TalentSharing_Adapter = new TalentSharing_ListAdapter(mContext, TalentSharingList);
                     TalentSharingListView.setAdapter(TalentSharing_Adapter);
 
-                    ((Button)findViewById(R.id.TalentSharing_GiveCheck)).setOnClickListener(changeTalentFlag);
-                    ((Button)findViewById(R.id.TalentSharing_TakeCheck)).setOnClickListener(changeTalentFlag);
+                    TalentSharing_GiveCheck.setOnClickListener(changeTalentFlag);
+                    TalentSharing_TakeCheck.setOnClickListener(changeTalentFlag);
+
+                    Intent i = getIntent();
+                    if(i.getStringExtra("TalentSharing_TalentFlag").equals("Give"))
+                    {
+                        Toast.makeText(mContext,"TalentSharing_TalentFlag = Give",Toast.LENGTH_SHORT).show();
+                        TalentSharing_GiveCheck.setFocusableInTouchMode(true);
+                        TalentSharing_GiveCheck.performClick();
+                    }else if(i.getStringExtra("TalentSharing_TalentFlag").equals("Take"))
+                    {
+                        Toast.makeText(mContext,"TalentSharing_TalentFlag = Take",Toast.LENGTH_SHORT).show();
+                        TalentSharing_TakeCheck.setFocusableInTouchMode(true);
+                        TalentSharing_TakeCheck.performClick();
+                    }
+
+
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -199,23 +221,20 @@ public class TalentSharing_Activity extends AppCompatActivity {
 
     Button.OnClickListener changeTalentFlag = new View.OnClickListener(){
         public void onClick(View v){
-            Button giveButton = (Button)findViewById(R.id.TalentSharing_GiveCheck);
-            Button takeButton = (Button)findViewById(R.id.TalentSharing_TakeCheck);
             TalentSharing_PageTxt = (TextView)findViewById(R.id.TalentSharing_PageTxt);
-
             isGiveTalent = (((Button)v).getId() == R.id.TalentSharing_GiveCheck) ? true : false;
 
             if(isGiveTalent){
-                giveButton.setBackground(ContextCompat.getDrawable(mContext, R.drawable.small_button_graybackground));
-                giveButton.setTextColor(getResources().getColor(R.color.textColor));
-                takeButton.setBackground(ContextCompat.getDrawable(mContext, R.drawable.small_button_whitebackground));
-                takeButton.setTextColor(Color.parseColor("#d2d2d2"));
+                TalentSharing_GiveCheck.setBackground(ContextCompat.getDrawable(mContext, R.drawable.small_button_graybackground));
+                TalentSharing_GiveCheck.setTextColor(getResources().getColor(R.color.textColor));
+                TalentSharing_TakeCheck.setBackground(ContextCompat.getDrawable(mContext, R.drawable.small_button_whitebackground));
+                TalentSharing_TakeCheck.setTextColor(Color.parseColor("#d2d2d2"));
                 TalentSharing_PageTxt.setText(SaveSharedPreference.getUserName(mContext) + "님의 재능을 공유할 수 있는 회원리스트 입니다.");
             }else{
-                takeButton.setBackground(ContextCompat.getDrawable(mContext, R.drawable.small_button_graybackground));
-                takeButton.setTextColor(getResources().getColor(R.color.textColor));
-                giveButton.setBackground(ContextCompat.getDrawable(mContext, R.drawable.small_button_whitebackground));
-                giveButton.setTextColor(Color.parseColor("#d2d2d2"));
+                TalentSharing_TakeCheck.setBackground(ContextCompat.getDrawable(mContext, R.drawable.small_button_graybackground));
+                TalentSharing_TakeCheck.setTextColor(getResources().getColor(R.color.textColor));
+                TalentSharing_GiveCheck.setBackground(ContextCompat.getDrawable(mContext, R.drawable.small_button_whitebackground));
+                TalentSharing_GiveCheck.setTextColor(Color.parseColor("#d2d2d2"));
                 TalentSharing_PageTxt.setText(SaveSharedPreference.getUserName(mContext) + "님께 재능을 공유할 수 있는 회원리스트 입니다.");
             }
 

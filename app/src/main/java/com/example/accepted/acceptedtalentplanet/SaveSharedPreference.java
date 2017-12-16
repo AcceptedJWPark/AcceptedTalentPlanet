@@ -7,10 +7,12 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.preference.PreferenceManager;
 import android.support.v4.content.ContextCompat;
+import android.util.Log;
 
 import com.google.gson.Gson;
 
 import java.io.ByteArrayOutputStream;
+import java.util.ArrayList;
 
 import static android.text.TextUtils.isEmpty;
 
@@ -28,6 +30,7 @@ public class SaveSharedPreference {
     static final String PREF_GEO_POINT1 = "geoPoint1";
     static final String PREF_GEO_POINT2 = "geoPoint2";
     static final String PREF_GEO_POINT3 = "geoPoint3";
+    static final String PREF_FRIEND_ARRAY = "friendList";
 
     static SharedPreferences getSharedPreferences(Context ctx){
         return PreferenceManager.getDefaultSharedPreferences(ctx);
@@ -151,5 +154,39 @@ public class SaveSharedPreference {
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.JPEG, 80, byteArrayOutputStream);
         return byteArrayOutputStream.toByteArray();
+    }
+
+    public static void putFriend(Context ctx, String userID){
+        ArrayList<String> friendList = getFriendList(ctx);
+        friendList.add(userID);
+
+        SharedPreferences.Editor editor = getSharedPreferences(ctx).edit();
+        Gson gson = new Gson();
+        String json = gson.toJson(friendList);
+        editor.putString(PREF_FRIEND_ARRAY, json);
+        editor.commit();
+
+    }
+
+    public static void removeFriend(Context ctx, String userID){
+        ArrayList<String> frinedList = getFriendList(ctx);
+        frinedList.remove(userID);
+
+        SharedPreferences.Editor editor = getSharedPreferences(ctx).edit();
+        Gson gson = new Gson();
+        String json = gson.toJson(frinedList);
+        editor.putString(PREF_FRIEND_ARRAY, json);
+        editor.commit();
+    }
+
+    public static ArrayList<String> getFriendList(Context ctx){
+        Gson gson = new Gson();
+
+        String json = getSharedPreferences(ctx).getString(PREF_FRIEND_ARRAY, "");
+        ArrayList<String> friendList = gson.fromJson(json, ArrayList.class);
+        if(friendList == null)
+            friendList = new ArrayList<>();
+
+        return friendList;
     }
 }

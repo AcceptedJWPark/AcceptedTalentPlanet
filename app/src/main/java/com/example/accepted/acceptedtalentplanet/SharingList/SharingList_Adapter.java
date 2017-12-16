@@ -117,9 +117,7 @@ public class SharingList_Adapter extends BaseAdapter{
         }
 
 
-            //TODO:스피너 클릭이벤트 순서가 뒤죽 박죽 된 것 같음
-            //TODO:프로필 보기 눌렀을 때 한번에 안눌리고 있음 클릭 이벤트에 문제가 있는 듯 함;;
-            //TODO:내역삭제를 누르면 Profile 보기가 리스트 뷰 개수 만큼 팝업이 됨?
+            //TODO:항목에 맞는 데이터 뿌려줘야 함
         holder.SharingList_Spinner.setSelection(0, true);
         holder.SharingList_Spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
