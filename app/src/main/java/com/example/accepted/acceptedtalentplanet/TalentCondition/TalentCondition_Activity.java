@@ -85,7 +85,7 @@ public class TalentCondition_Activity extends AppCompatActivity {
 
     int GiveTalentConditionCode;
     int TakeTalentConditionCode;
-
+    String flag;
     TextView ToolbarTxt;
 
     @Override
@@ -169,16 +169,15 @@ public class TalentCondition_Activity extends AppCompatActivity {
         ((TextView) findViewById(R.id.DrawerUserID)).setText(SaveSharedPreference.getUserId(mContext));
 
         Intent i = getIntent();
-        if (i.getStringExtra("TalentCondition_TalentFlag") == null)
-        {
-            return;
-        }
-        else if(i.getStringExtra("TalentCondition_TalentFlag").equals("Give"))
+        flag = i.getStringExtra("TalentCondition_TalentFlag");
+        if(flag == null) flag = "Give";
+
+        else if(flag.equals("Give"))
         {
             TalentCondition_ShowGive.setFocusableInTouchMode(true);
             TalentCondition_ShowGive.performClick();
         }
-        else if(i.getStringExtra("TalentCondition_TalentFlag").equals("Take"))
+        else if(flag.equals("Take"))
         {
             TalentCondition_ShowTake.setFocusableInTouchMode(true);
             TalentCondition_ShowTake.performClick();
@@ -531,7 +530,10 @@ public class TalentCondition_Activity extends AppCompatActivity {
                         }
                     }
                     Log.d("LOG >>>>" , TalentCondition_Give_Registed + ", " + GiveTalentConditionCode + ", " + TalentCondition_Take_Registed + ", " + TakeTalentConditionCode);
-                    TalentCondition_Give_Registed(TalentCondition_Give_Registed,GiveTalentConditionCode);
+                    if(flag.equals("Give"))
+                        TalentCondition_Give_Registed(TalentCondition_Give_Registed,GiveTalentConditionCode);
+                    else
+                        TalentCondition_Take_Registed(TalentCondition_Take_Registed, TakeTalentConditionCode);
 
                 } catch (JSONException e) {
                     e.printStackTrace();
