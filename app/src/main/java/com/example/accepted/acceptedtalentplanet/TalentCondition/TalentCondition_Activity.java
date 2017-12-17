@@ -80,8 +80,8 @@ public class TalentCondition_Activity extends AppCompatActivity {
 
     LinearLayout TalentCondition_PictureLL;
 
-    Boolean TalentCondition_Give_Registed = true;
-    Boolean TalentCondition_Take_Registed = true;
+    Boolean TalentCondition_Give_Registed = false;
+    Boolean TalentCondition_Take_Registed = false;
 
     int GiveTalentConditionCode;
     int TakeTalentConditionCode;
@@ -499,7 +499,7 @@ public class TalentCondition_Activity extends AppCompatActivity {
                     JSONArray obj = new JSONArray(response);
                     for (int index = 0; index < obj.length(); index++) {
                         JSONObject o = obj.getJSONObject(index);
-                        if(o.getString("TALENT_FLAG").equals("N")){
+                        if(o.getString("TALENT_FLAG").equals("Y")){
                             TalentCondition_Give_Registed = true;
                             String status = o.getString("STATUS_FLAG");
                             switch (status){
