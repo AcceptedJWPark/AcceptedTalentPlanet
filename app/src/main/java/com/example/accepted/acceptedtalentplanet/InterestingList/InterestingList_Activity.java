@@ -84,7 +84,7 @@ public class InterestingList_Activity extends AppCompatActivity {
         Interesting_List = (ListView) findViewById(R.id.Interesting_List);
         InterestingList_ArrayList = new ArrayList<>();
 
-        getInterestList();
+
 
         InterestingList_PreBtn = (LinearLayout) findViewById(R.id.InterestingList_PreBtn);
         InterestingList_PreBtn.setOnClickListener(new View.OnClickListener() {
@@ -112,6 +112,8 @@ public class InterestingList_Activity extends AppCompatActivity {
             InterestingList_TakeCheck.performClick();
         }
 
+        getInterestList();
+
     }
 
     Button.OnClickListener changeTalentFlag = new View.OnClickListener(){
@@ -129,6 +131,8 @@ public class InterestingList_Activity extends AppCompatActivity {
                 InterestingList_GiveCheck.setBackground(ContextCompat.getDrawable(mContext, R.drawable.small_button_whitebackground));
                 InterestingList_GiveCheck.setTextColor(Color.parseColor("#d2d2d2"));
             }
+            getInterestList();
+
         }
     };
 
@@ -142,7 +146,7 @@ public class InterestingList_Activity extends AppCompatActivity {
 
                     JSONArray obj = new JSONArray(response);
                     InterestingList_ArrayList.clear();
-                    String str = (!giveTalentFlag)?"재능드림":"관심재능";
+                    String str = (giveTalentFlag)?"재능드림":"관심재능";
                     for (int index = 0; index < obj.length(); index++) {
                         JSONObject o = obj.getJSONObject(index);
                         int type = Integer.parseInt(o.getString("TYPE_FLAG"));
