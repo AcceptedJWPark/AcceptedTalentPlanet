@@ -92,7 +92,7 @@ public class InterestingList_ListAdapter extends BaseAdapter {
         listView_talent2.setText(list_ArrayList.get(position).getTalent2());
         listView_talent3.setText(list_ArrayList.get(position).getTalent3());
 
-        if (list_ArrayList.get(position).getGiveTake_CODE()==1)
+        if (list_ArrayList.get(position).getGiveTake_CODE()==2)
         {Interesting_List_GiveTake.setText("[보낸 관심]");}
         else  {Interesting_List_GiveTake.setText("[받은 관심]");}
 

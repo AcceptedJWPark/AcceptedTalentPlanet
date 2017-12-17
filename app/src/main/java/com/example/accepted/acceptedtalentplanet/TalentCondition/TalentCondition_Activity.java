@@ -486,7 +486,7 @@ public class TalentCondition_Activity extends AppCompatActivity {
                     JSONArray obj = new JSONArray(response);
                     for (int index = 0; index < obj.length(); index++) {
                         JSONObject o = obj.getJSONObject(index);
-                        if(o.getString("TALENT_FLAG").equals("Y")){
+                        if(o.getString("TALENT_FLAG").equals("N")){
                             TalentCondition_Give_Registed = true;
                             String status = o.getString("STATUS_FLAG");
                             switch (status){
