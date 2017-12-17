@@ -51,6 +51,8 @@ public class Alarm_Activity extends AppCompatActivity {
         mContext = getApplicationContext();
         Alarm_ArrayList = new ArrayList<>();
 
+        //TODO:알람 Case에 맞게 데이터 받기.
+
         Alarm_List = (ListView) findViewById(R.id.Alarm_List);
         Alarm_Adapter = new Alarm_Adapter(Alarm_Activity.this, Alarm_ArrayList);
         Alarm_ArrayList.add(new Alarm_ListItem(R.drawable.textpicture,"박종우","2017.12.03 10:24", 1,1));
@@ -88,13 +90,29 @@ public class Alarm_Activity extends AppCompatActivity {
             Intent i;
             switch (Alarm_ArrayList.get(position).getactivityChange_CODE()){
                 case 1:
-                    i = new Intent(mContext, InterestingList_Activity.class);
-                    i.putExtra("TalentFlag","Give");
-                    view.getContext().startActivity(i);
+                    if (Alarm_ArrayList.get(position).getalarmType_CODE()==1) {
+                        i = new Intent(mContext, InterestingList_Activity.class);
+                        i.putExtra("TalentFlag", "Give");
+                        view.getContext().startActivity(i);
+                    }
+                    else {
+                        i = new Intent(mContext, InterestingList_Activity.class);
+                        i.putExtra("TalentFlag", "Take");
+                        view.getContext().startActivity(i);
+                    }
                     break;
                 case 2:
+                    if(Alarm_ArrayList.get(position).getalarmType_CODE()==1 || Alarm_ArrayList.get(position).getalarmType_CODE()==3 )
+                    {
                     i = new Intent(mContext, TalentCondition_Activity.class);
+                    i.putExtra("TalentCondition_TalentFlag", "Give");
                     view.getContext().startActivity(i);
+                    }
+                    else if (Alarm_ArrayList.get(position).getalarmType_CODE()==2 || Alarm_ArrayList.get(position).getalarmType_CODE()==4) {
+                        i = new Intent(mContext, TalentCondition_Activity.class);
+                        i.putExtra("TalentCondition_TalentFlag", "Take");
+                        view.getContext().startActivity(i);
+                    }
                     break;
                 case 3:
                     i = new Intent(mContext, TalentSharing_Popup_Activity.class);

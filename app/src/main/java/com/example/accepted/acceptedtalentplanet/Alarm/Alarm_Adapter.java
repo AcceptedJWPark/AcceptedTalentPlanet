@@ -186,7 +186,7 @@ public class Alarm_Adapter extends BaseAdapter {
                         break;
                     }
                     case 3: {
-                        holder.Alarm_Txt.setText("님이 관심재능 진행을 취소하였습니다.");
+                        holder.Alarm_Txt.setText("님이 재능드림 진행을 취소하였습니다.");
                         holder.Alarm_RegistDate2.setText("진행 취소");
                         break;
                     }

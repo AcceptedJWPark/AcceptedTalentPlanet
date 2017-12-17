@@ -68,7 +68,7 @@ public class InterestingList_Popup extends FragmentActivity {
 
 
         talentID = getIntent().getStringExtra("TalentID");
-        giveTakeCode = (getIntent().getIntExtra("codeGiveTake", 1) == 1)?true:false;
+        giveTakeCode = (getIntent().getIntExtra("codeGiveTake", 1) == 2)?true:false;
 
         mContext = getApplicationContext();
         talentSharing_popupclosebtn = (ImageView) findViewById(R.id.TalentSharing_pupupclosebtn);
@@ -271,8 +271,10 @@ public class InterestingList_Popup extends FragmentActivity {
                 Map<String, String> params = new HashMap();
                 params.put("talentID", TalentID);
 
-                String userID = (giveTakeCode)? SaveSharedPreference.getUserId(mContext) : profileUserID;
-                params.put("userID", userID);
+                String senderID = (giveTakeCode)? SaveSharedPreference.getUserId(mContext) : profileUserID;
+                String masterID = (!giveTakeCode)? SaveSharedPreference.getUserId(mContext) : profileUserID;
+                params.put("senderID", senderID);
+                params.put("masterID", masterID);
                 return params;
             }
         };

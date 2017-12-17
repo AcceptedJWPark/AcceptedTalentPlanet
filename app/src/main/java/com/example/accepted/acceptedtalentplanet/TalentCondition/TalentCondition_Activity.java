@@ -83,8 +83,8 @@ public class TalentCondition_Activity extends AppCompatActivity {
     Boolean TalentCondition_Give_Registed = true;
     Boolean TalentCondition_Take_Registed = true;
 
-    int GiveTalentConditionCode = 1;
-    int TakeTalentConditionCode = 1;
+    int GiveTalentConditionCode;
+    int TakeTalentConditionCode;
 
     TextView ToolbarTxt;
 
@@ -109,12 +109,13 @@ public class TalentCondition_Activity extends AppCompatActivity {
         TalentCondition_PictureLL = (LinearLayout) findViewById(R.id.TalentCondition_PictureLL);
 
         TalentCondition_Give_Registed(TalentCondition_Give_Registed,GiveTalentConditionCode);
-
+        TalentCondition_Take_Registed(TalentCondition_Take_Registed,TakeTalentConditionCode);
 
         TalentCondition_ShowGive = (Button) findViewById(R.id.TalentCondition_ShowGive);
         TalentCondition_ShowGive.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                TalentCondition_TakeorGiveTalent.setText("재능드림 : ");
                 TalentCondition_ShowGive.setBackground(ContextCompat.getDrawable(mContext, R.drawable.small_button_graybackground));
                 TalentCondition_ShowGive.setTextColor(getResources().getColor(R.color.textColor));
                 TalentCondition_ShowTake.setBackground(ContextCompat.getDrawable(mContext, R.drawable.small_button_whitebackground));
@@ -127,13 +128,15 @@ public class TalentCondition_Activity extends AppCompatActivity {
         TalentCondition_ShowTake.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                TalentCondition_TakeorGiveTalent.setText("관심재능 : ");
                 TalentCondition_ShowTake.setBackground(ContextCompat.getDrawable(mContext, R.drawable.small_button_graybackground));
                 TalentCondition_ShowTake.setTextColor(getResources().getColor(R.color.textColor));
                 TalentCondition_ShowGive.setBackground(ContextCompat.getDrawable(mContext, R.drawable.small_button_whitebackground));
                 TalentCondition_ShowGive.setTextColor(Color.parseColor("#d2d2d2"));
-                    TalentCondition_Take_Registed(TalentCondition_Take_Registed, TakeTalentConditionCode);
+                TalentCondition_Take_Registed(TalentCondition_Take_Registed, TakeTalentConditionCode);
             }
         });
+
 
         slidingMenuDL = (DrawerLayout) findViewById(R.id.TalentCondition1_listboxDL);
         drawerView = (View) findViewById(R.id.TalentCondition_container1);
@@ -147,6 +150,7 @@ public class TalentCondition_Activity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
 
         imgDLOpenMenu.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -163,6 +167,22 @@ public class TalentCondition_Activity extends AppCompatActivity {
             }
         });
         ((TextView) findViewById(R.id.DrawerUserID)).setText(SaveSharedPreference.getUserId(mContext));
+
+        Intent i = getIntent();
+        if (i.getStringExtra("TalentCondition_TalentFlag") == null)
+        {
+            return;
+        }
+        else if(i.getStringExtra("TalentCondition_TalentFlag").equals("Give"))
+        {
+            TalentCondition_ShowGive.setFocusableInTouchMode(true);
+            TalentCondition_ShowGive.performClick();
+        }
+        else if(i.getStringExtra("TalentCondition_TalentFlag").equals("Take"))
+        {
+            TalentCondition_ShowTake.setFocusableInTouchMode(true);
+            TalentCondition_ShowTake.performClick();
+        }
 
 
         TalentCondition_PictureLL.setOnClickListener(new View.OnClickListener() {
@@ -251,7 +271,6 @@ public class TalentCondition_Activity extends AppCompatActivity {
         } else {
             switch (Code) {
                 case 1: {
-                    TalentCondition_TakeorGiveTalent.setText("재능드림 : ");
                     TalentCondition_TextView.setText("관심목록 확인 또는 T.Sharing을 확인해보세요!");
                     TalentCondition_Button1.setText("관심목록 확인");
                     TalentCondition_Button2.setText("T.Sharing");
@@ -279,7 +298,6 @@ public class TalentCondition_Activity extends AppCompatActivity {
                     break;
                 }
                 case 2: {
-                    TalentCondition_TakeorGiveTalent.setText("재능드림 : ");
                     TalentCondition_TextView.setText("재능을 공유하였다면 완료하기 버튼을 눌러주세요!");
                     TalentCondition_Button1.setText("완료 하기");
                     TalentCondition_Button2.setText("진행 취소");
@@ -338,7 +356,6 @@ public class TalentCondition_Activity extends AppCompatActivity {
 
 
                 case 3: {
-                    TalentCondition_TakeorGiveTalent.setText("재능드림 : ");
                     TalentCondition_TextView.setText("재능 재등록을 진행해야 회원님의 재능이 활성화 됩니다.");
                     TalentCondition_Button1.setText("재능드림 재등록");
                     TalentCondition_Button2.setText("재능드림 수정하기");
@@ -375,7 +392,6 @@ public class TalentCondition_Activity extends AppCompatActivity {
         } else {
             switch (Code) {
                 case 1: {
-                    TalentCondition_TakeorGiveTalent.setText("관심재능 : ");
                     TalentCondition_TextView.setText("관심목록 확인 또는 T.Sharing을 확인해보세요!");
                     TalentCondition_Button1.setText("관심목록 확인");
                     TalentCondition_Button2.setText("T.Sharing");
@@ -403,7 +419,6 @@ public class TalentCondition_Activity extends AppCompatActivity {
                     break;
                 }
                 case 2: {
-                    TalentCondition_TakeorGiveTalent.setText("관심재능 : ");
                     TalentCondition_TextView.setText("재능을 공유하였다면 완료하기 버튼을 눌러주세요!");
                     TalentCondition_Button1.setText("완료 하기");
                     TalentCondition_Button2.setText("진행 취소");
@@ -460,7 +475,6 @@ public class TalentCondition_Activity extends AppCompatActivity {
                     break;
                 }
                 case 3: {
-                    TalentCondition_TakeorGiveTalent.setText("관심재능 : ");
                     TalentCondition_TextView.setText("재능 재등록을 진행해야 회원님의 재능이 활성화 됩니다.");
                     TalentCondition_Button1.setText("관심재능 재등록");
                     TalentCondition_Button2.setText("관심재능 수정하기");
@@ -486,7 +500,7 @@ public class TalentCondition_Activity extends AppCompatActivity {
                     JSONArray obj = new JSONArray(response);
                     for (int index = 0; index < obj.length(); index++) {
                         JSONObject o = obj.getJSONObject(index);
-                        if(o.getString("TALENT_FLAG").equals("Y")){
+                        if(o.getString("TALENT_FLAG").equals("N")){
                             TalentCondition_Give_Registed = true;
                             String status = o.getString("STATUS_FLAG");
                             switch (status){
