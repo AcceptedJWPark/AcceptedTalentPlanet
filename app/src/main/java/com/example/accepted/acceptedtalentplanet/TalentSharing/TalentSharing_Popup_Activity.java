@@ -76,7 +76,6 @@ public class TalentSharing_Popup_Activity extends FragmentActivity{
         });
 
 
-        //TODO:친구 추천이 되어있는지 안되어있는지 확인하는 로직 필요
         TalentSharingPopup_addfriendList_on = findViewById(R.id.TalentSharingPopup_addfriendList_on);
         TalentSharingPopup_addfriendList_off = findViewById(R.id.TalentSharingPopup_addfriendList_off);
 

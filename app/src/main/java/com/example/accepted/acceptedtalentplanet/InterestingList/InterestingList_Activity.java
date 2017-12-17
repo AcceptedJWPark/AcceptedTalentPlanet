@@ -67,15 +67,18 @@ public class InterestingList_Activity extends AppCompatActivity {
 
     ArrayList<InterestingList_ListItem> InterestingList_ArrayList;
     InterestingList_ListAdapter InterestingList_Adapter;
-    boolean giveTalentFlag = false;
+    boolean giveTalentFlag;
 
     LinearLayout InterestingList_PreBtn;
+
+    Button InterestingList_GiveCheck;
+    Button InterestingList_TakeCheck;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.interestinglist_activity);
-        giveTalentFlag = getIntent().getStringExtra("TalentFlag").equals("Give");
+
 
         mContext = getApplicationContext();
         Interesting_List = (ListView) findViewById(R.id.Interesting_List);
@@ -91,9 +94,43 @@ public class InterestingList_Activity extends AppCompatActivity {
             }
         });
 
+        InterestingList_GiveCheck = (Button) findViewById(R.id.InterestingList_GiveCheck);
+        InterestingList_TakeCheck = (Button) findViewById(R.id.InterestingList_TakeCheck);
 
+        InterestingList_GiveCheck.setOnClickListener(changeTalentFlag);
+        InterestingList_TakeCheck.setOnClickListener(changeTalentFlag);
+
+        giveTalentFlag = getIntent().getStringExtra("TalentFlag").equals("Give");
+        if (giveTalentFlag)
+        {
+            InterestingList_GiveCheck.setFocusableInTouchMode(true);
+            InterestingList_GiveCheck.performClick();
+        }
+        else
+        {
+            InterestingList_TakeCheck.setFocusableInTouchMode(true);
+            InterestingList_TakeCheck.performClick();
+        }
 
     }
+
+    Button.OnClickListener changeTalentFlag = new View.OnClickListener(){
+        public void onClick(View v){
+            giveTalentFlag = (((Button)v).getId() == R.id.InterestingList_GiveCheck) ? true : false;
+
+            if(giveTalentFlag){
+                InterestingList_GiveCheck.setBackground(ContextCompat.getDrawable(mContext, R.drawable.small_button_graybackground));
+                InterestingList_GiveCheck.setTextColor(getResources().getColor(R.color.textColor));
+                InterestingList_TakeCheck.setBackground(ContextCompat.getDrawable(mContext, R.drawable.small_button_whitebackground));
+                InterestingList_TakeCheck.setTextColor(Color.parseColor("#d2d2d2"));
+            }else{
+                InterestingList_TakeCheck.setBackground(ContextCompat.getDrawable(mContext, R.drawable.small_button_graybackground));
+                InterestingList_TakeCheck.setTextColor(getResources().getColor(R.color.textColor));
+                InterestingList_GiveCheck.setBackground(ContextCompat.getDrawable(mContext, R.drawable.small_button_whitebackground));
+                InterestingList_GiveCheck.setTextColor(Color.parseColor("#d2d2d2"));
+            }
+        }
+    };
 
     //TODO:관심 목록에서 보낸 관심일 때는 프로필 팝업창의 "진행 또는 취소"버튼 비활성화 처리
     public void getInterestList() {
@@ -110,13 +147,10 @@ public class InterestingList_Activity extends AppCompatActivity {
                         JSONObject o = obj.getJSONObject(index);
                         int type = Integer.parseInt(o.getString("TYPE_FLAG"));
                         InterestingList_ListItem target = new InterestingList_ListItem(R.drawable.textpicture, o.getString("USER_NAME"), o.getString("TALENT_KEYWORD1"), o.getString("TALENT_KEYWORD2"), o.getString("TALENT_KEYWORD3"), "["+str+"]", o.getString("CREATION_DATE") + " 등록", o.getString("TALENT_ID"),type);
-
                         InterestingList_ArrayList.add(target);
-
                     }
 
                     InterestingList_Adapter = new InterestingList_ListAdapter(mContext, InterestingList_ArrayList);
-
                     Interesting_List.setAdapter(InterestingList_Adapter);
 
 

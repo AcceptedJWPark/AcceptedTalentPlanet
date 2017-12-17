@@ -80,11 +80,11 @@ public class TalentCondition_Activity extends AppCompatActivity {
 
     LinearLayout TalentCondition_PictureLL;
 
-    Boolean TalentCondition_Give_Registed = false;
+    Boolean TalentCondition_Give_Registed = true;
     Boolean TalentCondition_Take_Registed = true;
 
     int GiveTalentConditionCode = 1;
-    int TakeTalentConditionCode = 3;
+    int TakeTalentConditionCode = 1;
 
     TextView ToolbarTxt;
 
@@ -271,8 +271,8 @@ public class TalentCondition_Activity extends AppCompatActivity {
                     TalentCondition_Button2.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            //TODO:TalentSharing에서 재능드림 버튼 포커스 이동
                             Intent intent = new Intent(mContext, TalentSharing_Activity.class);
+                            intent.putExtra("TalentSharing_TalentFlag","Give");
                             startActivity(intent);
                         }
                     });
@@ -395,8 +395,8 @@ public class TalentCondition_Activity extends AppCompatActivity {
                     TalentCondition_Button2.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            //TODO:TalentSharing에서 관심재능 버튼 포커스 이동
                             Intent intent = new Intent(mContext, TalentSharing_Activity.class);
+                            intent.putExtra("TalentSharing_TalentFlag","Take");
                             startActivity(intent);
                         }
                     });
