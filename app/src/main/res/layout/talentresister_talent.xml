@@ -31,12 +31,13 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="0dp"
+            android:layout_gravity="center_horizontal"
             android:layout_weight="1"
             android:gravity="center"
+            android:textColor="@color/textColor"
             android:text="&quot;입력한 키워드를 통해 재능 매칭이 됩니다. (최대 3개 입력)&quot;"
-            android:layout_gravity="center_horizontal"
             android:textSize="@dimen/Page_Txt"
-            />
+            android:textStyle="bold" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -47,10 +48,6 @@
             android:layout_marginTop="5dp"
             android:textSize="@dimen/Page_Txt_Example"
             />
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.3"/>
 
     </LinearLayout>
 

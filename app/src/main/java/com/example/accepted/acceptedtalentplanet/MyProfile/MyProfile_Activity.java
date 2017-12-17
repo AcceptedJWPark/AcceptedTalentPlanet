@@ -16,8 +16,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
-import android.widget.Toolbar;
 
 import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
@@ -29,19 +27,10 @@ import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.accepted.acceptedtalentplanet.Alarm.Alarm_Activity;
-import com.example.accepted.acceptedtalentplanet.CustomerService.CustomerService_MainActivity;
-import com.example.accepted.acceptedtalentplanet.FriendList.FriendList_Activity;
-import com.example.accepted.acceptedtalentplanet.Home.Home_Activity;
 import com.example.accepted.acceptedtalentplanet.LoadingLogin.Login_Activity;
 import com.example.accepted.acceptedtalentplanet.MyProfileData;
 import com.example.accepted.acceptedtalentplanet.R;
 import com.example.accepted.acceptedtalentplanet.SaveSharedPreference;
-import com.example.accepted.acceptedtalentplanet.SharingList.SharingList_Activity;
-import com.example.accepted.acceptedtalentplanet.System.System_Activity;
-import com.example.accepted.acceptedtalentplanet.TalentCondition.TalentCondition_Activity;
-import com.example.accepted.acceptedtalentplanet.TalentResister.TalentResister_Activity;
-import com.example.accepted.acceptedtalentplanet.TalentSearching.TalentSearching_Activity;
-import com.example.accepted.acceptedtalentplanet.TalentSharing.TalentSharing_Activity;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -50,17 +39,19 @@ import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.example.accepted.acceptedtalentplanet.SaveSharedPreference.DrawerLayout_ClickEvent;
+import static com.example.accepted.acceptedtalentplanet.SaveSharedPreference.DrawerLayout_Open;
+import static com.example.accepted.acceptedtalentplanet.SaveSharedPreference.hideKeyboard;
+
 public class MyProfile_Activity extends AppCompatActivity {
+
+    MyProfileData myProfile;
+    Context mContext;
+    TextView ToolbarTxt;
 
     DrawerLayout slidingMenuDL;
     View drawerView;
-    ImageView imgDLOpenMenu;
-    ImageView DrawerCloseImg;
-    ImageView ActionBar_AlarmView;
-    Context mContext;
-    MyProfileData myProfile;
-    TextView ToolbarTxt;
-    
+
     android.support.v7.widget.Toolbar myProfile_toolbar;
     LinearLayout myProfile_PictureLL;
     LinearLayout myProfile_ButtonLL;
@@ -77,15 +68,18 @@ public class MyProfile_Activity extends AppCompatActivity {
 
     EditText MyProfile_Job;
 
-    
-    
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.myprofile_activity);
         mContext = getApplicationContext();
+
+        myProfile = new MyProfileData();
+
         slidingMenuDL = (DrawerLayout) findViewById(R.id.MyProfile_listboxDL);
+        drawerView = (View) findViewById(R.id.MyProfile_container);
 
         MyProfile_Job = (EditText) findViewById(R.id.MyProfile_Job);
         MyProfile_Job.setOnFocusChangeListener(new View.OnFocusChangeListener() {
@@ -93,50 +87,23 @@ public class MyProfile_Activity extends AppCompatActivity {
            public void onFocusChange(View v, boolean hasFocus) {
                if(!hasFocus)
                {
-                   hideKeyboard(v);
+                   hideKeyboard(v,mContext);
                }
-
            }
        });
 
+        ((TextView) findViewById(R.id.toolbarTxt)).setText("My Profile");
+        ((TextView) findViewById(R.id.DrawerUserID)).setText(SaveSharedPreference.getUserId(mContext));
 
-        drawerView = (View) findViewById(R.id.MyProfile_container);
-        imgDLOpenMenu = (ImageView) findViewById(R.id.ActionBar_Listview);
-        DrawerCloseImg = (ImageView) findViewById(R.id.DrawerCloseImg);
-        ActionBar_AlarmView = (ImageView) findViewById(R.id.ActionBar_AlarmView);
-
-        myProfile = new MyProfileData();
-        imgDLOpenMenu.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                imgDLOpenMenu.setClickable(true);
-                slidingMenuDL.openDrawer(drawerView);
-
-            }
-        });
-
-        DrawerCloseImg.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                slidingMenuDL.closeDrawer(drawerView);
-            }
-        });
-
-        ActionBar_AlarmView.setOnClickListener(new View.OnClickListener() {
+        View.OnClickListener mClicklistener = new  View.OnClickListener()
+        {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(mContext, Alarm_Activity.class);
-                startActivity(intent);
-            }
-        });
-
-
-        ((TextView) findViewById(R.id.DrawerUserID)).setText(SaveSharedPreference.getUserId(mContext));
+                    DrawerLayout_Open(v,MyProfile_Activity.this,slidingMenuDL,drawerView);
+                }
+        };
+        DrawerLayout_ClickEvent(MyProfile_Activity.this,mClicklistener);
         getMyProfile();
-
-        ToolbarTxt = (TextView) findViewById(R.id.toolbarTxt);
-        ToolbarTxt.setText("My Profile");
-
 
         myProfile_toolbar = (android.support.v7.widget.Toolbar) findViewById(R.id.MyProfile_toolbar);
         myProfile_PictureLL = (LinearLayout) findViewById(R.id.MyProfile_PictureLL);
@@ -191,7 +158,6 @@ public class MyProfile_Activity extends AppCompatActivity {
         params12.height = TalentResister_List_LL_height;
         params13.height = TalentResister_List_LL_height;
 
-
         myProfile_toolbar.setLayoutParams(params1);
         myProfile_PictureLL.setLayoutParams(params2);
         myProfile_ButtonLL.setLayoutParams(params3);
@@ -206,60 +172,7 @@ public class MyProfile_Activity extends AppCompatActivity {
         myProfile_List_LL7.setLayoutParams(params12);
         myProfile_List_LL8.setLayoutParams(params13);
 
-    }
-
-    public void slideMenuTalentSearching(View v){
-        Intent i = new Intent(mContext, TalentSearching_Activity.class);
-        startActivity(i);
-    }
-
-    public void slideMenuProfile(View v){
-        Intent i = new Intent(mContext, MyProfile_Activity.class);
-        startActivity(i);
-    }
-
-    public void slideMenuTalent(View v){
-        Intent i = new Intent(mContext, TalentResister_Activity.class);
-        startActivity(i);
-    }
-
-    public void slideMenuTS(View v){
-        Intent i = new Intent(mContext, TalentSharing_Activity.class);
-        startActivity(i);
-    }
-
-    public void slideMenuMyTalent(View v){
-        Intent i = new Intent(mContext, TalentCondition_Activity.class);
-        startActivity(i);
-    }
-
-    public void slideMenuLogout(View v){
-        SaveSharedPreference.clearUserInfo(mContext);
-        Intent i = new Intent(mContext, Login_Activity.class);
-        startActivity(i);
-        finish();
-    }
-
-    public void slideMenuCustomerService(View v){
-        Intent i = new Intent(mContext, CustomerService_MainActivity.class);
-        startActivity(i);
-    }
-
-    public void slideMenuSystem(View v){
-        Intent i = new Intent(mContext, System_Activity.class);
-        startActivity(i);
-    }
-
-    public void slideMenuTalentSharingList(View v){
-        Intent i = new Intent(mContext, SharingList_Activity.class);
-        startActivity(i);
-    }
-
-    public void slideFriendList(View v){
-        Intent i = new Intent(mContext, FriendList_Activity.class);
-        startActivity(i);
-    }
-
+        }
 
 
 
@@ -324,10 +237,7 @@ public class MyProfile_Activity extends AppCompatActivity {
         postRequestQueue.add(postJsonRequest);
     }
 
-    public void hideKeyboard(View view) {
-        InputMethodManager inputMethodManager =(InputMethodManager)getSystemService(Activity.INPUT_METHOD_SERVICE);
-        inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
-    }
+
 
 
 }

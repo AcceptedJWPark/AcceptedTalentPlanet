@@ -33,6 +33,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.example.accepted.acceptedtalentplanet.SaveSharedPreference.hideKeyboard;
+
 public class TalentResister_Location_Activity extends AppCompatActivity {
     private String Talent1, Talent2, Talent3;
     private String Location1, Location2, Location3;
@@ -70,7 +72,7 @@ public class TalentResister_Location_Activity extends AppCompatActivity {
             public void onFocusChange(View v, boolean hasFocus) {
                 if(!hasFocus)
                 {
-                    hideKeyboard(v);
+                    hideKeyboard(v, mContext);
                 }
 
             }
@@ -125,14 +127,14 @@ public class TalentResister_Location_Activity extends AppCompatActivity {
         }
 
 
+
+
         talentLocation_Adapter = new TalentResister_Location_Adapter(mContext, location_ArrayList);
         location_ListView.setAdapter(talentLocation_Adapter);
         location_addBtn = (Button) findViewById(R.id.addLoctionBtn);
         location_addBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
                 if (Location_autoEdit1.getText().toString().length()==0)
                 {
                     return;
@@ -141,10 +143,27 @@ public class TalentResister_Location_Activity extends AppCompatActivity {
                 {
                     return;
                 }
-                location_ArrayList.add(Location_autoEdit1.getText().toString());
-                Location_autoEdit1.setText("");
-                talentLocation_Adapter = new TalentResister_Location_Adapter(getBaseContext(), location_ArrayList);
-                location_ListView.setAdapter(talentLocation_Adapter);
+
+                TalentResister_LocationList locationlist = new TalentResister_LocationList();
+                int count = 0;
+                for(int a=0; a<locationlist.Location_List.length; a++)
+                {
+                    if (Location_autoEdit1.getText().toString().equals(locationlist.Location_List[a]))
+                    {
+                        count++;
+                    }
+                }
+                if (count == 0)
+                {
+                    Toast.makeText(mContext,"주소가 존재하지 않습니다.",Toast.LENGTH_SHORT).show();
+                }
+                else if(count >0)
+                {
+                    location_ArrayList.add(Location_autoEdit1.getText().toString());
+                    Location_autoEdit1.setText("");
+                    talentLocation_Adapter = new TalentResister_Location_Adapter(getBaseContext(), location_ArrayList);
+                    location_ListView.setAdapter(talentLocation_Adapter);
+                }
             }
         });
 
@@ -178,10 +197,6 @@ public class TalentResister_Location_Activity extends AppCompatActivity {
         }
         startActivity(i);
 
-    }
-    public void hideKeyboard(View view) {
-        InputMethodManager inputMethodManager =(InputMethodManager)getSystemService(Activity.INPUT_METHOD_SERVICE);
-        inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
 
     private class GetLocationGeoPointTask extends AsyncTask<Void, Void, Void> {

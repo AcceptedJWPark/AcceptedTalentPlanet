@@ -1,5 +1,6 @@
 package com.example.accepted.acceptedtalentplanet.LoadingLogin;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -35,6 +36,8 @@ import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.example.accepted.acceptedtalentplanet.SaveSharedPreference.hideKeyboard;
+
 /**
  * Created by Accepted on 2017-09-17.
  */
@@ -42,11 +45,40 @@ import java.util.Map;
 public class Login_Activity extends AppCompatActivity {
     private InputMethodManager imm;
     private Context mContext;
+    private EditText email;
+    private EditText pawd;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_activity);
         mContext = getApplicationContext();
+
+        email = (EditText)findViewById(R.id.Login_ID);
+        pawd = (EditText)findViewById(R.id.Login_Password);
+
+        email.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if(!hasFocus)
+                {
+                    hideKeyboard(v,mContext);
+                }
+
+            }
+        });
+
+        pawd.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if(!hasFocus)
+                {
+                    hideKeyboard(v,mContext);
+                }
+
+            }
+        });
+
 
         imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY);
@@ -55,8 +87,6 @@ public class Login_Activity extends AppCompatActivity {
 
     public void loginClicked(View v){
         Log.d("Login Start", "start");
-        EditText email = (EditText)findViewById(R.id.Login_ID);
-        EditText pawd = (EditText)findViewById(R.id.Login_Password);
 
         imm.hideSoftInputFromWindow(pawd.getWindowToken(), 0);
         final String userID = email.getText().toString();
@@ -200,6 +230,14 @@ public class Login_Activity extends AppCompatActivity {
 
         postRequestQueue.add(postJsonRequest);
     }
+
+    //TODO:비밀번호 변경하는 로직 필요
+    public void PasswordLost(View v)
+    {
+        Intent i = new Intent(getApplicationContext(), Password_Lost_Accept_Activity.class);
+        startActivity(i);
+    }
+
 
 
 

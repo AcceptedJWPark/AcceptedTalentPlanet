@@ -23,6 +23,9 @@ import com.example.accepted.acceptedtalentplanet.TalentResister.TalentResister_A
 import com.example.accepted.acceptedtalentplanet.TalentSearching.TalentSearching_Activity;
 import com.example.accepted.acceptedtalentplanet.TalentSharing.TalentSharing_Activity;
 
+import static com.example.accepted.acceptedtalentplanet.SaveSharedPreference.DrawerLayout_ClickEvent;
+import static com.example.accepted.acceptedtalentplanet.SaveSharedPreference.DrawerLayout_Open;
+
 /**
  * Created by Accepted on 2017-10-31.
  */
@@ -43,11 +46,6 @@ public class CustomerService_MainActivity extends AppCompatActivity {
 
     DrawerLayout slidingMenuDL;
     View drawerView;
-    ImageView imgDLOpenMenu;
-    ImageView DrawerCloseImg;
-    ImageView ActionBar_AlarmView;
-
-    TextView ToolbarTxt;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,8 +53,20 @@ public class CustomerService_MainActivity extends AppCompatActivity {
 
         mContext = getApplicationContext();
 
-        ToolbarTxt = (TextView) findViewById(R.id.toolbarTxt);
-        ToolbarTxt.setText("고객센터");
+        ((TextView) findViewById(R.id.toolbarTxt)).setText("고객센터");
+        ((TextView) findViewById(R.id.DrawerUserID)).setText(SaveSharedPreference.getUserId(mContext));
+
+        slidingMenuDL = (DrawerLayout) findViewById(R.id.CustomerService_listboxDL);
+        drawerView = (View) findViewById(R.id.CustomerService_container);
+
+        View.OnClickListener mClicklistener = new  View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v) {
+                DrawerLayout_Open(v,CustomerService_MainActivity.this,slidingMenuDL,drawerView);
+            }
+        };
+        DrawerLayout_ClickEvent(CustomerService_MainActivity.this,mClicklistener);
 
 
         CustomerService_Introduction = (LinearLayout) findViewById(R.id.CustomerService_IntroductionLL);
@@ -151,92 +161,6 @@ public class CustomerService_MainActivity extends AppCompatActivity {
             }
         });
 
-
-
-
-        slidingMenuDL = (DrawerLayout) findViewById(R.id.CustomerService_listboxDL);
-        drawerView = (View) findViewById(R.id.CustomerService_container);
-        imgDLOpenMenu = (ImageView) findViewById(R.id.ActionBar_Listview);
-        DrawerCloseImg = (ImageView) findViewById(R.id.DrawerCloseImg);
-        ActionBar_AlarmView = (ImageView) findViewById(R.id.ActionBar_AlarmView);
-
-        imgDLOpenMenu.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                slidingMenuDL.openDrawer(drawerView);
-
-            }
-        });
-
-        DrawerCloseImg.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                slidingMenuDL.closeDrawer(drawerView);
-            }
-        });
-
-        ActionBar_AlarmView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(mContext, Alarm_Activity.class);
-                startActivity(intent);
-            }
-        });
-
-        ((TextView) findViewById(R.id.DrawerUserID)).setText(SaveSharedPreference.getUserId(mContext));
-
-
-    }
-    public void slideMenuTalentSearching(View v){
-        Intent i = new Intent(mContext, TalentSearching_Activity.class);
-        startActivity(i);
-    }
-
-    public void slideMenuProfile(View v){
-        Intent i = new Intent(mContext, MyProfile_Activity.class);
-        startActivity(i);
-    }
-
-    public void slideMenuTalent(View v){
-        Intent i = new Intent(mContext, TalentResister_Activity.class);
-        startActivity(i);
-    }
-
-    public void slideMenuTS(View v){
-        Intent i = new Intent(mContext, TalentSharing_Activity.class);
-        startActivity(i);
-    }
-
-    public void slideMenuMyTalent(View v){
-        Intent i = new Intent(mContext, TalentCondition_Activity.class);
-        startActivity(i);
-    }
-
-    public void slideMenuLogout(View v){
-        SaveSharedPreference.clearUserInfo(mContext);
-        Intent i = new Intent(mContext, Login_Activity.class);
-        startActivity(i);
-        finish();
-    }
-
-    public void slideMenuCustomerService(View v){
-        Intent i = new Intent(mContext, CustomerService_MainActivity.class);
-        startActivity(i);
-    }
-
-    public void slideMenuSystem(View v){
-        Intent i = new Intent(mContext, System_Activity.class);
-        startActivity(i);
-    }
-
-    public void slideMenuTalentSharingList(View v){
-        Intent i = new Intent(mContext, SharingList_Activity.class);
-        startActivity(i);
-    }
-
-    public void slideFriendList(View v){
-        Intent i = new Intent(mContext, FriendList_Activity.class);
-        startActivity(i);
     }
 
 }

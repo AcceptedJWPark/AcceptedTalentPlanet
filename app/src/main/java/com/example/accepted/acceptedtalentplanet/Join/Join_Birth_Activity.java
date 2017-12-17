@@ -4,6 +4,7 @@ package com.example.accepted.acceptedtalentplanet.Join;
  * Created by kwonhong on 2017-10-01.
  */
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -33,6 +34,8 @@ import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.example.accepted.acceptedtalentplanet.SaveSharedPreference.hideKeyboard;
+
 public class Join_Birth_Activity extends  AppCompatActivity {
 
     public String email;
@@ -44,6 +47,8 @@ public class Join_Birth_Activity extends  AppCompatActivity {
     EditText birthYear;
     EditText birthMonth;
     EditText birthDay;
+
+    Context mContext;
 
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,21 +67,21 @@ public class Join_Birth_Activity extends  AppCompatActivity {
         birthYear.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-                hideKeyboard(v);
+                hideKeyboard(v,mContext);
             }
         });
 
         birthMonth.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-                hideKeyboard(v);
+                hideKeyboard(v,mContext);
             }
         });
 
         birthDay.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-                hideKeyboard(v);
+                hideKeyboard(v,mContext);
             }
         });
 
@@ -152,11 +157,6 @@ public class Join_Birth_Activity extends  AppCompatActivity {
         };
 
         postRequestQueue.add(postJsonRequest);
-    }
-
-    public void hideKeyboard(View view) {
-        InputMethodManager inputMethodManager =(InputMethodManager)getSystemService(Activity.INPUT_METHOD_SERVICE);
-        inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
 
 }

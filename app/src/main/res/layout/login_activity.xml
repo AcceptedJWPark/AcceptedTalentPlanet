@@ -4,6 +4,9 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:clickable="true"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
     android:weightSum="24"
 
     >
@@ -35,8 +38,6 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="4"
-        android:focusable="true"
-        android:focusableInTouchMode="true"
         android:layout_below="@+id/Title_L"
         >
 
@@ -50,8 +51,6 @@
             android:textSize="@dimen/LogIn_Edit_Hint"
             android:layout_marginLeft="30dp"
             android:layout_marginRight="30dp">
-
-            <requestFocus/>
         </EditText>
 
         <EditText
@@ -109,7 +108,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="@dimen/LogIn_PageTxt"
-        android:text="아이디 또는 비밀번호 찾기"
+        android:text="비밀번호 찾기"
        />
 
         <TextView
@@ -119,7 +118,7 @@
             android:layout_marginLeft="10dp"
             android:textSize="@dimen/LogIn_PageTxt"
             android:layout_toRightOf="@id/txt03"
-            android:onClick="testFunc"
+            android:onClick="PasswordLost"
             android:text="Click here"
             android:textColor="#00f"
             android:textStyle="bold" />

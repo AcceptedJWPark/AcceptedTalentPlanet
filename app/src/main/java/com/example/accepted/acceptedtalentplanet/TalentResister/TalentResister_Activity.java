@@ -3,33 +3,19 @@ package com.example.accepted.acceptedtalentplanet.TalentResister;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
-import android.location.Address;
-import android.location.Geocoder;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.android.volley.NetworkResponse;
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.ServerError;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.HttpHeaderParser;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
 import com.example.accepted.acceptedtalentplanet.Alarm.Alarm_Activity;
 import com.example.accepted.acceptedtalentplanet.CustomerService.CustomerService_MainActivity;
 import com.example.accepted.acceptedtalentplanet.FriendList.FriendList_Activity;
-import com.example.accepted.acceptedtalentplanet.GeoPoint;
-import com.example.accepted.acceptedtalentplanet.Home.Home_Activity;
 import com.example.accepted.acceptedtalentplanet.LoadingLogin.Login_Activity;
 import com.example.accepted.acceptedtalentplanet.MyProfile.MyProfile_Activity;
 import com.example.accepted.acceptedtalentplanet.MyTalent;
@@ -41,24 +27,13 @@ import com.example.accepted.acceptedtalentplanet.TalentCondition.TalentCondition
 import com.example.accepted.acceptedtalentplanet.TalentSearching.TalentSearching_Activity;
 import com.example.accepted.acceptedtalentplanet.TalentSharing.TalentSharing_Activity;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-import org.w3c.dom.Text;
-
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import static com.example.accepted.acceptedtalentplanet.SaveSharedPreference.DrawerLayout_ClickEvent;
+import static com.example.accepted.acceptedtalentplanet.SaveSharedPreference.DrawerLayout_Open;
 
 public class TalentResister_Activity extends AppCompatActivity {
 
     DrawerLayout slidingMenuDL;
     View drawerView;
-    ImageView imgDLOpenMenu;
-    ImageView DrawerCloseImg;
-    ImageView ActionBar_AlarmView;
 
 
     MyTalent TalentGive;
@@ -97,17 +72,24 @@ public class TalentResister_Activity extends AppCompatActivity {
     String TalentResister_Take_Level;
     int TalentResister_Take_Point;
 
-    TextView ToolbarTxt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.talentresister_resist1);
-
-        ToolbarTxt = (TextView) findViewById(R.id.toolbarTxt);
-        ToolbarTxt.setText("My Talent 관리");
-
+        setContentView(R.layout.talentresister_resist);
         mContext = getApplicationContext();
+
+        ((TextView) findViewById(R.id.toolbarTxt)).setText("고객센터");
+        ((TextView) findViewById(R.id.DrawerUserID)).setText(SaveSharedPreference.getUserId(mContext));
+
+        View.OnClickListener mClicklistener = new  View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v) {
+                DrawerLayout_Open(v,TalentResister_Activity.this,slidingMenuDL,drawerView);
+            }
+        };
+        DrawerLayout_ClickEvent(TalentResister_Activity.this,mClicklistener);
 
         Intent i = getIntent();
         TalentFlag = i.getBooleanExtra("GiveFlag", true);
@@ -137,8 +119,9 @@ public class TalentResister_Activity extends AppCompatActivity {
         TalentGive = SaveSharedPreference.getGiveTalentData(mContext);
         TalentTake = SaveSharedPreference.getTakeTalentData(mContext);
 
-        if(TalentGive == null)
+        if(TalentGive == null) {
             TalentResister_Give = false;
+        }
         else{
             TalentResister_Give_Keyword = TalentGive.getKeywordArray();
             TalentResister_Give_Location = TalentGive.getLocationArray();
@@ -146,8 +129,9 @@ public class TalentResister_Activity extends AppCompatActivity {
             TalentResister_Give_Level = TalentGive.getLevel();
         }
 
-        if(TalentTake == null)
+        if(TalentTake == null) {
             TalentResister_Take = false;
+        }
         else{
             TalentResister_Take_Keyword = TalentTake.getKeywordArray();
             TalentResister_Take_Location = TalentTake.getLocationArray();
@@ -156,10 +140,12 @@ public class TalentResister_Activity extends AppCompatActivity {
 
         }
 
-        if(TalentFlag)
+        if(TalentFlag) {
             ShowGiveBtnClicked();
-        else
+        }
+        else {
             ShowTakeBtnClicked();
+        }
 
 
         TalentResister_ShowGiveBtn.setOnClickListener(new View.OnClickListener() {
@@ -179,36 +165,7 @@ public class TalentResister_Activity extends AppCompatActivity {
         slidingMenuDL = (DrawerLayout) findViewById(R.id.TalentResister1_listboxDL);
 
         drawerView = (View) findViewById(R.id.TalentResister_container1);
-        imgDLOpenMenu = (ImageView) findViewById(R.id.ActionBar_Listview);
-        DrawerCloseImg = (ImageView) findViewById(R.id.DrawerCloseImg);
 
-        ActionBar_AlarmView = (ImageView) findViewById(R.id.ActionBar_AlarmView);
-        ActionBar_AlarmView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(mContext, Alarm_Activity.class);
-                startActivity(intent);
-            }
-        });
-
-
-
-        imgDLOpenMenu.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                slidingMenuDL.openDrawer(drawerView);
-
-            }
-        });
-
-        DrawerCloseImg.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                slidingMenuDL.closeDrawer(drawerView);
-            }
-        });
-
-        ((TextView) findViewById(R.id.DrawerUserID)).setText(SaveSharedPreference.getUserId(mContext));
 
 
     }
@@ -307,59 +264,6 @@ public class TalentResister_Activity extends AppCompatActivity {
 
         startActivity(i);
     }
-
-    public void slideMenuTalentSearching(View v){
-        Intent i = new Intent(mContext, TalentSearching_Activity.class);
-        startActivity(i);
-    }
-
-    public void slideMenuProfile(View v){
-        Intent i = new Intent(mContext, MyProfile_Activity.class);
-        startActivity(i);
-    }
-
-    public void slideMenuTalent(View v){
-        Intent i = new Intent(mContext, TalentResister_Activity.class);
-        startActivity(i);
-    }
-
-    public void slideMenuTS(View v){
-        Intent i = new Intent(mContext, TalentSharing_Activity.class);
-        startActivity(i);
-    }
-
-    public void slideMenuMyTalent(View v){
-        Intent i = new Intent(mContext, TalentCondition_Activity.class);
-        startActivity(i);
-    }
-
-    public void slideMenuLogout(View v){
-        SaveSharedPreference.clearUserInfo(mContext);
-        Intent i = new Intent(mContext, Login_Activity.class);
-        startActivity(i);
-        finish();
-    }
-
-    public void slideMenuCustomerService(View v){
-        Intent i = new Intent(mContext, CustomerService_MainActivity.class);
-        startActivity(i);
-    }
-
-    public void slideMenuSystem(View v){
-        Intent i = new Intent(mContext, System_Activity.class);
-        startActivity(i);
-    }
-
-    public void slideMenuTalentSharingList(View v){
-        Intent i = new Intent(mContext, SharingList_Activity.class);
-        startActivity(i);
-    }
-
-    public void slideFriendList(View v){
-        Intent i = new Intent(mContext, FriendList_Activity.class);
-        startActivity(i);
-    }
-
 
 
 }

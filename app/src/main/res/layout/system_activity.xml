@@ -200,6 +200,7 @@
 
 
             <TextView
+                android:id="@+id/System_PasswordChange"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="8"
@@ -231,6 +232,7 @@
 
 
             <TextView
+                android:id="@+id/System_NouseAccount"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="7.5"

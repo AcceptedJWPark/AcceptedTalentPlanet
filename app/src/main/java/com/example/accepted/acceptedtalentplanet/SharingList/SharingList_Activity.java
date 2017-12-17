@@ -6,17 +6,23 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.example.accepted.acceptedtalentplanet.R;
+import com.example.accepted.acceptedtalentplanet.TalentSearching.TalentSearching_Activity;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.example.accepted.acceptedtalentplanet.SaveSharedPreference.DrawerLayout_ClickEvent;
+import static com.example.accepted.acceptedtalentplanet.SaveSharedPreference.DrawerLayout_Open;
 
 /**
  * Created by Accepted on 2017-09-29.
@@ -43,6 +49,7 @@ public class SharingList_Activity extends AppCompatActivity {
         setContentView(R.layout.sharinglist_activity);
 
         mContext = getApplicationContext();
+
 
         SharingList_ListView_Give = (ListView) findViewById(R.id.SharingList_ListView_Give);
         SharingList_ListView_Take = (ListView) findViewById(R.id.SharingList_ListView_Take);

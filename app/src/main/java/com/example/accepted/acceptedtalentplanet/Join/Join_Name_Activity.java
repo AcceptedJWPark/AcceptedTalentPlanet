@@ -4,6 +4,7 @@ package com.example.accepted.acceptedtalentplanet.Join;
  * Created by kwonhong on 2017-10-01.
  */
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -13,10 +14,14 @@ import android.widget.EditText;
 
 import com.example.accepted.acceptedtalentplanet.R;
 
+import static com.example.accepted.acceptedtalentplanet.SaveSharedPreference.hideKeyboard;
+
 public class Join_Name_Activity extends  AppCompatActivity {
 
     public String email;
     public String pw;
+
+    Context mContext;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,7 +38,7 @@ public class Join_Name_Activity extends  AppCompatActivity {
             public void onFocusChange(View v, boolean hasFocus) {
                 if(!hasFocus)
                 {
-                    hideKeyboard(v);
+                    hideKeyboard(v,mContext);
                 }
 
             }
@@ -43,7 +48,7 @@ public class Join_Name_Activity extends  AppCompatActivity {
             public void onFocusChange(View v, boolean hasFocus) {
                 if(!hasFocus)
                 {
-                    hideKeyboard(v);
+                    hideKeyboard(v,mContext);
                 }
 
             }
@@ -61,11 +66,6 @@ public class Join_Name_Activity extends  AppCompatActivity {
         intent.putExtra("pw", pw);
         intent.putExtra("name", first_name.getText().toString() + last_name.getText().toString());
         startActivity(intent);
-    }
-
-    public void hideKeyboard(View view) {
-        InputMethodManager inputMethodManager =(InputMethodManager)getSystemService(Activity.INPUT_METHOD_SERVICE);
-        inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
 
 }

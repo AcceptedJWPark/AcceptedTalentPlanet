@@ -24,6 +24,8 @@ import com.example.accepted.acceptedtalentplanet.TalentResister.TalentResister_L
 
 import java.util.ArrayList;
 
+import static com.example.accepted.acceptedtalentplanet.SaveSharedPreference.hideKeyboard;
+
 /**
  * Created by Accepted on 2017-11-24.
  */
@@ -42,7 +44,7 @@ public class TalentSearching_SearchingPage_Activity extends AppCompatActivity {
     ListView TalentSearching_KeywordListView;
 
     ArrayList<String> TalentSearching_talent_ArrayList;
-    TalentResister_Location_Adapter TalentSearching_talent_Adapter;
+    TalentSearching_Keyword_Adapter TalentSearching_talent_Adapter;
     Button keyword_addBtn;
     TextView TalentSearching_TxtView;
     LinearLayout TalentSearching_LL1;
@@ -151,7 +153,7 @@ public class TalentSearching_SearchingPage_Activity extends AppCompatActivity {
             public void onFocusChange(View v, boolean hasFocus) {
                 if(!hasFocus)
                 {
-                    hideKeyboard(v);
+                    hideKeyboard(v, mContext);
                 }
             }
         });
@@ -159,7 +161,7 @@ public class TalentSearching_SearchingPage_Activity extends AppCompatActivity {
             public void onFocusChange(View v, boolean hasFocus) {
                 if(!hasFocus)
                 {
-                    hideKeyboard(v);
+                    hideKeyboard(v, mContext);
                 }
             }
         });
@@ -167,14 +169,14 @@ public class TalentSearching_SearchingPage_Activity extends AppCompatActivity {
             public void onFocusChange(View v, boolean hasFocus) {
                 if(!hasFocus)
                 {
-                    hideKeyboard(v);
+                    hideKeyboard(v, mContext);
                 }
             }
         });
 
         TalentSearching_KeywordListView = (ListView) findViewById(R.id.TalentSearching_KeywordListView);
         TalentSearching_talent_ArrayList = new ArrayList<>();
-        TalentSearching_talent_Adapter = new TalentResister_Location_Adapter(mContext, TalentSearching_talent_ArrayList);
+        TalentSearching_talent_Adapter = new TalentSearching_Keyword_Adapter(mContext, TalentSearching_talent_ArrayList);
         TalentSearching_KeywordListView.setAdapter(TalentSearching_talent_Adapter);
 
         keyword_addBtn = (Button) findViewById(R.id.keyword_addBtn);
@@ -193,7 +195,7 @@ public class TalentSearching_SearchingPage_Activity extends AppCompatActivity {
                 }
                 TalentSearching_talent_ArrayList.add(TalentSearching_KeywordInput.getText().toString());
                 TalentSearching_KeywordInput.setText("");
-                TalentSearching_talent_Adapter = new TalentResister_Location_Adapter(getBaseContext(), TalentSearching_talent_ArrayList);
+                TalentSearching_talent_Adapter = new TalentSearching_Keyword_Adapter(getBaseContext(), TalentSearching_talent_ArrayList);
                 TalentSearching_KeywordListView.setAdapter(TalentSearching_talent_Adapter);
                 TalentSearching_talent_Adapter.notifyDataSetChanged();
             }
@@ -377,7 +379,7 @@ public class TalentSearching_SearchingPage_Activity extends AppCompatActivity {
         TalentSearching_Devider = findViewById(R.id.TalentSearching_Devider);
 
         int TalentSearching_Txt_height = (int) (metrics.heightPixels*0.083);
-        int TalentSearching_LL_height = (int) (metrics.heightPixels*0.04);
+        int TalentSearching_LL_height = (int) (metrics.heightPixels*0.038);
         int TalentSearching_Devider_height = (int) (metrics.heightPixels*0.021);
         int TalentSearching_Btn_height = (int) (metrics.heightPixels*0.042);
 
@@ -409,13 +411,5 @@ public class TalentSearching_SearchingPage_Activity extends AppCompatActivity {
 
 
     }
-
-
-
-    public void hideKeyboard(View view) {
-        InputMethodManager inputMethodManager =(InputMethodManager)getSystemService(Activity.INPUT_METHOD_SERVICE);
-        inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
-    }
-
 
 }

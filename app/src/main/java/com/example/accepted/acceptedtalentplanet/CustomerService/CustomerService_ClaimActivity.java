@@ -25,6 +25,8 @@ import android.widget.Toast;
 import com.example.accepted.acceptedtalentplanet.R;
 import com.example.accepted.acceptedtalentplanet.SharingList.SharingList_Activity;
 
+import static com.example.accepted.acceptedtalentplanet.SaveSharedPreference.hideKeyboard;
+
 /**
  * Created by Accepted on 2017-10-31.
  */
@@ -91,7 +93,7 @@ public class CustomerService_ClaimActivity extends AppCompatActivity {
             public void onFocusChange(View v, boolean hasFocus) {
                 if(!hasFocus)
                 {
-                    hideKeyboard(v);
+                    hideKeyboard(v, context);
                 }
 
             }
@@ -211,10 +213,6 @@ public class CustomerService_ClaimActivity extends AppCompatActivity {
             }
     }
 
-    public void hideKeyboard(View view) {
-        InputMethodManager inputMethodManager =(InputMethodManager)getSystemService(Activity.INPUT_METHOD_SERVICE);
-        inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
-    }
 
     }
 

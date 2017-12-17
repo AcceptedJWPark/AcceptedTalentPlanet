@@ -30,6 +30,7 @@
             android:layout_weight="1"
             android:text="&quot;희망 재능 공유 장소를 입력해주세요. &quot;(최대 3개 입력)"
             android:textColor="@color/textColor"
+            android:textStyle="bold"
             android:gravity="center"
             android:textSize="@dimen/Page_Txt"
             />
@@ -43,12 +44,7 @@
             android:layout_gravity="center_horizontal"
             android:textSize="@dimen/Page_Txt_Example"
             />
-            />
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.3"/>
 
     </LinearLayout>
 
@@ -58,7 +54,6 @@
         android:id="@+id/TalentResister_LocationLL"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-
         android:gravity="center"
         android:orientation="horizontal"
         android:padding="5dp"

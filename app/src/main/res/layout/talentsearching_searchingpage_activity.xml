@@ -20,6 +20,7 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:gravity="center"
+            android:textStyle="bold"
             android:text="&quot;아래 검색 조건을 입력해주세요!&quot;"
             android:textColor="@color/textColor"
             android:textSize="@dimen/Page_Txt"
@@ -84,7 +85,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:divider="#ffffff"
-
             android:layout_marginLeft="40dp"
             android:layout_marginRight="40dp"
             android:dividerHeight="0dp">

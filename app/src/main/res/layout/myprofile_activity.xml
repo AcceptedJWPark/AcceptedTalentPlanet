@@ -122,44 +122,40 @@
 
                     <LinearLayout
                         android:layout_width="0dp"
-                        android:layout_weight="1"
                         android:layout_height="match_parent"
-                        android:orientation="vertical"
-                        >
+                        android:layout_weight="1"
+                        android:orientation="vertical">
 
                         <View
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
-                            android:layout_weight="0.3"/>
+                            android:layout_weight="0.3" />
 
                         <Button
                             android:id="@+id/MyProfile_PictureBtn"
                             android:layout_width="match_parent"
-                            android:layout_weight="1"
                             android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/small_button_whitebackground"
                             android:gravity="center"
                             android:text="수정"
-                            android:background="@drawable/small_button_whitebackground"
                             android:textColor="@color/textColor"
                             android:textSize="@dimen/List_SubTitle" />
 
                         <View
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
-                            android:layout_weight="0.3"/>
+                            android:layout_weight="0.3" />
 
                     </LinearLayout>
 
 
-                    <View
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="0.2"/>
 
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="6.5"
+                        android:paddingLeft="5dp"
                         android:gravity="left|center"
                         android:text="(최대 5장 등록)"
                         android:textSize="@dimen/List_SubTitle" />

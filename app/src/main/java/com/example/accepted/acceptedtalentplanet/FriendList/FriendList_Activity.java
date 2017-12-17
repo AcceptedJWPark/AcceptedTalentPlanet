@@ -93,7 +93,6 @@ public class FriendList_Activity extends AppCompatActivity {
                 finish();
             }
         });
-
     }
 
 

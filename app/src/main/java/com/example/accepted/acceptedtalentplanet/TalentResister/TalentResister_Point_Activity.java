@@ -39,6 +39,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static com.example.accepted.acceptedtalentplanet.SaveSharedPreference.hideKeyboard;
+
 public class TalentResister_Point_Activity extends AppCompatActivity {
     private Context mContext;
     private String Talent1, Talent2, Talent3;
@@ -74,7 +76,7 @@ public class TalentResister_Point_Activity extends AppCompatActivity {
         TalentResister_Talent_Point.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-                hideKeyboard(v);
+                hideKeyboard(v, mContext);
             }
         });
 
@@ -211,11 +213,6 @@ public class TalentResister_Point_Activity extends AppCompatActivity {
             e.printStackTrace();
         }
         return location;
-    }
-
-    public void hideKeyboard(View view) {
-        InputMethodManager inputMethodManager =(InputMethodManager)getSystemService(Activity.INPUT_METHOD_SERVICE);
-        inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
 
 }

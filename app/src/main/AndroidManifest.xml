@@ -18,9 +18,22 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+
         <activity
             android:name=".LoadingLogin.Login_Activity"
-            android:theme="@style/AppTheme" />
+            android:windowSoftInputMode="stateAlwaysHidden"
+            />
+        <activity
+            android:name=".LoadingLogin.Password_Lost_Accept_Activity"
+            android:windowSoftInputMode="stateAlwaysHidden"
+            />
+        <activity
+            android:name=".LoadingLogin.Password_Lost_Change_Activity"
+            android:windowSoftInputMode="stateAlwaysHidden"
+            />
+
+
         <activity
             android:name=".Join.Join_Gender_Activity"
             android:theme="@style/AppTheme" />
@@ -50,8 +63,7 @@
         <activity android:name=".TalentResister.TalentResister_Level_Activity"/>
         <activity
             android:name=".TalentResister.TalentResister_Location_Activity"
-            android:windowSoftInputMode="adjustPan"
-
+            android:windowSoftInputMode="adjustNothing"
             />
         <activity android:name=".TalentResister.TalentResister_Point_Activity"/>
         <activity android:name=".TalentResister.TalentResister_Talent_Activity"
@@ -75,7 +87,7 @@
             />
 
         <activity android:name=".CustomerService.CustomerService_ClaimListActivity"
-
+            android:windowSoftInputMode="adjustPan"
             />
 
         <activity android:name=".SharingList.SharingList_Activity"/>

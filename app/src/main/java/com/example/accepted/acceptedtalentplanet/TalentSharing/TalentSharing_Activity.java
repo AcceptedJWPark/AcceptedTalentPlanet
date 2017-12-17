@@ -59,6 +59,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static com.example.accepted.acceptedtalentplanet.SaveSharedPreference.DrawerLayout_ClickEvent;
+import static com.example.accepted.acceptedtalentplanet.SaveSharedPreference.DrawerLayout_Open;
+
 /**
  * Created by Accepted on 2017-10-24.
  */
@@ -72,11 +75,7 @@ public class TalentSharing_Activity extends AppCompatActivity {
 
     DrawerLayout slidingMenuDL;
     View drawerView;
-    ImageView imgDLOpenMenu;
-    ImageView DrawerCloseImg;
-    ImageView ActionBar_AlarmView;
 
-    TextView ToolbarTxt;
     TextView TalentSharing_PageTxt;
 
     Button TalentSharing_GiveCheck;
@@ -95,36 +94,22 @@ public class TalentSharing_Activity extends AppCompatActivity {
 
         mContext = getApplicationContext();
 
-        ToolbarTxt = (TextView) findViewById(R.id.toolbarTxt);
-        ToolbarTxt.setText("T.Sharing");
+        ((TextView) findViewById(R.id.toolbarTxt)).setText("T.Sharing");
+        ((TextView) findViewById(R.id.DrawerUserID)).setText(SaveSharedPreference.getUserId(mContext));
 
-        //ToolBar 적용하기
-        slidingMenuDL = (DrawerLayout) findViewById(R.id.TalentSharing_listboxDL);
-        drawerView = (View) findViewById(R.id.TalentSharing_container);
-        imgDLOpenMenu = (ImageView) findViewById(R.id.ActionBar_Listview);
-        DrawerCloseImg = (ImageView) findViewById(R.id.DrawerCloseImg);
-        ActionBar_AlarmView = (ImageView) findViewById(R.id.ActionBar_AlarmView);
-        ActionBar_AlarmView.setOnClickListener(new View.OnClickListener() {
+        View.OnClickListener mClicklistener = new  View.OnClickListener()
+        {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(mContext, Alarm_Activity.class);
-                startActivity(intent);
+                DrawerLayout_Open(v,TalentSharing_Activity.this,slidingMenuDL,drawerView);
             }
-        });
-        imgDLOpenMenu.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                slidingMenuDL.openDrawer(drawerView);
-            }
-        });
+        };
+        DrawerLayout_ClickEvent(TalentSharing_Activity.this,mClicklistener);
 
-        DrawerCloseImg.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                slidingMenuDL.closeDrawer(drawerView);
-            }
-        });
-        ((TextView) findViewById(R.id.DrawerUserID)).setText(SaveSharedPreference.getUserId(mContext));
+
+
+        slidingMenuDL = (DrawerLayout) findViewById(R.id.TalentSharing_listboxDL);
+        drawerView = (View) findViewById(R.id.TalentSharing_container);
 
         TalentSharing_GiveCheck = (Button) findViewById(R.id.TalentSharing_GiveCheck);
         TalentSharing_TakeCheck = (Button) findViewById(R.id.TalentSharing_TakeCheck);
@@ -296,58 +281,6 @@ public class TalentSharing_Activity extends AppCompatActivity {
 
         return String.format("%.1f", arrDistance[0] / 1000) + "km";
 
-    }
-
-    public void slideMenuTalentSearching(View v){
-        Intent i = new Intent(mContext, TalentSearching_Activity.class);
-        startActivity(i);
-    }
-
-    public void slideMenuProfile(View v){
-        Intent i = new Intent(mContext, MyProfile_Activity.class);
-        startActivity(i);
-    }
-
-    public void slideMenuTalent(View v){
-        Intent i = new Intent(mContext, TalentResister_Activity.class);
-        startActivity(i);
-    }
-
-    public void slideMenuTS(View v){
-        Intent i = new Intent(mContext, TalentSharing_Activity.class);
-        startActivity(i);
-    }
-
-    public void slideMenuMyTalent(View v){
-        Intent i = new Intent(mContext, TalentCondition_Activity.class);
-        startActivity(i);
-    }
-
-    public void slideMenuLogout(View v){
-        SaveSharedPreference.clearUserInfo(mContext);
-        Intent i = new Intent(mContext, Login_Activity.class);
-        startActivity(i);
-        finish();
-    }
-
-    public void slideMenuCustomerService(View v){
-        Intent i = new Intent(mContext, CustomerService_MainActivity.class);
-        startActivity(i);
-    }
-
-    public void slideMenuSystem(View v){
-        Intent i = new Intent(mContext, System_Activity.class);
-        startActivity(i);
-    }
-
-    public void slideMenuTalentSharingList(View v){
-        Intent i = new Intent(mContext, SharingList_Activity.class);
-        startActivity(i);
-    }
-
-    public void slideFriendList(View v){
-        Intent i = new Intent(mContext, FriendList_Activity.class);
-        startActivity(i);
     }
 
 
