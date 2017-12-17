@@ -16,6 +16,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.Toolbar;
 
 import com.android.volley.NetworkResponse;
@@ -73,7 +74,6 @@ public class MyProfile_Activity extends AppCompatActivity {
     LinearLayout myProfile_List_LL6;
     LinearLayout myProfile_List_LL7;
     LinearLayout myProfile_List_LL8;
-    LinearLayout MyProfile_WholeLL;
 
     EditText MyProfile_Job;
 
@@ -106,12 +106,10 @@ public class MyProfile_Activity extends AppCompatActivity {
         ActionBar_AlarmView = (ImageView) findViewById(R.id.ActionBar_AlarmView);
 
         myProfile = new MyProfileData();
-
         imgDLOpenMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 imgDLOpenMenu.setClickable(true);
-                imgDLOpenMenu.setFocusableInTouchMode(true);
                 slidingMenuDL.openDrawer(drawerView);
 
             }

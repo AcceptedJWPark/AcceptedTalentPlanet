@@ -162,7 +162,6 @@ public class TalentSharing_Activity extends AppCompatActivity {
 
                     TalentSharing_Adapter = new TalentSharing_ListAdapter(mContext, TalentSharingList);
                     TalentSharingListView.setAdapter(TalentSharing_Adapter);
-
                     TalentSharing_GiveCheck.setOnClickListener(changeTalentFlag);
                     TalentSharing_TakeCheck.setOnClickListener(changeTalentFlag);
 
@@ -171,12 +170,10 @@ public class TalentSharing_Activity extends AppCompatActivity {
                     if(flag == null) flag = "Give";
                     if(flag.equals("Give"))
                     {
-                        Toast.makeText(mContext,"TalentSharing_TalentFlag = Give",Toast.LENGTH_SHORT).show();
                         TalentSharing_GiveCheck.setFocusableInTouchMode(true);
                         TalentSharing_GiveCheck.performClick();
                     }else if(flag.equals("Take"))
                     {
-                        Toast.makeText(mContext,"TalentSharing_TalentFlag = Take",Toast.LENGTH_SHORT).show();
                         TalentSharing_TakeCheck.setFocusableInTouchMode(true);
                         TalentSharing_TakeCheck.performClick();
                     }

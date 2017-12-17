@@ -235,10 +235,6 @@
     </LinearLayout>
 
 
-
-
-
-
     <FrameLayout
         android:id="@+id/TalentCondition_container1"
         android:layout_width="match_parent"
