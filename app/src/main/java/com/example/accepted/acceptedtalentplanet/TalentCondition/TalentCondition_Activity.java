@@ -169,16 +169,15 @@ public class TalentCondition_Activity extends AppCompatActivity {
         ((TextView) findViewById(R.id.DrawerUserID)).setText(SaveSharedPreference.getUserId(mContext));
 
         Intent i = getIntent();
-        if (i.getStringExtra("TalentCondition_TalentFlag") == null)
-        {
-            return;
-        }
-        else if(i.getStringExtra("TalentCondition_TalentFlag").equals("Give"))
+        String flag = i.getStringExtra("TalentCondition_TalentFlag");
+        if(flag == null) flag = "Give";
+
+        else if(flag.equals("Give"))
         {
             TalentCondition_ShowGive.setFocusableInTouchMode(true);
             TalentCondition_ShowGive.performClick();
         }
-        else if(i.getStringExtra("TalentCondition_TalentFlag").equals("Take"))
+        else if(flag.equals("Take"))
         {
             TalentCondition_ShowTake.setFocusableInTouchMode(true);
             TalentCondition_ShowTake.performClick();
