@@ -74,6 +74,7 @@ public class TalentCondition_Activity extends AppCompatActivity {
     int GiveTalentConditionCode;
     int TakeTalentConditionCode;
     String flag;
+    String giveTalentID, takeTalentID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -251,6 +252,7 @@ public class TalentCondition_Activity extends AppCompatActivity {
                                         @Override
                                         public void onClick(DialogInterface dialog, int which) {
                                             Toast.makeText(mContext, "확인 클림 됨", Toast.LENGTH_SHORT).show();
+                                            cancelSharingTalent();
                                             dialog.cancel();
                                         }
                                     })
@@ -372,6 +374,7 @@ public class TalentCondition_Activity extends AppCompatActivity {
                                         @Override
                                         public void onClick(DialogInterface dialog, int which) {
                                             Toast.makeText(mContext, "확인 클림 됨", Toast.LENGTH_SHORT).show();
+                                            cancelSharingTalent();
                                             dialog.cancel();
                                         }
                                     })
@@ -417,6 +420,7 @@ public class TalentCondition_Activity extends AppCompatActivity {
                         if(o.getString("TALENT_FLAG").equals("Y")){
                             TalentCondition_Give_Registed = true;
                             String status = o.getString("STATUS_FLAG");
+                            giveTalentID = o.getString("seq");
                             switch (status){
                                 case "P":
                                     GiveTalentConditionCode = 1;
@@ -431,6 +435,7 @@ public class TalentCondition_Activity extends AppCompatActivity {
                         }else{
                             TalentCondition_Take_Registed = true;
                             String status = o.getString("STATUS_FLAG");
+                            takeTalentID = o.getString("seq");
                             switch (status){
                                 case "P":
                                     TakeTalentConditionCode = 1;
@@ -480,6 +485,60 @@ public class TalentCondition_Activity extends AppCompatActivity {
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap();
                 params.put("userID", SaveSharedPreference.getUserId(mContext));
+                return params;
+            }
+        };
+
+
+        postRequestQueue.add(postJsonRequest);
+
+    }
+
+    public void cancelSharingTalent() {
+        RequestQueue postRequestQueue = Volley.newRequestQueue(this);
+        StringRequest postJsonRequest = new StringRequest(Request.Method.POST, SaveSharedPreference.getServerIp() + "TalentSharing/cancelSharingTalent.do", new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+
+                    JSONObject obj = new JSONObject(response);
+                    if(obj.getString("result").equals("success")){
+
+                    }else{
+
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                NetworkResponse response = error.networkResponse;
+                if (error instanceof ServerError && response != null) {
+                    try {
+                        String res = new String(response.data,
+                                HttpHeaderParser.parseCharset(response.headers, "utf-8"));
+                        // Now you can use any deserializer to make sense of data
+                        Log.d("res", res);
+
+                        JSONObject obj = new JSONObject(res);
+                    } catch (UnsupportedEncodingException e1) {
+                        // Couldn't properly decode data to string
+                        e1.printStackTrace();
+                    } catch (JSONException e2) {
+                        // returned data is not JSONObject?
+                        e2.printStackTrace();
+                    }
+                }
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap();
+                TalentCondition_ShowTake = (Button) findViewById(R.id.TalentCondition_ShowTake);
+                params.put("talentID", ((String)TalentCondition_TakeorGiveTalent.getText()).equals("관심재능 : ") ? takeTalentID : giveTalentID);
                 return params;
             }
         };

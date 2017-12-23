@@ -12,8 +12,10 @@ public class MyTalent implements Serializable{
     String Location1, Location2, Location3;
     String Point;
     String Level;
+    String talentID;
     boolean compFlag = false;
     GeoPoint[] gp;
+
     public MyTalent()
     {
 
@@ -63,6 +65,14 @@ public class MyTalent implements Serializable{
             default:
                 return "전문가(Professional)";
         }
+    }
+
+    public void setTalentID(String talentID){
+        this.talentID = talentID;
+    }
+
+    public String getTalentID(){
+        return this.talentID;
     }
 
     public int getIntegerLevel(){

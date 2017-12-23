@@ -50,7 +50,8 @@ public class InterestingList_Popup extends FragmentActivity {
     String talentID;
     String profileUserID;
     boolean addedFriend = false;
-    boolean giveTakeCode = true;
+    boolean sendFlag = true;
+    boolean talentFlag = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,7 +69,7 @@ public class InterestingList_Popup extends FragmentActivity {
 
 
         talentID = getIntent().getStringExtra("TalentID");
-        giveTakeCode = (getIntent().getIntExtra("codeGiveTake", 1) == 2)?true:false;
+        sendFlag = (getIntent().getIntExtra("codeGiveTake", 1) == 2)?true:false;
 
         mContext = getApplicationContext();
         talentSharing_popupclosebtn = (ImageView) findViewById(R.id.TalentSharing_pupupclosebtn);
@@ -192,6 +193,7 @@ public class InterestingList_Popup extends FragmentActivity {
                     ((TextView)findViewById(R.id.TalentSharingPopup_Level)).setText(SaveSharedPreference.getLevel(obj.getString("LEVEL")));
                     ((TextView)findViewById(R.id.TalentSharingPopup_Point)).setText(obj.getString("T_POINT")+"P");
                     profileUserID = obj.getString("USER_ID");
+                    talentFlag = (obj.getString("TALENT_FLAG").equals("Y"))? true : false;
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -269,10 +271,8 @@ public class InterestingList_Popup extends FragmentActivity {
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap();
-                params.put("talentID", TalentID);
-
-                String senderID = (giveTakeCode)? SaveSharedPreference.getUserId(mContext) : profileUserID;
-                String masterID = (!giveTakeCode)? SaveSharedPreference.getUserId(mContext) : profileUserID;
+                String senderID = (sendFlag)? ((talentFlag)?SaveSharedPreference.getTakeTalentData(mContext).getTalentID() : SaveSharedPreference.getGiveTalentData(mContext).getTalentID()) : TalentID;
+                String masterID = (!sendFlag)? TalentID : ((talentFlag)?SaveSharedPreference.getTakeTalentData(mContext).getTalentID() : SaveSharedPreference.getGiveTalentData(mContext).getTalentID());
                 params.put("senderID", senderID);
                 params.put("masterID", masterID);
                 return params;

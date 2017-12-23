@@ -96,6 +96,7 @@ public class Loading_Activity extends AppCompatActivity {
 
                         MyTalent talent = new MyTalent();
                         talent.setMyTalent(obj.getString("TALENT_KEYWORD1"), obj.getString("TALENT_KEYWORD2"), obj.getString("TALENT_KEYWORD3"), obj.getString("LOCATION1"), obj.getString("LOCATION2"), obj.getString("LOCATION1"), obj.getString("T_POINT"), obj.getString("LEVEL"), gpArr);
+                        talent.setTalentID(obj.getString("seq"));
                         if(obj.getString("TALENT_FLAG").equals("Y")){
                             SaveSharedPreference.setGiveTalentData(mContext, talent);
                         }else{
