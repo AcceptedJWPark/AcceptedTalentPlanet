@@ -50,13 +50,14 @@ public class TalentSharing_Popup_Activity extends FragmentActivity{
     Button interestBtn;
 
     boolean addedFriend = false;
-
+    boolean sendFlag = true;
+    String talentID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        String talentID = getIntent().getStringExtra("TalentID");
-
+        talentID = getIntent().getStringExtra("TalentID");
+        sendFlag = (getIntent().getStringExtra("TalentFlag").equals("Give"))?true:false;
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.talentsharing_popup);
         Display display = ((WindowManager) getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();
@@ -195,7 +196,7 @@ public class TalentSharing_Popup_Activity extends FragmentActivity{
     }
 
 
-    public void sendInterest(String talentID) {
+    public void sendInterest(final String talentID) {
         final String TalentID = talentID;
         RequestQueue postRequestQueue = Volley.newRequestQueue(this);
         StringRequest postJsonRequest = new StringRequest(Request.Method.POST, SaveSharedPreference.getServerIp() + "TalentSharing/sendInterest.do", new Response.Listener<String>() {
@@ -242,8 +243,9 @@ public class TalentSharing_Popup_Activity extends FragmentActivity{
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap();
-                params.put("talentID", TalentID);
-                params.put("userID", SaveSharedPreference.getUserId(mContext));
+                params.put("masterID", talentID);
+                String senderID = (sendFlag)? SaveSharedPreference.getTakeTalentData(mContext).getTalentID() : SaveSharedPreference.getGiveTalentData(mContext).getTalentID();
+                params.put("senderID", senderID);
                 return params;
             }
         };

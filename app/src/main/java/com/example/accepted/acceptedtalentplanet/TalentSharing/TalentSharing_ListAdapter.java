@@ -82,6 +82,8 @@ public class TalentSharing_ListAdapter extends BaseAdapter {
                 public void onClick(View view) {
                     Intent intent = new Intent(context, TalentSharing_Popup_Activity.class);
                     intent.putExtra("TalentID", ((TalentSharing_ListItem)getItem(index)).getTalentID());
+                    String talentFlag = (((TalentSharing_ListItem)getItem(index)).getTalentFlag()) ? "Give" : "Take";
+                    intent.putExtra("TalentFlag", talentFlag);
                     context.startActivity(intent);
                 }
             });

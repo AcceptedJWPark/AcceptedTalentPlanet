@@ -126,6 +126,8 @@ public class InterestingList_Popup extends FragmentActivity {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 doSharingTalent(talentID);
+
+
                                 Toast.makeText(mContext,"진행 하기 클릭",Toast.LENGTH_SHORT).show();
                                 dialog.cancel();
                             }
@@ -159,6 +161,7 @@ public class InterestingList_Popup extends FragmentActivity {
         private View.OnClickListener ProgressListener = new View.OnClickListener() {
             public void onClick(View v) {
                 doSharingTalent(talentID);
+
             }
         };
 
@@ -234,7 +237,7 @@ public class InterestingList_Popup extends FragmentActivity {
     }
 
     public void doSharingTalent(final String talentID) {
-        final String TalentID = talentID;
+
         RequestQueue postRequestQueue = Volley.newRequestQueue(this);
         StringRequest postJsonRequest = new StringRequest(Request.Method.POST, SaveSharedPreference.getServerIp() + "TalentSharing/doSharingTalent.do", new Response.Listener<String>() {
             @Override
@@ -271,8 +274,27 @@ public class InterestingList_Popup extends FragmentActivity {
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap();
-                String senderID = (sendFlag)? ((talentFlag)?SaveSharedPreference.getTakeTalentData(mContext).getTalentID() : SaveSharedPreference.getGiveTalentData(mContext).getTalentID()) : TalentID;
-                String masterID = (!sendFlag)? TalentID : ((talentFlag)?SaveSharedPreference.getTakeTalentData(mContext).getTalentID() : SaveSharedPreference.getGiveTalentData(mContext).getTalentID());
+                String senderID;
+                String masterID;
+                if(sendFlag){
+                    if(talentFlag){
+                        senderID =  SaveSharedPreference.getTakeTalentData(mContext).getTalentID();
+                    }else{
+                        senderID = SaveSharedPreference.getGiveTalentData(mContext).getTalentID();
+                    }
+                }else{
+                    senderID = talentID;
+                }
+
+                if(sendFlag){
+                    masterID = talentID;
+                }else{
+                    if(talentFlag){
+                        masterID =  SaveSharedPreference.getTakeTalentData(mContext).getTalentID();
+                    }else{
+                        masterID = SaveSharedPreference.getGiveTalentData(mContext).getTalentID();
+                    }
+                }
                 params.put("senderID", senderID);
                 params.put("masterID", masterID);
                 return params;
