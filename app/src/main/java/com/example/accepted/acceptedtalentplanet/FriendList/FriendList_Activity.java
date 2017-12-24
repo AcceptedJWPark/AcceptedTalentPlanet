@@ -161,7 +161,7 @@ public class FriendList_Activity extends AppCompatActivity {
                                 talentConditionCode = 1;
                         }
                         int talentCode = (o.getString("TALENT_FLAG").equals("Y"))?1 : 2;
-                        FriendList_Item target = new FriendList_Item(R.drawable.textpicture, o.getString("USER_NAME"), o.getString("TALENT_KEYWORD2"), o.getString("TALENT_KEYWORD3"), o.getString("TALENT_KEYWORD1"), talentConditionCode, talentCode);
+                        FriendList_Item target = new FriendList_Item(R.drawable.textpicture, o.getString("USER_NAME"), o.getString("TALENT_KEYWORD1"), o.getString("TALENT_KEYWORD2"), o.getString("TALENT_KEYWORD3"), talentConditionCode, talentCode, o.getString("TALENT_ID"));
                         Friendlist_original.add(target);
                         if(talentFlag) {
                             if (talentCode == 1) {

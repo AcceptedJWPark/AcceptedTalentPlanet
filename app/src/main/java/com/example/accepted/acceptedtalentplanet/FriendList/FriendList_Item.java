@@ -13,6 +13,7 @@ public class FriendList_Item {
     private String Keyword1;
     private String Keyword2;
     private String Keyword3;
+    private String TalentID;
 
     public int getTalentConditionType_CODE() {
         return TalentConditionType_CODE;
@@ -35,12 +36,15 @@ public class FriendList_Item {
     public String getname() {
         return name;
     }
-
+    public String getTalentID(){ return TalentID; }
     public void setTalentType_CODE(int TalentType_CODE) {
         this.TalentType_CODE = TalentType_CODE;
     }
     public void setTalentConditionType_CODE(int TalentConditionType_CODE) {
         this.TalentConditionType_CODE = TalentConditionType_CODE;
+    }
+    public void setTalentID(String TalentID){
+        this.TalentID = TalentID;
     }
     public void setpicture(int picture) {
         this.picture = picture;
@@ -59,7 +63,7 @@ public class FriendList_Item {
     }
 
 
-    public FriendList_Item(int picture,String name, String Keyword1, String Keyword2, String Keyword3, int TalentConditionType_CODE, int TalentType_CODE)
+    public FriendList_Item(int picture,String name, String Keyword1, String Keyword2, String Keyword3, int TalentConditionType_CODE, int TalentType_CODE, String TalentID)
         {
             this.picture = picture;
             this.name = name;
@@ -68,6 +72,7 @@ public class FriendList_Item {
             this.Keyword3 = Keyword3;
             this.TalentConditionType_CODE = TalentConditionType_CODE;
             this.TalentType_CODE = TalentType_CODE;
+            this.TalentID = TalentID;
         }
 
 }
