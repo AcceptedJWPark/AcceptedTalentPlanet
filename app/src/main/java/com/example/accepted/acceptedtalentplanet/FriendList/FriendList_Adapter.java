@@ -79,7 +79,8 @@ public class FriendList_Adapter extends BaseAdapter{
         FriendList_ConditionType = view.findViewById(R.id.Friendlist_TalentCondition);
 
 
-    }
+        }
+
             FriendList_Picture.setImageResource(list_ArrayList.get(position).getpicture());
             FriendList_Name.setText(list_ArrayList.get(position).getname());
             FriendList_Keyword1.setText(list_ArrayList.get(position).getKeyword1());

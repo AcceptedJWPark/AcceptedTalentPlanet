@@ -1,18 +1,39 @@
 package com.example.accepted.acceptedtalentplanet.FriendList;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 
+import com.android.volley.NetworkResponse;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.ServerError;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.HttpHeaderParser;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.accepted.acceptedtalentplanet.R;
+import com.example.accepted.acceptedtalentplanet.SaveSharedPreference;
+import com.example.accepted.acceptedtalentplanet.TalentSharing.TalentSharing_ListAdapter;
+import com.example.accepted.acceptedtalentplanet.TalentSharing.TalentSharing_ListItem;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by Accepted on 2017-09-29.
@@ -23,14 +44,16 @@ public class FriendList_Activity extends AppCompatActivity {
     Context mContext;
     ListView Friendlist_ListView_Give;
     ListView Friendlist_ListView_Take;
-    ArrayList<FriendList_Item> Friendlist_arrayList_Give;
-    ArrayList<FriendList_Item> Friendlist_arrayList_Take;
+    ArrayList<FriendList_Item> Friendlist_original;
+    ArrayList<FriendList_Item> Friendlist_arrayList;
     FriendList_Adapter FriendList_Adapter;
     LinearLayout FriendList_PreBtn;
 
     Button Friendlist_ShowGive;
     Button Friendlist_ShowTake;
+    ArrayList<String> friendList;
 
+    boolean talentFlag;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,25 +62,17 @@ public class FriendList_Activity extends AppCompatActivity {
 
         mContext = getApplicationContext();
 
+        talentFlag = true;  //getIntent().getStringExtra("talentFlag").equals("Y")
+
+        friendList = SaveSharedPreference.getFriendList(mContext);
+
+        if(friendList.size() > 0)
+            getFriendList();
+
         Friendlist_ListView_Give = (ListView) findViewById(R.id.FriendList_ListView_GIVE);
         Friendlist_ListView_Take = (ListView) findViewById(R.id.FriendList_ListView_TAKE);
 
-        Friendlist_arrayList_Give = new ArrayList<>();
-        FriendList_Adapter = new FriendList_Adapter(mContext, Friendlist_arrayList_Give);
-        Friendlist_ListView_Give.setAdapter(FriendList_Adapter);
 
-        Friendlist_arrayList_Take = new ArrayList<>();
-        FriendList_Adapter = new FriendList_Adapter(mContext, Friendlist_arrayList_Take);
-        Friendlist_ListView_Take.setAdapter(FriendList_Adapter);
-
-        //TODO:한 개의 어레이 리스트와 어뎁터로 두 개의 리스트뷰에 적용 시킬 수는 없나?
-        //TODO:각 리스트 뷰에 해당 회원 프로필 팝업 클릭 이벤트
-        Friendlist_arrayList_Give.add(new FriendList_Item(R.drawable.textpicture,"박종우","기타","기타 연주","기타 연습",1,1));
-        Friendlist_arrayList_Give.add(new FriendList_Item(R.drawable.textpicture, "민권홍","스타크래프트","스타 리마스터","스타크래프트 파이썬",2,1));
-        Friendlist_arrayList_Take.add(new FriendList_Item(R.drawable.textpicture,"우승제","드럼","드럼 연주","드럼 독학",1,2));
-        Friendlist_arrayList_Take.add(new FriendList_Item(R.drawable.textpicture, "김용인","영어","영어 말하기","영어 스피킹",2,2));
-        Friendlist_arrayList_Take.add(new FriendList_Item(R.drawable.textpicture,"배대명","수학1","미분과 적분","미적분",2,2));
-        Friendlist_arrayList_Take.add(new FriendList_Item(R.drawable.textpicture,"유성택","공무원 시험","공무원 7급","공무원 9급",1,2));
 
 
 
@@ -71,6 +86,18 @@ public class FriendList_Activity extends AppCompatActivity {
                 Friendlist_ShowTake.setTextColor(Color.parseColor("#d2d2d2"));
                 Friendlist_ListView_Give.setVisibility(View.VISIBLE);
                 Friendlist_ListView_Take.setVisibility(View.GONE);
+
+                Friendlist_arrayList.clear();
+
+                for(FriendList_Item item : Friendlist_original){
+                    Log.d("TaletTypeCode", String.valueOf(item.getTalentType_CODE()));
+                    if(item.getTalentType_CODE() == 1)
+                        Friendlist_arrayList.add(item);
+                }
+
+                FriendList_Adapter = new FriendList_Adapter(mContext, Friendlist_arrayList);
+                Friendlist_ListView_Give.setAdapter(FriendList_Adapter);
+
             }
         });
         Friendlist_ShowTake = (Button) findViewById(R.id.FriendList_ShowTake);
@@ -83,6 +110,17 @@ public class FriendList_Activity extends AppCompatActivity {
                 Friendlist_ShowGive.setTextColor(Color.parseColor("#d2d2d2"));
                 Friendlist_ListView_Take.setVisibility(View.VISIBLE);
                 Friendlist_ListView_Give.setVisibility(View.GONE);
+
+                Friendlist_arrayList.clear();
+
+                for(FriendList_Item item : Friendlist_original){
+                    Log.d("TaletTypeCode", String.valueOf(item.getTalentType_CODE()));
+                    if(item.getTalentType_CODE() == 2)
+                        Friendlist_arrayList.add(item);
+                }
+
+                FriendList_Adapter = new FriendList_Adapter(mContext, Friendlist_arrayList);
+                Friendlist_ListView_Take.setAdapter(FriendList_Adapter);
             }
         });
 
@@ -95,7 +133,95 @@ public class FriendList_Activity extends AppCompatActivity {
         });
     }
 
+    public void getFriendList() {
+        RequestQueue postRequestQueue = Volley.newRequestQueue(this);
+        StringRequest postJsonRequest = new StringRequest(Request.Method.POST, SaveSharedPreference.getServerIp() + "FriendList/getFriendList.do", new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
 
+                    Friendlist_arrayList = new ArrayList<>();
+                    Friendlist_original = new ArrayList<>();
+                    JSONArray obj = new JSONArray(response);
+                    for(int i = 0; i < obj.length(); i++){
+                        JSONObject o = obj.getJSONObject(i);
+                        String statusFlag = o.getString("STATUS_FLAG");
+                        int talentConditionCode;
+                        switch(statusFlag){
+                            case "P":
+                                talentConditionCode = 1;
+                                break;
+                            case "M":
+                                talentConditionCode = 2;
+                                break;
+                            case "C":
+                                talentConditionCode = 3;
+                                break;
+                            default:
+                                talentConditionCode = 1;
+                        }
+                        int talentCode = (o.getString("TALENT_FLAG").equals("Y"))?1 : 2;
+                        FriendList_Item target = new FriendList_Item(R.drawable.textpicture, o.getString("USER_NAME"), o.getString("TALENT_KEYWORD2"), o.getString("TALENT_KEYWORD3"), o.getString("TALENT_KEYWORD1"), talentConditionCode, talentCode);
+                        Friendlist_original.add(target);
+                        if(talentFlag) {
+                            if (talentCode == 1) {
+                                Friendlist_arrayList.add(target);
+                            }
+                        }else{
+                            if (talentCode == 2) {
+                                Friendlist_arrayList.add(target);
+                            }
+                        }
+                    }
+
+                    FriendList_Adapter = new FriendList_Adapter(mContext, Friendlist_arrayList);
+                    Friendlist_ListView_Give.setAdapter(FriendList_Adapter);
+
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                NetworkResponse response = error.networkResponse;
+                if (error instanceof ServerError && response != null) {
+                    try {
+                        String res = new String(response.data,
+                                HttpHeaderParser.parseCharset(response.headers, "utf-8"));
+                        // Now you can use any deserializer to make sense of data
+                        Log.d("res", res);
+
+                        JSONObject obj = new JSONObject(res);
+                    } catch (UnsupportedEncodingException e1) {
+                        // Couldn't properly decode data to string
+                        e1.printStackTrace();
+                    } catch (JSONException e2) {
+                        // returned data is not JSONObject?
+                        e2.printStackTrace();
+                    }
+                }
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap();
+                StringBuilder sb = new StringBuilder();
+                for(String s : friendList){
+                    sb.append(s);
+                    sb.append("\t");
+                }
+                Log.d("Array = ", sb.toString());
+                params.put("userArray", sb.toString());
+                return params;
+            }
+        };
+
+
+        postRequestQueue.add(postJsonRequest);
+
+    }
 
 
 }
