@@ -87,16 +87,19 @@ public class FriendList_Activity extends AppCompatActivity {
                 Friendlist_ListView_Give.setVisibility(View.VISIBLE);
                 Friendlist_ListView_Take.setVisibility(View.GONE);
 
-                Friendlist_arrayList.clear();
+                if(friendList.size() > 0) {
 
-                for(FriendList_Item item : Friendlist_original){
-                    Log.d("TaletTypeCode", String.valueOf(item.getTalentType_CODE()));
-                    if(item.getTalentType_CODE() == 1)
-                        Friendlist_arrayList.add(item);
+                    Friendlist_arrayList.clear();
+
+                    for (FriendList_Item item : Friendlist_original) {
+                        Log.d("TaletTypeCode", String.valueOf(item.getTalentType_CODE()));
+                        if (item.getTalentType_CODE() == 1)
+                            Friendlist_arrayList.add(item);
+                    }
+
+                    FriendList_Adapter = new FriendList_Adapter(mContext, Friendlist_arrayList);
+                    Friendlist_ListView_Give.setAdapter(FriendList_Adapter);
                 }
-
-                FriendList_Adapter = new FriendList_Adapter(mContext, Friendlist_arrayList);
-                Friendlist_ListView_Give.setAdapter(FriendList_Adapter);
 
             }
         });
@@ -110,17 +113,18 @@ public class FriendList_Activity extends AppCompatActivity {
                 Friendlist_ShowGive.setTextColor(Color.parseColor("#d2d2d2"));
                 Friendlist_ListView_Take.setVisibility(View.VISIBLE);
                 Friendlist_ListView_Give.setVisibility(View.GONE);
+                if(friendList.size() > 0) {
+                    Friendlist_arrayList.clear();
 
-                Friendlist_arrayList.clear();
+                    for (FriendList_Item item : Friendlist_original) {
+                        Log.d("TaletTypeCode", String.valueOf(item.getTalentType_CODE()));
+                        if (item.getTalentType_CODE() == 2)
+                            Friendlist_arrayList.add(item);
+                    }
 
-                for(FriendList_Item item : Friendlist_original){
-                    Log.d("TaletTypeCode", String.valueOf(item.getTalentType_CODE()));
-                    if(item.getTalentType_CODE() == 2)
-                        Friendlist_arrayList.add(item);
+                    FriendList_Adapter = new FriendList_Adapter(mContext, Friendlist_arrayList);
+                    Friendlist_ListView_Take.setAdapter(FriendList_Adapter);
                 }
-
-                FriendList_Adapter = new FriendList_Adapter(mContext, Friendlist_arrayList);
-                Friendlist_ListView_Take.setAdapter(FriendList_Adapter);
             }
         });
 

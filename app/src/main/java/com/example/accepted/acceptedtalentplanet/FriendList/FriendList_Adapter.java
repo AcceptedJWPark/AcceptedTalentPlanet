@@ -102,11 +102,11 @@ public class FriendList_Adapter extends BaseAdapter{
         if(list_ArrayList.get(position).getTalentType_CODE()==1) {
             switch (list_ArrayList.get(position).getTalentConditionType_CODE()) {
                 case 1: {
-                    FriendList_ConditionType.setText("님의 관심 재능은 대기 중입니다.");
+                    FriendList_ConditionType.setText(" 님의 관심 재능은 대기 중입니다.");
                     break;
                 }
                 case 2: {
-                    FriendList_ConditionType.setText("님의 관심 재능은 진행 중입니다.");
+                    FriendList_ConditionType.setText(" 님의 관심 재능은 진행 중입니다.");
                     break;
                 }
 
@@ -116,11 +116,11 @@ public class FriendList_Adapter extends BaseAdapter{
         {
             switch (list_ArrayList.get(position).getTalentConditionType_CODE()) {
                 case 1: {
-                    FriendList_ConditionType.setText("님의 재능 드림은 대기 중입니다.");
+                    FriendList_ConditionType.setText(" 님의 재능 드림은 대기 중입니다.");
                     break;
                 }
                 case 2: {
-                    FriendList_ConditionType.setText("님의 재능 드림은 진행 중입니다.");
+                    FriendList_ConditionType.setText(" 님의 재능 드림은 진행 중입니다.");
                     break;
                 }
 

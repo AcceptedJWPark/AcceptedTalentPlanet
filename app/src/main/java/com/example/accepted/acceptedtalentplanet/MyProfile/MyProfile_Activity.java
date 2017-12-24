@@ -47,7 +47,6 @@ public class MyProfile_Activity extends AppCompatActivity {
 
     MyProfileData myProfile;
     Context mContext;
-    TextView ToolbarTxt;
 
     DrawerLayout slidingMenuDL;
     View drawerView;
@@ -67,6 +66,8 @@ public class MyProfile_Activity extends AppCompatActivity {
     LinearLayout myProfile_List_LL8;
 
     EditText MyProfile_Job;
+
+    ImageView MyProfile_CompleteList_Open;
 
 
     @Override
@@ -171,6 +172,18 @@ public class MyProfile_Activity extends AppCompatActivity {
         myProfile_List_LL6.setLayoutParams(params11);
         myProfile_List_LL7.setLayoutParams(params12);
         myProfile_List_LL8.setLayoutParams(params13);
+
+
+
+        MyProfile_CompleteList_Open = (ImageView) findViewById(R.id.MyProfile_CompleteList_Open);
+        MyProfile_CompleteList_Open.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(mContext, MyProfile_CompleteList_Activity.class);
+                startActivity(i);
+            }
+        });
+
 
         }
 

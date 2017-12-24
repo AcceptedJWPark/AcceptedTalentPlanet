@@ -3,14 +3,13 @@ package com.example.accepted.acceptedtalentplanet.Join;
 /**
  * Created by kwonhong on 2017-10-01.
  */
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.accepted.acceptedtalentplanet.R;
 
@@ -25,6 +24,9 @@ public class Join_Name_Activity extends  AppCompatActivity {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        mContext = getApplicationContext();
+
         setContentView(R.layout.join_name);
         Intent intent = getIntent();
         email = intent.getStringExtra("email");
@@ -61,11 +63,21 @@ public class Join_Name_Activity extends  AppCompatActivity {
         EditText first_name = (EditText)findViewById(R.id.Join_FirstName) ;
         EditText last_name = (EditText)findViewById(R.id.Join_LastName) ;
 
-        Intent intent = new Intent(this, RegistGenderActivity.class);
-        intent.putExtra("email", email);
-        intent.putExtra("pw", pw);
-        intent.putExtra("name", first_name.getText().toString() + last_name.getText().toString());
-        startActivity(intent);
+        String first_name_Txt = first_name.getText().toString();
+        String last_name_Txt = last_name.getText().toString();
+        if(first_name_Txt.length() == 0 || last_name_Txt.length() == 0)
+        {
+            Toast.makeText(mContext,"이름을 입력해주세요.",Toast.LENGTH_SHORT).show();
+            return;
+        }
+        else
+        {
+            Intent intent = new Intent(this, Join_Gender_Activity.class);
+            intent.putExtra("email", email);
+            intent.putExtra("pw", pw);
+            intent.putExtra("name", first_name.getText().toString() + last_name.getText().toString());
+            startActivity(intent);
+        }
     }
 
 }

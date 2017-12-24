@@ -41,6 +41,8 @@ import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.example.accepted.acceptedtalentplanet.SaveSharedPreference.hideKeyboard;
+
 public class Join_Email_Activity extends  AppCompatActivity {
 
     private String joinCode;
@@ -50,6 +52,8 @@ public class Join_Email_Activity extends  AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.join_email);
+
+        mContext = getApplicationContext();
 
         EditText emailCheck = (EditText) findViewById(R.id.Join_joinCode);
         EditText email = (EditText)findViewById(R.id.Join_Email);
@@ -79,7 +83,7 @@ public class Join_Email_Activity extends  AppCompatActivity {
             public void onFocusChange(View v, boolean hasFocus) {
                 if(!hasFocus)
                 {
-                    hideKeyboard(v);
+                    hideKeyboard(v, mContext);
                 }
 
             }
@@ -89,7 +93,7 @@ public class Join_Email_Activity extends  AppCompatActivity {
             public void onFocusChange(View v, boolean hasFocus) {
                 if(!hasFocus)
                 {
-                    hideKeyboard(v);
+                    hideKeyboard(v, mContext);
                 }
 
             }
@@ -240,18 +244,6 @@ public class Join_Email_Activity extends  AppCompatActivity {
         postRequestQueue.add(emailDupCheckReq);
     }
 
-   /* public final boolean isValidEmail(CharSequence target)
-    {
-        if(TextUtils.isEmpty(target))
-        {
-            return false;
-        }
-        else
-        {
-            Toast.makeText(getApplicationContext(),"잘못된 E-mail 주소입니다.",Toast.LENGTH_SHORT).show();
-            return Patterns.EMAIL_ADDRESS.matcher(target).matches();
-        }
-    }*/
 
     Button.OnClickListener mClickListener = new View.OnClickListener(){
         public void onClick(View v) {
@@ -272,9 +264,5 @@ public class Join_Email_Activity extends  AppCompatActivity {
         }
     };
 
-    public void hideKeyboard(View view) {
-        InputMethodManager inputMethodManager =(InputMethodManager)getSystemService(Activity.INPUT_METHOD_SERVICE);
-        inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
-    }
 
 }

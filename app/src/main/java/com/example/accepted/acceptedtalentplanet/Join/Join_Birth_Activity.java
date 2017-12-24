@@ -55,6 +55,9 @@ public class Join_Birth_Activity extends  AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.join_birthday);
         Intent intent = getIntent();
+
+        mContext = getApplicationContext();
+
         email = intent.getStringExtra("email");
         pw = intent.getStringExtra("pw");
         name = intent.getStringExtra("name");
@@ -88,75 +91,79 @@ public class Join_Birth_Activity extends  AppCompatActivity {
         Log.d("result", "email = " + email + ", pw = " + pw + ", name" + name + ", gender = " + gender);
     }
 
-    public void goRegist(View v){
-        birthYear = (EditText)findViewById(R.id.Join_Birth_Year);
-        birthMonth = (EditText)findViewById(R.id.Join_Birth_Month);
-        birthDay = (EditText)findViewById(R.id.Join_Birth_Day);
+    public void goRegist(View v) {
+        birthYear = (EditText) findViewById(R.id.Join_Birth_Year);
+        birthMonth = (EditText) findViewById(R.id.Join_Birth_Month);
+        birthDay = (EditText) findViewById(R.id.Join_Birth_Day);
         birth = birthYear.getText().toString() + birthMonth.getText().toString() + birthDay.getText().toString();
 
+        String birthYearTxt = birthYear.getText().toString();
+        String birthMonthTxt = birthMonth.getText().toString();
+        String birthDayTxt = birthDay.getText().toString();
 
+        if (birthYearTxt.length() == 0 || birthMonthTxt.length() == 0 || birthDayTxt.length() == 0) {
+            Toast.makeText(mContext, "생년월일을 입력해주세요.", Toast.LENGTH_SHORT).show();
+            return;
+        } else {
+            Log.d("Login Start", "start");
 
-
-        Log.d("Login Start", "start");
-
-        RequestQueue postRequestQueue = Volley.newRequestQueue(this);
-        StringRequest postJsonRequest = new StringRequest(Request.Method.POST, SaveSharedPreference.getServerIp() + "Regist/goRegist.do", new Response.Listener<String>(){
-            @Override
-            public void onResponse(String response){
-                try {
-                    JSONObject obj = new JSONObject(response);
-                    String result = obj.getString("result");
-                    if(result.equals("success")){
-                        Toast.makeText(getApplicationContext(), "회원가입이 완료되었습니다..", Toast.LENGTH_SHORT).show();
-                    }else{
-                        Toast.makeText(getApplicationContext(), "회원가입에 실패했습니다.", Toast.LENGTH_SHORT).show();
-                    }
-
-                    Intent intent = new Intent(getBaseContext(), Login_Activity.class);
-                    startActivity(intent);
-                    finish();
-
-                }
-                catch(JSONException e){
-                    e.printStackTrace();
-                }
-            }
-        }, new Response.ErrorListener(){
-            @Override
-            public void onErrorResponse(VolleyError error){
-                NetworkResponse response = error.networkResponse;
-                if (error instanceof ServerError && response != null) {
+            RequestQueue postRequestQueue = Volley.newRequestQueue(this);
+            StringRequest postJsonRequest = new StringRequest(Request.Method.POST, SaveSharedPreference.getServerIp() + "Regist/goRegist.do", new Response.Listener<String>() {
+                @Override
+                public void onResponse(String response) {
                     try {
-                        String res = new String(response.data,
-                                HttpHeaderParser.parseCharset(response.headers, "utf-8"));
-                        // Now you can use any deserializer to make sense of data
-                        Log.d("res", res);
+                        JSONObject obj = new JSONObject(response);
+                        String result = obj.getString("result");
+                        if (result.equals("success")) {
+                            Toast.makeText(getApplicationContext(), "회원가입이 완료되었습니다.", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(getApplicationContext(), "회원가입에 실패했습니다.", Toast.LENGTH_SHORT).show();
+                        }
 
-                        JSONObject obj = new JSONObject(res);
-                    } catch (UnsupportedEncodingException e1) {
-                        // Couldn't properly decode data to string
-                        e1.printStackTrace();
-                    } catch (JSONException e2) {
-                        // returned data is not JSONObject?
-                        e2.printStackTrace();
+                        Intent intent = new Intent(getBaseContext(), Login_Activity.class);
+                        startActivity(intent);
+                        finish();
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
                     }
                 }
-            }
-        }) {
-            @Override
-            protected Map<String, String> getParams(){
-                Map<String, String> params = new HashMap();
-                params.put("userID", email);
-                params.put("userPW", pw);
-                params.put("userName", name);
-                params.put("userGender", gender);
-                params.put("userBirth", birth);
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    NetworkResponse response = error.networkResponse;
+                    if (error instanceof ServerError && response != null) {
+                        try {
+                            String res = new String(response.data,
+                                    HttpHeaderParser.parseCharset(response.headers, "utf-8"));
+                            // Now you can use any deserializer to make sense of data
+                            Log.d("res", res);
 
-                return params;
-            }
-        };
+                            JSONObject obj = new JSONObject(res);
+                        } catch (UnsupportedEncodingException e1) {
+                            // Couldn't properly decode data to string
+                            e1.printStackTrace();
+                        } catch (JSONException e2) {
+                            // returned data is not JSONObject?
+                            e2.printStackTrace();
+                        }
+                    }
+                }
+            }) {
+                @Override
+                protected Map<String, String> getParams() {
+                    Map<String, String> params = new HashMap();
+                    params.put("userID", email);
+                    params.put("userPW", pw);
+                    params.put("userName", name);
+                    params.put("userGender", gender);
+                    params.put("userBirth", birth);
 
-        postRequestQueue.add(postJsonRequest);
+                    return params;
+                }
+            };
+
+            postRequestQueue.add(postJsonRequest);
+        }
     }
-
 }

@@ -35,7 +35,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:textColor="@color/textColor"
-            android:text="&quot;입력한 키워드를 통해 재능 매칭이 됩니다. (최대 3개 입력)&quot;"
+            android:text="&quot;입력한 키워드를 통해 재능 매칭이 됩니다. (3개 필수 입력)&quot;"
             android:textSize="@dimen/Page_Txt"
             android:textStyle="bold" />
 

@@ -108,19 +108,55 @@ public class TalentResister_Talent_Activity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-
-                if (Talent_autoEdit.getText().toString().length()==0)
-                {
-                    return;
-                }
-                if(talent_ArrayList.size()>=3)
-                {
-                    return;
-                }
-                talent_ArrayList.add(Talent_autoEdit.getText().toString());
-                Talent_autoEdit.setText("");
+                String Edittxt = Talent_autoEdit.getText().toString();
                 talentLocation_Adapter = new TalentResister_Location_Adapter(getBaseContext(), talent_ArrayList);
-                talent_ListView.setAdapter(talentLocation_Adapter);
+
+                if (Edittxt.length()==0||talent_ArrayList.size()>=3)
+                {
+                    return;
+                }
+
+                    if (talent_ArrayList.size()==1)
+                    {
+                        if (talent_ArrayList.get(0).equals(Edittxt)) {
+                            Toast.makeText(mContext, "키워드가 중복됩니다.", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+                    else
+                        {
+                            talent_ArrayList.add(Edittxt);
+                            Talent_autoEdit.setText("");
+                            talent_ListView.setAdapter(talentLocation_Adapter);
+                        }
+                }
+
+                else if (talent_ArrayList.size()==2) {
+                    if (talent_ArrayList.get(1).equals(Edittxt)||talent_ArrayList.get(0).equals(Edittxt)) {
+                        Toast.makeText(mContext, "키워드가 중복됩니다.", Toast.LENGTH_SHORT).show();
+                        return;
+                    } else {
+                        talent_ArrayList.add(Edittxt);
+                        Talent_autoEdit.setText("");
+                        talent_ListView.setAdapter(talentLocation_Adapter);
+                    }
+                }
+                else if (talent_ArrayList.size()==3) {
+                    if (talent_ArrayList.get(0).equals(Edittxt)||talent_ArrayList.get(1).equals(Edittxt)||talent_ArrayList.get(2).equals(Edittxt)) {
+                        Toast.makeText(mContext, "키워드가 중복됩니다.", Toast.LENGTH_SHORT).show();
+                        return;
+                    } else {
+                        talent_ArrayList.add(Edittxt);
+                        Talent_autoEdit.setText("");
+                        talent_ListView.setAdapter(talentLocation_Adapter);
+                    }
+                }
+                else
+                {
+                    talent_ArrayList.add(Edittxt);
+                    Talent_autoEdit.setText("");
+                    talent_ListView.setAdapter(talentLocation_Adapter);
+                }
+
             }
         });
 
@@ -142,7 +178,7 @@ public class TalentResister_Talent_Activity extends AppCompatActivity {
     public void goNext(View v){
 
         if(talent_ArrayList.size() < 3){
-            Toast.makeText(getApplicationContext(), "재능은 3개를 입력해주세요.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "재능 3개 필수 입력입니다.", Toast.LENGTH_SHORT).show();
             return;
         }
 
