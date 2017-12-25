@@ -63,69 +63,15 @@
         </LinearLayout>
 
 
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="3"
-            android:gravity="center"
-            >
-
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:gravity="center"
-    android:orientation="vertical"
-    >
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="2.3"
-        android:orientation="horizontal"
-        >
-        <View
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"/>
-
         <ImageView
             android:id="@+id/popup_img"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="3"
+            android:layout_weight="2"
             android:adjustViewBounds="true"
+            android:padding="5dp"
             android:src="@drawable/textpicture" />
 
-        <View
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"/>
-
-    </LinearLayout>
-
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.1"/>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.4"
-        android:gravity="center"
-        android:text="+4장"
-        android:textStyle="bold"
-        android:textSize="@dimen/Page_Txt"
-        android:textColor="@color/textColor"
-        />
-
-
-
-</LinearLayout>
-
-        </LinearLayout>
 
         <LinearLayout
             android:layout_width="0dp"
@@ -145,7 +91,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0.7"
                 android:adjustViewBounds="true"
-                android:tint="@color/textColor"
+                android:tint="#26000000"
                 android:src="@android:drawable/ic_menu_close_clear_cancel" />
 
 
@@ -550,7 +496,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.25"/>
+        android:layout_weight="0.4"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -591,7 +537,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.25"/>
+        android:layout_weight="0.4"/>
 </LinearLayout>
 
 

@@ -21,6 +21,7 @@
         android:contentInsetLeft="0dp"
         app:contentInsetLeft="0dp"
         app:contentInsetStart="0dp"
+        android:padding="0dp"
         android:fitsSystemWindows="true"
         >
         <include
