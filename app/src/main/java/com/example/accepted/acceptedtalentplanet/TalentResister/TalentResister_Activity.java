@@ -79,7 +79,7 @@ public class TalentResister_Activity extends AppCompatActivity {
         setContentView(R.layout.talentresister_resist);
         mContext = getApplicationContext();
 
-        ((TextView) findViewById(R.id.toolbarTxt)).setText("고객센터");
+        ((TextView) findViewById(R.id.toolbarTxt)).setText("My Talent");
         ((TextView) findViewById(R.id.DrawerUserID)).setText(SaveSharedPreference.getUserId(mContext));
 
         View.OnClickListener mClicklistener = new  View.OnClickListener()

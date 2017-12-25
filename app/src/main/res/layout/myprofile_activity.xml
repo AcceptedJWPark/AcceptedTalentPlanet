@@ -66,15 +66,33 @@
                         android:clickable="true"
                         android:focusableInTouchMode="true"/>
 
-                    <ImageView
-                        android:id="@+id/imageView"
+                    <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
+                        android:layout_weight="5">
+
+                    <ImageView
+                        android:id="@+id/imageView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_weight="5"
                         android:adjustViewBounds="true"
                         android:clickable="true"
+                        android:layout_centerHorizontal="true"
                         android:focusableInTouchMode="true"
                         android:src="@drawable/textpicture" />
+
+                        <ImageView
+                            android:layout_width="@dimen/Toolbar_Img"
+                            android:layout_height="@dimen/Toolbar_Img"
+                            android:layout_marginLeft="5dp"
+                            android:layout_alignBottom="@+id/imageView"
+                            android:layout_toRightOf="@+id/imageView"
+                            android:tint="#15000000"
+                            android:src="@android:drawable/ic_menu_edit"
+                            />
+
+                    </RelativeLayout>
 
                     <View
                         android:layout_width="match_parent"
@@ -99,67 +117,7 @@
                     android:text="계정 정보"
                     />
 
-                <!--, 필수 공개 레이아웃(사진)-->
-                <LinearLayout
-                    android:id="@+id/MyProfile_List_LL1"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/MyProfile_List_Layout"
-                    android:gravity="center"
-                    android:orientation="horizontal"
-                    android:paddingBottom="5dp"
-                    android:paddingTop="5dp"
-                    android:weightSum="10">
 
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="2.5"
-                        android:gravity="center"
-                        android:text="사 진"
-                        android:textColor="#000000"
-                        android:textSize="@dimen/List_Title"
-                        android:textStyle="bold" />
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
-
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="0.3" />
-
-                        <Button
-                            android:id="@+id/MyProfile_PictureBtn"
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="1"
-                            android:background="@drawable/small_button_whitebackground"
-                            android:gravity="center"
-                            android:text="수정"
-                            android:textColor="@color/textColor"
-                            android:textSize="@dimen/List_SubTitle" />
-
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="0.3" />
-
-                    </LinearLayout>
-
-
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="6.5"
-                        android:paddingLeft="5dp"
-                        android:gravity="left|center"
-                        android:text="(최대 5장 등록)"
-                        android:textSize="@dimen/List_SubTitle" />
-                </LinearLayout>
 
 
                 <!--, 필수 공개 레이아웃(E-mail)-->
@@ -428,7 +386,7 @@
                     android:id="@+id/MyProfile_List_LL7"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/MyProfile_List_Layout"
-                    android:gravity="top"
+                    android:gravity="center"
                     android:orientation="horizontal"
                     android:paddingBottom="5dp"
                     android:paddingTop="10dp"
@@ -437,7 +395,6 @@
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
                         android:layout_weight="2.5"
                         android:gravity="center"
                         android:text="재능드림"
@@ -503,7 +460,7 @@
                     android:id="@+id/MyProfile_List_LL8"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/MyProfile_List_Layout"
-                    android:gravity="top"
+                    android:gravity="center"
                     android:orientation="horizontal"
                     android:paddingTop="10dp"
                     android:weightSum="10">
@@ -511,7 +468,6 @@
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
                         android:layout_weight="2.5"
                         android:gravity="center"
                         android:text="관심재능"
@@ -533,7 +489,6 @@
                             android:ellipsize="end"
                             android:gravity="left"
                             android:lines="1"
-
                             android:text="농구"
                             android:textColor="@color/textColor"
                             android:textSize="@dimen/List_SubTitle"
@@ -569,6 +524,72 @@
                             android:textSize="@dimen/List_SubTitle"
                             />
                     </LinearLayout>
+
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/MyProfile_List_LL1"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/MyProfile_List_Layout"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:paddingBottom="5dp"
+                    android:paddingTop="5dp"
+                    android:weightSum="10">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2.5"
+                        android:gravity="center"
+                        android:text="포인트"
+                        android:textColor="#000000"
+                        android:textSize="@dimen/List_Title"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="7.5"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:gravity="left|center"
+                            android:text="350P"
+                            android:textSize="@dimen/List_SubTitle" />
+
+
+                            <ImageView
+                                android:id="@+id/MyProfile_CompleteList_Open"
+                                android:layout_width="@dimen/Toolbar_Img"
+                                android:layout_height="@dimen/Toolbar_Img"
+                                android:layout_marginLeft="5dp"
+                                android:tint="#15000000"
+                                android:src="@android:drawable/ic_search_category_default"
+                                />
+
+                    </LinearLayout>
+
+
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.5"/>
+
+
+
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="3.5"/>
 
 
                 </LinearLayout>

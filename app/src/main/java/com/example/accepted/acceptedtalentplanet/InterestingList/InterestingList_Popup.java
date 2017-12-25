@@ -2,8 +2,10 @@ package com.example.accepted.acceptedtalentplanet.InterestingList;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.Display;
@@ -69,7 +71,7 @@ public class InterestingList_Popup extends FragmentActivity {
 
 
         talentID = getIntent().getStringExtra("TalentID");
-        sendFlag = (getIntent().getIntExtra("codeGiveTake", 1) == 2)?true:false;
+        sendFlag = (getIntent().getIntExtra("codeGiveTake", 1) == 2) ? true : false;
 
         mContext = getApplicationContext();
         talentSharing_popupclosebtn = (ImageView) findViewById(R.id.TalentSharing_pupupclosebtn);
@@ -86,8 +88,7 @@ public class InterestingList_Popup extends FragmentActivity {
         if (addedFriend) {
             InteresteingList_addfriendList_on.setVisibility(View.VISIBLE);
             InteresteingList_addfriendList_off.setVisibility(View.GONE);
-        }
-        else {
+        } else {
             InteresteingList_addfriendList_on.setVisibility(View.GONE);
             InteresteingList_addfriendList_off.setVisibility(View.VISIBLE);
         }
@@ -97,7 +98,7 @@ public class InterestingList_Popup extends FragmentActivity {
             public void onClick(View v) {
                 InteresteingList_addfriendList_on.setVisibility(View.GONE);
                 InteresteingList_addfriendList_off.setVisibility(View.VISIBLE);
-                Toast.makeText(mContext,"친구 목록에서 삭제되었습니다.",Toast.LENGTH_SHORT).show();
+                Toast.makeText(mContext, "친구 목록에서 삭제되었습니다.", Toast.LENGTH_SHORT).show();
             }
         });
         InteresteingList_addfriendList_off.setOnClickListener(new View.OnClickListener() {
@@ -105,7 +106,7 @@ public class InterestingList_Popup extends FragmentActivity {
             public void onClick(View v) {
                 InteresteingList_addfriendList_off.setVisibility(View.GONE);
                 InteresteingList_addfriendList_on.setVisibility(View.VISIBLE);
-                Toast.makeText(mContext,"친구 목록에 추가되었습니다.",Toast.LENGTH_SHORT).show();
+                Toast.makeText(mContext, "친구 목록에 추가되었습니다.", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -113,51 +114,40 @@ public class InterestingList_Popup extends FragmentActivity {
         Popup_ProgressorCancel = findViewById(R.id.Popup_ProgressorCancel);
         final AlertDialog.Builder ProgressorCancelPopup = new AlertDialog.Builder(this);
 
-        Popup_ProgressorCancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v){
+        if (sendFlag) {
+            Popup_ProgressorCancel.setTextColor(Color.parseColor("#d2d2d2"));
+            Popup_ProgressorCancel.setOnClickListener(null);
+        } else {
 
-               /* mInterestingList_Dialog = new InterestingList_Dialog(InterestingList_Popup.this, "재능 진행 또는 관심 취소를 진행해주세요!", ProgressListener, CancelListener);
-                mInterestingList_Dialog.show();
-*/
+            Popup_ProgressorCancel.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
 
-              ProgressorCancelPopup.setMessage("재능 진행 또는 관심 취소를 진행해주세요!")
-                        .setPositiveButton("진행하기", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                doSharingTalent(talentID);
+                    ProgressorCancelPopup.setMessage("재능 진행 또는 관심 취소를 진행해주세요!")
+                            .setPositiveButton("진행하기", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    doSharingTalent(talentID);
 
+                                    Toast.makeText(mContext, "진행 하기 클릭", Toast.LENGTH_SHORT).show();
+                                    dialog.cancel();
+                                }
+                            })
+                            .setNegativeButton("취소하기", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    Toast.makeText(mContext, "취소 하기 클릭", Toast.LENGTH_SHORT).show();
+                                    dialog.cancel();
+                                }
+                            });
 
-                                Toast.makeText(mContext,"진행 하기 클릭",Toast.LENGTH_SHORT).show();
-                                dialog.cancel();
-                            }
-                        })
-                        .setNegativeButton("취소하기", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                Toast.makeText(mContext,"취소 하기 클릭",Toast.LENGTH_SHORT).show();
-                                dialog.cancel();
-                            }
-                        });
-
-                AlertDialog alertDialog = ProgressorCancelPopup.create();
-                alertDialog.show();
-            }
-        });
-
-        getProfileInfo(talentID);
-
-    }
-    /*
-    public void btnClicked(View v){
-        switch (v.getId()) {
-            case R.id.Popup_ProgressorCancel:
-                mInterestingList_Dialog = new InterestingList_Dialog(getApplicationContext(), "재능 진행 또는 관심 취소를 진행해주세요!", ProgressListener, CancelListener);
-                mInterestingList_Dialog.show();
-                break;
+                    AlertDialog alertDialog = ProgressorCancelPopup.create();
+                    alertDialog.show();
+                }
+            });
         }
-    }*/
-
+        getProfileInfo(talentID);
+    }
         private View.OnClickListener ProgressListener = new View.OnClickListener() {
             public void onClick(View v) {
                 doSharingTalent(talentID);
@@ -279,6 +269,8 @@ public class InterestingList_Popup extends FragmentActivity {
                 if(sendFlag){
                     if(talentFlag){
                         senderID =  SaveSharedPreference.getTakeTalentData(mContext).getTalentID();
+
+
                     }else{
                         senderID = SaveSharedPreference.getGiveTalentData(mContext).getTalentID();
                     }

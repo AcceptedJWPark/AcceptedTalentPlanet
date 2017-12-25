@@ -15,9 +15,8 @@
 
         <LinearLayout
             android:layout_width="0dp"
-            android:layout_weight="4"
+            android:layout_weight="3.5"
             android:layout_height="match_parent"
-            android:layout_marginRight="5dp"
             android:orientation="vertical"
 
             >
@@ -26,40 +25,50 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="0.8"
-                android:gravity="center_vertical"
-                >
+                android:gravity="center_vertical">
 
                 <TextView
-                    android:id="@+id/SharingList_ConditionType"
+                    android:id="@+id/CompleteList_ConditionType"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="[진행 취소]"
-                    android:gravity="left|center"
                     android:layout_gravity="center_vertical"
+                    android:gravity="left|center"
+                    android:text="[관심 재능]"
                     android:textColor="#000000"
-                    android:textStyle="bold"
                     android:textSize="@dimen/List_Title"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/CompleteList_Point"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="-200P"
+                    android:textSize="@dimen/BigBtn"
+                    android:gravity="center"
+                    android:textStyle="bold"
+                    android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
-                    />
+                    android:textColor="#ff006a"
+                    android:background="@drawable/nobackground"
+                    >
+                </TextView>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:ellipsize="end"
                     android:lines="1"
-                    android:textSize="@dimen/ListView_SecondLine"
-                    android:text="등록 일자 : "
-                    />
+                    android:text="완료 일자 : "
+                    android:textSize="@dimen/ListView_SecondLine" />
 
                 <TextView
-                    android:id="@+id/SharingList_RegistDate"
+                    android:id="@+id/CompleteList_RegistDate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:ellipsize="end"
                     android:lines="1"
-                    android:textSize="@dimen/ListView_SecondLine"
                     android:text="2017.11.03 16:24"
-                    />
+                    android:textSize="@dimen/ListView_SecondLine" />
 
 
             </LinearLayout>
@@ -71,14 +80,10 @@
                 android:orientation="horizontal"
                 android:layout_below="@+id/CustomerService_Claim_SharingListName"
                 android:paddingLeft="5dp"
-                android:paddingRight="5dp"
                 >
 
-
-
-
                 <TextView
-                    android:id="@+id/SharingList_Name"
+                    android:id="@+id/CompleteList_Name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="박종우님과 "
@@ -91,7 +96,7 @@
                     />
 
                 <TextView
-                    android:id="@+id/SharingList_Keyword1"
+                    android:id="@+id/CompleteList_Keyword1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
@@ -108,7 +113,7 @@
                     android:textSize="@dimen/List_SubTitle"
                     android:textStyle="bold" />
                 <TextView
-                    android:id="@+id/SharingList_Keyword2"
+                    android:id="@+id/CompleteList_Keyword2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="기타 연주"
@@ -128,7 +133,7 @@
                     android:background="#f5f5f5"
                     />
                 <TextView
-                    android:id="@+id/SharingList_Keyword3"
+                    android:id="@+id/CompleteList_Keyword3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="기타독주"
@@ -146,10 +151,9 @@
                     android:background="#f5f5f5"
                     />
                 <TextView
-                    android:id="@+id/SharingList_Txt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text=" 재능 취소하였습니다."
+                    android:text=" 공유 완료하였습니다."
                     android:gravity="center|left"
                     android:layout_gravity="center_vertical"
                     android:singleLine="true"
@@ -158,81 +162,8 @@
                     android:textSize="@dimen/List_SubTitle"
                     />
 
-
-
             </LinearLayout>
             </LinearLayout>
-
-    <RelativeLayout
-        android:id="@+id/SharingList_SpinnerRL"
-        android:layout_width="0dp"
-        android:layout_weight="0.2"
-        android:layout_height="match_parent"
-        >
-        <Spinner
-            android:id="@+id/SharingList_Spinner"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_centerInParent="true"
-            android:background="@drawable/nobackground"
-            >
-        </Spinner>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:layout_centerInParent="true"
-            android:paddingLeft="3dp"
-            android:paddingRight="3dp">
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="0.9"/>
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_weight="0.4"
-                android:layout_height="0dp"
-                android:focusable="false"
-                android:src="@android:drawable/radiobutton_off_background"
-                android:gravity="center"
-                />
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="0.3"/>
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_weight="0.4"
-                android:layout_height="0dp"
-                android:focusable="false"
-                android:src="@android:drawable/radiobutton_off_background"
-                android:gravity="center"
-                />
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="0.3"/>
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_weight="0.4"
-                android:layout_height="0dp"
-                android:focusable="false"
-                android:src="@android:drawable/radiobutton_off_background"
-                android:gravity="center"
-                />
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="0.9"/>
-
-        </LinearLayout>
-
-
-
-    </RelativeLayout>
 
 
 

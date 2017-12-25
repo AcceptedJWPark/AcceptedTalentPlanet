@@ -35,9 +35,6 @@
 
 
         <activity
-            android:name=".Join.Join_Gender_Activity"
-            android:theme="@style/AppTheme" />
-        <activity
         android:name=".MainActivity"
         android:theme="@style/AppTheme" />
         <activity
@@ -53,12 +50,16 @@
             android:name=".Join.Join_Name_Activity"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".Join.RegistGenderActivity"
+            android:name=".Join.Join_Gender_Activity"
             android:theme="@style/AppTheme" />
         <activity
             android:name=".Join.Join_Birth_Activity"
             android:theme="@style/AppTheme" />
         <activity android:name=".MyProfile.MyProfile_Activity"/>
+
+        <activity android:name=".MyProfile.MyProfile_CompleteList_Activity"/>
+
+
         <activity android:name=".TalentResister.TalentResister_Activity"/>
         <activity android:name=".TalentResister.TalentResister_Level_Activity"/>
         <activity

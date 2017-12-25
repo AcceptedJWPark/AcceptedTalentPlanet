@@ -51,6 +51,7 @@
             android:gravity="center"
             android:textColor="@color/textColor"
             android:textSize="@dimen/Page_Txt"
+            android:textStyle="bold"
             android:text="&quot;생년월일을 입력해주세요!&quot;"
             />
 

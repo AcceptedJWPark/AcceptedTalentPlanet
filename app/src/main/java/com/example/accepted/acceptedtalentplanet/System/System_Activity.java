@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Switch;
 import android.widget.TextView;
 
@@ -43,7 +44,7 @@ public class System_Activity extends AppCompatActivity {
     Switch System_Answer_Switch;
 
     TextView System_PasswordChange;
-    TextView System_NouseAccount;
+    LinearLayout System_NouseAccount;
 
     boolean System_UseorNot;
 
@@ -134,7 +135,7 @@ public class System_Activity extends AppCompatActivity {
         //TODO:휴면 계정 등록 → 등록 된 재능 미등록 처리, 계정 활성화 → 재능 등록 다이얼로그 띄우기
         System_UseorNot = true;
 
-        System_NouseAccount = (TextView) findViewById(R.id.System_NouseAccount);
+        System_NouseAccount = (LinearLayout) findViewById(R.id.System_NouseAccount);
         System_NouseAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

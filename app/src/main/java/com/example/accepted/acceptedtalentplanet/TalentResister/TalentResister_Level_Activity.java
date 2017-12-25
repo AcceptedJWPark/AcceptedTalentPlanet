@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.accepted.acceptedtalentplanet.MyTalent;
 import com.example.accepted.acceptedtalentplanet.R;
@@ -113,22 +114,28 @@ public class TalentResister_Level_Activity extends AppCompatActivity implements 
         }
     }
 
-    public void goNext(View v){
-        Intent i = new Intent(this, TalentResister_Point_Activity.class);
-        i.putExtra("talentFlag", TalentRegister_Flag);
-        i.putExtra("talent1", Talent1);
-        i.putExtra("talent2", Talent2);
-        i.putExtra("talent3", Talent3);
-        i.putExtra("loc1", Location1);
-        i.putExtra("loc2", Location2);
-        i.putExtra("loc3", Location3);
-        i.putExtra("level", findLevel());
-        i.putExtra("HavingDataFlag", HavingDataFlag);
-        if(HavingDataFlag){
-            i.putExtra("Data", Data);
-        }
-        startActivity(i);
+    public void goNext(View v) {
 
+        if (!cb1.isChecked() && !cb2.isChecked() && !cb3.isChecked() && !cb4.isChecked() && !cb5.isChecked()) {
+            Toast.makeText(getApplicationContext(), "본인의 수준을 선택해주세요", Toast.LENGTH_SHORT).show();
+
+        } else {
+            Intent i = new Intent(this, TalentResister_Point_Activity.class);
+            i.putExtra("talentFlag", TalentRegister_Flag);
+            i.putExtra("talent1", Talent1);
+            i.putExtra("talent2", Talent2);
+            i.putExtra("talent3", Talent3);
+            i.putExtra("loc1", Location1);
+            i.putExtra("loc2", Location2);
+            i.putExtra("loc3", Location3);
+            i.putExtra("level", findLevel());
+            i.putExtra("HavingDataFlag", HavingDataFlag);
+            if (HavingDataFlag) {
+                i.putExtra("Data", Data);
+            }
+            startActivity(i);
+
+        }
     }
 
     public int findLevel(){

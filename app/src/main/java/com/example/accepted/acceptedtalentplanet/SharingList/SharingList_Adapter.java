@@ -38,14 +38,14 @@ import java.util.List;
 
 public class SharingList_Adapter extends BaseAdapter{
 
-    Context context;
+       Context context;
     ArrayList<SharingList_Item> list_ArrayList;
     MySpinnerAdapter adapter = null;
     ArrayList<MyModel> models;
 
     public SharingList_Adapter(Context context, ArrayList<SharingList_Item> list_ArrayList) {
-        this.context = context;
-        this.list_ArrayList = list_ArrayList;
+            this.context = context;
+            this.list_ArrayList = list_ArrayList;
         models = new ArrayList<>();
         models.add(new MyModel("보기"));
         models.add(new MyModel("Profile 보기"));

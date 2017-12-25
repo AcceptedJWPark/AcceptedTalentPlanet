@@ -126,24 +126,15 @@ public class TalentResister_Location_Activity extends AppCompatActivity {
 
         }
 
-
-
-
         talentLocation_Adapter = new TalentResister_Location_Adapter(mContext, location_ArrayList);
         location_ListView.setAdapter(talentLocation_Adapter);
         location_addBtn = (Button) findViewById(R.id.addLoctionBtn);
         location_addBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (Location_autoEdit1.getText().toString().length()==0)
-                {
-                    return;
-                }
-                if(location_ArrayList.size()>=3)
-                {
-                    return;
-                }
 
+                String Edittxt = Location_autoEdit1.getText().toString();
+                talentLocation_Adapter = new TalentResister_Location_Adapter(getBaseContext(), location_ArrayList);
                 TalentResister_LocationList locationlist = new TalentResister_LocationList();
                 int count = 0;
                 for(int a=0; a<locationlist.Location_List.length; a++)
@@ -153,30 +144,60 @@ public class TalentResister_Location_Activity extends AppCompatActivity {
                         count++;
                     }
                 }
-                if (count == 0)
+                 if (Edittxt.length()==0 || location_ArrayList.size()>=3)
+                                {
+                                    return;
+                                }
+
+                else if (count == 0)
                 {
                     Toast.makeText(mContext,"주소가 존재하지 않습니다.",Toast.LENGTH_SHORT).show();
+                    return;
                 }
-                else if(count >0)
+
+
+                else if (location_ArrayList.size()==0)
                 {
-                    location_ArrayList.add(Location_autoEdit1.getText().toString());
+                    location_ArrayList.add(Edittxt);
                     Location_autoEdit1.setText("");
-                    talentLocation_Adapter = new TalentResister_Location_Adapter(getBaseContext(), location_ArrayList);
                     location_ListView.setAdapter(talentLocation_Adapter);
+                }
+
+
+                else if (location_ArrayList.size()==1)
+                {
+                    if (location_ArrayList.get(0).equals(Edittxt))
+                    {
+                        Toast.makeText(mContext, "주소가 중복됩니다.", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    else
+                    {
+                        location_ArrayList.add(Edittxt);
+                        Location_autoEdit1.setText("");
+                        location_ListView.setAdapter(talentLocation_Adapter);
+                    }
+                }
+                else if (location_ArrayList.size()==2)
+                {
+                    if (location_ArrayList.get(1).equals(Edittxt)||location_ArrayList.get(0).equals(Edittxt))
+                    {
+                        Toast.makeText(mContext, "주소가 중복됩니다.", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    else
+                        {
+                        location_ArrayList.add(Edittxt);
+                        Location_autoEdit1.setText("");
+                        location_ListView.setAdapter(talentLocation_Adapter);
+                    }
                 }
             }
         });
-
-
-
     }
 
 
     public void goNext(View v){
-        if(location_ArrayList.size() < 3){
-            Toast.makeText(getApplicationContext(), "장소는 3개를 입력해주세요.", Toast.LENGTH_SHORT).show();
-            return;
-        }
 
         Location1 = location_ArrayList.get(0);
         Location2 = location_ArrayList.get(1);

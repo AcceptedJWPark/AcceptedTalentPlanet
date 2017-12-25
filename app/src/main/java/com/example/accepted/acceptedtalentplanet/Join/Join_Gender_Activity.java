@@ -1,25 +1,34 @@
 package com.example.accepted.acceptedtalentplanet.Join;
 
+/**
+ * Created by kwonhong on 2017-10-01.
+ */
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.example.accepted.acceptedtalentplanet.R;
 
-/**
- * Created by Accepted on 2017-09-27.
- */
-
-public class Join_Gender_Activity extends AppCompatActivity {
+public class Join_Gender_Activity extends  AppCompatActivity {
 
     Spinner genderSpinner;
     String[] mobileNetworkTypes = {"성별 선택", "남자", "여자"};
 
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    public String email;
+    public String pw;
+    public String name;
+    Context mContext;
+
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.join_gender);
+
+        mContext = getApplicationContext();
 
         genderSpinner = (Spinner) findViewById(R.id.Join_genderSpinner);
         genderSpinner.setPrompt("성별 선택");
@@ -27,7 +36,29 @@ public class Join_Gender_Activity extends AppCompatActivity {
 
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         genderSpinner.setAdapter(adapter);
+
+        Intent intent = getIntent();
+        email = intent.getStringExtra("email");
+        pw = intent.getStringExtra("pw");
+        name = intent.getStringExtra("name");
     }
+
+    public void goNext(View v){
+        Spinner gender = (Spinner)findViewById(R.id.Join_genderSpinner);
+        String genderTxt = gender.getSelectedItem().toString();
+        if (genderTxt.equals("성별 선택"))
+        {
+            Toast.makeText(mContext, "성별을 선택해주세요.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        else {
+            Intent intent = new Intent(this, Join_Birth_Activity.class);
+            intent.putExtra("email", email);
+            intent.putExtra("pw", pw);
+            intent.putExtra("name", name);
+            intent.putExtra("gender", gender.getSelectedItem().toString());
+            startActivity(intent);
+        }
+    }
+
 }
-
-
