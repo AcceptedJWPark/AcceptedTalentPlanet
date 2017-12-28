@@ -52,7 +52,8 @@ public class Loading_Activity extends AppCompatActivity {
         setContentView(R.layout.loading_start);
 
         mContext = getApplicationContext();
-        getMyTalent();
+
+        startLoading();
 
     }
 
@@ -67,6 +68,7 @@ public class Loading_Activity extends AppCompatActivity {
                     intent = new Intent(getBaseContext(), Login_Activity.class);
                 }else{
                     intent = new Intent(getBaseContext(), Home_Activity.class);
+                    getMyTalent();
                 }
                     startActivity(intent);
                     finish();
@@ -105,7 +107,6 @@ public class Loading_Activity extends AppCompatActivity {
 
                     }
 
-                    startLoading();
                 }
                 catch(JSONException e){
                     e.printStackTrace();
