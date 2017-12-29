@@ -8,6 +8,9 @@ public class TalentResister_LocationList {
 
     public static String[] Location_List = new String[]
             {
+                    "Test Location1",
+                    "Test Location2",
+                    "Test Location3",
                     "서울특별시 전체",
                     "서울특별시 종로구 전체",
                     "서울특별시 종로구 청운동",
