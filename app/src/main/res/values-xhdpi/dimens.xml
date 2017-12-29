@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<resources>
+
+    <dimen name="ToolbarTxt">14.025dp</dimen>
+    <dimen name="Toolbar_Pre_Txt">10.625dp</dimen>
+    <dimen name="Toolbar_Pre_Img">21.25dp</dimen>
+    <dimen name="Toolbar_Img">17dp</dimen>
+    <dimen name="List_Title">10.2dp</dimen>
+    <dimen name="List_SubTitle">9.775dp</dimen>
+    <dimen name="Divider">9.775dp</dimen>
+    <dimen name="GiveorTakeBtn">10.625dp</dimen>
+    <dimen name="Edit_Hint">9.35dp</dimen>
+    <dimen name="CheckBox_Txt">9.775dp</dimen>
+    <dimen name="BigBtn">11.475dp</dimen>
+    <dimen name="Popup_ItemTitle">9.775dp</dimen>
+    <dimen name="Popup_ItemSubTitle">8.925dp</dimen>
+    <dimen name="Popup_Txt">9.775dp</dimen>
+    <dimen name="Popup_Divider">8.925dp</dimen>
+    <dimen name="Popup_BigBtn">10.625dp</dimen>
+    <dimen name="ListView_TitleorName">11.475dp</dimen>
+    <dimen name="ListView_SubTitle">9.775dp</dimen>
+    <dimen name="ListView_SecondLine">9.775dp</dimen>
+    <dimen name="ListView_Btn">9.775dp</dimen>
+    <dimen name="ListView_ChildTxt_Question">9.775dp</dimen>
+    <dimen name="ListView_ChildTxt_Answer">10.625dp</dimen>
+    <dimen name="ListView_ChildTxt_Signature">10.625dp</dimen>
+    <dimen name="SpinnerTxt">10.625dp</dimen>
+    <dimen name="TalentSearching_SpinnerTxt">9.775dp</dimen>
+    <dimen name="TalentResister_SpinnerTxt">10.2dp</dimen>
+    <dimen name="Page_ItemTitle">10.625dp</dimen>
+    <dimen name="Page_ItemSubTitle">9.775dp</dimen>
+    <dimen name="Page_Txt">10.625dp</dimen>
+    <dimen name="Page_Txt_BelowPicture">8.5dp</dimen>
+    <dimen name="Page_Txt_Example">9.775dp</dimen>
+    <dimen name="Introduction">9.35dp</dimen>
+    <dimen name="LogIn_Title">25.5dp</dimen>
+    <dimen name="LogIn_Edit_Hint">10.625dp</dimen>
+    <dimen name="LogIn_PageTxt">10.625dp</dimen>
+    <dimen name="LogIn_SmallBtn">10.625dp</dimen>
+    <dimen name="LogIn_AccetedTxt">10.625dp</dimen>
+    <dimen name="TalentCondition_Title">13.175dp</dimen>
+    <dimen name="TalentCondition_SubTitle">11.475dp</dimen>
+    <dimen name="TalentSharing_Searching_Location_Hint">8.925dp</dimen>
+    <dimen name="ScrollView_BigBtn">21.25dp</dimen>
+    <dimen name="MyProfile_Toolbar">34dp</dimen>
+    <dimen name="MyProfile_Picture_Layout">93.5dp</dimen>
+    <dimen name="MyProfile_PictureSize">76.5dp</dimen>
+    <dimen name="MyProfile_Divider">17dp</dimen>
+    <dimen name="MyProfile_List_Layout">42.5dp</dimen>
+    <dimen name="Claim_Divider">10.2dp</dimen>
+    <dimen name="Claim_Divider2">4.25dp</dimen>
+    <dimen name="Claim_List_BtnLayout">25.5dp</dimen>
+    <dimen name="Claim_List_Layout2">25.5dp</dimen>
+    <dimen name="Claim_Edit_Layout">102dp</dimen>
+    <dimen name="TalentSharing_BtnLayout">25.5dp</dimen>
+    <dimen name="TalentSharing_ListLayout2">42.5dp</dimen>
+
+
+
+</resources>

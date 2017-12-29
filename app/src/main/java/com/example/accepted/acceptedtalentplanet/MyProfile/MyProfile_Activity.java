@@ -86,9 +86,22 @@ public class MyProfile_Activity extends AppCompatActivity {
         MyProfile_Job.setOnFocusChangeListener(new View.OnFocusChangeListener() {
            @Override
            public void onFocusChange(View v, boolean hasFocus) {
+               ImageView ActionBar_Listview = (ImageView) findViewById(R.id.ActionBar_Listview);
+               ImageView ActionBar_AlarmView = (ImageView) findViewById(R.id.ActionBar_AlarmView);
                if(!hasFocus)
                {
                    hideKeyboard(v,mContext);
+                   ActionBar_Listview.setFocusable(false);
+                   ActionBar_Listview.setFocusableInTouchMode(false);
+                   ActionBar_AlarmView.setFocusable(false);
+                   ActionBar_AlarmView.setFocusableInTouchMode(false);
+               }
+               else
+               {
+                   ActionBar_Listview.setFocusable(true);
+                   ActionBar_Listview.setFocusableInTouchMode(true);
+                   ActionBar_AlarmView.setFocusable(true);
+                   ActionBar_AlarmView.setFocusableInTouchMode(true);
                }
            }
        });

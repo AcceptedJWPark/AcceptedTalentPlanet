@@ -150,7 +150,8 @@
                         android:gravity="left"
                         android:text="pjw910123@naver.com"
                         android:textColor="@color/textColor"
-                        android:textSize="@dimen/List_SubTitle" />
+                        android:textSize="@dimen/List_SubTitle"
+                        />
                 </LinearLayout>
 
                 <!--, 필수 공개 레이아웃(이름)-->

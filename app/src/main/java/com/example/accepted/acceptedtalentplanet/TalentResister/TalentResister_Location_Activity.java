@@ -62,7 +62,6 @@ public class TalentResister_Location_Activity extends AppCompatActivity {
 
         mContext = getApplicationContext();
 
-        //TODO:입력한 장소가 Location List에 있는지 확인하고 없으면 다이얼로그 띄우기
         TalentResister_LocationList talentResisterLocationList = new TalentResister_LocationList();
         final String Location_List[] = talentResisterLocationList.Location_List;
         ArrayAdapter<String> Location_ListAdapter = new ArrayAdapter<String>(getBaseContext(), R.layout.talentresister_location_spinnertext,Location_List);
@@ -197,7 +196,14 @@ public class TalentResister_Location_Activity extends AppCompatActivity {
     }
 
 
+
+    //TODO: 장소 3개 입력이 안되면 오류 발생, 1개 이상 입력되면 넘어가야함
     public void goNext(View v){
+
+        if(location_ArrayList.size() < 1){
+            Toast.makeText(getApplicationContext(), "장소 1개 이상 필수 입력입니다.", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
         Location1 = location_ArrayList.get(0);
         Location2 = location_ArrayList.get(1);

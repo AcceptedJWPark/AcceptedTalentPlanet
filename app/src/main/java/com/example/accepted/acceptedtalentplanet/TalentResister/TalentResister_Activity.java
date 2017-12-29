@@ -43,7 +43,6 @@ public class TalentResister_Activity extends AppCompatActivity {
 
     Button TalentResister_ShowGiveBtn;
     Button TalentResister_ShowTakeBtn;
-    TextView TalentResister_textView;
     Button TalentResister_Give_modifyBtn;
     Button TalentResister_Take_modifyBtn;
     TextView TalentResister_Keyword1;
@@ -99,7 +98,6 @@ public class TalentResister_Activity extends AppCompatActivity {
 
         TalentResister_ShowGiveBtn = (Button) findViewById(R.id.TalentResister_ShowGive);
         TalentResister_ShowTakeBtn = (Button) findViewById(R.id.TalentResister_ShowTake);
-        TalentResister_textView = (TextView) findViewById(R.id.TalentResister_MainTextView);
         TalentResister_Give_modifyBtn = (Button) findViewById(R.id.TalentResister_Give_ModifyBtn);
         TalentResister_Take_modifyBtn = (Button) findViewById(R.id.TalentResister_Take_ModifyBtn);
         TalentResister_Keyword1 = (TextView) findViewById(R.id.TalentResister_Keyword1);
@@ -173,7 +171,6 @@ public class TalentResister_Activity extends AppCompatActivity {
     public void ShowGiveBtnClicked () {
         if (TalentResister_Give == false) {
             TalentResister_Box.setVisibility(View.GONE);
-            TalentResister_textView.setVisibility(View.GONE);
             No_Talent_Txt.setVisibility(View.VISIBLE);
             TalentResister_ShowTakeBtn.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.small_button_whitebackground));
             TalentResister_ShowGiveBtn.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.small_button_graybackground));
@@ -186,13 +183,11 @@ public class TalentResister_Activity extends AppCompatActivity {
         }
         else {
             TalentResister_Box.setVisibility(View.VISIBLE);
-            TalentResister_textView.setVisibility(View.VISIBLE);
             No_Talent_Txt.setVisibility(View.GONE);
             TalentResister_ShowTakeBtn.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.small_button_whitebackground));
             TalentResister_ShowGiveBtn.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.small_button_graybackground));
             TalentResister_ShowTakeBtn.setTextColor(Color.parseColor("#d2d2d2"));
             TalentResister_ShowGiveBtn.setTextColor(Color.parseColor("#505050"));
-            TalentResister_textView.setText("\"재능드림을 통해 회원님의 재능을 공유해주세요!\"");
             TalentResister_Give_modifyBtn.setVisibility(View.VISIBLE);
             TalentResister_Take_modifyBtn.setVisibility(View.INVISIBLE);
             TalentResister_Keyword1.setText(TalentResister_Give_Keyword[0]);
@@ -210,7 +205,6 @@ public class TalentResister_Activity extends AppCompatActivity {
     public void ShowTakeBtnClicked () {
         if (TalentResister_Take == false) {
             TalentResister_Box.setVisibility(View.GONE);
-            TalentResister_textView.setVisibility(View.GONE);
             No_Talent_Txt.setVisibility(View.VISIBLE);
             TalentResister_ShowGiveBtn.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.small_button_whitebackground));
             TalentResister_ShowTakeBtn.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.small_button_graybackground));
@@ -223,13 +217,11 @@ public class TalentResister_Activity extends AppCompatActivity {
         }
         else {
             TalentResister_Box.setVisibility(View.VISIBLE);
-            TalentResister_textView.setVisibility(View.VISIBLE);
             No_Talent_Txt.setVisibility(View.GONE);
             TalentResister_ShowGiveBtn.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.small_button_whitebackground));
             TalentResister_ShowTakeBtn.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.small_button_graybackground));
             TalentResister_ShowGiveBtn.setTextColor(Color.parseColor("#d2d2d2"));
             TalentResister_ShowTakeBtn.setTextColor(Color.parseColor("#505050"));
-            TalentResister_textView.setText("\"관심재능을 통해 회원님의 관심사를 시작해보세요!\"");
             TalentResister_Take_modifyBtn.setVisibility(View.VISIBLE);
             TalentResister_Give_modifyBtn.setVisibility(View.INVISIBLE);
             TalentResister_Keyword1.setText(TalentResister_Take_Keyword[0]);
