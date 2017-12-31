@@ -46,7 +46,9 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_weight="1.1"
+        android:paddingTop="1dp"
+        android:paddingBottom="1dp"
         android:gravity="center"
         android:paddingLeft="5dp"
         android:paddingRight="5dp"
@@ -62,7 +64,7 @@
             android:layout_marginRight="5dp"
             android:textColor="@color/textColor"
             android:background="@drawable/small_button_graybackground"
-            android:textSize="13dp"
+            android:textSize="@dimen/GiveorTakeBtn"
             android:textStyle="bold"
             />
 
@@ -76,16 +78,24 @@
             android:text="관심재능 보기"
             android:textColor="#d2d2d2"
             android:background="@drawable/small_button_whitebackground"
-            android:textSize="13dp"
+            android:textSize="@dimen/GiveorTakeBtn"
             android:textStyle="bold"
             />
 
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2.5"
+        android:gravity="center_vertical"
+        android:orientation="vertical"
+        >
+
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1.5"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
             android:gravity="center">
 
             <TextView
@@ -112,11 +122,24 @@
 
         </LinearLayout>
 
+
+    <TextView
+        android:id="@+id/TalentCondition_TextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:text="관심목록 확인 또는 T.Sharing을 진행해보세요!"
+        android:textColor="@color/textColor"
+        android:textSize="@dimen/Page_Txt" />
+
+    </LinearLayout>
+
         <LinearLayout
             android:id="@+id/TalentCondition_PictureLL"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="4.5"
+            android:layout_weight="4"
             android:orientation="horizontal"
             >
 
@@ -130,9 +153,6 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="2"
-                    android:paddingTop="5dp"
-                    android:paddingLeft="5dp"
-                    android:paddingRight="5dp"
                     android:orientation="vertical"
                     >
 
@@ -166,19 +186,11 @@
 
         </LinearLayout>
 
-
-
-        <TextView
-            android:id="@+id/TalentCondition_TextView"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1.5"
-            android:gravity="center"
-            android:textStyle="bold"
-            android:text="관심목록 확인 또는 T.Sharing을 진행해보세요!"
-            android:textColor="@color/textColor"
-            android:textSize="@dimen/Page_Txt" />
-
+    <View
+        android:id="@+id/trashView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.3"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -227,7 +239,7 @@
                 android:text="재능드림 등록하기"
                 android:textAllCaps="false"
                 android:textColor="@color/textColor"
-                android:textSize="14dp"
+                android:textSize="@dimen/BigBtn"
                 android:textStyle="bold"
                 android:visibility="gone" />
         </LinearLayout>
