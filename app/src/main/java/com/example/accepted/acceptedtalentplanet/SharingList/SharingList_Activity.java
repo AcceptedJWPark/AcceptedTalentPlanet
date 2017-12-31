@@ -184,7 +184,7 @@ public class SharingList_Activity extends AppCompatActivity {
                         Date date = sdf.parse(o.getString("CREATION_DATE"), pos);
                         String dateStr = sdf2.format(date);
 
-                        int TalentType = (o.getString("TALENT_FLAG").equals("Y"))?1: 2;
+                        int TalentType = (o.getString("TALENT_FLAG").equals("Y"))?2: 1;
 
                         SharingList_Item target = new SharingList_Item(o.getString("USER_NAME") + "님과", Integer.parseInt(o.getString("STATUS")), dateStr, o.getString("TALENT_KEYWORD1"), o.getString("TALENT_KEYWORD2"), o.getString("TALENT_KEYWORD3"), TalentType, o.getString("TALENT_ID"));
                         SharingList_arrayList_Origin.add(target);

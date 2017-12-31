@@ -708,6 +708,7 @@ public class TalentCondition_Activity extends AppCompatActivity {
 
                     JSONObject obj = new JSONObject(response);
                     if(obj.getString("result").equals("success")){
+                        Log.d("재등록 아이디", obj.getString("talentID"));
                         if(((String)TalentCondition_TakeorGiveTalent.getText()).equals("관심재능 : "))
                         {
                             MyTalent mt = SaveSharedPreference.getGiveTalentData(mContext);
