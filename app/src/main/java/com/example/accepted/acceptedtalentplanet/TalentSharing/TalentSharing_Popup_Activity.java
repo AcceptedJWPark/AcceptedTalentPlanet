@@ -192,6 +192,7 @@ public class TalentSharing_Popup_Activity extends FragmentActivity{
                 Map<String, String> params = new HashMap();
                 params.put("userID", SaveSharedPreference.getUserId(mContext));
                 params.put("talentID", TalentID);
+
                 return params;
             }
         };
