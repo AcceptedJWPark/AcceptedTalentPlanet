@@ -74,7 +74,7 @@ public class TalentCondition_Activity extends AppCompatActivity {
     int GiveTalentConditionCode;
     int TakeTalentConditionCode;
     String flag;
-    String giveTalentID, takeTalentID;
+    String giveTalentID, takeTalentID, targetGiveTalentID, targetTakeTalentID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -159,6 +159,14 @@ public class TalentCondition_Activity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(mContext, TalentSharing_Popup_Activity.class);
+                Log.d("FLAG = ", flag + ", " +targetGiveTalentID + targetTakeTalentID);
+                if(flag.equals("Give")){
+                    intent.putExtra("TalentID", targetGiveTalentID);
+                    intent.putExtra("TalentFlag", "Give");
+                }else{
+                    intent.putExtra("TalentID", targetTakeTalentID);
+                    intent.putExtra("TalentFlag", "Take");
+                }
                 startActivity(intent);
             }
         });
@@ -167,6 +175,7 @@ public class TalentCondition_Activity extends AppCompatActivity {
 
 
     public void TalentCondition_Give_Registed(boolean check_GiveTalent, int Code) {
+        flag = "Give";
         if (!check_GiveTalent) {
             TalentCondition_TextView.setText("재능드림을 등록하여 회원님의 재능을 공유해주세요!");
             TalentCondition_PictureLL.setVisibility(GONE);
@@ -290,6 +299,7 @@ public class TalentCondition_Activity extends AppCompatActivity {
 
 
     public void TalentCondition_Take_Registed(boolean check_TakeTalent, int Code) {
+        flag = "Take";
         if (!check_TakeTalent) {
             TalentCondition_TextView.setText("관심재능을 등록하여 회원님의 재능을 공유해주세요!");
             TalentCondition_PictureLL.setVisibility(GONE);
@@ -419,6 +429,7 @@ public class TalentCondition_Activity extends AppCompatActivity {
                     JSONArray obj = new JSONArray(response);
                     for (int index = 0; index < obj.length(); index++) {
                         JSONObject o = obj.getJSONObject(index);
+                        Log.d("kkkkk", o.toString());
                         if(o.getString("TALENT_FLAG").equals("Y")){
                             TalentCondition_Give_Registed = true;
                             String status = o.getString("STATUS_FLAG");
@@ -429,9 +440,11 @@ public class TalentCondition_Activity extends AppCompatActivity {
                                     break;
                                 case "M":
                                     GiveTalentConditionCode = 2;
+                                    targetGiveTalentID = o.getString("TARGET_TALENT_ID");
                                     break;
                                 case "C":
                                     GiveTalentConditionCode = 3;
+                                    targetGiveTalentID = o.getString("TARGET_TALENT_ID");
                                     break;
                             }
                         }else{
@@ -444,9 +457,11 @@ public class TalentCondition_Activity extends AppCompatActivity {
                                     break;
                                 case "M":
                                     TakeTalentConditionCode = 2;
+                                    targetTakeTalentID = o.getString("TARGET_TALENT_ID");
                                     break;
                                 case "C":
                                     TakeTalentConditionCode = 3;
+                                    targetTakeTalentID = o.getString("TARGET_TALENT_ID");
                                     break;
                             }
                         }
