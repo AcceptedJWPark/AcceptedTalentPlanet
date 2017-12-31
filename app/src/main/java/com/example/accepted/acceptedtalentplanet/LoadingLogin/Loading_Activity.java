@@ -97,7 +97,7 @@ public class Loading_Activity extends AppCompatActivity {
                         gpArr[2] = new GeoPoint(Double.parseDouble(obj.getString("GP_LAT3")), Double.parseDouble(obj.getString("GP_LNG3")));
 
                         MyTalent talent = new MyTalent();
-                        talent.setMyTalent(obj.getString("TALENT_KEYWORD1"), obj.getString("TALENT_KEYWORD2"), obj.getString("TALENT_KEYWORD3"), obj.getString("LOCATION1"), obj.getString("LOCATION2"), obj.getString("LOCATION1"), obj.getString("T_POINT"), obj.getString("LEVEL"), gpArr);
+                        talent.setMyTalent(obj.getString("TALENT_KEYWORD1"), obj.getString("TALENT_KEYWORD2"), obj.getString("TALENT_KEYWORD3"), obj.getString("LOCATION1"), obj.getString("LOCATION2"), obj.getString("LOCATION3"), obj.getString("T_POINT"), obj.getString("LEVEL"), gpArr);
                         talent.setTalentID(obj.getString("seq"));
                         if(obj.getString("TALENT_FLAG").equals("Y")){
                             SaveSharedPreference.setGiveTalentData(mContext, talent);

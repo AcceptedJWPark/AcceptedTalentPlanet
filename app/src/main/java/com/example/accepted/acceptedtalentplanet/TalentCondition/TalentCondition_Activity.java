@@ -29,6 +29,7 @@ import com.android.volley.toolbox.Volley;
 import com.example.accepted.acceptedtalentplanet.Alarm.Alarm_Activity;
 import com.example.accepted.acceptedtalentplanet.InterestingList.InterestingList_Activity;
 import com.example.accepted.acceptedtalentplanet.LoadingLogin.Login_Activity;
+import com.example.accepted.acceptedtalentplanet.MyTalent;
 import com.example.accepted.acceptedtalentplanet.R;
 import com.example.accepted.acceptedtalentplanet.SaveSharedPreference;
 import com.example.accepted.acceptedtalentplanet.TalentResister.TalentResister_Activity;
@@ -293,8 +294,39 @@ public class TalentCondition_Activity extends AppCompatActivity {
                 case 3: {
                     TalentCondition_TextView.setText("재능 재등록을 진행해야 회원님의 재능이 활성화 됩니다.");
                     TalentCondition_Button1.setText("재능드림 재등록");
+                    final AlertDialog.Builder AlarmReregist = new AlertDialog.Builder(TalentCondition_Activity.this);
+                    TalentCondition_Button1.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            AlarmReregist.setMessage("재등록 하시겠습니까?")
+                                    .setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            Toast.makeText(mContext, "확인 클림 됨", Toast.LENGTH_SHORT).show();
+                                            reRegistTalent();
+                                            dialog.cancel();
+                                        }
+                                    })
+                                    .setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            Toast.makeText(mContext, "취소 클림 됨", Toast.LENGTH_SHORT).show();
+                                            dialog.cancel();
+                                        }
+                                    });
+                            AlertDialog alertDialog = AlarmReregist.create();
+                            alertDialog.show();
+                        }
+                    });
                     TrashView.setVisibility(GONE);
                     TalentCondition_Button2.setText("재능드림 수정하기");
+                    TalentCondition_Button2.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent i = new Intent(mContext, TalentResister_Activity.class);
+                            startActivity(i);
+                        }
+                    });
                     TalentCondition_Button1.setVisibility(View.VISIBLE);
                     TalentCondition_Button2.setVisibility(View.VISIBLE);
                     TalentCondition_PictureLL.setVisibility(View.GONE);
@@ -421,6 +453,39 @@ public class TalentCondition_Activity extends AppCompatActivity {
                     TalentCondition_TextView.setText("재능 재등록을 진행해야 회원님의 재능이 활성화 됩니다.");
                     TalentCondition_Button1.setText("관심재능 재등록");
                     TalentCondition_Button2.setText("관심재능 수정하기");
+                    final AlertDialog.Builder AlarmReregist = new AlertDialog.Builder(TalentCondition_Activity.this);
+                    TalentCondition_Button1.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            AlarmReregist.setMessage("재등록 하시겠습니까?")
+                                    .setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            Toast.makeText(mContext, "확인 클림 됨", Toast.LENGTH_SHORT).show();
+                                            reRegistTalent();
+                                            dialog.cancel();
+                                        }
+                                    })
+                                    .setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            Toast.makeText(mContext, "취소 클림 됨", Toast.LENGTH_SHORT).show();
+                                            dialog.cancel();
+                                        }
+                                    });
+                            AlertDialog alertDialog = AlarmReregist.create();
+                            alertDialog.show();
+                        }
+                    });
+                    TrashView.setVisibility(GONE);
+                    TalentCondition_Button2.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent i = new Intent(mContext, TalentResister_Activity.class);
+                            i.putExtra("TalentFlag", false);
+                            startActivity(i);
+                        }
+                    });
                     TalentCondition_Button1.setVisibility(View.VISIBLE);
                     TalentCondition_Button2.setVisibility(View.VISIBLE);
                     TalentCondition_PictureLL.setVisibility(View.GONE);
@@ -444,7 +509,7 @@ public class TalentCondition_Activity extends AppCompatActivity {
                     JSONArray obj = new JSONArray(response);
                     for (int index = 0; index < obj.length(); index++) {
                         JSONObject o = obj.getJSONObject(index);
-                        Log.d("kkkkk", o.toString());
+
                         if(o.getString("TALENT_FLAG").equals("Y")){
                             TalentCondition_Give_Registed = true;
                             String status = o.getString("STATUS_FLAG");
@@ -481,7 +546,7 @@ public class TalentCondition_Activity extends AppCompatActivity {
                             }
                         }
                     }
-                    Log.d("LOG >>>>" , TalentCondition_Give_Registed + ", " + GiveTalentConditionCode + ", " + TalentCondition_Take_Registed + ", " + TakeTalentConditionCode);
+
                     if(flag.equals("Give"))
                         TalentCondition_Give_Registed(TalentCondition_Give_Registed,GiveTalentConditionCode);
                     else
@@ -592,6 +657,70 @@ public class TalentCondition_Activity extends AppCompatActivity {
 
                     }else{
 
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                NetworkResponse response = error.networkResponse;
+                if (error instanceof ServerError && response != null) {
+                    try {
+                        String res = new String(response.data,
+                                HttpHeaderParser.parseCharset(response.headers, "utf-8"));
+                        // Now you can use any deserializer to make sense of data
+                        Log.d("res", res);
+
+                        JSONObject obj = new JSONObject(res);
+                    } catch (UnsupportedEncodingException e1) {
+                        // Couldn't properly decode data to string
+                        e1.printStackTrace();
+                    } catch (JSONException e2) {
+                        // returned data is not JSONObject?
+                        e2.printStackTrace();
+                    }
+                }
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap();
+                TalentCondition_ShowTake = (Button) findViewById(R.id.TalentCondition_ShowTake);
+                params.put("talentID", ((String)TalentCondition_TakeorGiveTalent.getText()).equals("관심재능 : ") ? takeTalentID : giveTalentID);
+                return params;
+            }
+        };
+
+
+        postRequestQueue.add(postJsonRequest);
+
+    }
+
+    public void reRegistTalent() {
+        RequestQueue postRequestQueue = Volley.newRequestQueue(this);
+        StringRequest postJsonRequest = new StringRequest(Request.Method.POST, SaveSharedPreference.getServerIp() + "TalentSharing/reRegistTalent.do", new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+
+                    JSONObject obj = new JSONObject(response);
+                    if(obj.getString("result").equals("success")){
+                        if(((String)TalentCondition_TakeorGiveTalent.getText()).equals("관심재능 : "))
+                        {
+                            MyTalent mt = SaveSharedPreference.getGiveTalentData(mContext);
+                            mt.setTalentID(obj.getString("talentID"));
+                            SaveSharedPreference.setGiveTalentData(mContext, mt);
+                        }
+                    }else{
+                        if(!((String)TalentCondition_TakeorGiveTalent.getText()).equals("관심재능 : "))
+                        {
+                            MyTalent mt = SaveSharedPreference.getTakeTalentData(mContext);
+                            mt.setTalentID(obj.getString("talentID"));
+                            SaveSharedPreference.setTakeTalentData(mContext, mt);
+                        }
                     }
 
                 } catch (JSONException e) {
