@@ -47,7 +47,7 @@
 
     <dimen name="Introduction">11dp</dimen>
 
-    <dimen name="LogIn_Title">30dp</dimen>
+    <dimen name="LogIn_Title">10dp</dimen>
     <dimen name="LogIn_Edit_Hint">12.5dp</dimen>
     <dimen name="LogIn_PageTxt">12.5dp</dimen>
     <dimen name="LogIn_SmallBtn">12.5dp</dimen>

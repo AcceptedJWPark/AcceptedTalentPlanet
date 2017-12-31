@@ -17,6 +17,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.accepted.acceptedtalentplanet.Alarm.Alarm_Activity;
 import com.example.accepted.acceptedtalentplanet.CustomerService.CustomerService_MainActivity;
@@ -317,6 +318,7 @@ public class SaveSharedPreference{
 
             case R.id.SlidingMenu_LogOut : {
                 clearUserInfo(mContext);
+                Toast.makeText(mContext,"클릭됨",Toast.LENGTH_SHORT).show();
                 i = new Intent(mContext, Login_Activity.class);
                 mContext.startActivity(i);
                 ((Activity)mContext).finish();

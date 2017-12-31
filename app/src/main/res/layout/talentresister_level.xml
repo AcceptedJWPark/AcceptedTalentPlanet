@@ -30,7 +30,7 @@
             android:text="&quot;아래 재능에 대한 본인의 수준을 선택해주세요.&quot;"
             android:layout_gravity="center_horizontal"
             android:textColor="@color/textColor"
-            android:textSize="13dp"
+            android:textSize="@dimen/Page_Txt"
             />
 
     </LinearLayout>
@@ -214,7 +214,7 @@
         android:background="@drawable/big_button_background"
         android:onClick="goNext"
         android:text="다 음"
-        android:textSize="14dp"
+        android:textSize="@dimen/BigBtn"
         android:textAllCaps="false"
         android:textStyle="bold"
         android:textColor="@color/textColor" />

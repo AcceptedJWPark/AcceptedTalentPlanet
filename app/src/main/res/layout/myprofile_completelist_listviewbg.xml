@@ -38,26 +38,13 @@
                     android:textSize="@dimen/List_Title"
                     android:textStyle="bold" />
 
-                <TextView
-                    android:id="@+id/CompleteList_Point"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:text="-200P"
-                    android:textSize="@dimen/BigBtn"
-                    android:gravity="center"
-                    android:textStyle="bold"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:textColor="#ff006a"
-                    android:background="@drawable/nobackground"
-                    >
-                </TextView>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:ellipsize="end"
                     android:lines="1"
+                    android:layout_marginLeft="10dp"
                     android:text="완료 일자 : "
                     android:textSize="@dimen/ListView_SecondLine" />
 
@@ -69,6 +56,22 @@
                     android:lines="1"
                     android:text="2017.11.03 16:24"
                     android:textSize="@dimen/ListView_SecondLine" />
+
+                <TextView
+                    android:id="@+id/CompleteList_Point"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="-200P"
+                    android:textSize="@dimen/ListView_SecondLine"
+                    android:gravity="center"
+                    android:textStyle="bold"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:textColor="#0077ff"
+                    android:background="@drawable/nobackground"
+                    >
+                </TextView>
+
 
 
             </LinearLayout>
