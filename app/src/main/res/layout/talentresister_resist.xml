@@ -85,6 +85,19 @@
             </LinearLayout>
 
         <TextView
+            android:id="@+id/TalentResister_MainTextView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1.7"
+            android:gravity="center"
+            android:textSize="@dimen/Page_Txt"
+            android:visibility="gone"
+            android:textStyle="bold"
+            android:textColor="@color/textColor"
+            android:text="&quot;회원님의 재능을 공유해주세요!&quot;" />
+
+
+        <TextView
             android:id="@+id/TalentResister_NoTalent_TextView"
             android:layout_width="match_parent"
             android:layout_height="0dp"

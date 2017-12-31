@@ -91,7 +91,7 @@ public class SaveSharedPreference{
     }
 
     public static String getServerIp(){
-        return SERVER_IP;
+        return SERVER_IP2;
     }
 
     public static String getLevel(String Level) {
@@ -318,6 +318,7 @@ public class SaveSharedPreference{
 
             case R.id.SlidingMenu_LogOut : {
                 clearUserInfo(mContext);
+                Toast.makeText(mContext,"클릭됨",Toast.LENGTH_SHORT).show();
                 i = new Intent(mContext, Login_Activity.class);
                 mContext.startActivity(i);
                 ((Activity)mContext).finish();
