@@ -197,7 +197,14 @@ public class TalentResister_Location_Activity extends AppCompatActivity {
     }
 
 
+
+    //TODO: 장소 3개 입력이 안되면 오류 발생, 1개 이상 입력되면 넘어가야함
     public void goNext(View v){
+
+        if(location_ArrayList.size() < 1){
+            Toast.makeText(getApplicationContext(), "장소 1개 이상 필수 입력입니다.", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
         Location1 = location_ArrayList.get(0);
         Location2 = location_ArrayList.get(1);

@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -66,6 +67,8 @@ public class MyProfile_Activity extends AppCompatActivity {
     LinearLayout myProfile_List_LL8;
 
     EditText MyProfile_Job;
+
+    Button MyProfile_Save;
 
     ImageView MyProfile_CompleteList_Open;
 
@@ -184,6 +187,14 @@ public class MyProfile_Activity extends AppCompatActivity {
             }
         });
 
+        MyProfile_Save = (Button)findViewById(R.id.MyProfile_Save);
+        MyProfile_Save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                saveMyProfile();
+            }
+        });
+
 
         }
 
@@ -243,6 +254,56 @@ public class MyProfile_Activity extends AppCompatActivity {
             protected Map<String, String> getParams(){
                 Map<String, String> params = new HashMap();
                 params.put("userID", SaveSharedPreference.getUserId(mContext));
+                return params;
+            }
+        };
+
+        postRequestQueue.add(postJsonRequest);
+    }
+
+    public void saveMyProfile(){
+        RequestQueue postRequestQueue = Volley.newRequestQueue(this);
+        StringRequest postJsonRequest = new StringRequest(Request.Method.POST, SaveSharedPreference.getServerIp() + "Profile/saveMyProfileInfo.do", new Response.Listener<String>(){
+            @Override
+            public void onResponse(String response){
+                try {
+                    JSONObject obj = new JSONObject(response);
+                    Log.d("result = ", obj.toString());
+
+                }
+                catch(JSONException e){
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener(){
+            @Override
+            public void onErrorResponse(VolleyError error){
+                NetworkResponse response = error.networkResponse;
+                if (error instanceof ServerError && response != null) {
+                    try {
+                        String res = new String(response.data,
+                                HttpHeaderParser.parseCharset(response.headers, "utf-8"));
+                        // Now you can use any deserializer to make sense of data
+                        Log.d("res", res);
+
+                        JSONObject obj = new JSONObject(res);
+                    } catch (UnsupportedEncodingException e1) {
+                        // Couldn't properly decode data to string
+                        e1.printStackTrace();
+                    } catch (JSONException e2) {
+                        // returned data is not JSONObject?
+                        e2.printStackTrace();
+                    }
+                }
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams(){
+                Map<String, String> params = new HashMap();
+                MyProfile_Job = (EditText)findViewById(R.id.MyProfile_Job);
+
+                params.put("userID", SaveSharedPreference.getUserId(mContext));
+                params.put("job", MyProfile_Job.getText().toString());
                 return params;
             }
         };

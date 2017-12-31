@@ -7,15 +7,28 @@ import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.android.volley.NetworkResponse;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.ServerError;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.HttpHeaderParser;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.accepted.acceptedtalentplanet.Alarm.Alarm_Activity;
 import com.example.accepted.acceptedtalentplanet.CustomerService.CustomerService_MainActivity;
 import com.example.accepted.acceptedtalentplanet.FriendList.FriendList_Activity;
+import com.example.accepted.acceptedtalentplanet.InterestingList.InterestingList_ListAdapter;
+import com.example.accepted.acceptedtalentplanet.InterestingList.InterestingList_ListItem;
 import com.example.accepted.acceptedtalentplanet.LoadingLogin.Login_Activity;
 import com.example.accepted.acceptedtalentplanet.MyProfile.MyProfile_Activity;
 import com.example.accepted.acceptedtalentplanet.MyTalent;
@@ -26,6 +39,14 @@ import com.example.accepted.acceptedtalentplanet.System.System_Activity;
 import com.example.accepted.acceptedtalentplanet.TalentCondition.TalentCondition_Activity;
 import com.example.accepted.acceptedtalentplanet.TalentSearching.TalentSearching_Activity;
 import com.example.accepted.acceptedtalentplanet.TalentSharing.TalentSharing_Activity;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.UnsupportedEncodingException;
+import java.util.HashMap;
+import java.util.Map;
 
 import static com.example.accepted.acceptedtalentplanet.SaveSharedPreference.DrawerLayout_ClickEvent;
 import static com.example.accepted.acceptedtalentplanet.SaveSharedPreference.DrawerLayout_Open;
@@ -166,7 +187,7 @@ public class TalentResister_Activity extends AppCompatActivity {
 
         drawerView = (View) findViewById(R.id.TalentResister_container1);
 
-
+        getTalentStatus();
 
     }
 
@@ -253,16 +274,85 @@ public class TalentResister_Activity extends AppCompatActivity {
         if(TalentFlag) {
             i.putExtra("HavingDataFlag", TalentResister_Give);
             if (TalentResister_Give) {
+                if(TalentGive.getStatus() != null && TalentGive.getStatus().equals("M")){
+                    Toast.makeText(getApplicationContext(), "재능공유 중에는 수정할 수 없습니다.", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 i.putExtra("Data", TalentGive);
             }
+
         }else{
             i.putExtra("HavingDataFlag", TalentResister_Take);
             if(TalentResister_Take){
+                if(TalentTake.getStatus() != null && TalentTake.getStatus().equals("M")){
+                    Toast.makeText(getApplicationContext(), "재능공유 중에는 수정할 수 없습니다.", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 i.putExtra("Data", TalentTake);
             }
         }
 
         startActivity(i);
+    }
+
+    public void getTalentStatus() {
+        RequestQueue postRequestQueue = Volley.newRequestQueue(this);
+        StringRequest postJsonRequest = new StringRequest(Request.Method.POST, SaveSharedPreference.getServerIp() + "TalentRegist/getTalentStatus.do", new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+
+                    JSONArray obj = new JSONArray(response);
+
+                    for (int index = 0; index < obj.length(); index++) {
+                        JSONObject o = obj.getJSONObject(index);
+                        if(o.getString("TALENT_FLAG").equals("Y")){
+                            TalentGive.setStatus(o.getString("STATUS_FLAG"));
+                        }else{
+                            TalentTake.setStatus(o.getString("STATUS_FLAG"));
+                        }
+
+                    }
+
+
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                NetworkResponse response = error.networkResponse;
+                if (error instanceof ServerError && response != null) {
+                    try {
+                        String res = new String(response.data,
+                                HttpHeaderParser.parseCharset(response.headers, "utf-8"));
+                        // Now you can use any deserializer to make sense of data
+                        Log.d("res", res);
+
+                        JSONArray obj = new JSONArray(res);
+                    } catch (UnsupportedEncodingException e1) {
+                        // Couldn't properly decode data to string
+                        e1.printStackTrace();
+                    } catch (JSONException e2) {
+                        // returned data is not JSONObject?
+                        e2.printStackTrace();
+                    }
+                }
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap();
+                params.put("userID", SaveSharedPreference.getUserId(mContext));
+                return params;
+            }
+        };
+
+
+        postRequestQueue.add(postJsonRequest);
+
     }
 
 
