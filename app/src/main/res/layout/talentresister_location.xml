@@ -17,17 +17,15 @@
         android:id="@+id/TalentResister_Location_Txt_LL"
         android:layout_width="match_parent"
         android:layout_height="50dp"
+        android:gravity="center_vertical"
         android:orientation="vertical"
         >
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.3"/>
 
         <TextView
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:layout_weight="1"
+            android:layout_gravity="center_horizontal"
             android:text="&quot;희망 재능 공유 장소를 입력해주세요. &quot;(최대 3개 입력)"
             android:textColor="@color/textColor"
             android:textStyle="bold"
@@ -36,7 +34,7 @@
             />
 
         <TextView
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:layout_weight="0.8"
             android:gravity="center"
@@ -56,7 +54,6 @@
         android:layout_height="50dp"
         android:gravity="center"
         android:orientation="horizontal"
-        android:padding="5dp"
         android:layout_marginLeft="70dp"
         android:layout_marginRight="70dp"
         >

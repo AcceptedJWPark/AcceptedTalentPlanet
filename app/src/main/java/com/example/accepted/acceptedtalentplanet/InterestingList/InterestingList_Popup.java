@@ -1,5 +1,6 @@
 package com.example.accepted.acceptedtalentplanet.InterestingList;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Color;
@@ -55,9 +56,12 @@ public class InterestingList_Popup extends FragmentActivity {
     boolean sendFlag = true;
     boolean talentFlag = true;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
 
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.interestinglist_popup);
@@ -122,13 +126,12 @@ public class InterestingList_Popup extends FragmentActivity {
             Popup_ProgressorCancel.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
+                    float textSize = getResources().getDimension(R.dimen.DialogTxtSize);
                     ProgressorCancelPopup.setMessage("재능 진행 또는 관심 취소를 진행해주세요!")
                             .setPositiveButton("진행하기", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
                                     doSharingTalent(talentID);
-
                                     Toast.makeText(mContext, "진행 하기 클릭", Toast.LENGTH_SHORT).show();
                                     dialog.cancel();
                                 }
@@ -143,6 +146,8 @@ public class InterestingList_Popup extends FragmentActivity {
 
                     AlertDialog alertDialog = ProgressorCancelPopup.create();
                     alertDialog.show();
+                    TextView msgView = (TextView) alertDialog.findViewById(android.R.id.message);
+                    msgView.setTextSize(textSize);
                 }
             });
         }

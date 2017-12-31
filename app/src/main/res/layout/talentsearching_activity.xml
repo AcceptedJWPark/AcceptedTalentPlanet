@@ -55,10 +55,9 @@
             android:gravity="center"
             android:text="재능드림 보기"
             android:layout_marginRight="5dp"
-            android:layout_marginLeft="10dp"
             android:textColor="@color/textColor"
             android:background="@drawable/small_button_graybackground"
-            android:textSize="13dp"
+            android:textSize="@dimen/GiveorTakeBtn"
             android:textStyle="bold"
             />
 
@@ -68,12 +67,11 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:layout_marginLeft="5dp"
-            android:layout_marginRight="10dp"
             android:gravity="center"
             android:text="관심재능 보기"
             android:textColor="#d2d2d2"
             android:background="@drawable/small_button_whitebackground"
-            android:textSize="13dp"
+            android:textSize="@dimen/GiveorTakeBtn"
             android:textStyle="bold"
             />
 

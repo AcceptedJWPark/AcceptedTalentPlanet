@@ -19,14 +19,9 @@
         android:id="@+id/TalentResister_Talent_Txt_LL"
         android:layout_width="match_parent"
         android:layout_height="50dp"
+        android:gravity="center_vertical"
         android:orientation="vertical"
         >
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.3"/>
-
 
         <TextView
             android:layout_width="wrap_content"
@@ -42,10 +37,10 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="0dp"
-            android:layout_weight="1"
+            android:layout_weight="0.8"
+            android:gravity="center"
             android:text="Ex) 기타,  기타 연주,  기타 독학"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="5dp"
             android:textSize="@dimen/Page_Txt_Example"
             />
 
@@ -60,7 +55,6 @@
         android:layout_height="50dp"
         android:gravity="center"
         android:orientation="horizontal"
-        android:padding="5dp"
         android:layout_marginLeft="80dp"
         android:layout_marginRight="80dp"
         >
@@ -115,15 +109,11 @@
             android:layout_marginRight="80dp"
             android:dividerHeight="0dp"
             android:divider="#ffffff"
+            android:layout_marginBottom="5dp"
             >
         </ListView>
 
 
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.5"/>
     <Button
         android:id="@+id/TalentResister_Talent_Btn"
         android:layout_width="match_parent"

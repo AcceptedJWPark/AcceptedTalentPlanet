@@ -103,6 +103,7 @@ public class Alarm_Adapter extends BaseAdapter {
             public void onClick(View v) {
 
         AlertDialog.Builder AlarmDeleteDialog = new AlertDialog.Builder(mContext);
+        float textSize = mContext.getResources().getDimension(R.dimen.DialogTxtSize);
         AlarmDeleteDialog.setMessage("알람을 삭제 하시겠습니까?")
         .setPositiveButton("삭제", new DialogInterface.OnClickListener() {
             @Override
@@ -120,6 +121,8 @@ public class Alarm_Adapter extends BaseAdapter {
                 });
                 AlertDialog alertDialog = AlarmDeleteDialog.create();
                 alertDialog.show();
+                TextView msgView = (TextView) alertDialog.findViewById(android.R.id.message);
+                msgView.setTextSize(textSize);
             }
         });
 

@@ -13,7 +13,7 @@
     <dimen name="GiveorTakeBtn">10.625dp</dimen>
     <dimen name="Edit_Hint">9.35dp</dimen>
     <dimen name="CheckBox_Txt">9.775dp</dimen>
-    <dimen name="BigBtn">11.475dp</dimen>
+    <dimen name="BigBtn">11.05dp</dimen>
     <dimen name="Popup_ItemTitle">9.775dp</dimen>
     <dimen name="Popup_ItemSubTitle">8.925dp</dimen>
     <dimen name="Popup_Txt">9.775dp</dimen>
@@ -31,7 +31,7 @@
     <dimen name="TalentResister_SpinnerTxt">10.2dp</dimen>
     <dimen name="Page_ItemTitle">10.625dp</dimen>
     <dimen name="Page_ItemSubTitle">9.775dp</dimen>
-    <dimen name="Page_Txt">10.625dp</dimen>
+    <dimen name="Page_Txt">10.2dp</dimen>
     <dimen name="Page_Txt_BelowPicture">8.5dp</dimen>
     <dimen name="Page_Txt_Example">9.775dp</dimen>
     <dimen name="Introduction">9.35dp</dimen>
@@ -57,6 +57,8 @@
     <dimen name="TalentSharing_BtnLayout">25.5dp</dimen>
     <dimen name="TalentSharing_ListLayout2">42.5dp</dimen>
 
+
+    <dimen name="DialogTxtSize">6dp</dimen>
 
 
 </resources>

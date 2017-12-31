@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.view.ContextThemeWrapper;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -133,15 +134,20 @@ public class System_Activity extends AppCompatActivity {
         });
 
         //TODO:휴면 계정 등록 → 등록 된 재능 미등록 처리, 계정 활성화 → 재능 등록 다이얼로그 띄우기
+        //TODO:휴면 계정일 경우 로그인 시 계정활성화 쪽으로 화면 이동
+
+
         System_UseorNot = true;
 
         System_NouseAccount = (LinearLayout) findViewById(R.id.System_NouseAccount);
+
         System_NouseAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 AlertDialog.Builder AlarmDeleteDialog = new AlertDialog.Builder(System_Activity.this);
+                float textSize = getResources().getDimension(R.dimen.DialogTxtSize);
                 if (System_UseorNot) {
-                    AlarmDeleteDialog.setMessage("회원님이 등록하신 재능은 미등록 처리 됩니다.\n휴면 계정으로 등록 하시겠습니까?")
+                    AlarmDeleteDialog.setMessage("회원님이 등록하신 재능은 미등록 처리 됩니다.\n\n휴면 계정으로 등록 하시겠습니까?")
                             .setPositiveButton("확인", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
@@ -159,6 +165,8 @@ public class System_Activity extends AppCompatActivity {
                             });
                     AlertDialog alertDialog = AlarmDeleteDialog.create();
                     alertDialog.show();
+                    TextView msgView = (TextView) alertDialog.findViewById(android.R.id.message);
+                    msgView.setTextSize(textSize);
                 } else {
                     AlarmDeleteDialog.setMessage("계정을 활성화 하시겠습니까?")
                             .setPositiveButton("확인", new DialogInterface.OnClickListener() {
@@ -178,6 +186,8 @@ public class System_Activity extends AppCompatActivity {
                             });
                     AlertDialog alertDialog = AlarmDeleteDialog.create();
                     alertDialog.show();
+                    TextView msgView = (TextView) alertDialog.findViewById(android.R.id.message);
+                    msgView.setTextSize(textSize);
                 }
             }
         });
