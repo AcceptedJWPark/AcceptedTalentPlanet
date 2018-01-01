@@ -726,15 +726,15 @@ public class TalentCondition_Activity extends AppCompatActivity {
 
                         if(((String)TalentCondition_TakeorGiveTalent.getText()).equals("관심재능 : "))
                         {
-                            MyTalent mt = SaveSharedPreference.getGiveTalentData(mContext);
-                            mt.setTalentID(obj.getString("talentID"));
-                            SaveSharedPreference.setGiveTalentData(mContext, mt);
-                        }
-                        else
-                        {
                             MyTalent mt = SaveSharedPreference.getTakeTalentData(mContext);
                             mt.setTalentID(obj.getString("talentID"));
                             SaveSharedPreference.setTakeTalentData(mContext, mt);
+                        }
+                        else
+                        {
+                            MyTalent mt = SaveSharedPreference.getGiveTalentData(mContext);
+                            mt.setTalentID(obj.getString("talentID"));
+                            SaveSharedPreference.setGiveTalentData(mContext, mt);
                         }
                     }
 
