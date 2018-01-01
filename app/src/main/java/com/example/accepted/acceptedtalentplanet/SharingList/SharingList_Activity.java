@@ -179,9 +179,11 @@ public class SharingList_Activity extends AppCompatActivity {
                         JSONObject o = obj.getJSONObject(index);
 
                         SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy.MM.dd hh:mm", Locale.ENGLISH);
-                        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+                        Log.d("date = ", o.getString("CREATION_DATE"));
                         ParsePosition pos = new ParsePosition(0);
-                        Date date = sdf.parse(o.getString("CREATION_DATE"), pos);
+
+                        Date date = new java.sql.Date(Long.parseLong(o.getString("CREATION_DATE")));
                         String dateStr = sdf2.format(date);
 
                         int TalentType = (o.getString("TALENT_FLAG").equals("Y"))?2: 1;
@@ -203,6 +205,8 @@ public class SharingList_Activity extends AppCompatActivity {
                     SharingList_ListView_Give.setAdapter(SharingList_Adapter1);
 
                 } catch (JSONException e) {
+                    e.printStackTrace();
+                } catch(Exception e){
                     e.printStackTrace();
                 }
             }

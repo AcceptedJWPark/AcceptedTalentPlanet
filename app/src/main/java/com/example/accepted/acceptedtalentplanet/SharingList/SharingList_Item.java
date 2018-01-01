@@ -41,6 +41,8 @@ public class SharingList_Item {
     public String getTalentID(){
         return TalentID;
     }
+    public int getTalentType_CODE(){return this.TalentType_CODE;}
+
 
     public void setTalentType_CODE(int TalentType_CODE) {
         this.TalentType_CODE = TalentType_CODE;
