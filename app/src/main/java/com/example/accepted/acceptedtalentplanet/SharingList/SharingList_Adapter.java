@@ -133,8 +133,9 @@ public class SharingList_Adapter extends BaseAdapter{
                             case 1:
 
                                 Intent i = new Intent(context, TalentSharing_Popup_Activity.class);
-
+                                String str = (list_ArrayList.get(position).getTalentType_CODE() == 1) ? "Give": "Take";
                                 i.putExtra("TalentID", list_ArrayList.get(position).getTalentID());
+                                i.putExtra("TalentFlag", str);
                                 context.startActivity(i);
                                 break;
 
