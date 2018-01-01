@@ -274,6 +274,9 @@ public class TalentCondition_Activity extends AppCompatActivity {
                                             Toast.makeText(mContext, "확인 클림 됨", Toast.LENGTH_SHORT).show();
                                             cancelSharingTalent();
                                             dialog.cancel();
+                                            Intent i = new Intent(TalentCondition_Activity.this, TalentCondition_Activity.class);
+                                            i.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                                            startActivity(i);
                                         }
                                     })
                                     .setNegativeButton("취소", new DialogInterface.OnClickListener() {
@@ -305,6 +308,9 @@ public class TalentCondition_Activity extends AppCompatActivity {
                                             Toast.makeText(mContext, "확인 클림 됨", Toast.LENGTH_SHORT).show();
                                             reRegistTalent();
                                             dialog.cancel();
+                                            Intent i = new Intent(TalentCondition_Activity.this, TalentCondition_Activity.class);
+                                            i.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                                            startActivity(i);
                                         }
                                     })
                                     .setNegativeButton("취소", new DialogInterface.OnClickListener() {
@@ -411,6 +417,9 @@ public class TalentCondition_Activity extends AppCompatActivity {
                                             completeSharingTalent();
                                             Toast.makeText(mContext, "확인 클림 됨", Toast.LENGTH_SHORT).show();
                                             dialog.cancel();
+                                            Intent i = new Intent(TalentCondition_Activity.this, TalentCondition_Activity.class);
+                                            i.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                                            startActivity(i);
                                         }
                                     })
                                     .setNegativeButton("취소", new DialogInterface.OnClickListener() {
@@ -434,6 +443,9 @@ public class TalentCondition_Activity extends AppCompatActivity {
                                             Toast.makeText(mContext, "확인 클림 됨", Toast.LENGTH_SHORT).show();
                                             cancelSharingTalent();
                                             dialog.cancel();
+                                            Intent i = new Intent(TalentCondition_Activity.this, TalentCondition_Activity.class);
+                                            i.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                                            startActivity(i);
                                         }
                                     })
                                     .setNegativeButton("취소", new DialogInterface.OnClickListener() {
@@ -464,6 +476,9 @@ public class TalentCondition_Activity extends AppCompatActivity {
                                             Toast.makeText(mContext, "확인 클림 됨", Toast.LENGTH_SHORT).show();
                                             reRegistTalent();
                                             dialog.cancel();
+                                            Intent i = new Intent(TalentCondition_Activity.this, TalentCondition_Activity.class);
+                                            i.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                                            startActivity(i);
                                         }
                                     })
                                     .setNegativeButton("취소", new DialogInterface.OnClickListener() {
@@ -708,7 +723,7 @@ public class TalentCondition_Activity extends AppCompatActivity {
 
                     JSONObject obj = new JSONObject(response);
                     if(obj.getString("result").equals("success")){
-                        Log.d("재등록 아이디", obj.getString("talentID"));
+
                         if(((String)TalentCondition_TakeorGiveTalent.getText()).equals("관심재능 : "))
                         {
                             MyTalent mt = SaveSharedPreference.getGiveTalentData(mContext);

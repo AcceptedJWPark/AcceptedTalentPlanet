@@ -32,6 +32,7 @@ import com.example.accepted.acceptedtalentplanet.LoadingLogin.Login_Activity;
 import com.example.accepted.acceptedtalentplanet.MyProfileData;
 import com.example.accepted.acceptedtalentplanet.R;
 import com.example.accepted.acceptedtalentplanet.SaveSharedPreference;
+import com.example.accepted.acceptedtalentplanet.TalentResister.TalentResister_Activity;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -209,6 +210,32 @@ public class MyProfile_Activity extends AppCompatActivity {
         });
 
 
+
+
+        View.OnClickListener listener_give = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(mContext, TalentResister_Activity.class);
+                i.putExtra("GiveFlag", true);
+                startActivity(i);
+            }
+        };
+
+        View.OnClickListener listener_take = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(mContext, TalentResister_Activity.class);
+                i.putExtra("GiveFlag", false);
+                startActivity(i);
+            }
+        };
+
+        ((TextView)findViewById(R.id.MyProfile_GiveTalent1)).setOnClickListener(listener_give);
+        ((TextView)findViewById(R.id.MyProfile_GiveTalent2)).setOnClickListener(listener_give);
+        ((TextView)findViewById(R.id.MyProfile_GiveTalent3)).setOnClickListener(listener_give);
+        ((TextView)findViewById(R.id.MyProfile_TakeTalent1)).setOnClickListener(listener_take);
+        ((TextView)findViewById(R.id.MyProfile_TakeTalent2)).setOnClickListener(listener_take);
+        ((TextView)findViewById(R.id.MyProfile_TakeTalent3)).setOnClickListener(listener_take);
         }
 
 

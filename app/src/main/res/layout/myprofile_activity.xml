@@ -416,7 +416,6 @@
                             android:layout_gravity="bottom"
                             android:layout_weight="1"
                             android:gravity="left"
-
                             android:text="Guitar"
                             android:textColor="@color/textColor"
                             android:textSize="@dimen/List_SubTitle"
@@ -431,7 +430,6 @@
                             android:layout_gravity="bottom"
                             android:layout_weight="1"
                             android:gravity="left"
-
                             android:text="Piano"
                             android:textColor="@color/textColor"
                             android:textSize="@dimen/List_SubTitle"
@@ -446,7 +444,6 @@
                             android:layout_gravity="bottom"
                             android:layout_weight="1"
                             android:gravity="left"
-
                             android:text="Drum"
                             android:textColor="@color/textColor"
                             android:textSize="@dimen/List_SubTitle"

@@ -3,6 +3,7 @@ package com.example.accepted.acceptedtalentplanet.InterestingList;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
@@ -29,6 +30,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.accepted.acceptedtalentplanet.R;
 import com.example.accepted.acceptedtalentplanet.SaveSharedPreference;
+import com.example.accepted.acceptedtalentplanet.TalentCondition.TalentCondition_Activity;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -119,8 +121,38 @@ public class InterestingList_Popup extends FragmentActivity {
         final AlertDialog.Builder ProgressorCancelPopup = new AlertDialog.Builder(this);
 
         if (sendFlag) {
-            Popup_ProgressorCancel.setTextColor(Color.parseColor("#d2d2d2"));
-            Popup_ProgressorCancel.setOnClickListener(null);
+            //Popup_ProgressorCancel.setTextColor(Color.parseColor("#d2d2d2"));
+            Popup_ProgressorCancel.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    float textSize = getResources().getDimension(R.dimen.DialogTxtSize);
+                    ProgressorCancelPopup.setMessage("관심을 취소하시겠습니까?")
+                            .setPositiveButton("관심취소", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    removeInteresting(talentID);
+                                    Toast.makeText(mContext, "관심 취소 완료", Toast.LENGTH_SHORT).show();
+                                    dialog.cancel();
+                                    Intent i = new Intent(getBaseContext(), TalentCondition_Activity.class);
+                                    i.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                                    startActivity(i);
+                                }
+                            })
+                            .setNegativeButton("닫기", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    Toast.makeText(mContext, "취소 하기 클릭", Toast.LENGTH_SHORT).show();
+                                    dialog.cancel();
+                                }
+                            });
+
+                    AlertDialog alertDialog = ProgressorCancelPopup.create();
+                    alertDialog.show();
+                    TextView msgView = (TextView) alertDialog.findViewById(android.R.id.message);
+                    msgView.setTextSize(textSize);
+                }
+            });
+            Popup_ProgressorCancel.setText("관심 취소");
         } else {
 
             Popup_ProgressorCancel.setOnClickListener(new View.OnClickListener() {
@@ -134,6 +166,9 @@ public class InterestingList_Popup extends FragmentActivity {
                                     doSharingTalent(talentID);
                                     Toast.makeText(mContext, "진행 하기 클릭", Toast.LENGTH_SHORT).show();
                                     dialog.cancel();
+                                    Intent i = new Intent(getBaseContext(), TalentCondition_Activity.class);
+                                    i.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                                    startActivity(i);
                                 }
                             })
                             .setNegativeButton("취소하기", new DialogInterface.OnClickListener() {
@@ -235,6 +270,78 @@ public class InterestingList_Popup extends FragmentActivity {
 
         RequestQueue postRequestQueue = Volley.newRequestQueue(this);
         StringRequest postJsonRequest = new StringRequest(Request.Method.POST, SaveSharedPreference.getServerIp() + "TalentSharing/doSharingTalent.do", new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONObject obj = new JSONObject(response);
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                NetworkResponse response = error.networkResponse;
+                if (error instanceof ServerError && response != null) {
+                    try {
+                        String res = new String(response.data,
+                                HttpHeaderParser.parseCharset(response.headers, "utf-8"));
+                        // Now you can use any deserializer to make sense of data
+                        Log.d("res", res);
+
+                        JSONObject obj = new JSONObject(res);
+                    } catch (UnsupportedEncodingException e1) {
+                        // Couldn't properly decode data to string
+                        e1.printStackTrace();
+                    } catch (JSONException e2) {
+                        // returned data is not JSONObject?
+                        e2.printStackTrace();
+                    }
+                }
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap();
+                String senderID;
+                String masterID;
+                if(sendFlag){
+                    if(talentFlag){
+                        senderID =  SaveSharedPreference.getTakeTalentData(mContext).getTalentID();
+
+
+                    }else{
+                        senderID = SaveSharedPreference.getGiveTalentData(mContext).getTalentID();
+                    }
+                }else{
+                    senderID = talentID;
+                }
+
+                if(sendFlag){
+                    masterID = talentID;
+                }else{
+                    if(talentFlag){
+                        masterID =  SaveSharedPreference.getTakeTalentData(mContext).getTalentID();
+                    }else{
+                        masterID = SaveSharedPreference.getGiveTalentData(mContext).getTalentID();
+                    }
+                }
+                params.put("senderID", senderID);
+                params.put("masterID", masterID);
+                return params;
+            }
+        };
+
+
+        postRequestQueue.add(postJsonRequest);
+
+    }
+
+    public void removeInteresting(final String talentID) {
+
+        RequestQueue postRequestQueue = Volley.newRequestQueue(this);
+        StringRequest postJsonRequest = new StringRequest(Request.Method.POST, SaveSharedPreference.getServerIp() + "Interest/removeInteresting.do", new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 try {
