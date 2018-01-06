@@ -34,8 +34,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@+id/preImg"
-            android:text="이름"
-            android:textSize="13dp"
+            android:text="E-mail"
+            android:textSize="@dimen/Toolbar_Pre_Txt"
             android:textStyle="bold"
             android:textColor="@color/textColor"
             android:id="@+id/textView" />

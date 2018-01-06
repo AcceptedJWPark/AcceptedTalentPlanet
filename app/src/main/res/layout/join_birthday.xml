@@ -111,6 +111,7 @@
             android:background="#ffffff"
             android:textSize="@dimen/CheckBox_Txt"
             android:textStyle="bold"
+            android:layout_marginLeft="5dp"
             />
     </LinearLayout>
 

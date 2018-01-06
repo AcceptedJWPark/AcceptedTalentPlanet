@@ -660,7 +660,15 @@ public class TalentCondition_Activity extends AppCompatActivity {
                     if(obj.getString("result").equals("success")){
                         Toast.makeText(mContext, "재능공유에 성공하였습니다.", Toast.LENGTH_SHORT).show();
                         int point = Integer.parseInt(obj.getString("point"));
+                        boolean talentFlag = ((String)TalentCondition_TakeorGiveTalent.getText()).equals("관심재능 : ") ? true : false;
+                        MyTalent mt = (talentFlag)?SaveSharedPreference.getGiveTalentData(mContext):SaveSharedPreference.getTakeTalentData(mContext);
 
+                        mt.setStatus("C");
+                        if(talentFlag){
+                            SaveSharedPreference.setGiveTalentData(mContext, mt);
+                        }else{
+                            SaveSharedPreference.setTakeTalentData(mContext, mt);
+                        }
                         SaveSharedPreference.setPrefTalentPoint(mContext, point);
                     }else{
 
