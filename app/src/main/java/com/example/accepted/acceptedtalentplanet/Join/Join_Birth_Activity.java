@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.android.volley.NetworkResponse;
@@ -62,6 +63,14 @@ public class Join_Birth_Activity extends  AppCompatActivity {
         pw = intent.getStringExtra("pw");
         name = intent.getStringExtra("name");
         gender = intent.getStringExtra("gender");
+
+        ((LinearLayout)findViewById(R.id.pre_LL)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
 
         birthYear = (EditText)findViewById(R.id.Join_Birth_Year);
         birthMonth = (EditText)findViewById(R.id.Join_Birth_Month);
