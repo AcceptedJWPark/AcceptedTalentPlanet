@@ -252,6 +252,7 @@ public class MyProfile_Activity extends AppCompatActivity {
                     String[] TalentTake = {obj.getString("T_TALENT1"), obj.getString("T_TALENT2"), obj.getString("T_TALENT3")};
                     myProfile.setMyProfile(obj.getString("USER_NAME"), Gender, obj.getString("USER_BIRTH"), obj.getString("JOB"), TalentGive, TalentTake);
                     Log.d("result", obj.toString());
+                    String point = obj.getString("TALENT_POINT") + "P";
                     ((TextView)findViewById(R.id.MyProfile_Email)).setText(SaveSharedPreference.getUserId(mContext));
                     ((TextView)findViewById(R.id.MyProfile_Name)).setText(myProfile.getUserName());
                     ((TextView)findViewById(R.id.MyProfile_Gender)).setText(myProfile.getGender());
@@ -263,6 +264,7 @@ public class MyProfile_Activity extends AppCompatActivity {
                     ((TextView)findViewById(R.id.MyProfile_TakeTalent1)).setText(TalentTake[0]);
                     ((TextView)findViewById(R.id.MyProfile_TakeTalent2)).setText(TalentTake[1]);
                     ((TextView)findViewById(R.id.MyProfile_TakeTalent3)).setText(TalentTake[2]);
+                    ((TextView)findViewById(R.id.MyProfile_TalentPoint)).setText(point);
                 }
                 catch(JSONException e){
                     e.printStackTrace();

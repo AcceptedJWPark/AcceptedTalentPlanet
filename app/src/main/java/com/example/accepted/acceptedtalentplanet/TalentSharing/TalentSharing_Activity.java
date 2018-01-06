@@ -211,12 +211,30 @@ public class TalentSharing_Activity extends AppCompatActivity {
             isGiveTalent = (((Button)v).getId() == R.id.TalentSharing_GiveCheck) ? true : false;
 
             if(isGiveTalent){
+                MyTalent mt = SaveSharedPreference.getGiveTalentData(mContext);
+
+                if(mt == null || mt.getTalentID() == null || mt.getStatus() == "C"){
+                    Toast.makeText(mContext, "재능 기부 등록을 먼저 진행해주세요.", Toast.LENGTH_SHORT).show();
+                    Intent i = new Intent(mContext, TalentResister_Activity.class);
+                    i.putExtra("GiveFlag", true);
+                    startActivity(i);
+                    finish();
+                }
                 TalentSharing_GiveCheck.setBackground(ContextCompat.getDrawable(mContext, R.drawable.small_button_graybackground));
                 TalentSharing_GiveCheck.setTextColor(getResources().getColor(R.color.textColor));
                 TalentSharing_TakeCheck.setBackground(ContextCompat.getDrawable(mContext, R.drawable.small_button_whitebackground));
                 TalentSharing_TakeCheck.setTextColor(Color.parseColor("#d2d2d2"));
                 TalentSharing_PageTxt.setText(SaveSharedPreference.getUserName(mContext) + "님의 재능을 공유할 수 있는 회원리스트 입니다.");
             }else{
+                MyTalent mt = SaveSharedPreference.getTakeTalentData(mContext);
+
+                if(mt == null || mt.getTalentID() == null || mt.getStatus() == "C"){
+                    Toast.makeText(mContext, "관심 재능 등록을 먼저 진행해주세요.", Toast.LENGTH_SHORT).show();
+                    Intent i = new Intent(mContext, TalentResister_Activity.class);
+                    i.putExtra("GiveFlag", false);
+                    startActivity(i);
+                    finish();
+                }
                 TalentSharing_TakeCheck.setBackground(ContextCompat.getDrawable(mContext, R.drawable.small_button_graybackground));
                 TalentSharing_TakeCheck.setTextColor(getResources().getColor(R.color.textColor));
                 TalentSharing_GiveCheck.setBackground(ContextCompat.getDrawable(mContext, R.drawable.small_button_whitebackground));
@@ -262,8 +280,10 @@ public class TalentSharing_Activity extends AppCompatActivity {
 
         for(int i = 0; i < 3; i++){
             gp = arrGp[i];
+            if(gp.getLng() == 0) continue;
             for(int j = 0; j < 3; j++){
                 gp2 = arrGp2[j];
+                if(gp2.getLng() == 0) continue;
                 double distance = 0;
                 Location locationA = new Location("A");
                 locationA.setLatitude(gp.getLat());
