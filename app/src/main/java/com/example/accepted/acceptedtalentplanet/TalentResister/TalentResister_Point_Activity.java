@@ -110,7 +110,15 @@ public class TalentResister_Point_Activity extends AppCompatActivity {
 
 
         final String point = ((EditText)findViewById(R.id.TalentResister_Talent_Point)).getText().toString();
+        int myTalentPoint = SaveSharedPreference.getTalentPoint(mContext);
 
+        if(!TalentRegister_Flag && myTalentPoint < Integer.parseInt(point)){
+            Toast.makeText(getApplicationContext(), "현재 사용가능 포인트는 " + myTalentPoint +"P 입니다.", Toast.LENGTH_SHORT).show();
+            return;
+        }else if(Integer.parseInt(point) > 300){
+            Toast.makeText(getApplicationContext(), "최대 선택가능 포인트는 300P 입니다.", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
         RequestQueue postRequestQueue = Volley.newRequestQueue(this);
         StringRequest postJsonRequest = new StringRequest(Request.Method.POST, SaveSharedPreference.getServerIp() + "TalentRegist/goRegist.do", new Response.Listener<String>(){
@@ -120,7 +128,7 @@ public class TalentResister_Point_Activity extends AppCompatActivity {
                     JSONObject obj = new JSONObject(response);
                     String result = obj.getString("result");
                     if(result.equals("success")){
-                        Toast.makeText(getApplicationContext(), "등록이 완료되었습니다..", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "등록이 완료되었습니다.", Toast.LENGTH_SHORT).show();
                         MyTalent mt = (TalentRegister_Flag) ? SaveSharedPreference.getGiveTalentData(mContext) : SaveSharedPreference.getTakeTalentData(mContext);
                         mt.setStatus("P");
                         mt.setTalentID(obj.getString("talentID"));

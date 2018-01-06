@@ -249,14 +249,12 @@ public class TalentCondition_Activity extends AppCompatActivity {
                                         @Override
                                         public void onClick(DialogInterface dialog, int which) {
                                             completeSharingTalent();
-                                            Toast.makeText(mContext, "확인 클림 됨", Toast.LENGTH_SHORT).show();
                                             dialog.cancel();
                                         }
                                     })
                                     .setNegativeButton("취소", new DialogInterface.OnClickListener() {
                                         @Override
                                         public void onClick(DialogInterface dialog, int which) {
-                                            Toast.makeText(mContext, "취소 클림 됨", Toast.LENGTH_SHORT).show();
                                             dialog.cancel();
                                         }
                                     });
@@ -271,7 +269,6 @@ public class TalentCondition_Activity extends AppCompatActivity {
                                     .setPositiveButton("확인", new DialogInterface.OnClickListener() {
                                         @Override
                                         public void onClick(DialogInterface dialog, int which) {
-                                            Toast.makeText(mContext, "확인 클림 됨", Toast.LENGTH_SHORT).show();
                                             cancelSharingTalent();
                                             dialog.cancel();
                                             Intent i = new Intent(TalentCondition_Activity.this, TalentCondition_Activity.class);
@@ -282,7 +279,6 @@ public class TalentCondition_Activity extends AppCompatActivity {
                                     .setNegativeButton("취소", new DialogInterface.OnClickListener() {
                                         @Override
                                         public void onClick(DialogInterface dialog, int which) {
-                                            Toast.makeText(mContext, "취소 클림 됨", Toast.LENGTH_SHORT).show();
                                             dialog.cancel();
                                         }
                                     });
@@ -305,7 +301,6 @@ public class TalentCondition_Activity extends AppCompatActivity {
                                     .setPositiveButton("확인", new DialogInterface.OnClickListener() {
                                         @Override
                                         public void onClick(DialogInterface dialog, int which) {
-                                            Toast.makeText(mContext, "확인 클림 됨", Toast.LENGTH_SHORT).show();
                                             reRegistTalent();
                                             dialog.cancel();
                                             Intent i = new Intent(TalentCondition_Activity.this, TalentCondition_Activity.class);
@@ -316,7 +311,6 @@ public class TalentCondition_Activity extends AppCompatActivity {
                                     .setNegativeButton("취소", new DialogInterface.OnClickListener() {
                                         @Override
                                         public void onClick(DialogInterface dialog, int which) {
-                                            Toast.makeText(mContext, "취소 클림 됨", Toast.LENGTH_SHORT).show();
                                             dialog.cancel();
                                         }
                                     });
@@ -415,7 +409,6 @@ public class TalentCondition_Activity extends AppCompatActivity {
                                         @Override
                                         public void onClick(DialogInterface dialog, int which) {
                                             completeSharingTalent();
-                                            Toast.makeText(mContext, "확인 클림 됨", Toast.LENGTH_SHORT).show();
                                             dialog.cancel();
                                             Intent i = new Intent(TalentCondition_Activity.this, TalentCondition_Activity.class);
                                             i.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
@@ -425,7 +418,6 @@ public class TalentCondition_Activity extends AppCompatActivity {
                                     .setNegativeButton("취소", new DialogInterface.OnClickListener() {
                                         @Override
                                         public void onClick(DialogInterface dialog, int which) {
-                                            Toast.makeText(mContext, "취소 클림 됨", Toast.LENGTH_SHORT).show();
                                             dialog.cancel();
                                         }
                                     });
@@ -440,7 +432,6 @@ public class TalentCondition_Activity extends AppCompatActivity {
                                     .setPositiveButton("확인", new DialogInterface.OnClickListener() {
                                         @Override
                                         public void onClick(DialogInterface dialog, int which) {
-                                            Toast.makeText(mContext, "확인 클림 됨", Toast.LENGTH_SHORT).show();
                                             cancelSharingTalent();
                                             dialog.cancel();
                                             Intent i = new Intent(TalentCondition_Activity.this, TalentCondition_Activity.class);
@@ -451,7 +442,6 @@ public class TalentCondition_Activity extends AppCompatActivity {
                                     .setNegativeButton("취소", new DialogInterface.OnClickListener() {
                                         @Override
                                         public void onClick(DialogInterface dialog, int which) {
-                                            Toast.makeText(mContext, "취소 클림 됨", Toast.LENGTH_SHORT).show();
                                             dialog.cancel();
                                         }
                                     });
@@ -473,7 +463,6 @@ public class TalentCondition_Activity extends AppCompatActivity {
                                     .setPositiveButton("확인", new DialogInterface.OnClickListener() {
                                         @Override
                                         public void onClick(DialogInterface dialog, int which) {
-                                            Toast.makeText(mContext, "확인 클림 됨", Toast.LENGTH_SHORT).show();
                                             reRegistTalent();
                                             dialog.cancel();
                                             Intent i = new Intent(TalentCondition_Activity.this, TalentCondition_Activity.class);
@@ -484,7 +473,6 @@ public class TalentCondition_Activity extends AppCompatActivity {
                                     .setNegativeButton("취소", new DialogInterface.OnClickListener() {
                                         @Override
                                         public void onClick(DialogInterface dialog, int which) {
-                                            Toast.makeText(mContext, "취소 클림 됨", Toast.LENGTH_SHORT).show();
                                             dialog.cancel();
                                         }
                                     });
@@ -615,9 +603,10 @@ public class TalentCondition_Activity extends AppCompatActivity {
 
                     JSONObject obj = new JSONObject(response);
                     if(obj.getString("result").equals("success")){
+                        Toast.makeText(mContext, "취소가 완료되었습니다.", Toast.LENGTH_SHORT).show();
 
                     }else{
-
+                        Toast.makeText(mContext, "이미 상대방이 완료를 눌러 취소할 수 없습니다.", Toast.LENGTH_SHORT).show();
                     }
 
                 } catch (JSONException e) {
@@ -669,9 +658,13 @@ public class TalentCondition_Activity extends AppCompatActivity {
 
                     JSONObject obj = new JSONObject(response);
                     if(obj.getString("result").equals("success")){
+                        Toast.makeText(mContext, "재능공유에 성공하였습니다.", Toast.LENGTH_SHORT).show();
+                        int point = Integer.parseInt(obj.getString("point"));
 
+                        SaveSharedPreference.setPrefTalentPoint(mContext, point);
                     }else{
 
+                        Toast.makeText(mContext, "재능공유에 실패하였습니다. 다시 시도해주세요.", Toast.LENGTH_SHORT).show();
                     }
 
                 } catch (JSONException e) {
@@ -705,6 +698,7 @@ public class TalentCondition_Activity extends AppCompatActivity {
                 Map<String, String> params = new HashMap();
                 TalentCondition_ShowTake = (Button) findViewById(R.id.TalentCondition_ShowTake);
                 params.put("talentID", ((String)TalentCondition_TakeorGiveTalent.getText()).equals("관심재능 : ") ? takeTalentID : giveTalentID);
+                params.put("userID", SaveSharedPreference.getUserId(mContext));
                 return params;
             }
         };
@@ -715,6 +709,14 @@ public class TalentCondition_Activity extends AppCompatActivity {
     }
 
     public void reRegistTalent() {
+        if(flag.equals("Take")){
+            MyTalent mt = SaveSharedPreference.getTakeTalentData(mContext);
+            int myTalentPoint = SaveSharedPreference.getTalentPoint(mContext);
+            if(mt.getPoint() > myTalentPoint){
+                Toast.makeText(mContext, "현재 사용가능한 포인트는 "+ myTalentPoint + "P 입니다.", Toast.LENGTH_SHORT);
+                return;
+            }
+        }
         RequestQueue postRequestQueue = Volley.newRequestQueue(this);
         StringRequest postJsonRequest = new StringRequest(Request.Method.POST, SaveSharedPreference.getServerIp() + "TalentSharing/reRegistTalent.do", new Response.Listener<String>() {
             @Override
