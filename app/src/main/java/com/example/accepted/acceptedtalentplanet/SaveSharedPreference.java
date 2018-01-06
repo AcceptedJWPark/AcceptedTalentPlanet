@@ -52,6 +52,7 @@ public class SaveSharedPreference{
     static final String PREF_GEO_POINT2 = "geoPoint2";
     static final String PREF_GEO_POINT3 = "geoPoint3";
     static final String PREF_FRIEND_ARRAY = "friendList";
+    static final String PREF_TALENT_POINT = "talentPoint";
 
     static DrawerLayout slidingMenuDL;
     static View drawerView;
@@ -72,6 +73,17 @@ public class SaveSharedPreference{
         editor.putString(PREF_USER_ID, useId);
         editor.commit();
     }
+
+    public static void setPrefTalentPoint(Context ctx, int point){
+        SharedPreferences.Editor editor = getSharedPreferences(ctx).edit();
+        editor.putInt(PREF_TALENT_POINT, point);
+        editor.commit();
+    }
+
+    public static int getTalentPoint(Context ctx){
+        return getSharedPreferences(ctx).getInt(PREF_TALENT_POINT, 0);
+    }
+
     public static String getUserName(Context ctx){
         return getSharedPreferences(ctx).getString(PREF_USER_NAME, "");
     }

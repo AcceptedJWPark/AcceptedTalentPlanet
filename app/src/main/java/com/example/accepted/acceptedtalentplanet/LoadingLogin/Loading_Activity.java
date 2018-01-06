@@ -79,8 +79,6 @@ public class Loading_Activity extends AppCompatActivity {
 
     public void getMyTalent(){
 
-
-
         RequestQueue postRequestQueue = Volley.newRequestQueue(this);
         StringRequest postJsonRequest = new StringRequest(Request.Method.POST, SaveSharedPreference.getServerIp() + "TalentRegist/getMyTalent.do", new Response.Listener<String>(){
             @Override
@@ -104,8 +102,59 @@ public class Loading_Activity extends AppCompatActivity {
                         }else{
                             SaveSharedPreference.setTakeTalentData(mContext, talent);
                         }
-
                     }
+                    getMyTalentPoint();
+
+                }
+                catch(JSONException e){
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener(){
+            @Override
+            public void onErrorResponse(VolleyError error){
+                NetworkResponse response = error.networkResponse;
+                if (error instanceof ServerError && response != null) {
+                    try {
+                        String res = new String(response.data,
+                                HttpHeaderParser.parseCharset(response.headers, "utf-8"));
+                        // Now you can use any deserializer to make sense of data
+                        Log.d("res", res);
+
+                        JSONObject obj = new JSONObject(res);
+                    } catch (UnsupportedEncodingException e1) {
+                        // Couldn't properly decode data to string
+                        e1.printStackTrace();
+                    } catch (JSONException e2) {
+                        // returned data is not JSONObject?
+                        e2.printStackTrace();
+                    }
+                }
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams(){
+                Map<String, String> params = new HashMap();
+                params.put("userID", SaveSharedPreference.getUserId(mContext));
+
+
+                return params;
+            }
+        };
+
+        postRequestQueue.add(postJsonRequest);
+    }
+
+    public void getMyTalentPoint(){
+
+        RequestQueue postRequestQueue = Volley.newRequestQueue(this);
+        StringRequest postJsonRequest = new StringRequest(Request.Method.POST, SaveSharedPreference.getServerIp() + "Login/getMyTalentPoint.do", new Response.Listener<String>(){
+            @Override
+            public void onResponse(String response){
+                try {
+                    JSONObject obj = new JSONObject(response);
+                    int talentPoint = Integer.parseInt(obj.getString("TALENT_POINT"));
+                    SaveSharedPreference.setPrefTalentPoint(mContext, talentPoint);
 
                 }
                 catch(JSONException e){

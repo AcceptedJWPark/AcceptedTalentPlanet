@@ -37,12 +37,12 @@ import static com.example.accepted.acceptedtalentplanet.SaveSharedPreference.hid
 
 public class TalentResister_Location_Activity extends AppCompatActivity {
     private String Talent1, Talent2, Talent3;
-    private String Location1, Location2, Location3;
+    private String[] Locations;
     private boolean TalentRegister_Flag;
     private boolean HavingDataFlag;
     private MyTalent Data;
     private String[] Loc;
-    private GeoPoint[] arrGp = new GeoPoint[3];
+    private GeoPoint[] arrGp;
     AutoCompleteTextView Location_autoEdit1;
 
     Context mContext;
@@ -120,8 +120,10 @@ public class TalentResister_Location_Activity extends AppCompatActivity {
             Data = (MyTalent)i.getSerializableExtra("Data");
             Loc = Data.getLocationArray();
 
-            for(int index = 0; index < Loc.length; index++)
-                location_ArrayList.add(Loc[index]);
+            for(int index = 0; index < Loc.length; index++) {
+                if(!Loc[index].isEmpty())
+                    location_ArrayList.add(Loc[index]);
+            }
 
         }
 
@@ -205,17 +207,20 @@ public class TalentResister_Location_Activity extends AppCompatActivity {
             return;
         }
 
-        Location1 = location_ArrayList.get(0);
-        Location2 = location_ArrayList.get(1);
-        Location3 = location_ArrayList.get(2);
+        Locations = new String[]{"", "", ""};
+
+        for(int index = 0; index < location_ArrayList.size(); index++){
+            Locations[index] = location_ArrayList.get(index);
+        }
+
         Intent i = new Intent(this, TalentResister_Level_Activity.class);
         i.putExtra("talentFlag", TalentRegister_Flag);
         i.putExtra("talent1", Talent1);
         i.putExtra("talent2", Talent2);
         i.putExtra("talent3", Talent3);
-        i.putExtra("loc1", Location1);
-        i.putExtra("loc2", Location2);
-        i.putExtra("loc3", Location3);
+        i.putExtra("loc1", Locations[0]);
+        i.putExtra("loc2", Locations[1]);
+        i.putExtra("loc3", Locations[2]);
         i.putExtra("HavingDataFlag", HavingDataFlag);
         GetLocationGeoPointTask asyncTask = new GetLocationGeoPointTask();
         asyncTask.execute();
@@ -235,9 +240,10 @@ public class TalentResister_Location_Activity extends AppCompatActivity {
         @Override
         protected Void doInBackground(Void... voids){
             try{
-                arrGp[0] = findGeoPoint(Location1);
-                arrGp[1] = findGeoPoint(Location2);
-                arrGp[2] = findGeoPoint(Location3);
+                arrGp = new GeoPoint[]{new GeoPoint(0,0), new GeoPoint(0,0), new GeoPoint(0,0)};
+                for(int index = 0; index < location_ArrayList.size(); index++){
+                    arrGp[index] = findGeoPoint(Locations[index]);
+                }
                 SaveSharedPreference.setGeoPointArr(mContext, arrGp);
             }catch(Exception e){
                 e.printStackTrace();

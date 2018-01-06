@@ -186,8 +186,7 @@ public class Join_Email_Activity extends  AppCompatActivity {
 
                     JSONObject obj = new JSONObject(response);
                     joinCode = obj.getString("result");
-                    //String joinCode = obj.getString("joinCode");
-                    Toast.makeText(getApplicationContext(), joinCode, Toast.LENGTH_SHORT).show();
+
                     Log.d("result", response);
                     Log.d("response", joinCode);
                     postRequestQueue.add(sendMailRequest);
