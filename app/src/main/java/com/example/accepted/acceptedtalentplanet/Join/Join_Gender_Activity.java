@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -30,11 +31,18 @@ public class Join_Gender_Activity extends  AppCompatActivity {
 
         mContext = getApplicationContext();
 
+        ((LinearLayout)findViewById(R.id.pre_LL)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
         genderSpinner = (Spinner) findViewById(R.id.Join_genderSpinner);
         genderSpinner.setPrompt("성별 선택");
         ArrayAdapter<CharSequence> adapter = new ArrayAdapter<CharSequence>(this,R.layout.join_genderspinner,mobileNetworkTypes);
 
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        adapter.setDropDownViewResource(R.layout.customerservice_claim_spinnertext);
         genderSpinner.setAdapter(adapter);
 
         Intent intent = getIntent();

@@ -131,14 +131,13 @@ public class TalentSharing_Popup_Activity extends FragmentActivity{
                     ((TextView)findViewById(R.id.TalentSharingPopup_Keyword2)).setText(obj.getString("TALENT_KEYWORD2"));
                     ((TextView)findViewById(R.id.TalentSharingPopup_Keyword3)).setText(obj.getString("TALENT_KEYWORD3"));
                     ((TextView)findViewById(R.id.TalentSharingPopup_Location1)).setText(obj.getString("LOCATION1"));
-                    ((TextView)findViewById(R.id.TalentSharingPopup_Location2)).setText(obj.getString("LOCATION2"));
-                    ((TextView)findViewById(R.id.TalentSharingPopup_Location3)).setText(obj.getString("LOCATION3"));
+                    ((TextView)findViewById(R.id.TalentSharingPopup_Location2)).setText((obj.getString("LOCATION2").length()==0)?"미등록":obj.getString("LOCATION2"));
+                    ((TextView)findViewById(R.id.TalentSharingPopup_Location3)).setText((obj.getString("LOCATION3").length()==0)?"미등록":obj.getString("LOCATION3"));
                     ((TextView)findViewById(R.id.TalentSharingPopup_Level)).setText(SaveSharedPreference.getLevel(obj.getString("LEVEL")));
                     ((TextView)findViewById(R.id.TalentSharingPopup_Point)).setText(obj.getString("T_POINT")+"P");
                     ((TextView)findViewById(R.id.TalentSharing_TypeText)).setText(TalentText);
                     UserID = obj.getString("USER_ID");
                     ArrayList<String> friendList = SaveSharedPreference.getFriendList(mContext);
-
                     addedFriend = (friendList.contains(UserID))?true:false;
 
                     hasFlag = (obj.getString("HAS_FLAG").equals("N"))? false : true;

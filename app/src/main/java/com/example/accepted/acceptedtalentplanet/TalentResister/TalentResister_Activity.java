@@ -214,9 +214,10 @@ public class TalentResister_Activity extends AppCompatActivity {
             TalentResister_Keyword1.setText(TalentResister_Give_Keyword[0]);
             TalentResister_Keyword2.setText(TalentResister_Give_Keyword[1]);
             TalentResister_Keyword3.setText(TalentResister_Give_Keyword[2]);
+
             TalentResister_Location1.setText(TalentResister_Give_Location[0]);
-            TalentResister_Location2.setText(TalentResister_Give_Location[1]);
-            TalentResister_Location3.setText(TalentResister_Give_Location[2]);
+            TalentResister_Location2.setText((TalentResister_Give_Location[1].length()==0)?"미등록":TalentResister_Give_Location[1]);
+            TalentResister_Location3.setText((TalentResister_Give_Location[2].length()==0)?"미등록":TalentResister_Give_Location[2]);
             TalentResister_Level.setText(TalentResister_Give_Level);
             TalentResister_Point.setText(Integer.toString(TalentResister_Give_Point) + "P");
         }
@@ -248,9 +249,10 @@ public class TalentResister_Activity extends AppCompatActivity {
             TalentResister_Keyword1.setText(TalentResister_Take_Keyword[0]);
             TalentResister_Keyword2.setText(TalentResister_Take_Keyword[1]);
             TalentResister_Keyword3.setText(TalentResister_Take_Keyword[2]);
+
             TalentResister_Location1.setText(TalentResister_Take_Location[0]);
-            TalentResister_Location2.setText(TalentResister_Take_Location[1]);
-            TalentResister_Location3.setText(TalentResister_Take_Location[2]);
+            TalentResister_Location2.setText((TalentResister_Take_Location[1].length()==0)?"미등록":TalentResister_Take_Location[1]);
+            TalentResister_Location3.setText((TalentResister_Take_Location[2].length()==0)?"미등록":TalentResister_Take_Location[2]);
             TalentResister_Level.setText(TalentResister_Take_Level);
             TalentResister_Point.setText(Integer.toString(TalentResister_Take_Point) + "P");
         }

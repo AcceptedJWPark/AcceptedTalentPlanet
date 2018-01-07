@@ -11,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.example.accepted.acceptedtalentplanet.R;
@@ -27,6 +28,13 @@ public class Join_Password_Activity extends  AppCompatActivity {
         setContentView(R.layout.join_password);
 
         mContext = getApplicationContext();
+
+        ((LinearLayout)findViewById(R.id.pre_LL)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         Intent intent = getIntent();
         email = intent.getStringExtra("email");

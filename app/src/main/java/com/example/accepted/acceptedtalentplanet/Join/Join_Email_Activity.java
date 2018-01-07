@@ -55,6 +55,13 @@ public class Join_Email_Activity extends  AppCompatActivity {
 
         mContext = getApplicationContext();
 
+        ((LinearLayout)findViewById(R.id.pre_LL)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
         EditText emailCheck = (EditText) findViewById(R.id.Join_joinCode);
         EditText email = (EditText)findViewById(R.id.Join_Email);
         findViewById(R.id.btnAccept).setOnClickListener(mClickListener);
@@ -190,6 +197,7 @@ public class Join_Email_Activity extends  AppCompatActivity {
                     Log.d("result", response);
                     Log.d("response", joinCode);
                     postRequestQueue.add(sendMailRequest);
+                    Toast.makeText(mContext, "E-mail에서 인증번호를 확인해주세요.", Toast.LENGTH_SHORT).show();
                     LinearLayout acceptEmail = (LinearLayout)findViewById(R.id.accept_join_mail);
                     acceptEmail.setVisibility(View.VISIBLE);
                 }
