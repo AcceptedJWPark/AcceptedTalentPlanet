@@ -193,6 +193,7 @@ public class TalentResister_Point_Activity extends AppCompatActivity {
                 Log.d(String.valueOf(arrGp[0].getLat()), String.valueOf(arrGp[0].getLng()));
                 MyTalent mt = new MyTalent();
                 mt.setMyTalent(Talent1, Talent2, Talent3, Location1, Location2, Location3, point, String.valueOf(level), arrGp);
+                mt.setStatus("P");
                 if(TalentRegister_Flag)
                     SaveSharedPreference.setGiveTalentData(mContext, mt);
                 else
