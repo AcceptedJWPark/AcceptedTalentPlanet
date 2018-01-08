@@ -280,10 +280,12 @@ public class TalentSharing_Activity extends AppCompatActivity {
 
         for(int i = 0; i < 3; i++){
             gp = arrGp[i];
-            if(gp.getLng() == 0) continue;
             for(int j = 0; j < 3; j++){
                 gp2 = arrGp2[j];
-                if(gp2.getLng() == 0) continue;
+                if(gp2.getLng() == 0.0d || gp.getLng() == 0.0d){
+                    arrDistance[index++] = 9999;
+                    continue;
+                }
                 double distance = 0;
                 Location locationA = new Location("A");
                 locationA.setLatitude(gp.getLat());

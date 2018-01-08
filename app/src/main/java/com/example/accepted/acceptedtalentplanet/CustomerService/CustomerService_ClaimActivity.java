@@ -12,6 +12,7 @@ import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,8 +26,33 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.NetworkResponse;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.ServerError;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.HttpHeaderParser;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.accepted.acceptedtalentplanet.R;
+import com.example.accepted.acceptedtalentplanet.SaveSharedPreference;
 import com.example.accepted.acceptedtalentplanet.SharingList.SharingList_Activity;
+import com.example.accepted.acceptedtalentplanet.SharingList.SharingList_Adapter;
+import com.example.accepted.acceptedtalentplanet.SharingList.SharingList_Item;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.UnsupportedEncodingException;
+import java.text.ParsePosition;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Locale;
+import java.util.Map;
 
 import static com.example.accepted.acceptedtalentplanet.SaveSharedPreference.hideKeyboard;
 
@@ -57,13 +83,25 @@ public class CustomerService_ClaimActivity extends AppCompatActivity {
 
     Button CustomerService_ClaimBtn;
 
+    String name, keyword1, keyword2, keyword3, myTalentID, tarTalentID, talentFlag;
+    int status;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.customerservice_claimactivity);
 
-
+        final boolean isSelect = getIntent().getBooleanExtra("isSelected", false);
+        if(isSelect){
+            name = getIntent().getStringExtra("name");
+            keyword1 = getIntent().getStringExtra("keyword1");
+            keyword2 = getIntent().getStringExtra("keyword2");
+            keyword3 = getIntent().getStringExtra("keyword3");
+            myTalentID = getIntent().getStringExtra("myTalentID");
+            tarTalentID = getIntent().getStringExtra("tarTalentID");
+            talentFlag = getIntent().getStringExtra("talentFlag");
+            status = getIntent().getIntExtra("status", 0);
+        }
         context = getApplicationContext();
 
         CustomerService_Claim_Spinner = (Spinner) findViewById(R.id.CustomerService_Claim_Spinner);
@@ -71,14 +109,19 @@ public class CustomerService_ClaimActivity extends AppCompatActivity {
         CustomerService_Claim_Spinner.setAdapter(adapter);
 
         CustomerService_Claim_SharingList = (TextView) findViewById(R.id.CustomerService_Claim_SharingList);
-        CustomerService_Claim_SharingList.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), SharingList_Activity.class);
-                startActivity(intent);
-            }
-        });
-
+        if(isSelect){
+            String str = (talentFlag.equals("Give"))?"재능드림":"관심재능";
+            CustomerService_Claim_SharingList.setText(name + str+ "|"+keyword1+", "+keyword2+", "+keyword3);
+        }
+        else {
+            CustomerService_Claim_SharingList.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(getApplicationContext(), SharingList_Activity.class);
+                    startActivity(intent);
+                }
+            });
+        }
         CustomerService_Claim_PreBtn = (LinearLayout) findViewById(R.id.CustomerService_Claim_PreBtn);
         CustomerService_Claim_PreBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -133,24 +176,29 @@ public class CustomerService_ClaimActivity extends AppCompatActivity {
         CustomerService_ClaimBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AlertDialog.Builder AlarmDeleteDialog = new AlertDialog.Builder(CustomerService_ClaimActivity.this);
-                AlarmDeleteDialog.setMessage("신고하시겠습니까?")
-                        .setPositiveButton("신고하기", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                Toast.makeText(context,"신고하기 클릭 됨",Toast.LENGTH_SHORT).show();
-                                dialog.cancel();
-                            }
-                        })
-                        .setNegativeButton("취소하기", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                Toast.makeText(context,"취소하기 클릭 됨",Toast.LENGTH_SHORT).show();
-                                dialog.cancel();
-                            }
-                        });
-                AlertDialog alertDialog = AlarmDeleteDialog.create();
-                alertDialog.show();
+                if(isSelect){
+                    AlertDialog.Builder AlarmDeleteDialog = new AlertDialog.Builder(CustomerService_ClaimActivity.this);
+                    AlarmDeleteDialog.setMessage("신고하시겠습니까?")
+                            .setPositiveButton("신고하기", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    Toast.makeText(context,"신고하기 클릭 됨",Toast.LENGTH_SHORT).show();
+                                    requestClaim();
+                                    dialog.cancel();
+                                }
+                            })
+                            .setNegativeButton("취소하기", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    Toast.makeText(context,"취소하기 클릭 됨",Toast.LENGTH_SHORT).show();
+                                    dialog.cancel();
+                                }
+                            });
+                    AlertDialog alertDialog = AlarmDeleteDialog.create();
+                    alertDialog.show();
+                }else{
+                    Toast.makeText(context, "신고 대상을 먼저 선택해주세요.", Toast.LENGTH_SHORT).show();
+                }
     }
         });
 
@@ -215,8 +263,102 @@ public class CustomerService_ClaimActivity extends AppCompatActivity {
             }
     }
 
+    public void requestClaim() {
+        RequestQueue postRequestQueue = Volley.newRequestQueue(this);
+        StringRequest postJsonRequest = new StringRequest(Request.Method.POST, SaveSharedPreference.getServerIp() + "Customer/requestClaim.do", new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+
+                    JSONObject obj = new JSONObject(response);
+
+                    if(obj.getString("result").equals("success")){
+                        Toast.makeText(context, "신고가 정상적으로 접수되었습니다.", Toast.LENGTH_SHORT).show();
+                        Intent i = new Intent(context, CustomerService_MainActivity.class);
+                        startActivity(i);
+                        finish();
+                    }else
+                        Toast.makeText(context, "신고가 실패하였습니다.", Toast.LENGTH_SHORT).show();
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                } catch(Exception e){
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                NetworkResponse response = error.networkResponse;
+                if (error instanceof ServerError && response != null) {
+                    try {
+                        String res = new String(response.data,
+                                HttpHeaderParser.parseCharset(response.headers, "utf-8"));
+                        // Now you can use any deserializer to make sense of data
+                        Log.d("res", res);
+
+                        JSONArray obj = new JSONArray(res);
+                    } catch (UnsupportedEncodingException e1) {
+                        // Couldn't properly decode data to string
+                        e1.printStackTrace();
+                    } catch (JSONException e2) {
+                        // returned data is not JSONObject?
+                        e2.printStackTrace();
+                    }
+                }
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap();
+                String strStatus;
+                int claimType;
+
+                Log.d("status = ", String.valueOf(status));
+                switch (status){
+                    case 3:
+                        strStatus = "Y";
+                        break;
+                    case  4:
+                        strStatus = "C";
+                        break;
+                    default:
+                        strStatus = "X";
+                }
+
+                switch(CustomerService_Claim_Spinner.getSelectedItem().toString()){
+                    case "금품 요구":
+                        claimType = 1;
+                        break;
+                    case "폭언 및 욕설":
+                        claimType = 2;
+                        break;
+                    case "No-Show":
+                        claimType = 3;
+                        break;
+                    case "허위 광고":
+                        claimType = 4;
+                        break;
+                    default:
+                        claimType = 5;
+                }
+
+                params.put("userID", SaveSharedPreference.getUserId(context));
+                params.put("myTalentID", myTalentID);
+                params.put("tarTalentID", tarTalentID);
+                params.put("claimType", String.valueOf(claimType));
+                params.put("claimSummary", Claim_EditTxt.getText().toString());
+                params.put("status", strStatus);
+                return params;
+            }
+        };
+
+
+        postRequestQueue.add(postJsonRequest);
 
     }
+
+}
 
 
 

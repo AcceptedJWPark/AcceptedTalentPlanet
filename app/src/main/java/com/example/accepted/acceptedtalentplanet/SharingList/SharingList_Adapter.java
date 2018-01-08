@@ -163,6 +163,16 @@ public class SharingList_Adapter extends BaseAdapter{
 
                             case 3:
                                 Intent b = new Intent(context, CustomerService_ClaimActivity.class);
+                                String str2 = (list_ArrayList.get(position).getTalentType_CODE() == 1) ? "Give": "Take";
+                                b.putExtra("isSelected", true);
+                                b.putExtra("name", list_ArrayList.get(position).getname());
+                                b.putExtra("keyword1", list_ArrayList.get(position).getKeyword1());
+                                b.putExtra("keyword2", list_ArrayList.get(position).getKeyword2());
+                                b.putExtra("keyword3", list_ArrayList.get(position).getKeyword3());
+                                b.putExtra("myTalentID", list_ArrayList.get(position).getMyTalentID());
+                                b.putExtra("tarTalentID", list_ArrayList.get(position).getTalentID());
+                                b.putExtra("talentFlag", str2);
+                                b.putExtra("status",list_ArrayList.get(position).getTalentConditionType_CODE());
                                 context.startActivity(b);
                                 break;
 
