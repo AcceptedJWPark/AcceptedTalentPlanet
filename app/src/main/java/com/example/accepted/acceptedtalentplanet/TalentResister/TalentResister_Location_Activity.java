@@ -222,14 +222,23 @@ public class TalentResister_Location_Activity extends AppCompatActivity {
         i.putExtra("loc2", Locations[1]);
         i.putExtra("loc3", Locations[2]);
         i.putExtra("HavingDataFlag", HavingDataFlag);
-        GetLocationGeoPointTask asyncTask = new GetLocationGeoPointTask();
-        asyncTask.execute();
+//        GetLocationGeoPointTask asyncTask = new GetLocationGeoPointTask();
+//        asyncTask.execute();
+
+        arrGp = new GeoPoint[]{new GeoPoint(0,0), new GeoPoint(0,0), new GeoPoint(0,0)};
+        for(int index = 0; index < location_ArrayList.size(); index++){
+            arrGp[index] = findGeoPoint(Locations[index]);
+        }
+        SaveSharedPreference.setGeoPointArr(mContext, arrGp);
+
         if(HavingDataFlag){
             i.putExtra("Data", Data);
         }
         startActivity(i);
 
     }
+
+
 
     private class GetLocationGeoPointTask extends AsyncTask<Void, Void, Void> {
         @Override

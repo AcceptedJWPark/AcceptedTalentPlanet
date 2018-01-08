@@ -55,7 +55,7 @@ public class MyProfile_Activity extends AppCompatActivity {
 
     android.support.v7.widget.Toolbar myProfile_toolbar;
     LinearLayout myProfile_PictureLL;
-    LinearLayout myProfile_ButtonLL;
+    Button myProfile_Button;
     TextView myProfile_Devider1;
     TextView myProfile_Devider2;
     LinearLayout myProfile_List_LL1;
@@ -125,7 +125,7 @@ public class MyProfile_Activity extends AppCompatActivity {
 
         myProfile_toolbar = (android.support.v7.widget.Toolbar) findViewById(R.id.MyProfile_toolbar);
         myProfile_PictureLL = (LinearLayout) findViewById(R.id.MyProfile_PictureLL);
-        myProfile_ButtonLL= (LinearLayout) findViewById(R.id.MyProfile_ButtonLL);
+        myProfile_Button= (Button) findViewById(R.id.MyProfile_Save);
         myProfile_Devider1 = (TextView) findViewById(R.id.MyProfile_Devider1); 
         myProfile_Devider2 = (TextView) findViewById(R.id.MyProfile_Devider2);
         myProfile_List_LL1 = (LinearLayout) findViewById(R.id.MyProfile_List_LL1);
@@ -142,15 +142,15 @@ public class MyProfile_Activity extends AppCompatActivity {
         WindowManager windowManager = (WindowManager) getApplicationContext().getSystemService(Context.WINDOW_SERVICE);
         windowManager.getDefaultDisplay().getMetrics(metrics);
 
-        int TalentResister_Toolbar_height = (int) (metrics.heightPixels*0.075);
+        int TalentResister_Toolbar_height = (int) (metrics.heightPixels*0.055);
         int TalentResister_Picture_LL_height = (int) (metrics.heightPixels*0.18);
-        int TalentResister_Button_LL_height = (int) (metrics.heightPixels*0.083);
-        int TalentResister_Devider_height = (int) (metrics.heightPixels*0.03);
-        int TalentResister_List_LL_height = (int) (metrics.heightPixels*0.07);
+        int TalentResister_Button_height = (int) (metrics.heightPixels*0.042);
+        int TalentResister_Devider_height = (int) (metrics.heightPixels*0.045);
+        int TalentResister_List_LL_height = (int) (metrics.heightPixels*0.072);
 
         ViewGroup.LayoutParams params1 = myProfile_toolbar.getLayoutParams();
         ViewGroup.LayoutParams params2 = myProfile_PictureLL.getLayoutParams();
-        ViewGroup.LayoutParams params3 = myProfile_ButtonLL.getLayoutParams();
+        ViewGroup.LayoutParams params3 = myProfile_Button.getLayoutParams();
         ViewGroup.LayoutParams params4 = myProfile_Devider1.getLayoutParams();
         ViewGroup.LayoutParams params5 = myProfile_Devider2.getLayoutParams();
         ViewGroup.LayoutParams params6 = myProfile_List_LL1.getLayoutParams();
@@ -164,7 +164,7 @@ public class MyProfile_Activity extends AppCompatActivity {
 
         params1.height = TalentResister_Toolbar_height;
         params2.height = TalentResister_Picture_LL_height;
-        params3.height = TalentResister_Button_LL_height;
+        params3.height = TalentResister_Button_height;
         params4.height = TalentResister_Devider_height;
         params5.height = TalentResister_Devider_height;
         params6.height = TalentResister_List_LL_height;
@@ -178,7 +178,7 @@ public class MyProfile_Activity extends AppCompatActivity {
 
         myProfile_toolbar.setLayoutParams(params1);
         myProfile_PictureLL.setLayoutParams(params2);
-        myProfile_ButtonLL.setLayoutParams(params3);
+        myProfile_Button.setLayoutParams(params3);
         myProfile_Devider1.setLayoutParams(params4);
         myProfile_Devider2.setLayoutParams(params5);
         myProfile_List_LL1.setLayoutParams(params6);

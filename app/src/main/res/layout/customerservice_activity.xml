@@ -40,17 +40,20 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_weight="1.08"
         android:background="@drawable/divider_background"
         android:gravity="center_vertical">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingLeft="10dp"
+            android:paddingLeft="15dp"
             android:text="서비스 정보"
             android:textSize="@dimen/Divider"
-            android:textStyle="bold" />
+            android:textColor="@color/textcolor_devider"
+            android:textStyle="bold"
+            />
+
     </LinearLayout>
 
     <LinearLayout
@@ -66,12 +69,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingBottom="2dp"
-            android:paddingLeft="10dp"
+            android:paddingLeft="20dp"
             android:paddingTop="2dp"
-            android:textStyle="bold"
             android:text="Talented 소개"
-            android:textColor="@color/textColor"
-            android:textSize="@dimen/List_Title"
+            android:textColor="@color/textColor_object"
+            android:textSize="@dimen/DrawerLL_Title"
+            android:textStyle="bold"
             />
 
     </LinearLayout>
@@ -90,17 +93,19 @@
         android:layout_weight="2.02"
         android:background="#ffffff"
         >
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingTop="2dp"
-            android:paddingBottom="2dp"
-            android:paddingLeft="10dp"
             android:layout_gravity="center_vertical"
-            android:textSize="@dimen/List_Title"
+            android:paddingBottom="2dp"
+            android:paddingLeft="20dp"
+            android:paddingTop="2dp"
+            android:text="버전 정보"
+            android:textColor="@color/textColor_object"
+            android:textSize="@dimen/DrawerLL_Title"
             android:textStyle="bold"
-            android:textColor="@color/textColor"
-            android:text="버전 정보" />
+            />
 
         <TextView
             android:layout_width="match_parent"
@@ -109,7 +114,7 @@
             android:paddingRight="10dp"
             android:layout_gravity="center_vertical"
             android:textSize="@dimen/List_SubTitle"
-            android:textColor="#000000"
+            android:textColor="@color/textColor_normal"
             android:text="1.01" />
 
     </LinearLayout>
@@ -131,12 +136,12 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:paddingBottom="2dp"
-            android:paddingLeft="10dp"
+            android:paddingLeft="20dp"
             android:paddingTop="2dp"
             android:text="업데이트 내역"
+            android:textColor="@color/textColor_object"
+            android:textSize="@dimen/DrawerLL_Title"
             android:textStyle="bold"
-            android:textColor="@color/textColor"
-            android:textSize="@dimen/List_Title"
             />
 
         <TextView
@@ -146,7 +151,7 @@
             android:gravity="right"
             android:paddingRight="10dp"
             android:text="Mar.18"
-            android:textColor="#000000"
+            android:textColor="@color/textColor_normal"
             android:textSize="@dimen/List_SubTitle"
             />
 
@@ -169,12 +174,12 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:paddingBottom="2dp"
-            android:paddingLeft="10dp"
+            android:paddingLeft="20dp"
             android:paddingTop="2dp"
-            android:textStyle="bold"
             android:text="공지 사항"
-            android:textColor="@color/textColor"
-            android:textSize="@dimen/List_Title"
+            android:textColor="@color/textColor_object"
+            android:textSize="@dimen/DrawerLL_Title"
+            android:textStyle="bold"
             />
 
 
@@ -189,15 +194,16 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_weight="1.08"
         android:background="@drawable/divider_background"
         android:gravity="center_vertical"
         >
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingLeft="10dp"
+            android:paddingLeft="15dp"
             android:textStyle="bold"
+            android:textColor="@color/textcolor_devider"
             android:textSize="@dimen/Divider"
             android:text="도움말" />
     </LinearLayout>
@@ -215,12 +221,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingBottom="2dp"
-            android:paddingLeft="10dp"
-            android:textStyle="bold"
+            android:paddingLeft="20dp"
             android:paddingTop="2dp"
             android:text="Talented 사용하기"
-            android:textColor="@color/textColor"
-            android:textSize="@dimen/List_Title"
+            android:textColor="@color/textColor_object"
+            android:textSize="@dimen/DrawerLL_Title"
+            android:textStyle="bold"
             />
 
     </LinearLayout>
@@ -244,12 +250,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingBottom="2dp"
-            android:paddingLeft="10dp"
+            android:paddingLeft="20dp"
             android:paddingTop="2dp"
             android:text="자주하는 질문"
+            android:textColor="@color/textColor_object"
+            android:textSize="@dimen/DrawerLL_Title"
             android:textStyle="bold"
-            android:textColor="@color/textColor"
-            android:textSize="@dimen/List_Title"
             />
 
     </LinearLayout>
@@ -274,12 +280,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingBottom="2dp"
-            android:paddingLeft="10dp"
+            android:paddingLeft="20dp"
             android:paddingTop="2dp"
             android:text="1:1 문의하기"
+            android:textColor="@color/textColor_object"
+            android:textSize="@dimen/DrawerLL_Title"
             android:textStyle="bold"
-            android:textColor="@color/textColor"
-            android:textSize="@dimen/List_Title"
             />
 
     </LinearLayout>
@@ -303,12 +309,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingBottom="2dp"
-            android:paddingLeft="10dp"
+            android:paddingLeft="20dp"
             android:paddingTop="2dp"
             android:text="나의 문의내역"
-            android:textColor="@color/textColor"
+            android:textColor="@color/textColor_object"
+            android:textSize="@dimen/DrawerLL_Title"
             android:textStyle="bold"
-            android:textSize="@dimen/List_Title"
             />
 
     </LinearLayout>
@@ -323,16 +329,17 @@
 
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_weight="1.08"
         android:background="@drawable/divider_background"
         android:gravity="center_vertical"
         >
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingLeft="10dp"
+            android:paddingLeft="15dp"
             android:textSize="@dimen/Divider"
             android:textStyle="bold"
+            android:textColor="@color/textcolor_devider"
             android:text="신고하기" />
     </LinearLayout>
 
@@ -350,12 +357,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingBottom="2dp"
-            android:paddingLeft="10dp"
+            android:paddingLeft="20dp"
             android:paddingTop="2dp"
             android:text="상대방 신고하기"
+            android:textColor="@color/textColor_object"
+            android:textSize="@dimen/DrawerLL_Title"
             android:textStyle="bold"
-            android:textColor="@color/textColor"
-            android:textSize="@dimen/List_Title"
             />
 
     </LinearLayout>
@@ -379,12 +386,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingBottom="2dp"
-            android:paddingLeft="10dp"
+            android:paddingLeft="20dp"
             android:paddingTop="2dp"
             android:text="신고내역"
+            android:textColor="@color/textColor_object"
+            android:textSize="@dimen/DrawerLL_Title"
             android:textStyle="bold"
-            android:textColor="@color/textColor"
-            android:textSize="@dimen/List_Title"
             />
 
     </LinearLayout>

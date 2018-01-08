@@ -46,7 +46,7 @@ public class TalentSearching_SearchingPage_Activity extends AppCompatActivity {
     ArrayList<String> TalentSearching_talent_ArrayList;
     TalentSearching_Keyword_Adapter TalentSearching_talent_Adapter;
     Button keyword_addBtn;
-    TextView TalentSearching_TxtView;
+    LinearLayout TalentSearching_TxtView;
     LinearLayout TalentSearching_LL1;
     LinearLayout TalentSearching_LL2;
     LinearLayout TalentSearching_LL3;
@@ -371,16 +371,14 @@ public class TalentSearching_SearchingPage_Activity extends AppCompatActivity {
         WindowManager windowManager = (WindowManager) getApplicationContext().getSystemService(Context.WINDOW_SERVICE);
         windowManager.getDefaultDisplay().getMetrics(metrics);
 
-        TalentSearching_TxtView = (TextView) findViewById(R.id.TalentSearching_TxtView);
+        TalentSearching_TxtView = (LinearLayout) findViewById(R.id.TalentSearching_TxtView);
         TalentSearching_LL1 = (LinearLayout) findViewById(R.id.TalentSearching_LL1);
         TalentSearching_LL2 = (LinearLayout) findViewById(R.id.TalentSearching_LL2);
         TalentSearching_LL3 = (LinearLayout) findViewById(R.id.TalentSearching_LL3);
         TalentSearching_LL4 = (LinearLayout) findViewById(R.id.TalentSearching_LL4);
-        TalentSearching_Devider = findViewById(R.id.TalentSearching_Devider);
 
         int TalentSearching_Txt_height = (int) (metrics.heightPixels*0.083);
-        int TalentSearching_LL_height = (int) (metrics.heightPixels*0.038);
-        int TalentSearching_Devider_height = (int) (metrics.heightPixels*0.021);
+        int TalentSearching_LL_height = (int) (metrics.heightPixels*0.037);
         int TalentSearching_Btn_height = (int) (metrics.heightPixels*0.042);
 
         ViewGroup.LayoutParams params1 = TalentSearching_TxtView.getLayoutParams();
@@ -388,7 +386,6 @@ public class TalentSearching_SearchingPage_Activity extends AppCompatActivity {
         ViewGroup.LayoutParams params3 = TalentSearching_LL2.getLayoutParams();
         ViewGroup.LayoutParams params4 = TalentSearching_LL3.getLayoutParams();
         ViewGroup.LayoutParams params5 = TalentSearching_LL4.getLayoutParams();
-        ViewGroup.LayoutParams params6 = TalentSearching_Devider.getLayoutParams();
         ViewGroup.LayoutParams params7 = TalentSearching_SaveBtn.getLayoutParams();
 
         params1.height = TalentSearching_Txt_height;
@@ -396,7 +393,6 @@ public class TalentSearching_SearchingPage_Activity extends AppCompatActivity {
         params3.height = TalentSearching_LL_height;
         params4.height = TalentSearching_LL_height;
         params5.height = TalentSearching_LL_height;
-        params6.height = TalentSearching_Devider_height;
         params7.height = TalentSearching_Btn_height;
 
         TalentSearching_TxtView.setLayoutParams(params1);
@@ -404,7 +400,6 @@ public class TalentSearching_SearchingPage_Activity extends AppCompatActivity {
         TalentSearching_LL2.setLayoutParams(params3);
         TalentSearching_LL3.setLayoutParams(params4);
         TalentSearching_LL4.setLayoutParams(params5);
-        TalentSearching_Devider.setLayoutParams(params6);
         TalentSearching_SaveBtn.setLayoutParams(params7);
 
 

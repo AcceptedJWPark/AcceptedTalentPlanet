@@ -21,15 +21,15 @@
         android:gravity="center"
         android:clickable="true"
         android:focusableInTouchMode="true"
-        android:background="#f5f5f5"
+        android:background="@color/toolbarcolor_background"
         >
 
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
             >
 
             <LinearLayout
@@ -42,7 +42,7 @@
                 <ImageView
                     android:layout_width="@dimen/Toolbar_Pre_Img"
                     android:layout_height="@dimen/Toolbar_Pre_Img"
-                    android:tint="@color/textColor"
+                    android:tint="@color/toolbarcolor_txtandimage"
                     android:src="@android:drawable/ic_menu_revert"
                     android:textSize="@dimen/Toolbar_Pre_Txt"
 
@@ -52,8 +52,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="이전"
-                    android:textColor="@color/textColor"
-                    android:textStyle="bold"
+                    android:textColor="@color/toolbarcolor_txtandimage"
                     android:textSize="@dimen/Toolbar_Pre_Txt"
                     />
 
@@ -63,11 +62,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="신고 하기"
-                android:textStyle="bold"
                 android:textSize="@dimen/ToolbarTxt"
                 android:gravity="center"
                 android:layout_centerInParent="true"
-                android:textColor="@color/textColor"
+                android:textColor="@color/toolbarcolor_txtandimage"
                 />
 
         </RelativeLayout>
@@ -95,16 +93,12 @@
                 android:gravity="center"
                 android:orientation="vertical">
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="0.5"
-                    />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="0.8"
+                    android:layout_marginTop="15dp"
                     android:layout_marginLeft="50dp"
                     android:layout_marginRight="50dp"
                     android:gravity="center"
@@ -114,39 +108,47 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:layout_marginRight="10dp"
                         android:layout_weight="1.5"
-                        android:gravity="center"
+                        android:gravity="center|left"
                         android:text="신고 대상"
                         android:textColor="#000000"
                         android:textSize="@dimen/Page_ItemTitle"
-                        android:textStyle="bold" />
+                        />
 
-
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="5"
+                        android:orientation="vertical"
+                        >
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="0.22"/>
                         <TextView
                             android:id="@+id/CustomerService_Claim_SharingList"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="5"
-                            android:background="@drawable/spinner_background"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/resistbtn_whitebackground"
                             android:gravity="center"
                             android:text="공유 내역보기"
-                            android:textColor="@color/textColor"
+                            android:textColor="@color/textColor_subject"
                             android:textSize="@dimen/GiveorTakeBtn"
-                            android:textStyle="bold" />
+                            />
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="0.22"/>
+                    </LinearLayout>
 
                 </LinearLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="0.3"
-                    />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="0.8"
+                    android:layout_marginBottom="15dp"
                     android:layout_marginLeft="50dp"
                     android:layout_marginRight="50dp"
                     android:gravity="center"
@@ -156,35 +158,41 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:layout_marginRight="10dp"
                         android:layout_weight="1.5"
-                        android:gravity="center"
+                        android:gravity="center|left"
                         android:text="신고 유형"
                         android:textColor="#000000"
                         android:textSize="@dimen/Page_ItemTitle"
-                        android:textStyle="bold" />
+                        />
 
-
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="5"
+                        android:orientation="vertical"
+                        >
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="0.22"/>
 
                         <Spinner
                             android:id="@+id/CustomerService_Claim_Spinner"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
                             android:layout_gravity="center"
-                            android:layout_weight="5"
-                            android:background="@drawable/spinner_background"
+                            android:layout_weight="1"
+                            android:background="@drawable/resistbtn_whitebackground"
                             android:gravity="center"
                             android:padding="3dp"
-
                             />
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="0.22"/>
+                    </LinearLayout>
 
                 </LinearLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="0.5"
-                    />
 
             </LinearLayout>
 
@@ -202,9 +210,10 @@
                 android:text="&quot;공유 내역보기에서 신고 대상을 선택해주세요.&quot;"
                 android:gravity="center"
                 android:ellipsize="end"
-                android:textStyle="bold"
                 android:lines="1"
-                android:textColor="@color/textColor"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:textColor="@color/textColor_txtpage"
                 android:textSize="@dimen/Page_Txt"
                 />
 
@@ -298,10 +307,6 @@
             </LinearLayout>
 
 
-            <View
-                android:id="@+id/claim_Devider2"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/Claim_Divider"/>
 
 
 
@@ -309,6 +314,7 @@
                 android:id="@+id/claim_LL3"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/Claim_List_Layout2"
+                android:layout_marginTop="10dp"
                 android:layout_marginLeft="50dp"
                 android:layout_marginRight="50dp"
                 android:orientation="horizontal">
@@ -331,26 +337,23 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:text="첨부"
-                    android:background="@drawable/small_button_whitebackground"
+                    android:background="@drawable/resistbtn_whitebackground"
                     android:gravity="center"
                     android:paddingBottom="4dp"
                     android:paddingTop="4dp"
-                    android:textColor="@color/textColor"
-                    android:textStyle="bold"
+                    android:textColor="@color/textcolor_smallbtn"
                     android:textSize="@dimen/ListView_Btn"
                     />
 
             </LinearLayout>
 
-            <View
-                android:id="@+id/claim_Devider3"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/Claim_Divider"/>
 
             <LinearLayout
                 android:id="@+id/claim_LL4"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/Claim_List_Layout2"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
                 android:layout_marginLeft="50dp"
                 android:layout_marginRight="50dp">
 
@@ -360,9 +363,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="신고 하기"
-                android:textStyle="bold"
                 android:gravity="center"
-                android:textColor="@color/textColor"
+                android:textColor="@color/textcolor_bigbtn"
                 android:background="@drawable/big_button_background"
                 android:textSize="@dimen/BigBtn"
                 />
@@ -373,12 +375,11 @@
             <TextView
                 android:id="@+id/claim_Txt2"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:textStyle="bold"
+                android:layout_height="wrap_content"
+                android:textColor="@color/textColor_txtpage"
                 android:text="신고 결과는 &quot;신고내역&quot;에서 조회 할 수 있습니다."
                 android:layout_below="@id/CustomerService_ClaimBtn"
                 android:textSize="@dimen/Page_Txt"
-                android:textColor="@color/textColor"
                 android:gravity="center"
                 />
 

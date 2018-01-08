@@ -16,12 +16,13 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:gravity="center_vertical"
-            android:paddingLeft="5dp"
+            android:layout_marginTop="10dp"
             android:layout_weight="1"
             >
 
             <LinearLayout
                 android:id="@+id/pre_LL"
+                android:layout_marginLeft="15dp"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:gravity="center_vertical">
@@ -31,8 +32,7 @@
             android:layout_width="@dimen/Toolbar_Pre_Img"
             android:layout_height="@dimen/Toolbar_Pre_Img"
             android:src="@android:drawable/ic_menu_revert"
-            android:background="@drawable/nobackground"
-            android:tint="@color/textColor"
+            android:background="@drawable/loginedittxt_background"
             android:layout_alignTop="@+id/textView"
             android:layout_alignBottom="@+id/textView" />
 
@@ -42,9 +42,8 @@
             android:layout_toRightOf="@+id/preImg"
             android:text="성별"
             android:textSize="@dimen/Toolbar_Pre_Txt"
-            android:textStyle="bold"
+            android:textColor="@color/textColor_normal"
             android:layout_marginLeft="5dp"
-            android:textColor="@color/textColor"
             android:id="@+id/textView" />
             </LinearLayout>
         </RelativeLayout>
@@ -56,9 +55,8 @@
             android:layout_weight="1.5"
             android:layout_gravity="center"
             android:gravity="center"
-            android:textColor="@color/textColor"
             android:textSize="@dimen/Page_Txt"
-            android:textStyle="bold"
+            android:textColor="@color/textColor_txtpage"
             android:text="&quot;생년월일을 입력해주세요!&quot;"
             />
 
@@ -112,20 +110,14 @@
             android:layout_weight="1.5"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:textColor="@color/textColor"
             android:text="비공개"
             android:gravity="center_vertical"
             android:background="#ffffff"
+            android:textColor="@color/textColor_normal"
             android:textSize="@dimen/CheckBox_Txt"
-            android:textStyle="bold"
             android:layout_marginLeft="5dp"
             />
     </LinearLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.3"/>
 
     <Button
         android:layout_width="match_parent"
@@ -133,12 +125,12 @@
         android:layout_weight="1"
         android:layout_marginLeft="40dp"
         android:layout_marginRight="40dp"
+        android:layout_marginTop="10dp"
         android:background="@drawable/big_button_background"
         android:onClick="goRegist"
         android:text="가입 완료"
-        android:textColor="@color/textColor"
         android:textSize="@dimen/BigBtn"
-        android:textStyle="bold"
+        android:textColor="@color/textcolor_bigbtn"
         />
 
 </LinearLayout>

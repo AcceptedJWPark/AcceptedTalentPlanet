@@ -48,8 +48,6 @@ public class CustomerService_ClaimActivity extends AppCompatActivity {
     LinearLayout claim_LL3;
     LinearLayout claim_LL4;
     View claim_Devider1;
-    View claim_Devider2;
-    View claim_Devider3;
     TextView claim_Txt1;
     TextView claim_Txt2;
     TextView CustomerService_onebyoneTextLimit;
@@ -123,8 +121,6 @@ public class CustomerService_ClaimActivity extends AppCompatActivity {
         claim_LL2 = (LinearLayout) findViewById(R.id.claim_LL2);
         claim_LL3 = (LinearLayout) findViewById(R.id.claim_LL3);
         claim_Devider1 = findViewById(R.id.claim_Devider1);
-        claim_Devider2 = findViewById(R.id.claim_Devider2);
-        claim_Devider3 = findViewById(R.id.claim_Devider3);
         claim_Txt1 = (TextView) findViewById(R.id.claim_Txt1);
         claim_Txt2 = (TextView) findViewById(R.id.claim_Txt2);
 
@@ -158,14 +154,13 @@ public class CustomerService_ClaimActivity extends AppCompatActivity {
         WindowManager windowManager = (WindowManager) getApplicationContext().getSystemService(Context.WINDOW_SERVICE);
         windowManager.getDefaultDisplay().getMetrics(metrics);
 
-        int claim_Toolbar_height = (int) (metrics.heightPixels*0.075);
+        int claim_Toolbar_height = (int) (metrics.heightPixels*0.055);
         int claim_LL1_height = (int) (metrics.heightPixels*0.17);
         int claim_LL2_height = (int) (metrics.heightPixels*0.21);
         int claim_LL3_height = (int) (metrics.heightPixels*0.042);
         int claim_LL4_height = (int) (metrics.heightPixels*0.042);
         int claim_Devider1_height = (int) (metrics.heightPixels*0.00625);
-        int claim_Devider2_height = (int) (metrics.heightPixels*0.0208);
-        int claim_Txt_height = (int) (metrics.heightPixels*0.07);
+        int claim_Txt_height = (int) (metrics.heightPixels*0.042);
 
         ViewGroup.LayoutParams params1 = claim_toolbar.getLayoutParams();
         ViewGroup.LayoutParams params2 = claim_LL1.getLayoutParams();
@@ -173,8 +168,6 @@ public class CustomerService_ClaimActivity extends AppCompatActivity {
         ViewGroup.LayoutParams params4 = claim_LL3.getLayoutParams();
         ViewGroup.LayoutParams params5 = claim_LL4.getLayoutParams();
         ViewGroup.LayoutParams params6 = claim_Devider1.getLayoutParams();
-        ViewGroup.LayoutParams params7 = claim_Devider2.getLayoutParams();
-        ViewGroup.LayoutParams params8 = claim_Devider3.getLayoutParams();
         ViewGroup.LayoutParams params9 = claim_Txt1.getLayoutParams();
         ViewGroup.LayoutParams params10 = claim_Txt2.getLayoutParams();
 
@@ -186,8 +179,6 @@ public class CustomerService_ClaimActivity extends AppCompatActivity {
         params5.height = claim_LL4_height;
 
         params6.height = claim_Devider1_height;
-        params7.height = claim_Devider2_height;
-        params8.height = claim_Devider2_height;
 
         params9.height = claim_Txt_height;
         params10.height = claim_Txt_height;
@@ -198,8 +189,6 @@ public class CustomerService_ClaimActivity extends AppCompatActivity {
         claim_LL3.setLayoutParams(params4);
         claim_LL4.setLayoutParams(params5);
         claim_Devider1.setLayoutParams(params6);
-        claim_Devider2.setLayoutParams(params7);
-        claim_Devider3.setLayoutParams(params8);
         claim_Txt1.setLayoutParams(params9);
         claim_Txt2.setLayoutParams(params10);
 

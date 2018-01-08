@@ -13,15 +13,13 @@
     android:focusableInTouchMode="true"
     >
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.3"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="2"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
         android:orientation="vertical"
         >
 
@@ -32,18 +30,19 @@
             android:layout_height="0dp"
             android:layout_weight="1"
             android:text="&quot;아래 재능에 대한 공유 포인트를 입력해주세요.&quot;"
-            android:layout_gravity="center_horizontal"
+            android:layout_gravity="center"
+            android:gravity="center"
             android:textSize="@dimen/Page_Txt"
-            android:textStyle="bold"
-            android:textColor="@color/textColor"
+            android:textColor="@color/textColor_txtpage"
             />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:layout_weight="1"
             android:text="(1회 공유포인트는 최대 300P로 제한됩니다.)"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="5dp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textColor="@color/textColor_object"
             android:textSize="@dimen/Page_Txt_Example"
             />
 
@@ -67,7 +66,7 @@
             android:ellipsize="end"
             android:lines="1"
             android:gravity="center"
-            android:textColor="@color/textColor"
+            android:textColor="@color/textColor_normal"
             android:textStyle="bold"
             android:textSize="@dimen/Page_ItemSubTitle"
             android:layout_weight="1"
@@ -79,7 +78,7 @@
             android:ellipsize="end"
             android:lines="1"
             android:gravity="center"
-            android:textColor="@color/textColor"
+            android:textColor="@color/textColor_normal"
             android:textStyle="bold"
             android:textSize="@dimen/Page_ItemSubTitle"
             android:layout_weight="1"
@@ -91,7 +90,7 @@
             android:gravity="center"
             android:ellipsize="end"
             android:lines="1"
-            android:textColor="@color/textColor"
+            android:textColor="@color/textColor_normal"
             android:textStyle="bold"
             android:textSize="@dimen/Page_ItemSubTitle"
             android:layout_weight="1"
@@ -134,9 +133,9 @@
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:text="Point"
-                android:textColor="@color/textColor"
+                android:textColor="@color/textcolor_smallbtn"
                 android:textSize="@dimen/Page_ItemTitle"
-                android:textStyle="bold" />
+                />
 
         </LinearLayout>
 
@@ -147,24 +146,20 @@
 
     </LinearLayout>
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.5"/>
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
         android:layout_gravity="center"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="80dp"
+        android:layout_marginRight="80dp"
         android:background="@drawable/big_button_background"
         android:onClick="goSave"
         android:text="등록 완료"
         android:textAllCaps="false"
         android:textSize="@dimen/BigBtn"
-        android:textStyle="bold"
-        android:textColor="@color/textColor" />
+        android:textColor="@color/textcolor_bigbtn" />
 
 </LinearLayout>

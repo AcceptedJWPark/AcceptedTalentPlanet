@@ -49,6 +49,7 @@
                     android:lines="1"
                     android:textSize="@dimen/ListView_SecondLine"
                     android:text="등록 일자 : "
+                    android:textColor="@color/textColor_subject"
                     />
 
                 <TextView
@@ -59,6 +60,7 @@
                     android:lines="1"
                     android:textSize="@dimen/ListView_SecondLine"
                     android:text="2017.11.03 16:24"
+                    android:textColor="@color/textColor_subject"
                     />
 
 
@@ -86,7 +88,7 @@
                     android:layout_gravity="center_vertical"
                     android:singleLine="true"
                     android:lineSpacingMultiplier="1.5"
-                    android:textColor="@color/textColor"
+                    android:textColor="@color/textColor_object"
                     android:textSize="@dimen/List_SubTitle"
                     />
 
@@ -104,7 +106,7 @@
                     android:paddingTop="3dp"
                     android:singleLine="true"
                     android:text="기타"
-                    android:textColor="@color/textColor"
+                    android:textColor="@color/textColor_subject"
                     android:textSize="@dimen/List_SubTitle"
                     android:textStyle="bold" />
                 <TextView
@@ -117,7 +119,7 @@
                     android:singleLine="true"
                     android:textStyle="bold"
                     android:lineSpacingMultiplier="1.5"
-                    android:textColor="@color/textColor"
+                    android:textColor="@color/textColor_subject"
                     android:textSize="@dimen/List_SubTitle"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
@@ -137,7 +139,7 @@
                     android:singleLine="true"
                     android:textStyle="bold"
                     android:lineSpacingMultiplier="1.5"
-                    android:textColor="@color/textColor"
+                    android:textColor="@color/textColor_subject"
                     android:textSize="@dimen/List_SubTitle"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
@@ -154,7 +156,7 @@
                     android:layout_gravity="center_vertical"
                     android:singleLine="true"
                     android:lineSpacingMultiplier="1.5"
-                    android:textColor="@color/textColor"
+                    android:textColor="@color/textColor_object"
                     android:textSize="@dimen/List_SubTitle"
                     />
 
@@ -174,7 +176,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_centerInParent="true"
-            android:background="@drawable/nobackground"
+            android:background="@drawable/loginedittxt_background"
             >
         </Spinner>
 

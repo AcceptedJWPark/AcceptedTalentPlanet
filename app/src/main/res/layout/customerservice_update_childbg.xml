@@ -7,7 +7,8 @@
 
     <LinearLayout
         android:padding="10dp"
-        android:layout_margin="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/answer_graybackground"
@@ -19,8 +20,8 @@
             android:layout_width="wrap_content"
             android:gravity="center|left"
             android:layout_height="match_parent"
-            android:textColor="@color/textColor"
             android:lineSpacingExtra="10dp"
+            android:textColor="@color/textColor_object"
             android:textStyle="bold"
             android:textSize="@dimen/ListView_ChildTxt_Question"
             android:text="박종우님과 재 드림 기타, 드럼, 종우님과 재 드림 기타, 드럼, 피, 드럼, 피아노 완료의 건"

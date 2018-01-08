@@ -16,17 +16,17 @@
         android:id="@+id/claim_toolbar"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1.8"
+        android:layout_weight="1.32"
         android:gravity="center"
-        android:background="#f5f5f5"
+        android:background="@color/toolbarcolor_background"
         >
 
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
             >
 
             <LinearLayout
@@ -39,18 +39,16 @@
                 <ImageView
                     android:layout_width="@dimen/Toolbar_Pre_Img"
                     android:layout_height="@dimen/Toolbar_Pre_Img"
-                    android:tint="@color/textColor"
+                    android:textColor="@color/toolbarcolor_txtandimage"
                     android:src="@android:drawable/ic_menu_revert"
                     android:textSize="@dimen/Toolbar_Pre_Txt"
-
                     />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="이전"
-                    android:textColor="@color/textColor"
-                    android:textStyle="bold"
+                    android:textColor="@color/toolbarcolor_txtandimage"
                     android:textSize="@dimen/Toolbar_Pre_Txt"
                     />
 
@@ -60,32 +58,28 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="친구 목록"
-                android:textStyle="bold"
                 android:textSize="@dimen/ToolbarTxt"
                 android:gravity="center"
                 android:layout_centerInParent="true"
-                android:textColor="@color/textColor"
+                android:textColor="@color/toolbarcolor_txtandimage"
                 />
 
         </RelativeLayout>
 
-
     </LinearLayout>
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.3"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1.1"
+        android:layout_weight="1"
         android:paddingTop="1dp"
         android:paddingBottom="1dp"
         android:gravity="center"
-        android:paddingLeft="5dp"
-        android:paddingRight="5dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
         >
 
         <Button
@@ -94,12 +88,11 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="재능드림 보기"
+            android:text="재능 드림"
             android:layout_marginRight="5dp"
-            android:textColor="@color/textColor"
+            android:textColor="@color/textcolor_giveortake_clicked"
             android:background="@drawable/small_button_graybackground"
             android:textSize="@dimen/GiveorTakeBtn"
-            android:textStyle="bold"
             />
 
         <Button
@@ -109,23 +102,18 @@
             android:layout_weight="1"
             android:layout_marginLeft="5dp"
             android:gravity="center"
-            android:text="관심재능 보기"
-            android:textColor="#d2d2d2"
+            android:text="관심 재능"
+            android:textColor="@color/textcolor_giveortake_unclicked"
             android:background="@drawable/small_button_whitebackground"
             android:textSize="@dimen/GiveorTakeBtn"
-            android:textStyle="bold"
             />
 
     </LinearLayout>
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.3"/>
     <ListView
         android:id="@+id/FriendList_ListView_GIVE"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="20.6"
+        android:layout_weight="21.68"
         android:visibility="visible"
         android:layout_marginRight="5dp"
         android:layout_marginLeft="5dp"
@@ -135,7 +123,7 @@
         android:id="@+id/FriendList_ListView_TAKE"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="20.6"
+        android:layout_weight="21.68"
         android:visibility="visible"
         android:layout_marginRight="5dp"
         android:layout_marginLeft="5dp"

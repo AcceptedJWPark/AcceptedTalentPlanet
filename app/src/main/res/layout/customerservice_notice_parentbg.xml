@@ -31,10 +31,9 @@
                 android:layout_weight="1"
                 android:gravity="center_vertical"
                 android:text="어플리케이션 서비스 시작"
-                android:textColor="#000000"
                 android:ellipsize="end"
                 android:lines="1"
-                android:textStyle="bold"
+                android:textColor="@color/textColor_txtpage"
                 android:textSize="@dimen/List_Title"
                 />
 
@@ -46,6 +45,7 @@
                 android:gravity="center_vertical"
                 android:ellipsize="end"
                 android:lines="1"
+                android:textColor="@color/textColor_normal"
                 android:textSize="@dimen/ListView_SecondLine"
                 android:paddingLeft="5dp"
                 android:layout_marginTop="5dp"
@@ -61,7 +61,7 @@
             android:layout_weight="2"
             android:text="Mar.2018"
             android:textSize="@dimen/List_SubTitle"
-            android:textColor="#000000"
+            android:textColor="@color/textColor_txtpage"
             android:gravity="center"
             />
 

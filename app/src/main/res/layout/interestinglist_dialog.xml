@@ -24,9 +24,9 @@
             android:layout_marginTop="25dp"
             android:gravity="center"
             android:text="재능 진행 또는 관심 취소를 진행해주세요!"
-            android:textColor="@color/textColor"
+            android:textColor="@color/textColor_txtpage"
             android:textSize="@dimen/BigBtn"
-            android:textStyle="bold" />
+            />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -44,10 +44,10 @@
                 android:layout_height="25dp"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:textColor="@color/textColor"
+                android:textColor="@color/textcolor_bigbtn"
+                android:background="@drawable/big_button_background"
                 android:layout_marginRight="5dp"
                 android:textSize="@dimen/LogIn_PageTxt"
-                android:background="@drawable/small_button_whitebackground"
                 android:text="진행 하기"
                 />
 
@@ -59,8 +59,8 @@
                 android:gravity="center"
                 android:layout_marginLeft="5dp"
                 android:text="관심 취소"
-                android:background="@drawable/small_button_whitebackground"
-                android:textColor="@color/textColor"
+                android:textColor="@color/textcolor_bigbtn"
+                android:background="@drawable/big_button_background"
                 android:textSize="@dimen/LogIn_PageTxt" />
 
         </LinearLayout>

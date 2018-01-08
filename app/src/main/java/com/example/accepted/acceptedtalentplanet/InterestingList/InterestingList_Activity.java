@@ -122,14 +122,14 @@ public class InterestingList_Activity extends AppCompatActivity {
 
             if(giveTalentFlag){
                 InterestingList_GiveCheck.setBackground(ContextCompat.getDrawable(mContext, R.drawable.small_button_graybackground));
-                InterestingList_GiveCheck.setTextColor(getResources().getColor(R.color.textColor));
+                InterestingList_GiveCheck.setTextColor(getResources().getColor(R.color.textcolor_giveortake_clicked));
                 InterestingList_TakeCheck.setBackground(ContextCompat.getDrawable(mContext, R.drawable.small_button_whitebackground));
-                InterestingList_TakeCheck.setTextColor(Color.parseColor("#d2d2d2"));
+                InterestingList_TakeCheck.setTextColor(getResources().getColor(R.color.textcolor_giveortake_unclicked));
             }else{
                 InterestingList_TakeCheck.setBackground(ContextCompat.getDrawable(mContext, R.drawable.small_button_graybackground));
-                InterestingList_TakeCheck.setTextColor(getResources().getColor(R.color.textColor));
+                InterestingList_TakeCheck.setTextColor(getResources().getColor(R.color.textcolor_giveortake_clicked));
                 InterestingList_GiveCheck.setBackground(ContextCompat.getDrawable(mContext, R.drawable.small_button_whitebackground));
-                InterestingList_GiveCheck.setTextColor(Color.parseColor("#d2d2d2"));
+                InterestingList_GiveCheck.setTextColor(getResources().getColor(R.color.textcolor_giveortake_unclicked));
             }
             getInterestList();
 

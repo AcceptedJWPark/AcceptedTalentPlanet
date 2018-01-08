@@ -59,6 +59,8 @@ public class Join_Birth_Activity extends  AppCompatActivity {
 
         mContext = getApplicationContext();
 
+        //TODO:월에 01이 아니라 1로 입력하면 잘못저장됨. 확인필요
+
         email = intent.getStringExtra("email");
         pw = intent.getStringExtra("pw");
         name = intent.getStringExtra("name");

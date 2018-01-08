@@ -19,6 +19,8 @@
         android:layout_height="50dp"
         android:gravity="center_vertical"
         android:orientation="vertical"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
         >
 
         <TextView
@@ -27,8 +29,7 @@
             android:layout_weight="1"
             android:layout_gravity="center_horizontal"
             android:text="&quot;희망 재능 공유 장소를 입력해주세요. &quot;(최대 3개 입력)"
-            android:textColor="@color/textColor"
-            android:textStyle="bold"
+            android:textColor="@color/textColor_txtpage"
             android:gravity="center"
             android:textSize="@dimen/Page_Txt"
             />
@@ -40,6 +41,7 @@
             android:gravity="center"
             android:text="Ex) 서울시 마포구 상수동"
             android:layout_gravity="center_horizontal"
+            android:textColor="@color/textColor_object"
             android:textSize="@dimen/Page_Txt_Example"
             />
 
@@ -65,7 +67,7 @@
             android:dropDownWidth="wrap_content"
             android:dropDownHeight="wrap_content"
             android:textSize="@dimen/Edit_Hint"
-            android:paddingLeft="5dp"
+            android:paddingLeft="10dp"
             android:singleLine="true"
             android:imeOptions="actionDone"
             android:hint="주소 검색"
@@ -90,14 +92,14 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="0.7"
-                android:background="@drawable/small_button_whitebackground"
+                android:background="@drawable/resistbtn_whitebackground"
                 android:gravity="center"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
                 android:text="등록"
-                android:textColor="#000000"
+                android:textColor="@color/textcolor_smallbtn"
                 android:textSize="@dimen/ListView_Btn"
-                android:textStyle="bold" />
+                />
 
 
         </LinearLayout>
@@ -111,14 +113,9 @@
             android:layout_marginRight="50dp"
             android:dividerHeight="0dp"
             android:divider="#ffffff"
-
             >
         </ListView>
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.5"/>
 
     <Button
         android:id="@+id/TalentResister_Location_Btn"
@@ -127,12 +124,12 @@
         android:layout_marginLeft="70dp"
         android:textSize="@dimen/BigBtn"
         android:layout_marginRight="70dp"
+        android:layout_marginTop="10dp"
         android:background="@drawable/big_button_background"
         android:onClick="goNext"
         android:text="다 음"
         android:textAllCaps="false"
-        android:textStyle="bold"
-        android:textColor="@color/textColor" />
+        android:textColor="@color/textcolor_bigbtn" />
 
 </LinearLayout>
 

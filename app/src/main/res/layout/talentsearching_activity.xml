@@ -18,7 +18,7 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1.8"
+        android:layout_weight="1.32"
         android:contentInsetStart="0dp"
         android:contentInsetLeft="0dp"
         app:contentInsetLeft="0dp"
@@ -32,20 +32,18 @@
             layout="@layout/toolbarlayout"/>
     </android.support.v7.widget.Toolbar>
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.3"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1.1"
+        android:layout_weight="1"
         android:paddingTop="1dp"
         android:paddingBottom="1dp"
         android:gravity="center"
-        android:paddingLeft="5dp"
-        android:paddingRight="5dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
         >
         <Button
             android:id="@+id/TalentSearching_ShowGive"
@@ -53,12 +51,11 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="재능드림 보기"
+            android:text="재능 드림"
             android:layout_marginRight="5dp"
-            android:textColor="@color/textColor"
+            android:textColor="@color/textcolor_giveortake_clicked"
             android:background="@drawable/small_button_graybackground"
             android:textSize="@dimen/GiveorTakeBtn"
-            android:textStyle="bold"
             />
 
         <Button
@@ -68,19 +65,14 @@
             android:layout_weight="1"
             android:layout_marginLeft="5dp"
             android:gravity="center"
-            android:text="관심재능 보기"
-            android:textColor="#d2d2d2"
+            android:text="관심 재능"
+            android:textColor="@color/textcolor_giveortake_unclicked"
             android:background="@drawable/small_button_whitebackground"
             android:textSize="@dimen/GiveorTakeBtn"
-            android:textStyle="bold"
             />
 
     </LinearLayout>
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.3"/>
 
     <Button
         android:id="@+id/TalentSeraching_searchingBoxOpen"
@@ -89,29 +81,22 @@
         android:layout_weight="1"
         android:background="@drawable/big_button_background"
         android:gravity="center"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginBottom="10dp"
         android:orientation="horizontal"
         android:text="검색조건 변경"
         android:layout_gravity="center_vertical"
-        android:textColor="@color/textColor"
+        android:textColor="@color/textcolor_bigbtn"
         android:textSize="@dimen/BigBtn"
-        android:textStyle="bold"
         />
 
-
-
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.3"/>
 
     <ListView
         android:id="@+id/TalentSearching_ListView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="19.3"
+        android:layout_weight="20.68"
         android:visibility="visible"
         >
     </ListView>
@@ -123,7 +108,7 @@
         android:text="검색 조건을 변경하여 재능 서칭이 가능합니다."
         android:gravity="center"
         android:textSize="@dimen/Page_Txt"
-        android:textColor="@color/textColor"
+        android:textColor="@color/textColor_txtpage"
         android:visibility="gone"
         />
 

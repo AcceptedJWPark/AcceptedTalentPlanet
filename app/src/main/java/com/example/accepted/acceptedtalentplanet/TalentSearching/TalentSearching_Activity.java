@@ -89,9 +89,9 @@ public class TalentSearching_Activity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         giveButton.setBackground(ContextCompat.getDrawable(mContext, R.drawable.small_button_graybackground));
-                        giveButton.setTextColor(getResources().getColor(R.color.textColor));
+                        giveButton.setTextColor(getResources().getColor(R.color.textcolor_giveortake_clicked));
                         takeButton.setBackground(ContextCompat.getDrawable(mContext, R.drawable.small_button_whitebackground));
-                        takeButton.setTextColor(Color.parseColor("#d2d2d2"));
+                        takeButton.setTextColor(getResources().getColor(R.color.textcolor_giveortake_unclicked));
                     }
                 });
 
@@ -99,9 +99,9 @@ public class TalentSearching_Activity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         takeButton.setBackground(ContextCompat.getDrawable(mContext, R.drawable.small_button_graybackground));
-                        takeButton.setTextColor(getResources().getColor(R.color.textColor));
+                        takeButton.setTextColor(getResources().getColor(R.color.textcolor_giveortake_clicked));
                         giveButton.setBackground(ContextCompat.getDrawable(mContext, R.drawable.small_button_whitebackground));
-                        giveButton.setTextColor(Color.parseColor("#d2d2d2"));
+                        giveButton.setTextColor(getResources().getColor(R.color.textcolor_giveortake_unclicked));
                     }
                 });
 

@@ -221,9 +221,9 @@ public class TalentSharing_Activity extends AppCompatActivity {
                     finish();
                 }
                 TalentSharing_GiveCheck.setBackground(ContextCompat.getDrawable(mContext, R.drawable.small_button_graybackground));
-                TalentSharing_GiveCheck.setTextColor(getResources().getColor(R.color.textColor));
+                TalentSharing_GiveCheck.setTextColor(getResources().getColor(R.color.textcolor_giveortake_clicked));
                 TalentSharing_TakeCheck.setBackground(ContextCompat.getDrawable(mContext, R.drawable.small_button_whitebackground));
-                TalentSharing_TakeCheck.setTextColor(Color.parseColor("#d2d2d2"));
+                TalentSharing_TakeCheck.setTextColor(getResources().getColor(R.color.textcolor_giveortake_unclicked));
                 TalentSharing_PageTxt.setText(SaveSharedPreference.getUserName(mContext) + "님의 재능을 공유할 수 있는 회원리스트 입니다.");
             }else{
                 MyTalent mt = SaveSharedPreference.getTakeTalentData(mContext);
@@ -236,9 +236,9 @@ public class TalentSharing_Activity extends AppCompatActivity {
                     finish();
                 }
                 TalentSharing_TakeCheck.setBackground(ContextCompat.getDrawable(mContext, R.drawable.small_button_graybackground));
-                TalentSharing_TakeCheck.setTextColor(getResources().getColor(R.color.textColor));
+                TalentSharing_TakeCheck.setTextColor(getResources().getColor(R.color.textcolor_giveortake_clicked));
                 TalentSharing_GiveCheck.setBackground(ContextCompat.getDrawable(mContext, R.drawable.small_button_whitebackground));
-                TalentSharing_GiveCheck.setTextColor(Color.parseColor("#d2d2d2"));
+                TalentSharing_GiveCheck.setTextColor(getResources().getColor(R.color.textcolor_giveortake_unclicked));
                 TalentSharing_PageTxt.setText(SaveSharedPreference.getUserName(mContext) + "님께 재능을 공유할 수 있는 회원리스트 입니다.");
             }
 

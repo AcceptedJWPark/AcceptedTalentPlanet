@@ -5,9 +5,9 @@
     android:paddingTop="3dp"
     android:paddingBottom="3dp"
     android:background="#ffffff"
+    android:textColor="@color/textColor_normal"
     android:textStyle="bold"
     android:textSize="@dimen/TalentSearching_SpinnerTxt"
-    android:textColor="@color/textColor"
     xmlns:android="http://schemas.android.com/apk/res/android" />
 
 

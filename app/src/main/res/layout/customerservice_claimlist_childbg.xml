@@ -21,10 +21,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
+                android:layout_marginTop="5dp"
                 android:orientation="vertical"
-                android:background="@drawable/small_button_whitebackground"
                 >
 
                 <LinearLayout
@@ -40,7 +38,7 @@
                         android:gravity="center|top"
                         android:layout_height="match_parent"
                         android:background="#ffffff"
-                        android:textColor="#000000"
+                        android:textColor="@color/textColor_normal"
                         android:textStyle="bold"
                         android:textSize="@dimen/ListView_ChildTxt_Question"
                         android:text="신고 대상 : "
@@ -51,9 +49,8 @@
                         android:gravity="center|left|top"
                         android:layout_height="match_parent"
                         android:layout_marginLeft="5dp"
-                        android:background="#ffffff"
                         android:singleLine="true"
-                        android:textColor="@color/textColor"
+                        android:textColor="@color/textColor_object"
                         android:textSize="@dimen/ListView_ChildTxt_Question"
                         android:text="박종우님과 재능 드림 기타, 드럼, 피아노 완료의 건"
                         />
@@ -74,8 +71,8 @@
                         android:gravity="center|top"
                         android:layout_height="match_parent"
                         android:background="#ffffff"
-                        android:textColor="#000000"
                         android:textStyle="bold"
+                        android:textColor="@color/textColor_normal"
                         android:textSize="@dimen/ListView_ChildTxt_Question"
                         android:text="신고 유형 : "
                         />
@@ -86,9 +83,8 @@
                         android:gravity="center|left|top"
                         android:layout_height="match_parent"
                         android:layout_marginLeft="5dp"
-                        android:background="#ffffff"
                         android:singleLine="true"
-                        android:textColor="@color/textColor"
+                        android:textColor="@color/textColor_object"
                         android:textSize="@dimen/ListView_ChildTxt_Question"
                         android:text="금품 요구"
                         />
@@ -109,8 +105,8 @@
                 android:layout_height="match_parent"
                 android:gravity="center|top"
                 android:background="#ffffff"
-                android:textColor="#000000"
-                android:textStyle="bold"
+                    android:textColor="@color/textColor_normal"
+                    android:textStyle="bold"
                 android:textSize="@dimen/ListView_ChildTxt_Question"
                 android:text="신고 일자 : "
                 />
@@ -121,9 +117,8 @@
                         android:layout_marginLeft="5dp"
                         android:gravity="center|left|top"
                         android:layout_height="match_parent"
-                        android:background="#ffffff"
                         android:singleLine="true"
-                        android:textColor="@color/textColor"
+                        android:textColor="@color/textColor_object"
                         android:textSize="@dimen/ListView_ChildTxt_Question"
                         android:text="2017.12.11 21:32"
                         />
@@ -143,7 +138,7 @@
                         android:layout_height="match_parent"
                         android:gravity="center|top"
                         android:background="#ffffff"
-                        android:textColor="#000000"
+                        android:textColor="@color/textColor_normal"
                         android:textStyle="bold"
                         android:textSize="@dimen/ListView_ChildTxt_Question"
                         android:text="신고 내용 : "
@@ -155,8 +150,7 @@
                         android:layout_marginLeft="5dp"
                         android:gravity="center|left|top"
                         android:layout_height="match_parent"
-                        android:background="#ffffff"
-                        android:textColor="@color/textColor"
+                        android:textColor="@color/textColor_object"
                         android:lineSpacingExtra="10dp"
                         android:textSize="@dimen/ListView_ChildTxt_Question"
                         android:text="박종우님과 재 드림 기타, 드럼, 종우님과 재 드림 기타, 드럼, 피, 드럼, 피아노 완료의 건"
@@ -170,30 +164,21 @@
             <LinearLayout
                 android:gravity="center|left"
                 android:padding="10dp"
-                android:layout_margin="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/answer_graybackground"
                 android:orientation="horizontal">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:gravity="center|top"
-                    android:textColor="#000000"
-                    android:textStyle="bold"
-                    android:textSize="@dimen/ListView_ChildTxt_Question"
-                    android:text="답변 내용 : "
-                    />
 
                 <TextView
                     android:id="@+id/CustomerService_ClaimListAnswer"
                     android:layout_width="wrap_content"
-                    android:layout_marginLeft="5dp"
                     android:gravity="center|left"
                     android:layout_height="match_parent"
-                    android:textColor="@color/textColor"
                     android:lineSpacingExtra="10dp"
+                    android:textColor="@color/textColor_object"
                     android:textStyle="bold"
                     android:textSize="@dimen/ListView_ChildTxt_Question"
                     android:text="박종우님과 재 드림 기타, 드럼, 종우님과 재 드림 기타, 드럼, 피, 드럼, 피아노 완료의 건"

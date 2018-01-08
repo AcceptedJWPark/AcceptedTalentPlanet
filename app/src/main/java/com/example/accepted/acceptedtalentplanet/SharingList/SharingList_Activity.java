@@ -111,9 +111,9 @@ public class SharingList_Activity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 SharingList_ShowGive.setBackground(ContextCompat.getDrawable(mContext, R.drawable.small_button_graybackground));
-                SharingList_ShowGive.setTextColor(getResources().getColor(R.color.textColor));
+                SharingList_ShowGive.setTextColor(getResources().getColor(R.color.textcolor_giveortake_clicked));
                 SharingList_ShowTake.setBackground(ContextCompat.getDrawable(mContext, R.drawable.small_button_whitebackground));
-                SharingList_ShowTake.setTextColor(Color.parseColor("#d2d2d2"));
+                SharingList_ShowTake.setTextColor(getResources().getColor(R.color.textcolor_giveortake_unclicked));
 
                 SharingList_arrayList.clear();
                 for(SharingList_Item item : SharingList_arrayList_Origin){
@@ -132,9 +132,9 @@ public class SharingList_Activity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 SharingList_ShowTake.setBackground(ContextCompat.getDrawable(mContext, R.drawable.small_button_graybackground));
-                SharingList_ShowTake.setTextColor(getResources().getColor(R.color.textColor));
+                SharingList_ShowTake.setTextColor(getResources().getColor(R.color.textcolor_giveortake_clicked));
                 SharingList_ShowGive.setBackground(ContextCompat.getDrawable(mContext, R.drawable.small_button_whitebackground));
-                SharingList_ShowGive.setTextColor(Color.parseColor("#d2d2d2"));
+                SharingList_ShowGive.setTextColor(getResources().getColor(R.color.textcolor_giveortake_unclicked));
 
                 SharingList_arrayList.clear();
                 for(SharingList_Item item : SharingList_arrayList_Origin){

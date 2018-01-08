@@ -12,17 +12,17 @@
         android:id="@+id/claim_toolbar"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1.8"
+        android:layout_weight="1.32"
         android:gravity="center"
-        android:background="#f5f5f5"
+        android:background="@color/toolbarcolor_background"
         >
 
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
             >
 
             <LinearLayout
@@ -35,18 +35,16 @@
                 <ImageView
                     android:layout_width="@dimen/Toolbar_Pre_Img"
                     android:layout_height="@dimen/Toolbar_Pre_Img"
-                    android:tint="@color/textColor"
+                    android:textColor="@color/toolbarcolor_txtandimage"
                     android:src="@android:drawable/ic_menu_revert"
                     android:textSize="@dimen/Toolbar_Pre_Txt"
-
                     />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="이전"
-                    android:textColor="@color/textColor"
-                    android:textStyle="bold"
+                    android:textColor="@color/toolbarcolor_txtandimage"
                     android:textSize="@dimen/Toolbar_Pre_Txt"
                     />
 
@@ -56,35 +54,30 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="관심 목록"
-                android:textStyle="bold"
                 android:textSize="@dimen/ToolbarTxt"
                 android:gravity="center"
                 android:layout_centerInParent="true"
-                android:textColor="@color/textColor"
+                android:textColor="@color/toolbarcolor_txtandimage"
                 />
 
         </RelativeLayout>
 
-
     </LinearLayout>
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.3"
-        />
 
 
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1.1"
+        android:layout_weight="1"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
         android:paddingTop="1dp"
         android:paddingBottom="1dp"
         android:gravity="center"
-        android:paddingLeft="5dp"
-        android:paddingRight="5dp"
         >
 
         <Button
@@ -95,9 +88,9 @@
             android:layout_weight="1"
             android:background="@drawable/small_button_graybackground"
             android:text="재능드림 보기"
-            android:textColor="@color/textColor"
+            android:textColor="@color/textcolor_giveortake_clicked"
             android:textSize="@dimen/GiveorTakeBtn"
-            android:textStyle="bold" />
+            />
 
         <Button
             android:id="@+id/InterestingList_TakeCheck"
@@ -107,23 +100,18 @@
             android:layout_weight="1"
             android:background="@drawable/small_button_whitebackground"
             android:text="관심재능 보기"
-            android:textColor="#d2d2d2"
             android:textSize="@dimen/GiveorTakeBtn"
-            android:textStyle="bold" />
+            android:textColor="@color/textcolor_giveortake_unclicked"
+            />
     </LinearLayout>
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.3"
-        />
 
 
     <ListView
         android:id="@+id/Interesting_List"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="22.2"
+        android:layout_weight="21.68"
         >
     </ListView>
 

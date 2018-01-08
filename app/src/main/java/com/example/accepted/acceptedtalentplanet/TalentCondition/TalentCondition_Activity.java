@@ -78,7 +78,6 @@ public class TalentCondition_Activity extends AppCompatActivity {
     String flag;
     String giveTalentID, takeTalentID, targetGiveTalentID, targetTakeTalentID;
 
-    View TrashView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -110,7 +109,6 @@ public class TalentCondition_Activity extends AppCompatActivity {
         TalentCondition_Button3 = (Button) findViewById(R.id.TalentCondition_Button3);
         TalentCondition_PictureLL = (LinearLayout) findViewById(R.id.TalentCondition_PictureLL);
 
-        TrashView = findViewById(R.id.trashView);
 
         TalentCondition_Give_Registed(TalentCondition_Give_Registed,GiveTalentConditionCode);
         TalentCondition_Take_Registed(TalentCondition_Take_Registed,TakeTalentConditionCode);
@@ -121,9 +119,9 @@ public class TalentCondition_Activity extends AppCompatActivity {
             public void onClick(View v) {
                 TalentCondition_TakeorGiveTalent.setText("재능드림 : ");
                 TalentCondition_ShowGive.setBackground(ContextCompat.getDrawable(mContext, R.drawable.small_button_graybackground));
-                TalentCondition_ShowGive.setTextColor(getResources().getColor(R.color.textColor));
+                TalentCondition_ShowGive.setTextColor(getResources().getColor(R.color.textcolor_giveortake_clicked));
                 TalentCondition_ShowTake.setBackground(ContextCompat.getDrawable(mContext, R.drawable.small_button_whitebackground));
-                TalentCondition_ShowTake.setTextColor(Color.parseColor("#d2d2d2"));
+                TalentCondition_ShowTake.setTextColor(getResources().getColor(R.color.textcolor_giveortake_unclicked));
                 TalentCondition_Give_Registed(TalentCondition_Give_Registed,GiveTalentConditionCode);
             }
         });
@@ -134,9 +132,9 @@ public class TalentCondition_Activity extends AppCompatActivity {
             public void onClick(View v) {
                 TalentCondition_TakeorGiveTalent.setText("관심재능 : ");
                 TalentCondition_ShowTake.setBackground(ContextCompat.getDrawable(mContext, R.drawable.small_button_graybackground));
-                TalentCondition_ShowTake.setTextColor(getResources().getColor(R.color.textColor));
+                TalentCondition_ShowTake.setTextColor(getResources().getColor(R.color.textcolor_giveortake_clicked));
                 TalentCondition_ShowGive.setBackground(ContextCompat.getDrawable(mContext, R.drawable.small_button_whitebackground));
-                TalentCondition_ShowGive.setTextColor(Color.parseColor("#d2d2d2"));
+                TalentCondition_ShowGive.setTextColor(getResources().getColor(R.color.textcolor_giveortake_unclicked));
                 TalentCondition_Take_Registed(TalentCondition_Take_Registed, TakeTalentConditionCode);
             }
         });
@@ -189,7 +187,6 @@ public class TalentCondition_Activity extends AppCompatActivity {
             TalentCondition_Button2.setVisibility(GONE);
             TalentCondition_Button3.setVisibility(View.VISIBLE);
             TalentCondition_Condition.setText("미등록");
-            TrashView.setVisibility(GONE);
             TalentCondition_Button3.setText("재능드림 등록하기");
             TalentCondition_Button3.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -210,7 +207,6 @@ public class TalentCondition_Activity extends AppCompatActivity {
                     TalentCondition_Button2.setVisibility(View.VISIBLE);
                     TalentCondition_Button3.setVisibility(GONE);
                     TalentCondition_PictureLL.setVisibility(GONE);
-                    TrashView.setVisibility(GONE);
                     TalentCondition_Condition.setText("대기 중...");
                     TalentCondition_Button1.setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -238,7 +234,6 @@ public class TalentCondition_Activity extends AppCompatActivity {
                     TalentCondition_Button2.setVisibility(View.VISIBLE);
                     TalentCondition_PictureLL.setVisibility(View.VISIBLE);
                     TalentCondition_Button3.setVisibility(GONE);
-                    TrashView.setVisibility(View.VISIBLE);
                     TalentCondition_Condition.setText("진행 중...");
                     final AlertDialog.Builder AlarmDeleteDialog = new AlertDialog.Builder(TalentCondition_Activity.this);
                     TalentCondition_Button1.setOnClickListener(new View.OnClickListener() {
@@ -318,7 +313,6 @@ public class TalentCondition_Activity extends AppCompatActivity {
                             alertDialog.show();
                         }
                     });
-                    TrashView.setVisibility(GONE);
                     TalentCondition_Button2.setText("재능드림 수정하기");
                     TalentCondition_Button2.setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -349,7 +343,6 @@ public class TalentCondition_Activity extends AppCompatActivity {
             TalentCondition_Button2.setVisibility(GONE);
             TalentCondition_Button3.setVisibility(View.VISIBLE);
             TalentCondition_Condition.setText("미등록");
-            TrashView.setVisibility(GONE);
             TalentCondition_Button3.setText("관심재능 등록하기");
             TalentCondition_Button3.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -366,7 +359,6 @@ public class TalentCondition_Activity extends AppCompatActivity {
                     TalentCondition_TextView.setText("관심목록 확인 또는 T.Sharing을 확인해보세요!");
                     TalentCondition_Button1.setText("관심목록 확인");
                     TalentCondition_Button2.setText("T.Sharing");
-                    TrashView.setVisibility(GONE);
                     TalentCondition_Button1.setVisibility(View.VISIBLE);
                     TalentCondition_Button2.setVisibility(View.VISIBLE);
                     TalentCondition_Button3.setVisibility(GONE);
@@ -394,7 +386,6 @@ public class TalentCondition_Activity extends AppCompatActivity {
                     TalentCondition_TextView.setText("아래 회원과 재능을 공유하였다면 완료하기 버튼을 눌러주세요!");
                     TalentCondition_Button1.setText("완료 하기");
                     TalentCondition_Button2.setText("진행 취소");
-                    TrashView.setVisibility(View.VISIBLE);
                     TalentCondition_Button1.setVisibility(View.VISIBLE);
                     TalentCondition_Button2.setVisibility(View.VISIBLE);
                     TalentCondition_PictureLL.setVisibility(View.VISIBLE);
@@ -480,7 +471,6 @@ public class TalentCondition_Activity extends AppCompatActivity {
                             alertDialog.show();
                         }
                     });
-                    TrashView.setVisibility(GONE);
                     TalentCondition_Button2.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
@@ -492,7 +482,6 @@ public class TalentCondition_Activity extends AppCompatActivity {
                     TalentCondition_Button1.setVisibility(View.VISIBLE);
                     TalentCondition_Button2.setVisibility(View.VISIBLE);
                     TalentCondition_PictureLL.setVisibility(View.GONE);
-                    TrashView.setVisibility(GONE);
                     TalentCondition_Button3.setVisibility(GONE);
                     TalentCondition_Condition.setText("완료");
                     break;

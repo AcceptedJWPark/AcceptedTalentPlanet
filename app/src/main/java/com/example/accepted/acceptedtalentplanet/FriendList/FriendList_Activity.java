@@ -81,9 +81,9 @@ public class FriendList_Activity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Friendlist_ShowGive.setBackground(ContextCompat.getDrawable(mContext, R.drawable.small_button_graybackground));
-                Friendlist_ShowGive.setTextColor(getResources().getColor(R.color.textColor));
+                Friendlist_ShowGive.setTextColor(getResources().getColor(R.color.textcolor_giveortake_clicked));
                 Friendlist_ShowTake.setBackground(ContextCompat.getDrawable(mContext, R.drawable.small_button_whitebackground));
-                Friendlist_ShowTake.setTextColor(Color.parseColor("#d2d2d2"));
+                Friendlist_ShowTake.setTextColor(getResources().getColor(R.color.textcolor_giveortake_unclicked));
                 Friendlist_ListView_Give.setVisibility(View.VISIBLE);
                 Friendlist_ListView_Take.setVisibility(View.GONE);
 
@@ -108,9 +108,9 @@ public class FriendList_Activity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Friendlist_ShowTake.setBackground(ContextCompat.getDrawable(mContext, R.drawable.small_button_graybackground));
-                Friendlist_ShowTake.setTextColor(getResources().getColor(R.color.textColor));
+                Friendlist_ShowTake.setTextColor(getResources().getColor(R.color.textcolor_giveortake_clicked));
                 Friendlist_ShowGive.setBackground(ContextCompat.getDrawable(mContext, R.drawable.small_button_whitebackground));
-                Friendlist_ShowGive.setTextColor(Color.parseColor("#d2d2d2"));
+                Friendlist_ShowGive.setTextColor(getResources().getColor(R.color.textcolor_giveortake_unclicked));
                 Friendlist_ListView_Take.setVisibility(View.VISIBLE);
                 Friendlist_ListView_Give.setVisibility(View.GONE);
                 if(friendList.size() > 0) {
