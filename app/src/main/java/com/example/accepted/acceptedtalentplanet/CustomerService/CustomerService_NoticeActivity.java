@@ -75,9 +75,8 @@ public class CustomerService_NoticeActivity extends AppCompatActivity {
                         JSONObject o = obj.getJSONObject(i);
 
                         SimpleDateFormat sdf2 = new SimpleDateFormat("MMM, yyyy", Locale.ENGLISH);
-                        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-                        ParsePosition pos = new ParsePosition(0);
-                        Date date = sdf.parse(o.getString("CREATION_DATE"), pos);
+
+                        Date date = new java.sql.Date(Long.parseLong(o.getString("CREATION_DATE")));
                         String dateStr = sdf2.format(date);
 
                         arrayGroup.add(new CustomerService_NoticeListItem(o.getString("NOTICE_TITLE"), o.getString("NOTICE_SUMMARY"), dateStr));

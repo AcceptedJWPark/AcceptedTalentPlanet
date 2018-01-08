@@ -26,8 +26,11 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 /**
@@ -104,7 +107,13 @@ public class CustomerService_OnebyOneQuestionListActivity extends AppCompatActiv
                     for(int i = 0; i < obj.length(); i++){
                         JSONObject o = obj.getJSONObject(i);
                         String str = (o.getString("ANSWER_FLAG").equals("N")) ? "[답변 대기]" : "[답변 완료]";
-                        GroupDataList.add(new CustomerService_OnebyOneQuetiontItem(o.getString("QUESTION_SUMMARY"), str, o.getString("CREATION_DATE")));
+
+                        SimpleDateFormat sdf2 = new SimpleDateFormat("dd MMM, yyyy", Locale.ENGLISH);
+
+                        Date date = new java.sql.Date(Long.parseLong(o.getString("CREATION_DATE")));
+                        String dateStr = sdf2.format(date);
+
+                        GroupDataList.add(new CustomerService_OnebyOneQuetiontItem(o.getString("QUESTION_SUMMARY"), str, dateStr));
                         ArrayList<CustomerService_OnebyOneAnswerItem> arrayList = new ArrayList<CustomerService_OnebyOneAnswerItem>();
                         if(!o.getString("ANSWER_FLAG").equals("N")) {
                             arrayList.add(new CustomerService_OnebyOneAnswerItem(o.getString("QUESTION_SUMMARY"), o.getString("ANSWER_SUMMARY")));
