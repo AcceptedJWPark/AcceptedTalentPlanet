@@ -188,7 +188,7 @@ public class SharingList_Activity extends AppCompatActivity {
 
                         int TalentType = (o.getString("TALENT_FLAG").equals("Y"))?2: 1;
 
-                        SharingList_Item target = new SharingList_Item(o.getString("USER_NAME") + "님과", Integer.parseInt(o.getString("STATUS")), dateStr, o.getString("TALENT_KEYWORD1"), o.getString("TALENT_KEYWORD2"), o.getString("TALENT_KEYWORD3"), TalentType, o.getString("TALENT_ID"));
+                        SharingList_Item target = new SharingList_Item(o.getString("USER_NAME") + "님과", Integer.parseInt(o.getString("STATUS")), dateStr, o.getString("TALENT_KEYWORD1"), o.getString("TALENT_KEYWORD2"), o.getString("TALENT_KEYWORD3"), TalentType, o.getString("TALENT_ID"), o.getString("MY_TALENT_ID"));
                         SharingList_arrayList_Origin.add(target);
                         if(isGiveTalent){
                             if(TalentType == 1){
