@@ -41,7 +41,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1.08"
-        android:background="@drawable/divider_background"
+        android:background="@drawable/brg_divider"
         android:gravity="center_vertical">
 
         <TextView
@@ -195,7 +195,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1.08"
-        android:background="@drawable/divider_background"
+        android:background="@drawable/brg_divider"
         android:gravity="center_vertical"
         >
         <TextView
@@ -330,7 +330,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1.08"
-        android:background="@drawable/divider_background"
+        android:background="@drawable/brg_divider"
         android:gravity="center_vertical"
         >
         <TextView

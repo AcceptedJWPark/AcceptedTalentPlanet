@@ -59,11 +59,11 @@
                     android:id="@+id/TalentSharing_GiveCheck"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_marginRight="5dp"
                     android:layout_weight="1"
-                    android:background="@drawable/small_button_graybackground"
-                    android:text="재능 드림"
+                    android:textStyle="bold"
                     android:textColor="@color/textcolor_giveortake_clicked"
+                    android:background="@drawable/bgr_giveortake_clicked"
+                    android:text="재능 드림"
                     android:textSize="@dimen/GiveorTakeBtn"
                     />
 
@@ -71,11 +71,10 @@
                     android:id="@+id/TalentSharing_TakeCheck"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_marginLeft="5dp"
                     android:layout_weight="1"
-                    android:background="@drawable/small_button_whitebackground"
-                    android:text="관심 재능"
                     android:textColor="@color/textcolor_giveortake_unclicked"
+                    android:background="@drawable/bgr_giveortake_unclicked"
+                    android:text="관심 재능"
                     android:textSize="@dimen/GiveorTakeBtn"
                     />
             </LinearLayout>

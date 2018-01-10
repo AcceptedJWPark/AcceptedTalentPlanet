@@ -2,16 +2,19 @@ package com.example.accepted.acceptedtalentplanet.TalentSharing;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
-import android.support.v7.widget.Toolbar;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Display;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -41,6 +44,7 @@ import java.util.Map;
 
 public class TalentSharing_Popup_Activity extends FragmentActivity{
 
+    ImageView TalentSharing_popup_picture;
     ImageView talentSharing_pupupclosebtn;
     ImageView TalentSharingPopup_addfriendList_on;
     ImageView TalentSharingPopup_addfriendList_off;
@@ -49,6 +53,8 @@ public class TalentSharing_Popup_Activity extends FragmentActivity{
     boolean hasFlag = false;
     Context mContext;
     Button interestBtn;
+
+    RelativeLayout TalentSharing_popup_container;
 
     boolean addedFriend = false;
     boolean sendFlag = true;
@@ -71,6 +77,20 @@ public class TalentSharing_Popup_Activity extends FragmentActivity{
         int height = (int) (display.getHeight() * 0.9);
         getWindow().getAttributes().width = width;
         getWindow().getAttributes().height = height;
+
+        TalentSharing_popup_container = findViewById(R.id.TalentSharing_popup_container);
+        DisplayMetrics metrics = new DisplayMetrics();
+        WindowManager windowManager = (WindowManager) getApplicationContext().getSystemService(Context.WINDOW_SERVICE);
+        windowManager.getDefaultDisplay().getMetrics(metrics);
+
+        int picturewidth = (int) (metrics.heightPixels*0.164*0.8*0.85);
+        ViewGroup.LayoutParams params = TalentSharing_popup_container.getLayoutParams();
+        params.width = (int) picturewidth;
+        params.height = (int) picturewidth;
+        TalentSharing_popup_container.setLayoutParams(params);
+
+
+
 
         talentSharing_pupupclosebtn = (ImageView) findViewById(R.id.TalentSharing_pupupclosebtn);
         talentSharing_pupupclosebtn.setOnClickListener(new View.OnClickListener() {

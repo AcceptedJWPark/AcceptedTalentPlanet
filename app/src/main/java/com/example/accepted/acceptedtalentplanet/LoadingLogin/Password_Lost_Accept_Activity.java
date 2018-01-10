@@ -44,6 +44,7 @@ import static com.example.accepted.acceptedtalentplanet.SaveSharedPreference.hid
 public class Password_Lost_Accept_Activity extends AppCompatActivity {
 
     LinearLayout accept_join_mail;
+    Button accept_join_mail_btn;
     Context mContext;
     EditText PasswordLost_Email;
     EditText PasswordLost_EmailCode;
@@ -57,7 +58,6 @@ public class Password_Lost_Accept_Activity extends AppCompatActivity {
         setContentView(R.layout.login_passwordlost_accept_activity);
 
         mContext = getApplicationContext();
-        accept_join_mail = (LinearLayout) findViewById(R.id.accept_join_mail);
 
         PasswordLost_Email = (EditText) findViewById(R.id.PasswordLost_Email);
         PasswordLost_EmailCode = (EditText) findViewById(R.id.PasswordLost_EmailCode);
@@ -150,6 +150,7 @@ public class Password_Lost_Accept_Activity extends AppCompatActivity {
             @Override
             public void onResponse(String response){
                 accept_join_mail.setVisibility(View.VISIBLE);
+
             }
         }, el
         ) {
@@ -177,6 +178,8 @@ public class Password_Lost_Accept_Activity extends AppCompatActivity {
                     postRequestQueue.add(sendMailRequest);
                     LinearLayout acceptEmail = (LinearLayout)findViewById(R.id.accept_join_mail);
                     acceptEmail.setVisibility(View.VISIBLE);
+                    accept_join_mail_btn = (Button) findViewById(R.id.accept_join_mail_btn);
+                    accept_join_mail_btn.setVisibility(View.VISIBLE);
                 }
                 catch(JSONException e){
                     e.printStackTrace();

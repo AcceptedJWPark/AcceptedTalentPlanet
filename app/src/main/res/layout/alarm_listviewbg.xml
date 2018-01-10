@@ -5,7 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="60dp"
     android:background="#ffffff"
-    android:padding="5dp"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
+    android:paddingTop="5dp"
+    android:paddingBottom="5dp"
     android:gravity="center"
     android:weightSum="7"
     >
@@ -15,15 +18,14 @@
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:layout_marginRight="5dp"
-        android:background="@drawable/picture_background"
         >
     <ImageView
         android:id="@+id/Alarm_Picture"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:adjustViewBounds="true"
+        android:adjustViewBounds="false"
         android:gravity="center"
-        android:src="@drawable/testpicture2"
+        android:background="@drawable/testpicture2"
     />
     </LinearLayout>
 
@@ -31,6 +33,7 @@
         android:id="@+id/alarm_TxtLL"
         android:layout_width="0dp"
         android:layout_weight="5"
+        android:layout_marginLeft="5dp"
         android:layout_height="match_parent"
         android:gravity="center_vertical"
         android:orientation="vertical">
@@ -102,8 +105,8 @@
             android:id="@+id/Alarm_DeleteList"
             android:layout_weight="1"
             android:layout_width="0dp"
-            android:padding="8dp"
-            android:src="@android:drawable/presence_busy"
+            android:padding="10dp"
+            android:src="@drawable/icon_deletecheck"
             android:layout_height="match_parent"
             android:gravity="center"
             />

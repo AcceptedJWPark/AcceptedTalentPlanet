@@ -89,7 +89,7 @@ public class TalentSharing_ListAdapter extends BaseAdapter {
             });
         }
 
-        listView_picture.setImageResource(list_ArrayList.get(position).getPicture());
+        listView_picture.setBackgroundResource(list_ArrayList.get(position).getPicture());
         listView_name.setText(list_ArrayList.get(position).getName());
         listView_talent1.setText(list_ArrayList.get(position).getTalent1());
         listView_talent2.setText(list_ArrayList.get(position).getTalent2());

@@ -32,15 +32,6 @@ public class Alarm_Adapter extends BaseAdapter {
         this.list_ArrayList = list_ArrayList;
     }
 
-    public int getViewTypeCount()
-    {
-        return getCount();
-    }
-
-    public int getItemViewType(int position)
-    {
-        return position;
-    }
 
 
     @Override
@@ -57,6 +48,23 @@ public class Alarm_Adapter extends BaseAdapter {
     @Override
     public long getItemId(int position) {
         return position;
+    }
+
+    public ArrayList<Alarm_ListItem> getArrayList()
+    {
+        return list_ArrayList;
+    }
+
+    public void switchingFlag(boolean deletedFlag){
+        if(deletedFlag){
+            for(Alarm_ListItem item : list_ArrayList){
+                item.setdeleteClicked(true);
+            }
+        }else{
+            for(Alarm_ListItem item : list_ArrayList){
+                item.setdeleteClicked(false);
+            }
+        }
     }
 
     @Override
@@ -96,9 +104,19 @@ public class Alarm_Adapter extends BaseAdapter {
             holder=(ViewHolder) view.getTag();
         }
 
-        holder.Alarm_Picture.setImageResource(list_ArrayList.get(position).getpicture());
+        holder.Alarm_Picture.setBackgroundResource(list_ArrayList.get(position).getpicture());
         holder.Alarm_Name.setText(list_ArrayList.get(position).getName());
         holder.Alarm_RegistDate1.setText(list_ArrayList.get(position).getregistDate1());
+
+        if (list_ArrayList.get(position).getdeleteClicked())
+        {
+            holder.Alarm_DeleteList.setVisibility(View.VISIBLE);
+        }else
+        {
+            holder.Alarm_DeleteList.setVisibility(View.INVISIBLE);
+        }
+
+
         holder.Alarm_DeleteList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

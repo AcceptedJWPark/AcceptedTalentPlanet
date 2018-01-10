@@ -7,6 +7,7 @@
     android:background="#ffffff"
     android:weightSum="24"
     android:focusable="true"
+    android:clickable="true"
     android:focusableInTouchMode="true"
     >
 
@@ -31,8 +32,8 @@
             android:id="@+id/preImg"
             android:layout_width="@dimen/Toolbar_Pre_Img"
             android:layout_height="@dimen/Toolbar_Pre_Img"
-            android:src="@android:drawable/ic_menu_revert"
-            android:background="@drawable/loginedittxt_background"
+            android:src="@drawable/icon_backbtn_join"
+            android:layout_marginRight="5dp"
             android:layout_alignTop="@+id/textView"
             android:layout_alignBottom="@+id/textView" />
 
@@ -43,7 +44,6 @@
             android:text="비밀번호"
             android:textSize="@dimen/Toolbar_Pre_Txt"
             android:textColor="@color/textColor_normal"
-            android:layout_marginLeft="5dp"
             android:id="@+id/textView" />
         </LinearLayout>
     </RelativeLayout>
@@ -52,7 +52,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1.5"
+            android:layout_weight="2.4"
             android:layout_gravity="center"
             android:gravity="center"
             android:textColor="@color/textColor_txtpage"
@@ -71,7 +71,8 @@
         <EditText
             android:id="@+id/Join_FirstName"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@drawable/bgr_inputbox"
             android:layout_marginLeft="60dp"
             android:layout_marginRight="5dp"
             android:layout_weight="1"
@@ -82,7 +83,8 @@
         <EditText
             android:id="@+id/Join_LastName"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@drawable/bgr_inputbox"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="60dp"
             android:layout_weight="1"
@@ -98,8 +100,8 @@
         android:layout_weight="1"
         android:layout_marginLeft="60dp"
         android:layout_marginRight="60dp"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/big_button_background"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/bgr_bigbtn"
         android:onClick="goNext"
         android:textColor="@color/textcolor_bigbtn"
         android:text="다 음"

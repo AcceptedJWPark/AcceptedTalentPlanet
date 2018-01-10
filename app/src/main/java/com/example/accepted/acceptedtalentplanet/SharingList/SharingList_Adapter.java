@@ -163,6 +163,16 @@ public class SharingList_Adapter extends BaseAdapter{
 
                             case 3:
                                 Intent b = new Intent(context, CustomerService_ClaimActivity.class);
+                                String str2 = (list_ArrayList.get(position).getTalentType_CODE() == 1) ? "Give": "Take";
+                                b.putExtra("isSelected", true);
+                                b.putExtra("name", list_ArrayList.get(position).getname());
+                                b.putExtra("keyword1", list_ArrayList.get(position).getKeyword1());
+                                b.putExtra("keyword2", list_ArrayList.get(position).getKeyword2());
+                                b.putExtra("keyword3", list_ArrayList.get(position).getKeyword3());
+                                b.putExtra("myTalentID", list_ArrayList.get(position).getMyTalentID());
+                                b.putExtra("tarTalentID", list_ArrayList.get(position).getTalentID());
+                                b.putExtra("talentFlag", str2);
+                                b.putExtra("status",list_ArrayList.get(position).getTalentConditionType_CODE());
                                 context.startActivity(b);
                                 break;
 
@@ -187,30 +197,30 @@ public class SharingList_Adapter extends BaseAdapter{
 
             switch (list_ArrayList.get(position).getTalentConditionType_CODE()) {
                 case 1: {
-                    holder.SharingList_ConditionType.setText("[받은 관심]");
+                    holder.SharingList_ConditionType.setText("받은 관심");
                     holder.SharingList_Txt.setText("관심을 받았습니다.");
                     break;
                 }
 
                 case 2: {
-                    holder.SharingList_ConditionType.setText("[보낸 관심]");
+                    holder.SharingList_ConditionType.setText("보낸 관심");
                     holder.SharingList_Txt.setText("관심을 보냈습니다.");
                     break;
                 }
 
                 case 3: {
-                    holder.SharingList_ConditionType.setText("[진행 중]");
+                    holder.SharingList_ConditionType.setText("진행중");
                     holder.SharingList_Txt.setText("진행 중입니다.");
                     break;
                 }
                 case 4: {
-                    holder.SharingList_ConditionType.setText("[공유 완료]");
+                    holder.SharingList_ConditionType.setText("공유 완료");
                     holder.SharingList_Txt.setText("완료 하였습니다.");
                     break;
                 }
 
                 case 5: {
-                    holder.SharingList_ConditionType.setText("[진행 취소]");
+                    holder.SharingList_ConditionType.setText("진행 취소");
                     holder.SharingList_Txt.setText("진행 취소하였습니다.");
                     break;
                 }

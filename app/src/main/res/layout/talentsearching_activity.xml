@@ -12,6 +12,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
+    android:background="#ffffff"
     android:weightSum="24">
 
     <android.support.v7.widget.Toolbar
@@ -52,9 +53,9 @@
             android:layout_weight="1"
             android:gravity="center"
             android:text="재능 드림"
-            android:layout_marginRight="5dp"
+            android:textStyle="bold"
             android:textColor="@color/textcolor_giveortake_clicked"
-            android:background="@drawable/small_button_graybackground"
+            android:background="@drawable/bgr_giveortake_clicked"
             android:textSize="@dimen/GiveorTakeBtn"
             />
 
@@ -63,11 +64,10 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:layout_marginLeft="5dp"
             android:gravity="center"
             android:text="관심 재능"
             android:textColor="@color/textcolor_giveortake_unclicked"
-            android:background="@drawable/small_button_whitebackground"
+            android:background="@drawable/bgr_giveortake_unclicked"
             android:textSize="@dimen/GiveorTakeBtn"
             />
 
@@ -79,7 +79,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:background="@drawable/big_button_background"
+        android:background="@drawable/bgr_bigbtn"
         android:gravity="center"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
@@ -91,26 +91,27 @@
         android:textSize="@dimen/BigBtn"
         />
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:text="검색 조건을 변경하여 회원님께 맞는 재능 검색이 가능합니다."
+        android:gravity="center"
+        android:textSize="@dimen/Page_Txt"
+        android:textColor="@color/textColor_txtpage"
+        android:layout_marginBottom="10dp"
+        />
 
     <ListView
         android:id="@+id/TalentSearching_ListView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="20.68"
+        android:layout_weight="19.68"
         android:visibility="visible"
         >
     </ListView>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="19"
-        android:text="검색 조건을 변경하여 재능 서칭이 가능합니다."
-        android:gravity="center"
-        android:textSize="@dimen/Page_Txt"
-        android:textColor="@color/textColor_txtpage"
-        android:visibility="gone"
-        />
+
 
 </LinearLayout>
 

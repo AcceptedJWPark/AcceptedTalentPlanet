@@ -5,8 +5,9 @@
 
     <dimen name="ToolbarTxt">15dp</dimen>
     <dimen name="Toolbar_Pre_Txt">12.5dp</dimen>
-    <dimen name="Toolbar_Pre_Img">25dp</dimen>
+    <dimen name="Toolbar_Pre_Img">20dp</dimen>
     <dimen name="Toolbar_Img">20dp</dimen>
+    <dimen name="Popup_Icon">30dp</dimen>
     <dimen name="List_Title">12dp</dimen>
     <dimen name="DrawerLL_Title">11dp</dimen>
     <dimen name="List_SubTitle">11.5dp</dimen>
@@ -14,7 +15,13 @@
     <dimen name="GiveorTakeBtn">12dp</dimen>
     <dimen name="Edit_Hint">11dp</dimen>
     <dimen name="CheckBox_Txt">11.5dp</dimen>
-    <dimen name="BigBtn">12dp</dimen>
+    <dimen name="BigBtn">11dp</dimen>
+    <dimen name="BigBtn_Topspace">20dp</dimen>
+
+    <dimen name="TalentCondition_Img">80dp</dimen>
+
+
+
     <dimen name="Popup_ItemTitle">11.5dp</dimen>
     <dimen name="Popup_ItemSubTitle">10.5dp</dimen>
     <dimen name="Popup_Txt">11.5dp</dimen>
@@ -65,7 +72,8 @@
     <dimen name="DialogTxtSize">4.5dp</dimen>
 
 
-
+    <dimen name="Picture_Width">80dp</dimen>
+    <dimen name="Picture_Height">80dp</dimen>
 
 
 </resources>

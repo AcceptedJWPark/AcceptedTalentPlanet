@@ -46,7 +46,7 @@
             android:text="알람 설정"
             android:textSize="@dimen/Divider"
             android:textColor="@color/textcolor_devider"
-            android:background="@drawable/divider_background"/>
+            android:background="@drawable/brg_divider"/>
 
 
 
@@ -187,7 +187,7 @@
             android:textColor="@color/textcolor_devider"
             android:textStyle="bold"
             android:textSize="@dimen/Divider"
-            android:background="@drawable/divider_background"/>
+            android:background="@drawable/brg_divider"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -274,7 +274,7 @@
             android:text="저장 하기"
             android:textColor="@color/textcolor_bigbtn"
             android:textSize="@dimen/BigBtn"
-            android:background="@drawable/big_button_background"
+            android:background="@drawable/bgr_bigbtn"
             />
 
     </LinearLayout>

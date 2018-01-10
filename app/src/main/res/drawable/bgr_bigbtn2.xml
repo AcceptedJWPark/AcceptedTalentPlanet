@@ -9,14 +9,22 @@
         />
 
     <gradient
-        android:angle="270"
-        android:centerColor="#002C62"
-        android:startColor="#024277"
-        android:endColor="#002C62"
+        android:angle="45"
+
+        android:centerX="47%"
+
+        android:centerColor="#62819B"
+
+        android:startColor="#7FA8C9"
+
+        android:endColor="#4D667A"
+
         android:type="linear"
         />
 
     <stroke
         android:width="0dp"
         android:color="#878787"
-        /></shape>
+        />
+
+</shape>

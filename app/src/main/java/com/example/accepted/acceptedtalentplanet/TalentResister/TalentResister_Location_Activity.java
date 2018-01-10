@@ -87,7 +87,7 @@ public class TalentResister_Location_Activity extends AppCompatActivity {
         windowManager.getDefaultDisplay().getMetrics(metrics);
 
         int TalentResister_LocationLL_height = metrics.heightPixels/16;
-        int TalentResister_Location_Txt_LL_height = metrics.heightPixels/12;
+        int TalentResister_Location_Txt_LL_height = metrics.heightPixels/10;
         int TalentResister_Location_Btn_height = metrics.heightPixels/24;
 
         ViewGroup.LayoutParams params1 = TalentResister_LocationLL.getLayoutParams();

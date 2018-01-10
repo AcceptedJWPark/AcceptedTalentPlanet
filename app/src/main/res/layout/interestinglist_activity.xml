@@ -36,17 +36,9 @@
                     android:layout_width="@dimen/Toolbar_Pre_Img"
                     android:layout_height="@dimen/Toolbar_Pre_Img"
                     android:textColor="@color/toolbarcolor_txtandimage"
-                    android:src="@android:drawable/ic_menu_revert"
-                    android:textSize="@dimen/Toolbar_Pre_Txt"
+                    android:src="@drawable/icon_backbtn"
                     />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="이전"
-                    android:textColor="@color/toolbarcolor_txtandimage"
-                    android:textSize="@dimen/Toolbar_Pre_Txt"
-                    />
 
             </LinearLayout>
 
@@ -84,11 +76,11 @@
             android:id="@+id/InterestingList_GiveCheck"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_marginRight="5dp"
             android:layout_weight="1"
-            android:background="@drawable/small_button_graybackground"
-            android:text="재능드림 보기"
+            android:textStyle="bold"
             android:textColor="@color/textcolor_giveortake_clicked"
+            android:background="@drawable/bgr_giveortake_clicked"
+            android:text="재능 드림"
             android:textSize="@dimen/GiveorTakeBtn"
             />
 
@@ -96,12 +88,11 @@
             android:id="@+id/InterestingList_TakeCheck"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_marginLeft="5dp"
             android:layout_weight="1"
-            android:background="@drawable/small_button_whitebackground"
-            android:text="관심재능 보기"
-            android:textSize="@dimen/GiveorTakeBtn"
             android:textColor="@color/textcolor_giveortake_unclicked"
+            android:background="@drawable/bgr_giveortake_unclicked"
+            android:text="관심 재능"
+            android:textSize="@dimen/GiveorTakeBtn"
             />
     </LinearLayout>
 

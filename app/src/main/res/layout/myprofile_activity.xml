@@ -53,53 +53,54 @@
                 android:focusableInTouchMode="true"
                 >
 
-                <LinearLayout
+                <RelativeLayout
                     android:id="@+id/MyProfile_PictureLL"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/MyProfile_Picture_Layout"
-                    android:gravity="center"
-                    android:orientation="vertical">
+                    >
 
 
                     <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginBottom="10dp"
-                        android:layout_weight="5">
+                        android:id="@+id/MyProfile_Picture_Container"
+                        android:layout_width="@dimen/Picture_Width"
+                        android:layout_height="@dimen/Picture_Height"
+                        android:background="@drawable/bgr_picture_container"
+                        android:padding="3dp"
+                        android:layout_centerInParent="true"
+                        >
 
                     <ImageView
-                        android:id="@+id/imageView"
-                        android:layout_width="wrap_content"
+                        android:id="@+id/MyProfile_Picture"
+                        android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_weight="5"
-                        android:adjustViewBounds="true"
+                        android:adjustViewBounds="false"
                         android:clickable="true"
                         android:layout_centerHorizontal="true"
                         android:focusableInTouchMode="true"
-                        android:src="@drawable/textpicture" />
-
-                        <ImageView
-                            android:layout_width="@dimen/Toolbar_Img"
-                            android:layout_height="@dimen/Toolbar_Img"
-                            android:layout_marginLeft="5dp"
-                            android:layout_alignBottom="@+id/imageView"
-                            android:layout_toRightOf="@+id/imageView"
-                            android:tint="#15000000"
-                            android:src="@android:drawable/ic_menu_edit"
-                            />
-
+                        android:src="@drawable/textpicture"
+                        android:scaleType="fitXY"
+                        />
                     </RelativeLayout>
 
+                    <ImageView
+                        android:layout_width="@dimen/Toolbar_Img"
+                        android:layout_height="@dimen/Toolbar_Img"
+                        android:layout_marginLeft="5dp"
+                        android:layout_alignBottom="@+id/MyProfile_Picture_Container"
+                        android:layout_toRightOf="@+id/MyProfile_Picture_Container"
+                        android:src="@drawable/icon_pictureedit"
 
-                </LinearLayout>
+                        />
+
+
+                </RelativeLayout>
 
 
                 <TextView
                     android:id="@+id/MyProfile_Devider1"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/MyProfile_Divider"
-                    android:background="@drawable/divider_background"
+                    android:background="@drawable/brg_divider"
                     android:textColor="@color/textcolor_devider"
                     android:textStyle="bold"
                     android:gravity="center_vertical"
@@ -292,18 +293,7 @@
                 </LinearLayout>
 
 
-                <TextView
-                    android:id="@+id/MyProfile_Devider2"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/MyProfile_Divider"
-                    android:background="@drawable/divider_background"
-                    android:textColor="@color/textcolor_devider"
-                    android:textStyle="bold"
-                    android:gravity="center_vertical"
-                    android:textSize="@dimen/Divider"
-                    android:paddingLeft="15dp"
-                    android:text="추가 정보"
-                    />
+
                 <!--, 선택 공개 레이아웃(직업)-->
                 <LinearLayout
                     android:id="@+id/MyProfile_List_LL6"
@@ -336,7 +326,7 @@
                             android:layout_height="match_parent"
                             android:layout_gravity="center"
                             android:layout_weight="2"
-                            android:background="@drawable/loginedittxt_background"
+                            android:background="@drawable/bgr_edittxt_box_login"
                             android:gravity="left|center"
                             android:scrollHorizontally="false"
                             android:textColor="@color/textColor_object"
@@ -367,6 +357,19 @@
                     </LinearLayout>
 
                 </LinearLayout>
+
+                <TextView
+                    android:id="@+id/MyProfile_Devider2"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/MyProfile_Divider"
+                    android:background="@drawable/brg_divider"
+                    android:textColor="@color/textcolor_devider"
+                    android:textStyle="bold"
+                    android:gravity="center_vertical"
+                    android:textSize="@dimen/Divider"
+                    android:paddingLeft="15dp"
+                    android:text="재능 정보"
+                    />
 
                 <!--, 선택 공개 레이아웃(자기소개)-->
                 <LinearLayout
@@ -555,8 +558,7 @@
                                 android:layout_width="@dimen/Toolbar_Img"
                                 android:layout_height="@dimen/Toolbar_Img"
                                 android:layout_marginLeft="5dp"
-                                android:tint="#15000000"
-                                android:src="@android:drawable/ic_search_category_default"
+                                android:src="@drawable/icon_point"
                                 />
 
                     </LinearLayout>
@@ -589,7 +591,7 @@
                         android:layout_marginRight="120dp"
                         android:layout_gravity="center"
                         android:textSize="@dimen/BigBtn"
-                        android:background="@drawable/big_button_background"
+                        android:background="@drawable/bgr_bigbtn"
                         android:text="저장하기"
                         android:textColor="@color/textcolor_bigbtn"
                         />

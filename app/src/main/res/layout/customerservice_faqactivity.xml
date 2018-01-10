@@ -32,19 +32,10 @@
                 <ImageView
                     android:layout_width="@dimen/Toolbar_Pre_Img"
                     android:layout_height="@dimen/Toolbar_Pre_Img"
-                    android:src="@android:drawable/ic_menu_revert"
-                    android:textSize="@dimen/Toolbar_Pre_Txt"
-                    android:tint="@color/toolbarcolor_txtandimage"
-
+                    android:src="@drawable/icon_backbtn"
                     />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="이전"
-                    android:textColor="@color/toolbarcolor_txtandimage"
-                    android:textSize="@dimen/Toolbar_Pre_Txt"
-                    />
+
 
             </LinearLayout>
 

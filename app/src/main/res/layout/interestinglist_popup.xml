@@ -10,100 +10,76 @@
 
 
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="3.94"
+        android:layout_weight="4.14"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
-        android:orientation="horizontal"
-        android:layout_gravity="center"
         >
 
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="2"
-            android:orientation="horizontal"
-            >
             <RelativeLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.7"
+                android:layout_width="@dimen/Popup_Icon"
+                android:layout_height="@dimen/Popup_Icon"
+                android:layout_alignParentLeft="true"
+                android:layout_alignTop="@+id/Interesting_popup_container"
                 >
                 <ImageView
                     android:id="@+id/InterestedPopup_addfriendList_on"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:adjustViewBounds="true"
-                    android:tint="#7fffff00"
-                    android:src="@android:drawable/star_big_on"/>
+                    android:layout_height="match_parent"
+                    android:src="@drawable/icon_friendadd_clicked"
+                    />
                 <ImageView
                     android:id="@+id/InterestedPopup_addfriendList_off"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:adjustViewBounds="true"
+                    android:layout_height="match_parent"
                     android:visibility="gone"
-                    android:src="@android:drawable/star_big_off"/>
+                    android:src="@drawable/icon_friendadd_unclicked"
+                    />
             </RelativeLayout>
 
 
-            <View
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="2"/>
-
-        </LinearLayout>
-
-
-
-    <ImageView
-        android:id="@+id/popup_img"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="2"
-        android:padding="5dp"
-        android:adjustViewBounds="true"
-        android:src="@drawable/textpicture" />
-
-
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="2"
-            android:orientation="horizontal"
+        <RelativeLayout
+            android:id="@+id/Interesting_popup_container"
+            android:layout_width="@dimen/Picture_Width"
+            android:layout_height="@dimen/Picture_Height"
+            android:background="@drawable/bgr_picture_container"
+            android:padding="3dp"
+            android:layout_centerInParent="true"
             >
 
-            <View
-                android:layout_width="0dp"
+            <ImageView
+                android:id="@+id/Interesting_popup_picture"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="2"/>
+                android:adjustViewBounds="false"
+                android:clickable="true"
+                android:layout_centerHorizontal="true"
+                android:focusableInTouchMode="true"
+                android:src="@drawable/textpicture"
+                android:scaleType="fitXY"
+                />
+        </RelativeLayout>
+
 
             <ImageView
                 android:id="@+id/TalentSharing_pupupclosebtn"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.7"
-                android:adjustViewBounds="true"
-                android:tint="@color/imgcolor_closebtn"
-                android:src="@android:drawable/ic_menu_close_clear_cancel" />
+                android:layout_width="@dimen/Popup_Icon"
+                android:layout_height="@dimen/Popup_Icon"
+                android:layout_alignParentRight="true"
+                android:layout_alignTop="@+id/Interesting_popup_container"
+                android:src="@drawable/icon_close"
+                android:padding="4dp"
+                />
 
-
-        </LinearLayout>
-
-    </LinearLayout>
+    </RelativeLayout>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1.08"
-        android:background="@drawable/divider_background"
+        android:background="@drawable/brg_divider"
         android:textColor="@color/textcolor_devider"
         android:textStyle="bold"
         android:gravity="center_vertical"
@@ -115,7 +91,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1.69"
+        android:layout_weight="1.67"
         android:gravity="center"
         android:paddingLeft="30dp"
         android:paddingRight="30dp"
@@ -148,7 +124,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="1.69"
+                android:layout_weight="1.67"
                 android:gravity="center"
                 android:paddingLeft="30dp"
                 android:paddingRight="30dp"
@@ -179,7 +155,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="1.69"
+                android:layout_weight="1.67"
                 android:gravity="center"
                 android:paddingLeft="30dp"
                 android:paddingRight="30dp"
@@ -211,7 +187,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="1.69"
+                android:layout_weight="1.67"
                 android:gravity="center"
                 android:paddingLeft="30dp"
                 android:paddingRight="30dp"
@@ -247,7 +223,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1.08"
-        android:background="@drawable/divider_background"
+        android:background="@drawable/brg_divider"
         android:textColor="@color/textcolor_devider"
         android:textStyle="bold"
         android:gravity="center_vertical"
@@ -261,7 +237,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1.69"
+            android:layout_weight="1.67"
             android:gravity="center"
             android:paddingLeft="30dp"
             android:paddingRight="30dp"
@@ -331,7 +307,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="5.07"
+        android:layout_weight="5.04"
         android:gravity="center"
         android:orientation="horizontal"
         android:weightSum="10"
@@ -429,7 +405,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1.69"
+        android:layout_weight="1.67"
         android:gravity="center"
         android:paddingLeft="30dp"
         android:paddingRight="30dp"
@@ -462,7 +438,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1.69"
+        android:layout_weight="1.67"
         android:gravity="center"
         android:paddingLeft="30dp"
         android:paddingRight="30dp"
@@ -505,7 +481,7 @@
             android:textAllCaps="false"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:background="@drawable/big_button_background"
+            android:background="@drawable/bgr_bigbtn"
             android:textColor="@color/textcolor_bigbtn"
             android:layout_marginRight="5dp"
             android:textSize="@dimen/Popup_BigBtn"
@@ -519,7 +495,7 @@
             android:layout_height="match_parent"
             android:layout_marginLeft="5dp"
             android:layout_weight="1"
-            android:background="@drawable/big_button_background"
+            android:background="@drawable/bgr_bigbtn"
             android:textColor="@color/textcolor_bigbtn"
             android:textSize="@dimen/Popup_BigBtn"
             android:text="진행 또는 취소"

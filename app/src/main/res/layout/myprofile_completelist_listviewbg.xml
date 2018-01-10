@@ -70,7 +70,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
                     android:textColor="#0077ff"
-                    android:background="@drawable/loginedittxt_background"
+                    android:background="@drawable/bgr_edittxt_box_login"
                     >
                 </TextView>
 

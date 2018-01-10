@@ -378,7 +378,7 @@ public class TalentSearching_SearchingPage_Activity extends AppCompatActivity {
         TalentSearching_LL4 = (LinearLayout) findViewById(R.id.TalentSearching_LL4);
 
         int TalentSearching_Txt_height = (int) (metrics.heightPixels*0.083);
-        int TalentSearching_LL_height = (int) (metrics.heightPixels*0.037);
+        int TalentSearching_LL_height = (int) (metrics.heightPixels*0.045);
         int TalentSearching_Btn_height = (int) (metrics.heightPixels*0.042);
 
         ViewGroup.LayoutParams params1 = TalentSearching_TxtView.getLayoutParams();

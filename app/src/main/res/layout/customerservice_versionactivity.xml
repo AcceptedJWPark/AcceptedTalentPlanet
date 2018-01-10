@@ -34,19 +34,9 @@
                 <ImageView
                     android:layout_width="@dimen/Toolbar_Pre_Img"
                     android:layout_height="@dimen/Toolbar_Pre_Img"
-                    android:src="@android:drawable/ic_menu_revert"
-                    android:tint="@color/toolbarcolor_txtandimage"
-                    android:textSize="@dimen/Toolbar_Pre_Txt"
-
+                    android:src="@drawable/icon_backbtn"
                     />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="이전"
-                    android:textColor="@color/toolbarcolor_txtandimage"
-                    android:textSize="@dimen/Toolbar_Pre_Txt"
-                    />
 
             </LinearLayout>
 
@@ -156,8 +146,8 @@
         android:layout_weight="1"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/big_button_background"
+        android:layout_marginTop="@dimen/BigBtn_Topspace"
+        android:background="@drawable/bgr_bigbtn"
         android:text="업데이트 하기"
         android:textSize="@dimen/BigBtn"
         android:textColor="@color/textcolor_bigbtn"

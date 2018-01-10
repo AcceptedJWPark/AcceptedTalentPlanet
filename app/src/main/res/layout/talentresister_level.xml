@@ -13,10 +13,10 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="2"
+        android:layout_weight="2.4"
         android:orientation="vertical"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
         >
 
         <TextView
@@ -43,6 +43,7 @@
         android:gravity="center"
         android:layout_marginLeft="40dp"
         android:layout_marginRight="40dp"
+        android:layout_marginBottom="10dp"
         >
         <TextView
             android:id="@+id/Level_key1"
@@ -89,6 +90,7 @@
         android:orientation="horizontal"
         android:paddingLeft="5dp"
         android:paddingRight="5dp"
+        android:layout_marginBottom="5dp"
         android:gravity="top|center"
         >
         <LinearLayout
@@ -204,7 +206,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginLeft="80dp"
         android:layout_marginRight="80dp"
-        android:background="@drawable/big_button_background"
+        android:background="@drawable/bgr_bigbtn"
         android:onClick="goNext"
         android:text="다 음"
         android:textSize="@dimen/BigBtn"

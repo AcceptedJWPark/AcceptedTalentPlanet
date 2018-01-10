@@ -1,20 +1,15 @@
 package com.example.accepted.acceptedtalentplanet.SharingList;
 
-import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
-import android.graphics.Color;
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
-import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.Spinner;
-import android.widget.TextView;
 
 import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
@@ -25,11 +20,8 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.accepted.acceptedtalentplanet.InterestingList.InterestingList_ListAdapter;
-import com.example.accepted.acceptedtalentplanet.InterestingList.InterestingList_ListItem;
 import com.example.accepted.acceptedtalentplanet.R;
 import com.example.accepted.acceptedtalentplanet.SaveSharedPreference;
-import com.example.accepted.acceptedtalentplanet.TalentSearching.TalentSearching_Activity;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -41,12 +33,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-
-import static com.example.accepted.acceptedtalentplanet.SaveSharedPreference.DrawerLayout_ClickEvent;
-import static com.example.accepted.acceptedtalentplanet.SaveSharedPreference.DrawerLayout_Open;
 
 /**
  * Created by Accepted on 2017-09-29.
@@ -110,10 +98,13 @@ public class SharingList_Activity extends AppCompatActivity {
         SharingList_ShowGive.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SharingList_ShowGive.setBackground(ContextCompat.getDrawable(mContext, R.drawable.small_button_graybackground));
+
+                SharingList_ShowGive.setBackground(ContextCompat.getDrawable(mContext, R.drawable.bgr_giveortake_clicked));
+                SharingList_ShowGive.setPaintFlags(SharingList_ShowGive.getPaintFlags() | Paint.FAKE_BOLD_TEXT_FLAG);
                 SharingList_ShowGive.setTextColor(getResources().getColor(R.color.textcolor_giveortake_clicked));
-                SharingList_ShowTake.setBackground(ContextCompat.getDrawable(mContext, R.drawable.small_button_whitebackground));
+                SharingList_ShowTake.setBackground(ContextCompat.getDrawable(mContext, R.drawable.bgr_giveortake_unclicked));
                 SharingList_ShowTake.setTextColor(getResources().getColor(R.color.textcolor_giveortake_unclicked));
+                SharingList_ShowTake.setPaintFlags(SharingList_ShowTake.getPaintFlags() &~ Paint.FAKE_BOLD_TEXT_FLAG);
 
                 SharingList_arrayList.clear();
                 for(SharingList_Item item : SharingList_arrayList_Origin){
@@ -131,10 +122,12 @@ public class SharingList_Activity extends AppCompatActivity {
         SharingList_ShowTake.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SharingList_ShowTake.setBackground(ContextCompat.getDrawable(mContext, R.drawable.small_button_graybackground));
+                SharingList_ShowTake.setBackground(ContextCompat.getDrawable(mContext, R.drawable.bgr_giveortake_clicked));
+                SharingList_ShowTake.setPaintFlags(SharingList_ShowGive.getPaintFlags() | Paint.FAKE_BOLD_TEXT_FLAG);
                 SharingList_ShowTake.setTextColor(getResources().getColor(R.color.textcolor_giveortake_clicked));
-                SharingList_ShowGive.setBackground(ContextCompat.getDrawable(mContext, R.drawable.small_button_whitebackground));
+                SharingList_ShowGive.setBackground(ContextCompat.getDrawable(mContext, R.drawable.bgr_giveortake_unclicked));
                 SharingList_ShowGive.setTextColor(getResources().getColor(R.color.textcolor_giveortake_unclicked));
+                SharingList_ShowGive.setPaintFlags(SharingList_ShowTake.getPaintFlags() &~ Paint.FAKE_BOLD_TEXT_FLAG);
 
                 SharingList_arrayList.clear();
                 for(SharingList_Item item : SharingList_arrayList_Origin){
@@ -188,7 +181,7 @@ public class SharingList_Activity extends AppCompatActivity {
 
                         int TalentType = (o.getString("TALENT_FLAG").equals("Y"))?2: 1;
 
-                        SharingList_Item target = new SharingList_Item(o.getString("USER_NAME") + "님과", Integer.parseInt(o.getString("STATUS")), dateStr, o.getString("TALENT_KEYWORD1"), o.getString("TALENT_KEYWORD2"), o.getString("TALENT_KEYWORD3"), TalentType, o.getString("TALENT_ID"));
+                        SharingList_Item target = new SharingList_Item(o.getString("USER_NAME") + "님과", Integer.parseInt(o.getString("STATUS")), dateStr, o.getString("TALENT_KEYWORD1"), o.getString("TALENT_KEYWORD2"), o.getString("TALENT_KEYWORD3"), TalentType, o.getString("TALENT_ID"), o.getString("MY_TALENT_ID"));
                         SharingList_arrayList_Origin.add(target);
                         if(isGiveTalent){
                             if(TalentType == 1){

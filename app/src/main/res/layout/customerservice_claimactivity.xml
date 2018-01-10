@@ -42,18 +42,7 @@
                 <ImageView
                     android:layout_width="@dimen/Toolbar_Pre_Img"
                     android:layout_height="@dimen/Toolbar_Pre_Img"
-                    android:tint="@color/toolbarcolor_txtandimage"
-                    android:src="@android:drawable/ic_menu_revert"
-                    android:textSize="@dimen/Toolbar_Pre_Txt"
-
-                    />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="이전"
-                    android:textColor="@color/toolbarcolor_txtandimage"
-                    android:textSize="@dimen/Toolbar_Pre_Txt"
+                    android:src="@drawable/icon_backbtn"
                     />
 
             </LinearLayout>
@@ -120,26 +109,18 @@
                         android:layout_height="match_parent"
                         android:layout_weight="5"
                         android:orientation="vertical"
+                        android:background="@drawable/bgr_inputbox"
                         >
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="0.22"/>
                         <TextView
                             android:id="@+id/CustomerService_Claim_SharingList"
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
                             android:layout_weight="1"
-                            android:background="@drawable/resistbtn_whitebackground"
                             android:gravity="center"
                             android:text="공유 내역보기"
                             android:textColor="@color/textColor_subject"
                             android:textSize="@dimen/GiveorTakeBtn"
                             />
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="0.22"/>
                     </LinearLayout>
 
                 </LinearLayout>
@@ -151,6 +132,7 @@
                     android:layout_marginBottom="15dp"
                     android:layout_marginLeft="50dp"
                     android:layout_marginRight="50dp"
+                    android:layout_marginTop="10dp"
                     android:gravity="center"
                     android:orientation="horizontal">
 
@@ -170,11 +152,8 @@
                         android:layout_height="match_parent"
                         android:layout_weight="5"
                         android:orientation="vertical"
+                        android:background="@drawable/bgr_inputbox"
                         >
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="0.22"/>
 
                         <Spinner
                             android:id="@+id/CustomerService_Claim_Spinner"
@@ -182,14 +161,9 @@
                             android:layout_height="0dp"
                             android:layout_gravity="center"
                             android:layout_weight="1"
-                            android:background="@drawable/resistbtn_whitebackground"
                             android:gravity="center"
                             android:padding="3dp"
                             />
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="0.22"/>
                     </LinearLayout>
 
                 </LinearLayout>
@@ -230,7 +204,7 @@
                     android:layout_height="match_parent"
                     android:layout_marginLeft="50dp"
                     android:layout_marginRight="50dp"
-                    android:background="@drawable/edittext_background"
+                    android:background="@drawable/bgr_edittxt_box"
                     android:orientation="vertical"
                     >
 
@@ -327,7 +301,7 @@
                     android:layout_weight="5"
                     android:layout_marginRight="5dp"
                     android:textColor="#000000"
-                    android:background="@drawable/edittext_background"
+                    android:background="@drawable/bgr_edittxt_box"
                     android:textStyle="bold"
                     />
 
@@ -337,7 +311,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:text="첨부"
-                    android:background="@drawable/resistbtn_whitebackground"
+                    android:background="@drawable/bgr_smallbtn"
                     android:gravity="center"
                     android:paddingBottom="4dp"
                     android:paddingTop="4dp"
@@ -365,7 +339,7 @@
                 android:text="신고 하기"
                 android:gravity="center"
                 android:textColor="@color/textcolor_bigbtn"
-                android:background="@drawable/big_button_background"
+                android:background="@drawable/bgr_bigbtn"
                 android:textSize="@dimen/BigBtn"
                 />
 

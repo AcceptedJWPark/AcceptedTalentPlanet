@@ -38,11 +38,9 @@
                 <ImageView
                     android:layout_width="@dimen/Toolbar_Pre_Img"
                     android:layout_height="@dimen/Toolbar_Pre_Img"
-                    android:tint="@color/toolbarcolor_txtandimage"
-                    android:src="@android:drawable/ic_menu_revert"
-                    android:textSize="@dimen/Toolbar_Pre_Txt"
-
+                    android:src="@drawable/icon_backbtn"
                     />
+
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -89,7 +87,7 @@
         android:layout_weight="6"
         android:layout_marginRight="40dp"
         android:layout_marginLeft="40dp"
-        android:background="@drawable/edittext_background"
+        android:background="@drawable/bgr_edittxt_box"
         android:orientation="vertical"
         >
 
@@ -171,7 +169,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:background="@drawable/big_button_background"
+        android:background="@drawable/bgr_bigbtn"
         android:layout_marginRight="40dp"
         android:layout_marginLeft="40dp"
         android:layout_marginTop="10dp"

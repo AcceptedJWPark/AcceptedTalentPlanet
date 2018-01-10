@@ -33,16 +33,27 @@
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
 
-                <ImageView
-                    android:adjustViewBounds="true"
+                <RelativeLayout
+                    android:id="@+id/MyProfile_Picture_Container"
                     android:layout_width="0dp"
-                    android:layout_marginLeft="10dp"
                     android:layout_height="match_parent"
+                    android:layout_weight="0.7"
+                    android:background="@drawable/bgr_picture_container"
+                    android:padding="3dp"
                     android:layout_marginTop="5dp"
                     android:layout_marginBottom="5dp"
-                    android:src="@drawable/testpicture2"
-                    android:layout_weight="0.7" />
+                    android:layout_marginLeft="10dp"
+                    android:layout_centerInParent="true"
+                    >
 
+                <ImageView
+                    android:adjustViewBounds="false"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/textpicture"
+                    android:scaleType="fitXY"
+                    />
+                </RelativeLayout>
 
                 <TextView
                     android:id="@+id/DrawerUserID"
@@ -62,11 +73,11 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.4"
-                    android:tint="@color/textColor_object"
                     android:adjustViewBounds="true"
                     android:layout_gravity="center"
                     android:layout_marginRight="10dp"
-                    android:src="@android:drawable/ic_menu_close_clear_cancel">
+                    android:padding="5dp"
+                    android:src="@drawable/icon_close">
                 </ImageView>
 
             </LinearLayout>
@@ -78,7 +89,6 @@
             android:layout_height="0dp"
             android:layout_weight="0.1"
             android:background="#eeeeee">
-            <!--android:background="@drawable/divider_background"-->
         </View>
 
 
@@ -87,7 +97,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1.9"
-            android:background="@drawable/list_drawer_background"
+            android:background="@drawable/bgr_drawerlayout_divider"
             android:gravity="center_vertical"
             android:onClick="slideMenuProfile"
             android:paddingLeft="20dp"
@@ -104,7 +114,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1.9"
-            android:background="@drawable/list_drawer_background"
+            android:background="@drawable/bgr_drawerlayout_divider"
             android:gravity="center_vertical"
             android:onClick="slideMenuTalent"
             android:textSize="@dimen/DrawerLL_Title"
@@ -118,7 +128,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1.9"
-            android:background="@drawable/list_drawer_background"
+            android:background="@drawable/bgr_drawerlayout_divider"
             android:gravity="center_vertical"
             android:onClick="slideMenuMyTalent"
             android:textSize="@dimen/DrawerLL_Title"
@@ -132,7 +142,6 @@
             android:layout_height="0dp"
             android:layout_weight="0.1"
             android:background="#eeeeee">
-            <!--android:background="@drawable/divider_background"-->
 
         </View>
 
@@ -142,7 +151,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1.9"
-            android:background="@drawable/list_drawer_background"
+            android:background="@drawable/bgr_drawerlayout_divider"
             android:gravity="center_vertical"
             android:onClick="slideMenuTS"
             android:textSize="@dimen/DrawerLL_Title"
@@ -157,7 +166,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1.9"
-            android:background="@drawable/list_drawer_background"
+            android:background="@drawable/bgr_drawerlayout_divider"
             android:gravity="center_vertical"
             android:onClick="slideMenuTalentSearching"
             android:paddingLeft="20dp"
@@ -171,11 +180,11 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1.9"
-            android:background="@drawable/list_drawer_background"
+            android:background="@drawable/bgr_drawerlayout_divider"
             android:gravity="center_vertical"
             android:onClick="slideMenuTalentSharingList"
             android:paddingLeft="20dp"
-            android:text="재능공유 · 관심 내역"
+            android:text="재능 공유 내역"
             android:textColor="@color/textColor_object"
             android:textSize="@dimen/DrawerLL_Title"
             android:textStyle="bold" />
@@ -185,7 +194,6 @@
             android:layout_height="0dp"
             android:layout_weight="0.1"
             android:background="#eeeeee">
-            <!--android:background="@drawable/divider_background"-->
         </View>
 
         <TextView
@@ -196,7 +204,7 @@
             android:text="Message Box"
             android:textStyle="bold"
             android:gravity="center_vertical"
-            android:background="@drawable/list_drawer_background"
+            android:background="@drawable/bgr_drawerlayout_divider"
             android:textSize="@dimen/DrawerLL_Title"
             android:textColor="@color/textColor_object"
             android:paddingLeft="20dp"
@@ -211,7 +219,7 @@
             android:textStyle="bold"
             android:onClick="slideFriendList"
             android:gravity="center_vertical"
-            android:background="@drawable/list_drawer_background"
+            android:background="@drawable/bgr_drawerlayout_divider"
             android:textSize="@dimen/DrawerLL_Title"
             android:textColor="@color/textColor_object"
             android:paddingLeft="20dp"
@@ -222,7 +230,6 @@
             android:layout_height="0dp"
             android:layout_weight="0.1"
             android:background="#eeeeee">
-            <!--android:background="@drawable/divider_background"-->
         </View>
 
         <TextView
@@ -231,7 +238,7 @@
             android:layout_height="0dp"
             android:gravity="center_vertical"
             android:layout_weight="1.9"
-            android:background="@drawable/list_drawer_background"
+            android:background="@drawable/bgr_drawerlayout_divider"
             android:text="고객센터"
             android:textSize="@dimen/DrawerLL_Title"
             android:onClick="slideMenuCustomerService"
@@ -246,7 +253,7 @@
             android:layout_weight="1.9"
             android:gravity="center_vertical"
             android:textSize="@dimen/DrawerLL_Title"
-            android:background="@drawable/list_drawer_background"
+            android:background="@drawable/bgr_drawerlayout_divider"
             android:text="설정"
             android:textColor="@color/textColor_object"
             android:textStyle="bold"
@@ -257,7 +264,6 @@
             android:layout_height="0dp"
             android:layout_weight="0.1"
             android:background="#eeeeee">
-            <!--android:background="@drawable/divider_background"-->
         </View>
 
 
@@ -266,7 +272,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1.9"
-            android:background="@drawable/list_drawer_background"
+            android:background="@drawable/bgr_drawerlayout_divider"
             android:orientation="horizontal"
             android:paddingLeft="20dp">
 

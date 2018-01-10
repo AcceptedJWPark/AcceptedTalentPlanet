@@ -8,7 +8,10 @@
     <TextView
         android:id="@+id/CustomerService_Notice_child_text"
         android:layout_width="match_parent"
-        android:padding="10dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
         android:gravity="center_vertical"
         android:layout_marginTop="5dp"
         android:layout_marginBottom="5dp"
@@ -17,7 +20,7 @@
         android:textStyle="bold"
         android:lineSpacingExtra="10dp"
         android:textSize="@dimen/ListView_ChildTxt_Question"
-        android:background="@drawable/answer_graybackground"
+        android:background="@drawable/bgr_answer"
         android:text="2018 2월 부로 Talent Planet Test가 시작되었습니다. \n2018년 3월 부로 Service 오픈 예정이오니, 많은 관심 부탁드립니다.\n"
         />
 

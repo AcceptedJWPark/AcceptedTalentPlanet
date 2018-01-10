@@ -15,14 +15,15 @@
         android:layout_weight="1.32"
         android:gravity="center"
         android:background="#002c62"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
         >
 
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
+
             >
 
 
@@ -37,24 +38,14 @@
                         android:layout_width="@dimen/Toolbar_Pre_Img"
                         android:layout_height="@dimen/Toolbar_Pre_Img"
                         android:tint="@color/toolbarcolor_txtandimage"
-                        android:src="@android:drawable/ic_menu_revert"
-                        android:textSize="@dimen/Toolbar_Pre_Txt"
-
-                        />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="이전"
-                        android:textColor="@color/toolbarcolor_txtandimage"
-                        android:textSize="@dimen/Toolbar_Pre_Txt"
+                        android:src="@drawable/icon_backbtn"
                         />
 
 
             </LinearLayout>
 
             <TextView
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="알람"
                 android:textSize="@dimen/ToolbarTxt"
@@ -62,6 +53,26 @@
                 android:layout_centerInParent="true"
                 android:textColor="@color/toolbarcolor_txtandimage"
                 />
+
+            <LinearLayout
+                android:id="@+id/Alarm_DeleteBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:gravity="center"
+                >
+
+                <ImageView
+                    android:layout_width="@dimen/Toolbar_Pre_Img"
+                    android:layout_height="@dimen/Toolbar_Pre_Img"
+                    android:tint="@color/toolbarcolor_txtandimage"
+                    android:src="@drawable/icon_delete"
+                    android:textSize="@dimen/Toolbar_Pre_Txt"
+                    />
+
+
+
+            </LinearLayout>
 
         </RelativeLayout>
 
@@ -72,7 +83,6 @@
         android:id="@+id/Alarm_List"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="10dp"
         android:layout_weight="22.68"
         >
     </ListView>

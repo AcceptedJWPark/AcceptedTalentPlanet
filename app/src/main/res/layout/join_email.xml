@@ -6,8 +6,8 @@
     android:layout_height="match_parent"
     android:background="#ffffff"
     android:weightSum="24"
-    android:clickable="true"
     android:focusable="true"
+    android:clickable="true"
     android:focusableInTouchMode="true"
     >
 
@@ -32,8 +32,8 @@
                 android:id="@+id/preImg"
                 android:layout_width="@dimen/Toolbar_Pre_Img"
                 android:layout_height="@dimen/Toolbar_Pre_Img"
-                android:src="@android:drawable/ic_menu_revert"
-                android:background="@drawable/loginedittxt_background"
+                android:src="@drawable/icon_backbtn_join"
+                android:layout_marginRight="5dp"
                 android:layout_alignTop="@+id/textView"
                 android:layout_alignBottom="@+id/textView" />
 
@@ -44,7 +44,6 @@
                 android:text="로그인"
                 android:textSize="@dimen/Toolbar_Pre_Txt"
                 android:textColor="@color/textColor_normal"
-                android:layout_marginLeft="5dp"
                 android:id="@+id/textView" />
         </LinearLayout>
 
@@ -53,7 +52,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1.5"
+            android:layout_weight="2.4"
             android:layout_gravity="center"
             android:gravity="center"
             android:textColor="@color/textColor_txtpage"
@@ -77,6 +76,7 @@
             android:id="@+id/Join_Email"
             android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:background="@drawable/bgr_inputbox"
             android:layout_weight="8"
             android:hint="E-mail"
             android:paddingLeft="10dp"
@@ -100,7 +100,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                android:background="@drawable/small_button_graybackground"
+                android:background="@drawable/bgr_bigbtn"
                 android:text="E-mail 인증"
                 android:textAllCaps="false"
                 android:textColor="@color/textcolor_bigbtn"
@@ -124,15 +124,15 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1.6"
-        android:visibility="gone"
         android:orientation="vertical"
+        android:visibility="invisible"
+        android:layout_marginTop="15dp"
         >
 
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1.6"
+            android:layout_height="match_parent"
             android:paddingTop="3dp"
             android:paddingBottom="3dp"
             android:layout_marginLeft="50dp"
@@ -143,6 +143,7 @@
                 android:id="@+id/Join_joinCode"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
+                android:background="@drawable/bgr_inputbox"
                 android:layout_weight="8"
                 android:paddingLeft="10dp"
                 android:hint="인증번호 입력"
@@ -169,7 +170,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                android:background="@drawable/small_button_graybackground"
+                android:background="@drawable/bgr_bigbtn"
                 android:text="인증 완료"
                 android:textColor="@color/textcolor_bigbtn"
                 android:textAllCaps="false"
@@ -195,13 +196,13 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="15dp"
         android:layout_marginLeft="50dp"
         android:layout_marginRight="50dp"
-        android:background="@drawable/big_button_background"
+        android:background="@drawable/bgr_bigbtn"
         android:onClick="goNext"
         android:text="다 음"
-        android:visibility="gone"
+        android:visibility="invisible"
         android:textColor="@color/textcolor_bigbtn"
         android:textAllCaps="false"
         android:textSize="@dimen/BigBtn"

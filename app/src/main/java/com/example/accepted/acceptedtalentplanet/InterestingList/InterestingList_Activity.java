@@ -1,25 +1,15 @@
 package com.example.accepted.acceptedtalentplanet.InterestingList;
 
 import android.content.Context;
-import android.content.Intent;
-import android.graphics.Color;
-import android.location.Address;
-import android.location.Geocoder;
-import android.location.Location;
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
-import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
@@ -30,30 +20,16 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.accepted.acceptedtalentplanet.CustomerService.CustomerService_MainActivity;
-import com.example.accepted.acceptedtalentplanet.GeoPoint;
-import com.example.accepted.acceptedtalentplanet.LoadingLogin.Login_Activity;
-import com.example.accepted.acceptedtalentplanet.MyProfile.MyProfile_Activity;
-import com.example.accepted.acceptedtalentplanet.MyTalent;
 import com.example.accepted.acceptedtalentplanet.R;
 import com.example.accepted.acceptedtalentplanet.SaveSharedPreference;
-import com.example.accepted.acceptedtalentplanet.System.System_Activity;
-import com.example.accepted.acceptedtalentplanet.TalentCondition.TalentCondition_Activity;
-import com.example.accepted.acceptedtalentplanet.TalentResister.TalentResister_Activity;
-import com.example.accepted.acceptedtalentplanet.TalentSearching.TalentSearching_Activity;
-import com.example.accepted.acceptedtalentplanet.TalentSharing.TalentSharing_ListAdapter;
-import com.example.accepted.acceptedtalentplanet.TalentSharing.TalentSharing_ListItem;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -121,15 +97,19 @@ public class InterestingList_Activity extends AppCompatActivity {
             giveTalentFlag = (((Button)v).getId() == R.id.InterestingList_GiveCheck) ? true : false;
 
             if(giveTalentFlag){
-                InterestingList_GiveCheck.setBackground(ContextCompat.getDrawable(mContext, R.drawable.small_button_graybackground));
+                InterestingList_GiveCheck.setBackground(ContextCompat.getDrawable(mContext, R.drawable.bgr_giveortake_clicked));
+                InterestingList_GiveCheck.setPaintFlags(InterestingList_GiveCheck.getPaintFlags() | Paint.FAKE_BOLD_TEXT_FLAG);
                 InterestingList_GiveCheck.setTextColor(getResources().getColor(R.color.textcolor_giveortake_clicked));
-                InterestingList_TakeCheck.setBackground(ContextCompat.getDrawable(mContext, R.drawable.small_button_whitebackground));
+                InterestingList_TakeCheck.setBackground(ContextCompat.getDrawable(mContext, R.drawable.bgr_giveortake_unclicked));
                 InterestingList_TakeCheck.setTextColor(getResources().getColor(R.color.textcolor_giveortake_unclicked));
+                InterestingList_TakeCheck.setPaintFlags(InterestingList_TakeCheck.getPaintFlags() &~ Paint.FAKE_BOLD_TEXT_FLAG);
             }else{
-                InterestingList_TakeCheck.setBackground(ContextCompat.getDrawable(mContext, R.drawable.small_button_graybackground));
+                InterestingList_TakeCheck.setBackground(ContextCompat.getDrawable(mContext, R.drawable.bgr_giveortake_clicked));
+                InterestingList_TakeCheck.setPaintFlags(InterestingList_GiveCheck.getPaintFlags() | Paint.FAKE_BOLD_TEXT_FLAG);
                 InterestingList_TakeCheck.setTextColor(getResources().getColor(R.color.textcolor_giveortake_clicked));
-                InterestingList_GiveCheck.setBackground(ContextCompat.getDrawable(mContext, R.drawable.small_button_whitebackground));
+                InterestingList_GiveCheck.setBackground(ContextCompat.getDrawable(mContext, R.drawable.bgr_giveortake_unclicked));
                 InterestingList_GiveCheck.setTextColor(getResources().getColor(R.color.textcolor_giveortake_unclicked));
+                InterestingList_GiveCheck.setPaintFlags(InterestingList_TakeCheck.getPaintFlags() &~ Paint.FAKE_BOLD_TEXT_FLAG);
             }
             getInterestList();
 

@@ -1,30 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+    android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="60dp"
     android:background="#ffffff"
-    android:padding="5dp"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
+    android:paddingTop="5dp"
+    android:paddingBottom="5dp"
     android:gravity="center"
-    android:layout_weight="24"
+    android:layout_weight="7"
     >
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        >
-
-    <ImageView
-        android:id="@+id/Interesting_List_Picture"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:adjustViewBounds="true"
-        android:layout_weight="1"
-        android:gravity="center"
-        android:src="@drawable/textpicture"
-    />
+        <LinearLayout
+            android:id="@+id/pictureContainerLL"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_marginRight="5dp"
+            >
+            <ImageView
+                android:id="@+id/Interesting_List_Picture"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:adjustViewBounds="false"
+                android:layout_weight="1"
+                android:gravity="center"
+                />
+        </LinearLayout>
 
 
     <LinearLayout
@@ -126,19 +130,35 @@
 
     </LinearLayout>
 
-<TextView
-    android:id="@+id/Interesting_List_GiveTake"
-    android:layout_width="0dp"
-    android:layout_height="match_parent"
-    android:layout_weight="1.5"
-    android:text="[보낸 관심]"
-    android:gravity="center"
-    android:textColor="@color/textColor_subject"
-    android:textSize="@dimen/List_Title"
-    android:textStyle="bold"
-    />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1.5"
+        android:orientation="vertical"
+        >
+        <ImageView
+            android:id="@+id/Interesting_List_GiveTakeIcon"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.8"
+            android:src="@drawable/icon_giveinter"
+            android:paddingTop="3dp"
+            />
+        <TextView
+            android:id="@+id/Interesting_List_GiveTake"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:text="보낸 관심"
+            android:gravity="center"
+            android:textColor="@color/textColor_subject"
+            android:textSize="@dimen/List_Title"
+            />
+
     </LinearLayout>
 
-</LinearLayout>
+    </LinearLayout>
+
 
 

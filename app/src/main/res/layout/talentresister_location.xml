@@ -16,11 +16,10 @@
     <LinearLayout
         android:id="@+id/TalentResister_Location_Txt_LL"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="80dp"
         android:gravity="center_vertical"
         android:orientation="vertical"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"
+        android:layout_marginTop="30dp"
         >
 
         <TextView
@@ -42,6 +41,7 @@
             android:text="Ex) 서울시 마포구 상수동"
             android:layout_gravity="center_horizontal"
             android:textColor="@color/textColor_object"
+            android:layout_marginTop="30dp"
             android:textSize="@dimen/Page_Txt_Example"
             />
 
@@ -92,7 +92,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="0.7"
-                android:background="@drawable/resistbtn_whitebackground"
+                android:background="@drawable/bgr_smallbtn"
                 android:gravity="center"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
@@ -112,6 +112,7 @@
             android:layout_marginLeft="50dp"
             android:layout_marginRight="50dp"
             android:dividerHeight="0dp"
+            android:layout_marginBottom="5dp"
             android:divider="#ffffff"
             >
         </ListView>
@@ -125,7 +126,7 @@
         android:textSize="@dimen/BigBtn"
         android:layout_marginRight="70dp"
         android:layout_marginTop="10dp"
-        android:background="@drawable/big_button_background"
+        android:background="@drawable/bgr_bigbtn"
         android:onClick="goNext"
         android:text="다 음"
         android:textAllCaps="false"
