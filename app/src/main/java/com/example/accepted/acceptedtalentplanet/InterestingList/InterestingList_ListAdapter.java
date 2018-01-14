@@ -8,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.BaseAdapter;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -97,10 +96,10 @@ public class InterestingList_ListAdapter extends BaseAdapter {
 
         if (list_ArrayList.get(position).getGiveTake_CODE()==2)
         {Interesting_List_GiveTake.setText("보낸 관심");
-            Interesting_List_GiveTakeIcon.setImageResource(R.drawable.icon_giveinter);
+            Interesting_List_GiveTakeIcon.setImageResource(R.drawable.icon_inter_give);
         }
         else  {Interesting_List_GiveTake.setText("받은 관심");
-            Interesting_List_GiveTakeIcon.setImageResource(R.drawable.icon_takeinter);
+            Interesting_List_GiveTakeIcon.setImageResource(R.drawable.icon_inter_take);
         }
 
         return view;

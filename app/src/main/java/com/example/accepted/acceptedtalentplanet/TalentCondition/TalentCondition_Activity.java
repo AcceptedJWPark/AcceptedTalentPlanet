@@ -113,7 +113,6 @@ public class TalentCondition_Activity extends AppCompatActivity {
         TalentCondition_Button2 = (Button) findViewById(R.id.TalentCondition_Button2);
         TalentCondition_Button3 = (Button) findViewById(R.id.TalentCondition_Button3);
         TalentCondition_PictureLL = (LinearLayout) findViewById(R.id.TalentCondition_PictureLL);
-        TalentCondition_ProfileShowLL = (LinearLayout) findViewById(R.id.TalentCondition_ProfileShowLL);
 
 
         TalentCondition_Give_Registed(TalentCondition_Give_Registed,GiveTalentConditionCode);
@@ -185,16 +184,6 @@ public class TalentCondition_Activity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-        TalentCondition_PictureLL.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
-        int pictureWidth = (int) (TalentCondition_PictureLL.getMeasuredHeight()*0.9);
-        Log.d(String.valueOf(pictureWidth), "pictureWidth = ");
-        ViewGroup.LayoutParams params1 = TalentCondition_ProfileShowLL.getLayoutParams();
-
-        params1.width = pictureWidth;
-        params1.height = pictureWidth;
-
-        TalentCondition_ProfileShowLL.setLayoutParams(params1);
 
     }
 

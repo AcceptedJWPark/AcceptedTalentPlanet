@@ -57,6 +57,13 @@ public class CustomerService_OnebyOneQuestionListActivity extends AppCompatActiv
 
         ExpandableListViewTest = (ExpandableListView) this.findViewById(R.id.CustomerService_OnebyOne_ELV);
         getQuestionList();
+        CustomerService_OnebyOneQuesitionList_PreBtn = (LinearLayout) findViewById(R.id.CustomerService_OnebyOneQuesitionList_PreBtn);
+        CustomerService_OnebyOneQuesitionList_PreBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
 
     }
@@ -126,13 +133,6 @@ public class CustomerService_OnebyOneQuestionListActivity extends AppCompatActiv
 
                     ExpandableListViewTest.setAdapter(new CustomerService_OnebyOneQuestionExpandableLVAdapter(mContext, GroupDataList, ChildDataList));
 
-                    CustomerService_OnebyOneQuesitionList_PreBtn = (LinearLayout) findViewById(R.id.CustomerService_OnebyOneQuesitionList_PreBtn);
-                    CustomerService_OnebyOneQuesitionList_PreBtn.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            finish();
-                        }
-                    });
 
                 } catch (JSONException e) {
                     e.printStackTrace();

@@ -12,7 +12,8 @@
         android:supportsRtl="true"
         android:largeHeap="true"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name=".LoadingLogin.Loading_Activity">
+        <activity android:name=".LoadingLogin.Loading_Activity"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

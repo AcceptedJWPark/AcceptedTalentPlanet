@@ -42,14 +42,6 @@
                     />
 
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="이전"
-                    android:textColor="@color/toolbarcolor_txtandimage"
-                    android:textStyle="bold"
-                    android:textSize="@dimen/Toolbar_Pre_Txt"
-                    />
 
             </LinearLayout>
 

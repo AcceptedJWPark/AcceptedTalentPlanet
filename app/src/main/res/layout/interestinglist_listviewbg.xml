@@ -142,7 +142,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="0.8"
-            android:src="@drawable/icon_giveinter"
+            android:src="@drawable/icon_inter_give"
             android:paddingTop="3dp"
             />
         <TextView

@@ -89,13 +89,13 @@ public class MyProfile_CompleteList_Adapter extends BaseAdapter{
 
         if(list_ArrayList.get(position).TalentType_CODE() == 1)
         {
-            holder.CompleteList_ConditionType.setText("[관심 재능]");
-            holder.CompleteList_Point.setTextColor(Color.parseColor("#ff006a"));
+            holder.CompleteList_ConditionType.setText("관심 재능");
+            holder.CompleteList_Point.setTextColor(Color.parseColor("#cc5e93"));
         }
         else
         {
-            holder.CompleteList_ConditionType.setText("[재능 드림]");
-            holder.CompleteList_Point.setTextColor(Color.parseColor("#0077ff"));
+            holder.CompleteList_ConditionType.setText("재능 드림");
+            holder.CompleteList_Point.setTextColor(Color.parseColor("#002c62"));
         }
 
 

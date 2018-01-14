@@ -47,7 +47,6 @@
         android:paddingBottom="1dp"
         android:gravity="center"
         android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
         >
@@ -83,10 +82,10 @@
         android:id="@+id/TalentCondition_TextBoxLL"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="3"
+        android:layout_weight="2.4"
         android:gravity="center_vertical"
         android:orientation="vertical"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="30dp"
         android:layout_marginBottom="30dp"
         >
 
@@ -94,7 +93,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:gravity="center"
+            android:gravity="center|top"
             >
 
             <TextView
@@ -127,7 +126,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:gravity="center"
+        android:gravity="center|bottom"
         android:text="관심목록 확인 또는 T.Sharing을 진행해보세요!"
         android:textColor="@color/textColor_txtpage"
         android:textSize="@dimen/Page_Txt" />
@@ -144,7 +143,7 @@
             >
 
 
-                <LinearLayout
+                <RelativeLayout
                     android:id="@+id/TalentCondition_ProfileShowLL"
                     android:layout_width="@dimen/TalentCondition_Img"
                     android:layout_height="@dimen/TalentCondition_Img"
@@ -160,7 +159,7 @@
                     android:scaleType="fitXY"
                     />
 
-            </LinearLayout>
+            </RelativeLayout>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -168,9 +167,9 @@
                 android:layout_gravity="center_horizontal"
                 android:gravity="center"
                 android:text="Profile 보기"
+                android:layout_marginTop="2dp"
                 android:textStyle="bold"
-                android:layout_marginTop="5dp"
-                android:textColor="@color/textColor_subject"
+                android:textColor="@color/colorPrimaryDark"
                 android:textSize="@dimen/ListView_Btn" />
 
 

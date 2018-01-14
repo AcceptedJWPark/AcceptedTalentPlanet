@@ -9,8 +9,8 @@
 
     <color name="textColor_txtpage">#000000</color>
 
-    <color name="textcolor_giveortake_clicked">#ffffff</color>
-    <color name="textcolor_giveortake_unclicked">#969696</color>
+    <color name="textcolor_giveortake_clicked">#002c62</color>
+    <color name="textcolor_giveortake_unclicked">#aaaaaa</color>
 
     <color name="textcolor_bigbtn">#ffffff</color>
     <color name="textcolor_smallbtn">#000000</color>
