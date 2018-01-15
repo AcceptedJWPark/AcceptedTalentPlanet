@@ -254,7 +254,7 @@ public class TalentSharing_Activity extends AppCompatActivity {
             mt = SaveSharedPreference.getGiveTalentData(mContext);
 
         if(mt == null){
-            return "0km";
+            return "00000";
         }
 
         double[] arrDistance = new double[9];
