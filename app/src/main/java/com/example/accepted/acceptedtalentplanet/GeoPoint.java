@@ -30,4 +30,11 @@ public class GeoPoint implements Serializable {
         return this.lng;
     }
 
+    @Override
+    public String toString(){
+        StringBuilder sb = new StringBuilder();
+        sb.append("lat = ").append(String.valueOf(lat)).append(", lng = ").append(String.valueOf(lng));
+        return sb.toString();
+    }
+
 }

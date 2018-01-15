@@ -249,9 +249,9 @@ public class TalentSharing_Activity extends AppCompatActivity {
     String findMinDistanceBetween(String lat1, String lng1, String lat2, String lng2, String lat3, String lng3,  boolean isGive){
         MyTalent mt;
         if(isGive)
-            mt = SaveSharedPreference.getGiveTalentData(mContext);
-        else
             mt = SaveSharedPreference.getTakeTalentData(mContext);
+        else
+            mt = SaveSharedPreference.getGiveTalentData(mContext);
 
         if(mt == null){
             return "0km";
@@ -271,7 +271,8 @@ public class TalentSharing_Activity extends AppCompatActivity {
             for(int j = 0; j < 3; j++){
                 gp2 = arrGp2[j];
                 if(gp2.getLng() == 0.0d || gp.getLng() == 0.0d){
-                    arrDistance[index++] = 9999;
+                    arrDistance[index++] = 999999999;
+
                     continue;
                 }
                 double distance = 0;
@@ -284,6 +285,7 @@ public class TalentSharing_Activity extends AppCompatActivity {
                 distance = locationA.distanceTo(locationB);
 
                 arrDistance[index++] = distance;
+
             }
         }
 
