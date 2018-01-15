@@ -1,5 +1,6 @@
 package com.example.accepted.acceptedtalentplanet.Alarm;
 
+
 /**
  * Created by Accepted on 2017-10-24.
  */
@@ -14,6 +15,8 @@ public class Alarm_ListItem {
     private String registDate2;
     private int activityChange_CODE;
     private int alarmType_CODE;
+    private int deleteIcon;
+    private boolean deleteClicked;
 
 
     public int getpicture() {
@@ -37,6 +40,12 @@ public class Alarm_ListItem {
     public int getactivityChange_CODE() {
         return activityChange_CODE;
     }
+    public int getDeleteIcon() {
+        return deleteIcon;
+    }
+    public boolean getdeleteClicked() {
+        return deleteClicked;
+    }
 
     public void setpicture(int picture) {
         this.picture = picture;
@@ -56,32 +65,46 @@ public class Alarm_ListItem {
     public void setactivityChange_CODE(int alarmType_CODE) {
         this.activityChange_CODE = alarmType_CODE;
     }
+    public void setDeleteIcon(int deleteIcon) {
+        this.deleteIcon = deleteIcon;
+    }
     public void setalarmType_CODE(int alarmType_CODE) {
         this.alarmType_CODE = alarmType_CODE;
     }
+    public void setdeleteClicked(boolean deleteClicked) {
+        this.deleteClicked = deleteClicked;
+    }
 
-    public Alarm_ListItem(int picture, String name, String registDate1, int activityChange_CODE, int alarmType_CODE)
+    public Alarm_ListItem(int picture, String name, String registDate1, int activityChange_CODE, int alarmType_CODE, int deleteIcon, boolean deleteClicked)
     {
         this.picture = picture;
         this.name = name;
         this.registDate1 = registDate1;
         this.activityChange_CODE = activityChange_CODE;
         this.alarmType_CODE = alarmType_CODE;
+        this.deleteIcon = deleteIcon;
+        this.deleteClicked = deleteClicked;
     }
 
-    public Alarm_ListItem(String registDate1, int activityChange_CODE)
+    public Alarm_ListItem(String registDate1, int activityChange_CODE, int deleteIcon, boolean deleteClicked)
     {
         this.registDate1 = registDate1;
         this.activityChange_CODE = activityChange_CODE;
+        this.deleteIcon = deleteIcon;
+        this.deleteClicked = deleteClicked;
     }
 
-    public Alarm_ListItem(int picture, String name, String registDate1, int activityChange_CODE)
+    public Alarm_ListItem(int picture, String name, String registDate1, int activityChange_CODE, int deleteIcon, boolean deleteClicked)
     {
         this.picture = picture;
         this.name = name;
         this.registDate1 = registDate1;
         this.activityChange_CODE = activityChange_CODE;
+        this.deleteIcon = deleteIcon;
+        this.deleteClicked = deleteClicked;
     }
+
+
 
 }
 

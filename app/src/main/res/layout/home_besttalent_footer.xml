@@ -3,14 +3,12 @@
     android:id="@+id/bestTalent_footerLL"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/footer_background"
     android:orientation="vertical">
 
     <Button
         android:id="@+id/testBtn"
         android:layout_width="match_parent"
         android:layout_height="25dp"
-        android:background="@drawable/footer_background"
         android:gravity="center"
         android:onClick="moreBtnCilcked"
         android:text="더보기 ▼"
@@ -22,7 +20,6 @@
         android:id="@+id/testBtn2"
         android:layout_width="match_parent"
         android:layout_height="25dp"
-        android:background="@drawable/footer_background"
         android:gravity="center"
         android:onClick="initBtnClicked"
         android:text="접기"

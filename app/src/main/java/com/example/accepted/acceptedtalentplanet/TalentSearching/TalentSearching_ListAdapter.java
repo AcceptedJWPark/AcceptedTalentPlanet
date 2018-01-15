@@ -62,7 +62,7 @@ public class TalentSearching_ListAdapter extends BaseAdapter {
             DisplayMetrics metrics = new DisplayMetrics();
             WindowManager windowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
             windowManager.getDefaultDisplay().getMetrics(metrics);
-            int Interesting_ListView_height = (int) (metrics.heightPixels*0.12);
+            int Interesting_ListView_height = (int) (metrics.heightPixels*0.1);
 
             ViewGroup.LayoutParams params1 = view.getLayoutParams();
             params1.height = Interesting_ListView_height;
@@ -78,7 +78,7 @@ public class TalentSearching_ListAdapter extends BaseAdapter {
 
         }
 
-        listView_picture.setImageResource(list_ArrayList.get(position).getPicture());
+        listView_picture.setBackgroundResource(list_ArrayList.get(position).getPicture());
         listView_name.setText(list_ArrayList.get(position).getName());
         listView_talent1.setText(list_ArrayList.get(position).getTalent1());
         listView_talent2.setText(list_ArrayList.get(position).getTalent2());

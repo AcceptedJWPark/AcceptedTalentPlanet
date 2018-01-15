@@ -13,23 +13,20 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="2"
+        android:layout_weight="2.4"
         android:orientation="vertical"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
         >
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.3"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:layout_weight="2"
             android:gravity="center"
-            android:textStyle="bold"
             android:text="&quot;아래 재능에 대한 본인의 수준을 선택해주세요.&quot;"
             android:layout_gravity="center_horizontal"
-            android:textColor="@color/textColor"
+            android:textColor="@color/textColor_txtpage"
             android:textSize="@dimen/Page_Txt"
             />
 
@@ -46,6 +43,7 @@
         android:gravity="center"
         android:layout_marginLeft="40dp"
         android:layout_marginRight="40dp"
+        android:layout_marginBottom="10dp"
         >
         <TextView
             android:id="@+id/Level_key1"
@@ -54,7 +52,7 @@
             android:ellipsize="end"
             android:lines="1"
             android:gravity="center"
-            android:textColor="@color/textColor"
+            android:textColor="@color/textColor_normal"
             android:textStyle="bold"
             android:textSize="@dimen/Page_ItemSubTitle"
             android:layout_weight="1"
@@ -66,7 +64,7 @@
             android:ellipsize="end"
             android:lines="1"
             android:gravity="center"
-            android:textColor="@color/textColor"
+            android:textColor="@color/textColor_normal"
             android:textStyle="bold"
             android:textSize="@dimen/Page_ItemSubTitle"
             android:layout_weight="1"
@@ -78,7 +76,7 @@
             android:ellipsize="end"
             android:lines="1"
             android:gravity="center"
-            android:textColor="@color/textColor"
+            android:textColor="@color/textColor_normal"
             android:textStyle="bold"
             android:textSize="@dimen/Page_ItemSubTitle"
             android:layout_weight="1"
@@ -92,6 +90,7 @@
         android:orientation="horizontal"
         android:paddingLeft="5dp"
         android:paddingRight="5dp"
+        android:layout_marginBottom="5dp"
         android:gravity="top|center"
         >
         <LinearLayout
@@ -110,7 +109,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:textColor="@color/textColor"
+                android:textColor="@color/textColor_normal"
                 android:textSize="@dimen/CheckBox_Txt"
                 android:text="시작 단계"
                 />
@@ -131,7 +130,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:textColor="@color/textColor"
                 android:textSize="@dimen/CheckBox_Txt"
                 android:text="초급 수준"
                 />
@@ -152,7 +150,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:textColor="@color/textColor"
+                android:textColor="@color/textColor_normal"
                 android:textSize="@dimen/CheckBox_Txt"
                 android:text="중급 수준"
                 />
@@ -172,7 +170,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:textColor="@color/textColor"
+                android:textColor="@color/textColor_normal"
                 android:textSize="@dimen/CheckBox_Txt"
                 android:text="상급 수준"
                 />
@@ -192,31 +190,28 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:textColor="@color/textColor"
+                android:textColor="@color/textColor_normal"
                 android:textSize="@dimen/CheckBox_Txt"
                 android:text="전문가"
                 />
         </LinearLayout>
     </LinearLayout>
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.5"/>
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
         android:layout_gravity="center"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp"
-        android:background="@drawable/big_button_background"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="80dp"
+        android:layout_marginRight="80dp"
+        android:background="@drawable/bgr_bigbtn"
         android:onClick="goNext"
         android:text="다 음"
         android:textSize="@dimen/BigBtn"
         android:textAllCaps="false"
-        android:textStyle="bold"
-        android:textColor="@color/textColor" />
+        android:textColor="@color/textcolor_bigbtn"
+        />
 
 </LinearLayout>

@@ -24,7 +24,7 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1.8"
+        android:layout_weight="1.32"
         android:contentInsetStart="0dp"
         android:contentInsetLeft="0dp"
         app:contentInsetLeft="0dp"
@@ -39,54 +39,45 @@
     </android.support.v7.widget.Toolbar>
 
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.3"
-        />
 
 
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1.1"
+        android:layout_weight="1"
         android:paddingTop="1dp"
         android:paddingBottom="1dp"
         android:gravity="center"
-        android:paddingLeft="5dp"
-        android:paddingRight="5dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
         >
 
                 <Button
                     android:id="@+id/TalentSharing_GiveCheck"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_marginRight="5dp"
                     android:layout_weight="1"
-                    android:background="@drawable/small_button_graybackground"
-                    android:text="재능드림 보기"
-                    android:textColor="@color/textColor"
+                    android:textStyle="bold"
+                    android:textColor="@color/textcolor_giveortake_clicked"
+                    android:background="@drawable/bgr_giveortake_clicked"
+                    android:text="재능 드림"
                     android:textSize="@dimen/GiveorTakeBtn"
-                    android:textStyle="bold" />
+                    />
 
                 <Button
                     android:id="@+id/TalentSharing_TakeCheck"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_marginLeft="5dp"
                     android:layout_weight="1"
-                    android:background="@drawable/small_button_whitebackground"
-                    android:text="관심재능 보기"
-                    android:textColor="#d2d2d2"
+                    android:textColor="@color/textcolor_giveortake_unclicked"
+                    android:background="@drawable/bgr_giveortake_unclicked"
+                    android:text="관심 재능"
                     android:textSize="@dimen/GiveorTakeBtn"
-                    android:textStyle="bold" />
+                    />
             </LinearLayout>
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.3"
-        />
 
             <TextView
                 android:id="@+id/TalentSharing_PageTxt"
@@ -95,7 +86,8 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:textSize="@dimen/Page_Txt"
-                android:textColor="@color/textColor"
+                android:textColor="@color/textColor_txtpage"
+                android:layout_marginBottom="10dp"
                 android:text="박종우님의 재능을 공유할 수 있는 회원 리스트 입니다."
                 />
 
@@ -103,7 +95,7 @@
                     android:id="@+id/TalentSharing_LV"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="20.3"
+                    android:layout_weight="20.68"
                     android:padding="3dp"
                     android:layout_marginTop="2dp"
                     android:layout_marginBottom="2dp"

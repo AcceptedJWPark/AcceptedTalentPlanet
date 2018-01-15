@@ -8,6 +8,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.LinearLayout;
 
 import com.example.accepted.acceptedtalentplanet.R;
@@ -16,14 +17,11 @@ public class CustomerService_IntroductionActivity extends AppCompatActivity {
 
     ViewPager TalentPlanet_VP;
 
-    LinearLayout CustomerService_Introduction_PreBtn1;
-    LinearLayout CustomerService_Introduction_PreBtn2;
-    LinearLayout CustomerService_Introduction_PreBtn3;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.customerservice_introductionmain);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         TalentPlanet_VP = (ViewPager) findViewById(R.id.introductionVP);
         TalentPlanet_VP.setAdapter(new pagerAdapter(getApplicationContext()));
@@ -74,12 +72,6 @@ public class CustomerService_IntroductionActivity extends AppCompatActivity {
 
             else{
                     view = mInflate.inflate(R.layout.customerservice_introduction3, null);
-                    view.findViewById(R.id.TalnetPlanetIntro3PreBtn).setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            finish();
-                        }
-                    });
                 }
 
 

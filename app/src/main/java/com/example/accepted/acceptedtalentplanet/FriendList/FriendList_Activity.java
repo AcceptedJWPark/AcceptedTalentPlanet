@@ -1,8 +1,7 @@
 package com.example.accepted.acceptedtalentplanet.FriendList;
 
 import android.content.Context;
-import android.content.Intent;
-import android.graphics.Color;
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -23,8 +22,6 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.accepted.acceptedtalentplanet.R;
 import com.example.accepted.acceptedtalentplanet.SaveSharedPreference;
-import com.example.accepted.acceptedtalentplanet.TalentSharing.TalentSharing_ListAdapter;
-import com.example.accepted.acceptedtalentplanet.TalentSharing.TalentSharing_ListItem;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -80,10 +77,12 @@ public class FriendList_Activity extends AppCompatActivity {
         Friendlist_ShowGive.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Friendlist_ShowGive.setBackground(ContextCompat.getDrawable(mContext, R.drawable.small_button_graybackground));
-                Friendlist_ShowGive.setTextColor(getResources().getColor(R.color.textColor));
-                Friendlist_ShowTake.setBackground(ContextCompat.getDrawable(mContext, R.drawable.small_button_whitebackground));
-                Friendlist_ShowTake.setTextColor(Color.parseColor("#d2d2d2"));
+                Friendlist_ShowGive.setBackground(ContextCompat.getDrawable(mContext, R.drawable.bgr_giveortake_clicked));
+                Friendlist_ShowGive.setPaintFlags(Friendlist_ShowGive.getPaintFlags() | Paint.FAKE_BOLD_TEXT_FLAG);
+                Friendlist_ShowGive.setTextColor(getResources().getColor(R.color.textcolor_giveortake_clicked));
+                Friendlist_ShowTake.setBackground(ContextCompat.getDrawable(mContext, R.drawable.bgr_giveortake_unclicked));
+                Friendlist_ShowTake.setTextColor(getResources().getColor(R.color.textcolor_giveortake_unclicked));
+                Friendlist_ShowTake.setPaintFlags(Friendlist_ShowGive.getPaintFlags() &~ Paint.FAKE_BOLD_TEXT_FLAG);
                 Friendlist_ListView_Give.setVisibility(View.VISIBLE);
                 Friendlist_ListView_Take.setVisibility(View.GONE);
 
@@ -107,10 +106,12 @@ public class FriendList_Activity extends AppCompatActivity {
         Friendlist_ShowTake.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Friendlist_ShowTake.setBackground(ContextCompat.getDrawable(mContext, R.drawable.small_button_graybackground));
-                Friendlist_ShowTake.setTextColor(getResources().getColor(R.color.textColor));
-                Friendlist_ShowGive.setBackground(ContextCompat.getDrawable(mContext, R.drawable.small_button_whitebackground));
-                Friendlist_ShowGive.setTextColor(Color.parseColor("#d2d2d2"));
+                Friendlist_ShowTake.setBackground(ContextCompat.getDrawable(mContext, R.drawable.bgr_giveortake_clicked));
+                Friendlist_ShowTake.setPaintFlags(Friendlist_ShowGive.getPaintFlags() | Paint.FAKE_BOLD_TEXT_FLAG);
+                Friendlist_ShowTake.setTextColor(getResources().getColor(R.color.textcolor_giveortake_clicked));
+                Friendlist_ShowGive.setBackground(ContextCompat.getDrawable(mContext, R.drawable.bgr_giveortake_unclicked));
+                Friendlist_ShowGive.setTextColor(getResources().getColor(R.color.textcolor_giveortake_unclicked));
+                Friendlist_ShowGive.setPaintFlags(Friendlist_ShowGive.getPaintFlags() &~ Paint.FAKE_BOLD_TEXT_FLAG);
                 Friendlist_ListView_Take.setVisibility(View.VISIBLE);
                 Friendlist_ListView_Give.setVisibility(View.GONE);
                 if(friendList.size() > 0) {

@@ -14,17 +14,17 @@
         android:id="@+id/claim_toolbar"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1.8"
+        android:layout_weight="1.32"
         android:gravity="center"
-        android:background="#f5f5f5"
+        android:background="@color/toolbarcolor_background"
         >
 
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
             >
 
             <LinearLayout
@@ -37,20 +37,9 @@
                 <ImageView
                     android:layout_width="@dimen/Toolbar_Pre_Img"
                     android:layout_height="@dimen/Toolbar_Pre_Img"
-                    android:tint="@color/textColor"
-                    android:src="@android:drawable/ic_menu_revert"
-                    android:textSize="@dimen/Toolbar_Pre_Txt"
-
+                    android:src="@drawable/icon_backbtn"
                     />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="이전"
-                    android:textColor="@color/textColor"
-                    android:textStyle="bold"
-                    android:textSize="@dimen/Toolbar_Pre_Txt"
-                    />
 
             </LinearLayout>
 
@@ -58,11 +47,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Talented 사용하기"
-                android:textStyle="bold"
+                android:textColor="@color/toolbarcolor_txtandimage"
                 android:textSize="@dimen/ToolbarTxt"
                 android:gravity="center"
                 android:layout_centerInParent="true"
-                android:textColor="@color/textColor"
                 />
 
         </RelativeLayout>
@@ -90,10 +78,9 @@
             android:gravity="center"
             android:text="My Profile"
             android:layout_margin="2dp"
-            android:textStyle="bold"
             android:textSize="@dimen/List_Title"
-            android:textColor="@color/textColor"
-            android:background="@drawable/manual_background"
+            android:textColor="@color/textColor_normal"
+            android:background="@drawable/bgr_manual_box"
             />
 
         <TextView
@@ -102,12 +89,11 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="My Talent"
-            android:textStyle="bold"
             android:gravity="center"
             android:textSize="@dimen/List_Title"
             android:layout_margin="2dp"
-            android:textColor="@color/textColor"
-            android:background="@drawable/manual_background"
+            android:textColor="@color/textColor_normal"
+            android:background="@drawable/bgr_manual_box"
             />
 
         <TextView
@@ -118,10 +104,9 @@
             android:text="T.Sharing"
             android:gravity="center"
             android:textSize="@dimen/List_Title"
-            android:textStyle="bold"
+            android:textColor="@color/textColor_normal"
             android:layout_margin="2dp"
-            android:textColor="@color/textColor"
-            android:background="@drawable/manual_background"
+            android:background="@drawable/bgr_manual_box"
             />
 
         <TextView
@@ -132,10 +117,9 @@
             android:text="재능 검색"
             android:gravity="center"
             android:textSize="@dimen/List_Title"
-            android:textStyle="bold"
+            android:textColor="@color/textColor_normal"
             android:layout_margin="2dp"
-            android:textColor="@color/textColor"
-            android:background="@drawable/manual_background"
+            android:background="@drawable/bgr_manual_box"
             />
 
     </LinearLayout>
@@ -158,9 +142,8 @@
             android:text="나의 재능현황"
             android:textSize="@dimen/List_Title"
             android:layout_margin="2dp"
-            android:textStyle="bold"
-            android:textColor="@color/textColor"
-            android:background="@drawable/manual_background"
+            android:textColor="@color/textColor_normal"
+            android:background="@drawable/bgr_manual_box"
             />
 
 
@@ -172,10 +155,9 @@
             android:text="친구 목록"
             android:gravity="center"
             android:textSize="@dimen/List_Title"
-            android:textColor="@color/textColor"
             android:layout_margin="2dp"
-            android:textStyle="bold"
-            android:background="@drawable/manual_background"
+            android:textColor="@color/textColor_normal"
+            android:background="@drawable/bgr_manual_box"
             />
 
         <TextView
@@ -186,10 +168,9 @@
             android:text="재능공유 내역"
             android:gravity="center"
             android:textSize="@dimen/List_Title"
-            android:textColor="@color/textColor"
             android:layout_margin="2dp"
-            android:textStyle="bold"
-            android:background="@drawable/manual_background"
+            android:textColor="@color/textColor_normal"
+            android:background="@drawable/bgr_manual_box"
             />
 
         <TextView
@@ -200,10 +181,9 @@
             android:text="관심 목록"
             android:gravity="center"
             android:textSize="@dimen/List_Title"
-            android:textColor="@color/textColor"
             android:layout_margin="2dp"
-            android:textStyle="bold"
-            android:background="@drawable/manual_background"
+            android:textColor="@color/textColor_normal"
+            android:background="@drawable/bgr_manual_box"
             />
 
     </LinearLayout>
@@ -226,9 +206,8 @@
             android:text="알 림"
             android:textSize="@dimen/List_Title"
             android:layout_margin="2dp"
-            android:textStyle="bold"
-            android:textColor="@color/textColor"
-            android:background="@drawable/manual_background"
+            android:textColor="@color/textColor_normal"
+            android:background="@drawable/bgr_manual_box"
             />
 
         <TextView
@@ -239,10 +218,9 @@
             android:text="고객센터"
             android:gravity="center"
             android:textSize="@dimen/List_Title"
-            android:textColor="@color/textColor"
             android:layout_margin="2dp"
-            android:textStyle="bold"
-            android:background="@drawable/manual_background"
+            android:textColor="@color/textColor_normal"
+            android:background="@drawable/bgr_manual_box"
             />
 
         <TextView
@@ -253,10 +231,9 @@
             android:text="설 정"
             android:gravity="center"
             android:textSize="@dimen/List_Title"
-            android:textColor="@color/textColor"
             android:layout_margin="2dp"
-            android:textStyle="bold"
-            android:background="@drawable/manual_background"
+            android:textColor="@color/textColor_normal"
+            android:background="@drawable/bgr_manual_box"
             />
 
         <TextView
@@ -267,20 +244,19 @@
             android:text="Message"
             android:gravity="center"
             android:textSize="@dimen/List_Title"
-            android:textColor="@color/textColor"
             android:layout_margin="2dp"
-            android:textStyle="bold"
-            android:background="@drawable/manual_background"
+            android:textColor="@color/textColor_normal"
+            android:background="@drawable/bgr_manual_box"
             />
 
     </LinearLayout>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="2"
+        android:layout_weight="2.4"
         android:gravity="center"
         android:textSize="@dimen/Page_Txt"
-        android:textColor="@color/textColor"
+        android:textColor="@color/textColor_txtpage"
         android:text="문의 내용이 목록에 없는 경우 1:1 문의하기를 활용해주세요."
         />
 
@@ -291,11 +267,10 @@
         android:layout_weight="1"
         android:layout_marginRight="70dp"
         android:layout_marginLeft="70dp"
-        android:textStyle="bold"
         android:text="1:1 문의하기"
         android:textSize="@dimen/BigBtn"
-        android:textColor="@color/textColor"
-        android:background="@drawable/small_button_whitebackground"
+        android:textColor="@color/textcolor_bigbtn"
+        android:background="@drawable/bgr_bigbtn"
         />
 
 </LinearLayout>

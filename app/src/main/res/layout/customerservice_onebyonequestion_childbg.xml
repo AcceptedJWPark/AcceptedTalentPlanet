@@ -19,30 +19,20 @@
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginLeft="10dp"
-    android:layout_marginRight="10dp"
-    android:padding="10dp"
-    android:background="@drawable/small_button_whitebackground"
+    android:paddingTop="10dp"
+    android:paddingBottom="10dp"
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp"
+    android:background="#ffffff"
     android:gravity="center|left"
     android:orientation="horizontal"
     >
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:gravity="center|top"
-        android:textColor="#000000"
-        android:textStyle="bold"
-        android:textSize="@dimen/ListView_ChildTxt_Question"
-        android:text="질문 내용 : "
-        />
-
-    <TextView
         android:id="@+id/CustomerService_OnebyOneQuestion"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
-        android:textColor="@color/textColor"
+        android:textColor="@color/textColor_object"
         android:lineSpacingExtra="10dp"
         android:textSize="@dimen/ListView_ChildTxt_Question"
         android:text="2018 2월 부로 Talent Planet Test가 시작되었습니다. \n2018년 3월 부로 Service 오픈 예정이오니, 많은 관심 부탁드립니다.\n"
@@ -56,34 +46,27 @@
 
     <LinearLayout
         android:gravity="center|left"
-        android:padding="10dp"
-        android:layout_margin="10dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/answer_graybackground"
+        android:background="@drawable/bgr_answer"
         android:orientation="horizontal">
 
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:gravity="center|top"
-            android:textColor="#000000"
-            android:textStyle="bold"
-            android:textSize="@dimen/ListView_ChildTxt_Question"
-            android:text="답변 내용 : "
-            />
-
-        <TextView
             android:id="@+id/CustomerService_OnebyOneAnswer"
             android:layout_width="wrap_content"
-            android:layout_marginLeft="5dp"
             android:gravity="center|left"
             android:layout_height="match_parent"
-            android:textColor="@color/textColor"
+            android:textColor="@color/textColor_object"
             android:lineSpacingExtra="10dp"
-            android:textStyle="bold"
             android:textSize="@dimen/ListView_ChildTxt_Question"
+            android:textStyle="bold"
             android:text="박종우님과 재 드림 기타, 드럼, 종우님과 재 드림 기타, 드럼, 피, 드럼, 피아노 완료의 건"
             />
 

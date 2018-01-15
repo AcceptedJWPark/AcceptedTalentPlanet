@@ -7,6 +7,7 @@
     android:clickable="true"
     android:focusable="true"
     android:focusableInTouchMode="true"
+    android:background="@drawable/bgr_bigbtn"
     android:weightSum="24"
 
     >
@@ -15,21 +16,38 @@
         android:id="@+id/Title_L"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="4"
+        android:layout_weight="8"
         android:orientation="vertical"
         android:gravity="center"
-
         >
-        <TextView
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="Talent Planet"
-            android:textSize="@dimen/LogIn_Title"
-            android:gravity="center"
-            android:textStyle="bold"
-            android:textColor="@color/textColor"
-            />
+            >
 
+            <ImageView
+                android:id="@+id/login_logoimg"
+                android:layout_width="80dp"
+                android:layout_height="50dp"
+                android:layout_centerInParent="true"
+                android:adjustViewBounds="true"
+                android:src="@drawable/logo_fakefile"
+                />
+
+            <TextView
+                android:id="@+id/login_logotitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/login_logoimg"
+                android:gravity="center"
+                android:text="Talent Planet"
+                android:letterSpacing="0.1"
+                android:textColor="@color/loginMainTitle"
+                android:textSize="@dimen/LogIn_Title"
+                android:textStyle="bold" />
+
+        </RelativeLayout>
     </LinearLayout>
 
     <LinearLayout
@@ -38,6 +56,8 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="4"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
         android:layout_below="@+id/Title_L"
         >
 
@@ -47,10 +67,13 @@
             android:layout_height="0dp"
             android:layout_weight="3"
             android:hint="E-mail"
+            android:paddingLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="5dp"
             android:inputType="textEmailAddress"
             android:textSize="@dimen/LogIn_Edit_Hint"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp">
+            android:background="@drawable/bgr_edittxt_box_login"
+            >
         </EditText>
 
         <EditText
@@ -59,18 +82,92 @@
             android:layout_height="0dp"
             android:layout_weight="3"
             android:hint="Password"
+            android:paddingLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/bgr_edittxt_box_login"
             android:inputType="textWebPassword"
             android:textSize="@dimen/LogIn_Edit_Hint"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"/>
+
+            />
 
 
         </LinearLayout>
 
-    <View
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.3"/>
+        android:layout_weight="2"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:orientation="vertical"
+        >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center_vertical"
+        >
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/LogIn_PageSubTxt"
+            android:textColor="@color/loginMainTitle"
+            android:text="회원 가입"
+            />
+
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:textSize="@dimen/LogIn_PageTxt"
+            android:onClick="goRegist"
+            android:text="Click here"
+            android:textColor="@color/loginPasswordLost"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/clickLL"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center_vertical"
+        android:layout_below="@+id/Info_L"
+        >
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/LogIn_PageSubTxt"
+        android:textColor="@color/loginMainTitle"
+        android:text="비밀번호 찾기"
+       />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/LogIn_PageTxt"
+            android:gravity="right"
+            android:onClick="PasswordLost"
+            android:text="Click here"
+            android:textColor="@color/loginPasswordLost"
+            />
+    </LinearLayout>
+
+
+
+    </LinearLayout>
 
     <Button
         android:id="@+id/Log_btn"
@@ -78,96 +175,26 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1.3"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:background="@drawable/big_button_background"
-        android:textColor="@color/textColor"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="120dp"
+        android:layout_marginRight="120dp"
+        android:background="@drawable/bgr_bigbtn2"
+        android:textColor="@color/textcolor_bigbtn"
         android:onClick="loginClicked"
         android:text="로그인"
-        android:textStyle="bold"
         android:textSize="@dimen/BigBtn"/>
-
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.3"/>
-
-    <LinearLayout
-        android:id="@+id/clickLL"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1.3"
-        android:gravity="center"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/Info_L"
-        >
-
-    <TextView
-        android:id="@+id/txt03"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="@dimen/LogIn_PageTxt"
-        android:text="비밀번호 찾기"
-       />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginLeft="10dp"
-            android:textSize="@dimen/LogIn_PageTxt"
-            android:layout_toRightOf="@id/txt03"
-            android:onClick="PasswordLost"
-            android:text="Click here"
-            android:textColor="#00f"
-            android:textStyle="bold" />
-    </LinearLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.3"/>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:gravity="center"
-        android:orientation="vertical"
-        >
-
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:layout_weight="3"
-            android:layout_below="@+id/clickLL"
-            android:background="@drawable/small_button_whitebackground"
-            android:onClick="goRegist"
-            android:textSize="@dimen/LogIn_SmallBtn"
-            android:text="Talent Planet 회원가입"
-            android:textAllCaps="false"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp"
-            android:textColor="@color/textColor"
-            android:textStyle="bold" />
-
-
-    </LinearLayout>
-
-
-
 
     <TextView
     android:layout_width="match_parent"
     android:layout_height="0dp"
-    android:layout_weight="11.5"
-    android:text="Accepted ⓒompany : Talent Planet 2017"
+    android:layout_weight="8.7"
+    android:text="Accepted ⓒompany : Talent Planet 2018"
     android:gravity="center|bottom"
-    android:textSize="13dp"
+    android:textSize="@dimen/Page_Txt"
+    android:textColor="@color/loginMainTitle"
     android:layout_alignParentBottom="true"
-    android:layout_marginBottom="5dp"
+    android:layout_marginBottom="10dp"
     />
 
 </LinearLayout>

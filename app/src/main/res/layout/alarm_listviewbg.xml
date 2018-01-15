@@ -10,28 +10,30 @@
     android:paddingTop="5dp"
     android:paddingBottom="5dp"
     android:gravity="center"
-    android:weightSum="4.5"
+    android:weightSum="7"
     >
+    <LinearLayout
+        android:id="@+id/pictureContainerLL"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:layout_marginRight="5dp"
+        >
     <ImageView
         android:id="@+id/Alarm_Picture"
-        android:layout_width="0dp"
-        android:layout_weight="0.5"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:adjustViewBounds="true"
+        android:adjustViewBounds="false"
         android:gravity="center"
-        android:src="@drawable/textpicture"
+        android:background="@drawable/testpicture2"
     />
-
-    <View
-        android:id="@+id/TrashView1"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="0.1"/>
+    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/alarm_TxtLL"
         android:layout_width="0dp"
-        android:layout_weight="3.5"
+        android:layout_weight="5"
+        android:layout_marginLeft="5dp"
         android:layout_height="match_parent"
         android:gravity="center_vertical"
         android:orientation="vertical">
@@ -51,7 +53,7 @@
             android:gravity="center|left"
             android:text="박종우"
             android:singleLine="true"
-            android:textSize="@dimen/ListView_TitleorName"
+            android:textSize="@dimen/List_Title"
             android:textColor="#000000"
             android:textStyle="bold" />
 
@@ -64,9 +66,8 @@
             android:gravity="center|left"
             android:text="님이 재능드림에 관심을 취소하였습니다."
             android:singleLine="true"
-            android:textSize="@dimen/ListView_TitleorName"
-            android:textColor="#000000"
-            android:textStyle="bold"
+            android:textSize="@dimen/List_SubTitle"
+            android:textColor="@color/textColor_txtpage"
             />
 
         </LinearLayout>
@@ -79,22 +80,22 @@
             <TextView
             android:id="@+id/Alarm_RegistDate1"
             android:layout_width="wrap_content"
-            android:textColor="@color/textColor"
+            android:textColor="@color/textColor_normal"
             android:layout_height="match_parent"
             android:gravity="center|left"
             android:paddingLeft="5dp"
             android:text="2017.11.30. 12:32"
-            android:textSize="@dimen/ListView_SubTitle"
+            android:textSize="@dimen/ListView_SecondLine"
             />
             <TextView
                 android:id="@+id/Alarm_RegistDate2"
                 android:layout_width="wrap_content"
-                android:textColor="@color/textColor"
+                android:textColor="@color/textColor_normal"
                 android:layout_height="match_parent"
                 android:gravity="center|left"
                 android:paddingLeft="5dp"
                 android:text="등록"
-                android:textSize="@dimen/ListView_SubTitle"
+                android:textSize="@dimen/ListView_SecondLine"
                 />
         </LinearLayout>
 
@@ -102,10 +103,10 @@
 
         <ImageView
             android:id="@+id/Alarm_DeleteList"
-            android:layout_weight="0.5"
+            android:layout_weight="1"
             android:layout_width="0dp"
-            android:padding="5dp"
-            android:src="@android:drawable/presence_busy"
+            android:padding="10dp"
+            android:src="@drawable/icon_deletecheck"
             android:layout_height="match_parent"
             android:gravity="center"
             />

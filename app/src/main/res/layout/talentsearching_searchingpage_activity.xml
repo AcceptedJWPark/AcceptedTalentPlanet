@@ -15,26 +15,47 @@
         android:orientation="vertical"
         android:weightSum="24">
 
-        <TextView
+        <LinearLayout
             android:id="@+id/TalentSearching_TxtView"
             android:layout_width="match_parent"
             android:layout_height="50dp"
+            android:orientation="vertical"
+            android:layout_marginTop="30dp"
+            >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
             android:gravity="center"
-            android:textStyle="bold"
             android:text="&quot;아래 검색 조건을 입력해주세요!&quot;"
-            android:textColor="@color/textColor"
+            android:textColor="@color/textColor_txtpage"
             android:textSize="@dimen/Page_Txt"
             />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.8"
+            android:gravity="center|top"
+            android:layout_marginTop="10dp"
+            android:text="(포인트는 공란으로 전체 검색합니다.)"
+            android:textColor="@color/textColor_object"
+            android:textSize="@dimen/Page_Txt_Example"
+            />
+
+        </LinearLayout>
 
 
         <LinearLayout
             android:id="@+id/TalentSearching_LL1"
             android:layout_width="match_parent"
             android:layout_height="35dp"
-            android:layout_marginLeft="40dp"
-            android:layout_marginRight="40dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:layout_marginTop="30dp"
             android:focusable="true"
-            android:layout_marginBottom="10dp"
+            android:layout_marginBottom="15dp"
             android:focusableInTouchMode="true"
             >
 
@@ -44,9 +65,10 @@
                 android:layout_weight="1"
                 android:gravity="left|center"
                 android:text="키워드"
-                android:textColor="@color/textColor"
+                android:textColor="@color/textColor_normal"
+                android:textStyle="bold"
                 android:textSize="@dimen/Page_ItemTitle"
-                android:textStyle="bold" />
+                />
 
 
             <EditText
@@ -54,12 +76,12 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="4"
-                android:background="@drawable/small_button_whitebackground"
+                android:background="@drawable/bgr_inputbox"
                 android:gravity="left|center"
                 android:paddingLeft="10dp"
                 android:singleLine="true"
-                android:textColor="@color/textColor"
-                android:textColorHint="@color/textColor"
+                android:textColor="@color/textColor_object"
+                android:textColorHint="@color/textColor_object"
                 android:textSize="@dimen/TalentSearching_SpinnerTxt" />
 
             <View
@@ -73,9 +95,9 @@
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:layout_weight="1"
-                android:background="@drawable/small_button_whitebackground"
-                android:text="등 록"
-                android:textColor="@color/textColor"
+                android:background="@drawable/bgr_smallbtn"
+                android:text="등록"
+                android:textColor="@color/textcolor_smallbtn"
                 android:textSize="@dimen/ListView_Btn" />
         </LinearLayout>
 
@@ -87,9 +109,9 @@
             android:divider="#ffffff"
             android:layout_marginLeft="40dp"
             android:layout_marginRight="40dp"
+            android:layout_marginBottom="5dp"
             android:dividerHeight="0dp">
         </ListView>
-
 
 
 
@@ -97,9 +119,9 @@
             android:id="@+id/TalentSearching_LL2"
             android:layout_width="match_parent"
             android:layout_height="35dp"
-            android:layout_marginBottom="10dp"
-            android:layout_marginLeft="40dp"
-            android:layout_marginRight="40dp"
+            android:layout_marginBottom="15dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
             >
 
             <TextView
@@ -107,10 +129,11 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="left|center"
-                android:text="장 소"
-                android:textColor="@color/textColor"
+                android:text="장소"
+                android:textColor="@color/textColor_normal"
+                android:textStyle="bold"
                 android:textSize="@dimen/Page_ItemTitle"
-                android:textStyle="bold" />
+                />
 
 
                 <Spinner
@@ -118,7 +141,7 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="2.5"
-                    android:background="@drawable/small_button_whitebackground"
+                    android:background="@drawable/bgr_inputbox"
                     android:paddingLeft="3dp"
                     android:paddingRight="3dp" />
 
@@ -134,7 +157,7 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="2.5"
-                    android:background="@drawable/small_button_whitebackground"
+                    android:background="@drawable/bgr_inputbox"
                     android:paddingLeft="3dp"
                     android:paddingRight="3dp" />
 
@@ -146,9 +169,9 @@
             android:id="@+id/TalentSearching_LL3"
             android:layout_width="match_parent"
             android:layout_height="35dp"
-            android:layout_marginBottom="10dp"
-            android:layout_marginLeft="40dp"
-            android:layout_marginRight="40dp"
+            android:layout_marginBottom="15dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
             >
 
             <TextView
@@ -156,10 +179,11 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="left|center"
-                android:text="수 준"
-                android:textColor="@color/textColor"
+                android:text="수준"
+                android:textColor="@color/textColor_normal"
+                android:textStyle="bold"
                 android:textSize="@dimen/Page_ItemTitle"
-                android:textStyle="bold" />
+                />
 
 
             <Spinner
@@ -167,7 +191,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="2.5"
-                android:background="@drawable/small_button_whitebackground"
+                android:background="@drawable/bgr_inputbox"
                 android:paddingLeft="3dp"
                 android:paddingRight="3dp" />
 
@@ -182,7 +206,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="2.5"
-                android:background="@drawable/small_button_whitebackground"
+                android:background="@drawable/bgr_inputbox"
                 android:paddingLeft="3dp"
                 android:paddingRight="3dp" />
 
@@ -194,8 +218,8 @@
             android:id="@+id/TalentSearching_LL4"
             android:layout_width="match_parent"
             android:layout_height="35dp"
-            android:layout_marginLeft="40dp"
-            android:layout_marginRight="40dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
             >
 
                 <TextView
@@ -204,9 +228,10 @@
                     android:layout_weight="1"
                     android:gravity="left|center"
                     android:text="포인트"
-                    android:textColor="@color/textColor"
                     android:textSize="@dimen/Page_ItemTitle"
-                    android:textStyle="bold" />
+                    android:textColor="@color/textColor_normal"
+                    android:textStyle="bold"
+                    />
 
 
                 <EditText
@@ -214,12 +239,12 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="2.5"
-                    android:background="@drawable/small_button_whitebackground"
+                    android:background="@drawable/bgr_inputbox"
                     android:gravity="center"
                     android:hint="이상"
                     android:inputType="number"
-                    android:textColor="@color/textColor"
-                    android:textColorHint="@color/textColor"
+                    android:textColor="@color/textColor_object"
+                    android:textColorHint="@color/textColor_object"
                     android:textSize="@dimen/TalentSearching_SpinnerTxt" />
 
 
@@ -233,33 +258,30 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="2.5"
-                    android:background="@drawable/small_button_whitebackground"
+                    android:background="@drawable/bgr_inputbox"
                     android:gravity="center"
                     android:hint="이하"
                     android:inputType="number"
-                    android:textColor="@color/textColor"
-                    android:textColorHint="@color/textColor"
+                    android:textColor="@color/textColor_object"
+                    android:textColorHint="@color/textColor_object"
                     android:textSize="@dimen/TalentSearching_SpinnerTxt" />
 
         </LinearLayout>
 
-        <View
-            android:id="@+id/TalentSearching_Devider"
-            android:layout_width="match_parent"
-            android:layout_height="10dp" />
 
         <Button
             android:id="@+id/TalentSearching_SaveBtn"
             android:layout_width="match_parent"
             android:layout_height="25dp"
             android:layout_gravity="center"
-            android:layout_marginLeft="40dp"
-            android:layout_marginRight="40dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:layout_marginTop="20dp"
             android:textSize="@dimen/BigBtn"
-            android:background="@drawable/big_button_background"
+            android:background="@drawable/bgr_bigbtn"
             android:text="저장 후 검색"
-            android:textColor="@color/textColor"
-            android:textStyle="bold" />
+            android:textColor="@color/textcolor_bigbtn"
+            />
 
 
     </LinearLayout>

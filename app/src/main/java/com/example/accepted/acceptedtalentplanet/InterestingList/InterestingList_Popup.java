@@ -1,21 +1,22 @@
 package com.example.accepted.acceptedtalentplanet.InterestingList;
 
-import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
+import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Display;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -50,6 +51,9 @@ public class InterestingList_Popup extends FragmentActivity {
     ImageView talentSharing_popupclosebtn;
     private InterestingList_Dialog mInterestingList_Dialog;
 
+    RelativeLayout Interesting_popup_container;
+    ImageView Interesting_popup_picture;
+
     ImageView InteresteingList_addfriendList_on;
     ImageView InteresteingList_addfriendList_off;
     String talentID;
@@ -63,10 +67,10 @@ public class InterestingList_Popup extends FragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
-
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.interestinglist_popup);
+        mContext = getApplicationContext();
+
 
         Display display = ((WindowManager) getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();
         mContext = getApplicationContext();
@@ -76,10 +80,23 @@ public class InterestingList_Popup extends FragmentActivity {
         getWindow().getAttributes().height = height;
 
 
+        Interesting_popup_container = findViewById(R.id.Interesting_popup_container);
+        DisplayMetrics metrics = new DisplayMetrics();
+        WindowManager windowManager = (WindowManager) getApplicationContext().getSystemService(Context.WINDOW_SERVICE);
+        windowManager.getDefaultDisplay().getMetrics(metrics);
+
+        int picturewidth = (int) (metrics.heightPixels*0.164*0.8*0.85);
+        ViewGroup.LayoutParams params = Interesting_popup_container.getLayoutParams();
+        params.width = (int) picturewidth;
+        params.height = (int) picturewidth;
+        Interesting_popup_container.setLayoutParams(params);
+
+
+
         talentID = getIntent().getStringExtra("TalentID");
         sendFlag = (getIntent().getIntExtra("codeGiveTake", 1) == 2) ? true : false;
 
-        mContext = getApplicationContext();
+
         talentSharing_popupclosebtn = (ImageView) findViewById(R.id.TalentSharing_pupupclosebtn);
         talentSharing_popupclosebtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -221,8 +238,8 @@ public class InterestingList_Popup extends FragmentActivity {
                     ((TextView)findViewById(R.id.TalentSharingPopup_Keyword2)).setText(obj.getString("TALENT_KEYWORD2"));
                     ((TextView)findViewById(R.id.TalentSharingPopup_Keyword3)).setText(obj.getString("TALENT_KEYWORD3"));
                     ((TextView)findViewById(R.id.TalentSharingPopup_Location1)).setText(obj.getString("LOCATION1"));
-                    ((TextView)findViewById(R.id.TalentSharingPopup_Location2)).setText(obj.getString("LOCATION2"));
-                    ((TextView)findViewById(R.id.TalentSharingPopup_Location3)).setText(obj.getString("LOCATION3"));
+                    ((TextView)findViewById(R.id.TalentSharingPopup_Location2)).setText(obj.getString("LOCATION2").equals("")?"미등록":obj.getString("LOCATION2"));
+                    ((TextView)findViewById(R.id.TalentSharingPopup_Location3)).setText(obj.getString("LOCATION3").equals("")?"미등록":obj.getString("LOCATION3"));
                     ((TextView)findViewById(R.id.TalentSharingPopup_Level)).setText(SaveSharedPreference.getLevel(obj.getString("LEVEL")));
                     ((TextView)findViewById(R.id.TalentSharingPopup_Point)).setText(obj.getString("T_POINT")+"P");
                     profileUserID = obj.getString("USER_ID");

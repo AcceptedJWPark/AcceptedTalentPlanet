@@ -12,6 +12,39 @@
     android:paddingBottom="5dp"
     >
 
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:layout_weight="0.7"
+        android:orientation="vertical"
+        android:layout_marginRight="5dp"
+        >
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:padding="7dp"
+            android:tint="#00b400"
+            android:src="@android:drawable/ic_notification_overlay"
+            />
+
+    <TextView
+        android:id="@+id/SharingList_ConditionType"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.8"
+        android:text="진행 취소"
+        android:gravity="center"
+        android:layout_gravity="center_vertical"
+        android:textColor="#000000"
+        android:textStyle="bold"
+        android:textSize="@dimen/List_SubTitle"
+        />
+
+
+    </LinearLayout>
 
         <LinearLayout
             android:layout_width="0dp"
@@ -22,47 +55,7 @@
 
             >
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="0.8"
-                android:gravity="center_vertical"
-                >
 
-                <TextView
-                    android:id="@+id/SharingList_ConditionType"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="[진행 취소]"
-                    android:gravity="left|center"
-                    android:layout_gravity="center_vertical"
-                    android:textColor="#000000"
-                    android:textStyle="bold"
-                    android:textSize="@dimen/List_Title"
-                    android:layout_marginRight="10dp"
-                    />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:ellipsize="end"
-                    android:lines="1"
-                    android:textSize="@dimen/ListView_SecondLine"
-                    android:text="등록 일자 : "
-                    />
-
-                <TextView
-                    android:id="@+id/SharingList_RegistDate"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:ellipsize="end"
-                    android:lines="1"
-                    android:textSize="@dimen/ListView_SecondLine"
-                    android:text="2017.11.03 16:24"
-                    />
-
-
-            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -86,7 +79,7 @@
                     android:layout_gravity="center_vertical"
                     android:singleLine="true"
                     android:lineSpacingMultiplier="1.5"
-                    android:textColor="@color/textColor"
+                    android:textColor="@color/textColor_object"
                     android:textSize="@dimen/List_SubTitle"
                     />
 
@@ -104,7 +97,7 @@
                     android:paddingTop="3dp"
                     android:singleLine="true"
                     android:text="기타"
-                    android:textColor="@color/textColor"
+                    android:textColor="@color/textColor_subject"
                     android:textSize="@dimen/List_SubTitle"
                     android:textStyle="bold" />
                 <TextView
@@ -117,7 +110,7 @@
                     android:singleLine="true"
                     android:textStyle="bold"
                     android:lineSpacingMultiplier="1.5"
-                    android:textColor="@color/textColor"
+                    android:textColor="@color/textColor_subject"
                     android:textSize="@dimen/List_SubTitle"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
@@ -137,7 +130,7 @@
                     android:singleLine="true"
                     android:textStyle="bold"
                     android:lineSpacingMultiplier="1.5"
-                    android:textColor="@color/textColor"
+                    android:textColor="@color/textColor_subject"
                     android:textSize="@dimen/List_SubTitle"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
@@ -154,13 +147,46 @@
                     android:layout_gravity="center_vertical"
                     android:singleLine="true"
                     android:lineSpacingMultiplier="1.5"
-                    android:textColor="@color/textColor"
+                    android:textColor="@color/textColor_object"
                     android:textSize="@dimen/List_SubTitle"
                     />
 
 
 
             </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.8"
+                android:paddingLeft="5dp"
+                android:gravity="center_vertical"
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:lines="1"
+                    android:textSize="@dimen/ListView_SecondLine"
+                    android:text="등록 일자 : "
+                    android:textColor="@color/textColor_subject"
+                    />
+
+                <TextView
+                    android:id="@+id/SharingList_RegistDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:lines="1"
+                    android:textSize="@dimen/ListView_SecondLine"
+                    android:text="2017.11.03 16:24"
+                    android:textColor="@color/textColor_subject"
+                    />
+
+
+            </LinearLayout>
+
             </LinearLayout>
 
     <RelativeLayout
@@ -174,7 +200,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_centerInParent="true"
-            android:background="@drawable/nobackground"
             >
         </Spinner>
 

@@ -2,9 +2,7 @@ package com.example.accepted.acceptedtalentplanet.TalentSharing;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
-import android.location.Address;
-import android.location.Geocoder;
+import android.graphics.Paint;
 import android.location.Location;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
@@ -12,17 +10,11 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
 import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.accepted.acceptedtalentplanet.Alarm.Alarm_Activity;
-import com.example.accepted.acceptedtalentplanet.CustomerService.CustomerService_MainActivity;
 import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -32,31 +24,20 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.accepted.acceptedtalentplanet.FriendList.FriendList_Activity;
 import com.example.accepted.acceptedtalentplanet.GeoPoint;
-import com.example.accepted.acceptedtalentplanet.Home.Home_Activity;
-import com.example.accepted.acceptedtalentplanet.LoadingLogin.Login_Activity;
-import com.example.accepted.acceptedtalentplanet.SharingList.SharingList_Activity;
-import com.example.accepted.acceptedtalentplanet.System.System_Activity;
-import com.example.accepted.acceptedtalentplanet.TalentResister.TalentResister_LocationList;
-import com.example.accepted.acceptedtalentplanet.MyProfile.MyProfile_Activity;
 import com.example.accepted.acceptedtalentplanet.MyTalent;
 import com.example.accepted.acceptedtalentplanet.R;
 import com.example.accepted.acceptedtalentplanet.SaveSharedPreference;
-import com.example.accepted.acceptedtalentplanet.TalentCondition.TalentCondition_Activity;
 import com.example.accepted.acceptedtalentplanet.TalentResister.TalentResister_Activity;
-import com.example.accepted.acceptedtalentplanet.TalentSearching.TalentSearching_Activity;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import static com.example.accepted.acceptedtalentplanet.SaveSharedPreference.DrawerLayout_ClickEvent;
@@ -220,10 +201,14 @@ public class TalentSharing_Activity extends AppCompatActivity {
                     startActivity(i);
                     finish();
                 }
-                TalentSharing_GiveCheck.setBackground(ContextCompat.getDrawable(mContext, R.drawable.small_button_graybackground));
-                TalentSharing_GiveCheck.setTextColor(getResources().getColor(R.color.textColor));
-                TalentSharing_TakeCheck.setBackground(ContextCompat.getDrawable(mContext, R.drawable.small_button_whitebackground));
-                TalentSharing_TakeCheck.setTextColor(Color.parseColor("#d2d2d2"));
+
+                TalentSharing_GiveCheck.setBackground(ContextCompat.getDrawable(mContext, R.drawable.bgr_giveortake_clicked));
+                TalentSharing_GiveCheck.setPaintFlags(TalentSharing_GiveCheck.getPaintFlags() | Paint.FAKE_BOLD_TEXT_FLAG);
+                TalentSharing_GiveCheck.setTextColor(getResources().getColor(R.color.textcolor_giveortake_clicked));
+                TalentSharing_TakeCheck.setBackground(ContextCompat.getDrawable(mContext, R.drawable.bgr_giveortake_unclicked));
+                TalentSharing_TakeCheck.setTextColor(getResources().getColor(R.color.textcolor_giveortake_unclicked));
+                TalentSharing_TakeCheck.setPaintFlags(TalentSharing_TakeCheck.getPaintFlags() &~ Paint.FAKE_BOLD_TEXT_FLAG);
+
                 TalentSharing_PageTxt.setText(SaveSharedPreference.getUserName(mContext) + "님의 재능을 공유할 수 있는 회원리스트 입니다.");
             }else{
                 MyTalent mt = SaveSharedPreference.getTakeTalentData(mContext);
@@ -235,10 +220,13 @@ public class TalentSharing_Activity extends AppCompatActivity {
                     startActivity(i);
                     finish();
                 }
-                TalentSharing_TakeCheck.setBackground(ContextCompat.getDrawable(mContext, R.drawable.small_button_graybackground));
-                TalentSharing_TakeCheck.setTextColor(getResources().getColor(R.color.textColor));
-                TalentSharing_GiveCheck.setBackground(ContextCompat.getDrawable(mContext, R.drawable.small_button_whitebackground));
-                TalentSharing_GiveCheck.setTextColor(Color.parseColor("#d2d2d2"));
+
+                TalentSharing_TakeCheck.setBackground(ContextCompat.getDrawable(mContext, R.drawable.bgr_giveortake_clicked));
+                TalentSharing_TakeCheck.setPaintFlags(TalentSharing_TakeCheck.getPaintFlags() | Paint.FAKE_BOLD_TEXT_FLAG);
+                TalentSharing_TakeCheck.setTextColor(getResources().getColor(R.color.textcolor_giveortake_clicked));
+                TalentSharing_GiveCheck.setBackground(ContextCompat.getDrawable(mContext, R.drawable.bgr_giveortake_unclicked));
+                TalentSharing_GiveCheck.setTextColor(getResources().getColor(R.color.textcolor_giveortake_unclicked));
+                TalentSharing_GiveCheck.setPaintFlags(TalentSharing_GiveCheck.getPaintFlags() &~ Paint.FAKE_BOLD_TEXT_FLAG);
                 TalentSharing_PageTxt.setText(SaveSharedPreference.getUserName(mContext) + "님께 재능을 공유할 수 있는 회원리스트 입니다.");
             }
 

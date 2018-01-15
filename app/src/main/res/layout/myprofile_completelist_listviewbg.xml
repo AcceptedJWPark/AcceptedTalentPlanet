@@ -12,163 +12,192 @@
     android:paddingBottom="5dp"
     >
 
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:layout_weight="0.7"
+        android:orientation="vertical"
+        android:layout_marginRight="5dp"
+        >
 
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_weight="3.5"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
+        <ImageView
+            android:id="@+id/CompleteList_ConditionType_Img"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:padding="3dp"
+            android:src="@drawable/icon_handshake_give"
+            />
 
-            >
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="0.8"
-                android:gravity="center_vertical">
-
-                <TextView
-                    android:id="@+id/CompleteList_ConditionType"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:gravity="left|center"
-                    android:text="[관심 재능]"
-                    android:textColor="#000000"
-                    android:textSize="@dimen/List_Title"
-                    android:textStyle="bold" />
-
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:ellipsize="end"
-                    android:lines="1"
-                    android:layout_marginLeft="10dp"
-                    android:text="완료 일자 : "
-                    android:textSize="@dimen/ListView_SecondLine" />
-
-                <TextView
-                    android:id="@+id/CompleteList_RegistDate"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:ellipsize="end"
-                    android:lines="1"
-                    android:text="2017.11.03 16:24"
-                    android:textSize="@dimen/ListView_SecondLine" />
-
-                <TextView
-                    android:id="@+id/CompleteList_Point"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:text="-200P"
-                    android:textSize="@dimen/ListView_SecondLine"
-                    android:gravity="center"
-                    android:textStyle="bold"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:textColor="#0077ff"
-                    android:background="@drawable/nobackground"
-                    >
-                </TextView>
-
-
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:orientation="horizontal"
-                android:layout_below="@+id/CustomerService_Claim_SharingListName"
-                android:paddingLeft="5dp"
-                >
-
-                <TextView
-                    android:id="@+id/CompleteList_Name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="박종우님과 "
-                    android:gravity="center|left"
-                    android:layout_gravity="center_vertical"
-                    android:singleLine="true"
-                    android:lineSpacingMultiplier="1.5"
-                    android:textColor="@color/textColor"
-                    android:textSize="@dimen/List_SubTitle"
-                    />
-
-                <TextView
-                    android:id="@+id/CompleteList_Keyword1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:background="#f5f5f5"
-                    android:gravity="center"
-                    android:lineSpacingMultiplier="1.5"
-                    android:paddingBottom="3dp"
-                    android:paddingLeft="10dp"
-                    android:paddingRight="10dp"
-                    android:paddingTop="3dp"
-                    android:singleLine="true"
-                    android:text="기타"
-                    android:textColor="@color/textColor"
-                    android:textSize="@dimen/List_SubTitle"
-                    android:textStyle="bold" />
-                <TextView
-                    android:id="@+id/CompleteList_Keyword2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="기타 연주"
-                    android:gravity="center"
-                    android:layout_gravity="center_vertical"
-                    android:singleLine="true"
-                    android:textStyle="bold"
-                    android:lineSpacingMultiplier="1.5"
-                    android:textColor="@color/textColor"
-                    android:textSize="@dimen/List_SubTitle"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="5dp"
-                    android:paddingLeft="10dp"
-                    android:paddingRight="10dp"
-                    android:paddingTop="3dp"
-                    android:paddingBottom="3dp"
-                    android:background="#f5f5f5"
-                    />
-                <TextView
-                    android:id="@+id/CompleteList_Keyword3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="기타독주"
-                    android:gravity="center"
-                    android:layout_gravity="center_vertical"
-                    android:singleLine="true"
-                    android:textStyle="bold"
-                    android:lineSpacingMultiplier="1.5"
-                    android:textColor="@color/textColor"
-                    android:textSize="@dimen/List_SubTitle"
-                    android:paddingLeft="10dp"
-                    android:paddingRight="10dp"
-                    android:paddingTop="3dp"
-                    android:paddingBottom="3dp"
-                    android:background="#f5f5f5"
-                    />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text=" 공유 완료하였습니다."
-                    android:gravity="center|left"
-                    android:layout_gravity="center_vertical"
-                    android:singleLine="true"
-                    android:lineSpacingMultiplier="1.5"
-                    android:textColor="@color/textColor"
-                    android:textSize="@dimen/List_SubTitle"
-                    />
-
-            </LinearLayout>
-            </LinearLayout>
-
-
+        <TextView
+            android:id="@+id/CompleteList_ConditionType"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.8"
+            android:text="재능 드림"
+            android:gravity="center"
+            android:layout_gravity="center_vertical"
+            android:textColor="#000000"
+            android:textStyle="bold"
+            android:textSize="@dimen/List_SubTitle"
+            />
 
 
     </LinearLayout>
+
+
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_weight="4.2"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+
+        >
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:layout_below="@+id/CustomerService_Claim_SharingListName"
+            android:paddingLeft="5dp"
+            >
+
+            <TextView
+                android:id="@+id/CompleteList_Name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="박종우님과 "
+                android:gravity="center|left"
+                android:layout_gravity="center_vertical"
+                android:singleLine="true"
+                android:lineSpacingMultiplier="1.5"
+                android:textColor="@color/textColor_object"
+                android:textSize="@dimen/List_SubTitle"
+                />
+
+            <TextView
+                android:id="@+id/CompleteList_Keyword1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:background="#f5f5f5"
+                android:gravity="center"
+                android:lineSpacingMultiplier="1.5"
+                android:paddingBottom="3dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingTop="3dp"
+                android:singleLine="true"
+                android:text="기타"
+                android:textColor="@color/textColor_subject"
+                android:textSize="@dimen/List_SubTitle"
+                android:textStyle="bold"
+                />
+            <TextView
+                android:id="@+id/CompleteList_Keyword2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="기타 연주"
+                android:gravity="center"
+                android:layout_gravity="center_vertical"
+                android:singleLine="true"
+                android:textStyle="bold"
+                android:lineSpacingMultiplier="1.5"
+                android:textColor="@color/textColor_subject"
+                android:textSize="@dimen/List_SubTitle"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingTop="3dp"
+                android:paddingBottom="3dp"
+                android:background="#f5f5f5"
+                />
+            <TextView
+                android:id="@+id/CompleteList_Keyword3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="기타독주"
+                android:gravity="center"
+                android:layout_gravity="center_vertical"
+                android:singleLine="true"
+                android:textStyle="bold"
+                android:lineSpacingMultiplier="1.5"
+                android:textColor="@color/textColor_subject"
+                android:textSize="@dimen/List_SubTitle"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingTop="3dp"
+                android:paddingBottom="3dp"
+                android:background="#f5f5f5"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" 공유 완료하였습니다."
+                android:gravity="center|left"
+                android:layout_gravity="center_vertical"
+                android:singleLine="true"
+                android:lineSpacingMultiplier="1.5"
+                android:textColor="@color/textColor_object"
+                android:textSize="@dimen/List_SubTitle"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.8"
+            android:gravity="center_vertical">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:lines="1"
+                android:textColor="@color/textColor_subject"
+                android:layout_marginLeft="5dp"
+                android:text="완료 일자 : "
+                android:textSize="@dimen/ListView_SecondLine" />
+
+            <TextView
+                android:id="@+id/CompleteList_RegistDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:textColor="@color/textColor_subject"
+                android:lines="1"
+                android:text="2017.11.03 16:24"
+                android:textSize="@dimen/ListView_SecondLine" />
+
+            <TextView
+                android:id="@+id/CompleteList_Point"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="+200P"
+                android:textSize="@dimen/ListView_SecondLine"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:textColor="@color/colorPrimaryDark"
+                android:background="@drawable/bgr_edittxt_box_login"
+                >
+            </TextView>
+
+
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+
+
+</LinearLayout>

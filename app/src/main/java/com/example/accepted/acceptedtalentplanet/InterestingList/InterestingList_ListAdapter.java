@@ -8,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.BaseAdapter;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -25,6 +24,7 @@ public class InterestingList_ListAdapter extends BaseAdapter {
     Context context;
     ArrayList<InterestingList_ListItem> list_ArrayList;
     ImageView listView_picture;
+    ImageView Interesting_List_GiveTakeIcon;
     TextView listView_name;
     TextView listView_talent1;
     TextView listView_talent2;
@@ -72,6 +72,8 @@ public class InterestingList_ListAdapter extends BaseAdapter {
             listView_talent1 = view.findViewById(R.id.Interesting_List_Keyword1);
             listView_talent2 = view.findViewById(R.id.Interesting_List_Keyword2);
             listView_talent3 = view.findViewById(R.id.Interesting_List_Keyword3);
+            Interesting_List_GiveTakeIcon = view.findViewById(R.id.Interesting_List_GiveTakeIcon);
+
             Interesting_List_GiveTake = view.findViewById(R.id.Interesting_List_GiveTake);
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -86,15 +88,19 @@ public class InterestingList_ListAdapter extends BaseAdapter {
         }
 
 
-        listView_picture.setImageResource(list_ArrayList.get(position).getPicture());
+        listView_picture.setBackgroundResource(list_ArrayList.get(position).getPicture());
         listView_name.setText(list_ArrayList.get(position).getName());
         listView_talent1.setText(list_ArrayList.get(position).getTalent1());
         listView_talent2.setText(list_ArrayList.get(position).getTalent2());
         listView_talent3.setText(list_ArrayList.get(position).getTalent3());
 
         if (list_ArrayList.get(position).getGiveTake_CODE()==2)
-        {Interesting_List_GiveTake.setText("[보낸 관심]");}
-        else  {Interesting_List_GiveTake.setText("[받은 관심]");}
+        {Interesting_List_GiveTake.setText("보낸 관심");
+            Interesting_List_GiveTakeIcon.setImageResource(R.drawable.icon_inter_give);
+        }
+        else  {Interesting_List_GiveTake.setText("받은 관심");
+            Interesting_List_GiveTakeIcon.setImageResource(R.drawable.icon_inter_take);
+        }
 
         return view;
     }

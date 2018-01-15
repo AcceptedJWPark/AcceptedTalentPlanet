@@ -1,45 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#f0f0f0"
-
-
     >
 
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        >
-
-        <TextView
-            android:id="@+id/Title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="Talent Planet"
-            android:textStyle="bold"
-            android:textSize="40dp"
-            />
-
-        <TextView
-            android:id="@+id/SubTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="재능을 나누는 사람들"
-            android:gravity="center"
-            android:textStyle="bold"
-            android:layout_alignRight="@+id/Title"
-            android:textSize="20dp"
-            android:layout_below="@+id/Title"
-            />
-
-
-    </RelativeLayout>
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@mipmap/loading2"
+        />
 
 
 
-</RelativeLayout>
+</LinearLayout>
+
+
+

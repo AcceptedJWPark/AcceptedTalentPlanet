@@ -200,6 +200,8 @@ public class Join_Email_Activity extends  AppCompatActivity {
                     Toast.makeText(mContext, "E-mail에서 인증번호를 확인해주세요.", Toast.LENGTH_SHORT).show();
                     LinearLayout acceptEmail = (LinearLayout)findViewById(R.id.accept_join_mail);
                     acceptEmail.setVisibility(View.VISIBLE);
+                    Button accept_join_mail_btn = (Button) findViewById(R.id.accept_join_mail_btn);
+                    accept_join_mail_btn.setVisibility(View.VISIBLE);
                 }
                 catch(JSONException e){
                     e.printStackTrace();

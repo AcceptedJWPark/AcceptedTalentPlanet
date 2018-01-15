@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ExpandableListView;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
@@ -53,6 +54,14 @@ public class CustomerService_ClaimListActivity extends AppCompatActivity {
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.customerservice_claimlist_activity);
+
+        CustomerService_ClaimList_PreBtn = (LinearLayout) findViewById(R.id.CustomerService_ClaimList_PreBtn);
+        CustomerService_ClaimList_PreBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         ExpandableListViewTest = (ExpandableListView) this.findViewById(R.id.CustomerService_ClaimList_ELV);
         getClaimList();

@@ -18,7 +18,8 @@
     <LinearLayout
         android:id="@+id/TalentResister_Talent_Txt_LL"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="30dp"
         android:gravity="center_vertical"
         android:orientation="vertical"
         >
@@ -26,21 +27,23 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="0dp"
-            android:layout_gravity="center_horizontal"
+            android:layout_gravity="center"
             android:layout_weight="1"
             android:gravity="center"
-            android:textColor="@color/textColor"
+            android:textColor="@color/textColor_txtpage"
             android:text="&quot;입력한 키워드를 통해 재능 매칭이 됩니다. (3개 필수 입력)&quot;"
             android:textSize="@dimen/Page_Txt"
-            android:textStyle="bold" />
+            />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:layout_weight="0.8"
             android:gravity="center"
+            android:layout_marginTop="30dp"
+            android:textColor="@color/textColor_object"
             android:text="Ex) 기타,  기타 연주,  기타 독학"
-            android:layout_gravity="center_horizontal"
+            android:layout_gravity="center"
             android:textSize="@dimen/Page_Txt_Example"
             />
 
@@ -65,7 +68,7 @@
             android:layout_height="match_parent"
             android:dropDownWidth="match_parent"
             android:textSize="@dimen/Edit_Hint"
-            android:paddingLeft="5dp"
+            android:paddingLeft="10dp"
             android:maxLines="1"
             android:hint="재능 등록"
             android:layout_weight="4"
@@ -88,14 +91,14 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="0.7"
-                android:background="@drawable/small_button_whitebackground"
+                android:background="@drawable/bgr_smallbtn"
                 android:gravity="center"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
                 android:text="등록"
-                android:textColor="#000000"
+                android:textColor="@color/textcolor_smallbtn"
                 android:textSize="@dimen/ListView_Btn"
-                android:textStyle="bold" />
+                />
         </LinearLayout>
     </LinearLayout>
 
@@ -120,12 +123,12 @@
         android:layout_height="30dp"
         android:layout_marginLeft="80dp"
         android:layout_marginRight="80dp"
-        android:background="@drawable/big_button_background"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/bgr_bigbtn"
         android:onClick="goNext"
         android:text="다 음"
         android:textAllCaps="false"
         android:textSize="@dimen/BigBtn"
-        android:textStyle="bold"
-        android:textColor="@color/textColor" />
+        android:textColor="@color/textcolor_bigbtn" />
 
 </LinearLayout>
