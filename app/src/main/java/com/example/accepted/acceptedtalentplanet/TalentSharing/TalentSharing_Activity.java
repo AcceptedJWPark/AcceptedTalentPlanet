@@ -195,7 +195,7 @@ public class TalentSharing_Activity extends AppCompatActivity {
                 MyTalent mt = SaveSharedPreference.getGiveTalentData(mContext);
 
                 if(mt == null || mt.getLevel() == null || mt.getStatus().equals("C")){
-                    Toast.makeText(mContext, "재능 기부 등록을 먼저 진행해주세요.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(mContext, "재능 드림 등록을 먼저 진행해주세요.", Toast.LENGTH_SHORT).show();
                     Intent i = new Intent(mContext, TalentResister_Activity.class);
                     i.putExtra("GiveFlag", true);
                     startActivity(i);
@@ -254,7 +254,7 @@ public class TalentSharing_Activity extends AppCompatActivity {
             mt = SaveSharedPreference.getGiveTalentData(mContext);
 
         if(mt == null){
-            return "0km";
+            return "00000";
         }
 
         double[] arrDistance = new double[9];

@@ -45,8 +45,6 @@ public class CustomerService_IntroductionActivity extends AppCompatActivity {
             TalentPlanet_VP.setCurrentItem(0);
         else if(position == 1)
             TalentPlanet_VP.setCurrentItem(1);
-        else
-            TalentPlanet_VP.setCurrentItem(2);
     }
 
     private class pagerAdapter extends PagerAdapter
@@ -63,10 +61,7 @@ public class CustomerService_IntroductionActivity extends AppCompatActivity {
         public Object instantiateItem(View pager, final int position)
         {
             View view = null;
-                if(position == 0) {
-                    view = mInflate.inflate(R.layout.customerservice_introduction1, null);
-                }
-            else if(position == 1) {
+            if(position == 0) {
                     view = mInflate.inflate(R.layout.customerservice_introduction2, null);
                 }
 
@@ -96,7 +91,7 @@ public class CustomerService_IntroductionActivity extends AppCompatActivity {
 
         @Override
         public int getCount() {
-            return 3;
+            return 2;
         }
     }
 }

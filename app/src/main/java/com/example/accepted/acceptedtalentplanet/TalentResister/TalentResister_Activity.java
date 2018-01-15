@@ -265,7 +265,7 @@ public class TalentResister_Activity extends AppCompatActivity {
             i.putExtra("HavingDataFlag", TalentResister_Give);
             if (TalentResister_Give) {
                 if(TalentGive.getStatus() != null && TalentGive.getStatus().equals("M")){
-                    Toast.makeText(getApplicationContext(), "재능공유 중에는 수정할 수 없습니다.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "재능공유 진행 중에는 수정할 수 없습니다.", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 i.putExtra("Data", TalentGive);
@@ -275,7 +275,7 @@ public class TalentResister_Activity extends AppCompatActivity {
             i.putExtra("HavingDataFlag", TalentResister_Take);
             if(TalentResister_Take){
                 if(TalentTake.getStatus() != null && TalentTake.getStatus().equals("M")){
-                    Toast.makeText(getApplicationContext(), "재능공유 중에는 수정할 수 없습니다.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "재능공유 진행 중에는 수정할 수 없습니다.", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 i.putExtra("Data", TalentTake);
