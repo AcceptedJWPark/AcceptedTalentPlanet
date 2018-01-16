@@ -124,7 +124,6 @@ public class SaveSharedPreference{
         }
     }
 
-
     public static void setGiveTalentData(Context ctx, MyTalent Data){
         SharedPreferences.Editor editor = getSharedPreferences(ctx).edit();
         Gson gson = new Gson();

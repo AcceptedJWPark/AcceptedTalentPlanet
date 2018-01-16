@@ -21,6 +21,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.example.accepted.acceptedtalentplanet.R;
+import com.example.accepted.acceptedtalentplanet.SaveSharedPreference;
 import com.example.accepted.acceptedtalentplanet.TalentResister.TalentResister_Location_Adapter;
 
 import java.util.ArrayList;
@@ -364,9 +365,20 @@ public class TalentSearching_SearchingPage_Activity extends AppCompatActivity {
         TalentSearching_SaveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String location1 = location_bigcategory_spinner.getSelectedItem().toString();
+                String location2 = location_smallcategory_spinner.getSelectedItem().toString();
+                String keyword = TalentSearching_KeywordInput.getText().toString();
+                String beginPoint = TalentSearching_PointInput1.getText().toString();
+                String endPoint = TalentSearching_PointInput2.getText().toString();
                 Intent i = new Intent(mContext, TalentSearching_Activity.class);
-                i.putExtra("keyword", (TalentSearching_KeywordInput.getText().toString() == null)?"" : TalentSearching_KeywordInput.getText().toString());
-                i.putExtra("location1", location_bigcategory_spinner.getSelectedItem().toString());
+                i.putExtra("keyword", (keyword == null)?"" : keyword);
+                i.putExtra("location1", (location1.equals("전체"))? "":location1);
+                i.putExtra("location2", (location2.equals("전체"))? "":location2);
+                i.putExtra("beginLevel", level_start.getSelectedItemPosition() + 1);
+                i.putExtra("endLevel", level_end.getSelectedItemPosition() + 1);
+                i.putExtra("beginPoint", (beginPoint.equals("이상")?"":beginPoint));
+                i.putExtra("endPoint", (endPoint.equals("이하")?"":endPoint));
+                startActivity(i);
             }
         });
 
