@@ -55,12 +55,31 @@ public class TalentSearching_Activity extends AppCompatActivity {
     TalentSearching_ListAdapter talentSearching_listAdapter;
     ListView TalentSearching_ListView;
 
+    String keyword;
+    String location1;
+    String location2;
+    String beginLevel;
+    String endLevel;
+    String beginPoint;
+    String endPoint;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.talentsearching_activity);
 
         mContext = getApplicationContext();
+
+        Intent i = getIntent();
+
+        keyword = i.getStringExtra("keyword");
+        location1 = i.getStringExtra("location1");
+        location2 = i.getStringExtra("location2");
+        beginLevel = String.valueOf(i.getIntExtra("beginLevel", 1));
+        endLevel = String.valueOf(i.getIntExtra("endLevel", 1));
+        beginPoint = i.getStringExtra("beginPoint");
+        endPoint = i.getStringExtra("endPoint");
+
 
         slidingMenuDL = (DrawerLayout) findViewById(R.id.TalentSearching_listboxDL);
         drawerView = (View) findViewById(R.id.TalentSearching_container);
@@ -168,6 +187,14 @@ public class TalentSearching_Activity extends AppCompatActivity {
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap();
                 params.put("userID", SaveSharedPreference.getUserId(mContext));
+                params.put("keyword", keyword);
+                params.put("location1", location1);
+                params.put("location2", location2);
+                params.put("beginLevel", beginLevel);
+                params.put("endLevel", endLevel);
+                params.put("beginPoint", beginPoint);
+                params.put("endPoint", endPoint);
+
                 return params;
             }
         };
