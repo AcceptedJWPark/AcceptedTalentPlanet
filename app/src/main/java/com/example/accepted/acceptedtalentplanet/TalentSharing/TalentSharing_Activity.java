@@ -194,7 +194,7 @@ public class TalentSharing_Activity extends AppCompatActivity {
             if(isGiveTalent){
                 MyTalent mt = SaveSharedPreference.getGiveTalentData(mContext);
 
-                if(mt == null || mt.getLevel() == null || mt.getStatus().equals("C")){
+                if(mt == null){
                     Toast.makeText(mContext, "재능 기부 등록을 먼저 진행해주세요.", Toast.LENGTH_SHORT).show();
                     Intent i = new Intent(mContext, TalentResister_Activity.class);
                     i.putExtra("GiveFlag", true);
@@ -213,7 +213,7 @@ public class TalentSharing_Activity extends AppCompatActivity {
             }else{
                 MyTalent mt = SaveSharedPreference.getTakeTalentData(mContext);
                 
-                if(mt == null || mt.getLevel() == null || mt.getStatus().equals("C")){
+                if(mt == null){
                     Toast.makeText(mContext, "관심 재능 등록을 먼저 진행해주세요.", Toast.LENGTH_SHORT).show();
                     Intent i = new Intent(mContext, TalentResister_Activity.class);
                     i.putExtra("GiveFlag", false);

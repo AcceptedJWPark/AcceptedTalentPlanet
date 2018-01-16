@@ -2,6 +2,7 @@ package com.example.accepted.acceptedtalentplanet.TalentSearching;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
@@ -67,7 +68,7 @@ public class TalentSearching_SearchingPage_Activity extends AppCompatActivity {
 
 
         LocationGroup talentSearching_locationGroup = new LocationGroup();
-        String location_bigCategory[] = talentSearching_locationGroup.location_BigCategory;
+        final String location_bigCategory[] = talentSearching_locationGroup.location_BigCategory;
         final String seoul_smallCategory[] = talentSearching_locationGroup.seoul_SmallCategory;
         final String busan_smallCategory[] = talentSearching_locationGroup.busan_SmallCategory;
         final String daegu_smallCategory[] = talentSearching_locationGroup.daegu_SmallCategory;
@@ -363,7 +364,9 @@ public class TalentSearching_SearchingPage_Activity extends AppCompatActivity {
         TalentSearching_SaveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                Intent i = new Intent(mContext, TalentSearching_Activity.class);
+                i.putExtra("keyword", (TalentSearching_KeywordInput.getText().toString() == null)?"" : TalentSearching_KeywordInput.getText().toString());
+                i.putExtra("location1", location_bigcategory_spinner.getSelectedItem().toString());
             }
         });
 
