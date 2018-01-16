@@ -29,10 +29,13 @@ import com.example.accepted.acceptedtalentplanet.System.System_Activity;
 import com.example.accepted.acceptedtalentplanet.TalentCondition.TalentCondition_Activity;
 import com.example.accepted.acceptedtalentplanet.TalentResister.TalentResister_Activity;
 import com.example.accepted.acceptedtalentplanet.TalentSearching.TalentSearching_Activity;
+import com.example.accepted.acceptedtalentplanet.TalentSearching.TalentSearching_SearchingPage_Activity;
 import com.example.accepted.acceptedtalentplanet.TalentSharing.TalentSharing_Activity;
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import java.io.ByteArrayOutputStream;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 
 import static android.text.TextUtils.isEmpty;
@@ -193,9 +196,9 @@ public class SaveSharedPreference{
         return byteArrayOutputStream.toByteArray();
     }
 
-    public static void putFriend(Context ctx, String userID){
-        ArrayList<String> friendList = getFriendList(ctx);
-        friendList.add(userID);
+    public static void putFriend(Context ctx, Friend friend){
+        ArrayList<Friend> friendList = getFriendList(ctx);
+        friendList.add(friend);
 
         SharedPreferences.Editor editor = getSharedPreferences(ctx).edit();
         Gson gson = new Gson();
@@ -205,9 +208,15 @@ public class SaveSharedPreference{
 
     }
 
-    public static void removeFriend(Context ctx, String userID){
-        ArrayList<String> frinedList = getFriendList(ctx);
-        frinedList.remove(userID);
+    public static void removeFriend(Context ctx, Friend friend){
+        ArrayList<Friend> frinedList = getFriendList(ctx);
+
+        for(Friend f : frinedList){
+            if(f.getUserID().equals(friend.getUserID()) && f.getPartnerTalentType().equals(friend.getPartnerTalentType())){
+                frinedList.remove(f);
+                break;
+            }
+        }
 
         SharedPreferences.Editor editor = getSharedPreferences(ctx).edit();
         Gson gson = new Gson();
@@ -216,11 +225,12 @@ public class SaveSharedPreference{
         editor.commit();
     }
 
-    public static ArrayList<String> getFriendList(Context ctx){
+    public static ArrayList<Friend> getFriendList(Context ctx){
         Gson gson = new Gson();
 
         String json = getSharedPreferences(ctx).getString(PREF_FRIEND_ARRAY, "");
-        ArrayList<String> friendList = gson.fromJson(json, ArrayList.class);
+        Type listType = new TypeToken<ArrayList<Friend>>(){}.getType();
+        ArrayList<Friend> friendList = gson.fromJson(json, listType);
         if(friendList == null)
             friendList = new ArrayList<>();
 
@@ -296,7 +306,7 @@ public class SaveSharedPreference{
                 break;
             }
             case R.id.SlidingMenu_TalentSearching : {
-                i = new Intent(mContext, TalentSearching_Activity.class);
+                i = new Intent(mContext, TalentSearching_SearchingPage_Activity.class);
                 mContext.startActivity(i);
                 break;
             }

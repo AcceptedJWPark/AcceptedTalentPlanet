@@ -20,6 +20,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.accepted.acceptedtalentplanet.Friend;
 import com.example.accepted.acceptedtalentplanet.R;
 import com.example.accepted.acceptedtalentplanet.SaveSharedPreference;
 
@@ -48,7 +49,7 @@ public class FriendList_Activity extends AppCompatActivity {
 
     Button Friendlist_ShowGive;
     Button Friendlist_ShowTake;
-    ArrayList<String> friendList;
+    ArrayList<Friend> friendList;
 
     boolean talentFlag;
 
@@ -165,7 +166,7 @@ public class FriendList_Activity extends AppCompatActivity {
                             default:
                                 talentConditionCode = 1;
                         }
-                        int talentCode = (o.getString("TALENT_FLAG").equals("Y"))?1 : 2;
+                        int talentCode = (o.getString("TALENT_FLAG").equals("Y"))?2 : 1;
                         FriendList_Item target = new FriendList_Item(R.drawable.textpicture, o.getString("USER_NAME"), o.getString("TALENT_KEYWORD1"), o.getString("TALENT_KEYWORD2"), o.getString("TALENT_KEYWORD3"), talentConditionCode, talentCode, o.getString("TALENT_ID"));
                         Friendlist_original.add(target);
                         if(talentFlag) {
@@ -213,8 +214,9 @@ public class FriendList_Activity extends AppCompatActivity {
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap();
                 StringBuilder sb = new StringBuilder();
-                for(String s : friendList){
-                    sb.append(s);
+                for(int i = 0; i < friendList.size(); i++){
+                    Friend f = friendList.get(i);
+                    sb.append(f.getUserID()).append("\n").append(f.getPartnerTalentType());
                     sb.append("\t");
                 }
                 Log.d("Array = ", sb.toString());

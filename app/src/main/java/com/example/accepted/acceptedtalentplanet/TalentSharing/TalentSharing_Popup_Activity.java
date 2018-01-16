@@ -27,6 +27,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.accepted.acceptedtalentplanet.Friend;
 import com.example.accepted.acceptedtalentplanet.R;
 import com.example.accepted.acceptedtalentplanet.SaveSharedPreference;
 
@@ -49,7 +50,7 @@ public class TalentSharing_Popup_Activity extends FragmentActivity{
     ImageView TalentSharingPopup_addfriendList_on;
     ImageView TalentSharingPopup_addfriendList_off;
     String UserID;
-
+    String talentFlag;
     boolean hasFlag = false;
     Context mContext;
     Button interestBtn;
@@ -112,7 +113,8 @@ public class TalentSharing_Popup_Activity extends FragmentActivity{
                 TalentSharingPopup_addfriendList_on.setVisibility(View.GONE);
                 TalentSharingPopup_addfriendList_off.setVisibility(View.VISIBLE);
                 Toast.makeText(mContext,"친구 목록에서 삭제되었습니다.",Toast.LENGTH_SHORT).show();
-                SaveSharedPreference.removeFriend(mContext, UserID);
+                Friend friend = new Friend(UserID, talentFlag);
+                SaveSharedPreference.removeFriend(mContext, friend);
                 addedFriend = false;
                 }
         });
@@ -123,7 +125,8 @@ public class TalentSharing_Popup_Activity extends FragmentActivity{
                 TalentSharingPopup_addfriendList_off.setVisibility(View.GONE);
                 TalentSharingPopup_addfriendList_on.setVisibility(View.VISIBLE);
                 Toast.makeText(mContext,"친구 목록에 추가되었습니다.",Toast.LENGTH_SHORT).show();
-                SaveSharedPreference.putFriend(mContext, UserID);
+                Friend friend = new Friend(UserID, talentFlag);
+                SaveSharedPreference.putFriend(mContext, friend);
                 addedFriend = true;
             }
         });
@@ -140,9 +143,10 @@ public class TalentSharing_Popup_Activity extends FragmentActivity{
             public void onResponse(String response) {
                 try {
                     JSONObject obj = new JSONObject(response);
+                    talentFlag = obj.getString("TALENT_FLAG");
                     Log.d("result", response);
                     String Gender = (obj.getString("GENDER").equals("남")) ? "남자" : "여자";
-                    String TalentText = obj.getString("TALENT_FLAG").equals("Y") ? "재능드림" : "관심재능";
+                    String TalentText = talentFlag.equals("Y") ? "재능드림" : "관심재능";
                     ((TextView)findViewById(R.id.TalentSharingPopup_UserName)).setText(obj.getString("USER_NAME"));
                     ((TextView)findViewById(R.id.TalentSharingPopup_UserGender)).setText(Gender);
                     ((TextView)findViewById(R.id.TalentSharingPopup_UserBirth)).setText(obj.getString("USER_BIRTH"));
@@ -157,8 +161,14 @@ public class TalentSharing_Popup_Activity extends FragmentActivity{
                     ((TextView)findViewById(R.id.TalentSharingPopup_Point)).setText(obj.getString("T_POINT")+"P");
                     ((TextView)findViewById(R.id.TalentSharing_TypeText)).setText(TalentText);
                     UserID = obj.getString("USER_ID");
-                    ArrayList<String> friendList = SaveSharedPreference.getFriendList(mContext);
-                    addedFriend = (friendList.contains(UserID))?true:false;
+                    ArrayList<Friend> friendList = SaveSharedPreference.getFriendList(mContext);
+                    addedFriend = false;
+                    for(Friend f : friendList){
+                        if(f.getUserID().equals(UserID)){
+                            addedFriend = true;
+                            break;
+                        }
+                    }
 
                     hasFlag = (obj.getString("HAS_FLAG").equals("N"))? false : true;
                     Log.d("hasFlag", String.valueOf(hasFlag));
