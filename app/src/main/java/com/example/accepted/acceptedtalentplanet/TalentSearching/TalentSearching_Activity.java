@@ -80,6 +80,7 @@ public class TalentSearching_Activity extends AppCompatActivity {
         beginPoint = i.getStringExtra("beginPoint");
         endPoint = i.getStringExtra("endPoint");
 
+        Log.d("asdfasfdjsd", keyword + location1 + location2 + beginLevel + endLevel + beginPoint + endPoint);
 
         slidingMenuDL = (DrawerLayout) findViewById(R.id.TalentSearching_listboxDL);
         drawerView = (View) findViewById(R.id.TalentSearching_container);
@@ -92,21 +93,6 @@ public class TalentSearching_Activity extends AppCompatActivity {
             }
         };
         DrawerLayout_ClickEvent(TalentSearching_Activity.this,mClicklistener);
-
-        talentSearching_listItemArrayList = new ArrayList<>();
-        talentSearching_listAdapter = new TalentSearching_ListAdapter(mContext, talentSearching_listItemArrayList);
-        talentSearching_listItemArrayList.add(new TalentSearching_ListItem(R.drawable.textpicture,"박종우","기타","기타 연습","기타 독주"));
-        talentSearching_listItemArrayList.add(new TalentSearching_ListItem(R.drawable.textpicture,"민권홍","피아노","피아노 연주","Piano"));
-        talentSearching_listItemArrayList.add(new TalentSearching_ListItem(R.drawable.textpicture,"유성택","복싱","권투","격투기"));
-        talentSearching_listItemArrayList.add(new TalentSearching_ListItem(R.drawable.testpicture2,"임하슬람","기타","피아노","드럼"));
-        talentSearching_listItemArrayList.add(new TalentSearching_ListItem(R.drawable.textpicture,"김정태","공무원 시험","공무원 9급","공무원 7급"));
-        talentSearching_listItemArrayList.add(new TalentSearching_ListItem(R.drawable.testpicture2,"우승제","축구","풋살","축구 프리킥"));
-        talentSearching_listItemArrayList.add(new TalentSearching_ListItem(R.drawable.textpicture,"김용인","먹방","아프리카 bj","먹는 방송"));
-        talentSearching_listItemArrayList.add(new TalentSearching_ListItem(R.drawable.testpicture2,"배대명","비트박스","BeatBox","북치기 박치기"));
-
-        TalentSearching_ListView = (ListView) findViewById(R.id.TalentSearching_ListView);
-        TalentSearching_ListView.setAdapter(talentSearching_listAdapter);
-
 
                 final Button giveButton = (Button)findViewById(R.id.TalentSearching_ShowGive);
                 final Button takeButton = (Button)findViewById(R.id.TalentSearching_ShowTake);
@@ -146,6 +132,8 @@ public class TalentSearching_Activity extends AppCompatActivity {
             }
         });
 
+        retrieveTalent();
+
     }
 
     public void retrieveTalent() {
@@ -156,6 +144,17 @@ public class TalentSearching_Activity extends AppCompatActivity {
                 try {
 
                     JSONArray obj = new JSONArray(response);
+                    Log.d("Array = " , obj.toString());
+                    talentSearching_listItemArrayList = new ArrayList<>();
+                    talentSearching_listAdapter = new TalentSearching_ListAdapter(mContext, talentSearching_listItemArrayList);
+                    for(int i = 0; i < obj.length(); i++) {
+                        JSONObject o = obj.getJSONObject(i);
+                        Log.d("Obj = ", o.toString());
+                        talentSearching_listItemArrayList.add(new TalentSearching_ListItem(R.drawable.textpicture, o.getString("USER_NAME"), o.getString("TALENT_KEYWORD1"), o.getString("TALENT_KEYWORD2"), o.getString("TALENT_KEYWORD3"), o.getString("seq")));
+
+                    }
+                    TalentSearching_ListView = (ListView) findViewById(R.id.TalentSearching_ListView);
+                    TalentSearching_ListView.setAdapter(talentSearching_listAdapter);
 
                 } catch (JSONException e) {
                     e.printStackTrace();

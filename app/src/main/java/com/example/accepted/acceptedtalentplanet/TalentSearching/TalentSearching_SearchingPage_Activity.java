@@ -370,14 +370,15 @@ public class TalentSearching_SearchingPage_Activity extends AppCompatActivity {
                 String keyword = TalentSearching_KeywordInput.getText().toString();
                 String beginPoint = TalentSearching_PointInput1.getText().toString();
                 String endPoint = TalentSearching_PointInput2.getText().toString();
+
                 Intent i = new Intent(mContext, TalentSearching_Activity.class);
                 i.putExtra("keyword", (keyword == null)?"" : keyword);
                 i.putExtra("location1", (location1.equals("전체"))? "":location1);
                 i.putExtra("location2", (location2.equals("전체"))? "":location2);
                 i.putExtra("beginLevel", level_start.getSelectedItemPosition() + 1);
                 i.putExtra("endLevel", level_end.getSelectedItemPosition() + 1);
-                i.putExtra("beginPoint", (beginPoint.equals("이상")?"":beginPoint));
-                i.putExtra("endPoint", (endPoint.equals("이하")?"":endPoint));
+                i.putExtra("beginPoint", (beginPoint.equals("")?"0":beginPoint));
+                i.putExtra("endPoint", (endPoint.equals("")?"0":endPoint));
                 startActivity(i);
             }
         });

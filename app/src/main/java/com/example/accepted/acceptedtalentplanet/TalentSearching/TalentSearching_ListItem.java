@@ -11,6 +11,7 @@ public class TalentSearching_ListItem {
     private String talent1;
     private String talent2;
     private String talent3;
+    private String talentID;
 
     public int getPicture() {
         return picture;
@@ -32,6 +33,9 @@ public class TalentSearching_ListItem {
         return talent3;
     }
 
+    public String getTalentID() {
+        return talentID;
+    }
 
     public void setPicture(int picture) {
         this.picture = picture;
@@ -53,13 +57,18 @@ public class TalentSearching_ListItem {
         this.talent3 = talent3;
     }
 
-    public TalentSearching_ListItem(int pictire, String name, String talent1, String talent2, String talent3)
+    public void setTalentID(String talentID) {
+        this.talentID = talentID;
+    }
+
+    public TalentSearching_ListItem(int pictire, String name, String talent1, String talent2, String talent3, String talentID)
     {
         this.picture = pictire;
         this.name = name;
         this.talent1 = talent1;
         this.talent2 = talent2;
         this.talent3 = talent3;
+        this.talentID = talentID;
     }
 
 }
