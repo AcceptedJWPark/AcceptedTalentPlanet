@@ -49,6 +49,8 @@ public class Password_Lost_Change_Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_passwordlost_change_activity);
 
+        mContext = getApplicationContext();
+
         userID = getIntent().getStringExtra("userID");
         PasswordLost_newPassword = (EditText) findViewById(R.id.PasswordLost_newPassword);
 

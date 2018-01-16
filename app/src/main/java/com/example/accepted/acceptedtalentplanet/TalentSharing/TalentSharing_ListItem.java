@@ -4,7 +4,7 @@ package com.example.accepted.acceptedtalentplanet.TalentSharing;
  * Created by Accepted on 2017-10-24.
  */
 
-public class TalentSharing_ListItem {
+public class TalentSharing_ListItem implements Comparable<TalentSharing_ListItem> {
 
     private int picture;
     private String name;
@@ -17,6 +17,7 @@ public class TalentSharing_ListItem {
     private String distance;
     private String userID;
     private String showProfile;
+    private double ddistance;
 
     public int getPicture() {
         return picture;
@@ -94,7 +95,7 @@ public class TalentSharing_ListItem {
 
     public void setUserID(String userID) { this.userID = userID; }
 
-    public TalentSharing_ListItem(int pictire, String name, String talent1, String talent2, String talent3, String talentID, String isGiveTalent, String status_flag, String distance, String showProfile, String userID)
+    public TalentSharing_ListItem(int pictire, String name, String talent1, String talent2, String talent3, String talentID, String isGiveTalent, String status_flag, String distance, String showProfile, String userID, double ddistance)
     {
         this.picture = pictire;
         this.name = name;
@@ -107,6 +108,17 @@ public class TalentSharing_ListItem {
         this.distance = distance;
         this.showProfile = showProfile;
         this.userID = userID;
+        this.ddistance = ddistance;
+    }
+
+    @Override
+    public int compareTo(TalentSharing_ListItem item){
+        if(this.ddistance > item.ddistance)
+            return 1;
+        else if(this.ddistance < item.ddistance)
+            return -1;
+        else
+            return 0;
     }
 
 }

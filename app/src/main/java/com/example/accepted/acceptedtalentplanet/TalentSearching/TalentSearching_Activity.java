@@ -80,7 +80,8 @@ public class TalentSearching_Activity extends AppCompatActivity {
         beginPoint = i.getStringExtra("beginPoint");
         endPoint = i.getStringExtra("endPoint");
 
-        Log.d("asdfasfdjsd", keyword + location1 + location2 + beginLevel + endLevel + beginPoint + endPoint);
+
+
 
         slidingMenuDL = (DrawerLayout) findViewById(R.id.TalentSearching_listboxDL);
         drawerView = (View) findViewById(R.id.TalentSearching_container);
@@ -197,6 +198,7 @@ public class TalentSearching_Activity extends AppCompatActivity {
                 return params;
             }
         };
+        postRequestQueue.add(postJsonRequest);
     }
 
 }

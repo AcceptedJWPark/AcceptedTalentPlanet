@@ -12,19 +12,17 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="2.4"
+        android:layout_height="80dp"
         android:orientation="vertical"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginTop="30dp"
         >
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="2"
+            android:layout_weight="1"
             android:gravity="center"
-            android:text="&quot;아래 재능에 대한 본인의 수준을 선택해주세요.&quot;"
+            android:text="&quot;입력한 재능의 본인 수준을 선택해주세요.&quot;"
             android:layout_gravity="center_horizontal"
             android:textColor="@color/textColor_txtpage"
             android:textSize="@dimen/Page_Txt"
@@ -35,63 +33,14 @@
 
 
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1.3"
-        android:orientation="horizontal"
-        android:gravity="center"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp"
-        android:layout_marginBottom="10dp"
-        >
-        <TextView
-            android:id="@+id/Level_key1"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:ellipsize="end"
-            android:lines="1"
-            android:gravity="center"
-            android:textColor="@color/textColor_normal"
-            android:textStyle="bold"
-            android:textSize="@dimen/Page_ItemSubTitle"
-            android:layout_weight="1"
-            />
-        <TextView
-            android:id="@+id/Level_key2"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:ellipsize="end"
-            android:lines="1"
-            android:gravity="center"
-            android:textColor="@color/textColor_normal"
-            android:textStyle="bold"
-            android:textSize="@dimen/Page_ItemSubTitle"
-            android:layout_weight="1"
-            />
-        <TextView
-            android:id="@+id/Level_key3"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:ellipsize="end"
-            android:lines="1"
-            android:gravity="center"
-            android:textColor="@color/textColor_normal"
-            android:textStyle="bold"
-            android:textSize="@dimen/Page_ItemSubTitle"
-            android:layout_weight="1"
-            />
-    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="2"
+        android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:paddingLeft="5dp"
         android:paddingRight="5dp"
-        android:layout_marginBottom="5dp"
-        android:gravity="top|center"
+        android:gravity="center"
         >
         <LinearLayout
             android:layout_width="0dp"
@@ -200,10 +149,9 @@
 
     <Button
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_height="30dp"
         android:layout_gravity="center"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
         android:layout_marginLeft="80dp"
         android:layout_marginRight="80dp"
         android:background="@drawable/bgr_bigbtn"

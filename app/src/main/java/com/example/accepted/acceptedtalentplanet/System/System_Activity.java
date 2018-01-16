@@ -68,7 +68,7 @@ public class System_Activity extends AppCompatActivity {
 
         slidingMenuDL = (DrawerLayout) findViewById(R.id.System_listboxDL);
         drawerView = (View) findViewById(R.id.System_container);
-        ((TextView) findViewById(R.id.toolbarTxt)).setText("고객센터");
+        ((TextView) findViewById(R.id.toolbarTxt)).setText("설정");
         ((TextView) findViewById(R.id.DrawerUserID)).setText(SaveSharedPreference.getUserId(mContext));
 
         View.OnClickListener mClicklistener = new  View.OnClickListener()

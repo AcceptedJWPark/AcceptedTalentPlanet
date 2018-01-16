@@ -146,11 +146,12 @@ public class Password_Lost_Accept_Activity extends AppCompatActivity {
         RequestFuture<String> future = RequestFuture.newFuture();
         final RequestQueue postRequestQueue = Volley.newRequestQueue(this);
 
+        //TODO : 비밀번호 확인하는 로직 필요
+
         final StringRequest sendMailRequest = new StringRequest(Request.Method.POST, SaveSharedPreference.getServerIp() + "Regist/sendFindPWMail.do", new Response.Listener<String>(){
             @Override
             public void onResponse(String response){
                 accept_join_mail.setVisibility(View.VISIBLE);
-
             }
         }, el
         ) {
@@ -177,6 +178,7 @@ public class Password_Lost_Accept_Activity extends AppCompatActivity {
                     Log.d("response", joinCode);
                     postRequestQueue.add(sendMailRequest);
                     LinearLayout acceptEmail = (LinearLayout)findViewById(R.id.accept_join_mail);
+                    Toast.makeText(mContext, "E-mail에서 인증번호를 확인해주세요.", Toast.LENGTH_SHORT).show();
                     acceptEmail.setVisibility(View.VISIBLE);
                     accept_join_mail_btn = (Button) findViewById(R.id.accept_join_mail_btn);
                     accept_join_mail_btn.setVisibility(View.VISIBLE);

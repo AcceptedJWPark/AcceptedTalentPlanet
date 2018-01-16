@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.accepted.acceptedtalentplanet.R;
@@ -63,6 +64,7 @@ public class MyProfile_CompleteList_Adapter extends BaseAdapter{
             holder.CompleteList_Keyword2 = view.findViewById(R.id.CompleteList_Keyword2);
             holder.CompleteList_Keyword3 = view.findViewById(R.id.CompleteList_Keyword3);
             holder.CompleteList_Point = view.findViewById(R.id.CompleteList_Point);
+            holder.CompleteList_Icon = view.findViewById(R.id.CompleteList_ConditionType_Img);
 
             DisplayMetrics metrics = new DisplayMetrics();
             WindowManager windowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
@@ -91,11 +93,13 @@ public class MyProfile_CompleteList_Adapter extends BaseAdapter{
         {
             holder.CompleteList_ConditionType.setText("관심 재능");
             holder.CompleteList_Point.setTextColor(Color.parseColor("#cc5e93"));
+            holder.CompleteList_Icon.setImageResource(R.drawable.icon_handshake_take);
         }
         else
         {
             holder.CompleteList_ConditionType.setText("재능 드림");
             holder.CompleteList_Point.setTextColor(Color.parseColor("#002c62"));
+            holder.CompleteList_Icon.setImageResource(R.drawable.icon_handshake_give);
         }
 
 
@@ -112,6 +116,7 @@ public class MyProfile_CompleteList_Adapter extends BaseAdapter{
         TextView CompleteList_Keyword2;
         TextView CompleteList_Keyword3;
         TextView CompleteList_Point;
+        ImageView CompleteList_Icon;
     }
 
 

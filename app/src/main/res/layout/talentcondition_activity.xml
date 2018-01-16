@@ -145,9 +145,9 @@
 
                 <RelativeLayout
                     android:id="@+id/TalentCondition_ProfileShowLL"
-                    android:layout_width="@dimen/TalentCondition_Img"
-                    android:layout_height="@dimen/TalentCondition_Img"
-                    android:padding="3dp"
+                    android:layout_width="@dimen/TalentCondition_Picture"
+                    android:layout_height="@dimen/TalentCondition_Picture"
+                    android:padding="5dp"
                     android:background="@drawable/bgr_picture_container"
                     >
 

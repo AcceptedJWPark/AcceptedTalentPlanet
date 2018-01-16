@@ -18,7 +18,8 @@
     <dimen name="BigBtn">11dp</dimen>
     <dimen name="BigBtn_Topspace">20dp</dimen>
 
-    <dimen name="TalentCondition_Img">80dp</dimen>
+    <dimen name="TalentCondition_Picture">80dp</dimen>
+    <dimen name="DrawerLayout_Picture">50dp</dimen>
 
 
 

@@ -91,6 +91,7 @@ public class SharingList_Adapter extends BaseAdapter{
             holder.SharingList_Txt = view.findViewById(R.id.SharingList_Txt);
             holder.SharingList_Spinner = view.findViewById(R.id.SharingList_Spinner);
             holder.SharingList_SpinnerRL = view.findViewById(R.id.SharingList_SpinnerRL);
+            holder.SharingList_ConditionImg = view.findViewById(R.id.SharingList_ConditionImg);
 
             DisplayMetrics metrics = new DisplayMetrics();
             WindowManager windowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
@@ -141,7 +142,7 @@ public class SharingList_Adapter extends BaseAdapter{
 
                             case 2:
                                 AlertDialog.Builder AlarmDeleteDialog = new AlertDialog.Builder(context);
-                                AlarmDeleteDialog.setMessage("공유·관심 내역을 삭제 하시겠습니까?")
+                                AlarmDeleteDialog.setMessage("공유 내역을 삭제 하시겠습니까?")
                                         .setPositiveButton("삭제", new DialogInterface.OnClickListener() {
                                             @Override
                                             public void onClick(DialogInterface dialog, int which) {
@@ -239,6 +240,7 @@ public class SharingList_Adapter extends BaseAdapter{
         TextView SharingList_Keyword2;
         TextView SharingList_Keyword3;
         TextView SharingList_Txt;
+        ImageView SharingList_ConditionImg;
         Spinner SharingList_Spinner;
         RelativeLayout SharingList_SpinnerRL;
     }

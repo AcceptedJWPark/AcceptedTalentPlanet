@@ -37,6 +37,7 @@ import org.json.JSONObject;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -100,7 +101,6 @@ public class TalentSharing_Activity extends AppCompatActivity {
         OriginTalentSharingList = new ArrayList<>();
         getTalentSharing();
 
-
     }
 
     public void getTalentSharing() {
@@ -114,7 +114,9 @@ public class TalentSharing_Activity extends AppCompatActivity {
                     TalentSharingList.clear();
                     for (int index = 0; index < obj.length(); index++) {
                         JSONObject o = obj.getJSONObject(index);
-                        TalentSharing_ListItem target = new TalentSharing_ListItem(R.drawable.textpicture, o.getString("USER_NAME"), o.getString("TALENT_KEYWORD1"), o.getString("TALENT_KEYWORD2"), o.getString("TALENT_KEYWORD3"), o.getString("seq"), o.getString("TALENT_FLAG"), o.getString("STATUS_FLAG"),findMinDistanceBetween(o.getString("GP_LAT1"), o.getString("GP_LNG1"), o.getString("GP_LAT2"), o.getString("GP_LNG2"), o.getString("GP_LAT3"), o.getString("GP_LNG3"), o.getString("TALENT_FLAG").equals("Y")), "Profile 보기", o.getString("USER_ID"));
+
+                        double distance = findMinDistanceBetween(o.getString("GP_LAT1"), o.getString("GP_LNG1"), o.getString("GP_LAT2"), o.getString("GP_LNG2"), o.getString("GP_LAT3"), o.getString("GP_LNG3"), o.getString("TALENT_FLAG").equals("Y"));
+                        TalentSharing_ListItem target = new TalentSharing_ListItem(R.drawable.textpicture, o.getString("USER_NAME"), o.getString("TALENT_KEYWORD1"), o.getString("TALENT_KEYWORD2"), o.getString("TALENT_KEYWORD3"), o.getString("seq"), o.getString("TALENT_FLAG"), o.getString("STATUS_FLAG"),(String.format("%.1f",  distance) + "km"), "Profile 보기", o.getString("USER_ID"), distance);
                         OriginTalentSharingList.add(target);
                         if(isGiveTalent){
                             if(o.getString("TALENT_FLAG").equals("N"))
@@ -126,10 +128,13 @@ public class TalentSharing_Activity extends AppCompatActivity {
                         }
                     }
 
+
+
                     TalentSharing_Adapter = new TalentSharing_ListAdapter(mContext, TalentSharingList);
                     TalentSharingListView.setAdapter(TalentSharing_Adapter);
                     TalentSharing_GiveCheck.setOnClickListener(changeTalentFlag);
                     TalentSharing_TakeCheck.setOnClickListener(changeTalentFlag);
+
 
                     Intent i = getIntent();
                     String flag = i.getStringExtra("TalentSharing_TalentFlag");
@@ -210,6 +215,7 @@ public class TalentSharing_Activity extends AppCompatActivity {
                 TalentSharing_TakeCheck.setPaintFlags(TalentSharing_TakeCheck.getPaintFlags() &~ Paint.FAKE_BOLD_TEXT_FLAG);
 
                 TalentSharing_PageTxt.setText(SaveSharedPreference.getUserName(mContext) + "님의 재능을 공유할 수 있는 회원리스트 입니다.");
+
             }else{
                 MyTalent mt = SaveSharedPreference.getTakeTalentData(mContext);
                 
@@ -239,6 +245,7 @@ public class TalentSharing_Activity extends AppCompatActivity {
                 else if(tmp.getTalentFlag() == false && isGiveTalent)
                     TalentSharingList.add(tmp);
             }
+            Collections.sort(TalentSharingList);
 
             TalentSharing_Adapter = new TalentSharing_ListAdapter(mContext, TalentSharingList);
             TalentSharingListView.setAdapter(TalentSharing_Adapter);
@@ -246,7 +253,7 @@ public class TalentSharing_Activity extends AppCompatActivity {
     };
 
 
-    String findMinDistanceBetween(String lat1, String lng1, String lat2, String lng2, String lat3, String lng3,  boolean isGive){
+    double findMinDistanceBetween(String lat1, String lng1, String lat2, String lng2, String lat3, String lng3,  boolean isGive){
         MyTalent mt;
         if(isGive)
             mt = SaveSharedPreference.getTakeTalentData(mContext);
@@ -254,7 +261,7 @@ public class TalentSharing_Activity extends AppCompatActivity {
             mt = SaveSharedPreference.getGiveTalentData(mContext);
 
         if(mt == null){
-            return "00000";
+            return 00000;
         }
 
         double[] arrDistance = new double[9];
@@ -291,7 +298,7 @@ public class TalentSharing_Activity extends AppCompatActivity {
 
         Arrays.sort(arrDistance);
 
-        return String.format("%.1f", arrDistance[0] / 1000) + "km";
+        return arrDistance[0] / 1000;
 
     }
 

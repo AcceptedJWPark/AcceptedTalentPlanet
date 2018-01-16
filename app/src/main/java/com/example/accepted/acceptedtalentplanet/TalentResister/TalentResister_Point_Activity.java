@@ -89,20 +89,6 @@ public class TalentResister_Point_Activity extends AppCompatActivity {
             ((EditText)findViewById(R.id.TalentResister_Talent_Point)).setText(String.valueOf(Point));
         }
 
-        TextView PointKey1= (TextView) findViewById(R.id.Point_key1);
-        SpannableString Point_content1 = new SpannableString(Talent1);
-        Point_content1.setSpan(new UnderlineSpan(), 0, Point_content1 .length(), 0);
-        PointKey1.setText(Point_content1);
-
-        TextView PointKey2 = (TextView) findViewById(R.id.Point_key2);
-        SpannableString Point_content2 = new SpannableString(Talent2);
-        Point_content2.setSpan(new UnderlineSpan(), 0, Point_content2.length(), 0);
-        PointKey2.setText(Point_content2);
-
-        TextView PointKey3 = (TextView) findViewById(R.id.Point_key3);
-        SpannableString Point_content3 = new SpannableString(Talent3);
-        Point_content3.setSpan(new UnderlineSpan(), 0, Point_content3.length(), 0);
-        PointKey3.setText(Point_content3);
 
     }
 

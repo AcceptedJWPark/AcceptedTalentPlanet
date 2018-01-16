@@ -81,7 +81,7 @@ public class TalentResister_Talent_Activity extends AppCompatActivity {
         WindowManager windowManager = (WindowManager) getApplicationContext().getSystemService(Context.WINDOW_SERVICE);
         windowManager.getDefaultDisplay().getMetrics(metrics);
 
-        int TalentResister_TalentLL_height = metrics.heightPixels/16;
+        int TalentResister_TalentLL_height = metrics.heightPixels/14;
         int TalentResister_Talent_Txt_LL_height = metrics.heightPixels/10;
         int TalentResister_Talent_Btn_height = metrics.heightPixels/24;
 

@@ -107,19 +107,22 @@ public class CustomerService_ClaimActivity extends AppCompatActivity {
         CustomerService_Claim_Spinner.setAdapter(adapter);
 
         CustomerService_Claim_SharingList = (TextView) findViewById(R.id.CustomerService_Claim_SharingList);
+        CustomerService_Claim_SharingList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), SharingList_Activity.class);
+                startActivity(intent);
+            }
+        });
+
+        //TODO : ??
         if(isSelect){
             String str = (talentFlag.equals("Give"))?"재능드림":"관심재능";
-            CustomerService_Claim_SharingList.setText(name + str+ "|"+keyword1+", "+keyword2+", "+keyword3);
+            claim_Txt1 = (TextView) findViewById(R.id.claim_Txt1);
+            claim_Txt1.setText("\"" + name + " " + str + " " +keyword1+", "+keyword2+", "+keyword3 + "의 건" + "\"");
         }
-        else {
-            CustomerService_Claim_SharingList.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Intent intent = new Intent(getApplicationContext(), SharingList_Activity.class);
-                    startActivity(intent);
-                }
-            });
-        }
+
+
         CustomerService_Claim_PreBtn = (LinearLayout) findViewById(R.id.CustomerService_Claim_PreBtn);
         CustomerService_Claim_PreBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -172,13 +175,12 @@ public class CustomerService_ClaimActivity extends AppCompatActivity {
         CustomerService_ClaimBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                AlertDialog.Builder AlarmDeleteDialog = new AlertDialog.Builder(CustomerService_ClaimActivity.this);
                 if(isSelect){
-                    AlertDialog.Builder AlarmDeleteDialog = new AlertDialog.Builder(CustomerService_ClaimActivity.this);
                     AlarmDeleteDialog.setMessage("신고하시겠습니까?")
                             .setPositiveButton("신고하기", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
-                                    Toast.makeText(context,"신고하기 클릭 됨",Toast.LENGTH_SHORT).show();
                                     requestClaim();
                                     dialog.cancel();
                                 }
@@ -186,14 +188,28 @@ public class CustomerService_ClaimActivity extends AppCompatActivity {
                             .setNegativeButton("취소하기", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
-                                    Toast.makeText(context,"취소하기 클릭 됨",Toast.LENGTH_SHORT).show();
                                     dialog.cancel();
                                 }
                             });
                     AlertDialog alertDialog = AlarmDeleteDialog.create();
                     alertDialog.show();
                 }else{
-                    Toast.makeText(context, "신고 대상을 먼저 선택해주세요.", Toast.LENGTH_SHORT).show();
+                    AlarmDeleteDialog.setMessage("신고 대상을 선택하지 않으면 조치가 어려울 수 있습니다.")
+                            .setPositiveButton("신고하기", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    requestClaim();
+                                    dialog.cancel();
+                                }
+                            })
+                            .setNegativeButton("취소하기", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.cancel();
+                                }
+                            });
+                    AlertDialog alertDialog = AlarmDeleteDialog.create();
+                    alertDialog.show();
                 }
     }
         });
