@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -60,11 +61,14 @@ public class Join_Gender_Activity extends  AppCompatActivity {
             return;
         }
         else {
+            CheckBox genderCheckbox = (CheckBox)findViewById(R.id.Join_GenderNoShowCheck);
+            boolean genderPBS = !genderCheckbox.isChecked();
             Intent intent = new Intent(this, Join_Birth_Activity.class);
             intent.putExtra("email", email);
             intent.putExtra("pw", pw);
             intent.putExtra("name", name);
             intent.putExtra("gender", gender.getSelectedItem().toString());
+            intent.putExtra("genderPBS", genderPBS);
             startActivity(intent);
         }
     }

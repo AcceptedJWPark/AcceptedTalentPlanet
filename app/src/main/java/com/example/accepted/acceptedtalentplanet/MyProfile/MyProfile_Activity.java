@@ -12,11 +12,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
@@ -65,6 +67,12 @@ public class MyProfile_Activity extends AppCompatActivity {
     LinearLayout myProfile_List_LL7;
     LinearLayout myProfile_List_LL8;
     RelativeLayout MyProfile_PictureContainer;
+    boolean genderFlag;
+    boolean birthFlag;
+    boolean jobFlag;
+    CheckBox genderCheckbox;
+    CheckBox birthCheckbox;
+    CheckBox jobCheckbox;
 
     ImageView MyProfile_Picture;
 
@@ -138,6 +146,10 @@ public class MyProfile_Activity extends AppCompatActivity {
         myProfile_List_LL7 = (LinearLayout) findViewById(R.id.MyProfile_List_LL7);
         myProfile_List_LL8 = (LinearLayout) findViewById(R.id.MyProfile_List_LL8);
         MyProfile_PictureContainer = (RelativeLayout) findViewById(R.id.MyProfile_Picture_Container);
+
+        genderCheckbox = (CheckBox)findViewById(R.id.MyProfile_genderNoShowCheck);
+        birthCheckbox = (CheckBox)findViewById(R.id.MyProfile_BirthdayNoShowCheck);
+        jobCheckbox = (CheckBox)findViewById(R.id.MyProfile_JobNoShowCheck);
 
         
         DisplayMetrics metrics = new DisplayMetrics();
@@ -262,7 +274,10 @@ public class MyProfile_Activity extends AppCompatActivity {
                     String Gender = (obj.getString("GENDER").equals("남")) ? "남자" : "여자";
                     String[] TalentGive = {obj.getString("G_TALENT1"), obj.getString("G_TALENT2"), obj.getString("G_TALENT3")};
                     String[] TalentTake = {obj.getString("T_TALENT1"), obj.getString("T_TALENT2"), obj.getString("T_TALENT3")};
-                    myProfile.setMyProfile(obj.getString("USER_NAME"), Gender, obj.getString("USER_BIRTH"), obj.getString("JOB"), TalentGive, TalentTake);
+                    genderFlag = (obj.getString("GENDER_FLAG").equals("Y"))?true:false;
+                    birthFlag = (obj.getString("BIRTH_FLAG").equals("Y"))?true:false;
+                    jobFlag = (obj.getString("JOB_FLAG").equals("Y"))?true:false;
+                    myProfile.setMyProfile(obj.getString("USER_NAME"), Gender, obj.getString("USER_BIRTH"), obj.getString("JOB"), TalentGive, TalentTake, genderFlag, birthFlag, jobFlag);
                     Log.d("result", obj.toString());
                     String point = obj.getString("TALENT_POINT") + "P";
                     ((TextView)findViewById(R.id.MyProfile_Email)).setText(SaveSharedPreference.getUserId(mContext));
@@ -277,6 +292,10 @@ public class MyProfile_Activity extends AppCompatActivity {
                     ((TextView)findViewById(R.id.MyProfile_TakeTalent2)).setText(TalentTake[1]);
                     ((TextView)findViewById(R.id.MyProfile_TakeTalent3)).setText(TalentTake[2]);
                     ((TextView)findViewById(R.id.MyProfile_TalentPoint)).setText(point);
+
+                    genderCheckbox.setChecked(!genderFlag);
+                    birthCheckbox.setChecked(!birthFlag);
+                    jobCheckbox.setChecked(!jobFlag);
                 }
                 catch(JSONException e){
                     e.printStackTrace();
@@ -323,6 +342,9 @@ public class MyProfile_Activity extends AppCompatActivity {
                 try {
                     JSONObject obj = new JSONObject(response);
                     Log.d("result = ", obj.toString());
+                    if(obj.getString("result").equals("success")){
+                        Toast.makeText(mContext, "프로필 저장이 완료되었습니다.", Toast.LENGTH_SHORT).show();
+                    }
 
                 }
                 catch(JSONException e){
@@ -356,8 +378,15 @@ public class MyProfile_Activity extends AppCompatActivity {
                 Map<String, String> params = new HashMap();
                 MyProfile_Job = (EditText)findViewById(R.id.MyProfile_Job);
 
+                genderFlag = !genderCheckbox.isChecked();
+                birthFlag = !birthCheckbox.isChecked();
+                jobFlag = !jobCheckbox.isChecked();
+
                 params.put("userID", SaveSharedPreference.getUserId(mContext));
                 params.put("job", MyProfile_Job.getText().toString());
+                params.put("genderFlag", (genderFlag)?"Y":"N");
+                params.put("birthFlag", (birthFlag)?"Y":"N");
+                params.put("jobFlag", (jobFlag)?"Y":"N");
                 return params;
             }
         };

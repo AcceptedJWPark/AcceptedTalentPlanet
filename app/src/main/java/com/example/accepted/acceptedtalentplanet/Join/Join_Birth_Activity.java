@@ -11,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Toast;
@@ -44,6 +45,8 @@ public class Join_Birth_Activity extends  AppCompatActivity {
     public String name;
     public String gender;
     public String birth;
+    public boolean genderPBS;
+    public boolean birthPBS;
 
     EditText birthYear;
     EditText birthMonth;
@@ -65,6 +68,7 @@ public class Join_Birth_Activity extends  AppCompatActivity {
         pw = intent.getStringExtra("pw");
         name = intent.getStringExtra("name");
         gender = intent.getStringExtra("gender");
+        genderPBS = intent.getBooleanExtra("genderPBS", true);
 
         ((LinearLayout)findViewById(R.id.pre_LL)).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -106,11 +110,22 @@ public class Join_Birth_Activity extends  AppCompatActivity {
         birthYear = (EditText) findViewById(R.id.Join_Birth_Year);
         birthMonth = (EditText) findViewById(R.id.Join_Birth_Month);
         birthDay = (EditText) findViewById(R.id.Join_Birth_Day);
-        birth = birthYear.getText().toString() + birthMonth.getText().toString() + birthDay.getText().toString();
+        CheckBox birthCheckbox = (CheckBox) findViewById(R.id.Join_BirthDayNoShowCheck);
+        birthPBS = !birthCheckbox.isChecked();
 
         String birthYearTxt = birthYear.getText().toString();
         String birthMonthTxt = birthMonth.getText().toString();
         String birthDayTxt = birthDay.getText().toString();
+
+
+        if(Integer.parseInt(birthMonthTxt) < 10)
+            birthMonthTxt = "0"+birthMonthTxt.substring(birthMonthTxt.length() - 1);
+        if(Integer.parseInt(birthDayTxt) < 10)
+            birthDayTxt = "0"+birthDayTxt.substring(birthDayTxt.length() - 1);
+
+
+        birth = birthYearTxt + birthMonthTxt + birthDayTxt;
+
 
         if (birthYearTxt.length() == 0 || birthMonthTxt.length() == 0 || birthDayTxt.length() == 0) {
             Toast.makeText(mContext, "생년월일을 입력해주세요.", Toast.LENGTH_SHORT).show();
@@ -169,7 +184,8 @@ public class Join_Birth_Activity extends  AppCompatActivity {
                     params.put("userName", name);
                     params.put("userGender", gender);
                     params.put("userBirth", birth);
-
+                    params.put("genderFlag", (genderPBS)?"Y":"N");
+                    params.put("birthFlag", (birthPBS)?"Y":"N");
                     return params;
                 }
             };

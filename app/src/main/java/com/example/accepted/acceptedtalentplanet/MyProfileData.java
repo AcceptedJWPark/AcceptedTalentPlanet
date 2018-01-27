@@ -7,18 +7,22 @@ package com.example.accepted.acceptedtalentplanet;
 public class MyProfileData {
     String UserName, Gender, Job, Birth;
     String[] TalentGive, TalentTake;
+    boolean genderPBS, birthPBS, jobPBS;
 
     public MyProfileData(){
 
     }
 
-    public void setMyProfile(String UserName, String Gender, String Birth, String Job, String[] TalentGive, String[] TalentTake){
+    public void setMyProfile(String UserName, String Gender, String Birth, String Job, String[] TalentGive, String[] TalentTake, boolean genderPBS, boolean birthPBS, boolean jobPBS){
         this.UserName = UserName;
         this.Gender = Gender;
         this.Birth = Birth;
         this.Job = Job;
         this.TalentGive = TalentGive;
         this.TalentTake = TalentTake;
+        this.genderPBS = genderPBS;
+        this.birthPBS = birthPBS;
+        this.jobPBS = jobPBS;
     }
 
     public String getUserName(){
@@ -44,5 +48,11 @@ public class MyProfileData {
     public String[] getTalentTake(){
         return this.TalentTake;
     }
+
+    public boolean getGenderPBS() { return this.genderPBS; }
+
+    public boolean getBirthPBS() { return this.birthPBS; }
+
+    public boolean getJobPBS() { return this.jobPBS; }
 
 }
