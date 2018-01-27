@@ -28,6 +28,7 @@ import com.example.accepted.acceptedtalentplanet.GeoPoint;
 import com.example.accepted.acceptedtalentplanet.MyTalent;
 import com.example.accepted.acceptedtalentplanet.R;
 import com.example.accepted.acceptedtalentplanet.SaveSharedPreference;
+import com.example.accepted.acceptedtalentplanet.TalentCondition.TalentCondition_Activity;
 import com.example.accepted.acceptedtalentplanet.TalentResister.TalentResister_Activity;
 
 import org.json.JSONArray;
@@ -199,13 +200,19 @@ public class TalentSharing_Activity extends AppCompatActivity {
             if(isGiveTalent){
                 MyTalent mt = SaveSharedPreference.getGiveTalentData(mContext);
 
-//                if(mt == null){
-//                    Toast.makeText(mContext, "재능 기부 등록을 먼저 진행해주세요.", Toast.LENGTH_SHORT).show();
-//                    Intent i = new Intent(mContext, TalentResister_Activity.class);
-//                    i.putExtra("GiveFlag", true);
-//                    startActivity(i);
-//                    finish();
-//                }
+                if(mt == null){
+                    Toast.makeText(mContext, "재능 기부 등록을 먼저 진행해주세요.", Toast.LENGTH_SHORT).show();
+                    Intent i = new Intent(mContext, TalentResister_Activity.class);
+                    i.putExtra("GiveFlag", true);
+                    startActivity(i);
+                    finish();
+                }else if(mt.getStatus() == null || mt.getStatus().equals("C")){
+                    Toast.makeText(mContext, "재능 기부 재등록을 먼저 진행해주세요.", Toast.LENGTH_SHORT).show();
+                    Intent i = new Intent(mContext, TalentCondition_Activity.class);
+                    i.putExtra("GiveFlag", true);
+                    startActivity(i);
+                    finish();
+                }
 
                 TalentSharing_GiveCheck.setBackground(ContextCompat.getDrawable(mContext, R.drawable.bgr_giveortake_clicked));
                 TalentSharing_GiveCheck.setPaintFlags(TalentSharing_GiveCheck.getPaintFlags() | Paint.FAKE_BOLD_TEXT_FLAG);
@@ -219,13 +226,19 @@ public class TalentSharing_Activity extends AppCompatActivity {
             }else{
                 MyTalent mt = SaveSharedPreference.getTakeTalentData(mContext);
                 
-//                if(mt == null){
-//                    Toast.makeText(mContext, "관심 재능 등록을 먼저 진행해주세요.", Toast.LENGTH_SHORT).show();
-//                    Intent i = new Intent(mContext, TalentResister_Activity.class);
-//                    i.putExtra("GiveFlag", false);
-//                    startActivity(i);
-//                    finish();
-//                }
+                if(mt == null){
+                    Toast.makeText(mContext, "관심 재능 등록을 먼저 진행해주세요.", Toast.LENGTH_SHORT).show();
+                    Intent i = new Intent(mContext, TalentResister_Activity.class);
+                    i.putExtra("GiveFlag", false);
+                    startActivity(i);
+                    finish();
+                }else if(mt.getStatus() == null || mt.getStatus().equals("C")){
+                    Toast.makeText(mContext, "관심 재능 재등록을 먼저 진행해주세요.", Toast.LENGTH_SHORT).show();
+                    Intent i = new Intent(mContext, TalentCondition_Activity.class);
+                    i.putExtra("GiveFlag", false);
+                    startActivity(i);
+                    finish();
+                }
 
                 TalentSharing_TakeCheck.setBackground(ContextCompat.getDrawable(mContext, R.drawable.bgr_giveortake_clicked));
                 TalentSharing_TakeCheck.setPaintFlags(TalentSharing_TakeCheck.getPaintFlags() | Paint.FAKE_BOLD_TEXT_FLAG);

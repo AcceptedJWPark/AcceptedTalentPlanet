@@ -1,10 +1,12 @@
 package com.example.accepted.acceptedtalentplanet.TalentSharing;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.support.v7.app.AlertDialog;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Display;
@@ -51,9 +53,11 @@ public class TalentSharing_Popup_Activity extends FragmentActivity{
     ImageView TalentSharingPopup_addfriendList_off;
     String UserID;
     String talentFlag;
+    String statusFlag;
     boolean hasFlag = false;
     Context mContext;
     Button interestBtn;
+    int point;
 
     RelativeLayout TalentSharing_popup_container;
 
@@ -144,6 +148,7 @@ public class TalentSharing_Popup_Activity extends FragmentActivity{
                 try {
                     JSONObject obj = new JSONObject(response);
                     talentFlag = obj.getString("TALENT_FLAG");
+                    point = Integer.parseInt(obj.getString("T_POINT"));
                     Log.d("result", response);
                     String Gender = (obj.getString("GENDER").equals("남")) ? "남자" : "여자";
                     String TalentText = talentFlag.equals("Y") ? "재능드림" : "관심재능";
@@ -158,8 +163,10 @@ public class TalentSharing_Popup_Activity extends FragmentActivity{
                     ((TextView)findViewById(R.id.TalentSharingPopup_Location2)).setText((obj.getString("LOCATION2").length()==0)?"미등록":obj.getString("LOCATION2"));
                     ((TextView)findViewById(R.id.TalentSharingPopup_Location3)).setText((obj.getString("LOCATION3").length()==0)?"미등록":obj.getString("LOCATION3"));
                     ((TextView)findViewById(R.id.TalentSharingPopup_Level)).setText(SaveSharedPreference.getLevel(obj.getString("LEVEL")));
-                    ((TextView)findViewById(R.id.TalentSharingPopup_Point)).setText(obj.getString("T_POINT")+"P");
+                    ((TextView)findViewById(R.id.TalentSharingPopup_Point)).setText(point+"P");
                     ((TextView)findViewById(R.id.TalentSharing_TypeText)).setText(TalentText);
+                    statusFlag = obj.getString("STATUS_FLAG");
+
                     UserID = obj.getString("USER_ID");
                     ArrayList<Friend> friendList = SaveSharedPreference.getFriendList(mContext);
                     addedFriend = false;
@@ -178,6 +185,40 @@ public class TalentSharing_Popup_Activity extends FragmentActivity{
                             @Override
                             public void onClick(View view) {
                                 sendInterest(talentID);
+                            }
+                        });
+                    }else{
+                        interestBtn.setText("관심 취소");
+                        final AlertDialog.Builder ProgressorCancelPopup = new AlertDialog.Builder(TalentSharing_Popup_Activity.this);
+                        interestBtn.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                float textSize = getResources().getDimension(R.dimen.DialogTxtSize);
+                                ProgressorCancelPopup.setMessage("관심을 취소하시겠습니까?")
+                                        .setPositiveButton("관심취소", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int which) {
+                                                removeInteresting(talentID);
+                                                Toast.makeText(mContext, "관심 취소 완료", Toast.LENGTH_SHORT).show();
+                                                dialog.cancel();
+                                                Intent i = new Intent(getBaseContext(), TalentSharing_Activity.class);
+                                                i.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                                                startActivity(i);
+                                                finish();
+                                            }
+                                        })
+                                        .setNegativeButton("닫기", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int which) {
+                                                Toast.makeText(mContext, "취소 하기 클릭", Toast.LENGTH_SHORT).show();
+                                                dialog.cancel();
+                                            }
+                                        });
+
+                                AlertDialog alertDialog = ProgressorCancelPopup.create();
+                                alertDialog.show();
+                                TextView msgView = (TextView) alertDialog.findViewById(android.R.id.message);
+                                msgView.setTextSize(textSize);
                             }
                         });
                     }
@@ -233,6 +274,19 @@ public class TalentSharing_Popup_Activity extends FragmentActivity{
 
 
     public void sendInterest(final String talentID) {
+        if(talentFlag.equals("Y")){
+            if(point > SaveSharedPreference.getTalentPoint(mContext)){
+                Toast.makeText(mContext, "현재 사용 가능한 포인트가 재능드림 포인트보다 적습니다.", Toast.LENGTH_SHORT).show();
+                return;
+            }
+        }
+
+        if(!statusFlag.equals("P")){
+            Toast.makeText(mContext, "현재 상대방이 대기중 상태가 아닙니다.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+
         final String TalentID = talentID;
         RequestQueue postRequestQueue = Volley.newRequestQueue(this);
         StringRequest postJsonRequest = new StringRequest(Request.Method.POST, SaveSharedPreference.getServerIp() + "TalentSharing/sendInterest.do", new Response.Listener<String>() {
@@ -243,9 +297,10 @@ public class TalentSharing_Popup_Activity extends FragmentActivity{
                     String result = obj.getString("result");
                     if(result.equals("success")){
                         Toast.makeText(getApplicationContext(), "관심을 보냈습니다.", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(TalentSharing_Popup_Activity.this, TalentSharing_Popup_Activity.class);
+                        Intent intent = new Intent(TalentSharing_Popup_Activity.this, TalentSharing_Activity.class);
                         intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                         startActivity(intent);
+                        finish();
                     }else {
                         Toast.makeText(getApplicationContext(), "관심보내기에 실패했습니다.", Toast.LENGTH_SHORT).show();
                     }
@@ -282,6 +337,66 @@ public class TalentSharing_Popup_Activity extends FragmentActivity{
                 params.put("masterID", talentID);
                 String senderID = (sendFlag)? SaveSharedPreference.getTakeTalentData(mContext).getTalentID() : SaveSharedPreference.getGiveTalentData(mContext).getTalentID();
                 params.put("senderID", senderID);
+                return params;
+            }
+        };
+
+
+        postRequestQueue.add(postJsonRequest);
+
+    }
+
+    public void removeInteresting(final String talentID) {
+
+        RequestQueue postRequestQueue = Volley.newRequestQueue(this);
+        StringRequest postJsonRequest = new StringRequest(Request.Method.POST, SaveSharedPreference.getServerIp() + "Interest/removeInteresting.do", new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONObject obj = new JSONObject(response);
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                NetworkResponse response = error.networkResponse;
+                if (error instanceof ServerError && response != null) {
+                    try {
+                        String res = new String(response.data,
+                                HttpHeaderParser.parseCharset(response.headers, "utf-8"));
+                        // Now you can use any deserializer to make sense of data
+                        Log.d("res", res);
+
+                        JSONObject obj = new JSONObject(res);
+                    } catch (UnsupportedEncodingException e1) {
+                        // Couldn't properly decode data to string
+                        e1.printStackTrace();
+                    } catch (JSONException e2) {
+                        // returned data is not JSONObject?
+                        e2.printStackTrace();
+                    }
+                }
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap();
+                String senderID;
+                String masterID;
+
+                if(talentFlag.equals("Y")){
+                    senderID =  SaveSharedPreference.getTakeTalentData(mContext).getTalentID();
+                }else{
+                    senderID = SaveSharedPreference.getGiveTalentData(mContext).getTalentID();
+                }
+
+                masterID = talentID;
+
+                params.put("senderID", senderID);
+                params.put("masterID", masterID);
                 return params;
             }
         };

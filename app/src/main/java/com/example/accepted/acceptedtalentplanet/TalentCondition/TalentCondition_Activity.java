@@ -716,7 +716,7 @@ public class TalentCondition_Activity extends AppCompatActivity {
                         MyTalent mt = (talentFlag)?SaveSharedPreference.getGiveTalentData(mContext):SaveSharedPreference.getTakeTalentData(mContext);
 
                         mt.setStatus("C");
-                        if(talentFlag){
+                        if(!talentFlag){
                             SaveSharedPreference.setGiveTalentData(mContext, mt);
                         }else{
                             SaveSharedPreference.setTakeTalentData(mContext, mt);
