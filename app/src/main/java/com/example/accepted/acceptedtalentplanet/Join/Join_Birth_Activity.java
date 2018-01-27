@@ -106,11 +106,20 @@ public class Join_Birth_Activity extends  AppCompatActivity {
         birthYear = (EditText) findViewById(R.id.Join_Birth_Year);
         birthMonth = (EditText) findViewById(R.id.Join_Birth_Month);
         birthDay = (EditText) findViewById(R.id.Join_Birth_Day);
-        birth = birthYear.getText().toString() + birthMonth.getText().toString() + birthDay.getText().toString();
 
         String birthYearTxt = birthYear.getText().toString();
         String birthMonthTxt = birthMonth.getText().toString();
         String birthDayTxt = birthDay.getText().toString();
+
+
+        if(Integer.parseInt(birthMonthTxt) < 10)
+            birthMonthTxt = "0"+birthMonthTxt;
+        if(Integer.parseInt(birthDayTxt) < 10)
+            birthDayTxt = "0"+birthDayTxt;
+
+
+        birth = birthYearTxt + birthMonthTxt + birthDayTxt;
+
 
         if (birthYearTxt.length() == 0 || birthMonthTxt.length() == 0 || birthDayTxt.length() == 0) {
             Toast.makeText(mContext, "생년월일을 입력해주세요.", Toast.LENGTH_SHORT).show();
