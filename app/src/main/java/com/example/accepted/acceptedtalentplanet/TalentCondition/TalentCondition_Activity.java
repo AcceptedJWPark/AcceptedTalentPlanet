@@ -83,6 +83,9 @@ public class TalentCondition_Activity extends AppCompatActivity {
     String flag;
     String giveTalentID, takeTalentID, targetGiveTalentID, targetTakeTalentID;
 
+    boolean givePartnerCompFlag = false;
+    boolean takePartnerCompFlag = false;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -270,6 +273,10 @@ public class TalentCondition_Activity extends AppCompatActivity {
                     TalentCondition_Button1.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
+                            if(!takePartnerCompFlag){
+                                Toast.makeText(mContext, "상대방이 완료하기를 누르지 않았습니다.", Toast.LENGTH_SHORT).show();
+                                return;
+                            }
                             AlarmDeleteDialog.setMessage("재능공유 완료 시 포인트 공유가 이루어집니다.")
                                     .setPositiveButton("확인", new DialogInterface.OnClickListener() {
                                         @Override
@@ -569,6 +576,7 @@ public class TalentCondition_Activity extends AppCompatActivity {
                             TalentCondition_Give_Registed = true;
                             String status = o.getString("STATUS_FLAG");
                             giveTalentID = o.getString("seq");
+                            givePartnerCompFlag = o.getString("TARGET_COMP_FLAG").equals("C");
                             switch (status){
                                 case "P":
                                     GiveTalentConditionCode = 1;
@@ -586,6 +594,7 @@ public class TalentCondition_Activity extends AppCompatActivity {
                             TalentCondition_Take_Registed = true;
                             String status = o.getString("STATUS_FLAG");
                             takeTalentID = o.getString("seq");
+                            takePartnerCompFlag = o.getString("TARGET_COMP_FLAG").equals("C");
                             switch (status){
                                 case "P":
                                     TakeTalentConditionCode = 1;
