@@ -3,26 +3,30 @@
 
 <resources>
 
-    <dimen name="ToolbarTxt">14.85dp</dimen>
+    <dimen name="ToolbarTxt">13.5dp</dimen>
     <dimen name="Toolbar_Pre_Txt">11.25dp</dimen>
-    <dimen name="Toolbar_Pre_Img">22.5dp</dimen>
+    <dimen name="Toolbar_Pre_Img">18dp</dimen>
     <dimen name="Toolbar_Img">18dp</dimen>
+    <dimen name="Popup_Icon">27dp</dimen>
     <dimen name="List_Title">10.8dp</dimen>
+    <dimen name="DrawerLL_Title">9.9dp</dimen>
     <dimen name="List_SubTitle">10.35dp</dimen>
     <dimen name="Divider">10.35dp</dimen>
-    <dimen name="GiveorTakeBtn">11.25dp</dimen>
+    <dimen name="GiveorTakeBtn">10.8dp</dimen>
     <dimen name="Edit_Hint">9.9dp</dimen>
     <dimen name="CheckBox_Txt">10.35dp</dimen>
-    <dimen name="BigBtn">11.7dp</dimen>
+    <dimen name="BigBtn">9.9dp</dimen>
+    <dimen name="BigBtn_Topspace">18dp</dimen>
+    <dimen name="TalentCondition_Picture">72dp</dimen>
+    <dimen name="DrawerLayout_Picture">45dp</dimen>
     <dimen name="Popup_ItemTitle">10.35dp</dimen>
     <dimen name="Popup_ItemSubTitle">9.45dp</dimen>
     <dimen name="Popup_Txt">10.35dp</dimen>
     <dimen name="Popup_Divider">9.45dp</dimen>
     <dimen name="Popup_BigBtn">11.25dp</dimen>
-    <dimen name="ListView_TitleorName">12.15dp</dimen>
     <dimen name="ListView_SubTitle">10.35dp</dimen>
     <dimen name="ListView_SecondLine">10.35dp</dimen>
-    <dimen name="ListView_Btn">10.35dp</dimen>
+    <dimen name="ListView_Btn">9.9dp</dimen>
     <dimen name="ListView_ChildTxt_Question">10.35dp</dimen>
     <dimen name="ListView_ChildTxt_Answer">11.25dp</dimen>
     <dimen name="ListView_ChildTxt_Signature">11.25dp</dimen>
@@ -35,9 +39,10 @@
     <dimen name="Page_Txt_BelowPicture">9dp</dimen>
     <dimen name="Page_Txt_Example">10.35dp</dimen>
     <dimen name="Introduction">9.9dp</dimen>
-    <dimen name="LogIn_Title">27dp</dimen>
+    <dimen name="LogIn_Title">10.8dp</dimen>
     <dimen name="LogIn_Edit_Hint">11.25dp</dimen>
     <dimen name="LogIn_PageTxt">11.25dp</dimen>
+    <dimen name="LogIn_PageSubTxt">9.9dp</dimen>
     <dimen name="LogIn_SmallBtn">11.25dp</dimen>
     <dimen name="LogIn_AccetedTxt">11.25dp</dimen>
     <dimen name="TalentCondition_Title">13.95dp</dimen>
@@ -56,7 +61,10 @@
     <dimen name="Claim_Edit_Layout">108dp</dimen>
     <dimen name="TalentSharing_BtnLayout">27dp</dimen>
     <dimen name="TalentSharing_ListLayout2">45dp</dimen>
-    <dimen name="DialogTxtSize">4.5dp</dimen>
+    <dimen name="Login_btn_margin">108dp</dimen>
+    <dimen name="DialogTxtSize">4.05dp</dimen>
+    <dimen name="Picture_Width">72dp</dimen>
+    <dimen name="Picture_Height">72dp</dimen>
 
 
 

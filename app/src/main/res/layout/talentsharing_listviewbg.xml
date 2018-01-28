@@ -119,9 +119,9 @@
         android:text="9km"
         android:layout_weight="1"
         android:singleLine="true"
-        android:gravity="center"
+        android:gravity="center|right"
         android:textStyle="bold"
-        android:textSize="@dimen/ListView_TitleorName"
+        android:textSize="@dimen/List_Title"
         android:textColor="@color/textcolor_nameortitle"
         />
 

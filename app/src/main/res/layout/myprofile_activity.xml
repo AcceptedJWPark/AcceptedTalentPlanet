@@ -212,7 +212,7 @@
                             android:id="@+id/MyProfile_Gender"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
-                            android:layout_weight="2.5"
+                            android:layout_weight="0.8"
                             android:gravity="left|center"
                             android:textColor="@color/textColor_object"
                             android:text="남 자"
@@ -229,10 +229,6 @@
                             android:textSize="@dimen/CheckBox_Txt"
                             />
 
-                        <View
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="3.5"/>
 
                     </LinearLayout>
                 </LinearLayout>
@@ -268,7 +264,7 @@
                             android:id="@+id/MyProfile_Birthday"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
-                            android:layout_weight="2.5"
+                            android:layout_weight="0.8"
                             android:gravity="left|center"
                             android:textColor="@color/textColor_object"
                             android:text="1991.01.23"
@@ -285,10 +281,6 @@
                             android:textSize="@dimen/CheckBox_Txt"
                             />
 
-                        <View
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="3.5"/>
                     </LinearLayout>
                 </LinearLayout>
 
@@ -325,7 +317,7 @@
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_gravity="center"
-                            android:layout_weight="2"
+                            android:layout_weight="0.8"
                             android:background="@drawable/bgr_edittxt_box_login"
                             android:gravity="left|center"
                             android:scrollHorizontally="false"
@@ -335,10 +327,6 @@
                             android:textSize="@dimen/List_SubTitle"
                             />
 
-                        <View
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="0.5"/>
 
                         <CheckBox
                             android:id="@+id/MyProfile_JobNoShowCheck"
@@ -350,10 +338,6 @@
                             android:textSize="@dimen/CheckBox_Txt"
                             />
 
-                        <View
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="3.5"/>
                     </LinearLayout>
 
                 </LinearLayout>

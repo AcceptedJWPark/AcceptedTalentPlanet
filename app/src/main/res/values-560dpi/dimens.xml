@@ -66,6 +66,10 @@
     <dimen name="TalentSharing_BtnLayout">30dp</dimen>
     <dimen name="TalentSharing_ListLayout2">50dp</dimen>
 
+    <dimen name="Login_btn_margin">120dp</dimen>
+
+
+
 
 
 

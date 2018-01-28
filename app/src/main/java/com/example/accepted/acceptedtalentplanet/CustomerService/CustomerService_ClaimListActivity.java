@@ -77,21 +77,6 @@ public class CustomerService_ClaimListActivity extends AppCompatActivity {
 
         int sizeList = 0;
 
-        //TODO: 신고할 때 공유내역이 있으면 신고 내역에 공유 내역이 제목으로, 없으면 신고 내용이 제목으로 되어야 함
-        //TODO: 신고하기 버튼에 공유내역 없을 시 Dialog 달아야 함 ("공유 내역과 첨부 파일이 없으면 조치가 어려울 수 있습니다.")
-        //TODO: 신고 대상(공유 내역), 신고 유형, 신고 일자, 신고 내용이 신고 내역으로 들어가야 함. 없으면 공유 내역 없으면 신고 대상 "-"
-
-               /*
-       GroupDataList.add(new CustomerService_OnebyOneQuetiontItem(
-                "문의 내용 (서버에서 받아오기)",
-                "답변 대기/완료",
-                "등록 시간"));
-                sizeList ++;
-        ChildDataList.add(new ArrayList<CustomerService_OnebyOneAnswerItem>());
-        ChildDataList.get(sizeList).add(new CustomerService_OnebyOneAnswerItem(
-                "문의 내용 (서버에서 받아오기)",
-                "답변 내용"));
-                */
 
         GroupDataList.add(new CustomerService_ClaimListQuestionItem(
                 "이 분이 완료 버튼을 누르지 않아 다음 단계로 진행이 안되네요.",

@@ -108,7 +108,15 @@ public class CustomerService_OnebyOneQuestionActivity extends AppCompatActivity 
         CustomerService_requestQuestion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                requestQuestion();
+                if(onebyonequestion_EditTxt.getText().length() == 0)
+                {
+                    Toast.makeText(mContext,"문의 내역을 입력해주세요.",Toast.LENGTH_SHORT).show();
+                }
+                else
+                {
+                    requestQuestion();
+                    finish();
+                }
             }
         });
 

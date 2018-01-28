@@ -49,7 +49,6 @@ public class SharingList_Adapter extends BaseAdapter{
         models = new ArrayList<>();
         models.add(new MyModel("보기"));
         models.add(new MyModel("Profile 보기"));
-        models.add(new MyModel("내역 삭제"));
         models.add(new MyModel("신고 하기"));
     }
 
@@ -140,29 +139,8 @@ public class SharingList_Adapter extends BaseAdapter{
                                 context.startActivity(i);
                                 break;
 
-                            case 2:
-                                AlertDialog.Builder AlarmDeleteDialog = new AlertDialog.Builder(context);
-                                AlarmDeleteDialog.setMessage("공유 내역을 삭제 하시겠습니까?")
-                                        .setPositiveButton("삭제", new DialogInterface.OnClickListener() {
-                                            @Override
-                                            public void onClick(DialogInterface dialog, int which) {
-                                                Log.d("Delete Position = ", String.valueOf(position));
-                                                list_ArrayList.remove(position);
-                                                notifyDataSetChanged();
-                                                dialog.cancel();
-                                            }
-                                        })
-                                        .setNegativeButton("취소", new DialogInterface.OnClickListener() {
-                                            @Override
-                                            public void onClick(DialogInterface dialog, int which) {
-                                                dialog.cancel();
-                                            }
-                                        });
-                                AlertDialog alertDialog = AlarmDeleteDialog.create();
-                                alertDialog.show();
-                                break;
 
-                            case 3:
+                            case 2:
                                 Intent b = new Intent(context, CustomerService_ClaimActivity.class);
                                 String str2 = (list_ArrayList.get(position).getTalentType_CODE() == 1) ? "Give": "Take";
                                 b.putExtra("isSelected", true);
@@ -212,17 +190,20 @@ public class SharingList_Adapter extends BaseAdapter{
                 case 3: {
                     holder.SharingList_ConditionType.setText("진행중");
                     holder.SharingList_Txt.setText("진행 중입니다.");
+                    holder.SharingList_ConditionImg.setImageResource(R.drawable.icon_list_progress);
                     break;
                 }
                 case 4: {
                     holder.SharingList_ConditionType.setText("공유 완료");
                     holder.SharingList_Txt.setText("완료 하였습니다.");
+                    holder.SharingList_ConditionImg.setImageResource(R.drawable.icon_list_complete);
                     break;
                 }
 
                 case 5: {
                     holder.SharingList_ConditionType.setText("진행 취소");
                     holder.SharingList_Txt.setText("진행 취소하였습니다.");
+                    holder.SharingList_ConditionImg.setImageResource(R.drawable.icon_list_cancel);
                     break;
                 }
             }

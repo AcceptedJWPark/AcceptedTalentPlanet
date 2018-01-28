@@ -75,7 +75,7 @@ public class CustomerService_ClaimActivity extends AppCompatActivity {
     LinearLayout claim_LL4;
     View claim_Devider1;
     TextView claim_Txt1;
-    TextView claim_Txt2;
+    LinearLayout claim_Txt2;
     TextView CustomerService_onebyoneTextLimit;
     Context context;
 
@@ -168,7 +168,7 @@ public class CustomerService_ClaimActivity extends AppCompatActivity {
         claim_LL3 = (LinearLayout) findViewById(R.id.claim_LL3);
         claim_Devider1 = findViewById(R.id.claim_Devider1);
         claim_Txt1 = (TextView) findViewById(R.id.claim_Txt1);
-        claim_Txt2 = (TextView) findViewById(R.id.claim_Txt2);
+        claim_Txt2 = (LinearLayout) findViewById(R.id.claim_Txt2);
 
         claim_LL4 = (LinearLayout) findViewById(R.id.claim_LL4);
         CustomerService_ClaimBtn = (Button) findViewById(R.id.CustomerService_ClaimBtn);
@@ -176,13 +176,19 @@ public class CustomerService_ClaimActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 AlertDialog.Builder AlarmDeleteDialog = new AlertDialog.Builder(CustomerService_ClaimActivity.this);
-                if(isSelect){
+                if(Claim_EditTxt.getText().length() == 0)
+                {
+                    Toast.makeText(context, "신고 내용을 입력해주세요.", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                else if(isSelect){
                     AlarmDeleteDialog.setMessage("신고하시겠습니까?")
                             .setPositiveButton("신고하기", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
                                     requestClaim();
                                     dialog.cancel();
+                                    finish();
                                 }
                             })
                             .setNegativeButton("취소하기", new DialogInterface.OnClickListener() {
@@ -194,12 +200,13 @@ public class CustomerService_ClaimActivity extends AppCompatActivity {
                     AlertDialog alertDialog = AlarmDeleteDialog.create();
                     alertDialog.show();
                 }else{
-                    AlarmDeleteDialog.setMessage("신고 대상을 선택하지 않으면 조치가 어려울 수 있습니다.")
+                    AlarmDeleteDialog.setMessage("신고 대상이 없으면 조치가 어려울 수 있습니다.")
                             .setPositiveButton("신고하기", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
                                     requestClaim();
                                     dialog.cancel();
+                                    finish();
                                 }
                             })
                             .setNegativeButton("취소하기", new DialogInterface.OnClickListener() {
@@ -224,7 +231,7 @@ public class CustomerService_ClaimActivity extends AppCompatActivity {
         int claim_LL3_height = (int) (metrics.heightPixels*0.042);
         int claim_LL4_height = (int) (metrics.heightPixels*0.042);
         int claim_Devider1_height = (int) (metrics.heightPixels*0.00625);
-        int claim_Txt_height = (int) (metrics.heightPixels*0.042);
+        int claim_Txt_height = (int) (metrics.heightPixels*0.083);
 
         ViewGroup.LayoutParams params1 = claim_toolbar.getLayoutParams();
         ViewGroup.LayoutParams params2 = claim_LL1.getLayoutParams();
