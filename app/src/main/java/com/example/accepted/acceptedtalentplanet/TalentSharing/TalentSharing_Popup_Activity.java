@@ -59,6 +59,8 @@ public class TalentSharing_Popup_Activity extends FragmentActivity{
     Button interestBtn;
     int point;
 
+    boolean genderPBS, birthPBS, jobPBS;
+
     RelativeLayout TalentSharing_popup_container;
 
     boolean addedFriend = false;
@@ -149,13 +151,18 @@ public class TalentSharing_Popup_Activity extends FragmentActivity{
                     JSONObject obj = new JSONObject(response);
                     talentFlag = obj.getString("TALENT_FLAG");
                     point = Integer.parseInt(obj.getString("T_POINT"));
+
+                    genderPBS = (obj.getString("GENDER_FLAG").equals("Y"))?true:false;
+                    birthPBS = (obj.getString("BIRTH_FLAG").equals("Y"))?true:false;
+                    jobPBS = (obj.getString("JOB_FLAG").equals("Y"))?true:false;
+
                     Log.d("result", response);
                     String Gender = (obj.getString("GENDER").equals("남")) ? "남자" : "여자";
                     String TalentText = talentFlag.equals("Y") ? "재능드림" : "관심재능";
                     ((TextView)findViewById(R.id.TalentSharingPopup_UserName)).setText(obj.getString("USER_NAME"));
-                    ((TextView)findViewById(R.id.TalentSharingPopup_UserGender)).setText(Gender);
-                    ((TextView)findViewById(R.id.TalentSharingPopup_UserBirth)).setText(obj.getString("USER_BIRTH"));
-                    ((TextView)findViewById(R.id.TalentSharingPopup_UserJob)).setText(obj.getString("JOB"));
+                    ((TextView)findViewById(R.id.TalentSharingPopup_UserGender)).setText((genderPBS)?Gender:"비공개");
+                    ((TextView)findViewById(R.id.TalentSharingPopup_UserBirth)).setText((birthPBS)?obj.getString("USER_BIRTH"):"비공개");
+                    ((TextView)findViewById(R.id.TalentSharingPopup_UserJob)).setText((jobPBS)?obj.getString("JOB"):"비공개");
                     ((TextView)findViewById(R.id.TalentSharingPopup_Keyword1)).setText(obj.getString("TALENT_KEYWORD1"));
                     ((TextView)findViewById(R.id.TalentSharingPopup_Keyword2)).setText(obj.getString("TALENT_KEYWORD2"));
                     ((TextView)findViewById(R.id.TalentSharingPopup_Keyword3)).setText(obj.getString("TALENT_KEYWORD3"));
