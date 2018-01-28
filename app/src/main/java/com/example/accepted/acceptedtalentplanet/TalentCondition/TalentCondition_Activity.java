@@ -80,7 +80,7 @@ public class TalentCondition_Activity extends AppCompatActivity {
 
     int GiveTalentConditionCode;
     int TakeTalentConditionCode;
-    String flag;
+    String flag, giveStatus, takeStatus;
     String giveTalentID, takeTalentID, targetGiveTalentID, targetTakeTalentID;
 
     boolean givePartnerCompFlag = false;
@@ -273,8 +273,8 @@ public class TalentCondition_Activity extends AppCompatActivity {
                     TalentCondition_Button1.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            if(!takePartnerCompFlag){
-                                Toast.makeText(mContext, "상대방이 완료하기를 누르지 않았습니다.", Toast.LENGTH_SHORT).show();
+                            if(giveStatus.equals("C")){
+                                Toast.makeText(mContext, "상대방이 완료를 누르지 않았습니다.", Toast.LENGTH_SHORT).show();
                                 return;
                             }
                             AlarmDeleteDialog.setMessage("재능공유 완료 시 포인트 공유가 이루어집니다.")
@@ -298,6 +298,10 @@ public class TalentCondition_Activity extends AppCompatActivity {
                     TalentCondition_Button2.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
+                            if(giveStatus.equals("C")){
+                                Toast.makeText(mContext, "상대방이 완료를 누르지 않았습니다.", Toast.LENGTH_SHORT).show();
+                                return;
+                            }
                             AlarmDeleteDialog.setMessage("진행 취소 하시겠습니까?")
                                     .setPositiveButton("확인", new DialogInterface.OnClickListener() {
                                         @Override
@@ -460,6 +464,10 @@ public class TalentCondition_Activity extends AppCompatActivity {
                     TalentCondition_Button1.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
+                            if(!takePartnerCompFlag){
+                                Toast.makeText(mContext, "상대방이 완료하기를 누르지 않았습니다.", Toast.LENGTH_SHORT).show();
+                                return;
+                            }
                             AlarmDeleteDialog.setMessage("재능공유 완료 시 포인트 공유가 이루어집니다.")
                                     .setPositiveButton("확인", new DialogInterface.OnClickListener() {
                                         @Override
@@ -484,6 +492,10 @@ public class TalentCondition_Activity extends AppCompatActivity {
                     TalentCondition_Button2.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
+                            if(takePartnerCompFlag){
+                                Toast.makeText(mContext, "상대방이 이미 완료를 눌러 취소 불가합니다.", Toast.LENGTH_SHORT).show();
+                                return;
+                            }
                             AlarmDeleteDialog.setMessage("진행 취소 하시겠습니까?")
                                     .setPositiveButton("확인", new DialogInterface.OnClickListener() {
                                         @Override
@@ -574,10 +586,11 @@ public class TalentCondition_Activity extends AppCompatActivity {
 
                         if(o.getString("TALENT_FLAG").equals("Y")){
                             TalentCondition_Give_Registed = true;
-                            String status = o.getString("STATUS_FLAG");
+                            giveStatus = o.getString("STATUS_FLAG");
                             giveTalentID = o.getString("seq");
                             givePartnerCompFlag = o.getString("TARGET_COMP_FLAG").equals("C");
-                            switch (status){
+
+                            switch (giveStatus){
                                 case "P":
                                     GiveTalentConditionCode = 1;
                                     break;
@@ -586,16 +599,20 @@ public class TalentCondition_Activity extends AppCompatActivity {
                                     targetGiveTalentID = o.getString("TARGET_TALENT_ID");
                                     break;
                                 case "C":
-                                    GiveTalentConditionCode = 3;
+                                    if(givePartnerCompFlag)
+                                        GiveTalentConditionCode = 3;
+                                    else
+                                        GiveTalentConditionCode = 2;
                                     targetGiveTalentID = o.getString("TARGET_TALENT_ID");
                                     break;
                             }
                         }else{
                             TalentCondition_Take_Registed = true;
-                            String status = o.getString("STATUS_FLAG");
+                            takeStatus = o.getString("STATUS_FLAG");
                             takeTalentID = o.getString("seq");
                             takePartnerCompFlag = o.getString("TARGET_COMP_FLAG").equals("C");
-                            switch (status){
+
+                            switch (takeStatus){
                                 case "P":
                                     TakeTalentConditionCode = 1;
                                     break;
