@@ -44,7 +44,6 @@ public class Loading_Activity extends AppCompatActivity {
 
     Context mContext;
 
-
     protected void onCreate(Bundle savedInstanceState)
     {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
@@ -155,8 +154,11 @@ public class Loading_Activity extends AppCompatActivity {
             @Override
             public void onResponse(String response){
                 try {
-                    JSONObject obj = new JSONObject(response);
-                    int talentPoint = Integer.parseInt(obj.getString("TALENT_POINT"));
+                    int talentPoint = 0;
+                    if(response.length() != 0) {
+                        JSONObject obj = new JSONObject(response);
+                        talentPoint = Integer.parseInt(obj.getString("TALENT_POINT"));
+                    }
                     SaveSharedPreference.setPrefTalentPoint(mContext, talentPoint);
 
                 }
