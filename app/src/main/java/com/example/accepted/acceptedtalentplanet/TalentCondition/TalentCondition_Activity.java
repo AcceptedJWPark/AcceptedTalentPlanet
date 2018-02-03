@@ -816,12 +816,14 @@ public class TalentCondition_Activity extends AppCompatActivity {
                         {
                             MyTalent mt = SaveSharedPreference.getTakeTalentData(mContext);
                             mt.setTalentID(obj.getString("talentID"));
+                            mt.setStatus("P");
                             SaveSharedPreference.setTakeTalentData(mContext, mt);
                         }
                         else
                         {
                             MyTalent mt = SaveSharedPreference.getGiveTalentData(mContext);
                             mt.setTalentID(obj.getString("talentID"));
+                            mt.setStatus("P");
                             SaveSharedPreference.setGiveTalentData(mContext, mt);
                         }
                     }

@@ -64,11 +64,12 @@ public class Loading_Activity extends AppCompatActivity {
             @Override
             public void run() {
                 Intent intent;
+                getMyTalent();
                 if(SaveSharedPreference.getUserId(Loading_Activity.this).length() == 0) {
                     intent = new Intent(getBaseContext(), Login_Activity.class);
                 }else{
                     intent = new Intent(getBaseContext(), Home_Activity.class);
-                    getMyTalent();
+
                 }
                     startActivity(intent);
                     finish();
@@ -88,6 +89,7 @@ public class Loading_Activity extends AppCompatActivity {
 
                     for(int i = 0; i < jsonArray.length(); i++){
                         JSONObject obj = jsonArray.getJSONObject(i);
+                        Log.d("tqtq", obj.toString());
 
                         GeoPoint[] gpArr = new GeoPoint[3];
                         gpArr[0] = new GeoPoint(Double.parseDouble(obj.getString("GP_LAT1")), Double.parseDouble(obj.getString("GP_LNG1")));
