@@ -654,6 +654,7 @@ public class MyProfile_Activity extends AppCompatActivity {
             protected Map<String, String> getParams() throws AuthFailureError{
                 Map<String, String> params = new HashMap<>();
                 params.put("tags", tags);
+                params.put("userID", SaveSharedPreference.getUserId(mContext));
                 return params;
             }
 
