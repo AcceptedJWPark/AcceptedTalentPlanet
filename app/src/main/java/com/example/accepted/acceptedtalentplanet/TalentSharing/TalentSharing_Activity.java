@@ -200,6 +200,7 @@ public class TalentSharing_Activity extends AppCompatActivity {
             if(isGiveTalent){
                 MyTalent mt = SaveSharedPreference.getGiveTalentData(mContext);
 
+
                 if(mt == null){
                     Toast.makeText(mContext, "재능 기부 등록을 먼저 진행해주세요.", Toast.LENGTH_SHORT).show();
                     Intent i = new Intent(mContext, TalentResister_Activity.class);

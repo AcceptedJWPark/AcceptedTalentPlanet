@@ -1,9 +1,23 @@
 package com.example.accepted.acceptedtalentplanet.MyProfile;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
 import android.graphics.drawable.GradientDrawable;
+import android.media.ExifInterface;
+import android.net.Uri;
+import android.os.Build;
+import android.os.Environment;
+import android.provider.MediaStore;
+import android.support.v4.content.FileProvider;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
@@ -20,6 +34,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -29,15 +44,25 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.accepted.acceptedtalentplanet.BuildConfig;
+import com.example.accepted.acceptedtalentplanet.Manifest;
 import com.example.accepted.acceptedtalentplanet.MyProfileData;
 import com.example.accepted.acceptedtalentplanet.R;
 import com.example.accepted.acceptedtalentplanet.SaveSharedPreference;
+import com.example.accepted.acceptedtalentplanet.TalentCondition.TalentCondition_Activity;
 import com.example.accepted.acceptedtalentplanet.TalentResister.TalentResister_Activity;
+import com.example.accepted.acceptedtalentplanet.VolleyMultipartRequest;
+import com.example.accepted.acceptedtalentplanet.VolleySingleton;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -75,12 +100,21 @@ public class MyProfile_Activity extends AppCompatActivity {
     CheckBox jobCheckbox;
 
     ImageView MyProfile_Picture;
+    ImageView MyProfile_SelectPhoto;
 
     EditText MyProfile_Job;
 
     Button MyProfile_Save;
 
     ImageView MyProfile_CompleteList_Open;
+
+    private Uri photoUri;
+    private String currentPhotoPath;
+    String mImageCaptureName;
+    private final int CAMERA_CODE = 1111;
+    private final int GALLERY_CODE = 1112;
+
+    private static final String AUTHORITY = BuildConfig.APPLICATION_ID + ".fileprovider";
 
 
     @Override
@@ -233,6 +267,37 @@ public class MyProfile_Activity extends AppCompatActivity {
             }
         });
 
+        final AlertDialog.Builder AlarmDeleteDialog = new AlertDialog.Builder(MyProfile_Activity.this);
+
+        MyProfile_Picture = (ImageView) findViewById(R.id.MyProfile_Picture);
+        MyProfile_SelectPhoto = (ImageView) findViewById(R.id.MyProfile_SelectPhoto);
+
+        MyProfile_SelectPhoto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(Build.VERSION.SDK_INT > 22){
+                    requestPermissions(new String[] {android.Manifest.permission.READ_EXTERNAL_STORAGE, android.Manifest.permission.WRITE_EXTERNAL_STORAGE, android.Manifest.permission.CAMERA}, 1);
+                }
+                AlarmDeleteDialog.setMessage("사진을 가져올 곳을 선택해주세요.")
+                        .setPositiveButton("카메라", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                selectPhoto();
+                                dialog.cancel();
+                            }
+                        })
+                        .setNegativeButton("앨범", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                selectGallery();
+                                dialog.cancel();
+                            }
+                        });
+                AlertDialog alertDialog = AlarmDeleteDialog.create();
+                alertDialog.show();
+            }
+        });
+
 
 
 
@@ -296,6 +361,9 @@ public class MyProfile_Activity extends AppCompatActivity {
                     genderCheckbox.setChecked(!genderFlag);
                     birthCheckbox.setChecked(!birthFlag);
                     jobCheckbox.setChecked(!jobFlag);
+                    Bitmap bitmap = SaveSharedPreference.StringToBitMap(obj.getString("FILE_DATA"));
+                    if(bitmap != null)
+                        MyProfile_Picture.setImageBitmap(bitmap);
                 }
                 catch(JSONException e){
                     e.printStackTrace();
@@ -394,7 +462,227 @@ public class MyProfile_Activity extends AppCompatActivity {
         postRequestQueue.add(postJsonRequest);
     }
 
+    private void selectPhoto(){
+        String state = Environment.getExternalStorageState();
 
+        if(Environment.MEDIA_MOUNTED.equals(state)){
+            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+            if (intent.resolveActivity(getPackageManager()) != null) {
+
+                File photoFile = null;
+                try{
+                    photoFile = createImageFile();
+                }catch (IOException e){
+                    e.printStackTrace();
+                }
+
+                if(photoFile != null){
+                    photoUri = FileProvider.getUriForFile(mContext, AUTHORITY, photoFile);
+                    intent.putExtra(MediaStore.EXTRA_OUTPUT, photoUri);
+                    startActivityForResult(intent, CAMERA_CODE);
+                }
+            }
+        }
+    }
+
+    private File createImageFile() throws IOException {
+        File dir = new File(Environment.getExternalStorageDirectory() + "/path/");
+        if(!dir.exists()){
+            dir.mkdirs();
+        }
+
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+        mImageCaptureName = timeStamp + ".png";
+
+        File storageDir = new File(Environment.getExternalStorageDirectory() + "/path/" + mImageCaptureName);
+        currentPhotoPath = storageDir.getAbsolutePath();
+
+        return storageDir;
+    }
+
+    private void selectGallery(){
+        Intent intent = new Intent(Intent.ACTION_PICK);
+        intent.setData(MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        intent.setType("image/*");
+        startActivityForResult(intent, GALLERY_CODE);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data){
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(resultCode == RESULT_OK){
+            switch(requestCode){
+                case GALLERY_CODE:
+                    sendPicture(data.getData());
+                    break;
+
+                case CAMERA_CODE:
+                    getPictureForPhoto();
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+
+    private void sendPicture(Uri imgUri){
+        String imagePath = getRealPathFromURI(imgUri);
+        Log.d("image Path = ", imagePath);
+        ExifInterface exif = null;
+        try {
+            exif = new ExifInterface(imagePath);
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+
+        int exifOrientation;
+        int exifDegree;
+
+        if(exif != null){
+            exifOrientation = exif.getAttributeInt(ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_NORMAL);
+            exifDegree = exifOrientationToDegrees(exifOrientation);
+        }else{
+            exifDegree = 0;
+        }
+
+        try {
+            Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), imgUri); //BitmapFactory.decodeFile(imagePath);
+            if(bitmap == null){
+                Log.d("bitmap = ", "null");
+            }
+            MyProfile_Picture.setImageBitmap(bitmap);
+
+            uploadBitmap(bitmap);
+        }catch (IOException e){
+                    e.printStackTrace();//bitmap = rotate(bitmap, exifDegree);
+        }
+
+    }
+
+    private void getPictureForPhoto(){
+        Bitmap bitmap = BitmapFactory.decodeFile(currentPhotoPath);
+        ExifInterface exif = null;
+        try{
+            exif = new ExifInterface(currentPhotoPath);
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+
+        int exifOrientation;
+        int exifDegree;
+
+        if(exif != null){
+            exifOrientation = exif.getAttributeInt(ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_NORMAL);
+            exifDegree = exifOrientationToDegrees(exifOrientation);
+        }else{
+            exifDegree = 0;
+        }
+
+        MyProfile_Picture.setImageBitmap(bitmap);
+
+        uploadBitmap(bitmap);
+    }
+
+    private int exifOrientationToDegrees(int exifOrientation){
+        if(exifOrientation == ExifInterface.ORIENTATION_ROTATE_90){
+            return 90;
+        }else if(exifOrientation == ExifInterface.ORIENTATION_ROTATE_180){
+            return 180;
+        }else if(exifOrientation == ExifInterface.ORIENTATION_ROTATE_270){
+            return 270;
+        }
+
+        return 0;
+    }
+
+    private Bitmap rotate(Bitmap src, float degree){
+        Matrix matrix = new Matrix();
+
+        matrix.postRotate(degree);
+
+        return Bitmap.createBitmap(src, 0, 0, src.getWidth(), src.getHeight(), matrix, true);
+    }
+
+    private String getRealPathFromURI(Uri contentUri){
+        int column_index = 0;
+        String[] proj = {MediaStore.Images.Media.DATA};
+        Cursor cursor = getContentResolver().query(contentUri, proj, null, null, null);
+        if(cursor.moveToFirst()){
+            column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+        }
+
+        return cursor.getString(column_index);
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults){
+        switch(requestCode){
+            case 1:
+            {
+                if(!(grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED && grantResults[1] == PackageManager.PERMISSION_GRANTED))
+                {
+                    Toast.makeText(mContext, "permission denied", Toast.LENGTH_SHORT);
+                }
+
+
+            }
+        }
+    }
+
+    public byte[] getFileDataFromDrawable(Bitmap bitmap){
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG, 80, byteArrayOutputStream);
+        return byteArrayOutputStream.toByteArray();
+    }
+
+    private void uploadBitmap(final Bitmap bitmap){
+        final String tags = "UserProfilePicture";
+
+        VolleyMultipartRequest volleyMultipartRequest = new VolleyMultipartRequest(Request.Method.POST, SaveSharedPreference.getServerIp() + "Profile/savePicture.do", new Response.Listener<NetworkResponse>() {
+            @Override
+            public void onResponse(NetworkResponse response) {
+                try {
+                    JSONObject obj = new JSONObject(new String(response.data));
+                    Toast.makeText(mContext, obj.getString("result"), Toast.LENGTH_SHORT).show();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(mContext, error.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        }){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError{
+                Map<String, String> params = new HashMap<>();
+                params.put("tags", tags);
+                params.put("userID", SaveSharedPreference.getUserId(mContext));
+                return params;
+            }
+
+            @Override
+            protected Map<String, DataPart> getByteData(){
+                Map<String, DataPart> params = new HashMap<>();
+                long imagename = System.currentTimeMillis();
+                params.put("pic", new DataPart(imagename + ".png", getFileDataFromDrawable(bitmap)));
+                return params;
+            }
+        };
+
+        try {
+            for(Map.Entry<String, String> elem : volleyMultipartRequest.getHeaders().entrySet()){
+                Log.d("header = " , String.format("키 : %s, 값 : %s", elem.getKey(), elem.getValue()));
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        VolleySingleton.getInstance(mContext).getRequestQueue().add(volleyMultipartRequest);
+
+    }
 
 
 }

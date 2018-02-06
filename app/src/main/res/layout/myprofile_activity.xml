@@ -83,14 +83,14 @@
                     </RelativeLayout>
 
                     <ImageView
+                        android:id="@+id/MyProfile_SelectPhoto"
                         android:layout_width="@dimen/Toolbar_Img"
                         android:layout_height="@dimen/Toolbar_Img"
-                        android:layout_marginLeft="5dp"
                         android:layout_alignBottom="@+id/MyProfile_Picture_Container"
+                        android:layout_marginLeft="5dp"
                         android:layout_toRightOf="@+id/MyProfile_Picture_Container"
-                        android:src="@drawable/icon_pictureedit"
 
-                        />
+                        android:src="@drawable/icon_pictureedit" />
 
 
                 </RelativeLayout>
