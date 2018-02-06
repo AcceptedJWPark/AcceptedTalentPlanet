@@ -53,7 +53,7 @@ public class TalentResister_TalentLocation_Adapter extends BaseAdapter implement
         if(convertView == null){
             convertView = inflater.inflate(R.layout.talentresister_location, parent, false);
             holder = new ViewHolder();
-            holder.autoText = (TextView)convertView.findViewById(R.id.TalentResister_Location);
+            /*holder.autoText = (TextView)convertView.findViewById(R.id.TalentResister_Location);*/
             convertView.setTag(holder);
         } else{
             holder = (ViewHolder)convertView.getTag();
