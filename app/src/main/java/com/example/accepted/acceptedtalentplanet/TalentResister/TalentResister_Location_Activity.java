@@ -22,6 +22,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.accepted.acceptedtalentplanet.GeoPoint;
@@ -43,7 +44,6 @@ public class TalentResister_Location_Activity extends AppCompatActivity {
     private MyTalent Data;
     private String[] Loc;
     private GeoPoint[] arrGp;
-    AutoCompleteTextView Location_autoEdit1;
 
     Context mContext;
     ListView location_ListView;
@@ -51,9 +51,22 @@ public class TalentResister_Location_Activity extends AppCompatActivity {
     TalentResister_Location_Adapter talentLocation_Adapter;
     Button location_addBtn;
 
-    LinearLayout TalentResister_LocationLL;
     LinearLayout TalentResister_Location_Txt_LL;
+    LinearLayout TalentResister_LocationLL;
     Button TalentResister_Location_Btn;
+
+    String big_Area;
+    String mid_Area;
+    String sum_Location;
+
+    int resourceId_mid;
+    int resourceId_small;
+    String [] items_mid;
+    final static String [] ITEM_MID = {"구/군/시"} ;
+
+    Spinner TalentResister_Location_Spinner1;
+    Spinner TalentResister_Location_Spinner2;
+    Spinner TalentResister_Location_Spinner3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,32 +75,21 @@ public class TalentResister_Location_Activity extends AppCompatActivity {
 
         mContext = getApplicationContext();
 
-        TalentResister_LocationList talentResisterLocationList = new TalentResister_LocationList();
-        final String Location_List[] = talentResisterLocationList.Location_List;
-        ArrayAdapter<String> Location_ListAdapter = new ArrayAdapter<String>(getBaseContext(), R.layout.talentresister_location_spinnertext,Location_List);
-        Location_autoEdit1 = (AutoCompleteTextView) findViewById(R.id.TalentResister_Location);
-        Location_autoEdit1.setAdapter(Location_ListAdapter);
-        Location_autoEdit1.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            public void onFocusChange(View v, boolean hasFocus) {
-                if(!hasFocus)
-                {
-                    hideKeyboard(v, mContext);
-                }
-
-            }
-        });
 
 
         TalentResister_LocationLL = (LinearLayout) findViewById(R.id.TalentResister_LocationLL);
         TalentResister_Location_Txt_LL = (LinearLayout) findViewById(R.id.TalentResister_Location_Txt_LL);
         TalentResister_Location_Btn = (Button) findViewById(R.id.TalentResister_Location_Btn);
 
+        TalentResister_Location_Spinner1 = (Spinner) findViewById(R.id.TalentResister_Location_Spinner1);
+        TalentResister_Location_Spinner2 = (Spinner) findViewById(R.id.TalentResister_Location_Spinner2);
+
         DisplayMetrics metrics = new DisplayMetrics();
         WindowManager windowManager = (WindowManager) getApplicationContext().getSystemService(Context.WINDOW_SERVICE);
         windowManager.getDefaultDisplay().getMetrics(metrics);
 
-        int TalentResister_LocationLL_height = metrics.heightPixels/14;
-        int TalentResister_Location_Txt_LL_height = metrics.heightPixels/10;
+        int TalentResister_LocationLL_height = metrics.heightPixels/20;
+        int TalentResister_Location_Txt_LL_height = metrics.heightPixels/16;
         int TalentResister_Location_Btn_height = metrics.heightPixels/24;
 
         ViewGroup.LayoutParams params1 = TalentResister_LocationLL.getLayoutParams();
@@ -108,13 +110,12 @@ public class TalentResister_Location_Activity extends AppCompatActivity {
         location_ArrayList = new ArrayList<>();
 
 
+
+
         Intent i = getIntent();
         Talent1 = i.getStringExtra("talent1");
         Talent2 = i.getStringExtra("talent2");
         Talent3 = i.getStringExtra("talent3");
-
-        TalentRegister_Flag = i.getBooleanExtra("talentFlag", true);
-        HavingDataFlag = i.getBooleanExtra("HavingDataFlag", false);
 
         if(HavingDataFlag) {
             Data = (MyTalent)i.getSerializableExtra("Data");
@@ -126,75 +127,72 @@ public class TalentResister_Location_Activity extends AppCompatActivity {
             }
 
         }
+        System.out.println(location_ArrayList.size());
+
+        TalentRegister_Flag = i.getBooleanExtra("talentFlag", true);
+        HavingDataFlag = i.getBooleanExtra("HavingDataFlag", false);
+
+
+
+        ArrayAdapter adapter = ArrayAdapter.createFromResource(this, R.array.시도, R.layout.talentsearching_location_spinnertext);
+        TalentResister_Location_Spinner1.setAdapter(adapter);
+
+
+        TalentResister_Location_Spinner1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                big_Area = TalentResister_Location_Spinner1.getSelectedItem().toString();
+
+                if (position == 0) {
+                    ArrayAdapter<CharSequence> adapter2 = new ArrayAdapter<CharSequence>(mContext, R.layout.talentsearching_location_spinnertext, ITEM_MID);
+                    adapter2.setDropDownViewResource(R.layout.talentsearching_location_spinnertext);
+                    TalentResister_Location_Spinner2.setAdapter(adapter2);
+                } else {
+
+                    try {
+                        resourceId_mid = R.array.class.getField(big_Area).getInt(null);
+                    } catch (IllegalAccessException e) {
+                        e.printStackTrace();
+                    } catch (NoSuchFieldException e) {
+                        e.printStackTrace();
+                    }
+
+                    items_mid = getResources().getStringArray(resourceId_mid);
+
+                    ArrayAdapter<CharSequence> adapter2 = new ArrayAdapter<CharSequence>(mContext, R.layout.talentsearching_location_spinnertext, items_mid);
+                    adapter2.setDropDownViewResource(R.layout.talentsearching_location_spinnertext);
+                    TalentResister_Location_Spinner2.setAdapter(adapter2);
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
 
         talentLocation_Adapter = new TalentResister_Location_Adapter(mContext, location_ArrayList);
-        location_ListView.setAdapter(talentLocation_Adapter);
         location_addBtn = (Button) findViewById(R.id.addLoctionBtn);
         location_addBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                String Edittxt = Location_autoEdit1.getText().toString();
-                talentLocation_Adapter = new TalentResister_Location_Adapter(getBaseContext(), location_ArrayList);
-                TalentResister_LocationList locationlist = new TalentResister_LocationList();
-                int count = 0;
-                for(int a=0; a<locationlist.Location_List.length; a++)
+                sum_Location = big_Area + " " + TalentResister_Location_Spinner2.getSelectedItem();
+                if(TalentResister_Location_Spinner1.getSelectedItemPosition() == 0 || TalentResister_Location_Spinner2.getSelectedItemPosition() == 0)
                 {
-                    if (Location_autoEdit1.getText().toString().equals(locationlist.Location_List[a]))
-                    {
-                        count++;
-                    }
+                    Toast.makeText(mContext,"주소는 구/군/시 단위까지 입력해주세요.",Toast.LENGTH_SHORT).show();
                 }
-                 if (Edittxt.length()==0 || location_ArrayList.size()>=3)
-                                {
-                                    return;
-                                }
-
-                else if (count == 0)
-                {
-                    Toast.makeText(mContext,"주소가 존재하지 않습니다.",Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
-
-                else if (location_ArrayList.size()==0)
-                {
-                    location_ArrayList.add(Edittxt);
-                    Location_autoEdit1.setText("");
+                else {
+                    location_ArrayList.add(sum_Location);
                     location_ListView.setAdapter(talentLocation_Adapter);
-                }
-
-
-                else if (location_ArrayList.size()==1)
-                {
-                    if (location_ArrayList.get(0).equals(Edittxt))
-                    {
-                        Toast.makeText(mContext, "주소가 중복됩니다.", Toast.LENGTH_SHORT).show();
-                        return;
-                    }
-                    else
-                    {
-                        location_ArrayList.add(Edittxt);
-                        Location_autoEdit1.setText("");
-                        location_ListView.setAdapter(talentLocation_Adapter);
-                    }
-                }
-                else if (location_ArrayList.size()==2)
-                {
-                    if (location_ArrayList.get(1).equals(Edittxt)||location_ArrayList.get(0).equals(Edittxt))
-                    {
-                        Toast.makeText(mContext, "주소가 중복됩니다.", Toast.LENGTH_SHORT).show();
-                        return;
-                    }
-                    else
-                        {
-                        location_ArrayList.add(Edittxt);
-                        Location_autoEdit1.setText("");
-                        location_ListView.setAdapter(talentLocation_Adapter);
-                    }
+                    TalentResister_Location_Spinner1.setSelection(0);
+                    TalentResister_Location_Spinner2.setSelection(0);
                 }
             }
         });
+
+
+
     }
 
 
