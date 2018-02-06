@@ -361,6 +361,9 @@ public class MyProfile_Activity extends AppCompatActivity {
                     genderCheckbox.setChecked(!genderFlag);
                     birthCheckbox.setChecked(!birthFlag);
                     jobCheckbox.setChecked(!jobFlag);
+                    Bitmap bitmap = SaveSharedPreference.StringToBitMap(obj.getString("FILE_DATA"));
+                    if(bitmap != null)
+                        MyProfile_Picture.setImageBitmap(bitmap);
                 }
                 catch(JSONException e){
                     e.printStackTrace();
@@ -549,7 +552,7 @@ public class MyProfile_Activity extends AppCompatActivity {
                 Log.d("bitmap = ", "null");
             }
             MyProfile_Picture.setImageBitmap(bitmap);
-            
+
             uploadBitmap(bitmap);
         }catch (IOException e){
                     e.printStackTrace();//bitmap = rotate(bitmap, exifDegree);
