@@ -34,6 +34,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -50,10 +51,13 @@ import com.example.accepted.acceptedtalentplanet.R;
 import com.example.accepted.acceptedtalentplanet.SaveSharedPreference;
 import com.example.accepted.acceptedtalentplanet.TalentCondition.TalentCondition_Activity;
 import com.example.accepted.acceptedtalentplanet.TalentResister.TalentResister_Activity;
+import com.example.accepted.acceptedtalentplanet.VolleyMultipartRequest;
+import com.example.accepted.acceptedtalentplanet.VolleySingleton;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -545,6 +549,7 @@ public class MyProfile_Activity extends AppCompatActivity {
                 Log.d("bitmap = ", "null");
             }
             MyProfile_Picture.setImageBitmap(bitmap);
+            uploadBitmap(bitmap);
         }catch (IOException e){
                     e.printStackTrace();//bitmap = rotate(bitmap, exifDegree);
         }
@@ -571,6 +576,7 @@ public class MyProfile_Activity extends AppCompatActivity {
         }
        // bitmap = rotate(bitmap, exifDegree);
         MyProfile_Picture.setImageBitmap(bitmap);
+        uploadBitmap(bitmap);
     }
 
     private int exifOrientationToDegrees(int exifOrientation){
@@ -618,5 +624,59 @@ public class MyProfile_Activity extends AppCompatActivity {
             }
         }
     }
+
+    public byte[] getFileDataFromDrawable(Bitmap bitmap){
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG, 80, byteArrayOutputStream);
+        return byteArrayOutputStream.toByteArray();
+    }
+
+    private void uploadBitmap(final Bitmap bitmap){
+        final String tags = "UserProfilePicture";
+
+        VolleyMultipartRequest volleyMultipartRequest = new VolleyMultipartRequest(Request.Method.POST, SaveSharedPreference.getServerIp() + "Profile/savePicture.do", new Response.Listener<NetworkResponse>() {
+            @Override
+            public void onResponse(NetworkResponse response) {
+                try {
+                    JSONObject obj = new JSONObject(new String(response.data));
+                    Toast.makeText(mContext, obj.getString("message"), Toast.LENGTH_SHORT).show();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(mContext, error.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        }){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError{
+                Map<String, String> params = new HashMap<>();
+                params.put("tags", tags);
+                return params;
+            }
+
+            @Override
+            protected Map<String, DataPart> getByteData(){
+                Map<String, DataPart> params = new HashMap<>();
+                long imagename = System.currentTimeMillis();
+                params.put("pic", new DataPart(imagename + ".png", getFileDataFromDrawable(bitmap)));
+                return params;
+            }
+        };
+
+        try {
+            for(Map.Entry<String, String> elem : volleyMultipartRequest.getHeaders().entrySet()){
+                Log.d("header = " , String.format("키 : %s, 값 : %s", elem.getKey(), elem.getValue()));
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        VolleySingleton.getInstance(mContext).getRequestQueue().add(volleyMultipartRequest);
+
+    }
+
 
 }
