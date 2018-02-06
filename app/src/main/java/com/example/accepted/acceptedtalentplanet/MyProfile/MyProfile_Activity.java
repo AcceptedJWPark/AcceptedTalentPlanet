@@ -549,6 +549,7 @@ public class MyProfile_Activity extends AppCompatActivity {
                 Log.d("bitmap = ", "null");
             }
             MyProfile_Picture.setImageBitmap(bitmap);
+            MyProfile_Picture.setImageResource(R.drawable.textpicture);
             uploadBitmap(bitmap);
         }catch (IOException e){
                     e.printStackTrace();//bitmap = rotate(bitmap, exifDegree);
@@ -576,6 +577,7 @@ public class MyProfile_Activity extends AppCompatActivity {
         }
        // bitmap = rotate(bitmap, exifDegree);
         MyProfile_Picture.setImageBitmap(bitmap);
+        MyProfile_Picture.setImageResource(R.drawable.textpicture);
         uploadBitmap(bitmap);
     }
 
