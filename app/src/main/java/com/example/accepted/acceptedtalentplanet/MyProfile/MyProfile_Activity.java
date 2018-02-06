@@ -549,7 +549,7 @@ public class MyProfile_Activity extends AppCompatActivity {
                 Log.d("bitmap = ", "null");
             }
             MyProfile_Picture.setImageBitmap(bitmap);
-            MyProfile_Picture.setImageResource(R.drawable.textpicture);
+            
             uploadBitmap(bitmap);
         }catch (IOException e){
                     e.printStackTrace();//bitmap = rotate(bitmap, exifDegree);
@@ -575,9 +575,9 @@ public class MyProfile_Activity extends AppCompatActivity {
         }else{
             exifDegree = 0;
         }
-       // bitmap = rotate(bitmap, exifDegree);
+
         MyProfile_Picture.setImageBitmap(bitmap);
-        MyProfile_Picture.setImageResource(R.drawable.textpicture);
+
         uploadBitmap(bitmap);
     }
 
@@ -641,7 +641,7 @@ public class MyProfile_Activity extends AppCompatActivity {
             public void onResponse(NetworkResponse response) {
                 try {
                     JSONObject obj = new JSONObject(new String(response.data));
-                    Toast.makeText(mContext, obj.getString("message"), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(mContext, obj.getString("result"), Toast.LENGTH_SHORT).show();
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
