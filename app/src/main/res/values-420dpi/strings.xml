@@ -1,9 +1,9 @@
 <resources>
-    <string name="app_name"><item>구/군/시</item>CustomerService</string>
+    <string name="app_name">My Application </string>
 
 
 
-    <string-array name="CustomerService_ClaimSpinnerList"><item>구/군/시</item>
+    <string-array name="CustomerService_ClaimSpinnerList">
 
         <item >금품 요구</item>
         <item >폭언 및 욕설</item>

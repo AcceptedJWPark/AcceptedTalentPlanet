@@ -68,17 +68,14 @@ public class TalentResister_Location_Activity extends AppCompatActivity implemen
     Button TalentResister_Location_Btn;
 
     String big_Area;
-    String mid_Area;
     String sum_Location;
 
     int resourceId_mid;
-    int resourceId_small;
     String [] items_mid;
     final static String [] ITEM_MID = {"구/군/시"} ;
 
     Spinner TalentResister_Location_Spinner1;
     Spinner TalentResister_Location_Spinner2;
-    Spinner TalentResister_Location_Spinner3;
 
     FragmentManager fragmentManager;
     MapFragment mapFragment;
@@ -125,13 +122,14 @@ public class TalentResister_Location_Activity extends AppCompatActivity implemen
         location_ListView = (ListView) findViewById(R.id.location_ListView);
         location_ArrayList = new ArrayList<>();
 
-
-
-
         Intent i = getIntent();
         Talent1 = i.getStringExtra("talent1");
         Talent2 = i.getStringExtra("talent2");
         Talent3 = i.getStringExtra("talent3");
+
+
+        TalentRegister_Flag = i.getBooleanExtra("talentFlag", true);
+        HavingDataFlag = i.getBooleanExtra("HavingDataFlag", false);
 
         if(HavingDataFlag) {
             Data = (MyTalent)i.getSerializableExtra("Data");
@@ -142,11 +140,9 @@ public class TalentResister_Location_Activity extends AppCompatActivity implemen
                     location_ArrayList.add(Loc[index]);
             }
 
-        }
-        System.out.println(location_ArrayList.size());
 
-        TalentRegister_Flag = i.getBooleanExtra("talentFlag", true);
-        HavingDataFlag = i.getBooleanExtra("HavingDataFlag", false);
+        }
+
 
 
 
@@ -189,6 +185,7 @@ public class TalentResister_Location_Activity extends AppCompatActivity implemen
 
 
         talentLocation_Adapter = new TalentResister_Location_Adapter(mContext, location_ArrayList);
+        location_ListView.setAdapter(talentLocation_Adapter);
         location_addBtn = (Button) findViewById(R.id.addLoctionBtn);
         location_addBtn.setOnClickListener(new View.OnClickListener() {
             @Override
