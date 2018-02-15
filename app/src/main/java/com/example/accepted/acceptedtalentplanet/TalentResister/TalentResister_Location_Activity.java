@@ -1,10 +1,12 @@
 package com.example.accepted.acceptedtalentplanet.TalentResister;
 
 import android.app.Activity;
+import android.app.FragmentManager;
 import android.content.Context;
 import android.content.Intent;
 import android.location.Address;
 import android.location.Geocoder;
+import android.location.Location;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -29,6 +31,16 @@ import com.example.accepted.acceptedtalentplanet.GeoPoint;
 import com.example.accepted.acceptedtalentplanet.MyTalent;
 import com.example.accepted.acceptedtalentplanet.R;
 import com.example.accepted.acceptedtalentplanet.SaveSharedPreference;
+import com.google.android.gms.common.api.Status;
+import com.google.android.gms.location.places.Place;
+import com.google.android.gms.location.places.ui.PlaceAutocompleteFragment;
+import com.google.android.gms.location.places.ui.PlaceSelectionListener;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -36,7 +48,7 @@ import java.util.List;
 
 import static com.example.accepted.acceptedtalentplanet.SaveSharedPreference.hideKeyboard;
 
-public class TalentResister_Location_Activity extends AppCompatActivity {
+public class TalentResister_Location_Activity extends AppCompatActivity implements OnMapReadyCallback {
     private String Talent1, Talent2, Talent3;
     private String[] Locations;
     private boolean TalentRegister_Flag;
@@ -67,6 +79,10 @@ public class TalentResister_Location_Activity extends AppCompatActivity {
     Spinner TalentResister_Location_Spinner1;
     Spinner TalentResister_Location_Spinner2;
     Spinner TalentResister_Location_Spinner3;
+
+    FragmentManager fragmentManager;
+    MapFragment mapFragment;
+    GoogleMap gMap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -191,8 +207,59 @@ public class TalentResister_Location_Activity extends AppCompatActivity {
             }
         });
 
+        fragmentManager = getFragmentManager();
+        mapFragment = (MapFragment)fragmentManager.findFragmentById(R.id.map);
+        mapFragment.getMapAsync(this);
 
+        PlaceAutocompleteFragment autocompleteFragment = (PlaceAutocompleteFragment) getFragmentManager().findFragmentById(R.id.place_autocomplete_fragment1);
 
+        autocompleteFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
+            @Override
+            public void onPlaceSelected(Place place) {
+                Log.d("Place : ", String.valueOf(place.getName()));
+                Location location = new Location("");
+                location.setLatitude(place.getLatLng().latitude);
+                location.setLongitude(place.getLatLng().longitude);
+
+                setCurrentLocation(location, place.getName().toString(), place.getAddress().toString());
+            }
+
+            @Override
+            public void onError(Status status) {
+                Log.d("Error : ", String.valueOf(status));
+            }
+        });
+
+    }
+
+    @Override
+    public void onMapReady(final GoogleMap map){
+        LatLng SEOUL = new LatLng(37.56, 126.97);
+
+        MarkerOptions markerOptions = new MarkerOptions();
+        markerOptions.position(SEOUL);
+        markerOptions.title("서울");
+        markerOptions.snippet("한국의 수도");
+        map.addMarker(markerOptions);
+
+        map.moveCamera(CameraUpdateFactory.newLatLng(SEOUL));
+        map.animateCamera(CameraUpdateFactory.zoomTo(10));
+        gMap = map;
+    }
+
+    private void setCurrentLocation(Location location, String name, String addr){
+        gMap.clear();
+
+        LatLng latlng = new LatLng(location.getLatitude(), location.getLongitude());
+
+        MarkerOptions markerOptions = new MarkerOptions();
+        markerOptions.position(latlng);
+        markerOptions.title(name);
+        markerOptions.snippet(addr);
+        gMap.addMarker(markerOptions);
+
+        gMap.moveCamera(CameraUpdateFactory.newLatLng(latlng));
+        gMap.animateCamera(CameraUpdateFactory.zoomTo(10));
     }
 
 
