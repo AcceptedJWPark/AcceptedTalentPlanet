@@ -325,7 +325,7 @@ public class MyProfile_Activity extends AppCompatActivity {
         ((TextView)findViewById(R.id.MyProfile_TakeTalent1)).setOnClickListener(listener_take);
         ((TextView)findViewById(R.id.MyProfile_TakeTalent2)).setOnClickListener(listener_take);
         ((TextView)findViewById(R.id.MyProfile_TakeTalent3)).setOnClickListener(listener_take);
-        }
+    }
 
 
 
@@ -361,9 +361,11 @@ public class MyProfile_Activity extends AppCompatActivity {
                     genderCheckbox.setChecked(!genderFlag);
                     birthCheckbox.setChecked(!birthFlag);
                     jobCheckbox.setChecked(!jobFlag);
-                    Bitmap bitmap = SaveSharedPreference.StringToBitMap(obj.getString("FILE_DATA"));
-                    if(bitmap != null)
-                        MyProfile_Picture.setImageBitmap(bitmap);
+                    if(!obj.getString("FILE_DATA").equals("NODATA")) {
+                        Bitmap bitmap = SaveSharedPreference.StringToBitMap(obj.getString("FILE_DATA"));
+                        if (bitmap != null)
+                            MyProfile_Picture.setImageBitmap(bitmap);
+                    }
                 }
                 catch(JSONException e){
                     e.printStackTrace();
