@@ -548,6 +548,7 @@ public class MyProfile_Activity extends AppCompatActivity {
 
         try {
             Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), imgUri); //BitmapFactory.decodeFile(imagePath);
+            bitmap = rotate(bitmap, exifDegree);
             if(bitmap == null){
                 Log.d("bitmap = ", "null");
             }
@@ -578,6 +579,8 @@ public class MyProfile_Activity extends AppCompatActivity {
         }else{
             exifDegree = 0;
         }
+
+        bitmap = rotate(bitmap, exifDegree);
 
         MyProfile_Picture.setImageBitmap(bitmap);
 
