@@ -1,5 +1,6 @@
 package com.example.accepted.acceptedtalentplanet.CustomerService;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -22,6 +23,7 @@ import com.example.accepted.acceptedtalentplanet.SaveSharedPreference;
 import com.example.accepted.acceptedtalentplanet.SharingList.SharingList_Activity;
 import com.example.accepted.acceptedtalentplanet.SharingList.SharingList_Adapter;
 import com.example.accepted.acceptedtalentplanet.SharingList.SharingList_Item;
+import com.example.accepted.acceptedtalentplanet.VolleySingleton;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -50,10 +52,14 @@ public class CustomerService_ClaimListActivity extends AppCompatActivity {
 
     LinearLayout CustomerService_ClaimList_PreBtn;
 
+    Context mContext;
+
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.customerservice_claimlist_activity);
+
+        mContext = getApplicationContext();
 
         CustomerService_ClaimList_PreBtn = (LinearLayout) findViewById(R.id.CustomerService_ClaimList_PreBtn);
         CustomerService_ClaimList_PreBtn.setOnClickListener(new View.OnClickListener() {
@@ -94,7 +100,7 @@ public class CustomerService_ClaimListActivity extends AppCompatActivity {
     }
 
     public void getClaimList() {
-        RequestQueue postRequestQueue = Volley.newRequestQueue(this);
+        RequestQueue postRequestQueue = VolleySingleton.getInstance(mContext).getRequestQueue();
         StringRequest postJsonRequest = new StringRequest(Request.Method.POST, SaveSharedPreference.getServerIp() + "Customer/getClaimList.do", new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -161,28 +167,7 @@ public class CustomerService_ClaimListActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
             }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                NetworkResponse response = error.networkResponse;
-                if (error instanceof ServerError && response != null) {
-                    try {
-                        String res = new String(response.data,
-                                HttpHeaderParser.parseCharset(response.headers, "utf-8"));
-                        // Now you can use any deserializer to make sense of data
-                        Log.d("res", res);
-
-                        JSONObject obj = new JSONObject(res);
-                    } catch (UnsupportedEncodingException e1) {
-                        // Couldn't properly decode data to string
-                        e1.printStackTrace();
-                    } catch (JSONException e2) {
-                        // returned data is not JSONObject?
-                        e2.printStackTrace();
-                    }
-                }
-            }
-        }) {
+        }, SaveSharedPreference.getErrorListener()) {
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap();

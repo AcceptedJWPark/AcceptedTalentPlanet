@@ -32,6 +32,7 @@ import com.android.volley.toolbox.Volley;
 import com.example.accepted.acceptedtalentplanet.R;
 import com.example.accepted.acceptedtalentplanet.SaveSharedPreference;
 import com.example.accepted.acceptedtalentplanet.TalentCondition.TalentCondition_Activity;
+import com.example.accepted.acceptedtalentplanet.VolleySingleton;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -223,7 +224,7 @@ public class InterestingList_Popup extends FragmentActivity {
 
     public void getProfileInfo(final String talentID) {
         final String TalentID = talentID;
-        RequestQueue postRequestQueue = Volley.newRequestQueue(this);
+        RequestQueue postRequestQueue = VolleySingleton.getInstance(mContext).getRequestQueue();
         StringRequest postJsonRequest = new StringRequest(Request.Method.POST, SaveSharedPreference.getServerIp() + "TalentSharing/getProfileInfo.do", new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -252,28 +253,7 @@ public class InterestingList_Popup extends FragmentActivity {
                     e.printStackTrace();
                 }
             }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                NetworkResponse response = error.networkResponse;
-                if (error instanceof ServerError && response != null) {
-                    try {
-                        String res = new String(response.data,
-                                HttpHeaderParser.parseCharset(response.headers, "utf-8"));
-                        // Now you can use any deserializer to make sense of data
-                        Log.d("res", res);
-
-                        JSONObject obj = new JSONObject(res);
-                    } catch (UnsupportedEncodingException e1) {
-                        // Couldn't properly decode data to string
-                        e1.printStackTrace();
-                    } catch (JSONException e2) {
-                        // returned data is not JSONObject?
-                        e2.printStackTrace();
-                    }
-                }
-            }
-        }) {
+        }, SaveSharedPreference.getErrorListener()) {
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap();
@@ -289,7 +269,7 @@ public class InterestingList_Popup extends FragmentActivity {
 
     public void doSharingTalent(final String talentID) {
 
-        RequestQueue postRequestQueue = Volley.newRequestQueue(this);
+        RequestQueue postRequestQueue = VolleySingleton.getInstance(mContext).getRequestQueue();
         StringRequest postJsonRequest = new StringRequest(Request.Method.POST, SaveSharedPreference.getServerIp() + "TalentSharing/doSharingTalent.do", new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -300,28 +280,7 @@ public class InterestingList_Popup extends FragmentActivity {
                     e.printStackTrace();
                 }
             }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                NetworkResponse response = error.networkResponse;
-                if (error instanceof ServerError && response != null) {
-                    try {
-                        String res = new String(response.data,
-                                HttpHeaderParser.parseCharset(response.headers, "utf-8"));
-                        // Now you can use any deserializer to make sense of data
-                        Log.d("res", res);
-
-                        JSONObject obj = new JSONObject(res);
-                    } catch (UnsupportedEncodingException e1) {
-                        // Couldn't properly decode data to string
-                        e1.printStackTrace();
-                    } catch (JSONException e2) {
-                        // returned data is not JSONObject?
-                        e2.printStackTrace();
-                    }
-                }
-            }
-        }) {
+        }, SaveSharedPreference.getErrorListener()) {
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap();
@@ -361,7 +320,7 @@ public class InterestingList_Popup extends FragmentActivity {
 
     public void removeInteresting(final String talentID) {
 
-        RequestQueue postRequestQueue = Volley.newRequestQueue(this);
+        RequestQueue postRequestQueue = VolleySingleton.getInstance(mContext).getRequestQueue();
         StringRequest postJsonRequest = new StringRequest(Request.Method.POST, SaveSharedPreference.getServerIp() + "Interest/removeInteresting.do", new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -372,28 +331,7 @@ public class InterestingList_Popup extends FragmentActivity {
                     e.printStackTrace();
                 }
             }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                NetworkResponse response = error.networkResponse;
-                if (error instanceof ServerError && response != null) {
-                    try {
-                        String res = new String(response.data,
-                                HttpHeaderParser.parseCharset(response.headers, "utf-8"));
-                        // Now you can use any deserializer to make sense of data
-                        Log.d("res", res);
-
-                        JSONObject obj = new JSONObject(res);
-                    } catch (UnsupportedEncodingException e1) {
-                        // Couldn't properly decode data to string
-                        e1.printStackTrace();
-                    } catch (JSONException e2) {
-                        // returned data is not JSONObject?
-                        e2.printStackTrace();
-                    }
-                }
-            }
-        }) {
+        }, SaveSharedPreference.getErrorListener()) {
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap();

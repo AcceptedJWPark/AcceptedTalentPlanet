@@ -21,6 +21,11 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.NetworkResponse;
+import com.android.volley.Response;
+import com.android.volley.ServerError;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.HttpHeaderParser;
 import com.example.accepted.acceptedtalentplanet.Alarm.Alarm_Activity;
 import com.example.accepted.acceptedtalentplanet.CustomerService.CustomerService_MainActivity;
 import com.example.accepted.acceptedtalentplanet.FriendList.FriendList_Activity;
@@ -36,7 +41,11 @@ import com.example.accepted.acceptedtalentplanet.TalentSharing.TalentSharing_Act
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.ByteArrayOutputStream;
+import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 
@@ -49,8 +58,8 @@ import static android.text.TextUtils.isEmpty;
 public class SaveSharedPreference{
     static final String PREF_USER_NAME = "username";
     static final String PREF_USER_ID = "userid";
-    static final String SERVER_IP = "http://13.124.141.242/Accepted/";
-    static final String SERVER_IP2 = "http://192.168.123.3:8080/Accepted/";
+    static final String SERVER_IP = "https://13.124.141.242/Accepted/";
+    static final String SERVER_IP2 = "https://221.162.94.43:8443/Accepted/";
     static final String PREF_GIVE_DATA = "giveData";
     static final String PREF_TAKE_DATA = "takeData";
     static final String PREF_GEO_POINT1 = "geoPoint1";
@@ -364,5 +373,32 @@ public class SaveSharedPreference{
             e.getMessage();
             return null;
         }
+    }
+
+    public static Response.ErrorListener getErrorListener(){
+        Response.ErrorListener errorListener = new Response.ErrorListener(){
+            @Override
+            public void onErrorResponse(VolleyError error){
+                NetworkResponse response = error.networkResponse;
+                if (error instanceof ServerError && response != null) {
+                    try {
+                        String res = new String(response.data,
+                                HttpHeaderParser.parseCharset(response.headers, "utf-8"));
+                        // Now you can use any deserializer to make sense of data
+                        Log.d("res", res);
+
+                        JSONObject obj = new JSONObject(res);
+                    } catch (UnsupportedEncodingException e1) {
+                        // Couldn't properly decode data to string
+                        e1.printStackTrace();
+                    } catch (JSONException e2) {
+                        // returned data is not JSONObject?
+                        e2.printStackTrace();
+                    }
+                }
+            }
+        };
+
+        return errorListener;
     }
 }

@@ -33,6 +33,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.accepted.acceptedtalentplanet.R;
 import com.example.accepted.acceptedtalentplanet.SaveSharedPreference;
+import com.example.accepted.acceptedtalentplanet.VolleySingleton;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -107,31 +108,6 @@ public class Join_Email_Activity extends  AppCompatActivity {
         });
     }
 
-    public Response.ErrorListener el = new Response.ErrorListener() {
-        @Override
-        public void onErrorResponse(VolleyError error) {
-            NetworkResponse response = error.networkResponse;
-            if (error instanceof ServerError && response != null) {
-                try {
-                    String res = new String(response.data,
-                            HttpHeaderParser.parseCharset(response.headers, "utf-8"));
-                    // Now you can use any deserializer to make sense of data
-                    Log.d("res", res);
-
-                    JSONObject obj = new JSONObject(res);
-                } catch (UnsupportedEncodingException e1) {
-                    // Couldn't properly decode data to string
-                    e1.printStackTrace();
-                } catch (JSONException e2) {
-                    // returned data is not JSONObject?
-                    e2.printStackTrace();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-    };
-
     public void goNext(View v){
         if(confirmEmailCheck) {
             EditText email = (EditText) findViewById(R.id.Join_Email);
@@ -166,14 +142,14 @@ public class Join_Email_Activity extends  AppCompatActivity {
         Log.d("userID", jEmail);
 
         RequestFuture<String> future = RequestFuture.newFuture();
-        final RequestQueue postRequestQueue = Volley.newRequestQueue(this);
+        final RequestQueue postRequestQueue = VolleySingleton.getInstance(mContext).getRequestQueue();
 
         final StringRequest sendMailRequest = new StringRequest(Request.Method.POST, SaveSharedPreference.getServerIp() + "Regist/sendMail.do", new Response.Listener<String>(){
             @Override
             public void onResponse(String response){
 
             }
-        }, el
+        }, SaveSharedPreference.getErrorListener()
         ) {
             @Override
             protected Map<String, String> getParams(){
@@ -210,7 +186,7 @@ public class Join_Email_Activity extends  AppCompatActivity {
                     e.printStackTrace();
                 }
             }
-        }, el
+        }, SaveSharedPreference.getErrorListener()
         ) {
             @Override
             protected Map<String, String> getParams(){
@@ -240,7 +216,7 @@ public class Join_Email_Activity extends  AppCompatActivity {
                     e.printStackTrace();
                 }
             }
-        },el
+        },SaveSharedPreference.getErrorListener()
         ) {
             @Override
             protected Map<String, String> getParams(){

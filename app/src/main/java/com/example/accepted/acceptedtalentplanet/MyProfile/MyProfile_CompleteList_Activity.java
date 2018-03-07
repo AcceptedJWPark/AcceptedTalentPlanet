@@ -32,6 +32,7 @@ import com.example.accepted.acceptedtalentplanet.SaveSharedPreference;
 import com.example.accepted.acceptedtalentplanet.SharingList.SharingList_Activity;
 import com.example.accepted.acceptedtalentplanet.SharingList.SharingList_Adapter;
 import com.example.accepted.acceptedtalentplanet.SharingList.SharingList_Item;
+import com.example.accepted.acceptedtalentplanet.VolleySingleton;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -80,7 +81,7 @@ public class MyProfile_CompleteList_Activity extends AppCompatActivity {
     }
 
     public void getPointHistory() {
-        RequestQueue postRequestQueue = Volley.newRequestQueue(this);
+        RequestQueue postRequestQueue = VolleySingleton.getInstance(mContext).getRequestQueue();
         StringRequest postJsonRequest = new StringRequest(Request.Method.POST, SaveSharedPreference.getServerIp() + "Profile/getPointHistory.do", new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -116,28 +117,7 @@ public class MyProfile_CompleteList_Activity extends AppCompatActivity {
                     e.printStackTrace();
                 }
             }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                NetworkResponse response = error.networkResponse;
-                if (error instanceof ServerError && response != null) {
-                    try {
-                        String res = new String(response.data,
-                                HttpHeaderParser.parseCharset(response.headers, "utf-8"));
-                        // Now you can use any deserializer to make sense of data
-                        Log.d("res", res);
-
-                        JSONArray obj = new JSONArray(res);
-                    } catch (UnsupportedEncodingException e1) {
-                        // Couldn't properly decode data to string
-                        e1.printStackTrace();
-                    } catch (JSONException e2) {
-                        // returned data is not JSONObject?
-                        e2.printStackTrace();
-                    }
-                }
-            }
-        }) {
+        }, SaveSharedPreference.getErrorListener()) {
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap();

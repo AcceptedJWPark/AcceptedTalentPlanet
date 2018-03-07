@@ -330,7 +330,7 @@ public class MyProfile_Activity extends AppCompatActivity {
 
 
     public void getMyProfile(){
-        RequestQueue postRequestQueue = Volley.newRequestQueue(this);
+        RequestQueue postRequestQueue = VolleySingleton.getInstance(mContext).getRequestQueue();
         StringRequest postJsonRequest = new StringRequest(Request.Method.POST, SaveSharedPreference.getServerIp() + "Profile/getMyProfileInfo.do", new Response.Listener<String>(){
             @Override
             public void onResponse(String response){
@@ -371,28 +371,7 @@ public class MyProfile_Activity extends AppCompatActivity {
                     e.printStackTrace();
                 }
             }
-        }, new Response.ErrorListener(){
-            @Override
-            public void onErrorResponse(VolleyError error){
-                NetworkResponse response = error.networkResponse;
-                if (error instanceof ServerError && response != null) {
-                    try {
-                        String res = new String(response.data,
-                                HttpHeaderParser.parseCharset(response.headers, "utf-8"));
-                        // Now you can use any deserializer to make sense of data
-                        Log.d("res", res);
-
-                        JSONObject obj = new JSONObject(res);
-                    } catch (UnsupportedEncodingException e1) {
-                        // Couldn't properly decode data to string
-                        e1.printStackTrace();
-                    } catch (JSONException e2) {
-                        // returned data is not JSONObject?
-                        e2.printStackTrace();
-                    }
-                }
-            }
-        }) {
+        }, SaveSharedPreference.getErrorListener()) {
             @Override
             protected Map<String, String> getParams(){
                 Map<String, String> params = new HashMap();
@@ -405,7 +384,7 @@ public class MyProfile_Activity extends AppCompatActivity {
     }
 
     public void saveMyProfile(){
-        RequestQueue postRequestQueue = Volley.newRequestQueue(this);
+        RequestQueue postRequestQueue = VolleySingleton.getInstance(mContext).getRequestQueue();
         StringRequest postJsonRequest = new StringRequest(Request.Method.POST, SaveSharedPreference.getServerIp() + "Profile/saveMyProfileInfo.do", new Response.Listener<String>(){
             @Override
             public void onResponse(String response){
@@ -421,28 +400,7 @@ public class MyProfile_Activity extends AppCompatActivity {
                     e.printStackTrace();
                 }
             }
-        }, new Response.ErrorListener(){
-            @Override
-            public void onErrorResponse(VolleyError error){
-                NetworkResponse response = error.networkResponse;
-                if (error instanceof ServerError && response != null) {
-                    try {
-                        String res = new String(response.data,
-                                HttpHeaderParser.parseCharset(response.headers, "utf-8"));
-                        // Now you can use any deserializer to make sense of data
-                        Log.d("res", res);
-
-                        JSONObject obj = new JSONObject(res);
-                    } catch (UnsupportedEncodingException e1) {
-                        // Couldn't properly decode data to string
-                        e1.printStackTrace();
-                    } catch (JSONException e2) {
-                        // returned data is not JSONObject?
-                        e2.printStackTrace();
-                    }
-                }
-            }
-        }) {
+        }, SaveSharedPreference.getErrorListener()) {
             @Override
             protected Map<String, String> getParams(){
                 Map<String, String> params = new HashMap();

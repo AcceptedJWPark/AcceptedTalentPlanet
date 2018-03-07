@@ -117,6 +117,29 @@ public class TalentResister_Location_Activity extends AppCompatActivity implemen
         TalentResister_Location_Txt_LL.setLayoutParams(params2);
         TalentResister_Location_Btn.setLayoutParams(params3);
 
+        fragmentManager = getFragmentManager();
+        mapFragment = (MapFragment)fragmentManager.findFragmentById(R.id.map);
+        mapFragment.getMapAsync(this);
+
+        PlaceAutocompleteFragment autocompleteFragment = (PlaceAutocompleteFragment) getFragmentManager().findFragmentById(R.id.place_autocomplete_fragment1);
+
+        autocompleteFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
+            @Override
+            public void onPlaceSelected(Place place) {
+                Log.d("Place : ", String.valueOf(place.getName()));
+                Location location = new Location("");
+                location.setLatitude(place.getLatLng().latitude);
+                location.setLongitude(place.getLatLng().longitude);
+
+                setCurrentLocation(location, place.getName().toString(), place.getAddress().toString());
+            }
+
+            @Override
+            public void onError(Status status) {
+                Log.d("Error : ", String.valueOf(status));
+            }
+        });
+
 
 
         location_ListView = (ListView) findViewById(R.id.location_ListView);
@@ -139,7 +162,6 @@ public class TalentResister_Location_Activity extends AppCompatActivity implemen
                 if(!Loc[index].isEmpty())
                     location_ArrayList.add(Loc[index]);
             }
-
 
         }
 
@@ -204,44 +226,33 @@ public class TalentResister_Location_Activity extends AppCompatActivity implemen
             }
         });
 
-        fragmentManager = getFragmentManager();
-        mapFragment = (MapFragment)fragmentManager.findFragmentById(R.id.map);
-        mapFragment.getMapAsync(this);
-
-        PlaceAutocompleteFragment autocompleteFragment = (PlaceAutocompleteFragment) getFragmentManager().findFragmentById(R.id.place_autocomplete_fragment1);
-
-        autocompleteFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
-            @Override
-            public void onPlaceSelected(Place place) {
-                Log.d("Place : ", String.valueOf(place.getName()));
-                Location location = new Location("");
-                location.setLatitude(place.getLatLng().latitude);
-                location.setLongitude(place.getLatLng().longitude);
-
-                setCurrentLocation(location, place.getName().toString(), place.getAddress().toString());
-            }
-
-            @Override
-            public void onError(Status status) {
-                Log.d("Error : ", String.valueOf(status));
-            }
-        });
-
     }
 
     @Override
     public void onMapReady(final GoogleMap map){
-        LatLng SEOUL = new LatLng(37.56, 126.97);
 
-        MarkerOptions markerOptions = new MarkerOptions();
-        markerOptions.position(SEOUL);
-        markerOptions.title("서울");
-        markerOptions.snippet("한국의 수도");
-        map.addMarker(markerOptions);
+//        if(HavingDataFlag){
+//            GeoPoint[] geoPoints = Data.getArrGeoPoint();
+//
+//            if(geoPoints[0] != null && geoPoints[0].getLng() != 0 && Loc[0] != null){
+//                Location location = new Location("");
+//                location.setLongitude(geoPoints[0].getLng());
+//                location.setLatitude(geoPoints[0].getLat());
+//                setCurrentLocation(location, Loc[0], "선택위치");
+//            }
+//        }else{
+            LatLng SEOUL = new LatLng(37.56, 126.97);
 
-        map.moveCamera(CameraUpdateFactory.newLatLng(SEOUL));
-        map.animateCamera(CameraUpdateFactory.zoomTo(10));
-        gMap = map;
+            MarkerOptions markerOptions = new MarkerOptions();
+            markerOptions.position(SEOUL);
+            markerOptions.title("서울");
+            markerOptions.snippet("한국의 수도");
+            map.addMarker(markerOptions);
+
+            map.moveCamera(CameraUpdateFactory.newLatLng(SEOUL));
+            map.animateCamera(CameraUpdateFactory.zoomTo(10));
+            gMap = map;
+      //  }
     }
 
     private void setCurrentLocation(Location location, String name, String addr){

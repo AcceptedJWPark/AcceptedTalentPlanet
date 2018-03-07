@@ -40,6 +40,7 @@ import com.example.accepted.acceptedtalentplanet.SaveSharedPreference;
 import com.example.accepted.acceptedtalentplanet.SharingList.SharingList_Activity;
 import com.example.accepted.acceptedtalentplanet.SharingList.SharingList_Adapter;
 import com.example.accepted.acceptedtalentplanet.SharingList.SharingList_Item;
+import com.example.accepted.acceptedtalentplanet.VolleySingleton;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -77,7 +78,7 @@ public class CustomerService_ClaimActivity extends AppCompatActivity {
     TextView claim_Txt1;
     LinearLayout claim_Txt2;
     TextView CustomerService_onebyoneTextLimit;
-    Context context;
+    Context mContext;
 
     Button CustomerService_ClaimBtn;
 
@@ -100,7 +101,7 @@ public class CustomerService_ClaimActivity extends AppCompatActivity {
             talentFlag = getIntent().getStringExtra("talentFlag");
             status = getIntent().getIntExtra("status", 0);
         }
-        context = getApplicationContext();
+        mContext = getApplicationContext();
 
         CustomerService_Claim_Spinner = (Spinner) findViewById(R.id.CustomerService_Claim_Spinner);
         ArrayAdapter adapter = ArrayAdapter.createFromResource(this, R.array.CustomerService_ClaimSpinnerList, R.layout.customerservice_claim_spinnertext);
@@ -139,7 +140,7 @@ public class CustomerService_ClaimActivity extends AppCompatActivity {
             public void onFocusChange(View v, boolean hasFocus) {
                 if(!hasFocus)
                 {
-                    hideKeyboard(v, context);
+                    hideKeyboard(v, mContext);
                 }
 
             }
@@ -178,7 +179,7 @@ public class CustomerService_ClaimActivity extends AppCompatActivity {
                 AlertDialog.Builder AlarmDeleteDialog = new AlertDialog.Builder(CustomerService_ClaimActivity.this);
                 if(Claim_EditTxt.getText().length() == 0)
                 {
-                    Toast.makeText(context, "신고 내용을 입력해주세요.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(mContext, "신고 내용을 입력해주세요.", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 else if(isSelect){
@@ -277,7 +278,7 @@ public class CustomerService_ClaimActivity extends AppCompatActivity {
     }
 
     public void requestClaim() {
-        RequestQueue postRequestQueue = Volley.newRequestQueue(this);
+        RequestQueue postRequestQueue = VolleySingleton.getInstance(mContext).getRequestQueue();
         StringRequest postJsonRequest = new StringRequest(Request.Method.POST, SaveSharedPreference.getServerIp() + "Customer/requestClaim.do", new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -286,12 +287,12 @@ public class CustomerService_ClaimActivity extends AppCompatActivity {
                     JSONObject obj = new JSONObject(response);
 
                     if(obj.getString("result").equals("success")){
-                        Toast.makeText(context, "신고가 정상적으로 접수되었습니다.", Toast.LENGTH_SHORT).show();
-                        Intent i = new Intent(context, CustomerService_MainActivity.class);
+                        Toast.makeText(mContext, "신고가 정상적으로 접수되었습니다.", Toast.LENGTH_SHORT).show();
+                        Intent i = new Intent(mContext, CustomerService_MainActivity.class);
                         startActivity(i);
                         finish();
                     }else
-                        Toast.makeText(context, "신고가 실패하였습니다.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(mContext, "신고가 실패하였습니다.", Toast.LENGTH_SHORT).show();
 
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -299,28 +300,7 @@ public class CustomerService_ClaimActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
             }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                NetworkResponse response = error.networkResponse;
-                if (error instanceof ServerError && response != null) {
-                    try {
-                        String res = new String(response.data,
-                                HttpHeaderParser.parseCharset(response.headers, "utf-8"));
-                        // Now you can use any deserializer to make sense of data
-                        Log.d("res", res);
-
-                        JSONArray obj = new JSONArray(res);
-                    } catch (UnsupportedEncodingException e1) {
-                        // Couldn't properly decode data to string
-                        e1.printStackTrace();
-                    } catch (JSONException e2) {
-                        // returned data is not JSONObject?
-                        e2.printStackTrace();
-                    }
-                }
-            }
-        }) {
+        }, SaveSharedPreference.getErrorListener()) {
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap();
@@ -356,7 +336,7 @@ public class CustomerService_ClaimActivity extends AppCompatActivity {
                         claimType = 5;
                 }
 
-                params.put("userID", SaveSharedPreference.getUserId(context));
+                params.put("userID", SaveSharedPreference.getUserId(mContext));
                 params.put("myTalentID", myTalentID);
                 params.put("tarTalentID", tarTalentID);
                 params.put("claimType", String.valueOf(claimType));

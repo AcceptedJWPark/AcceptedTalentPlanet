@@ -22,6 +22,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.accepted.acceptedtalentplanet.R;
 import com.example.accepted.acceptedtalentplanet.SaveSharedPreference;
+import com.example.accepted.acceptedtalentplanet.VolleySingleton;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -38,6 +39,7 @@ public class TalentSearching_Popup_Activity extends FragmentActivity{
 
     ImageView talentSharing_pupupclosebtn;
     boolean genderPBS, birthPBS, jobPBS;
+    Context mContext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +49,8 @@ public class TalentSearching_Popup_Activity extends FragmentActivity{
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.talentsharing_popup);
         Display display = ((WindowManager) getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();
+
+        mContext = getApplicationContext();
 
         int width = (int) (display.getWidth() * 1);
         int height = (int) (display.getHeight() * 0.9);
@@ -70,7 +74,7 @@ public class TalentSearching_Popup_Activity extends FragmentActivity{
 
     public void getProfileInfo(String talentID) {
         final String TalentID = talentID;
-        RequestQueue postRequestQueue = Volley.newRequestQueue(this);
+        RequestQueue postRequestQueue = VolleySingleton.getInstance(mContext).getRequestQueue();
         StringRequest postJsonRequest = new StringRequest(Request.Method.POST, SaveSharedPreference.getServerIp() + "TalentSharing/getProfileInfo.do", new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -101,28 +105,7 @@ public class TalentSearching_Popup_Activity extends FragmentActivity{
                     e.printStackTrace();
                 }
             }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                NetworkResponse response = error.networkResponse;
-                if (error instanceof ServerError && response != null) {
-                    try {
-                        String res = new String(response.data,
-                                HttpHeaderParser.parseCharset(response.headers, "utf-8"));
-                        // Now you can use any deserializer to make sense of data
-                        Log.d("res", res);
-
-                        JSONObject obj = new JSONObject(res);
-                    } catch (UnsupportedEncodingException e1) {
-                        // Couldn't properly decode data to string
-                        e1.printStackTrace();
-                    } catch (JSONException e2) {
-                        // returned data is not JSONObject?
-                        e2.printStackTrace();
-                    }
-                }
-            }
-        }) {
+        }, SaveSharedPreference.getErrorListener()) {
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap();

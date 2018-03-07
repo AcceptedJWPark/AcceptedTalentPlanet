@@ -27,6 +27,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.accepted.acceptedtalentplanet.R;
 import com.example.accepted.acceptedtalentplanet.SaveSharedPreference;
+import com.example.accepted.acceptedtalentplanet.VolleySingleton;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -85,31 +86,6 @@ public class Password_Lost_Accept_Activity extends AppCompatActivity {
 
     }
 
-    public Response.ErrorListener el = new Response.ErrorListener() {
-        @Override
-        public void onErrorResponse(VolleyError error) {
-            NetworkResponse response = error.networkResponse;
-            if (error instanceof ServerError && response != null) {
-                try {
-                    String res = new String(response.data,
-                            HttpHeaderParser.parseCharset(response.headers, "utf-8"));
-                    // Now you can use any deserializer to make sense of data
-                    Log.d("res", res);
-
-                    JSONObject obj = new JSONObject(res);
-                } catch (UnsupportedEncodingException e1) {
-                    // Couldn't properly decode data to string
-                    e1.printStackTrace();
-                } catch (JSONException e2) {
-                    // returned data is not JSONObject?
-                    e2.printStackTrace();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-    };
-
     public void PasswordLost_emailCheck(View v)
     {
         emailCheck(v);
@@ -144,7 +120,7 @@ public class Password_Lost_Accept_Activity extends AppCompatActivity {
         Log.d("userID", jEmail);
 
         RequestFuture<String> future = RequestFuture.newFuture();
-        final RequestQueue postRequestQueue = Volley.newRequestQueue(this);
+        final RequestQueue postRequestQueue = VolleySingleton.getInstance(mContext).getRequestQueue();
 
         //TODO : 비밀번호 확인하는 로직 필요
 
@@ -153,7 +129,7 @@ public class Password_Lost_Accept_Activity extends AppCompatActivity {
             public void onResponse(String response){
                 accept_join_mail.setVisibility(View.VISIBLE);
             }
-        }, el
+        }, SaveSharedPreference.getErrorListener()
         ) {
             @Override
             protected Map<String, String> getParams(){
@@ -190,7 +166,7 @@ public class Password_Lost_Accept_Activity extends AppCompatActivity {
                     e.printStackTrace();
                 }
             }
-        }, el
+        }, SaveSharedPreference.getErrorListener()
         ) {
             @Override
             protected Map<String, String> getParams(){
@@ -220,7 +196,7 @@ public class Password_Lost_Accept_Activity extends AppCompatActivity {
                     e.printStackTrace();
                 }
             }
-        },el
+        },SaveSharedPreference.getErrorListener()
         ) {
             @Override
             protected Map<String, String> getParams(){

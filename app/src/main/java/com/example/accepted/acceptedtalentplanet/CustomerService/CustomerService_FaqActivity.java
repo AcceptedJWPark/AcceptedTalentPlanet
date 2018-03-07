@@ -1,5 +1,6 @@
 package com.example.accepted.acceptedtalentplanet.CustomerService;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -24,10 +25,14 @@ public class CustomerService_FaqActivity extends AppCompatActivity {
 
     LinearLayout CustomerService_FAQ_PreBtn;
 
+    Context mContext;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.customerservice_faqactivity);
+
+        mContext = getApplicationContext();
 
         ExpandableListViewTest = (ExpandableListView) this.findViewById(R.id.CustomerService_FAQ_ELV);
         setArrayData();

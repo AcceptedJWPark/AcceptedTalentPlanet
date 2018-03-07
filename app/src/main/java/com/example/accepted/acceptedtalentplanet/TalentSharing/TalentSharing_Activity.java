@@ -23,13 +23,13 @@ import com.android.volley.ServerError;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
 import com.example.accepted.acceptedtalentplanet.GeoPoint;
 import com.example.accepted.acceptedtalentplanet.MyTalent;
 import com.example.accepted.acceptedtalentplanet.R;
 import com.example.accepted.acceptedtalentplanet.SaveSharedPreference;
 import com.example.accepted.acceptedtalentplanet.TalentCondition.TalentCondition_Activity;
 import com.example.accepted.acceptedtalentplanet.TalentResister.TalentResister_Activity;
+import com.example.accepted.acceptedtalentplanet.VolleySingleton;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -105,7 +105,11 @@ public class TalentSharing_Activity extends AppCompatActivity {
     }
 
     public void getTalentSharing() {
-        RequestQueue postRequestQueue = Volley.newRequestQueue(this);
+
+
+        RequestQueue postRequestQueue = VolleySingleton.getInstance(mContext).getRequestQueue();
+
+
         StringRequest postJsonRequest = new StringRequest(Request.Method.POST, SaveSharedPreference.getServerIp() + "TalentSharing/getTalentSharing.do", new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -157,28 +161,7 @@ public class TalentSharing_Activity extends AppCompatActivity {
                     e.printStackTrace();
                 }
             }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                NetworkResponse response = error.networkResponse;
-                if (error instanceof ServerError && response != null) {
-                    try {
-                        String res = new String(response.data,
-                                HttpHeaderParser.parseCharset(response.headers, "utf-8"));
-                        // Now you can use any deserializer to make sense of data
-                        Log.d("res", res);
-
-                        JSONObject obj = new JSONObject(res);
-                    } catch (UnsupportedEncodingException e1) {
-                        // Couldn't properly decode data to string
-                        e1.printStackTrace();
-                    } catch (JSONException e2) {
-                        // returned data is not JSONObject?
-                        e2.printStackTrace();
-                    }
-                }
-            }
-        }) {
+        }, SaveSharedPreference.getErrorListener()) {
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap();
@@ -315,6 +298,68 @@ public class TalentSharing_Activity extends AppCompatActivity {
         return arrDistance[0] / 1000;
 
     }
+
+
+
+//    private SSLSocketFactory getSocketFactory(){
+//        CertificateFactory cf = null;
+//        try{
+//            cf = CertificateFactory.getInstance("X.509", "BC");
+//            InputStream caInput = getResources().openRawResource(R.raw.accepted);
+//            Certificate ca;
+//            try{
+//                ca= cf.generateCertificate(caInput);
+//                Log.e("CERT", "ca="+((X509Certificate)ca).getSubjectDN());
+//            }finally {
+//                caInput.close();
+//            }
+//
+//            String keyStoreType = KeyStore.getDefaultType();
+//            KeyStore keyStore = KeyStore.getInstance(keyStoreType);
+//            keyStore.load(null, null);
+//            keyStore.setCertificateEntry("ca", ca);
+//
+//            String tmfAlgorithm = TrustManagerFactory.getDefaultAlgorithm();
+//            TrustManagerFactory tmf = TrustManagerFactory.getInstance(tmfAlgorithm);
+//            tmf.init(keyStore);
+//
+//            HostnameVerifier hostnameVerifier = new HostnameVerifier() {
+//                @Override
+//                public boolean verify(String s, SSLSession sslSession) {
+//                    Log.e("CipherUsed", sslSession.getCipherSuite());
+//                    return s.compareTo(SaveSharedPreference.getServerIp())==0;
+//                }
+//            };
+//
+//            HttpsURLConnection.setDefaultHostnameVerifier(hostnameVerifier);
+//            SSLContext context = null;
+//            context = SSLContext.getInstance("TLS");
+//
+//            context.init(null, tmf.getTrustManagers(), null);
+//            HttpsURLConnection.setDefaultSSLSocketFactory(context.getSocketFactory());
+//
+//            SSLSocketFactory sf = context.getSocketFactory();
+//
+//            return sf;
+//
+//        }catch (CertificateException e){
+//            e.printStackTrace();
+//        }catch(NoSuchAlgorithmException e){
+//            e.printStackTrace();
+//        }catch(KeyStoreException e){
+//            e.printStackTrace();
+//        }catch (FileNotFoundException e){
+//            e.printStackTrace();
+//        }catch(IOException e){
+//            e.printStackTrace();
+//        }catch(KeyManagementException e){
+//            e.printStackTrace();
+//        }catch(NoSuchProviderException e){
+//            e.printStackTrace();
+//        }
+//
+//        return null;
+//    }
 
 
 }
