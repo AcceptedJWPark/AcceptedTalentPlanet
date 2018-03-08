@@ -15,7 +15,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <LinearLayout
-        android:id="@+id/claim_toolbar"
+        android:id="@+id/ll_Toolbar_Claim"
         android:layout_width="match_parent"
         android:layout_height="@dimen/MyProfile_Toolbar"
         android:gravity="center"
@@ -33,7 +33,7 @@
             >
 
             <LinearLayout
-                android:id="@+id/CustomerService_Claim_PreBtn"
+                android:id="@+id/ll_preContainer_Claim"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -76,7 +76,7 @@
             >
 
             <LinearLayout
-                android:id="@+id/claim_Txt2"
+                android:id="@+id/ll_Container5_claim"
                 android:layout_width="match_parent"
                 android:layout_height="70dp"
                 android:paddingLeft="10dp"
@@ -110,7 +110,7 @@
 
             </LinearLayout>
             <LinearLayout
-                android:id="@+id/claim_LL1"
+                android:id="@+id/ll_Container1_claim"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
                 android:gravity="center"
@@ -146,7 +146,7 @@
                         android:background="@drawable/bgr_inputbox"
                         >
                         <TextView
-                            android:id="@+id/CustomerService_Claim_SharingList"
+                            android:id="@+id/tv_SharingList_Claim"
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
                             android:layout_weight="1"
@@ -190,7 +190,7 @@
                         >
 
                         <Spinner
-                            android:id="@+id/CustomerService_Claim_Spinner"
+                            android:id="@+id/spn_ClaimType_Claim"
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
                             android:layout_gravity="center"
@@ -205,14 +205,14 @@
             </LinearLayout>
 
             <View
-                android:id="@+id/claim_Devider1"
+                android:id="@+id/v_Divider_Claim"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/Claim_Divider2"
                 android:background="#eeeeee"
                 />
 
             <TextView
-                android:id="@+id/claim_Txt1"
+                android:id="@+id/tv_txt_Claim"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:text="&quot;공유 내역보기에서 신고 대상을 선택해주세요.&quot;"
@@ -226,7 +226,7 @@
                 />
 
             <LinearLayout
-                android:id="@+id/claim_LL2"
+                android:id="@+id/ll_Container2_claim"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/Claim_Edit_Layout"
                 android:gravity="center"
@@ -254,9 +254,9 @@
                         >
 
                         <EditText
-                            android:id="@+id/Claim_EditTxt"
+                            android:id="@+id/et_Content_Claim"
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
+                            android:layout_height="wrap_content"
                             android:background="#ffffff"
                             android:gravity="top"
                             android:hint="내용을 입력해주세요. 1000자로 제한됩니다."
@@ -272,7 +272,7 @@
                         android:gravity="right"
                         >
                     <TextView
-                        android:id="@+id/CustomerService_onebyoneTextLimit"
+                        android:id="@+id/tv_TxtCount_Claim"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="0"
@@ -319,7 +319,7 @@
 
 
             <LinearLayout
-                android:id="@+id/claim_LL3"
+                android:id="@+id/ll_Container3_claim"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/Claim_List_Layout2"
                 android:layout_marginTop="10dp"
@@ -356,7 +356,7 @@
 
 
             <LinearLayout
-                android:id="@+id/claim_LL4"
+                android:id="@+id/ll_Container4_claim"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/Claim_List_Layout2"
                 android:layout_marginTop="10dp"
@@ -366,7 +366,7 @@
 
 
             <Button
-                android:id="@+id/CustomerService_ClaimBtn"
+                android:id="@+id/btn_SaveClaim_Claim"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="신고 하기"

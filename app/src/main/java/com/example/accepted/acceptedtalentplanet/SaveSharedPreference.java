@@ -11,7 +11,6 @@ import android.graphics.drawable.Drawable;
 import android.preference.PreferenceManager;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
@@ -19,26 +18,14 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.NetworkResponse;
 import com.android.volley.Response;
 import com.android.volley.ServerError;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.HttpHeaderParser;
-import com.example.accepted.acceptedtalentplanet.Alarm.Alarm_Activity;
-import com.example.accepted.acceptedtalentplanet.CustomerService.CustomerService_MainActivity;
-import com.example.accepted.acceptedtalentplanet.FriendList.FriendList_Activity;
-import com.example.accepted.acceptedtalentplanet.LoadingLogin.Login_Activity;
-import com.example.accepted.acceptedtalentplanet.Messanger.Messanger_List;
-import com.example.accepted.acceptedtalentplanet.MyProfile.MyProfile_Activity;
-import com.example.accepted.acceptedtalentplanet.SharingList.SharingList_Activity;
-import com.example.accepted.acceptedtalentplanet.System.System_Activity;
-import com.example.accepted.acceptedtalentplanet.TalentCondition.TalentCondition_Activity;
-import com.example.accepted.acceptedtalentplanet.TalentResister.TalentResister_Activity;
-import com.example.accepted.acceptedtalentplanet.TalentSearching.TalentSearching_Activity;
-import com.example.accepted.acceptedtalentplanet.TalentSearching.TalentSearching_SearchingPage_Activity;
-import com.example.accepted.acceptedtalentplanet.TalentSharing.TalentSharing_Activity;
+import com.example.accepted.acceptedtalentplanet.Messanger.List.Messanger_List_Activity;
+import com.example.accepted.acceptedtalentplanet.TalentSharing.MainActivity;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -252,9 +239,9 @@ public class SaveSharedPreference{
 
     public static void DrawerLayout_ClickEvent(Context context, View.OnClickListener listener){
 
-        ((ImageView) ((Activity)context).findViewById(R.id.ActionBar_Listview)).setOnClickListener(listener);
+        ((ImageView) ((Activity)context).findViewById(R.id.DrawerLayout_OpenIcon)).setOnClickListener(listener);
         ((ImageView) ((Activity)context).findViewById(R.id.DrawerCloseImg)).setOnClickListener(listener);
-        ((ImageView) ((Activity)context).findViewById(R.id.ActionBar_AlarmView)).setOnClickListener(listener);
+        ((ImageView) ((Activity)context).findViewById(R.id.DrawerLayout_AlarmIcon)).setOnClickListener(listener);
         ((TextView) ((Activity)context).findViewById(R.id.SlidingMenu_Profile)).setOnClickListener(listener);
         ((TextView) ((Activity)context).findViewById(R.id.SlidingMenu_MyTalentResister)).setOnClickListener(listener);
         ((TextView) ((Activity)context).findViewById(R.id.SlidingMenu_MyTalentProcess)).setOnClickListener(listener);
@@ -278,7 +265,7 @@ public class SaveSharedPreference{
         switch (view.getId())
         {
 
-            case R.id.ActionBar_Listview :
+            case R.id.DrawerLayout_OpenIcon:
             {
                 drawerLayout.openDrawer(drawerView);
                 break;
@@ -290,74 +277,74 @@ public class SaveSharedPreference{
                 break;
             }
 
-            case R.id.ActionBar_AlarmView :
+            case R.id.DrawerLayout_AlarmIcon :
             {
-                i = new Intent(mContext, Alarm_Activity.class);
+                i = new Intent(mContext, com.example.accepted.acceptedtalentplanet.Alarm.MainActivity.class);
                 mContext.startActivity(i);
                 break;
             }
 
             case R.id.SlidingMenu_Profile : {
-                i = new Intent(mContext, MyProfile_Activity.class);
+                i = new Intent(mContext, com.example.accepted.acceptedtalentplanet.MyProfile.MainActivity.class);
                 mContext.startActivity(i);
                 break;
             }
 
             case R.id.SlidingMenu_MyTalentResister : {
-                i = new Intent(mContext, TalentResister_Activity.class);
+                i = new Intent(mContext, com.example.accepted.acceptedtalentplanet.TalentResister.MainActivity.class);
                 mContext.startActivity(i);
                 break;
             }
 
             case R.id.SlidingMenu_MyTalentProcess : {
-                i = new Intent(mContext, TalentCondition_Activity.class);
+                i = new Intent(mContext, com.example.accepted.acceptedtalentplanet.TalentCondition.MainActivity.class);
                 mContext.startActivity(i);
                 break;
             }
 
             case R.id.SlidingMenu_TSharing : {
-                i = new Intent(mContext, TalentSharing_Activity.class);
+                i = new Intent(mContext, MainActivity.class);
                 mContext.startActivity(i);
                 break;
             }
             case R.id.SlidingMenu_TalentSearching : {
-                i = new Intent(mContext, TalentSearching_SearchingPage_Activity.class);
+                i = new Intent(mContext, com.example.accepted.acceptedtalentplanet.TalentSearching.SearchingPage.MainActivity.class);
                 mContext.startActivity(i);
                 break;
             }
 
             case R.id.SlidingMenu_SharingList : {
-                i = new Intent(mContext, SharingList_Activity.class);
+                i = new Intent(mContext, com.example.accepted.acceptedtalentplanet.SharingList.MainActivity.class);
                 mContext.startActivity(i);
                 break;
             }
 
             case R.id.SlidingMenu_MessageBox : {
-                i = new Intent(mContext, Messanger_List.class);
+                i = new Intent(mContext, Messanger_List_Activity.class);
                 mContext.startActivity(i);
                 break;
             }
             case R.id.SlidingMenu_FriendList : {
-                i = new Intent(mContext, FriendList_Activity.class);
+                i = new Intent(mContext, com.example.accepted.acceptedtalentplanet.FriendList.MainActivity.class);
                 mContext.startActivity(i);
                 break;
             }
 
             case R.id.SlidingMenu_ServiceCenter : {
-                i = new Intent(mContext, CustomerService_MainActivity.class);
+                i = new Intent(mContext, com.example.accepted.acceptedtalentplanet.CustomerService.MainActivity.class);
                 mContext.startActivity(i);
                 break;
             }
 
             case R.id.SlidingMenu_System : {
-                i = new Intent(mContext, System_Activity.class);
+                i = new Intent(mContext, com.example.accepted.acceptedtalentplanet.System.MainActivity.class);
                 mContext.startActivity(i);
                 break;
             }
 
             case R.id.SlidingMenu_LogOut : {
                 clearUserInfo(mContext);
-                i = new Intent(mContext, Login_Activity.class);
+                i = new Intent(mContext, com.example.accepted.acceptedtalentplanet.LoadingLogin.Login.MainActivity.class);
                 mContext.startActivity(i);
                 ((Activity)mContext).finish();
                 break;

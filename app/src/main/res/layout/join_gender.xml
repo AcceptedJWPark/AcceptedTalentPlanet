@@ -22,7 +22,7 @@
         >
 
         <LinearLayout
-            android:id="@+id/pre_LL"
+            android:id="@+id/ll_preContainer_Birth_Join"
             android:layout_marginLeft="15dp"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
@@ -72,7 +72,7 @@
             >
 
             <Spinner
-                android:id="@+id/Join_genderSpinner"
+                android:id="@+id/spn_Gender_Join"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:background="@drawable/bgr_inputbox"
@@ -93,7 +93,7 @@
             android:background="@drawable/bgr_inputbox"
             >
             <CheckBox
-                android:id="@+id/Join_GenderNoShowCheck"
+                android:id="@+id/cb_isShowGender_Gender_Join"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="비공개"

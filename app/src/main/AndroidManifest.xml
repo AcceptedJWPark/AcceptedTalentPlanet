@@ -17,7 +17,7 @@
         android:supportsRtl="true"
         android:largeHeap="true"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name=".LoadingLogin.Loading_Activity"
+        <activity android:name=".LoadingLogin.Loading.MainActivity"
             >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -44,15 +44,15 @@
 
 
         <activity
-            android:name=".LoadingLogin.Login_Activity"
+            android:name=".LoadingLogin.Login.MainActivity"
             android:windowSoftInputMode="stateAlwaysHidden"
             />
         <activity
-            android:name=".LoadingLogin.Password_Lost_Accept_Activity"
+            android:name=".LoadingLogin.PasswordLost.Confirm.MainActivity"
             android:windowSoftInputMode="stateAlwaysHidden"
             />
         <activity
-            android:name=".LoadingLogin.Password_Lost_Change_Activity"
+            android:name=".LoadingLogin.PasswordLost.Change.MainActivity"
             android:windowSoftInputMode="stateAlwaysHidden"
             />
 
@@ -64,97 +64,93 @@
             android:name=".Home.Home_Activity"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".Join.Join_Email_Activity"
+            android:name=".Join.Email.MainActivity"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".Join.Join_Password_Activity"
+            android:name=".Join.Password.MainActivity"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".Join.Join_Name_Activity"
+            android:name=".Join.Name.MainActivity"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".Join.Join_Gender_Activity"
+            android:name=".Join.Gender.MainActivity"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".Join.Join_Birth_Activity"
+            android:name=".Join.Birth.MainActivity"
             android:theme="@style/AppTheme" />
-        <activity android:name=".MyProfile.MyProfile_Activity"/>
+        <activity android:name=".MyProfile.MainActivity"/>
 
-        <activity android:name=".MyProfile.MyProfile_CompleteList_Activity"/>
+        <activity android:name=".MyProfile.CompleteList.MainActivity"/>
 
 
-        <activity android:name=".TalentResister.TalentResister_Activity"/>
-        <activity android:name=".TalentResister.TalentResister_Level_Activity"/>
+        <activity android:name=".TalentResister.MainActivity"/>
+        <activity android:name=".TalentResister.Level.MainActivity"/>
         <activity
-            android:name=".TalentResister.TalentResister_Location_Activity"
+            android:name=".TalentResister.Location.MainActivity"
             android:windowSoftInputMode="adjustNothing"
             />
-        <activity android:name=".TalentResister.TalentResister_Point_Activity"/>
-        <activity android:name=".TalentResister.TalentResister_Talent_Activity"
+        <activity android:name=".TalentResister.Point.MainActivity"/>
+        <activity android:name=".TalentResister.Talent.MainActivity"
             android:windowSoftInputMode="adjustNothing"/>
 
-        <activity android:name=".TalentCondition.TalentCondition_Activity"/>
-        <activity android:name=".TalentSharing.TalentSharing_Activity"/>
+        <activity android:name=".TalentCondition.MainActivity"/>
+        <activity android:name=".TalentSharing.MainActivity"/>
 
-        <activity android:name=".CustomerService.CustomerService_MainActivity"/>
-        <activity android:name=".CustomerService.CustomerService_FaqActivity"/>
-        <activity android:name=".CustomerService.CustomerService_IntroductionActivity"/>
-        <activity android:name=".CustomerService.CustomerService_VersionActivity"/>
-        <activity android:name=".CustomerService.CustomerService_NoticeActivity"/>
-        <activity android:name=".CustomerService.CustomerService_OnebyOneQuestionActivity"/>
-        <activity android:name=".CustomerService.CustomerService_OnebyOneQuestionListActivity"/>
-        <activity android:name=".CustomerService.CustomerService_UpdateActivity"/>
-        <activity android:name=".CustomerService.CustomerService_Manual_AnswerList_Activity"/>
-        <activity android:name=".CustomerService.CustomerService_ManualActivity"/>
-        <activity
-            android:name=".CustomerService.CustomerService_ClaimActivity"
+        <activity android:name=".CustomerService.MainActivity"/>
+        <activity android:name=".CustomerService.Faq.MainActivity"/>
+        <activity android:name=".CustomerService.Introduction.MainActivity"/>
+        <activity android:name=".CustomerService.Version.MainActivity"/>
+        <activity android:name=".CustomerService.Notice.MainActivity"/>
+        <activity android:name=".CustomerService.Question.MainActivity"/>
+        <activity android:name=".CustomerService.Question.QuestionList.MainActivity"/>
+        <activity android:name=".CustomerService.Update.MainActivity"/>
+        <activity android:name=".CustomerService.Manual.AnswerList.MainActivity"/>
+        <activity android:name=".CustomerService.Manual.MainActivity"/>
+        <activity android:name=".CustomerService.Claim.ClaimList.MainActivity" />
+        <activity android:name=".CustomerService.Claim.MainActivity"
             />
 
-        <activity android:name=".CustomerService.CustomerService_ClaimListActivity"
-            android:windowSoftInputMode="adjustPan"
-            />
-
-        <activity android:name=".SharingList.SharingList_Activity"/>
-        <activity android:name=".TalentSearching.TalentSearching_SearchingPage_Activity"
+        <activity android:name=".SharingList.MainActivity"/>
+        <activity android:name=".TalentSearching.SearchingPage.MainActivity"
             android:windowSoftInputMode="adjustNothing"/>
-        <activity android:name=".TalentSearching.TalentSearching_Activity"/>
+        <activity android:name=".TalentSearching.MainActivity"/>
 
         <activity
-            android:name=".TalentSharing.TalentSharing_Popup_Activity"
+            android:name=".TalentSharing.Popup.MainActivity"
             android:theme="@style/Theme.AppCompat.Dialog">
         </activity>
 
         <activity
-            android:name=".System.System_Activity">
+            android:name=".System.MainActivity">
         </activity>
 
         <activity
-            android:name=".InterestingList.InterestingList_Activity"
+            android:name=".InterestingList.MainActivity"
             >
         </activity>
 
         <activity
-            android:name=".InterestingList.InterestingList_Popup"
+            android:name=".InterestingList.Popup.MainActivity"
             android:theme="@style/Theme.AppCompat.Dialog"
             >
         </activity>
 
         <activity
-            android:name=".Alarm.Alarm_Activity"
+            android:name=".Alarm.MainActivity"
             >
         </activity>
 
         <activity
-            android:name=".FriendList.FriendList_Activity">
+            android:name=".FriendList.MainActivity">
         </activity>
 
         <activity
-            android:name=".Messanger.Messanger_Chatting"
+            android:name=".Messanger.Chatting.MainActivity"
             android:windowSoftInputMode="stateAlwaysHidden"
             />
 
         <activity
-            android:name=".Messanger.Messanger_List"
+            android:name=".Messanger.List.Messanger_List_Activity"
             />
 
     </application>

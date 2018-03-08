@@ -22,16 +22,16 @@
                 android:layout_width="@dimen/Popup_Icon"
                 android:layout_height="@dimen/Popup_Icon"
                 android:layout_alignParentLeft="true"
-                android:layout_alignTop="@+id/Interesting_popup_container"
+                android:layout_alignTop="@+id/rl_FriendIconContainer_InterestingPopup"
                 >
                 <ImageView
-                    android:id="@+id/InterestedPopup_addfriendList_on"
+                    android:id="@+id/iv_AddFriendOn_InterestingPopup"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:src="@drawable/icon_friendadd_clicked"
                     />
                 <ImageView
-                    android:id="@+id/InterestedPopup_addfriendList_off"
+                    android:id="@+id/iv_AddFriendOff_InterestingPopup"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:visibility="gone"
@@ -64,11 +64,11 @@
 
 
             <ImageView
-                android:id="@+id/TalentSharing_pupupclosebtn"
+                android:id="@+id/iv_CloseIcon_InterestingPopup"
                 android:layout_width="@dimen/Popup_Icon"
                 android:layout_height="@dimen/Popup_Icon"
                 android:layout_alignParentRight="true"
-                android:layout_alignTop="@+id/Interesting_popup_container"
+                android:layout_alignTop="@+id/rl_FriendIconContainer_InterestingPopup"
                 android:src="@drawable/icon_close"
                 android:padding="4dp"
                 />
@@ -109,7 +109,7 @@
             android:text="이름" />
 
         <TextView
-            android:id="@+id/TalentSharingPopup_UserName"
+            android:id="@+id/name_InterestingPopup"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="8"
@@ -142,7 +142,7 @@
                     android:text="성별" />
 
                 <TextView
-                    android:id="@+id/TalentSharingPopup_UserGender"
+                    android:id="@+id/gender_InterestingPopup"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="8"
@@ -174,7 +174,7 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/TalentSharingPopup_UserBirth"
+                    android:id="@+id/birth_InterestingPopup"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="8"
@@ -206,7 +206,7 @@
                     android:text="직업" />
 
                 <TextView
-                    android:id="@+id/TalentSharingPopup_UserJob"
+                    android:id="@+id/job_InterestingPopup"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="8"
@@ -219,7 +219,7 @@
 
 
     <TextView
-        android:id="@+id/TalentSharing_TypeText"
+        android:id="@+id/dividerTalentType_TalentSharing"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1.08"
@@ -260,7 +260,7 @@
                 android:layout_weight="8">
 
                 <TextView
-                    android:id="@+id/TalentSharingPopup_Keyword1"
+                    android:id="@+id/talent1_InterestingPopup"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -273,7 +273,7 @@
                     />
 
                 <TextView
-                    android:id="@+id/TalentSharingPopup_Keyword2"
+                    android:id="@+id/talent2_InterestingPopup"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -286,7 +286,7 @@
                     />
 
                 <TextView
-                    android:id="@+id/TalentSharingPopup_Keyword3"
+                    android:id="@+id/talent3_InterestingPopup"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -355,7 +355,7 @@
             >
 
             <TextView
-                android:id="@+id/TalentSharingPopup_Location1"
+                android:id="@+id/location1_InterestingPopup"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -369,7 +369,7 @@
                 />
 
             <TextView
-                android:id="@+id/TalentSharingPopup_Location2"
+                android:id="@+id/location2_InterestingPopup"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -384,7 +384,7 @@
                 />
 
             <TextView
-                android:id="@+id/TalentSharingPopup_Location3"
+                android:id="@+id/location3_InterestingPopup"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -424,7 +424,7 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/TalentSharingPopup_Level"
+            android:id="@+id/level_InterestingPopup"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="8"
@@ -456,7 +456,7 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/TalentSharingPopup_Point"
+            android:id="@+id/point_InterestingPopup"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="8"
@@ -478,6 +478,7 @@
         >
 
         <Button
+            android:id="@+id/Popup_Message"
             android:textAllCaps="false"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -490,7 +491,7 @@
             />
 
         <Button
-            android:id="@+id/Popup_ProgressorCancel"
+            android:id="@+id/btn_Progress_InterestingPopup"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_marginLeft="5dp"

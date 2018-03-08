@@ -25,7 +25,7 @@
         >
 
         <LinearLayout
-            android:id="@+id/CustomerService_ClaimList_PreBtn"
+            android:id="@+id/ll_PreContainer_ClaimList"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -56,7 +56,7 @@
 
 
     <ExpandableListView
-        android:id="@+id/CustomerService_ClaimList_ELV"
+        android:id="@+id/expandableListView_ClaimList"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="10dp"

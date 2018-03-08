@@ -28,7 +28,7 @@
 
 
                 <LinearLayout
-                    android:id="@+id/Alarm_PreBtn"
+                    android:id="@+id/ll_PreContainer_Alarm"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
@@ -55,7 +55,7 @@
                 />
 
             <LinearLayout
-                android:id="@+id/Alarm_DeleteBtn"
+                android:id="@+id/ll_DeleteIcon_Alarm"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
@@ -80,7 +80,7 @@
     </LinearLayout>
 
     <ListView
-        android:id="@+id/Alarm_List"
+        android:id="@+id/listView_Alarm"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="22.68"

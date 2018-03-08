@@ -10,7 +10,7 @@
 
 
     <ExpandableListView
-        android:id="@+id/CustomerService_Manual_ELV"
+        android:id="@+id/expandableListView_Manual"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="23"
@@ -31,7 +31,7 @@
 
 
     <Button
-        android:id="@+id/CustomerService_manual_answerList_PreBtn"
+        android:id="@+id/btn_Pre_Manual"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"

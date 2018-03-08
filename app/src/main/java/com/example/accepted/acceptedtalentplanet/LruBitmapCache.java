@@ -1,6 +1,5 @@
 package com.example.accepted.acceptedtalentplanet;
 
-import android.app.ActivityManager;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.util.DisplayMetrics;

@@ -22,7 +22,7 @@
         >
 
         <LinearLayout
-            android:id="@+id/pre_LL"
+            android:id="@+id/ll_pre_Email_Join"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:gravity="center_vertical"
@@ -73,7 +73,7 @@
         android:orientation="horizontal">
 
         <EditText
-            android:id="@+id/Join_Email"
+            android:id="@+id/et_Email_Join"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:background="@drawable/bgr_inputbox"
@@ -120,7 +120,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/accept_join_mail"
+        android:id="@+id/ll_ll_AcceptEmailContainer_Email_Join"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1.6"
@@ -140,7 +140,7 @@
             android:orientation="horizontal">
 
             <EditText
-                android:id="@+id/Join_joinCode"
+                android:id="@+id/et_EmailCode_Email_Join"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:background="@drawable/bgr_inputbox"
@@ -166,7 +166,7 @@
                     android:layout_weight="0.2"/>
 
             <Button
-                android:id="@+id/btnAccept"
+                android:id="@+id/btn_ConfirmEmail"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
@@ -192,7 +192,7 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/accept_join_mail_btn"
+        android:id="@+id/btn_Accept_Email_Join"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"

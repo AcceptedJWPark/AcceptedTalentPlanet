@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="#ffffff"
-    tools:context=".TalentResister.TalentResister_Level_Activity"
+    tools:mContext=".TalentResister.Level.MainActivity"
     android:weightSum="24"
     >
 
@@ -49,7 +49,7 @@
             android:gravity="center"
             android:orientation="vertical">
             <CheckBox
-                android:id="@+id/TalentResister_Talent_Level1"
+                android:id="@+id/cb1_TalentRegister"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 />
@@ -71,7 +71,7 @@
             android:orientation="vertical">
 
             <CheckBox
-                android:id="@+id/TalentResister_Talent_Level2"
+                android:id="@+id/cb2_TalentRegister"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
@@ -91,7 +91,7 @@
             android:gravity="center"
             android:orientation="vertical">
             <CheckBox
-                android:id="@+id/TalentResister_Talent_Level3"
+                android:id="@+id/cb3_TalentRegister"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 />
@@ -111,7 +111,7 @@
             android:gravity="center"
             android:orientation="vertical">
             <CheckBox
-                android:id="@+id/TalentResister_Talent_Level4"
+                android:id="@+id/cb4_TalentRegister"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 />
@@ -131,7 +131,7 @@
             android:gravity="center"
             android:orientation="vertical">
             <CheckBox
-                android:id="@+id/TalentResister_Talent_Level5"
+                android:id="@+id/cb5_TalentRegister"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 />

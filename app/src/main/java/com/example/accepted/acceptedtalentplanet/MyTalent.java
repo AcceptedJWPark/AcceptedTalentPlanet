@@ -1,7 +1,6 @@
 package com.example.accepted.acceptedtalentplanet;
 
 import java.io.Serializable;
-import java.util.Objects;
 
 /**
  * Created by kwonhong on 2017-11-05.

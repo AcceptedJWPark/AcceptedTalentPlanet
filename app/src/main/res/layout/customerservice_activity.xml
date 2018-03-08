@@ -2,7 +2,7 @@
 
 <android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/CustomerService_listboxDL"
+    android:id="@+id/drawerLayout_CustomerService"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -13,7 +13,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context="com.example.accepted.acceptedtalentplanet.CustomerService.CustomerService_MainActivity"
+    tools:mContext="com.example.accepted.acceptedtalentplanet.CustomerService.MainActivity"
     android:background="#ffffff"
     android:orientation="vertical">
 
@@ -57,7 +57,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/CustomerService_IntroductionLL"
+        android:id="@+id/ll_Introduction_CustomerService"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="2.02"
@@ -87,7 +87,7 @@
 
 
     <LinearLayout
-        android:id="@+id/CustomerService_VersionLL"
+        android:id="@+id/ll_Version_CustomerService"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="2.02"
@@ -125,7 +125,7 @@
         android:background="#eeeeee" />
 
     <LinearLayout
-        android:id="@+id/CustomerService_UpdateListLL"
+        android:id="@+id/ll_Update_CustomerService"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="2.02"
@@ -163,7 +163,7 @@
         android:layout_weight="0.05"
         android:background="#eeeeee" />
     <LinearLayout
-        android:id="@+id/CustomerService_NoticeLL"
+        android:id="@+id/ll_Notice_CustomerService"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="2.02"
@@ -209,7 +209,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/CustomerService_ManualLL"
+        android:id="@+id/ll_Manual_CustomerService"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="2.02"
@@ -238,7 +238,7 @@
         android:background="#eeeeee" />
 
     <LinearLayout
-        android:id="@+id/CustomerService_FAQLL"
+        android:id="@+id/ll_Faq_CustomerService"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="2.02"
@@ -268,7 +268,7 @@
 
 
     <LinearLayout
-        android:id="@+id/CustomerService_OnebyOneQuestionLL"
+        android:id="@+id/ll_Question_CustomerService"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="2.02"
@@ -297,7 +297,7 @@
         android:background="#eeeeee" />
 
     <LinearLayout
-        android:id="@+id/CustomerService_OnebuOneQuestionListLL"
+        android:id="@+id/ll_QuestionList_CustomerService"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="2.02"
@@ -344,7 +344,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/CustomerService_ClaimLL"
+        android:id="@+id/ll_Claim_CustomerService"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="2.02"
@@ -374,7 +374,7 @@
         android:background="#eeeeee" />
 
     <LinearLayout
-        android:id="@+id/CustomerService_ClaimListLL"
+        android:id="@+id/ll_ClaimList_CustomerService"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="2.02"
@@ -407,7 +407,7 @@
 
 
     <FrameLayout
-        android:id="@+id/CustomerService_container"
+        android:id="@+id/v_drawerView_CustomerService"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="start">
