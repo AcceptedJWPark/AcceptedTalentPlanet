@@ -116,8 +116,6 @@ public class VolleySingleton {
             context.init(null, trustManagers, null);
             SSLSocketFactory sf = context.getSocketFactory();
 
-            Log.d("aasdf", "tmf"+tmf.getTrustManagers().length);
-
             return sf;
         }catch (Exception e){
             throw new AssertionError(e);

@@ -513,6 +513,7 @@ public class MyProfile_Activity extends AppCompatActivity {
                 Log.d("bitmap = ", "null");
             }
             MyProfile_Picture.setImageBitmap(bitmap);
+            SaveSharedPreference.setMyPicture(bitmap);
 
             uploadBitmap(bitmap);
         }catch (IOException e){
@@ -543,7 +544,7 @@ public class MyProfile_Activity extends AppCompatActivity {
         bitmap = rotate(bitmap, exifDegree);
 
         MyProfile_Picture.setImageBitmap(bitmap);
-
+        SaveSharedPreference.setMyPicture(bitmap);
         uploadBitmap(bitmap);
     }
 

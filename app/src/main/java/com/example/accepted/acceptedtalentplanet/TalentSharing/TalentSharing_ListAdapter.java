@@ -3,6 +3,7 @@ package com.example.accepted.acceptedtalentplanet.TalentSharing;
 import android.content.Context;
 import android.content.Intent;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.example.accepted.acceptedtalentplanet.R;
+import com.example.accepted.acceptedtalentplanet.SaveSharedPreference;
 import com.example.accepted.acceptedtalentplanet.SharingList.SharingList_Adapter;
 
 import java.util.ArrayList;
@@ -70,6 +72,8 @@ public class TalentSharing_ListAdapter extends BaseAdapter {
             ViewGroup.LayoutParams params1 = view.getLayoutParams();
             params1.height = Interesting_ListView_height;
             view.setLayoutParams(params1);
+            String fileData = list_ArrayList.get(position).getFileData();
+            Log.d("fileData = ", fileData);
 
             holder.listView_picture = view.findViewById(R.id.TalentSharing_Picture);
             holder.listView_name = view.findViewById(R.id.TalentSharing_Name);
@@ -90,7 +94,11 @@ public class TalentSharing_ListAdapter extends BaseAdapter {
                 }
             });
 
+        if(fileData.equals("Tk9EQVRB")) {
             holder.listView_picture.setBackgroundResource(list_ArrayList.get(position).getPicture());
+        }else{
+            holder.listView_picture.setImageBitmap(SaveSharedPreference.StringToBitMap(fileData));
+        }
             holder.listView_name.setText(list_ArrayList.get(position).getName());
             holder.listView_talent1.setText(list_ArrayList.get(position).getTalent1());
             holder.listView_talent2.setText(list_ArrayList.get(position).getTalent2());

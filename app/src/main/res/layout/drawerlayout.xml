@@ -45,13 +45,13 @@
                     android:layout_centerInParent="true"
                     >
 
-                <ImageView
-                    android:adjustViewBounds="false"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:src="@drawable/textpicture"
-                    android:scaleType="fitXY"
-                    />
+                    <ImageView
+                        android:id="@+id/DrawerPicture"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:adjustViewBounds="false"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/textpicture" />
                 </RelativeLayout>
 
                 <TextView

@@ -67,6 +67,7 @@ public class SaveSharedPreference{
     static final String PREF_GEO_POINT3 = "geoPoint3";
     static final String PREF_FRIEND_ARRAY = "friendList";
     static final String PREF_TALENT_POINT = "talentPoint";
+    static Bitmap myPicture = null;
 
     static DrawerLayout slidingMenuDL;
     static View drawerView;
@@ -117,7 +118,7 @@ public class SaveSharedPreference{
     }
 
     public static String getServerIp(){
-        return SERVER_IP;
+        return SERVER_IP2;
     }
 
     public static String getLevel(String Level) {
@@ -270,6 +271,9 @@ public class SaveSharedPreference{
 
         Intent i;
 
+        if(getMyPicture() != null)
+            ((ImageView) ((Activity)mContext).findViewById(R.id.DrawerPicture)).setImageBitmap(getMyPicture());
+
         switch (view.getId())
         {
 
@@ -401,4 +405,17 @@ public class SaveSharedPreference{
 
         return errorListener;
     }
+
+    public static void setMyPicture(String picture){
+        myPicture = StringToBitMap(picture);
+    }
+
+    public static void setMyPicture(Bitmap bitmap){
+        myPicture = bitmap;
+    }
+
+    public static Bitmap getMyPicture(){
+        return myPicture;
+    }
+
 }

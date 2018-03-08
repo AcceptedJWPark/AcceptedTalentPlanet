@@ -18,6 +18,7 @@ public class TalentSharing_ListItem implements Comparable<TalentSharing_ListItem
     private String userID;
     private String showProfile;
     private double ddistance;
+    private String fileData;
 
     public int getPicture() {
         return picture;
@@ -57,6 +58,8 @@ public class TalentSharing_ListItem implements Comparable<TalentSharing_ListItem
 
     public String getUserID(){ return userID; }
 
+    public String getFileData() { return fileData; }
+
     public void setPicture(int picture) {
         this.picture = picture;
     }
@@ -95,7 +98,7 @@ public class TalentSharing_ListItem implements Comparable<TalentSharing_ListItem
 
     public void setUserID(String userID) { this.userID = userID; }
 
-    public TalentSharing_ListItem(int pictire, String name, String talent1, String talent2, String talent3, String talentID, String isGiveTalent, String status_flag, String distance, String showProfile, String userID, double ddistance)
+    public TalentSharing_ListItem(int pictire, String name, String talent1, String talent2, String talent3, String talentID, String isGiveTalent, String status_flag, String distance, String showProfile, String userID, double ddistance, String fileData)
     {
         this.picture = pictire;
         this.name = name;
@@ -109,6 +112,7 @@ public class TalentSharing_ListItem implements Comparable<TalentSharing_ListItem
         this.showProfile = showProfile;
         this.userID = userID;
         this.ddistance = ddistance;
+        this.fileData = fileData;
     }
 
     @Override

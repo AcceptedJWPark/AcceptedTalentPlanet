@@ -163,12 +163,13 @@ public class TalentSharing_Popup_Activity extends FragmentActivity{
 
     public void getProfileInfo(final String talentID) {
         final String TalentID = talentID;
-        RequestQueue postRequestQueue = Volley.newRequestQueue(mContext, new HurlStack(null, getSocketFactory()));
+        RequestQueue postRequestQueue = VolleySingleton.getInstance(mContext).getRequestQueue();
         StringRequest postJsonRequest = new StringRequest(Request.Method.POST, SaveSharedPreference.getServerIp() + "TalentSharing/getProfileInfo.do", new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 try {
                     JSONObject obj = new JSONObject(response);
+                    Log.d("getProfile", obj.toString());
                     talentFlag = obj.getString("TALENT_FLAG");
                     point = Integer.parseInt(obj.getString("T_POINT"));
 
@@ -193,6 +194,10 @@ public class TalentSharing_Popup_Activity extends FragmentActivity{
                     ((TextView)findViewById(R.id.TalentSharingPopup_Point)).setText(point+"P");
                     ((TextView)findViewById(R.id.TalentSharing_TypeText)).setText(TalentText);
                     statusFlag = obj.getString("STATUS_FLAG");
+
+                    if(!obj.getString("FILE_DATA").equals("Tk9EQVRB")){
+                        ((ImageView)findViewById(R.id.TalentSharing_popup_picture)).setImageBitmap(SaveSharedPreference.StringToBitMap(obj.getString("FILE_DATA")));
+                    }
 
                     UserID = obj.getString("USER_ID");
                     ArrayList<Friend> friendList = SaveSharedPreference.getFriendList(mContext);
