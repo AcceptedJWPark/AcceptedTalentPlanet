@@ -90,14 +90,14 @@ public class Home_Activity extends AppCompatActivity {
 
         NewTalentlayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         NewTalentList = new ArrayList<>();
-        NewTalentList.add(new Home_NewTalent_ListItem(R.drawable.textpicture, "#연기1", "정우성"));
-        NewTalentList.add(new Home_NewTalent_ListItem(R.drawable.textpicture, "#연기2", "정우성"));
-        NewTalentList.add(new Home_NewTalent_ListItem(R.drawable.textpicture, "#연기3", "정우성"));
-        NewTalentList.add(new Home_NewTalent_ListItem(R.drawable.textpicture, "#연기4", "정우성"));
-        NewTalentList.add(new Home_NewTalent_ListItem(R.drawable.textpicture, "#연기5", "정우성"));
-        NewTalentList.add(new Home_NewTalent_ListItem(R.drawable.textpicture, "#연기6", "정우성"));
-        NewTalentList.add(new Home_NewTalent_ListItem(R.drawable.textpicture, "#연기7", "정우성"));
-        NewTalentList.add(new Home_NewTalent_ListItem(R.drawable.textpicture, "#연기8", "정우성"));
+        NewTalentList.add(new Home_NewTalent_ListItem(R.drawable.testpicture, "#연기1", "정우성"));
+        NewTalentList.add(new Home_NewTalent_ListItem(R.drawable.testpicture, "#연기2", "정우성"));
+        NewTalentList.add(new Home_NewTalent_ListItem(R.drawable.testpicture, "#연기3", "정우성"));
+        NewTalentList.add(new Home_NewTalent_ListItem(R.drawable.testpicture, "#연기4", "정우성"));
+        NewTalentList.add(new Home_NewTalent_ListItem(R.drawable.testpicture, "#연기5", "정우성"));
+        NewTalentList.add(new Home_NewTalent_ListItem(R.drawable.testpicture, "#연기6", "정우성"));
+        NewTalentList.add(new Home_NewTalent_ListItem(R.drawable.testpicture, "#연기7", "정우성"));
+        NewTalentList.add(new Home_NewTalent_ListItem(R.drawable.testpicture, "#연기8", "정우성"));
 
         NewTalent_Adapter = new Home_NewTalent_ListView_Adapter(NewTalentList);
         NewTalent_recyclerView.setLayoutManager(NewTalentlayoutManager);
@@ -121,23 +121,23 @@ public class Home_Activity extends AppCompatActivity {
         BestTalent_listView = (ListView) findViewById(R.id.Home_BestTalent_ListView);
 
         BestTalentListAll = new ArrayList<>();
-        BestTalentListAll.add(new Home_BestTalent_ListItem(R.drawable.textpicture, 1, "#Piano", "정우성", "예체능 / 음악", "37건", "-", "Profile 보기"));
-        BestTalentListAll.add(new Home_BestTalent_ListItem(R.drawable.textpicture, 2, "#기타", "정우성", "예체능 / 음악", "21건", "-", "Profile 보기"));
-        BestTalentListAll.add(new Home_BestTalent_ListItem(R.drawable.textpicture, 3, "#영어", "정우성", "외국어 / 영어", "15건", "-", "Profile 보기"));
-        BestTalentListAll.add(new Home_BestTalent_ListItem(R.drawable.textpicture, 4, "#헬스", "정우성", "예체능 / 운동", "7건", "-", "Profile 보기"));
-        BestTalentListAll.add(new Home_BestTalent_ListItem(R.drawable.textpicture, 5, "#공무원 시험", "정우성", "시험 / 공무원 ", "5건", "-", "Profile 보기"));
-        BestTalentListAll.add(new Home_BestTalent_ListItem(R.drawable.textpicture, 6, "#공무원 시험", "정우성", "시험 / 공무원 ", "5건", "-", "Profile 보기"));
-        BestTalentListAll.add(new Home_BestTalent_ListItem(R.drawable.textpicture, 7, "#공무원 시험", "정우성", "시험 / 공무원 ", "5건", "-", "Profile 보기"));
-        BestTalentListAll.add(new Home_BestTalent_ListItem(R.drawable.textpicture, 8, "#공무원 시험", "정우성", "시험 / 공무원 ", "5건", "-", "Profile 보기"));
-        BestTalentListAll.add(new Home_BestTalent_ListItem(R.drawable.textpicture, 9, "#공무원 시험", "정우성", "시험 / 공무원 ", "5건", "-", "Profile 보기"));
-        BestTalentListAll.add(new Home_BestTalent_ListItem(R.drawable.textpicture, 10, "#공무원 시험", "정우성", "시험 / 공무원 ", "5건", "-", "Profile 보기"));
-        BestTalentListAll.add(new Home_BestTalent_ListItem(R.drawable.textpicture, 11, "#공무원 시험", "정우성", "시험 / 공무원 ", "5건", "-", "Profile 보기"));
-        BestTalentListAll.add(new Home_BestTalent_ListItem(R.drawable.textpicture, 12, "#공무원 시험", "정우성", "시험 / 공무원 ", "5건", "-", "Profile 보기"));
-        BestTalentListAll.add(new Home_BestTalent_ListItem(R.drawable.textpicture, 13, "#공무원 시험", "정우성", "시험 / 공무원 ", "5건", "-", "Profile 보기"));
-        BestTalentListAll.add(new Home_BestTalent_ListItem(R.drawable.textpicture, 14, "#공무원 시험", "정우성", "시험 / 공무원 ", "5건", "-", "Profile 보기"));
-        BestTalentListAll.add(new Home_BestTalent_ListItem(R.drawable.textpicture, 15, "#공무원 시험", "정우성", "시험 / 공무원 ", "5건", "-", "Profile 보기"));
-        BestTalentListAll.add(new Home_BestTalent_ListItem(R.drawable.textpicture, 16, "#공무원 시험", "정우성", "시험 / 공무원 ", "5건", "-", "Profile 보기"));
-        BestTalentListAll.add(new Home_BestTalent_ListItem(R.drawable.textpicture, 17, "#공무원 시험", "정우성", "시험 / 공무원 ", "5건", "-", "Profile 보기"));
+        BestTalentListAll.add(new Home_BestTalent_ListItem(R.drawable.testpicture, 1, "#Piano", "정우성", "예체능 / 음악", "37건", "-", "Profile 보기"));
+        BestTalentListAll.add(new Home_BestTalent_ListItem(R.drawable.testpicture, 2, "#기타", "정우성", "예체능 / 음악", "21건", "-", "Profile 보기"));
+        BestTalentListAll.add(new Home_BestTalent_ListItem(R.drawable.testpicture, 3, "#영어", "정우성", "외국어 / 영어", "15건", "-", "Profile 보기"));
+        BestTalentListAll.add(new Home_BestTalent_ListItem(R.drawable.testpicture, 4, "#헬스", "정우성", "예체능 / 운동", "7건", "-", "Profile 보기"));
+        BestTalentListAll.add(new Home_BestTalent_ListItem(R.drawable.testpicture, 5, "#공무원 시험", "정우성", "시험 / 공무원 ", "5건", "-", "Profile 보기"));
+        BestTalentListAll.add(new Home_BestTalent_ListItem(R.drawable.testpicture, 6, "#공무원 시험", "정우성", "시험 / 공무원 ", "5건", "-", "Profile 보기"));
+        BestTalentListAll.add(new Home_BestTalent_ListItem(R.drawable.testpicture, 7, "#공무원 시험", "정우성", "시험 / 공무원 ", "5건", "-", "Profile 보기"));
+        BestTalentListAll.add(new Home_BestTalent_ListItem(R.drawable.testpicture, 8, "#공무원 시험", "정우성", "시험 / 공무원 ", "5건", "-", "Profile 보기"));
+        BestTalentListAll.add(new Home_BestTalent_ListItem(R.drawable.testpicture, 9, "#공무원 시험", "정우성", "시험 / 공무원 ", "5건", "-", "Profile 보기"));
+        BestTalentListAll.add(new Home_BestTalent_ListItem(R.drawable.testpicture, 10, "#공무원 시험", "정우성", "시험 / 공무원 ", "5건", "-", "Profile 보기"));
+        BestTalentListAll.add(new Home_BestTalent_ListItem(R.drawable.testpicture, 11, "#공무원 시험", "정우성", "시험 / 공무원 ", "5건", "-", "Profile 보기"));
+        BestTalentListAll.add(new Home_BestTalent_ListItem(R.drawable.testpicture, 12, "#공무원 시험", "정우성", "시험 / 공무원 ", "5건", "-", "Profile 보기"));
+        BestTalentListAll.add(new Home_BestTalent_ListItem(R.drawable.testpicture, 13, "#공무원 시험", "정우성", "시험 / 공무원 ", "5건", "-", "Profile 보기"));
+        BestTalentListAll.add(new Home_BestTalent_ListItem(R.drawable.testpicture, 14, "#공무원 시험", "정우성", "시험 / 공무원 ", "5건", "-", "Profile 보기"));
+        BestTalentListAll.add(new Home_BestTalent_ListItem(R.drawable.testpicture, 15, "#공무원 시험", "정우성", "시험 / 공무원 ", "5건", "-", "Profile 보기"));
+        BestTalentListAll.add(new Home_BestTalent_ListItem(R.drawable.testpicture, 16, "#공무원 시험", "정우성", "시험 / 공무원 ", "5건", "-", "Profile 보기"));
+        BestTalentListAll.add(new Home_BestTalent_ListItem(R.drawable.testpicture, 17, "#공무원 시험", "정우성", "시험 / 공무원 ", "5건", "-", "Profile 보기"));
 
         initBestTalentList();
 
@@ -203,7 +203,7 @@ public class Home_Activity extends AppCompatActivity {
         }
 
         for(int i = index - 1; i < index + cnt; i++){
-            BestTalentList.add(new Home_BestTalent_ListItem(R.drawable.textpicture, i+2, "#공무원 시험", "정우성", "시험 / 공무원 ", "5건", "-", "Profile 보기"));
+            BestTalentList.add(new Home_BestTalent_ListItem(R.drawable.testpicture, i+2, "#공무원 시험", "정우성", "시험 / 공무원 ", "5건", "-", "Profile 보기"));
         }
 
         BestTalent_Adapter.notifyDataSetChanged();

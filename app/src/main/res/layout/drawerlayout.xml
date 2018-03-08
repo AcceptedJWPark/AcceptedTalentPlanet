@@ -51,7 +51,7 @@
                         android:layout_height="match_parent"
                         android:adjustViewBounds="false"
                         android:scaleType="fitXY"
-                        android:src="@drawable/textpicture" />
+                        android:src="@drawable/testpicture" />
                 </RelativeLayout>
 
                 <TextView

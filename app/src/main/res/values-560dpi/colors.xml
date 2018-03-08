@@ -31,5 +31,7 @@
     <color name="loginMainTitle">#ffffff</color>
     <color name="loginPasswordLost">#cc5e93</color>
 
+    <color name="messangerList">#1e7fa8c9</color>
+
 
 </resources>

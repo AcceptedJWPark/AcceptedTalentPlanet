@@ -64,6 +64,7 @@ public class Alarm_ListItem {
     }
     public void setactivityChange_CODE(int alarmType_CODE) {
         this.activityChange_CODE = alarmType_CODE;
+
     }
     public void setDeleteIcon(int deleteIcon) {
         this.deleteIcon = deleteIcon;

@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/Messanger_List_LL"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="60dp"
+    android:paddingLeft="10dp"
+    android:paddingRight="17dp"
+    android:paddingTop="5dp"
+    android:paddingBottom="5dp"
+    android:gravity="center"
+    android:weightSum="7"
+    >
+    <LinearLayout
+        android:id="@+id/pictureContainerLL"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:padding="7dp"
+
+        >
+        <ImageView
+            android:id="@+id/Messanger_List_Picture"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:adjustViewBounds="false"
+            android:gravity="center"
+            android:background="@drawable/testpicture"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/Messanger_List_TxtLL"
+        android:layout_width="0dp"
+        android:layout_weight="5"
+        android:layout_marginLeft="10dp"
+        android:paddingRight="10dp"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:paddingRight="5dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            >
+
+            <TextView
+                android:id="@+id/Messanger_List_Name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center|left"
+                android:text="박종우"
+                android:singleLine="true"
+                android:textSize="@dimen/Messanger_List_Name"
+                android:textColor="#000000"
+                android:textStyle="bold" />
+
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/Messanger_List_Txt"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:text="안녕하세요. 박종우라고 합니다. "
+                android:singleLine="true"
+                android:textSize="@dimen/Messanger_List_Content"
+                android:textColor="@color/textColor_subject"
+                />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        >
+
+        <ImageView
+            android:id="@+id/Messanger_List_DeleteList"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/icon_deletecheck"
+            android:layout_alignParentRight="true"
+            android:paddingLeft="20dp"
+            android:visibility="gone"
+            />
+
+
+        <LinearLayout
+            android:id="@+id/Messanger_List_DateLL"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center|right"
+
+            >
+            <TextView
+                android:id="@+id/Messanger_List_DateList"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center|right"
+                android:text="AM 11:37"
+                android:textSize="@dimen/Messanger_List_Date"
+                android:textColor="@color/textColor_object"
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center|right"
+                >
+
+            <TextView
+                android:id="@+id/Messanger_List_Count"
+                android:layout_width="@dimen/Messanger_List_Count"
+                android:layout_height="@dimen/Messanger_List_Count"
+                android:text="3"
+                android:gravity="center"
+                android:textSize="@dimen/Messanger_List_Content"
+                android:background="@drawable/bgr_answer"
+                android:textColor="@color/textColor_object"
+                />
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+
+
+</LinearLayout>

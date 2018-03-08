@@ -30,6 +30,7 @@ import com.example.accepted.acceptedtalentplanet.Alarm.Alarm_Activity;
 import com.example.accepted.acceptedtalentplanet.CustomerService.CustomerService_MainActivity;
 import com.example.accepted.acceptedtalentplanet.FriendList.FriendList_Activity;
 import com.example.accepted.acceptedtalentplanet.LoadingLogin.Login_Activity;
+import com.example.accepted.acceptedtalentplanet.Messanger.Messanger_List;
 import com.example.accepted.acceptedtalentplanet.MyProfile.MyProfile_Activity;
 import com.example.accepted.acceptedtalentplanet.SharingList.SharingList_Activity;
 import com.example.accepted.acceptedtalentplanet.System.System_Activity;
@@ -332,6 +333,8 @@ public class SaveSharedPreference{
             }
 
             case R.id.SlidingMenu_MessageBox : {
+                i = new Intent(mContext, Messanger_List.class);
+                mContext.startActivity(i);
                 break;
             }
             case R.id.SlidingMenu_FriendList : {

@@ -152,7 +152,7 @@ public class TalentSearching_Activity extends AppCompatActivity {
                     for(int i = 0; i < obj.length(); i++) {
                         JSONObject o = obj.getJSONObject(i);
                         Log.d("Obj = ", o.toString());
-                        talentSearching_listItemArrayList.add(new TalentSearching_ListItem(R.drawable.textpicture, o.getString("USER_NAME"), o.getString("TALENT_KEYWORD1"), o.getString("TALENT_KEYWORD2"), o.getString("TALENT_KEYWORD3"), o.getString("seq")));
+                        talentSearching_listItemArrayList.add(new TalentSearching_ListItem(R.drawable.testpicture, o.getString("USER_NAME"), o.getString("TALENT_KEYWORD1"), o.getString("TALENT_KEYWORD2"), o.getString("TALENT_KEYWORD3"), o.getString("seq")));
 
                     }
                     TalentSearching_ListView = (ListView) findViewById(R.id.TalentSearching_ListView);
