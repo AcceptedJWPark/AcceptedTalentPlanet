@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="24"
+    android:orientation="vertical"
+    android:background="#ffffff"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:clickable="true"
+    >
+
+    <LinearLayout
+        android:id="@+id/claim_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/MyProfile_Toolbar"
+        android:background="#002c62"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+
+
+                <ImageView
+                    android:layout_width="@dimen/Toolbar_Pre_Img"
+                    android:layout_height="@dimen/Toolbar_Pre_Img"
+                    android:tint="@color/toolbarcolor_txtandimage"
+                    android:src="@drawable/icon_backbtn"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentLeft="true"
+                    />
+
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="메신저"
+                android:textSize="@dimen/ToolbarTxt"
+                android:layout_centerInParent="true"
+                android:textColor="@color/toolbarcolor_txtandimage"
+                />
+
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:clickable="true"
+        >
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:focusable="true"
+        android:background="#f5f5f5"
+        android:focusableInTouchMode="true"
+        android:clickable="true"
+        >
+
+        <ListView
+            android:id="@+id/Messanger_Chatting_ListView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:clickable="true"
+            android:layout_above="@+id/Messanger_Chatting_EditTxtLL"
+            android:cacheColorHint="#00000000"
+            android:divider="#000000"
+            android:listSelector="#00000000"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            />
+
+
+    <LinearLayout
+        android:id="@+id/Messanger_Chatting_EditTxtLL"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:background="@drawable/brg_divider"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal">
+
+
+            <EditText
+                android:id="@+id/Messanger_Chatting_EditTxt"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:maxLines="4"
+                android:minHeight="40dp"
+                android:gravity="center_vertical"
+                android:background="#ffffff"
+                android:layout_weight="8"
+                />
+
+        <LinearLayout
+            android:id="@+id/Messanger_Chatting_SendBtn"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:minHeight="40dp"
+            android:background="@drawable/bgr_messanger_sendbtn"
+            android:layout_weight="1"
+            android:gravity="center"
+            >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:textColor="#ffffff"
+                android:textStyle="bold"
+                android:textSize="@dimen/Messanger_Chatting_Text"
+                android:text="전 송"
+                android:includeFontPadding="false"
+                />
+
+        </LinearLayout>
+    </LinearLayout>
+    </RelativeLayout>
+
+
+    </ScrollView>
+</LinearLayout>

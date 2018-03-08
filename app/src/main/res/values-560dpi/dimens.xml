@@ -28,12 +28,25 @@
     <dimen name="Popup_Txt">11.5dp</dimen>
     <dimen name="Popup_Divider">10.5dp</dimen>
     <dimen name="Popup_BigBtn">12.5dp</dimen>
+
     <dimen name="ListView_SubTitle">11.5dp</dimen>
     <dimen name="ListView_SecondLine">11.5dp</dimen>
     <dimen name="ListView_Btn">11dp</dimen>
     <dimen name="ListView_ChildTxt_Question">11.5dp</dimen>
     <dimen name="ListView_ChildTxt_Answer">12.5dp</dimen>
     <dimen name="ListView_ChildTxt_Signature">12.5dp</dimen>
+
+    <dimen name="Messanger_List_Name">13dp</dimen>
+    <dimen name="Messanger_List_Content">12.5dp</dimen>
+    <dimen name="Messanger_List_Date">10dp</dimen>
+    <dimen name="Messanger_List_Count">20dp</dimen>
+    <dimen name="Messanger_Chatting_Text">11.5dp</dimen>
+    <dimen name="Messanger_Chatting_TextWidth">250dp</dimen>
+
+    <dimen name="Messanger_Chatting_List_Height">430dp</dimen>
+    <dimen name="Messanger_Chatting_EditTxt_Height">80dp</dimen>
+
+
     <dimen name="SpinnerTxt">12.5dp</dimen>
     <dimen name="TalentSearching_SpinnerTxt">11.5dp</dimen>
     <dimen name="TalentResister_SpinnerTxt">12dp</dimen>

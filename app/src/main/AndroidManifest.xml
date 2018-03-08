@@ -39,7 +39,7 @@
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyCo6KF9k1r4HdrJZFegITxLoIZCAenuSo4"/>
+            android:value="AIzaSyC3yIIQ6yAN3jfkLmzFY5NyqxVBA21AkQg"/>
 
 
 
@@ -147,6 +147,16 @@
         <activity
             android:name=".FriendList.FriendList_Activity">
         </activity>
+
+        <activity
+            android:name=".Messanger.Messanger_Chatting"
+            android:windowSoftInputMode="stateAlwaysHidden"
+            />
+
+        <activity
+            android:name=".Messanger.Messanger_List"
+            />
+
     </application>
 
 </manifest>

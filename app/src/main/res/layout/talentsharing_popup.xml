@@ -58,7 +58,7 @@
                 android:clickable="true"
                 android:layout_centerHorizontal="true"
                 android:focusableInTouchMode="true"
-                android:src="@drawable/textpicture"
+                android:src="@drawable/testpicture"
                 android:scaleType="fitXY"
                 />
 

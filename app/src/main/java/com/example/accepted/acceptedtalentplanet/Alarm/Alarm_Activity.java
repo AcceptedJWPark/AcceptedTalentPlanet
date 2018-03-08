@@ -110,18 +110,18 @@ public class Alarm_Activity extends AppCompatActivity {
 
     public void AlarmArrayList_addData()
     {
-        Alarm_ArrayList.add(new Alarm_ListItem(R.drawable.textpicture,"박종우","2017.12.03 10:24", 1,1,android.R.drawable.presence_busy,deleteClicked));
-        Alarm_ArrayList.add(new Alarm_ListItem(R.drawable.textpicture,"민권홍","2017.12.03 12:45", 1,2,android.R.drawable.presence_busy,deleteClicked));
-        Alarm_ArrayList.add(new Alarm_ListItem(R.drawable.textpicture,"김진만","2017.12.04 14:16", 2,1,android.R.drawable.presence_busy,deleteClicked));
-        Alarm_ArrayList.add(new Alarm_ListItem(R.drawable.textpicture,"김용인","2017.12.05 19:18", 2,2,android.R.drawable.presence_busy,deleteClicked));
-        Alarm_ArrayList.add(new Alarm_ListItem(R.drawable.textpicture,"배대명","2017.12.06 20:56", 2,3,android.R.drawable.presence_busy,deleteClicked));
-        Alarm_ArrayList.add(new Alarm_ListItem(R.drawable.textpicture,"우승제","2017.12.06 15:19", 2,4,android.R.drawable.presence_busy,deleteClicked));
-        Alarm_ArrayList.add(new Alarm_ListItem(R.drawable.textpicture,"유성택","2017.12.04 02:27", 3,1,android.R.drawable.presence_busy,deleteClicked));
-        Alarm_ArrayList.add(new Alarm_ListItem(R.drawable.textpicture,"최지웅","2016.09.08 05:23", 3,2,android.R.drawable.presence_busy,deleteClicked));
-        Alarm_ArrayList.add(new Alarm_ListItem(R.drawable.textpicture,"김정태","2016.10.04 09:51", 3,3,android.R.drawable.presence_busy,deleteClicked));
+        Alarm_ArrayList.add(new Alarm_ListItem(R.drawable.testpicture,"박종우","2017.12.03 10:24", 1,1,android.R.drawable.presence_busy,deleteClicked));
+        Alarm_ArrayList.add(new Alarm_ListItem(R.drawable.testpicture,"민권홍","2017.12.03 12:45", 1,2,android.R.drawable.presence_busy,deleteClicked));
+        Alarm_ArrayList.add(new Alarm_ListItem(R.drawable.testpicture,"김진만","2017.12.04 14:16", 2,1,android.R.drawable.presence_busy,deleteClicked));
+        Alarm_ArrayList.add(new Alarm_ListItem(R.drawable.testpicture,"김용인","2017.12.05 19:18", 2,2,android.R.drawable.presence_busy,deleteClicked));
+        Alarm_ArrayList.add(new Alarm_ListItem(R.drawable.testpicture,"배대명","2017.12.06 20:56", 2,3,android.R.drawable.presence_busy,deleteClicked));
+        Alarm_ArrayList.add(new Alarm_ListItem(R.drawable.testpicture,"우승제","2017.12.06 15:19", 2,4,android.R.drawable.presence_busy,deleteClicked));
+        Alarm_ArrayList.add(new Alarm_ListItem(R.drawable.testpicture,"유성택","2017.12.04 02:27", 3,1,android.R.drawable.presence_busy,deleteClicked));
+        Alarm_ArrayList.add(new Alarm_ListItem(R.drawable.testpicture,"최지웅","2016.09.08 05:23", 3,2,android.R.drawable.presence_busy,deleteClicked));
+        Alarm_ArrayList.add(new Alarm_ListItem(R.drawable.testpicture,"김정태","2016.10.04 09:51", 3,3,android.R.drawable.presence_busy,deleteClicked));
         Alarm_ArrayList.add(new Alarm_ListItem("2016.11.03 15:41", 4,android.R.drawable.presence_busy,deleteClicked));
         Alarm_ArrayList.add(new Alarm_ListItem("2016.12.01 17:05", 5,android.R.drawable.presence_busy,deleteClicked));
-        Alarm_ArrayList.add(new Alarm_ListItem(R.drawable.textpicture,"김대지","2016.10.04 09:51", 6,android.R.drawable.presence_busy,deleteClicked));
+        Alarm_ArrayList.add(new Alarm_ListItem(R.drawable.testpicture,"김대지","2016.10.04 09:51", 6,android.R.drawable.presence_busy,deleteClicked));
     }
 
 

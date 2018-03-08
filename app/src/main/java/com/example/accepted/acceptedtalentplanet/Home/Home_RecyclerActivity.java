@@ -45,11 +45,11 @@ public class Home_RecyclerActivity extends AppCompatActivity {
         mAdapter = new MyAdapter(mItems);
         recyclerView.setAdapter(mAdapter);
 
-        mItems.add(new Home_Item(R.drawable.textpicture, "정우성", "#연기"));
-        mItems.add(new Home_Item(R.drawable.textpicture, "정우성", "#연기"));
-        mItems.add(new Home_Item(R.drawable.textpicture, "정우성", "#연기"));
-        mItems.add(new Home_Item(R.drawable.textpicture, "정우성", "#연기"));
-        mItems.add(new Home_Item(R.drawable.textpicture, "정우성", "#연기"));
+        mItems.add(new Home_Item(R.drawable.testpicture, "정우성", "#연기"));
+        mItems.add(new Home_Item(R.drawable.testpicture, "정우성", "#연기"));
+        mItems.add(new Home_Item(R.drawable.testpicture, "정우성", "#연기"));
+        mItems.add(new Home_Item(R.drawable.testpicture, "정우성", "#연기"));
+        mItems.add(new Home_Item(R.drawable.testpicture, "정우성", "#연기"));
 
     }
 
