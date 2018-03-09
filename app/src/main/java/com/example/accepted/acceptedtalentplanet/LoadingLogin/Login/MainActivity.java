@@ -198,6 +198,8 @@ public class MainActivity extends AppCompatActivity {
                     int talentPoint = Integer.parseInt(obj.getString("TALENT_POINT"));
                     SaveSharedPreference.setPrefTalentPoint(mContext, talentPoint);
 
+                    getMyPicture();
+
                 }
                 catch(JSONException e){
                     e.printStackTrace();
@@ -221,6 +223,39 @@ public class MainActivity extends AppCompatActivity {
     {
         Intent i = new Intent(getApplicationContext(), com.example.accepted.acceptedtalentplanet.LoadingLogin.PasswordLost.Confirm.MainActivity.class);
         startActivity(i);
+    }
+
+    public void getMyPicture(){
+
+        RequestQueue postRequestQueue = VolleySingleton.getInstance(mContext).getRequestQueue();
+        StringRequest postJsonRequest = new StringRequest(Request.Method.POST, SaveSharedPreference.getServerIp() + "Login/getMyPicture.do", new Response.Listener<String>(){
+            @Override
+            public void onResponse(String response){
+                try {
+                    if(response.length() != 0) {
+                        JSONObject obj = new JSONObject(response);
+                        if(!obj.getString("FILE_DATA").equals("Tk9EQVRB")){
+                            SaveSharedPreference.setMyPicture(obj.getString("FILE_DATA"));
+                        }
+                    }
+
+                }
+                catch(JSONException e){
+                    e.printStackTrace();
+                }
+            }
+        }, SaveSharedPreference.getErrorListener()) {
+            @Override
+            protected Map<String, String> getParams(){
+                Map<String, String> params = new HashMap();
+                params.put("userID", SaveSharedPreference.getUserId(mContext));
+
+
+                return params;
+            }
+        };
+
+        postRequestQueue.add(postJsonRequest);
     }
 
 

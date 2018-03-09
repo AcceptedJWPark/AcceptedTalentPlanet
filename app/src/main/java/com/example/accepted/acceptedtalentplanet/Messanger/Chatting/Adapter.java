@@ -1,6 +1,8 @@
 package com.example.accepted.acceptedtalentplanet.Messanger.Chatting;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,11 +25,13 @@ public class Adapter extends BaseAdapter {
 
     private ArrayList<ListItem> messanger_Chatting_Arraylist = new ArrayList<>();
     Context mContext;
+    Bitmap picture = null;
 
 
-    public Adapter(ArrayList<ListItem> messanger_Chatting_Arraylist, Context mContext) {
+    public Adapter(ArrayList<ListItem> messanger_Chatting_Arraylist, Context mContext, Bitmap picture) {
         this.messanger_Chatting_Arraylist = messanger_Chatting_Arraylist;
         this.mContext = mContext;
+        this.picture = picture;
     }
 
     public Adapter()
@@ -52,7 +56,6 @@ public class Adapter extends BaseAdapter {
 
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
-
         View view = convertView;
         ViewHolder holder;
         view = null;
@@ -67,6 +70,7 @@ public class Adapter extends BaseAdapter {
         holder.Messanger_Chatting_Txt = view.findViewById(R.id.Messanger_Chatting_Txt);
         holder.Messanger_Chatting_Date = view.findViewById(R.id.Messanger_Chatting_Date);
         holder.Messanger_Chatting_DateLine = view.findViewById(R.id.Messanger_Chatting_DateLine);
+        holder.Messanger_Chatting_Date_String = view.findViewById(R.id.Messanger_Chatting_Date_String);
 
         view.setTag(holder);
 
@@ -76,9 +80,8 @@ public class Adapter extends BaseAdapter {
             holder = (ViewHolder) view.getTag();
         }
 
-            holder.Messanger_Chatting_Picture.setImageResource(messanger_Chatting_Arraylist.get(position).getMesssanger_Pic());
-            holder.Messanger_Chatting_Txt.setText(messanger_Chatting_Arraylist.get(position).getMessanger_Content());
-            holder.Messanger_Chatting_Date.setText(messanger_Chatting_Arraylist.get(position).getMessanger_Date());
+            holder.Messanger_Chatting_Txt.setText(messanger_Chatting_Arraylist.get(position).getMessage());
+            holder.Messanger_Chatting_Date.setText(messanger_Chatting_Arraylist.get(position).getDate());
 
         DisplayMetrics dm = mContext.getResources().getDisplayMetrics();
         int size = Math.round(5*dm.density);
@@ -92,10 +95,15 @@ public class Adapter extends BaseAdapter {
         holder.Messanger_Chatting_Date.setLayoutParams(Messanger_ChattingDate);
         Messanger_ChattingDate.addRule(RelativeLayout.ALIGN_BOTTOM,R.id.Messanger_Chatting_Txt);
 
-        holder.Messanger_Chatting_Txt.setText(messanger_Chatting_Arraylist.get(position).getMessanger_Content());
+        holder.Messanger_Chatting_Txt.setText(messanger_Chatting_Arraylist.get(position).getMessage());
 
-        if(messanger_Chatting_Arraylist.get(position).getMessage_Type()==2)
+        if(messanger_Chatting_Arraylist.get(position).getMessageType()==2)
         {
+            if(picture != null){
+                holder.Messanger_Chatting_Picture.setBackground(new BitmapDrawable(picture));
+            }else{
+                holder.Messanger_Chatting_Picture.setBackgroundResource(messanger_Chatting_Arraylist.get(position).getPicture());
+            }
             holder.Messanger_Chatting_Txt.setBackgroundResource(R.drawable.bgr_messanger_chatting_get);
             Messanger_ChattingTxt.addRule(RelativeLayout.RIGHT_OF, R.id.Messanger_Chatting_Picture);
             Messanger_ChattingDate.addRule(RelativeLayout.RIGHT_OF, R.id.Messanger_Chatting_Txt);
@@ -106,7 +114,7 @@ public class Adapter extends BaseAdapter {
             Messanger_ChattingDate.addRule(RelativeLayout.LEFT_OF, R.id.Messanger_Chatting_Txt);
         }
 
-        if(messanger_Chatting_Arraylist.get(position).isPicture_Type())
+        if(messanger_Chatting_Arraylist.get(position).isPicture())
         {
             holder.Messanger_Chatting_Picture.setVisibility(View.VISIBLE);
         }else
@@ -114,17 +122,25 @@ public class Adapter extends BaseAdapter {
             holder.Messanger_Chatting_Picture.setVisibility(View.INVISIBLE);
         }
 
-        if(messanger_Chatting_Arraylist.get(position).isTime_Changed())
+        if(messanger_Chatting_Arraylist.get(position).isTimeChanged())
         {
+            String dateStr = messanger_Chatting_Arraylist.get(position).getDate();
+            String[] dateStr2 = dateStr.split(",");
+            dateStr = dateStr2[1].substring(0, 8);
             holder.Messanger_Chatting_Date.setVisibility(View.VISIBLE);
+            holder.Messanger_Chatting_Date.setText(dateStr);
         }else
         {
             holder.Messanger_Chatting_Date.setVisibility(View.INVISIBLE);
         }
 
-        if(messanger_Chatting_Arraylist.get(position).isDate_Changed())
+        if(messanger_Chatting_Arraylist.get(position).isDateChanged())
         {
+            String dateStr = messanger_Chatting_Arraylist.get(position).getDate();
+            String[] dateStr2 = dateStr.split(",");
+            dateStr = dateStr2[0];
             holder.Messanger_Chatting_DateLine.setVisibility(View.VISIBLE);
+            holder.Messanger_Chatting_Date_String.setText(dateStr);
         }else
         {
             holder.Messanger_Chatting_DateLine.setVisibility(View.GONE);
@@ -139,5 +155,7 @@ public class Adapter extends BaseAdapter {
         LinearLayout Messanger_Chatting_DateLine;
         TextView Messanger_Chatting_Txt;
         TextView Messanger_Chatting_Date;
+        TextView Messanger_Chatting_Date_String;
     }
+
 }

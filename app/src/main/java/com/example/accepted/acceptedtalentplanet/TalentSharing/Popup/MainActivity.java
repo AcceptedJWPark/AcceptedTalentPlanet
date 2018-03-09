@@ -65,11 +65,14 @@ public class MainActivity extends FragmentActivity{
     ImageView iv_addfriendOn;
     ImageView iv_addfriendOff;
     String UserID;
+    String UserName;
     String talentFlag;
     String statusFlag;
     boolean hasFlag = false;
     Context mContext;
     Button btn_SendInterest;
+    Button interestBtn;
+    Button sendMessageBtn;
     int point;
 
     boolean genderPBS, birthPBS, jobPBS;
@@ -150,6 +153,23 @@ public class MainActivity extends FragmentActivity{
             }
         });
 
+        sendMessageBtn = (Button)findViewById(R.id.TalentSharing_Send_Message_Button);
+        sendMessageBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int roomID = SaveSharedPreference.makeChatRoom(mContext, UserID, UserName);
+                if(roomID < 0){
+                    Toast.makeText(mContext, "채팅방 생성 실패", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                Intent i = new Intent(mContext, com.example.accepted.acceptedtalentplanet.Messanger.Chatting.MainActivity.class);
+                i.putExtra("userID", UserID);
+                i.putExtra("roomID", roomID);
+                i.putExtra("userName", UserName);
+                startActivity(i);
+            }
+        });
+
         getProfileInfo(talentID);
 
     }
@@ -169,6 +189,7 @@ public class MainActivity extends FragmentActivity{
                     genderPBS = (obj.getString("GENDER_FLAG").equals("Y"))?true:false;
                     birthPBS = (obj.getString("BIRTH_FLAG").equals("Y"))?true:false;
                     jobPBS = (obj.getString("JOB_FLAG").equals("Y"))?true:false;
+                    UserName = obj.getString("USER_NAME");
 
                     Log.d("result", response);
                     String Gender = (obj.getString("GENDER").equals("남")) ? "남자" : "여자";
