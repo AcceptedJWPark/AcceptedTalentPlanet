@@ -4,6 +4,10 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
+import android.database.CursorIndexOutOfBoundsException;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteException;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
@@ -48,7 +52,9 @@ import org.json.JSONObject;
 import java.io.ByteArrayOutputStream;
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Type;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import static android.text.TextUtils.isEmpty;
 
@@ -68,6 +74,7 @@ public class SaveSharedPreference{
     static final String PREF_GEO_POINT3 = "geoPoint3";
     static final String PREF_FRIEND_ARRAY = "friendList";
     static final String PREF_TALENT_POINT = "talentPoint";
+    static final String PREF_FCM_TOKEN = "fcmToken";
     static Bitmap myPicture = null;
 
     static DrawerLayout slidingMenuDL;
@@ -96,6 +103,12 @@ public class SaveSharedPreference{
         editor.commit();
     }
 
+    public static void setPrefFcmToken(Context ctx, String token){
+        SharedPreferences.Editor editor = getSharedPreferences(ctx).edit();
+        editor.putString(PREF_FCM_TOKEN, token);
+        editor.commit();
+    }
+
     public static int getTalentPoint(Context ctx){
         return getSharedPreferences(ctx).getInt(PREF_TALENT_POINT, 0);
     }
@@ -112,6 +125,10 @@ public class SaveSharedPreference{
         SharedPreferences.Editor editor = getSharedPreferences(ctx).edit();
         editor.clear();
         editor.commit();
+    }
+
+    public static String getFcmToken(Context ctx){
+        return getSharedPreferences(ctx).getString(PREF_FCM_TOKEN, "");
     }
 
     public static boolean checkSession(){
@@ -419,6 +436,68 @@ public class SaveSharedPreference{
 
     public static Bitmap getMyPicture(){
         return myPicture;
+    }
+
+    public static int makeChatRoom(Context ctx, String userID, String userName){
+        SQLiteDatabase sqliteDatabase;
+        String dbName = "/accepted.db";
+
+        final Date date = new Date();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd,a hh:mm:ss");
+        final String nowDateStr = simpleDateFormat.format(date);
+
+        try {
+            int roomID;
+            int startMessageID;
+            String creationDate;
+            String picture;
+            sqliteDatabase = SQLiteDatabase.openOrCreateDatabase(ctx.getFilesDir() + dbName, null);
+
+            String test = "SELECT IFNULL(MAX(A.START_MESSAGE_ID), 0) AS START_MESSAGE_ID FROM TB_CHAT_ROOM A WHERE A.USER_ID = '" + userID+ "'";
+            Cursor cursort = sqliteDatabase.rawQuery(test, null);
+            cursort.moveToFirst();
+            startMessageID = cursort.getInt(0);
+            Log.d("start_message_id", "" + startMessageID);
+
+            test = "SELECT IFNULL(MAX(B.ROOM_ID), (SELECT IFNULL(MAX(C.ROOM_ID) + 1, 1) FROM TB_CHAT_ROOM C)) AS MESSAGE_ID FROM TB_CHAT_ROOM B WHERE B.USER_ID = '" + userID + "' AND B.ACTIVATE_FLAG = 'Y'";
+            cursort = sqliteDatabase.rawQuery(test, null);
+            cursort.moveToFirst();
+            roomID = cursort.getInt(0);
+            Log.d("room_id", "" + roomID);
+
+            test = "SELECT IFNULL(MAX(D.CREATION_DATE), '"+nowDateStr+"') AS CREATION_DATE FROM TB_CHAT_ROOM D WHERE D.USER_ID = '" + userID+ "'";
+            cursort = sqliteDatabase.rawQuery(test, null);
+            cursort.moveToFirst();
+            creationDate = cursort.getString(0);
+            Log.d("creation_date", "" + creationDate );
+
+            test = "SELECT IFNULL(PICTURE, 'NODATA') FROM TB_CHAT_ROOM WHERE USER_ID = '" + userID + "'";
+            cursort = sqliteDatabase.rawQuery(test, null);
+            cursort.moveToFirst();
+            try {
+                picture = cursort.getString(0);
+            }catch (CursorIndexOutOfBoundsException e){
+                e.printStackTrace();
+                picture = "NODATA";
+            }
+
+
+            String sqlUpsert = "INSERT OR REPLACE INTO TB_CHAT_ROOM(ROOM_ID, USER_ID, USER_NAME, START_MESSAGE_ID, CREATION_DATE, LAST_UPDATE_DATE, ACTIVATE_FLAG, PICTURE) VALUES ("+roomID+", '" + userID + "', '"+userName+"', "+startMessageID+", '"+creationDate+"', '"+nowDateStr+"', 'Y', '"+ picture + "')";
+            sqliteDatabase.execSQL(sqlUpsert);
+
+            sqliteDatabase.close();
+
+
+            return roomID;
+
+
+        } catch (SQLiteException e) {
+            e.printStackTrace();
+        }
+
+        return -1;
+
+
     }
 
 }

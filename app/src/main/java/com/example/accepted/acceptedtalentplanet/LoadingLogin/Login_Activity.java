@@ -31,6 +31,7 @@ import com.example.accepted.acceptedtalentplanet.R;
 import com.example.accepted.acceptedtalentplanet.SaveSharedPreference;
 import com.example.accepted.acceptedtalentplanet.TalentSharing.TalentSharing_Activity;
 import com.example.accepted.acceptedtalentplanet.VolleySingleton;
+import com.google.firebase.iid.FirebaseInstanceId;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -51,6 +52,7 @@ public class Login_Activity extends AppCompatActivity {
     private Context mContext;
     private EditText email;
     private EditText pawd;
+    private String FcmToken;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +61,9 @@ public class Login_Activity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.login_activity);
         mContext = getApplicationContext();
+
+        FcmToken = FirebaseInstanceId.getInstance().getToken();
+
 
         email = (EditText)findViewById(R.id.Login_ID);
         pawd = (EditText)findViewById(R.id.Login_Password);
@@ -117,6 +122,11 @@ public class Login_Activity extends AppCompatActivity {
                                 startActivity(intent);
                             }
                         },500);
+
+                        if(FcmToken != null) {
+                            SaveSharedPreference.setPrefFcmToken(mContext, FcmToken);
+                            saveFcmToken();
+                        }
 
                     }else if(result.equals("fail")){
                         Toast.makeText(getApplicationContext(), "비밀번호를 잘못 입력하셨습니다.", Toast.LENGTH_SHORT).show();
@@ -197,6 +207,39 @@ public class Login_Activity extends AppCompatActivity {
         };
 
         postRequestQueue.add(postJsonRequest);
+    }
+
+    public void saveFcmToken(){
+            RequestQueue postRequestQueue = VolleySingleton.getInstance(mContext).getRequestQueue();
+            StringRequest postJsonRequest = new StringRequest(Request.Method.POST, SaveSharedPreference.getServerIp() + "Login/saveFCMToken.do", new Response.Listener<String>(){
+                @Override
+                public void onResponse(String response){
+                    try {
+                        JSONObject obj = new JSONObject(response);
+                        if(obj.getString("result").equals("success")){
+                            Log.d("saveToken", "토큰 저장 성공");
+                        }else{
+                            Log.d("saveToken", "토큰 저장 실패");
+                        }
+                    }
+                    catch(JSONException e){
+                        e.printStackTrace();
+                    }
+                }
+            }, SaveSharedPreference.getErrorListener()) {
+                @Override
+                protected Map<String, String> getParams(){
+                    Map<String, String> params = new HashMap();
+                    params.put("userID", SaveSharedPreference.getUserId(mContext));
+                    params.put("fcmToken", FcmToken);
+
+
+                    return params;
+                }
+            };
+
+            postRequestQueue.add(postJsonRequest);
+
     }
 
     public void getMyTalentPoint(){
