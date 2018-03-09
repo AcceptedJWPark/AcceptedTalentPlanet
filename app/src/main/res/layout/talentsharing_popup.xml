@@ -484,6 +484,7 @@
         >
 
         <Button
+            android:id="@+id/TalentSharing_Send_Message_Button"
             android:textAllCaps="false"
             android:layout_width="0dp"
             android:layout_height="match_parent"

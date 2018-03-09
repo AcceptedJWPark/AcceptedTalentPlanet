@@ -31,6 +31,7 @@ import com.android.volley.toolbox.HurlStack;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.accepted.acceptedtalentplanet.Friend;
+import com.example.accepted.acceptedtalentplanet.Messanger.Messanger_Chatting;
 import com.example.accepted.acceptedtalentplanet.R;
 import com.example.accepted.acceptedtalentplanet.SaveSharedPreference;
 import com.example.accepted.acceptedtalentplanet.VolleySingleton;
@@ -72,11 +73,13 @@ public class TalentSharing_Popup_Activity extends FragmentActivity{
     ImageView TalentSharingPopup_addfriendList_on;
     ImageView TalentSharingPopup_addfriendList_off;
     String UserID;
+    String UserName;
     String talentFlag;
     String statusFlag;
     boolean hasFlag = false;
     Context mContext;
     Button interestBtn;
+    Button sendMessageBtn;
     int point;
 
     boolean genderPBS, birthPBS, jobPBS;
@@ -157,6 +160,23 @@ public class TalentSharing_Popup_Activity extends FragmentActivity{
             }
         });
 
+        sendMessageBtn = (Button)findViewById(R.id.TalentSharing_Send_Message_Button);
+        sendMessageBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int roomID = SaveSharedPreference.makeChatRoom(mContext, UserID, UserName);
+                if(roomID < 0){
+                    Toast.makeText(mContext, "채팅방 생성 실패", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                Intent i = new Intent(mContext, Messanger_Chatting.class);
+                i.putExtra("userID", UserID);
+                i.putExtra("roomID", roomID);
+                i.putExtra("userName", UserName);
+                startActivity(i);
+            }
+        });
+
         getProfileInfo(talentID);
 
     }
@@ -176,11 +196,12 @@ public class TalentSharing_Popup_Activity extends FragmentActivity{
                     genderPBS = (obj.getString("GENDER_FLAG").equals("Y"))?true:false;
                     birthPBS = (obj.getString("BIRTH_FLAG").equals("Y"))?true:false;
                     jobPBS = (obj.getString("JOB_FLAG").equals("Y"))?true:false;
+                    UserName = obj.getString("USER_NAME");
 
                     Log.d("result", response);
                     String Gender = (obj.getString("GENDER").equals("남")) ? "남자" : "여자";
                     String TalentText = talentFlag.equals("Y") ? "재능드림" : "관심재능";
-                    ((TextView)findViewById(R.id.TalentSharingPopup_UserName)).setText(obj.getString("USER_NAME"));
+                    ((TextView)findViewById(R.id.TalentSharingPopup_UserName)).setText(UserName);
                     ((TextView)findViewById(R.id.TalentSharingPopup_UserGender)).setText((genderPBS)?Gender:"비공개");
                     ((TextView)findViewById(R.id.TalentSharingPopup_UserBirth)).setText((birthPBS)?obj.getString("USER_BIRTH"):"비공개");
                     ((TextView)findViewById(R.id.TalentSharingPopup_UserJob)).setText((jobPBS)?obj.getString("JOB"):"비공개");
