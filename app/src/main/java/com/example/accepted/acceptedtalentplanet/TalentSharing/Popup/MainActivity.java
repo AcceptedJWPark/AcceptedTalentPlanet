@@ -26,7 +26,6 @@ import com.android.volley.toolbox.HurlStack;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.accepted.acceptedtalentplanet.Friend;
-import com.example.accepted.acceptedtalentplanet.Messanger.Messanger_Chatting;
 import com.example.accepted.acceptedtalentplanet.R;
 import com.example.accepted.acceptedtalentplanet.SaveSharedPreference;
 import com.example.accepted.acceptedtalentplanet.VolleySingleton;
@@ -163,7 +162,7 @@ public class MainActivity extends FragmentActivity{
                     Toast.makeText(mContext, "채팅방 생성 실패", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                Intent i = new Intent(mContext, Messanger_Chatting.class);
+                Intent i = new Intent(mContext, com.example.accepted.acceptedtalentplanet.Messanger.Chatting.MainActivity.class);
                 i.putExtra("userID", UserID);
                 i.putExtra("roomID", roomID);
                 i.putExtra("userName", UserName);
@@ -208,19 +207,6 @@ public class MainActivity extends FragmentActivity{
                     ((TextView)findViewById(R.id.level_InterestingPopup)).setText(SaveSharedPreference.getLevel(obj.getString("LEVEL")));
                     ((TextView)findViewById(R.id.point_InterestingPopup)).setText(point+"P");
                     ((TextView)findViewById(R.id.dividerTalentType_TalentSharing)).setText(TalentText);
-                    ((TextView)findViewById(R.id.TalentSharingPopup_UserName)).setText(UserName);
-                    ((TextView)findViewById(R.id.TalentSharingPopup_UserGender)).setText((genderPBS)?Gender:"비공개");
-                    ((TextView)findViewById(R.id.TalentSharingPopup_UserBirth)).setText((birthPBS)?obj.getString("USER_BIRTH"):"비공개");
-                    ((TextView)findViewById(R.id.TalentSharingPopup_UserJob)).setText((jobPBS)?obj.getString("JOB"):"비공개");
-                    ((TextView)findViewById(R.id.TalentSharingPopup_Keyword1)).setText(obj.getString("TALENT_KEYWORD1"));
-                    ((TextView)findViewById(R.id.TalentSharingPopup_Keyword2)).setText(obj.getString("TALENT_KEYWORD2"));
-                    ((TextView)findViewById(R.id.TalentSharingPopup_Keyword3)).setText(obj.getString("TALENT_KEYWORD3"));
-                    ((TextView)findViewById(R.id.TalentSharingPopup_Location1)).setText(obj.getString("LOCATION1"));
-                    ((TextView)findViewById(R.id.TalentSharingPopup_Location2)).setText((obj.getString("LOCATION2").length()==0)?"미등록":obj.getString("LOCATION2"));
-                    ((TextView)findViewById(R.id.TalentSharingPopup_Location3)).setText((obj.getString("LOCATION3").length()==0)?"미등록":obj.getString("LOCATION3"));
-                    ((TextView)findViewById(R.id.TalentSharingPopup_Level)).setText(SaveSharedPreference.getLevel(obj.getString("LEVEL")));
-                    ((TextView)findViewById(R.id.TalentSharingPopup_Point)).setText(point+"P");
-                    ((TextView)findViewById(R.id.TalentSharing_TypeText)).setText(TalentText);
                     statusFlag = obj.getString("STATUS_FLAG");
 
                     if(!obj.getString("FILE_DATA").equals("Tk9EQVRB")){

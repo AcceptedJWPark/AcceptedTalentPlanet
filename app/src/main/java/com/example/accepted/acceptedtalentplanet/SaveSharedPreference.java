@@ -459,7 +459,7 @@ public class SaveSharedPreference{
             creationDate = cursort.getString(0);
             Log.d("creation_date", "" + creationDate );
 
-            test = "SELECT IFNULL(PICTURE, 'NODATA') FROM TB_CHAT_ROOM WHERE USER_ID = '" + userID + "'";
+            test = "SELECT IFNULL(MAX(PICTURE), 'NODATA') FROM TB_CHAT_ROOM WHERE USER_ID = '" + userID + "'";
             cursort = sqliteDatabase.rawQuery(test, null);
             cursort.moveToFirst();
             try {

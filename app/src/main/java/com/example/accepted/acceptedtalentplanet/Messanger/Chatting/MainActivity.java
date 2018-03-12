@@ -13,31 +13,23 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
-import com.android.volley.ServerError;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.StringRequest;
-import com.example.accepted.acceptedtalentplanet.LoadingLogin.Loading_Activity;
 import com.example.accepted.acceptedtalentplanet.R;
 import com.example.accepted.acceptedtalentplanet.SaveSharedPreference;
 import com.example.accepted.acceptedtalentplanet.VolleySingleton;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.UnsupportedEncodingException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -50,35 +42,35 @@ import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
-    Context mContext;
-    ListView messanger_Chatting_LV;
-    Adapter messanger_chatting_adapter;
-    ArrayList<ListItem> messanger_chatting_ArrayList;
-    LinearLayout Messanger_Chatting_SendBtn;
-    EditText Messanger_Chatting_EditTxt;
-    TextView Massanger_title;
+    private Context mContext;
+    private ListView listView;
+    private Adapter adapter;
+    private ArrayList<ListItem> arrayList;
+    private LinearLayout ll_SendBtnContainer;
+    private EditText et_ChattingTxt;
+    LinearLayout ll_EditTxtContainer;
+    private TextView tv_User;
 
-    int interval = 100;
+    final int interval = 100;
+
     final int maxInterval = 5000;
+    public String receiverID;
 
-    String receiverID;
-    int roomID;
+    public int roomID;
 
-    LinearLayout Messanger_Chatting_EditTxtLL;
-
-    boolean time_Changed;
-    boolean date_Changed;
-    int message_Type; // Send : 1, Get : 2
-    boolean picture_Type;
+    private boolean isTimeChanged;
+    private boolean isDateChanged;
+    private int messageType; // Send : 1, Get : 2
+    private boolean isPicture;
 
     // SQLite 설정
-    SQLiteDatabase sqliteDatabase = null;
+    public SQLiteDatabase sqliteDatabase = null;
 
-    Thread thread1;
-    boolean running;
+    public Thread thread1;
+    public boolean running;
 
-    String lastMessageID = "0";
-    Bitmap picture = null;
+    public String lastMessageID = "0";
+    private Bitmap picture = null;
 
 
     @Override
@@ -90,8 +82,15 @@ public class MainActivity extends AppCompatActivity {
         receiverID = getIntent().getStringExtra("userID");
         roomID = getIntent().getIntExtra("roomID", 0);
 
-        Massanger_title = (TextView)findViewById(R.id.Massanger_title);
-        Massanger_title.setText(getIntent().getStringExtra("userName"));
+        tv_User = (TextView)findViewById(R.id.tv_User_Chatting_Messanger);
+        tv_User.setText(getIntent().getStringExtra("userName"));
+
+        ((LinearLayout)findViewById(R.id.ll_PreContainer_Chatting_Messanger)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         String dbName = "/accepted.db";
         try {
@@ -107,32 +106,30 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        messanger_chatting_ArrayList = new ArrayList<>();
-        messanger_chatting_adapter = new Adapter(messanger_chatting_ArrayList, mContext);
-        messanger_chatting_adapter = new Messanger_Chatting_Adapter(messanger_chatting_ArrayList, mContext, picture);
+        arrayList = new ArrayList<>();
+        adapter = new Adapter(arrayList, mContext, picture);
 
-        messanger_Chatting_LV = (ListView) findViewById(R.id.Messanger_Chatting_ListView);
+        listView = (ListView) findViewById(R.id.list_Chatting_Messanger);
 
-        Messanger_Chatting_SendBtn = (LinearLayout) findViewById(R.id.Messanger_Chatting_SendBtn);
-        Messanger_Chatting_EditTxt = (EditText) findViewById(R.id.Messanger_Chatting_EditTxt);
-        Messanger_Chatting_EditTxt.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+        ll_SendBtnContainer = (LinearLayout) findViewById(R.id.ll_SendBtnContainer_Chatting_Messanger);
+        et_ChattingTxt = (EditText) findViewById(R.id.et_Chatting_Messanger);
+        et_ChattingTxt.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 InputMethodManager inputMethodManager =(InputMethodManager)MainActivity.this.getSystemService(Activity.INPUT_METHOD_SERVICE);
-                InputMethodManager inputMethodManager = (InputMethodManager) Messanger_Chatting.this.getSystemService(Activity.INPUT_METHOD_SERVICE);
                 inputMethodManager.hideSoftInputFromWindow(v.getWindowToken(), 0);
             }
         });
 
 
-        Messanger_Chatting_EditTxtLL = (LinearLayout) findViewById(R.id.Messanger_Chatting_EditTxtLL);
+        ll_EditTxtContainer = (LinearLayout) findViewById(R.id.ll_EditTxtContainer_Chatting_Messanger);
 
 
-        Messanger_Chatting_SendBtn.setOnClickListener(new View.OnClickListener() {
+        ll_SendBtnContainer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                final String chattingEditTxt = Messanger_Chatting_EditTxt.getText().toString();
+                final String chattingEditTxt = et_ChattingTxt.getText().toString();
 
                 if(chattingEditTxt.isEmpty()){
                     Toast.makeText(mContext, "메세지를 입력해주세요.", Toast.LENGTH_SHORT).show();
@@ -140,7 +137,7 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 sendMessage(chattingEditTxt);
-                Messanger_Chatting_EditTxt.setText("");
+                et_ChattingTxt.setText("");
 
             }
         });
@@ -166,60 +163,46 @@ public class MainActivity extends AppCompatActivity {
             final String nowTime = nowDateTemp[1].substring(0, 8);
 
             if(sender.equals(receiverID)) {
-                message_Type = 2;
-                picture_Type = true;
+                messageType = 2;
+                isPicture = true;
             }
             else{
-                message_Type = 1;
-                picture_Type = false;
+                messageType = 1;
+                isPicture = false;
             }
 
-            if(messanger_chatting_ArrayList.size() == 0){
-                time_Changed = true;
-                date_Changed = true;
-                messanger_chatting_ArrayList.add(new Messanger_Chatting_Item(R.drawable.testpicture, content, creationDate, message_Type, picture_Type, time_Changed, date_Changed));
+            if(arrayList.size() == 0){
+                isTimeChanged = true;
+                isDateChanged = true;
+                arrayList.add(new ListItem(R.drawable.testpicture, content, creationDate, messageType, isPicture, isTimeChanged, isDateChanged));
             }else{
-                int prevPosition = messanger_chatting_ArrayList.size() - 1;
-                Messanger_Chatting_Item temp = messanger_chatting_ArrayList.get(prevPosition);
-                String prevDate = temp.getMessanger_Date();
+                int prevPosition = arrayList.size() - 1;
+                ListItem temp = arrayList.get(prevPosition);
+                String prevDate = temp.getDate();
                 String prevTime;
                 String[] dateTemp = prevDate.split(",");
                 prevDate = dateTemp[0];
-                if(!chattingEditTxt.equals(""))
-                {
-                int prevPosition = 0;
-                if (messanger_chatting_ArrayList.size() == 0) {
-                    messanger_chatting_ArrayList.add(new ListItem(R.drawable.testpicture, chattingEditTxt, "1", 1, false, true, false));
-                    messanger_Chatting_LV.setAdapter(messanger_chatting_adapter);
-                    messanger_Chatting_LV.setSelection(messanger_chatting_adapter.getCount()-1);
-                    messanger_chatting_adapter.notifyDataSetChanged();
-                    return;
-                } else if (messanger_chatting_ArrayList.size() > 0) {
-                    prevPosition = messanger_chatting_ArrayList.size() - 1;
-                    ListItem temp = messanger_chatting_ArrayList.get(prevPosition);
-                    picture_Type = false;
-                    message_Type = 1;
 
                 prevTime = dateTemp[1].substring(0, 8);
                 if(prevDate.equals(nowDate)){
-                    date_Changed = false;
-                    if(temp.getMessage_Type() != message_Type){
-                        time_Changed = true;
+                    isDateChanged = false;
+                    if(temp.getMessageType() != messageType){
+                        isTimeChanged = true;
                     }else {
                         if(prevTime.equals(nowTime)){
-                            if(message_Type == 2){
-                                picture_Type = false;
+                            if(messageType == 2){
+                                isPicture = false;
                             }
-                            temp.setTime_Changed(false);
-                            messanger_chatting_ArrayList.set(prevPosition, temp);
+                            temp.setTimeChanged(false);
+                            arrayList.set(prevPosition, temp);
                         }
                     }
                 }else{
-                    date_Changed = true;
-                    time_Changed = true;
+                    isDateChanged = true;
+                    isTimeChanged = true;
                 }
 
-                messanger_chatting_ArrayList.add(new Messanger_Chatting_Item(R.drawable.testpicture, content, creationDate, message_Type, picture_Type, time_Changed, date_Changed));
+                arrayList.add(new ListItem(R.drawable.testpicture, content, creationDate, messageType, isPicture, isTimeChanged, isDateChanged));
 
             }
             cursor.moveToNext();
@@ -295,41 +278,22 @@ public class MainActivity extends AppCompatActivity {
             public void onResponse(String response){
                 try {
                     JSONObject obj = new JSONObject(response);
-                    if(!obj.getString("FILE_DATA").equals("Tk9EQVRB")) {
+                    if (!obj.getString("FILE_DATA").equals("Tk9EQVRB")) {
                         Log.d("picture", obj.getString("FILE_DATA"));
                         picture = SaveSharedPreference.StringToBitMap(obj.getString("FILE_DATA"));
                         sqliteDatabase.execSQL("UPDATE TB_CHAT_ROOM SET PICTURE = '" + obj.getString("FILE_DATA") + "' WHERE ROOM_ID = " + roomID);
 
                     }
 
-                    messanger_chatting_adapter = new Messanger_Chatting_Adapter(messanger_chatting_ArrayList, mContext, picture);
+                    adapter = new Adapter(arrayList, mContext, picture);
 
-                    if(refreshChatLog()) {
-                        messanger_Chatting_LV.setAdapter(messanger_chatting_adapter);
-                        messanger_chatting_adapter.notifyDataSetChanged();
-                        messanger_Chatting_LV.setSelection(messanger_chatting_adapter.getCount() - 1);
+                    if (refreshChatLog()) {
+                        listView.setAdapter(adapter);
+                        adapter.notifyDataSetChanged();
+                        listView.setSelection(adapter.getCount() - 1);
                     }
-                    thread1 = new Messanger_Chatting.PollingThread();
+                    thread1 = new MainActivity.PollingThread();
                     thread1.start();
-                            if (messanger_chatting_ArrayList.get(prevPosition).getMessage_Type() == 2)
-                            {
-                                time_Changed = true;
-                            }
-                            else{
-                                temp.setTime_Changed(false);
-                                time_Changed = true;
-                            }
-                        }
-                    }
-                    messanger_chatting_ArrayList.add(new ListItem(R.drawable.testpicture, chattingEditTxt, "1", message_Type, picture_Type, time_Changed, date_Changed));
-                    messanger_Chatting_LV.setAdapter(messanger_chatting_adapter);
-                    messanger_chatting_adapter.notifyDataSetChanged();
-                messanger_Chatting_LV.setSelection(messanger_chatting_adapter.getCount()-1);
-                Messanger_Chatting_EditTxt.setText("");
-                }
-                else
-                {
-                    return;
                 }
                 catch(JSONException e){
                     e.printStackTrace();
@@ -390,9 +354,9 @@ public class MainActivity extends AppCompatActivity {
 
             boolean isRunning = bd.getBoolean("arg", false);
             if(isRunning){
-                messanger_Chatting_LV.setAdapter(messanger_chatting_adapter);
-                messanger_chatting_adapter.notifyDataSetChanged();
-                messanger_Chatting_LV.setSelection(messanger_chatting_adapter.getCount() - 1);
+                listView.setAdapter(adapter);
+                adapter.notifyDataSetChanged();
+                listView.setSelection(adapter.getCount() - 1);
             }
         }
     };
@@ -408,75 +372,6 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-//        Messanger_Chatting_GetBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//                final String chattingEditTxt = Messanger_Chatting_EditTxt.getText().toString();
-//                Messanger_Chatting_EditTxt.setText("");
-//
-//                message_Type = 2;
-//                picture_Type = true;
-//
-//                if (Messanger_Chatting_TimeChanged.isChecked()) {
-//                    time_Changed = true;
-//                } else {
-//                    time_Changed = false;
-//                }
-//
-//
-//                if (Messanger_Chatting_DateChanged.isChecked()) {
-//                    date_Changed = true;
-//                } else {
-//                    date_Changed = false;
-//                }
-//
-//                if(!chattingEditTxt.equals("")) {
-//                    int prevPosition = 0;
-//                    if (messanger_chatting_ArrayList.size() == 0) {
-//                        messanger_chatting_ArrayList.add(new ListItem(R.drawable.testpicture, chattingEditTxt, "1", 2, true, true, false));
-//                        messanger_Chatting_LV.setAdapter(messanger_chatting_adapter);
-//                        messanger_Chatting_LV.setSelection(messanger_chatting_adapter.getCount() - 1);
-//                        return;
-//                    } else if (messanger_chatting_ArrayList.size() > 0) {
-//                        prevPosition = messanger_chatting_ArrayList.size() - 1;
-//                        ListItem temp = messanger_chatting_ArrayList.get(prevPosition);
-//                        picture_Type = true;
-//                        message_Type = 2;
-//                        Log.d("time_Changed1 = ", String.valueOf(time_Changed));
-//
-//                        if (date_Changed) {
-//                            picture_Type = true;
-//                            time_Changed = true;
-//                        } else if (!time_Changed) {
-//                            messanger_chatting_ArrayList.set(prevPosition, temp);
-//                            if (messanger_chatting_ArrayList.get(prevPosition).getMessage_Type() == 1) {
-//                                picture_Type = true;
-//                                time_Changed = true;
-//                            } else {
-//                                time_Changed = true;
-//                                picture_Type = false;
-//                                temp.setTime_Changed(false);
-//                            }
-//                            Log.d("time_Changed2 = ", String.valueOf(time_Changed));
-//                        } else {
-//                            temp.setTime_Changed(true);
-//                            messanger_chatting_ArrayList.set(prevPosition, temp);
-//                            System.out.println(time_Changed);
-//                            Log.d("time_Changed3 = ", String.valueOf(time_Changed));
-//                        }
-//                    }
-//                    messanger_chatting_ArrayList.add(new ListItem(R.drawable.testpicture, chattingEditTxt, "1", message_Type, picture_Type, time_Changed, date_Changed));
-//                    messanger_Chatting_LV.setAdapter(messanger_chatting_adapter);
-//                    messanger_chatting_adapter.notifyDataSetChanged();
-//                    messanger_Chatting_LV.setSelection(messanger_chatting_adapter.getCount() - 1);
-//                }
-//                else
-//                {
-//                    return;
-//                }
-//            }
-//        });
 
 
 }

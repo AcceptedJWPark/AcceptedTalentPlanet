@@ -43,8 +43,7 @@
     <dimen name="Messanger_Chatting_Text">11.5dp</dimen>
     <dimen name="Messanger_Chatting_TextWidth">250dp</dimen>
 
-    <dimen name="Messanger_Chatting_List_Height">430dp</dimen>
-    <dimen name="Messanger_Chatting_EditTxt_Height">80dp</dimen>
+    <dimen name="Messanger_Chatting_EditTxt_minHeight">40dp</dimen>
 
 
     <dimen name="SpinnerTxt">12.5dp</dimen>

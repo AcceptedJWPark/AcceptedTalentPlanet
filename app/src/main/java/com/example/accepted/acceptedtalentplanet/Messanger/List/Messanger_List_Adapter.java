@@ -117,7 +117,7 @@ public class Messanger_List_Adapter extends BaseAdapter {
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(mContext, Messanger_Chatting.class);
+                Intent i = new Intent(mContext, com.example.accepted.acceptedtalentplanet.Messanger.Chatting.MainActivity.class);
                 i.putExtra("roomID", roomID);
                 i.putExtra("userID", userID);
                 i.putExtra("userName", messanger_Arraylist.get(position).getMessanger_Name());
