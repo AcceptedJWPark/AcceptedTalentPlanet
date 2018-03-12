@@ -48,7 +48,7 @@
                         android:text="신고 대상 : "
                         />
                     <TextView
-                        android:id="@+id/CustomerService_ClaimListName"
+                        android:id="@+id/tv_Name_ClaimList"
                         android:layout_width="wrap_content"
                         android:gravity="center|left|top"
                         android:layout_height="match_parent"
@@ -85,7 +85,7 @@
                         />
 
                     <TextView
-                        android:id="@+id/CustomerService_ClaimType"
+                        android:id="@+id/tv_ClaimType_ClaimList"
                         android:layout_width="wrap_content"
                         android:gravity="center|left|top"
                         android:layout_height="match_parent"
@@ -122,7 +122,7 @@
                 />
 
                     <TextView
-                        android:id="@+id/CustomerService_Date"
+                        android:id="@+id/tv_Date_ClaimList"
                         android:layout_width="wrap_content"
                         android:layout_marginLeft="5dp"
                         android:gravity="center|left|top"
@@ -158,7 +158,7 @@
                         />
 
                     <TextView
-                        android:id="@+id/CustomerService_ClaimListClaim"
+                        android:id="@+id/tv_Claim_ClaimList"
                         android:layout_width="wrap_content"
                         android:layout_marginLeft="5dp"
                         android:gravity="center|left|top"
@@ -189,7 +189,7 @@
 
 
                 <TextView
-                    android:id="@+id/CustomerService_ClaimListAnswer"
+                    android:id="@+id/tv_Answer_ClaimList"
                     android:layout_width="wrap_content"
                     android:gravity="center|left"
                     android:layout_height="match_parent"

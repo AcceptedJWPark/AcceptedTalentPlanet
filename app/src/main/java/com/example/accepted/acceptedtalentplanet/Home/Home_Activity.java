@@ -16,19 +16,9 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.example.accepted.acceptedtalentplanet.Alarm.Alarm_Activity;
-import com.example.accepted.acceptedtalentplanet.CustomerService.CustomerService_MainActivity;
-import com.example.accepted.acceptedtalentplanet.FriendList.FriendList_Activity;
-import com.example.accepted.acceptedtalentplanet.LoadingLogin.Login_Activity;
-import com.example.accepted.acceptedtalentplanet.MyProfile.MyProfile_Activity;
+import com.example.accepted.acceptedtalentplanet.Alarm.MainActivity;
 import com.example.accepted.acceptedtalentplanet.R;
 import com.example.accepted.acceptedtalentplanet.SaveSharedPreference;
-import com.example.accepted.acceptedtalentplanet.SharingList.SharingList_Activity;
-import com.example.accepted.acceptedtalentplanet.System.System_Activity;
-import com.example.accepted.acceptedtalentplanet.TalentCondition.TalentCondition_Activity;
-import com.example.accepted.acceptedtalentplanet.TalentResister.TalentResister_Activity;
-import com.example.accepted.acceptedtalentplanet.TalentSearching.TalentSearching_Activity;
-import com.example.accepted.acceptedtalentplanet.TalentSharing.TalentSharing_Activity;
 
 import java.util.ArrayList;
 
@@ -66,13 +56,13 @@ public class Home_Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_activity);
 
-        ToolbarTxt = (TextView) findViewById(R.id.toolbarTxt);
+        ToolbarTxt = (TextView) findViewById(R.id.tv_toolbarTitle);
         ToolbarTxt.setText("Home");
 
         mContext = getApplicationContext();
 
 
-        ((TextView) findViewById(R.id.toolbarTxt)).setText("Home");
+        ((TextView) findViewById(R.id.tv_toolbarTitle)).setText("Home");
         ((TextView) findViewById(R.id.DrawerUserID)).setText(SaveSharedPreference.getUserId(mContext));
 
         View.OnClickListener mClicklistener = new  View.OnClickListener()
@@ -156,9 +146,9 @@ public class Home_Activity extends AppCompatActivity {
 
         //ToolBar 적용하기
         drawerView = (View) findViewById(R.id.Home_container);
-        imgDLOpenMenu = (ImageView) findViewById(R.id.ActionBar_Listview);
+        imgDLOpenMenu = (ImageView) findViewById(R.id.DrawerLayout_OpenIcon);
         DrawerCloseImg = (ImageView) findViewById(R.id.DrawerCloseImg);
-        ActionBar_AlarmView = (ImageView) findViewById(R.id.ActionBar_AlarmView);
+        ActionBar_AlarmView = (ImageView) findViewById(R.id.DrawerLayout_AlarmIcon);
 
 
         imgDLOpenMenu.setOnClickListener(new View.OnClickListener() {
@@ -179,7 +169,7 @@ public class Home_Activity extends AppCompatActivity {
         ActionBar_AlarmView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(mContext, Alarm_Activity.class);
+                Intent intent = new Intent(mContext, MainActivity.class);
                 startActivity(intent);
             }
         });

@@ -25,7 +25,7 @@
             >
 
             <LinearLayout
-                android:id="@+id/CustomerService_Version_PreBtn"
+                android:id="@+id/ll_preContainer_Version"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"

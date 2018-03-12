@@ -22,7 +22,7 @@
             >
 
             <LinearLayout
-                android:id="@+id/pre_LL"
+                android:id="@+id/ll_preContainer_Birth_Join"
                 android:layout_marginLeft="15dp"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -72,7 +72,7 @@
             >
 
         <EditText
-            android:id="@+id/Join_Birth_Year"
+            android:id="@+id/et_Yeat_birth_Join"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:background="@drawable/bgr_inputbox"
@@ -83,7 +83,7 @@
             android:textSize="@dimen/Edit_Hint" />
 
         <EditText
-            android:id="@+id/Join_Birth_Month"
+            android:id="@+id/et_Month_birth_Join"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:background="@drawable/bgr_inputbox"
@@ -97,7 +97,7 @@
             />
 
         <EditText
-            android:id="@+id/Join_Birth_Day"
+            android:id="@+id/et_Day_birth_Join"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:background="@drawable/bgr_inputbox"

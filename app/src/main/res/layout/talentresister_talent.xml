@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="#ffffff"
-    tools:context=".TalentResister.TalentResister_Talent_Activity"
+    tools:mContext=".TalentResister.Talent.MainActivity"
     android:weightSum="24"
     android:clickable="true"
     android:focusable="true"
@@ -16,7 +16,7 @@
 
 
     <LinearLayout
-        android:id="@+id/TalentResister_Talent_Txt_LL"
+        android:id="@+id/ll_TxtContainer_TalentResister"
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:layout_marginTop="30dp"
@@ -52,7 +52,7 @@
 
 
     <LinearLayout
-        android:id="@+id/TalentResister_TalentLL"
+        android:id="@+id/ll_InputContainer_Talent_TalentRegister"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:gravity="center"
@@ -62,7 +62,7 @@
         >
 
         <EditText
-            android:id="@+id/TalentResister_Talent"
+            android:id="@+id/et_Talent_TalentRegister"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:dropDownWidth="match_parent"
@@ -86,7 +86,7 @@
                 android:layout_weight="0.1"/>
 
             <Button
-                android:id="@+id/addTalentBtn"
+                android:id="@+id/btn_Add_Talent_TalentRegister"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="0.7"
@@ -104,7 +104,7 @@
 
 
         <ListView
-            android:id="@+id/talent_ListView"
+            android:id="@+id/listView_Talent_TalentRegister"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="80dp"
@@ -117,7 +117,7 @@
 
 
     <Button
-        android:id="@+id/TalentResister_Talent_Btn"
+        android:id="@+id/btn_Next_Talent_TalentResister"
         android:layout_width="match_parent"
         android:layout_height="30dp"
         android:layout_marginLeft="80dp"

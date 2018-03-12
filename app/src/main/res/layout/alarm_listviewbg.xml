@@ -13,7 +13,7 @@
     android:weightSum="7"
     >
     <LinearLayout
-        android:id="@+id/pictureContainerLL"
+        android:id="@+id/ll_picContainer_Alarm"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
@@ -21,7 +21,7 @@
         android:layout_marginRight="5dp"
         >
     <ImageView
-        android:id="@+id/Alarm_Picture"
+        android:id="@+id/iv_Picture_Alarm"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:adjustViewBounds="false"
@@ -31,7 +31,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/alarm_TxtLL"
+        android:id="@+id/ll_txtContainer_Alarm"
         android:layout_width="0dp"
         android:layout_weight="5"
         android:layout_marginLeft="5dp"
@@ -48,7 +48,7 @@
             >
 
         <TextView
-            android:id="@+id/Alarm_Name"
+            android:id="@+id/tv_Name_Alarm"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center|left"
@@ -61,7 +61,7 @@
 
 
         <TextView
-            android:id="@+id/Alarm_Txt"
+            android:id="@+id/tv_Txt_Alarm"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:gravity="center|left"
@@ -79,7 +79,7 @@
             android:layout_height="0dp"
             android:layout_weight="1">
             <TextView
-            android:id="@+id/Alarm_RegistDate1"
+            android:id="@+id/tv_Date1_Alarm"
             android:layout_width="wrap_content"
             android:textColor="@color/textColor_normal"
             android:layout_height="match_parent"
@@ -89,7 +89,7 @@
             android:textSize="@dimen/ListView_SecondLine"
             />
             <TextView
-                android:id="@+id/Alarm_RegistDate2"
+                android:id="@+id/tv_Date2_Alarm_"
                 android:layout_width="wrap_content"
                 android:textColor="@color/textColor_normal"
                 android:layout_height="match_parent"
@@ -103,7 +103,7 @@
     </LinearLayout>
 
         <ImageView
-            android:id="@+id/Alarm_DeleteList"
+            android:id="@+id/iv_DeleteIcon_Alarm"
             android:layout_weight="1"
             android:layout_width="0dp"
             android:padding="10dp"

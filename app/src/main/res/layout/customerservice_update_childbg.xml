@@ -19,7 +19,7 @@
 
 
         <TextView
-            android:id="@+id/CustomerService_Update_child_text"
+            android:id="@+id/tv_ChildTitle_Update"
             android:layout_width="wrap_content"
             android:gravity="center|left"
             android:layout_height="match_parent"

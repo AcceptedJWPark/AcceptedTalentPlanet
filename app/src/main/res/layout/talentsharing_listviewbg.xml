@@ -21,7 +21,7 @@
         android:layout_marginRight="5dp"
         >
         <ImageView
-            android:id="@+id/TalentSharing_Picture"
+            android:id="@+id/iv_picture_TalentSharing"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:adjustViewBounds="false"
@@ -40,7 +40,7 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/TalentSharing_Name"
+            android:id="@+id/tv_Name_TalentSharing"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="0.8"
@@ -58,7 +58,7 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/TalentSharing_Keyword1"
+                android:id="@+id/tv_talent1_TalentSharing"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="left"
@@ -75,7 +75,7 @@
                 />
 
             <TextView
-                android:id="@+id/TalentSharing_Keyword2"
+                android:id="@+id/tv_talent2_TalentSharing"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Vocal"
@@ -94,7 +94,7 @@
                 />
 
             <TextView
-                android:id="@+id/TalentSharing_Keyword3"
+                android:id="@+id/tv_talent3_TalentSharing"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Dance"
@@ -113,7 +113,7 @@
     </LinearLayout>
 
     <TextView
-        android:id="@+id/TalentSharing_Distance"
+        android:id="@+id/tv_distance_TalentSharing"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:text="9km"

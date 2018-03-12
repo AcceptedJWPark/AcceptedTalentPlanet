@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="60dp"
+    android:padding="5dp"
+    >
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="8"
+            android:layout_marginRight="5dp"
+            android:orientation="vertical"
+            >
+
+            <TextView
+                android:id="@+id/tv_ParentTitle_QuestionList"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="T.Sharing 클릭시 오류가 발생합니다. 원인이 무엇인지 궁금하며 조속히 해결 바랍니다."
+                android:singleLine="true"
+                android:textColor="@color/textColor_txtpage"
+                android:textSize="@dimen/List_Title"
+                />
+
+            <TextView
+                android:id="@+id/tv_ParentDate_QuestionList"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:ellipsize="end"
+                android:textColor="@color/textColor_normal"
+                android:lines="1"
+                android:textSize="@dimen/ListView_SecondLine"
+                android:paddingLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:text="2017.11.03 16:24 등록"
+                />
+
+        </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_weight="2"
+        android:layout_marginLeft="5dp"
+        >
+
+        <View
+            android:layout_height="0dp"
+            android:layout_width="match_parent"
+            android:layout_weight="0.2"/>
+
+        <TextView
+            android:id="@+id/tv_ParentisAnswer_QuestionList"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:text="[답변 완료]"
+            android:textSize="@dimen/List_Title"
+            android:textColor="@color/textColor_txtpage"
+            android:gravity="center"
+            android:layout_gravity="center"
+            />
+        <View
+            android:layout_height="0dp"
+            android:layout_width="match_parent"
+            android:layout_weight="0.2"/>
+
+    </LinearLayout>
+
+
+
+</LinearLayout>

@@ -6,7 +6,7 @@
     >
 
     <TextView
-        android:id="@+id/CustomerService_Notice_child_text"
+        android:id="@+id/tv_Childe_Notice"
         android:layout_width="match_parent"
         android:paddingTop="10dp"
         android:paddingBottom="10dp"

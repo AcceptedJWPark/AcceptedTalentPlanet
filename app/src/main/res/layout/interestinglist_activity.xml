@@ -26,7 +26,7 @@
             >
 
             <LinearLayout
-                android:id="@+id/InterestingList_PreBtn"
+                android:id="@+id/ll_PreContainer_InterestingList"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -73,7 +73,7 @@
         >
 
         <Button
-            android:id="@+id/InterestingList_GiveCheck"
+            android:id="@+id/btn_SelectGive_InterestingList"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -85,7 +85,7 @@
             />
 
         <Button
-            android:id="@+id/InterestingList_TakeCheck"
+            android:id="@+id/btn_SelectTake_InterestingList"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -99,7 +99,7 @@
 
 
     <ListView
-        android:id="@+id/Interesting_List"
+        android:id="@+id/lv_InterestingList"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="21.68"

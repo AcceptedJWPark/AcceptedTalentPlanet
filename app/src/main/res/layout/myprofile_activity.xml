@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <android.support.v4.widget.DrawerLayout
-    android:id="@+id/MyProfile_listboxDL"
+    android:id="@+id/drawerLayout_MyProfile"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -18,7 +18,7 @@
         >
 
         <android.support.v7.widget.Toolbar
-            android:id="@+id/MyProfile_toolbar"
+            android:id="@+id/ll_Toolbar_MyProfile"
             android:layout_width="match_parent"
             android:layout_height="@dimen/MyProfile_Toolbar"
             android:contentInsetStart="0dp"
@@ -54,14 +54,14 @@
                 >
 
                 <RelativeLayout
-                    android:id="@+id/MyProfile_PictureLL"
+                    android:id="@+id/rl_Container_MyProfile"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/MyProfile_Picture_Layout"
                     >
 
 
                     <RelativeLayout
-                        android:id="@+id/MyProfile_Picture_Container"
+                        android:id="@+id/rl_PictureContainer_MyProfile"
                         android:layout_width="@dimen/Picture_Width"
                         android:layout_height="@dimen/Picture_Height"
                         android:background="@drawable/bgr_picture_container"
@@ -70,7 +70,7 @@
                         >
 
                     <ImageView
-                        android:id="@+id/MyProfile_Picture"
+                        android:id="@+id/iv_Picture_MyProfile"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:adjustViewBounds="false"
@@ -83,12 +83,12 @@
                     </RelativeLayout>
 
                     <ImageView
-                        android:id="@+id/MyProfile_SelectPhoto"
+                        android:id="@+id/iv_PictureIcon_MyProfile"
                         android:layout_width="@dimen/Toolbar_Img"
                         android:layout_height="@dimen/Toolbar_Img"
-                        android:layout_alignBottom="@+id/MyProfile_Picture_Container"
+                        android:layout_alignBottom="@+id/rl_PictureContainer_MyProfile"
                         android:layout_marginLeft="5dp"
-                        android:layout_toRightOf="@+id/MyProfile_Picture_Container"
+                        android:layout_toRightOf="@+id/rl_PictureContainer_MyProfile"
 
                         android:src="@drawable/icon_pictureedit" />
 
@@ -97,7 +97,7 @@
 
 
                 <TextView
-                    android:id="@+id/MyProfile_Devider1"
+                    android:id="@+id/tv_Divider1_MyProfile"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/MyProfile_Divider"
                     android:background="@drawable/brg_divider"
@@ -114,7 +114,7 @@
 
                 <!--, 필수 공개 레이아웃(E-mail)-->
                 <LinearLayout
-                    android:id="@+id/MyProfile_List_LL2"
+                    android:id="@+id/ll_Container2_MyProfile"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/MyProfile_List_Layout"
                     android:gravity="center"
@@ -135,7 +135,7 @@
                         />
 
                     <TextView
-                        android:id="@+id/MyProfile_Email"
+                        android:id="@+id/tv_Email_MyProfile"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="8"
@@ -148,7 +148,7 @@
 
                 <!--, 필수 공개 레이아웃(이름)-->
                 <LinearLayout
-                    android:id="@+id/MyProfile_List_LL3"
+                    android:id="@+id/ll_Container3_MyProfile"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/MyProfile_List_Layout"
                     android:gravity="center"
@@ -168,7 +168,7 @@
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/MyProfile_Name"
+                        android:id="@+id/tv_Name_MyProfile"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="8"
@@ -182,7 +182,7 @@
 
                 <!--, 필수 공개 레이아웃(성별)-->
                 <LinearLayout
-                    android:id="@+id/MyProfile_List_LL4"
+                    android:id="@+id/ll_Container4_MyProfile"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/MyProfile_List_Layout"
                     android:gravity="center"
@@ -209,7 +209,7 @@
                         >
 
                         <TextView
-                            android:id="@+id/MyProfile_Gender"
+                            android:id="@+id/tv_Gender_MyProfile"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_weight="0.8"
@@ -220,7 +220,7 @@
                             />
 
                         <CheckBox
-                            android:id="@+id/MyProfile_genderNoShowCheck"
+                            android:id="@+id/cb_isShowGender_MyProfile"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_weight="2"
@@ -236,7 +236,7 @@
 
                 <!--, 필수 공개 레이아웃(생년월일)-->
                 <LinearLayout
-                    android:id="@+id/MyProfile_List_LL5"
+                    android:id="@+id/ll_Container5_MyProfile"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/MyProfile_List_Layout"
                     android:gravity="center"
@@ -261,7 +261,7 @@
                         android:layout_weight="8">
 
                         <TextView
-                            android:id="@+id/MyProfile_Birthday"
+                            android:id="@+id/tv_Birthday_MyProfile"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_weight="0.8"
@@ -272,7 +272,7 @@
                             />
 
                         <CheckBox
-                            android:id="@+id/MyProfile_BirthdayNoShowCheck"
+                            android:id="@+id/cb_isShowBirth_MyProfile"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_weight="2"
@@ -288,7 +288,7 @@
 
                 <!--, 선택 공개 레이아웃(직업)-->
                 <LinearLayout
-                    android:id="@+id/MyProfile_List_LL6"
+                    android:id="@+id/ll_Container6_MyProfile"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/MyProfile_List_Layout"
                     android:gravity="center"
@@ -313,7 +313,7 @@
                         android:layout_weight="8">
 
                         <EditText
-                            android:id="@+id/MyProfile_Job"
+                            android:id="@+id/et_Job_MyProfile"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_gravity="center"
@@ -329,7 +329,7 @@
 
 
                         <CheckBox
-                            android:id="@+id/MyProfile_JobNoShowCheck"
+                            android:id="@+id/cb_isShowJob_MyProfile"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_weight="2"
@@ -343,7 +343,7 @@
                 </LinearLayout>
 
                 <TextView
-                    android:id="@+id/MyProfile_Devider2"
+                    android:id="@+id/tv_Divider2_MyProfile"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/MyProfile_Divider"
                     android:background="@drawable/brg_divider"
@@ -357,7 +357,7 @@
 
                 <!--, 선택 공개 레이아웃(자기소개)-->
                 <LinearLayout
-                    android:id="@+id/MyProfile_List_LL7"
+                    android:id="@+id/ll_Container7_MyProfile"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/MyProfile_List_Layout"
                     android:gravity="center"
@@ -382,7 +382,7 @@
                         android:layout_weight="8">
 
                         <TextView
-                            android:id="@+id/MyProfile_GiveTalent1"
+                            android:id="@+id/tv_GiveTalent1_MyProfile"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_gravity="bottom"
@@ -396,7 +396,7 @@
                             />
 
                         <TextView
-                            android:id="@+id/MyProfile_GiveTalent2"
+                            android:id="@+id/tv_GiveTalent2_MyProfile"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_gravity="bottom"
@@ -410,7 +410,7 @@
                             />
 
                         <TextView
-                            android:id="@+id/MyProfile_GiveTalent3"
+                            android:id="@+id/tv_GiveTalent3_MyProfile"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_gravity="bottom"
@@ -428,7 +428,7 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/MyProfile_List_LL8"
+                    android:id="@+id/ll_Container8_MyProfile"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/MyProfile_List_Layout"
                     android:gravity="center"
@@ -453,7 +453,7 @@
                         android:layout_weight="8">
 
                         <TextView
-                            android:id="@+id/MyProfile_TakeTalent1"
+                            android:id="@+id/tv_TakeTalent1_MyProfile"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_gravity="bottom"
@@ -467,7 +467,7 @@
                             />
 
                         <TextView
-                            android:id="@+id/MyProfile_TakeTalent2"
+                            android:id="@+id/tv_TakeTalent2_MyProfile"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_gravity="bottom"
@@ -481,7 +481,7 @@
                             />
 
                         <TextView
-                            android:id="@+id/MyProfile_TakeTalent3"
+                            android:id="@+id/tv_TakeTalent3_MyProfile"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_gravity="bottom"
@@ -500,7 +500,7 @@
 
 
                 <LinearLayout
-                    android:id="@+id/MyProfile_List_LL1"
+                    android:id="@+id/ll_Container1_MyProfile"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/MyProfile_List_Layout"
                     android:gravity="center"
@@ -528,7 +528,7 @@
                         >
 
                         <TextView
-                            android:id="@+id/MyProfile_TalentPoint"
+                            android:id="@+id/tv_Point_MyProfile"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:gravity="left|center"
@@ -538,7 +538,7 @@
 
 
                             <ImageView
-                                android:id="@+id/MyProfile_CompleteList_Open"
+                                android:id="@+id/iv_CompleteListIcon_MyProfile"
                                 android:layout_width="@dimen/Toolbar_Img"
                                 android:layout_height="@dimen/Toolbar_Img"
                                 android:layout_marginLeft="5dp"
@@ -568,7 +568,7 @@
 
 
                     <Button
-                        android:id="@+id/MyProfile_Save"
+                        android:id="@+id/btn_Save_MyProfile"
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
                         android:layout_marginTop="5dp"
@@ -591,7 +591,7 @@
 
 
     <FrameLayout
-        android:id="@+id/MyProfile_container"
+        android:id="@+id/view_DrawerLayout_MyProfile"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="start">

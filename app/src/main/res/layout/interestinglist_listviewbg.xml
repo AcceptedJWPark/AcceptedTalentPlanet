@@ -22,7 +22,7 @@
             android:layout_marginRight="5dp"
             >
             <ImageView
-                android:id="@+id/Interesting_List_Picture"
+                android:id="@+id/iv_Picture_InterestingList"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:adjustViewBounds="false"
@@ -47,7 +47,7 @@
             >
 
         <TextView
-            android:id="@+id/Interesting_List_Name"
+            android:id="@+id/tv_Name_InterestingList"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -72,7 +72,7 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/Interesting_List_Keyword1"
+                    android:id="@+id/tv_Talent1_InterestingList"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="기타 연주"
@@ -89,7 +89,7 @@
                     />
 
                 <TextView
-                    android:id="@+id/Interesting_List_Keyword2"
+                    android:id="@+id/tv_Talent2_InterestingList"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Vocal"
@@ -108,7 +108,7 @@
                     />
 
                 <TextView
-                    android:id="@+id/Interesting_List_Keyword3"
+                    android:id="@+id/tv_Talent3_InterestingList"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
@@ -139,7 +139,7 @@
         android:orientation="vertical"
         >
         <ImageView
-            android:id="@+id/Interesting_List_GiveTakeIcon"
+            android:id="@+id/iv_GiveTakeIcon_InterestingList"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="0.8"
@@ -147,7 +147,7 @@
             android:paddingTop="3dp"
             />
         <TextView
-            android:id="@+id/Interesting_List_GiveTake"
+            android:id="@+id/tv_GiveTakeTxt_InterestingList"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"

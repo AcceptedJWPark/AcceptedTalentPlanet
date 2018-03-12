@@ -28,7 +28,7 @@
             >
 
             <LinearLayout
-                android:id="@+id/CustomerService_Manual_PreBtn"
+                android:id="@+id/ll_PreContainer_Manual"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -71,7 +71,7 @@
         >
 
         <TextView
-            android:id="@+id/CustomerService_manual_MyProfile"
+            android:id="@+id/tv_MyProfile_Manual"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -84,7 +84,7 @@
             />
 
         <TextView
-            android:id="@+id/CustomerService_manual_MyTalent"
+            android:id="@+id/tv_MyTalent_Manual"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -97,7 +97,7 @@
             />
 
         <TextView
-            android:id="@+id/CustomerService_manual_TSharing"
+            android:id="@+id/tv_TSharing_Manual"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -110,7 +110,7 @@
             />
 
         <TextView
-            android:id="@+id/CustomerService_manual_TSearching"
+            android:id="@+id/tv_TSearching_Manual"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -134,7 +134,7 @@
         android:layout_marginRight="20dp"
         >
         <TextView
-            android:id="@+id/CustomerService_manual_TCondition"
+            android:id="@+id/tv_TCondition_Manual"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -148,7 +148,7 @@
 
 
         <TextView
-            android:id="@+id/CustomerService_manual_FriendList"
+            android:id="@+id/tv_Friend_Manual"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -161,7 +161,7 @@
             />
 
         <TextView
-            android:id="@+id/CustomerService_manual_SharingList"
+            android:id="@+id/tv_SharingList_Manual"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -174,7 +174,7 @@
             />
 
         <TextView
-            android:id="@+id/CustomerService_manual_InterestingList"
+            android:id="@+id/tv_Interesting_Manual"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -198,7 +198,7 @@
         >
 
         <TextView
-            android:id="@+id/CustomerService_manual_Alarm"
+            android:id="@+id/tv_Alarm_Manual"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -211,7 +211,7 @@
             />
 
         <TextView
-            android:id="@+id/CustomerService_manual_CustomerService"
+            android:id="@+id/tv_CustomerService_Manual"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -224,7 +224,7 @@
             />
 
         <TextView
-            android:id="@+id/CustomerService_manual_System"
+            android:id="@+id/tv_System_Manual"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -237,7 +237,7 @@
             />
 
         <TextView
-            android:id="@+id/CustomerService_manual_Message"
+            android:id="@+id/tv_Message_Manual"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -261,7 +261,7 @@
         />
 
     <Button
-        android:id="@+id/CustomerService_manual_onebyoneQuestionBtn"
+        android:id="@+id/btn_NextToQuestion_Manual"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"

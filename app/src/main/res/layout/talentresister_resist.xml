@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <android.support.v4.widget.DrawerLayout
-    android:id="@+id/TalentResister1_listboxDL"
+    android:id="@+id/drawerLayout_TalentResister"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -64,7 +64,7 @@
             android:paddingTop="1dp">
 
             <Button
-                android:id="@+id/TalentResister_ShowGive"
+                android:id="@+id/btn_ShowGive_TalentResister"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -77,7 +77,7 @@
                 />
 
             <Button
-                android:id="@+id/TalentResister_ShowTake"
+                android:id="@+id/btn_ShowTake_TalentResister"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -91,7 +91,7 @@
         </LinearLayout>
 
         <TextView
-            android:id="@+id/TalentResister_NoTalent_TextView"
+            android:id="@+id/tv_NoTalent_TalentRegister"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="3"
@@ -104,7 +104,7 @@
 
 
         <LinearLayout
-            android:id="@+id/TalentResister_boxLL"
+            android:id="@+id/ll_TxtContainer_TalentResister"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="9.2"
@@ -134,7 +134,7 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/TalentResister_Keyword1"
+                    android:id="@+id/tv_Talent1_TalentResister"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1.5"
@@ -148,7 +148,7 @@
                     />
 
                 <TextView
-                    android:id="@+id/TalentResister_Keyword2"
+                    android:id="@+id/tv_Talent_TalentResister"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1.5"
@@ -162,7 +162,7 @@
                     />
 
                 <TextView
-                    android:id="@+id/TalentResister_Keyword3"
+                    android:id="@+id/tv_Talent3_TalentResister"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1.5"
@@ -213,7 +213,7 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/TalentResister_Location1"
+                    android:id="@+id/tv_Location1_TalentResister"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
@@ -262,7 +262,7 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/TalentResister_Location2"
+                        android:id="@+id/tv_Location2_TalentResister"
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_weight="1"
@@ -310,7 +310,7 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/TalentResister_Location3"
+                        android:id="@+id/tv_Location3_TalentResister"
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_weight="1"
@@ -348,7 +348,7 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/TalentResister_Level"
+                    android:id="@+id/tv_Level_TalentResister"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="4.5"
@@ -382,7 +382,7 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/TalentResister_Point"
+                    android:id="@+id/tv_Point_TalentResister"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="4.5"
@@ -410,7 +410,7 @@
             >
 
             <Button
-                android:id="@+id/TalentResister_Give_ModifyBtn"
+                android:id="@+id/btn_ModifyGive_TalentResister"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_alignParentRight="true"
@@ -424,7 +424,7 @@
                 android:visibility="invisible" />
 
             <Button
-                android:id="@+id/TalentResister_Take_ModifyBtn"
+                android:id="@+id/btn_ModifyTake_TalentResister"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_alignParentRight="true"
@@ -444,7 +444,7 @@
 
 </LinearLayout>
     <FrameLayout
-        android:id="@+id/TalentResister_container1"
+        android:id="@+id/view_drawerView_TalentResister"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="start">

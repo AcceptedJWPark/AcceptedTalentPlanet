@@ -14,7 +14,7 @@
 
 
     <TextView
-        android:id="@+id/CustomerService_FAQparent_text"
+        android:id="@+id/tv_Parent_Faq"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="10"

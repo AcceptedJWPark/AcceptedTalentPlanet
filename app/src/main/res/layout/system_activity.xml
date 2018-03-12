@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <android.support.v4.widget.DrawerLayout xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/System_listboxDL"
+    android:id="@+id/drawerLayout_System"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -71,7 +71,7 @@
                     />
 
             <Switch
-                android:id="@+id/System_MessageRing_Switch"
+                android:id="@+id/swc_MessageRing_System"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="2.5"
@@ -113,7 +113,7 @@
                 />
 
             <Switch
-                android:id="@+id/System_ConditionRing_Switch"
+                android:id="@+id/swc_ConditionRing_System"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="2.5"
@@ -155,7 +155,7 @@
                 />
 
             <Switch
-                android:id="@+id/System_Answer_Switch"
+                android:id="@+id/swc_AnswerRing_System"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="2.5"
@@ -200,7 +200,7 @@
 
 
             <TextView
-                android:id="@+id/System_PasswordChange"
+                android:id="@+id/tv_Password_System"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="7.5"
@@ -221,7 +221,7 @@
             android:background="#f2f2f2"/>
 
         <LinearLayout
-            android:id="@+id/System_NouseAccount"
+            android:id="@+id/ll_NoActivity_System"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1.8"
@@ -242,7 +242,7 @@
                 />
 
             <TextView
-                android:id="@+id/System_AcountActivateorNot"
+                android:id="@+id/tv_NoActivity_System"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="2.5"
@@ -264,7 +264,7 @@
 
 
         <Button
-            android:id="@+id/System_SaveBtn"
+            android:id="@+id/btn_Save_System"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
@@ -281,7 +281,7 @@
 
 
     <FrameLayout
-        android:id="@+id/System_container"
+        android:id="@+id/view_DrawerLayout_System"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="start">

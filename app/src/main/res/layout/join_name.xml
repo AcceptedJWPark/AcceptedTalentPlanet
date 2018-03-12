@@ -22,7 +22,7 @@
         >
 
         <LinearLayout
-            android:id="@+id/pre_LL"
+            android:id="@+id/ll_ProContainer_Name_Join"
             android:layout_marginLeft="15dp"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
@@ -69,7 +69,7 @@
             >
 
         <EditText
-            android:id="@+id/Join_FirstName"
+            android:id="@+id/et_Firstname_Name_Join"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/bgr_inputbox"
@@ -81,7 +81,7 @@
             android:textSize="@dimen/Edit_Hint" />
 
         <EditText
-            android:id="@+id/Join_LastName"
+            android:id="@+id/et_Lastname_Name_Join"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/bgr_inputbox"

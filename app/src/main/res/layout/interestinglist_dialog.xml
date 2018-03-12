@@ -18,7 +18,7 @@
         >
 
         <TextView
-            android:id="@+id/interestinglist_dialog_ContentTxt"
+            android:id="@+id/tv_DialogTxt_InterestingList"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="25dp"
@@ -39,7 +39,7 @@
 
 
             <TextView
-                android:id="@+id/interestinglist_dialog_ProceedBtn"
+                android:id="@+id/tv_DialogNext_InterestingList"
                 android:layout_width="0dp"
                 android:layout_height="25dp"
                 android:layout_weight="1"
@@ -52,7 +52,7 @@
                 />
 
             <TextView
-                android:id="@+id/interestinglist_dialog_CancelBtn"
+                android:id="@+id/tv_DialogCancel_InterestingList"
                 android:layout_width="0dp"
                 android:layout_height="25dp"
                 android:layout_weight="1"
