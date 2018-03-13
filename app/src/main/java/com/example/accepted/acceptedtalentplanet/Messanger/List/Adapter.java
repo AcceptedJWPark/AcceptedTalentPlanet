@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
-import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.support.v7.app.AlertDialog;
 import android.util.DisplayMetrics;
@@ -28,18 +27,18 @@ import java.util.ArrayList;
  * Created by Accepted on 2018-03-05.
  */
 
-public class Messanger_List_Adapter extends BaseAdapter {
+public class Adapter extends BaseAdapter {
 
-    private ArrayList<Messanger_List_Item> messanger_Arraylist = new ArrayList<>();
+    private ArrayList<ListItem> messanger_Arraylist = new ArrayList<>();
     Context mContext;
 
 
-    public Messanger_List_Adapter(ArrayList<Messanger_List_Item> messanger_Arraylist, Context mContext) {
+    public Adapter(ArrayList<ListItem> messanger_Arraylist, Context mContext) {
         this.messanger_Arraylist = messanger_Arraylist;
         this.mContext = mContext;
     }
 
-    public Messanger_List_Adapter()
+    public Adapter()
     {}
 
     @Override
@@ -60,13 +59,13 @@ public class Messanger_List_Adapter extends BaseAdapter {
 
     public void switchFlag_deleteBtn(boolean deleteBtn_Clicked) {
         if (deleteBtn_Clicked) {
-            for (Messanger_List_Item item : messanger_Arraylist) {
+            for (ListItem item : messanger_Arraylist) {
                 item.setMessanger_DeleteBtn(true);
 
             }
 
         } else {
-            for (Messanger_List_Item item : messanger_Arraylist) {
+            for (ListItem item : messanger_Arraylist) {
                 item.setMessanger_DeleteBtn(false);
             }
         }
@@ -96,14 +95,14 @@ public class Messanger_List_Adapter extends BaseAdapter {
         view.setLayoutParams(params1);
 
 
-        holder.messsanger_Pic = view.findViewById(R.id.Messanger_List_Picture);
-        holder.messanger_Name = view.findViewById(R.id.Messanger_List_Name);
-        holder.messanger_Content = view.findViewById(R.id.Messanger_List_Txt);
-        holder.messanger_Count = view.findViewById(R.id.Messanger_List_Count);
-        holder.Messanger_List_LL = view.findViewById(R.id.Messanger_List_LL);
-        holder.messanger_Date = view.findViewById(R.id.Messanger_List_DateList);
-        holder.Messanger_List_DateLL = view.findViewById(R.id.Messanger_List_DateLL);
-        holder.Messanger_List_DeleteList = view.findViewById(R.id.Messanger_List_DeleteList);
+            holder.messsanger_Pic = view.findViewById(R.id.Messanger_List_Picture);
+            holder.messanger_Name = view.findViewById(R.id.Messanger_List_Name);
+            holder.messanger_Content = view.findViewById(R.id.Messanger_List_Txt);
+            holder.messanger_Count = view.findViewById(R.id.Messanger_List_Count);
+            holder.Messanger_List_LL = view.findViewById(R.id.Messanger_List_LL);
+            holder.messanger_Date = view.findViewById(R.id.Messanger_List_DateList);
+            holder.Messanger_List_DateLL = view.findViewById(R.id.Messanger_List_DateLL);
+            holder.Messanger_List_DeleteList = view.findViewById(R.id.Messanger_List_DeleteList);
 
 
         view.setTag(holder);

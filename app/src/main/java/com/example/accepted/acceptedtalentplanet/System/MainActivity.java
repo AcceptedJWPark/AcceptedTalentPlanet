@@ -125,58 +125,58 @@ public class MainActivity extends AppCompatActivity {
         //TODO:휴면 계정일 경우 로그인 시 계정활성화 쪽으로 화면 이동
 
 
-        isActivity = true;
-
-        ll_NoActivity = (LinearLayout) findViewById(R.id.ll_NoActivity_System);
-        final TextView tv_NoActivity = (TextView) findViewById(R.id.tv_NoActivity_System);
-        ll_NoActivity.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                AlertDialog.Builder AlarmDeleteDialog = new AlertDialog.Builder(MainActivity.this);
-                float textSize = getResources().getDimension(R.dimen.DialogTxtSize);
-                if (isActivity) {
-                    AlarmDeleteDialog.setMessage("회원님이 등록하신 재능은 미등록 처리 됩니다.\n\n휴면 계정으로 등록 하시겠습니까?")
-                            .setPositiveButton("확인", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    isActivity = false;
-                                    tv_NoActivity.setText("휴면 계정");
-                                    dialog.cancel();
-                                }
-                            })
-                            .setNegativeButton("취소", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    dialog.cancel();
-                                }
-                            });
-                    AlertDialog alertDialog = AlarmDeleteDialog.create();
-                    alertDialog.show();
-                    TextView msgView = (TextView) alertDialog.findViewById(android.R.id.message);
-                    msgView.setTextSize(textSize);
-                } else {
-                    AlarmDeleteDialog.setMessage("계정을 활성화 하시겠습니까?")
-                            .setPositiveButton("확인", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    isActivity = true;
-                                    tv_NoActivity.setText("계정 활성화 중");
-                                    dialog.cancel();
-                                }
-                            })
-                            .setNegativeButton("취소", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    dialog.cancel();
-                                }
-                            });
-                    AlertDialog alertDialog = AlarmDeleteDialog.create();
-                    alertDialog.show();
-                    TextView msgView = (TextView) alertDialog.findViewById(android.R.id.message);
-                    msgView.setTextSize(textSize);
-                }
-            }
-        });
+//        isActivity = true;
+//
+//        ll_NoActivity = (LinearLayout) findViewById(R.id.ll_NoActivity_System);
+//        final TextView tv_NoActivity = (TextView) findViewById(R.id.tv_NoActivity_System);
+//        ll_NoActivity.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                AlertDialog.Builder AlarmDeleteDialog = new AlertDialog.Builder(MainActivity.this);
+//                float textSize = getResources().getDimension(R.dimen.DialogTxtSize);
+//                if (isActivity) {
+//                    AlarmDeleteDialog.setMessage("회원님이 등록하신 재능은 미등록 처리 됩니다.\n\n휴면 계정으로 등록 하시겠습니까?")
+//                            .setPositiveButton("확인", new DialogInterface.OnClickListener() {
+//                                @Override
+//                                public void onClick(DialogInterface dialog, int which) {
+//                                    isActivity = false;
+//                                    tv_NoActivity.setText("휴면 계정");
+//                                    dialog.cancel();
+//                                }
+//                            })
+//                            .setNegativeButton("취소", new DialogInterface.OnClickListener() {
+//                                @Override
+//                                public void onClick(DialogInterface dialog, int which) {
+//                                    dialog.cancel();
+//                                }
+//                            });
+//                    AlertDialog alertDialog = AlarmDeleteDialog.create();
+//                    alertDialog.show();
+//                    TextView msgView = (TextView) alertDialog.findViewById(android.R.id.message);
+//                    msgView.setTextSize(textSize);
+//                } else {
+//                    AlarmDeleteDialog.setMessage("계정을 활성화 하시겠습니까?")
+//                            .setPositiveButton("확인", new DialogInterface.OnClickListener() {
+//                                @Override
+//                                public void onClick(DialogInterface dialog, int which) {
+//                                    isActivity = true;
+//                                    tv_NoActivity.setText("계정 활성화 중");
+//                                    dialog.cancel();
+//                                }
+//                            })
+//                            .setNegativeButton("취소", new DialogInterface.OnClickListener() {
+//                                @Override
+//                                public void onClick(DialogInterface dialog, int which) {
+//                                    dialog.cancel();
+//                                }
+//                            });
+//                    AlertDialog alertDialog = AlarmDeleteDialog.create();
+//                    alertDialog.show();
+//                    TextView msgView = (TextView) alertDialog.findViewById(android.R.id.message);
+//                    msgView.setTextSize(textSize);
+//                }
+//            }
+//        });
 
 
     }

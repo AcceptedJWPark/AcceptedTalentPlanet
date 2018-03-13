@@ -11,11 +11,15 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewTreeObserver;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.AbsListView;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -47,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
     private Adapter adapter;
     private ArrayList<ListItem> arrayList;
     private LinearLayout ll_SendBtnContainer;
+    private ScrollView sv_Messanger_Chatting;
     private EditText et_ChattingTxt;
     LinearLayout ll_EditTxtContainer;
     private TextView tv_User;
@@ -109,7 +114,30 @@ public class MainActivity extends AppCompatActivity {
         arrayList = new ArrayList<>();
         adapter = new Adapter(arrayList, mContext, picture);
 
+        sv_Messanger_Chatting = (ScrollView) findViewById(R.id.sv_Messanger_Chatting);
+
         listView = (ListView) findViewById(R.id.list_Chatting_Messanger);
+        listView.requestFocusFromTouch();
+
+        listView.setOnScrollListener(new AbsListView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(AbsListView view, int scrollState) {
+
+            }
+
+            @Override
+            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+                if(view.getLastVisiblePosition() == (totalItemCount-1))
+                {
+                    listView.setTranscriptMode(ListView.TRANSCRIPT_MODE_ALWAYS_SCROLL);
+                }else
+                {
+                    listView.setTranscriptMode(ListView.TRANSCRIPT_MODE_DISABLED);
+                }
+            }
+        });
+
+
 
         ll_SendBtnContainer = (LinearLayout) findViewById(R.id.ll_SendBtnContainer_Chatting_Messanger);
         et_ChattingTxt = (EditText) findViewById(R.id.et_Chatting_Messanger);
@@ -120,6 +148,7 @@ public class MainActivity extends AppCompatActivity {
                 inputMethodManager.hideSoftInputFromWindow(v.getWindowToken(), 0);
             }
         });
+
 
 
         ll_EditTxtContainer = (LinearLayout) findViewById(R.id.ll_EditTxtContainer_Chatting_Messanger);

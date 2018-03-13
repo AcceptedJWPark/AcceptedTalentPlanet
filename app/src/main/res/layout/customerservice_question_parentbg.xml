@@ -27,7 +27,7 @@
                 android:gravity="center_vertical"
                 android:text="T.Sharing 클릭시 오류가 발생합니다. 원인이 무엇인지 궁금하며 조속히 해결 바랍니다."
                 android:singleLine="true"
-                android:textColor="@color/textColor_txtpage"
+                android:textColor="@color/textColor_object"
                 android:textSize="@dimen/List_Title"
                 />
 
@@ -38,7 +38,7 @@
                 android:layout_weight="1"
                 android:gravity="center_vertical"
                 android:ellipsize="end"
-                android:textColor="@color/textColor_normal"
+                android:textColor="@color/textColor_object"
                 android:lines="1"
                 android:textSize="@dimen/ListView_SecondLine"
                 android:paddingLeft="5dp"
@@ -68,7 +68,7 @@
             android:layout_weight="1"
             android:text="[답변 완료]"
             android:textSize="@dimen/List_Title"
-            android:textColor="@color/textColor_txtpage"
+            android:textColor="@color/textColor_object"
             android:gravity="center"
             android:layout_gravity="center"
             />

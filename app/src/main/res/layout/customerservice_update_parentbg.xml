@@ -31,7 +31,7 @@
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:text="어플리케이션 서비스 시작"
-                android:textColor="@color/textColor_txtpage"
+                android:textColor="@color/textColor_object"
                android:singleLine="true"
                 android:textSize="@dimen/List_Title"
                 />
@@ -42,7 +42,7 @@
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:singleLine="true"
-                android:textColor="@color/textColor_normal"
+                android:textColor="@color/textColor_object"
                 android:textSize="@dimen/ListView_SecondLine"
                 android:paddingLeft="5dp"
                 android:layout_marginTop="5dp"
@@ -58,7 +58,7 @@
             android:layout_weight="2"
             android:text="Mar.2018"
             android:textSize="@dimen/List_SubTitle"
-            android:textColor="@color/textColor_txtpage"
+            android:textColor="@color/textColor_object"
             android:gravity="center"
             />
 

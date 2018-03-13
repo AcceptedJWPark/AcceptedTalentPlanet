@@ -109,7 +109,7 @@ public class ELVAdapter extends BaseExpandableListAdapter {
         if(v==null)
         {
             LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            v=(LinearLayout) inflater.inflate(R.layout.customerservice_onebyonequestion_childbg, null);
+            v=(LinearLayout) inflater.inflate(R.layout.customerservice_question_childbg, null);
         }
         TextView tv_ChildQuestion = (TextView) v.findViewById(R.id.tv_ChildQuestion_QuestionList);
         TextView tv_ChildAnswer = (TextView) v.findViewById(R.id.tv_ChildAnswer_QuestionList);

@@ -1,6 +1,8 @@
 package com.example.accepted.acceptedtalentplanet.CustomerService.Claim.ClaimList;
 
+import android.app.NotificationManager;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -26,6 +28,8 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
+import static com.example.accepted.acceptedtalentplanet.MyFirebaseMessagingService.countAlarmPush_Claim;
+
 /**
  * Created by Accepted on 2017-11-03.
  */
@@ -44,6 +48,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.customerservice_claimlist_activity);
 
+        countAlarmPush_Claim = 0;
+        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        notificationManager.cancel(0);
+
         mContext = getApplicationContext();
 
         ll_PreContainer = (LinearLayout) findViewById(R.id.ll_PreContainer_ClaimList);
@@ -56,6 +64,20 @@ public class MainActivity extends AppCompatActivity {
 
         expandableListView = (ExpandableListView) this.findViewById(R.id.expandableListView_ClaimList);
         getClaimList();
+
+        expandableListView.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
+            int lastClickedPosition = 0;
+            @Override
+            public boolean onGroupClick(ExpandableListView parent, View v, int groupPosition, long id) {
+                boolean isExpand = (!expandableListView.isGroupExpanded(groupPosition));
+                expandableListView.collapseGroup(lastClickedPosition);
+                if(isExpand)
+                {
+                    expandableListView.expandGroup(groupPosition);
+                }lastClickedPosition = groupPosition;
+                return true;
+            }
+        });
 
 
     }

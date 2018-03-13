@@ -17,32 +17,29 @@
         android:background="#002c62"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
         >
 
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-
             >
 
-
-                <LinearLayout
-                    android:id="@+id/ll_PreContainer_Alarm"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    >
-
                     <ImageView
+                        android:id="@+id/iv_PreContainer_Alarm"
                         android:layout_width="@dimen/Toolbar_Pre_Img"
                         android:layout_height="@dimen/Toolbar_Pre_Img"
                         android:tint="@color/toolbarcolor_txtandimage"
                         android:src="@drawable/icon_backbtn"
+                        android:clickable="true"
+                        android:focusable="false"
+                        android:focusableInTouchMode="false"
                         />
 
 
-            </LinearLayout>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -54,25 +51,19 @@
                 android:textColor="@color/toolbarcolor_txtandimage"
                 />
 
-            <LinearLayout
-                android:id="@+id/ll_DeleteIcon_Alarm"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:gravity="center"
-                >
-
                 <ImageView
+                    android:id="@+id/iv_DeleteIcon_Alarm"
                     android:layout_width="@dimen/Toolbar_Pre_Img"
                     android:layout_height="@dimen/Toolbar_Pre_Img"
                     android:tint="@color/toolbarcolor_txtandimage"
                     android:src="@drawable/icon_delete"
                     android:textSize="@dimen/Toolbar_Pre_Txt"
+                    android:gravity="center"
+                    android:layout_alignParentRight="true"
+                    android:clickable="true"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
                     />
-
-
-
-            </LinearLayout>
 
         </RelativeLayout>
 

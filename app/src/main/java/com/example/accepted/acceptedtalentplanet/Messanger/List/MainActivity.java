@@ -1,6 +1,8 @@
 package com.example.accepted.acceptedtalentplanet.Messanger.List;
 
+import android.app.NotificationManager;
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
@@ -19,11 +21,13 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class Messanger_List_Activity extends AppCompatActivity {
+import static com.example.accepted.acceptedtalentplanet.MyFirebaseMessagingService.countAlarmPush_Message;
+
+public class MainActivity extends AppCompatActivity {
 
     Context mContext;
-    ArrayList<Messanger_List_Item> messanger_Arraylist;
-    Messanger_List_Adapter messanger_ArrayAdapter;
+    ArrayList<ListItem> messanger_Arraylist;
+    Adapter messanger_ArrayAdapter;
     ListView messanger_Listview;
 
     LinearLayout MessangerList_Prebtn;
@@ -38,6 +42,10 @@ public class Messanger_List_Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.messanger_list);
 
+        countAlarmPush_Message = 0;
+        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        notificationManager.cancel(0);
+
         String dbName = "/accepted.db";
         try {
             sqliteDatabase = SQLiteDatabase.openOrCreateDatabase(getFilesDir() + dbName, null);
@@ -47,7 +55,7 @@ public class Messanger_List_Activity extends AppCompatActivity {
 
         mContext = getApplicationContext();
         messanger_Arraylist = new ArrayList<>();
-        messanger_ArrayAdapter = new Messanger_List_Adapter(messanger_Arraylist, Messanger_List_Activity.this);
+        messanger_ArrayAdapter = new Adapter(messanger_Arraylist, MainActivity.this);
 
         messanger_Listview = (ListView) findViewById(R.id.Messanger_List_ListView);
         messanger_Listview.setAdapter(messanger_ArrayAdapter);
@@ -81,9 +89,9 @@ public class Messanger_List_Activity extends AppCompatActivity {
             }
         });
 
-//        messanger_Arraylist.add(new Messanger_List_Item(R.drawable.testpicture,"박종우", "안녕하세요 박종우 입니다.","PM 16:12", 3,false));
-//        messanger_Arraylist.add(new Messanger_List_Item(R.drawable.testpicture,"민권홍", "안녕하세요 민권홍 입니다.","18/Mar/05", 2,false));
-//        messanger_Arraylist.add(new Messanger_List_Item(R.drawable.testpicture,"김용인", "안녕하세요 김용인 입니다.","18/Mar/06", 0,false));
+//        messanger_Arraylist.add(new ListItem(R.drawable.testpicture,"박종우", "안녕하세요 박종우 입니다.","PM 16:12", 3,false));
+//        messanger_Arraylist.add(new ListItem(R.drawable.testpicture,"민권홍", "안녕하세요 민권홍 입니다.","18/Mar/05", 2,false));
+//        messanger_Arraylist.add(new ListItem(R.drawable.testpicture,"김용인", "안녕하세요 김용인 입니다.","18/Mar/06", 0,false));
 
         refreshChatLog();
     }
@@ -136,7 +144,7 @@ public class Messanger_List_Activity extends AppCompatActivity {
             if(pictureData != null && !pictureData.equals("NODATA")){
                 picture = SaveSharedPreference.StringToBitMap(pictureData);
             }
-            messanger_Arraylist.add(new Messanger_List_Item(R.drawable.testpicture, userName, userID, lastMessage ,lastDate, unreadedCount, false, roomID, picture));
+            messanger_Arraylist.add(new ListItem(R.drawable.testpicture, userName, userID, lastMessage ,lastDate, unreadedCount, false, roomID, picture));
             cursor.moveToNext();
         }
         cursor.close();

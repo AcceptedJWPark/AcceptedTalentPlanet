@@ -30,7 +30,7 @@
                 android:layout_weight="1"
                 android:gravity="center_vertical"
                 android:text="박종우님과 &quot;기타, 기타 연주, Guitar&quot; 진행의 건"
-                android:textColor="@color/textColor_txtpage"
+                android:textColor="@color/textColor_object"
                 android:ellipsize="end"
                 android:lines="1"
                 android:textSize="@dimen/List_Title"
@@ -59,7 +59,7 @@
             android:layout_weight="0.8"
             android:text="[조치 완료]"
             android:textSize="@dimen/List_Title"
-            android:textColor="@color/textColor_txtpage"
+            android:textColor="@color/textColor_object"
             android:gravity="center"
             />
 
