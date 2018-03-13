@@ -17,9 +17,9 @@
         android:id="@+id/ll_TxtContainer_TalentResister"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginBottom="15dp"
         android:gravity="center_vertical"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
         android:orientation="vertical">
 
         <TextView
@@ -28,80 +28,29 @@
             android:layout_gravity="center_horizontal"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="&quot;희망 재능 공유 장소를 입력해주세요. &quot;(최대 3개 입력)"
+            android:text="&quot;재능 공유 장소를 입력해주세요.&quot;"
             android:textColor="@color/textColor_txtpage"
             android:textSize="@dimen/Page_Txt" />
 
-
-
     </LinearLayout>
 
-
-
-    <LinearLayout
-        android:id="@+id/ll_InputContainer_Talent_TalentRegister"
+    <View
         android:layout_width="match_parent"
-        android:layout_height="35dp"
-        android:orientation="horizontal"
-        android:layout_marginBottom="10dp"
-        android:layout_marginLeft="70dp"
-        android:layout_marginRight="70dp"
-        >
+        android:layout_height="0.5dp"
+        android:background="@color/textColor_subject"
+        />
 
-        <Spinner
-            android:id="@+id/spn_BigArea_TalentResister"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:layout_marginRight="10dp"
-            android:background="@drawable/bgr_inputbox"
-            />
-
-
-        <Spinner
-            android:id="@+id/spn_MidArea_TalentResister"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:layout_marginRight="10dp"
-            android:background="@drawable/bgr_inputbox"
-            />
-
-
-
-        <Button
-            android:id="@+id/btn_Add_TalentRegister"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="0.5"
-            android:background="@drawable/bgr_smallbtn"
-            android:gravity="center"
-            android:text="등록"
-            android:textColor="@color/textcolor_smallbtn"
-            android:textSize="@dimen/ListView_Btn"
-            android:layout_marginTop="2dp"
-            android:layout_marginBottom="2dp"
-            />
-
-
-    </LinearLayout>
-
-        <ListView
-            android:id="@+id/listView_TalentRegister"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="80dp"
-            android:layout_marginRight="80dp"
-            android:dividerHeight="0dp"
-            android:layout_marginBottom="10dp"
-            android:divider="#ffffff"
-            >
-        </ListView>
     <fragment
         android:id="@+id/frg_AutoComplete_TalentRegister"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:name="com.google.android.gms.location.places.ui.PlaceAutocompleteFragment"
+        />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/textColor_subject"
         />
 
     <fragment
@@ -119,9 +68,12 @@
         android:layout_marginRight="70dp"
         android:background="@drawable/bgr_bigbtn"
         android:onClick="goNext"
+        android:layout_marginBottom="25dp"
+        android:layout_alignParentBottom="true"
         android:text="다 음"
         android:textAllCaps="false"
         android:textColor="@color/textcolor_bigbtn" />
+
 
 </LinearLayout>
 

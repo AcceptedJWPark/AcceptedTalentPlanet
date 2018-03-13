@@ -202,8 +202,6 @@ public class MainActivity extends FragmentActivity{
                     ((TextView)findViewById(R.id.talent2_InterestingPopup)).setText(obj.getString("TALENT_KEYWORD2"));
                     ((TextView)findViewById(R.id.talent3_InterestingPopup)).setText(obj.getString("TALENT_KEYWORD3"));
                     ((TextView)findViewById(R.id.location1_InterestingPopup)).setText(obj.getString("LOCATION1"));
-                    ((TextView)findViewById(R.id.location2_InterestingPopup)).setText((obj.getString("LOCATION2").length()==0)?"미등록":obj.getString("LOCATION2"));
-                    ((TextView)findViewById(R.id.location3_InterestingPopup)).setText((obj.getString("LOCATION3").length()==0)?"미등록":obj.getString("LOCATION3"));
                     ((TextView)findViewById(R.id.level_InterestingPopup)).setText(SaveSharedPreference.getLevel(obj.getString("LEVEL")));
                     ((TextView)findViewById(R.id.point_InterestingPopup)).setText(point+"P");
                     ((TextView)findViewById(R.id.dividerTalentType_TalentSharing)).setText(TalentText);

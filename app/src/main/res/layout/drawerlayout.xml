@@ -15,7 +15,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:background="#ffffff"
-        android:weightSum="24">
+        android:weightSum="22.1">
 
 
 
@@ -160,19 +160,6 @@
             android:textStyle="bold"
             />
 
-        <TextView
-            android:id="@+id/SlidingMenu_TalentSearching"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1.9"
-            android:background="@drawable/bgr_drawerlayout_divider"
-            android:gravity="center_vertical"
-            android:onClick="slideMenuTalentSearching"
-            android:paddingLeft="20dp"
-            android:text="재능 검색"
-            android:textSize="@dimen/DrawerLL_Title"
-            android:textColor="@color/textColor_object"
-            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/SlidingMenu_SharingList"

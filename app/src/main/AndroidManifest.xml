@@ -61,9 +61,6 @@
         android:name=".MainActivity"
         android:theme="@style/AppTheme" />
         <activity
-            android:name=".Home.Home_Activity"
-            android:theme="@style/AppTheme" />
-        <activity
             android:name=".Join.Email.MainActivity"
             android:theme="@style/AppTheme" />
         <activity

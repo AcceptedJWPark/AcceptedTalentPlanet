@@ -8,7 +8,7 @@ import java.io.Serializable;
 
 public class MyTalent implements Serializable{
     String Keyword1, Keyword2, Keyword3;
-    String Location1, Location2, Location3;
+    String Location;
     String Point;
     String Level;
     String talentID;
@@ -20,13 +20,11 @@ public class MyTalent implements Serializable{
     {
 
     };
-    public void setMyTalent(String Keyword1, String Keyword2, String Keyword3, String Location1, String Location2, String Location3, String Point, String Level, GeoPoint[] gp){
+    public void setMyTalent(String Keyword1, String Keyword2, String Keyword3, String Location, String Point, String Level, GeoPoint[] gp){
         this.Keyword1 = Keyword1;
         this.Keyword2 = Keyword2;
         this.Keyword3 = Keyword3;
-        this.Location1 = Location1;
-        this.Location2 = Location2;
-        this.Location3 = Location3;
+        this.Location = Location;
         this.Point = Point;
         this.Level = Level;
         this.compFlag = true;
@@ -39,7 +37,7 @@ public class MyTalent implements Serializable{
     }
 
     public String[] getLocationArray(){
-        String arr[] = {Location1, Location2, Location3};
+        String arr[] = {Location};
         return arr;
     }
 

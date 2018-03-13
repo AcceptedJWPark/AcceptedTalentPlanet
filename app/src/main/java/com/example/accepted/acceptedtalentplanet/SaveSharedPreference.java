@@ -264,7 +264,7 @@ public class SaveSharedPreference{
         ((TextView) ((Activity)context).findViewById(R.id.SlidingMenu_MyTalentResister)).setOnClickListener(listener);
         ((TextView) ((Activity)context).findViewById(R.id.SlidingMenu_MyTalentProcess)).setOnClickListener(listener);
         ((TextView) ((Activity)context).findViewById(R.id.SlidingMenu_TSharing)).setOnClickListener(listener);
-        ((TextView) ((Activity)context).findViewById(R.id.SlidingMenu_TalentSearching)).setOnClickListener(listener);
+//        ((TextView) ((Activity)context).findViewById(R.id.SlidingMenu_TalentSearching)).setOnClickListener(listener);
         ((TextView) ((Activity)context).findViewById(R.id.SlidingMenu_SharingList)).setOnClickListener(listener);
         ((TextView) ((Activity)context).findViewById(R.id.SlidingMenu_MessageBox)).setOnClickListener(listener);
         ((TextView) ((Activity)context).findViewById(R.id.SlidingMenu_FriendList)).setOnClickListener(listener);
@@ -325,11 +325,11 @@ public class SaveSharedPreference{
                 mContext.startActivity(i);
                 break;
             }
-            case R.id.SlidingMenu_TalentSearching : {
-                i = new Intent(mContext, com.example.accepted.acceptedtalentplanet.TalentSearching.SearchingPage.MainActivity.class);
-                mContext.startActivity(i);
-                break;
-            }
+//            case R.id.SlidingMenu_TalentSearching : {
+//                i = new Intent(mContext, com.example.accepted.acceptedtalentplanet.TalentSearching.SearchingPage.MainActivity.class);
+//                mContext.startActivity(i);
+//                break;
+//            }
 
             case R.id.SlidingMenu_SharingList : {
                 i = new Intent(mContext, com.example.accepted.acceptedtalentplanet.SharingList.MainActivity.class);

@@ -51,24 +51,11 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     private GeoPoint[] geoPoint;
 
     private Context mContext;
-    private ListView listView;
     private ArrayList<String> arrayList;
-    private Adapter adapter;
-    private Button btn_Add;
 
     private LinearLayout ll_TxtContainer;
-    private LinearLayout ll_InputContainer;
     private Button btn_Next;
 
-    private String big_Area;
-    private String sum_Location;
-
-    private int resourceId_mid;
-    private String [] items_mid;
-    final static String [] ITEM_MID = {"구/군/시"} ;
-
-    private Spinner spn_BigArea;
-    private Spinner spn_MidArea;
 
     private FragmentManager fragmentManager;
     private MapFragment mapFragment;
@@ -83,30 +70,23 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
 
 
-        ll_InputContainer = (LinearLayout) findViewById(R.id.ll_InputContainer_Talent_TalentRegister);
         ll_TxtContainer = (LinearLayout) findViewById(R.id.ll_TxtContainer_TalentResister);
         btn_Next = (Button) findViewById(R.id.btn_Next_TalentRegister);
 
-        spn_BigArea = (Spinner) findViewById(R.id.spn_BigArea_TalentResister);
-        spn_MidArea = (Spinner) findViewById(R.id.spn_MidArea_TalentResister);
 
         DisplayMetrics metrics = new DisplayMetrics();
         WindowManager windowManager = (WindowManager) getApplicationContext().getSystemService(Context.WINDOW_SERVICE);
         windowManager.getDefaultDisplay().getMetrics(metrics);
 
-        int TalentResister_LocationLL_height = metrics.heightPixels/20;
         int TalentResister_Location_Txt_LL_height = metrics.heightPixels/16;
         int TalentResister_Location_Btn_height = metrics.heightPixels/24;
 
-        ViewGroup.LayoutParams params1 = ll_InputContainer.getLayoutParams();
         ViewGroup.LayoutParams params2 = ll_TxtContainer.getLayoutParams();
         ViewGroup.LayoutParams params3 = btn_Next.getLayoutParams();
 
-        params1.height = TalentResister_LocationLL_height;
         params2.height = TalentResister_Location_Txt_LL_height;
         params3.height = TalentResister_Location_Btn_height;
 
-        ll_InputContainer.setLayoutParams(params1);
         ll_TxtContainer.setLayoutParams(params2);
         btn_Next.setLayoutParams(params3);
 
@@ -135,7 +115,6 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
 
 
-        listView = (ListView) findViewById(R.id.listView_TalentRegister);
         arrayList = new ArrayList<>();
 
         Intent i = getIntent();
@@ -161,63 +140,9 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
 
 
-        ArrayAdapter adapter = ArrayAdapter.createFromResource(this, R.array.시도, R.layout.talentsearching_location_spinnertext);
-        spn_BigArea.setAdapter(adapter);
 
 
-        spn_BigArea.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                big_Area = spn_BigArea.getSelectedItem().toString();
 
-                if (position == 0) {
-                    ArrayAdapter<CharSequence> adapter2 = new ArrayAdapter<CharSequence>(mContext, R.layout.talentsearching_location_spinnertext, ITEM_MID);
-                    adapter2.setDropDownViewResource(R.layout.talentsearching_location_spinnertext);
-                    spn_MidArea.setAdapter(adapter2);
-                } else {
-
-                    try {
-                        resourceId_mid = R.array.class.getField(big_Area).getInt(null);
-                    } catch (IllegalAccessException e) {
-                        e.printStackTrace();
-                    } catch (NoSuchFieldException e) {
-                        e.printStackTrace();
-                    }
-
-                    items_mid = getResources().getStringArray(resourceId_mid);
-
-                    ArrayAdapter<CharSequence> adapter2 = new ArrayAdapter<CharSequence>(mContext, R.layout.talentsearching_location_spinnertext, items_mid);
-                    adapter2.setDropDownViewResource(R.layout.talentsearching_location_spinnertext);
-                    spn_MidArea.setAdapter(adapter2);
-                }
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
-
-
-        this.adapter = new Adapter(mContext, arrayList);
-        listView.setAdapter(this.adapter);
-        btn_Add = (Button) findViewById(R.id.btn_Add_TalentRegister);
-        btn_Add.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                sum_Location = big_Area + " " + spn_MidArea.getSelectedItem();
-                if(spn_BigArea.getSelectedItemPosition() == 0 || spn_MidArea.getSelectedItemPosition() == 0)
-                {
-                    Toast.makeText(mContext,"주소는 구/군/시 단위까지 입력해주세요.",Toast.LENGTH_SHORT).show();
-                }
-                else {
-                    arrayList.add(sum_Location);
-                    listView.setAdapter(MainActivity.this.adapter);
-                    spn_BigArea.setSelection(0);
-                    spn_MidArea.setSelection(0);
-                }
-            }
-        });
 
     }
 

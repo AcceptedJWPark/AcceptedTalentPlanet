@@ -13,7 +13,7 @@ import com.example.accepted.acceptedtalentplanet.R;
 
 public class MainActivity extends AppCompatActivity implements CompoundButton.OnCheckedChangeListener {
     private String Talent1, Talent2, Talent3;
-    private String location1, location2, location3;
+    private String location;
     private boolean isTalentRegister;
     private boolean isHavingData;
     private MyTalent data;
@@ -33,9 +33,7 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
         Talent2 = i.getStringExtra("talent2");
         Talent3 = i.getStringExtra("talent3");
 
-        location1 = i.getStringExtra("loc1");
-        location2 = i.getStringExtra("loc2");
-        location3 = i.getStringExtra("loc3");
+        location = i.getStringExtra("loc1");
 
         cb1 = (CheckBox)findViewById(R.id.cb1_TalentRegister);
         cb2 = (CheckBox)findViewById(R.id.cb2_TalentRegister);
@@ -108,9 +106,7 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
             i.putExtra("talent1", Talent1);
             i.putExtra("talent2", Talent2);
             i.putExtra("talent3", Talent3);
-            i.putExtra("loc1", location1);
-            i.putExtra("loc2", location2);
-            i.putExtra("loc3", location3);
+            i.putExtra("loc1", location);
             i.putExtra("level", findLevel());
             i.putExtra("isHavingData", isHavingData);
             if (isHavingData) {

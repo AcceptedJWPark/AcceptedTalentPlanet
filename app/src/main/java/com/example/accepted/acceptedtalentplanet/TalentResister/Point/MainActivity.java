@@ -34,7 +34,7 @@ import static com.example.accepted.acceptedtalentplanet.SaveSharedPreference.hid
 public class MainActivity extends AppCompatActivity {
     private Context mContext;
     private String talent1, talent2, talent3;
-    private String location1, location2, location3;
+    private String location;
     private boolean isTalentRegisted;
     private boolean isHavingData;
     private MyTalent data;
@@ -56,9 +56,7 @@ public class MainActivity extends AppCompatActivity {
         talent1 = i.getStringExtra("talent1");
         talent2 = i.getStringExtra("talent2");
         talent3 = i.getStringExtra("talent3");
-        location1 = i.getStringExtra("loc1");
-        location2 = i.getStringExtra("loc2");
-        location3 = i.getStringExtra("loc3");
+        location = i.getStringExtra("loc1");
         geoPoint = SaveSharedPreference.getGeoPointArr(mContext);
         level = i.getIntExtra("level", 1);
 
@@ -132,22 +130,16 @@ public class MainActivity extends AppCompatActivity {
                 params.put("talent1", talent1);
                 params.put("talent2", talent2);
                 params.put("talent3", talent3);
-                params.put("loc1", location1);
-                params.put("loc2", location2);
-                params.put("loc3", location3);
+                params.put("loc1", location);
                 params.put("level", String.valueOf(level));
                 params.put("point", point);
                 params.put("talentFlag", talentFlag);
                 params.put("gpLat1", String.valueOf(geoPoint[0].getLat()));
-                params.put("gpLat2", String.valueOf(geoPoint[1].getLat()));
-                params.put("gpLat3", String.valueOf(geoPoint[2].getLat()));
                 params.put("gpLng1", String.valueOf(geoPoint[0].getLng()));
-                params.put("gpLng2", String.valueOf(geoPoint[1].getLng()));
-                params.put("gpLng3", String.valueOf(geoPoint[2].getLng()));
 
                 Log.d(String.valueOf(geoPoint[0].getLat()), String.valueOf(geoPoint[0].getLng()));
                 MyTalent mt = new MyTalent();
-                mt.setMyTalent(talent1, talent2, talent3, location1, location2, location3, point, String.valueOf(level), geoPoint);
+                mt.setMyTalent(talent1, talent2, talent3, location, point, String.valueOf(level), geoPoint);
                 mt.setStatus("P");
                 if(isTalentRegisted)
                     SaveSharedPreference.setGiveTalentData(mContext, mt);

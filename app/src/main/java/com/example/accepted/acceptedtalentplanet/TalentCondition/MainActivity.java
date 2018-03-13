@@ -25,6 +25,7 @@ import com.android.volley.toolbox.Volley;
 import com.example.accepted.acceptedtalentplanet.MyTalent;
 import com.example.accepted.acceptedtalentplanet.R;
 import com.example.accepted.acceptedtalentplanet.SaveSharedPreference;
+import com.example.accepted.acceptedtalentplanet.VolleySingleton;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -561,7 +562,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void getMyTalent() {
-        RequestQueue postRequestQueue = Volley.newRequestQueue(this);
+        RequestQueue postRequestQueue = VolleySingleton.getInstance(mContext).getRequestQueue();
         StringRequest postJsonRequest = new StringRequest(Request.Method.POST, SaveSharedPreference.getServerIp() + "TalentCondition/getMyTalent.do", new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -570,6 +571,7 @@ public class MainActivity extends AppCompatActivity {
                     JSONArray obj = new JSONArray(response);
                     for (int index = 0; index < obj.length(); index++) {
                         JSONObject o = obj.getJSONObject(index);
+                        Log.d("Talent Condition", "Talent Content: " + o.toString());
 
                         if(o.getString("TALENT_FLAG").equals("Y")){
                             isGiveRegisted = true;
@@ -639,7 +641,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void cancelSharingTalent() {
-        RequestQueue postRequestQueue = Volley.newRequestQueue(this);
+        RequestQueue postRequestQueue = VolleySingleton.getInstance(mContext).getRequestQueue();
         StringRequest postJsonRequest = new StringRequest(Request.Method.POST, SaveSharedPreference.getServerIp() + "TalentSharing/cancelSharingTalent.do", new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -672,7 +674,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void completeSharingTalent() {
-        RequestQueue postRequestQueue = Volley.newRequestQueue(this);
+        RequestQueue postRequestQueue = VolleySingleton.getInstance(mContext).getRequestQueue();
         StringRequest postJsonRequest = new StringRequest(Request.Method.POST, SaveSharedPreference.getServerIp() + "TalentSharing/completeSharingTalent.do", new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -725,7 +727,7 @@ public class MainActivity extends AppCompatActivity {
                 return;
             }
         }
-        RequestQueue postRequestQueue = Volley.newRequestQueue(this);
+        RequestQueue postRequestQueue = VolleySingleton.getInstance(mContext).getRequestQueue();
         StringRequest postJsonRequest = new StringRequest(Request.Method.POST, SaveSharedPreference.getServerIp() + "TalentSharing/reRegistTalent.do", new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {

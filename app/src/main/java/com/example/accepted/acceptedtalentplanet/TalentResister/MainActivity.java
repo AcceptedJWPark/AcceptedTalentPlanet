@@ -106,8 +106,6 @@ public class MainActivity extends AppCompatActivity {
         tv_Talent2 = (TextView) findViewById(R.id.tv_Talent_TalentResister);
         tv_Talent3 = (TextView) findViewById(R.id.tv_Talent3_TalentResister);
         tv_Location1 = (TextView) findViewById(R.id.tv_Location1_TalentResister);
-        tv_Location2 = (TextView) findViewById(R.id.tv_Location2_TalentResister);
-        tv_Location3 = (TextView) findViewById(R.id.tv_Location3_TalentResister);
         tv_Level = (TextView) findViewById(R.id.tv_Level_TalentResister);
         tv_Point = (TextView) findViewById(R.id.tv_Point_TalentResister);
         ll_TxtContainer = (LinearLayout) findViewById(R.id.ll_TxtContainer_TalentResister);
@@ -201,8 +199,6 @@ public class MainActivity extends AppCompatActivity {
             tv_Talent3.setText(giveTalentList[2]);
 
             tv_Location1.setText(giveLocationList[0]);
-            tv_Location2.setText((giveLocationList[1].length()==0)?"미등록": giveLocationList[1]);
-            tv_Location3.setText((giveLocationList[2].length()==0)?"미등록": giveLocationList[2]);
             tv_Level.setText(giveLevel);
             tv_Point.setText(Integer.toString(givePoint) + "P");
         }
@@ -241,8 +237,6 @@ public class MainActivity extends AppCompatActivity {
             tv_Talent3.setText(takeKeywordList[2]);
 
             tv_Location1.setText(takeLocationList[0]);
-            tv_Location2.setText((takeLocationList[1].length()==0)?"미등록": takeLocationList[1]);
-            tv_Location3.setText((takeLocationList[2].length()==0)?"미등록": takeLocationList[2]);
             tv_Level.setText(takeLevel);
             tv_Point.setText(Integer.toString(takePoint) + "P");
         }

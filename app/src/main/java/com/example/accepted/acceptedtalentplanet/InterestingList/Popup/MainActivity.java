@@ -78,7 +78,7 @@ public class MainActivity extends FragmentActivity {
         getWindow().getAttributes().height = height;
 
 
-        rl_FriendIconContainer = findViewById(R.id.rl_FriendIconContainer_InterestingPopup);
+        rl_FriendIconContainer = findViewById(R.id.Interesting_popup_container);
         DisplayMetrics metrics = new DisplayMetrics();
         WindowManager windowManager = (WindowManager) getApplicationContext().getSystemService(Context.WINDOW_SERVICE);
         windowManager.getDefaultDisplay().getMetrics(metrics);
@@ -237,8 +237,6 @@ public class MainActivity extends FragmentActivity {
                     ((TextView)findViewById(R.id.talent2_InterestingPopup)).setText(obj.getString("TALENT_KEYWORD2"));
                     ((TextView)findViewById(R.id.talent3_InterestingPopup)).setText(obj.getString("TALENT_KEYWORD3"));
                     ((TextView)findViewById(R.id.location1_InterestingPopup)).setText(obj.getString("LOCATION1"));
-                    ((TextView)findViewById(R.id.location2_InterestingPopup)).setText(obj.getString("LOCATION2").equals("")?"미등록":obj.getString("LOCATION2"));
-                    ((TextView)findViewById(R.id.location3_InterestingPopup)).setText(obj.getString("LOCATION3").equals("")?"미등록":obj.getString("LOCATION3"));
                     ((TextView)findViewById(R.id.level_InterestingPopup)).setText(SaveSharedPreference.getLevel(obj.getString("LEVEL")));
                     ((TextView)findViewById(R.id.point_InterestingPopup)).setText(obj.getString("T_POINT")+"P");
                     profileUserID = obj.getString("USER_ID");
