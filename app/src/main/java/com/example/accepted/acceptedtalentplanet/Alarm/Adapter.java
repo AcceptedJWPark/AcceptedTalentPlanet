@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.example.accepted.acceptedtalentplanet.R;
+import com.example.accepted.acceptedtalentplanet.SaveSharedPreference;
 
 import java.util.ArrayList;
 
@@ -127,6 +128,7 @@ public class Adapter extends BaseAdapter {
             public void onClick(DialogInterface dialog, int which) {
                 arrayList.remove(position);
                 notifyDataSetChanged();
+                SaveSharedPreference.setPrefAlarmArray(mContext, arrayList);
                 dialog.cancel();
             }
         })

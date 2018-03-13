@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -52,8 +53,6 @@ public class MainActivity extends AppCompatActivity {
     private TextView tv_Talent2;
     private TextView tv_Talent3;
     private TextView tv_Location1;
-    private TextView tv_Location2;
-    private TextView tv_Location3;
     private TextView tv_Level;
     private TextView tv_Point;
 
@@ -64,12 +63,12 @@ public class MainActivity extends AppCompatActivity {
     private boolean talentFlag = true;
 
     private String giveTalentList[];
-    private String giveLocationList[];
+    private String giveLocation;
     private String giveLevel;
     private int givePoint;
 
     private String takeKeywordList[];
-    private String takeLocationList[];
+    private String takeLocation;
     private String takeLevel;
     private int takePoint;
 
@@ -122,7 +121,7 @@ public class MainActivity extends AppCompatActivity {
         }
         else{
             giveTalentList = givetalent.getKeywordArray();
-            giveLocationList = givetalent.getLocationArray();
+            giveLocation = givetalent.getLocation();
             givePoint = givetalent.getPoint();
             giveLevel = givetalent.getLevel();
         }
@@ -132,7 +131,7 @@ public class MainActivity extends AppCompatActivity {
         }
         else{
             takeKeywordList = takeTalent.getKeywordArray();
-            takeLocationList = takeTalent.getLocationArray();
+            takeLocation = takeTalent.getLocation();
             takePoint = takeTalent.getPoint();
             takeLevel = takeTalent.getLevel();
 
@@ -198,7 +197,7 @@ public class MainActivity extends AppCompatActivity {
             tv_Talent2.setText(giveTalentList[1]);
             tv_Talent3.setText(giveTalentList[2]);
 
-            tv_Location1.setText(giveLocationList[0]);
+            tv_Location1.setText(giveLocation);
             tv_Level.setText(giveLevel);
             tv_Point.setText(Integer.toString(givePoint) + "P");
         }
@@ -236,7 +235,7 @@ public class MainActivity extends AppCompatActivity {
             tv_Talent2.setText(takeKeywordList[1]);
             tv_Talent3.setText(takeKeywordList[2]);
 
-            tv_Location1.setText(takeLocationList[0]);
+            tv_Location1.setText(takeLocation);
             tv_Level.setText(takeLevel);
             tv_Point.setText(Integer.toString(takePoint) + "P");
         }
@@ -256,7 +255,6 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "재능공유 진행 중에는 수정할 수 없습니다.", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                i.putExtra("Data", givetalent);
             }
 
         }else{
@@ -266,7 +264,6 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "재능공유 진행 중에는 수정할 수 없습니다.", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                i.putExtra("Data", takeTalent);
             }
         }
 

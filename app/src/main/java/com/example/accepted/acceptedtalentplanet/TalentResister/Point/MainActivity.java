@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
     private int level;
     private EditText et_Point;
 
-    private GeoPoint[] geoPoint = new GeoPoint[3];
+    private GeoPoint geoPoint = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
         talent1 = i.getStringExtra("talent1");
         talent2 = i.getStringExtra("talent2");
         talent3 = i.getStringExtra("talent3");
-        location = i.getStringExtra("loc1");
+        location = i.getStringExtra("loc");
         geoPoint = SaveSharedPreference.getGeoPointArr(mContext);
         level = i.getIntExtra("level", 1);
 
@@ -130,14 +130,14 @@ public class MainActivity extends AppCompatActivity {
                 params.put("talent1", talent1);
                 params.put("talent2", talent2);
                 params.put("talent3", talent3);
-                params.put("loc1", location);
+                params.put("loc", location);
                 params.put("level", String.valueOf(level));
                 params.put("point", point);
                 params.put("talentFlag", talentFlag);
-                params.put("gpLat1", String.valueOf(geoPoint[0].getLat()));
-                params.put("gpLng1", String.valueOf(geoPoint[0].getLng()));
+                params.put("gpLat", String.valueOf(geoPoint.getLat()));
+                params.put("gpLng", String.valueOf(geoPoint.getLng()));
 
-                Log.d(String.valueOf(geoPoint[0].getLat()), String.valueOf(geoPoint[0].getLng()));
+                Log.d(String.valueOf(geoPoint.getLat()), String.valueOf(geoPoint.getLng()));
                 MyTalent mt = new MyTalent();
                 mt.setMyTalent(talent1, talent2, talent3, location, point, String.valueOf(level), geoPoint);
                 mt.setStatus("P");
@@ -152,26 +152,6 @@ public class MainActivity extends AppCompatActivity {
         };
 
         postRequestQueue.add(postJsonRequest);
-    }
-
-    private GeoPoint findGeoPoint(String address) {
-        Geocoder geocoder = new Geocoder(this);
-        Address addr;
-        GeoPoint location = null;
-        try {
-            List<Address> listAddress = geocoder.getFromLocationName(address, 1);
-            if (listAddress.size() > 0) { // 주소값이 존재 하면
-                addr = listAddress.get(0); // Address형태로
-                double lat = addr.getLatitude();
-                double lng = addr.getLongitude();
-                location = new GeoPoint(lat, lng);
-
-                Log.d("Location Log", address + " : " + lat + ", " +lng);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return location;
     }
 
 }

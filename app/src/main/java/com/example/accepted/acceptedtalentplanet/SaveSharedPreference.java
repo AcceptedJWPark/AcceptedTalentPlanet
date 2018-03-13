@@ -29,6 +29,7 @@ import com.android.volley.Response;
 import com.android.volley.ServerError;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.HttpHeaderParser;
+import com.example.accepted.acceptedtalentplanet.Alarm.ListItem;
 import com.example.accepted.acceptedtalentplanet.Messanger.List.Messanger_List_Activity;
 import com.example.accepted.acceptedtalentplanet.TalentSharing.MainActivity;
 import com.google.gson.Gson;
@@ -57,12 +58,11 @@ public class SaveSharedPreference{
     static final String SERVER_IP2 = "https://221.162.94.43:8443/Accepted/";
     static final String PREF_GIVE_DATA = "giveData";
     static final String PREF_TAKE_DATA = "takeData";
-    static final String PREF_GEO_POINT1 = "geoPoint1";
-    static final String PREF_GEO_POINT2 = "geoPoint2";
-    static final String PREF_GEO_POINT3 = "geoPoint3";
+    static final String PREF_GEO_POINT = "geoPoint";
     static final String PREF_FRIEND_ARRAY = "friendList";
     static final String PREF_TALENT_POINT = "talentPoint";
     static final String PREF_FCM_TOKEN = "fcmToken";
+    static final String PREF_ALARM_ARRAY = "alarmArray";
     static Bitmap myPicture = null;
 
     static DrawerLayout slidingMenuDL;
@@ -172,28 +172,19 @@ public class SaveSharedPreference{
         return data;
     }
 
-    public static void setGeoPointArr(Context ctx, GeoPoint[] Data){
+    public static void setGeoPointArr(Context ctx, GeoPoint Data){
         SharedPreferences.Editor editor = getSharedPreferences(ctx).edit();
         Gson gson = new Gson();
-        String json = gson.toJson(Data[0]);
-        editor.putString(PREF_GEO_POINT1, json);
-        json = gson.toJson(Data[1]);
-        editor.putString(PREF_GEO_POINT2, json);
-        json = gson.toJson(Data[2]);
-        editor.putString(PREF_GEO_POINT3, json);
+        String json = gson.toJson(Data);
+        editor.putString(PREF_GEO_POINT, json);
         editor.commit();
     }
 
-    public static GeoPoint[] getGeoPointArr(Context ctx){
+    public static GeoPoint getGeoPointArr(Context ctx){
         Gson gson = new Gson();
-        GeoPoint[] data = new GeoPoint[3];
 
-        String json = getSharedPreferences(ctx).getString(PREF_GEO_POINT1, "");
-        data[0] = gson.fromJson(json, GeoPoint.class);
-        json = getSharedPreferences(ctx).getString(PREF_GEO_POINT2, "");
-        data[1] = gson.fromJson(json, GeoPoint.class);
-        json = getSharedPreferences(ctx).getString(PREF_GEO_POINT3, "");
-        data[2] = gson.fromJson(json, GeoPoint.class);
+        String json = getSharedPreferences(ctx).getString(PREF_GEO_POINT, "");
+        GeoPoint data = gson.fromJson(json, GeoPoint.class);
 
         return data;
     }
@@ -223,6 +214,24 @@ public class SaveSharedPreference{
         editor.putString(PREF_FRIEND_ARRAY, json);
         editor.commit();
 
+    }
+
+    public static void setPrefAlarmArray(Context ctx, ArrayList<ListItem> arrayList){
+        SharedPreferences.Editor editor  = getSharedPreferences(ctx).edit();
+        Gson gson = new Gson();
+        String json = gson.toJson(arrayList);
+        Log.d("Array in SavePref", "Array Json: " + json);
+        editor.putString(PREF_ALARM_ARRAY, json);
+        editor.commit();
+    }
+
+    public static ArrayList<ListItem> getPrefAlarmArry(Context ctx){
+        Gson gson = new Gson();
+        ArrayList<ListItem> arrayList;
+        String json = getSharedPreferences(ctx).getString(PREF_ALARM_ARRAY, "");
+        Log.d("Array in SavePref", "Array Json: " + json);
+        arrayList = gson.fromJson(json, new TypeToken<ArrayList<ListItem>>(){}.getType());
+        return arrayList;
     }
 
     public static void removeFriend(Context ctx, Friend friend){

@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
@@ -56,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
         Intent i = getIntent();
 
         isTalentRegisted = i.getBooleanExtra("talentFlag", true);
-        isHavingData = i.getBooleanExtra("isHavingData", false);
+        isHavingData = i.getBooleanExtra("HavingDataFlag", false);
 
         if(isHavingData){
             if(isTalentRegisted)
@@ -65,9 +66,11 @@ public class MainActivity extends AppCompatActivity {
                 data = SaveSharedPreference.getTakeTalentData(mContext);
 
             talentList = data.getKeywordArray();
-
-            for(int index = 0; index < talentList.length; index++)
+            Log.d("isHaving", "data");
+            for(int index = 0; index < talentList.length; index++) {
                 arrayList.add(talentList[index]);
+                Log.d("talent", "talent: " + talentList[index]);
+            }
         }
 
         ll_InputContainer = (LinearLayout) findViewById(R.id.ll_InputContainer_Talent_TalentRegister);

@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
         Talent2 = i.getStringExtra("talent2");
         Talent3 = i.getStringExtra("talent3");
 
-        location = i.getStringExtra("loc1");
+        location = i.getStringExtra("loc");
 
         cb1 = (CheckBox)findViewById(R.id.cb1_TalentRegister);
         cb2 = (CheckBox)findViewById(R.id.cb2_TalentRegister);
@@ -106,7 +106,7 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
             i.putExtra("talent1", Talent1);
             i.putExtra("talent2", Talent2);
             i.putExtra("talent3", Talent3);
-            i.putExtra("loc1", location);
+            i.putExtra("loc", location);
             i.putExtra("level", findLevel());
             i.putExtra("isHavingData", isHavingData);
             if (isHavingData) {

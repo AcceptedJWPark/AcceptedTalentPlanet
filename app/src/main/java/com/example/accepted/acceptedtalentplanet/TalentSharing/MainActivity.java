@@ -113,7 +113,7 @@ public class MainActivity extends AppCompatActivity {
                     for (int index = 0; index < obj.length(); index++) {
                         JSONObject o = obj.getJSONObject(index);
                         Log.d("getTalentSharing", o.toString());
-                        double distance = findMinDistanceBetween(o.getString("GP_LAT1"), o.getString("GP_LNG1"), o.getString("GP_LAT2"), o.getString("GP_LNG2"), o.getString("GP_LAT3"), o.getString("GP_LNG3"), o.getString("TALENT_FLAG").equals("Y"));
+                        double distance = findMinDistanceBetween(o.getString("GP_LAT"), o.getString("GP_LNG"), o.getString("TALENT_FLAG").equals("Y"));
                         ListItem target = new ListItem(R.drawable.testpicture, o.getString("USER_NAME"), o.getString("TALENT_KEYWORD1"), o.getString("TALENT_KEYWORD2"), o.getString("TALENT_KEYWORD3"), o.getString("seq"), o.getString("TALENT_FLAG"), o.getString("STATUS_FLAG"),(String.format("%.1f",  distance) + "km"), "Profile 보기", o.getString("USER_ID"), distance, o.getString("FILE_DATA"));
                         arrayList_Original.add(target);
                         if(isGiveTalent){
@@ -243,50 +243,34 @@ public class MainActivity extends AppCompatActivity {
     };
 
 
-    double findMinDistanceBetween(String lat1, String lng1, String lat2, String lng2, String lat3, String lng3,  boolean isGive){
+    double findMinDistanceBetween(String lat, String lng, boolean isGive) {
         MyTalent mt;
-        if(isGive)
+        if (isGive)
             mt = SaveSharedPreference.getTakeTalentData(mContext);
         else
             mt = SaveSharedPreference.getGiveTalentData(mContext);
 
-        if(mt == null){
+        if (mt == null) {
             return 00000;
         }
 
         double[] arrDistance = new double[9];
-        GeoPoint[] arrGp = mt.getArrGeoPoint();
-        GeoPoint[] arrGp2 = new GeoPoint[3];
-        arrGp2[0] = new GeoPoint(Double.valueOf(lat1), Double.valueOf(lng1));
-        arrGp2[1] = new GeoPoint(Double.valueOf(lat2), Double.valueOf(lng2));
-        arrGp2[2] = new GeoPoint(Double.valueOf(lat3), Double.valueOf(lng3));
-        GeoPoint gp, gp2;
+        GeoPoint gpPoint1 = mt.getArrGeoPoint();
+        GeoPoint gpPoint2 = new GeoPoint(Double.valueOf(lat), Double.valueOf(lng));
         int index = 0;
 
-        for(int i = 0; i < 3; i++){
-            gp = arrGp[i];
-            for(int j = 0; j < 3; j++){
-                gp2 = arrGp2[j];
-                if(gp2.getLng() == 0.0d || gp.getLng() == 0.0d){
-                    arrDistance[index++] = 999999999;
 
-                    continue;
-                }
-                double distance = 0;
-                Location locationA = new Location("A");
-                locationA.setLatitude(gp.getLat());
-                locationA.setLongitude(gp.getLng());
-                Location locationB = new Location("B");
-                locationB.setLatitude(gp2.getLat());
-                locationB.setLongitude(gp2.getLng());
-                distance = locationA.distanceTo(locationB);
+        double distance = 0;
+        Location locationA = new Location("A");
+        locationA.setLatitude(gpPoint1.getLat());
+        locationA.setLongitude(gpPoint1.getLng());
+        Location locationB = new Location("B");
+        locationB.setLatitude(gpPoint2.getLat());
+        locationB.setLongitude(gpPoint2.getLng());
+        distance = locationA.distanceTo(locationB);
 
-                arrDistance[index++] = distance;
+        arrDistance[index++] = distance;
 
-            }
-        }
-
-        Arrays.sort(arrDistance);
 
         return arrDistance[0] / 1000;
 

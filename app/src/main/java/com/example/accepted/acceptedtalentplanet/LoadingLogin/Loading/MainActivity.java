@@ -107,13 +107,10 @@ public class MainActivity extends AppCompatActivity {
                     for(int i = 0; i < jsonArray.length(); i++){
                         JSONObject obj = jsonArray.getJSONObject(i);
 
-                        GeoPoint[] gpArr = new GeoPoint[3];
-                        gpArr[0] = new GeoPoint(Double.parseDouble(obj.getString("GP_LAT1")), Double.parseDouble(obj.getString("GP_LNG1")));
-                        gpArr[1] = new GeoPoint(Double.parseDouble(obj.getString("GP_LAT2")), Double.parseDouble(obj.getString("GP_LNG2")));
-                        gpArr[2] = new GeoPoint(Double.parseDouble(obj.getString("GP_LAT3")), Double.parseDouble(obj.getString("GP_LNG3")));
+                        GeoPoint gpPoint = new GeoPoint(Double.parseDouble(obj.getString("GP_LAT")), Double.parseDouble(obj.getString("GP_LNG")));
 
                         MyTalent talent = new MyTalent();
-                        talent.setMyTalent(obj.getString("TALENT_KEYWORD1"), obj.getString("TALENT_KEYWORD2"), obj.getString("TALENT_KEYWORD3"), obj.getString("LOCATION1"),  obj.getString("T_POINT"), obj.getString("LEVEL"), gpArr);
+                        talent.setMyTalent(obj.getString("TALENT_KEYWORD1"), obj.getString("TALENT_KEYWORD2"), obj.getString("TALENT_KEYWORD3"), obj.getString("LOCATION"),  obj.getString("T_POINT"), obj.getString("LEVEL"), gpPoint);
                         talent.setStatus(obj.getString("STATUS_FLAG"));
                         talent.setTalentID(obj.getString("seq"));
                         if(obj.getString("TALENT_FLAG").equals("Y")){
@@ -224,7 +221,7 @@ public class MainActivity extends AppCompatActivity {
                     for(i = 0; i < o.length(); i++) {
                         JSONObject obj = o.getJSONObject(i);
                         int roomID = SaveSharedPreference.makeChatRoom(mContext, obj.getString("USER_ID"), obj.getString("USER_NAME"));
-                        sqliteDatabase.execSQL("INSERT INTO TB_CHAT_LOG(MESSAGE_ID, ROOM_ID, USER_ID, CONTENT, CREATION_DATE, READED_FLAG) VALUES (" + obj.getString("MESSAGE_ID") + ", "+roomID+", '"+obj.getString("USER_ID")+"','"+ obj.getString("CONTENT")+"','" + obj.getString("CREATION_DATE_STRING") + "', 'N')");
+                        sqliteDatabase.execSQL("INSERT INTO TB_CHAT_LOG(MESSAGE_ID, ROOM_ID, USER_ID, CONTENT, CREATION_DATE, READED_FLAG) VALUES (" + obj.getString("MESSAGE_ID") + ", "+roomID+", '"+obj.getString("USER_ID")+"','"+ obj.getString("CONTENT").replace("'", "''")+"','" + obj.getString("CREATION_DATE_STRING") + "', 'N')");
 
                         interval = 100;
                         lastMessageID = obj.getString("MESSAGE_ID");
