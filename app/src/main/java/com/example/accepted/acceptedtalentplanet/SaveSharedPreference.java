@@ -29,6 +29,7 @@ import com.android.volley.Response;
 import com.android.volley.ServerError;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.HttpHeaderParser;
+import com.example.accepted.acceptedtalentplanet.Alarm.ListItem;
 import com.example.accepted.acceptedtalentplanet.Messanger.List.Messanger_List_Activity;
 import com.example.accepted.acceptedtalentplanet.TalentSharing.MainActivity;
 import com.google.gson.Gson;
@@ -63,6 +64,7 @@ public class SaveSharedPreference{
     static final String PREF_FRIEND_ARRAY = "friendList";
     static final String PREF_TALENT_POINT = "talentPoint";
     static final String PREF_FCM_TOKEN = "fcmToken";
+    static final String PREF_ALARM_ARRAY = "alarmArray";
     static Bitmap myPicture = null;
 
     static DrawerLayout slidingMenuDL;
@@ -223,6 +225,24 @@ public class SaveSharedPreference{
         editor.putString(PREF_FRIEND_ARRAY, json);
         editor.commit();
 
+    }
+
+    public static void setPrefAlarmArray(Context ctx, ArrayList<ListItem> arrayList){
+        SharedPreferences.Editor editor  = getSharedPreferences(ctx).edit();
+        Gson gson = new Gson();
+        String json = gson.toJson(arrayList);
+        Log.d("Array in SavePref", "Array Json: " + json);
+        editor.putString(PREF_ALARM_ARRAY, json);
+        editor.commit();
+    }
+
+    public static ArrayList<ListItem> getPrefAlarmArry(Context ctx){
+        Gson gson = new Gson();
+        ArrayList<ListItem> arrayList;
+        String json = getSharedPreferences(ctx).getString(PREF_ALARM_ARRAY, "");
+        Log.d("Array in SavePref", "Array Json: " + json);
+        arrayList = gson.fromJson(json, new TypeToken<ArrayList<ListItem>>(){}.getType());
+        return arrayList;
     }
 
     public static void removeFriend(Context ctx, Friend friend){
