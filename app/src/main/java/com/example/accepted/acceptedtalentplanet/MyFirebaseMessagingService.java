@@ -12,8 +12,11 @@ import android.media.RingtoneManager;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
+import com.example.accepted.acceptedtalentplanet.Alarm.ListItem;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
+
+import java.util.ArrayList;
 
 public class MyFirebaseMessagingService extends FirebaseMessagingService {
     private static final String TAG = "MyFirebaseMsgService";
@@ -26,6 +29,10 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     // [START receive_message]
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
+        ArrayList<ListItem> arrayList = SaveSharedPreference.getPrefAlarmArry(getApplicationContext());
+        if(arrayList == null){
+            arrayList = new ArrayList<>();
+        }
         // [START_EXCLUDE]
         // There are two types of messages data messages and notification messages. Data messages are handled
         // here in onMessageReceived whether the app is in the foreground or background. Data messages are the type
@@ -44,6 +51,20 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         if (remoteMessage.getData().size() > 0) {
             Log.d(TAG, "Message data payload: " + remoteMessage.getData());
             Log.d(TAG, "Message content: " + remoteMessage.getData().get("message"));
+            switch (remoteMessage.getData().get("type")){
+                case "Message":
+                    arrayList.add(new ListItem(R.drawable.testpicture,"김대지","2016.10.04 09:51", 6,android.R.drawable.presence_busy, false));
+                    SaveSharedPreference.setPrefAlarmArray(getApplicationContext(), arrayList);
+                    break;
+                case "QNA":
+                    arrayList.add(new ListItem("2016.11.03 15:41", 4,android.R.drawable.presence_busy, false));
+                    SaveSharedPreference.setPrefAlarmArray(getApplicationContext(), arrayList);
+                    break;
+                case "Claim":
+                    arrayList.add(new ListItem("2016.12.01 17:05", 5,android.R.drawable.presence_busy, false));
+                    SaveSharedPreference.setPrefAlarmArray(getApplicationContext(), arrayList);
+                    break;
+            }
             if (/* Check if data needs to be processed by long running job */ true) {
                 // For long-running tasks (10 seconds or more) use Firebase Job Dispatcher.
                 scheduleJob();

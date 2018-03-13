@@ -10,7 +10,9 @@ import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 
+import com.example.accepted.acceptedtalentplanet.MyFirebaseMessagingService;
 import com.example.accepted.acceptedtalentplanet.R;
+import com.example.accepted.acceptedtalentplanet.SaveSharedPreference;
 
 import java.util.ArrayList;
 
@@ -48,7 +50,13 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.alarm_activity);
 
         mContext = getApplicationContext();
-        arrayList = new ArrayList<>();
+        arrayList = SaveSharedPreference.getPrefAlarmArry(mContext);
+
+        Log.d("Alarm", "AlarmArray is null: " + (arrayList == null));
+
+        if(arrayList == null){
+            arrayList = new ArrayList<>();
+        }
 
         //TODO:알람 Case에 맞게 데이터 받기.
 
@@ -65,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         idDeleteClicked = false;
-        AlarmArrayList_addData();
+        //AlarmArrayList_addData();
         listView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
         listView.setOnItemClickListener(mItemClickListener);
