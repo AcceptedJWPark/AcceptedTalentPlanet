@@ -26,9 +26,14 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     public static int countAlarmPush_Message = 0;
     public static int countAlarmPush_Qna = 0;
     public static int countAlarmPush_Claim = 0;
+    private boolean messagePushGrant;
+    private boolean conditionPushGrant;
+    private boolean answerPushGrant;
     private int isReadMessage;
     private int isReadQna;
     private int isReadClaim;
+
+    private Intent intent1 = null;
 
     /**
      * Called when message is received.
@@ -38,11 +43,12 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     // [START receive_message]
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
-        ArrayList<ListItem> arrayList = SaveSharedPreference.getPrefAlarmArry(getApplicationContext());
-        if (arrayList == null) {
-            arrayList = new ArrayList<>();
 
-        }
+        messagePushGrant = SaveSharedPreference.getMessagePushGrant(getApplicationContext());
+        conditionPushGrant = SaveSharedPreference.getConditionPushGrant(getApplicationContext());
+        answerPushGrant = SaveSharedPreference.getAnswerPushGrant(getApplicationContext());
+
+
 
         // [START_EXCLUDE]
         // There are two types of messages data messages and notification messages. Data messages are handled
@@ -59,39 +65,15 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         Log.d(TAG, "From: " + remoteMessage.getFrom());
 
         // Check if message contains a data payload.
-        Intent intent1 = null;
         if (remoteMessage.getData().size() > 0) {
             Log.d(TAG, "Message data payload: " + remoteMessage.getData());
             Log.d(TAG, "Message content: " + remoteMessage.getData().get("message"));
-            switch (remoteMessage.getData().get("type")) {
-                case "Message":
-                    arrayList.add(new ListItem(R.drawable.testpicture, "김대지", "2016.10.04 09:51", 6, R.drawable.icon_delete, false));
-                    countAlarmPush_Message++;
-                    alarmType = "Message";
-                    alarmTxt = "새로운 메세지 " +countAlarmPush_Message + "개 있습니다.";
-                    intent1 = new Intent(this, com.example.accepted.acceptedtalentplanet.Messanger.List.MainActivity.class);
-                    intent1.putExtra("alarmType", "Message");
-                    SaveSharedPreference.setPrefAlarmArray(getApplicationContext(), arrayList);
-                    break;
-                case "QNA":
-                    arrayList.add(new ListItem("2016.11.03 15:41", 4, R.drawable.icon_delete, false));
-                    countAlarmPush_Qna++;
-                    alarmType = "QNA";
-                    alarmTxt = "Q&A 답변완료 " + countAlarmPush_Qna + "건이 있습니다.";
-                    intent1 = new Intent(this, com.example.accepted.acceptedtalentplanet.Messanger.List.MainActivity.class);
-                    intent1.putExtra("alarmType", "QNA");
-                    SaveSharedPreference.setPrefAlarmArray(getApplicationContext(), arrayList);
-                    break;
-                case "Claim":
-                    arrayList.add(new ListItem("2016.12.01 17:05", 5, R.drawable.icon_delete, false));
-                    countAlarmPush_Claim++;
-                    alarmType = "Claim";
-                    alarmTxt = "신고하기 조치완료 "+ countAlarmPush_Claim + "건이 있습니다.";
-                    intent1 = new Intent(this, com.example.accepted.acceptedtalentplanet.CustomerService.Claim.ClaimList.MainActivity.class);
-                    intent1.putExtra("alarmType", "Claim");
-                    SaveSharedPreference.setPrefAlarmArray(getApplicationContext(), arrayList);
-                    break;
-            }
+
+            addAlarmList(remoteMessage.getData().get("type"));
+            addNotificationList(remoteMessage.getData().get("type"));
+
+
+
             if (/* Check if data needs to be processed by long running job */ true) {
                 // For long-running tasks (10 seconds or more) use Firebase Job Dispatcher.
                 scheduleJob();
@@ -100,41 +82,48 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                 handleNow();
             }
         }
+        if(messagePushGrant || conditionPushGrant || answerPushGrant) {
 
-        isReadMessage = countAlarmPush_Message > 0 ? 1 : 0;
-        isReadQna = countAlarmPush_Qna > 0 ?  1 : 0;
-        isReadClaim = countAlarmPush_Claim > 0 ?  1 : 0;
+            isReadMessage = countAlarmPush_Message > 0 ? 1 : 0;
+            isReadQna = countAlarmPush_Qna > 0 ? 1 : 0;
+            isReadClaim = countAlarmPush_Claim > 0 ? 1 : 0;
 
-        if(isReadMessage+isReadQna+isReadClaim > 1)
-        {
-            alarmTxt = "새로운 알림 " + String.valueOf(countAlarmPush_Message + countAlarmPush_Qna + countAlarmPush_Claim) + "건이 있습니다.";
-            intent1 = new Intent(this, com.example.accepted.acceptedtalentplanet.Alarm.MainActivity.class);
-            intent1.putExtra("alarmType", "Alarm");
+
+
+            // Check if message contains a notification payload.
+            if (remoteMessage.getNotification() != null) {
+                Log.d(TAG, "Message Notification Body: " + remoteMessage.getNotification().getBody());
+            }
+
+            // Also if you intend on generating your own notifications as a result of a received FCM
+            // message, here is where that should be initiated. See sendNotification method below.
+
+            if (isReadMessage + isReadQna + isReadClaim > 1) {
+                alarmTxt = "새로운 알림 " + String.valueOf(countAlarmPush_Message + countAlarmPush_Qna + countAlarmPush_Claim) + "건이 있습니다.";
+                intent1 = new Intent(this, com.example.accepted.acceptedtalentplanet.Alarm.MainActivity.class);
+                intent1.putExtra("alarmType", "Alarm");
+            }
+
+            if(intent1 != null) {
+
+                Intent intent = new Intent(this, MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
+                PendingIntent contentIntent = PendingIntent.getActivity(this, 0, intent1, PendingIntent.FLAG_UPDATE_CURRENT);
+                NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this)
+                        .setSmallIcon(R.drawable.icon_friendadd_unclicked)
+                        .setContentTitle(alarmTxt)
+                        .setAutoCancel(true)
+                        .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))
+                        .setVibrate(new long[]{1, 1000})
+                        .setWhen(System.currentTimeMillis());
+                mBuilder.setContentIntent(contentIntent);
+                NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+                notificationManager.notify(0, mBuilder.build());
+
+                Log.d(String.valueOf(remoteMessage.getData().size()), "countAlarm = ");
+            }
         }
-
-        // Check if message contains a notification payload.
-        if (remoteMessage.getNotification() != null) {
-            Log.d(TAG, "Message Notification Body: " + remoteMessage.getNotification().getBody());
-        }
-
-        // Also if you intend on generating your own notifications as a result of a received FCM
-        // message, here is where that should be initiated. See sendNotification method below.
-        Intent intent = new Intent(this, MainActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-
-            PendingIntent contentIntent = PendingIntent.getActivity(this, 0, intent1, PendingIntent.FLAG_UPDATE_CURRENT);
-            NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this)
-            .setSmallIcon(R.drawable.icon_friendadd_unclicked)
-            .setContentTitle(alarmTxt)
-            .setAutoCancel(true)
-            .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))
-            .setVibrate(new long[]{1, 1000})
-            .setWhen(System.currentTimeMillis());
-            mBuilder.setContentIntent(contentIntent);
-            NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-            notificationManager.notify(0, mBuilder.build());
-
-        Log.d(String.valueOf(remoteMessage.getData().size()), "countAlarm = ");
 
     }
     // [END receive_message]
@@ -151,6 +140,60 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 //                .build();
 //        dispatcher.schedule(myJob);
 //        // [END dispatch_job]
+    }
+
+    private void addAlarmList(String type){
+        ArrayList<ListItem> arrayList = SaveSharedPreference.getPrefAlarmArry(getApplicationContext());
+        if (arrayList == null) {
+            arrayList = new ArrayList<>();
+        }
+        switch (type){
+            case "Message":
+                arrayList.add(new ListItem(R.drawable.testpicture, "김대지", "2016.10.04 09:51", 6, R.drawable.icon_delete, false));
+                SaveSharedPreference.setPrefAlarmArray(getApplicationContext(), arrayList);
+                break;
+            case "QNA":
+                arrayList.add(new ListItem("2016.11.03 15:41", 4, R.drawable.icon_delete, false));
+                SaveSharedPreference.setPrefAlarmArray(getApplicationContext(), arrayList);
+                break;
+            case "Claim":
+                arrayList.add(new ListItem("2016.12.01 17:05", 5, R.drawable.icon_delete, false));
+                SaveSharedPreference.setPrefAlarmArray(getApplicationContext(), arrayList);
+                break;
+        }
+    }
+
+    private void addNotificationList(String type){
+        intent1 = null;
+        switch (type){
+            case "Message":
+                if(messagePushGrant) {
+                    countAlarmPush_Message++;
+                    alarmType = "Message";
+                    alarmTxt = "새로운 메세지 " + countAlarmPush_Message + "개 있습니다.";
+                    intent1 = new Intent(this, com.example.accepted.acceptedtalentplanet.Messanger.List.MainActivity.class);
+                    intent1.putExtra("alarmType", "Message");
+                }
+                break;
+            case "QNA":
+                if(answerPushGrant) {
+                    countAlarmPush_Qna++;
+                    alarmType = "QNA";
+                    alarmTxt = "Q&A 답변완료 " + countAlarmPush_Qna + "건이 있습니다.";
+                    intent1 = new Intent(this, com.example.accepted.acceptedtalentplanet.Messanger.List.MainActivity.class);
+                    intent1.putExtra("alarmType", "QNA");
+                }
+                break;
+            case "Claim":
+                if(answerPushGrant) {
+                    countAlarmPush_Claim++;
+                    alarmType = "Claim";
+                    alarmTxt = "신고하기 조치완료 " + countAlarmPush_Claim + "건이 있습니다.";
+                    intent1 = new Intent(this, com.example.accepted.acceptedtalentplanet.CustomerService.Claim.ClaimList.MainActivity.class);
+                    intent1.putExtra("alarmType", "Claim");
+                }
+                break;
+        }
     }
 
     /**

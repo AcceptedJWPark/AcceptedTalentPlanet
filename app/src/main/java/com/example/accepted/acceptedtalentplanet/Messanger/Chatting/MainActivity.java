@@ -292,6 +292,7 @@ public class MainActivity extends AppCompatActivity {
                 params.put("receiverID", receiverID);
                 params.put("content", content);
                 params.put("sendDate", nowDateStr);
+                Log.d("params", "params: " + SaveSharedPreference.getUserId(mContext) + receiverID + content + nowDateStr);
                 return params;
             }
         };

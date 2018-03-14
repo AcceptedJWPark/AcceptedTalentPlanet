@@ -61,6 +61,9 @@ public class SaveSharedPreference{
     static final String PREF_TALENT_POINT = "talentPoint";
     static final String PREF_FCM_TOKEN = "fcmToken";
     static final String PREF_ALARM_ARRAY = "alarmArray";
+    static final String PREF_MESSAGE_PUSH_GRANT = "messagePushGrant";
+    static final String PREF_CONDITION_PUSH_GRANT = "conditionPushGrant";
+    static final String PREF_ANSWER_PUSH_GRANT = "answerPushGrant";
     static Bitmap myPicture = null;
 
     static DrawerLayout slidingMenuDL;
@@ -95,6 +98,24 @@ public class SaveSharedPreference{
         editor.commit();
     }
 
+    public static void setPrefMessagePushGrant(Context ctx, boolean pushGrant){
+        SharedPreferences.Editor editor = getSharedPreferences(ctx).edit();
+        editor.putBoolean(PREF_MESSAGE_PUSH_GRANT, pushGrant);
+        editor.commit();
+    }
+
+    public static void setPrefConditionPushGrant(Context ctx, boolean pushGrant){
+        SharedPreferences.Editor editor = getSharedPreferences(ctx).edit();
+        editor.putBoolean(PREF_CONDITION_PUSH_GRANT, pushGrant);
+        editor.commit();
+    }
+
+    public static void setPrefAnswerPushGrant(Context ctx, boolean pushGrant){
+        SharedPreferences.Editor editor = getSharedPreferences(ctx).edit();
+        editor.putBoolean(PREF_ANSWER_PUSH_GRANT, pushGrant);
+        editor.commit();
+    }
+
     public static int getTalentPoint(Context ctx){
         return getSharedPreferences(ctx).getInt(PREF_TALENT_POINT, 0);
     }
@@ -115,6 +136,18 @@ public class SaveSharedPreference{
 
     public static String getFcmToken(Context ctx){
         return getSharedPreferences(ctx).getString(PREF_FCM_TOKEN, "");
+    }
+
+    public static boolean getMessagePushGrant(Context ctx){
+        return getSharedPreferences(ctx).getBoolean(PREF_MESSAGE_PUSH_GRANT, true);
+    }
+
+    public static boolean getConditionPushGrant(Context ctx){
+        return getSharedPreferences(ctx).getBoolean(PREF_CONDITION_PUSH_GRANT, true);
+    }
+
+    public static boolean getAnswerPushGrant(Context ctx){
+        return getSharedPreferences(ctx).getBoolean(PREF_ANSWER_PUSH_GRANT, true);
     }
 
     public static boolean checkSession(){
