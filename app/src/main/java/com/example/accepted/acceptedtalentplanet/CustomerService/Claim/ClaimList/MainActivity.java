@@ -49,7 +49,9 @@ public class MainActivity extends AppCompatActivity {
 
         countAlarmPush_Claim = 0;
         NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        notificationManager.cancel(0);
+        if(notificationManager != null)
+        {notificationManager.cancel(0);}
+
 
         mContext = getApplicationContext();
 

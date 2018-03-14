@@ -78,7 +78,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                     countAlarmPush_Qna++;
                     alarmType = "QNA";
                     alarmTxt = "Q&A 답변완료 " + countAlarmPush_Qna + "건이 있습니다.";
-                    intent1 = new Intent(this, com.example.accepted.acceptedtalentplanet.Messanger.List.MainActivity.class);
+                    intent1 = new Intent(this, com.example.accepted.acceptedtalentplanet.CustomerService.Question.QuestionList.MainActivity.class);
                     intent1.putExtra("alarmType", "QNA");
                     SaveSharedPreference.setPrefAlarmArray(getApplicationContext(), arrayList);
                     break;
