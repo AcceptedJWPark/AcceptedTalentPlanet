@@ -22,7 +22,7 @@ android:weightSum="10.6"
     android:textSize="@dimen/List_Title"
     android:singleLine="true"
     android:layout_marginRight="5dp"
-    android:textColor="@color/textColor_txtpage"
+    android:textColor="@color/textColor_object"
     />
 
 </LinearLayout>

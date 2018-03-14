@@ -1,5 +1,6 @@
 package com.example.accepted.acceptedtalentplanet.Alarm;
 
+import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,12 +8,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 
-import com.example.accepted.acceptedtalentplanet.MyFirebaseMessagingService;
 import com.example.accepted.acceptedtalentplanet.R;
 import com.example.accepted.acceptedtalentplanet.SaveSharedPreference;
+import static com.example.accepted.acceptedtalentplanet.MyFirebaseMessagingService.countAlarmPush_Qna;
+import static com.example.accepted.acceptedtalentplanet.MyFirebaseMessagingService.countAlarmPush_Claim;
+import static com.example.accepted.acceptedtalentplanet.MyFirebaseMessagingService.countAlarmPush_Message;
 
 import java.util.ArrayList;
 
@@ -25,10 +29,11 @@ public class MainActivity extends AppCompatActivity {
     private Adapter adapter;
     private ListView listView;
 
-    private LinearLayout ll_PreContainer;
-    private LinearLayout ll_DeleteIcon;
+    private ImageView lv_PreContainer;
+    private ImageView iv_DeleteIcon;
 
     private boolean idDeleteClicked;
+
 
 
     // 관심 보냄 - 재능 드림 : 1 - 1
@@ -49,6 +54,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.alarm_activity);
 
+        countAlarmPush_Message = 0;
+        countAlarmPush_Qna = 0;
+        countAlarmPush_Claim = 0;
+        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        notificationManager.cancel(0);
+
+
         mContext = getApplicationContext();
         arrayList = SaveSharedPreference.getPrefAlarmArry(mContext);
 
@@ -60,12 +72,11 @@ public class MainActivity extends AppCompatActivity {
 
         //TODO:알람 Case에 맞게 데이터 받기.
 
-        //TODO: 삭제 버튼 누르면 삭제 아이콘 나타나도록.
         listView = (ListView) findViewById(R.id.listView_Alarm);
         adapter = new Adapter(MainActivity.this, arrayList);
 
-        ll_PreContainer = (LinearLayout) findViewById(R.id.ll_PreContainer_Alarm);
-        ll_PreContainer.setOnClickListener(new View.OnClickListener() {
+        lv_PreContainer = (ImageView) findViewById(R.id.iv_PreContainer_Alarm);
+        lv_PreContainer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
@@ -73,21 +84,20 @@ public class MainActivity extends AppCompatActivity {
         });
 
         idDeleteClicked = false;
-        //AlarmArrayList_addData();
         listView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
         listView.setOnItemClickListener(mItemClickListener);
 
 
-        ll_DeleteIcon = (LinearLayout) findViewById(R.id.ll_DeleteIcon_Alarm);
-        ll_DeleteIcon.setOnClickListener(new View.OnClickListener() {
+        iv_DeleteIcon = (ImageView) findViewById(R.id.iv_DeleteIcon_Alarm);
+        iv_DeleteIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (!idDeleteClicked) {
                     Log.d("asfd", "a");
                     idDeleteClicked = true;
-                    listView.setAdapter(adapter);
                     adapter.switchingFlag(idDeleteClicked);
+                    listView.setAdapter(adapter);
                     adapter.notifyDataSetChanged();
                 }
                 else
@@ -103,24 +113,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
-
-    public void AlarmArrayList_addData()
-    {
-        arrayList.add(new ListItem(R.drawable.testpicture,"박종우","2017.12.03 10:24", 1,1,android.R.drawable.presence_busy, idDeleteClicked));
-        arrayList.add(new ListItem(R.drawable.testpicture,"민권홍","2017.12.03 12:45", 1,2,android.R.drawable.presence_busy, idDeleteClicked));
-        arrayList.add(new ListItem(R.drawable.testpicture,"김진만","2017.12.04 14:16", 2,1,android.R.drawable.presence_busy, idDeleteClicked));
-        arrayList.add(new ListItem(R.drawable.testpicture,"김용인","2017.12.05 19:18", 2,2,android.R.drawable.presence_busy, idDeleteClicked));
-        arrayList.add(new ListItem(R.drawable.testpicture,"배대명","2017.12.06 20:56", 2,3,android.R.drawable.presence_busy, idDeleteClicked));
-        arrayList.add(new ListItem(R.drawable.testpicture,"우승제","2017.12.06 15:19", 2,4,android.R.drawable.presence_busy, idDeleteClicked));
-        arrayList.add(new ListItem(R.drawable.testpicture,"유성택","2017.12.04 02:27", 3,1,android.R.drawable.presence_busy, idDeleteClicked));
-        arrayList.add(new ListItem(R.drawable.testpicture,"최지웅","2016.09.08 05:23", 3,2,android.R.drawable.presence_busy, idDeleteClicked));
-        arrayList.add(new ListItem(R.drawable.testpicture,"김정태","2016.10.04 09:51", 3,3,android.R.drawable.presence_busy, idDeleteClicked));
-        arrayList.add(new ListItem("2016.11.03 15:41", 4,android.R.drawable.presence_busy, idDeleteClicked));
-        arrayList.add(new ListItem("2016.12.01 17:05", 5,android.R.drawable.presence_busy, idDeleteClicked));
-        arrayList.add(new ListItem(R.drawable.testpicture,"김대지","2016.10.04 09:51", 6,android.R.drawable.presence_busy, idDeleteClicked));
-    }
-
-
 
     private AdapterView.OnItemClickListener mItemClickListener = new AdapterView.OnItemClickListener()
     {

@@ -51,6 +51,20 @@ public class MainActivity extends AppCompatActivity {
         expandableListView = (ExpandableListView) this.findViewById(R.id.expandableListView_Update);
         getUpdateList();
 
+        expandableListView.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
+            int lastClickedPosition = 0;
+            @Override
+            public boolean onGroupClick(ExpandableListView parent, View v, int groupPosition, long id) {
+                boolean isExpand = (!expandableListView.isGroupExpanded(groupPosition));
+                expandableListView.collapseGroup(lastClickedPosition);
+                if(isExpand)
+                {
+                    expandableListView.expandGroup(groupPosition);
+                }lastClickedPosition = groupPosition;
+                return true;
+            }
+        });
+
 
     }
 

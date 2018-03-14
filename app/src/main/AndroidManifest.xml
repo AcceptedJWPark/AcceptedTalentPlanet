@@ -148,11 +148,10 @@
 
         <activity
             android:name=".Messanger.Chatting.MainActivity"
-            android:windowSoftInputMode="stateAlwaysHidden"
             />
 
         <activity
-            android:name=".Messanger.List.Messanger_List_Activity"
+            android:name=".Messanger.List.MainActivity"
             />
         
         <!-- firebase service -->

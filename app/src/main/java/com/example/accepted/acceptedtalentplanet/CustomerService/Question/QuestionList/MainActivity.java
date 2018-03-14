@@ -1,6 +1,8 @@
 package com.example.accepted.acceptedtalentplanet.CustomerService.Question.QuestionList;
 
+import android.app.NotificationManager;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -16,7 +18,6 @@ import com.android.volley.ServerError;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
 import com.example.accepted.acceptedtalentplanet.R;
 import com.example.accepted.acceptedtalentplanet.SaveSharedPreference;
 import com.example.accepted.acceptedtalentplanet.VolleySingleton;
@@ -32,6 +33,8 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
+
+import static com.example.accepted.acceptedtalentplanet.MyFirebaseMessagingService.countAlarmPush_Qna;
 
 /**
  * Created by Accepted on 2017-11-03.
@@ -53,6 +56,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.customerservice_questionlistactivity);
 
+        countAlarmPush_Qna = 0;
+        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        notificationManager.cancel(0);
+
         mContext = getBaseContext();
 
         expandableListView = (ExpandableListView) this.findViewById(R.id.expandableListView_QuestionList);
@@ -62,6 +69,20 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 finish();
+            }
+        });
+
+        expandableListView.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
+            int lastClickedPosition = 0;
+            @Override
+            public boolean onGroupClick(ExpandableListView parent, View v, int groupPosition, long id) {
+                boolean isExpand = (!expandableListView.isGroupExpanded(groupPosition));
+                expandableListView.collapseGroup(lastClickedPosition);
+                if(isExpand)
+                {
+                    expandableListView.expandGroup(groupPosition);
+                }lastClickedPosition = groupPosition;
+                return true;
             }
         });
 

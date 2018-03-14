@@ -15,7 +15,6 @@ import android.graphics.drawable.Drawable;
 import android.preference.PreferenceManager;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
@@ -30,8 +29,7 @@ import com.android.volley.ServerError;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.HttpHeaderParser;
 import com.example.accepted.acceptedtalentplanet.Alarm.ListItem;
-import com.example.accepted.acceptedtalentplanet.Messanger.List.Messanger_List_Activity;
-import com.example.accepted.acceptedtalentplanet.TalentSharing.MainActivity;
+import com.example.accepted.acceptedtalentplanet.Messanger.List.MainActivity;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -330,7 +328,7 @@ public class SaveSharedPreference{
             }
 
             case R.id.SlidingMenu_TSharing : {
-                i = new Intent(mContext, MainActivity.class);
+                i = new Intent(mContext, com.example.accepted.acceptedtalentplanet.TalentSharing.MainActivity.class);
                 mContext.startActivity(i);
                 break;
             }
@@ -347,7 +345,7 @@ public class SaveSharedPreference{
             }
 
             case R.id.SlidingMenu_MessageBox : {
-                i = new Intent(mContext, Messanger_List_Activity.class);
+                i = new Intent(mContext, MainActivity.class);
                 mContext.startActivity(i);
                 break;
             }

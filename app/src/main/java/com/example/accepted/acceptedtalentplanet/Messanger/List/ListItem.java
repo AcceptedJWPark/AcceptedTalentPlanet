@@ -8,7 +8,7 @@ import android.graphics.Bitmap;
  * Created by Accepted on 2018-03-05.
  */
 
-public class Messanger_List_Item {
+public class ListItem {
 
     private int messsanger_Pic;
     private String messanger_Name;
@@ -20,7 +20,7 @@ public class Messanger_List_Item {
     private int roomID;
     private Bitmap picture;
 
-    public Messanger_List_Item(int messsanger_Pic, String messanger_Name, String messanger_userID, String messanger_Content, String messanger_Date, int messanger_Count, boolean messanger_DeleteBtn, int roomID, Bitmap picture) {
+    public ListItem(int messsanger_Pic, String messanger_Name, String messanger_userID, String messanger_Content, String messanger_Date, int messanger_Count, boolean messanger_DeleteBtn, int roomID, Bitmap picture) {
         this.messsanger_Pic = messsanger_Pic;
         this.messanger_Name = messanger_Name;
         this.messanger_userID = messanger_userID;
