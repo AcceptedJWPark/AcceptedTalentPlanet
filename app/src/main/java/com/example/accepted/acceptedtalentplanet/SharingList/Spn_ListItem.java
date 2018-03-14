@@ -1,7 +1,5 @@
 package com.example.accepted.acceptedtalentplanet.SharingList;
 
-import java.util.List;
-
 /**
  * Created by Accepted on 2017-12-15.
  */

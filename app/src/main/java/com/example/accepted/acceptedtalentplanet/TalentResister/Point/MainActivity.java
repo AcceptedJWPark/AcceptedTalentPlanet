@@ -2,8 +2,6 @@ package com.example.accepted.acceptedtalentplanet.TalentResister.Point;
 
 import android.content.Context;
 import android.content.Intent;
-import android.location.Address;
-import android.location.Geocoder;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -24,9 +22,7 @@ import com.example.accepted.acceptedtalentplanet.VolleySingleton;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.IOException;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import static com.example.accepted.acceptedtalentplanet.SaveSharedPreference.hideKeyboard;

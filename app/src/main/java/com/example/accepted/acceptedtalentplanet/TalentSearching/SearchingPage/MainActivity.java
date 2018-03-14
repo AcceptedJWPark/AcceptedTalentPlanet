@@ -1,28 +1,18 @@
 package com.example.accepted.acceptedtalentplanet.TalentSearching.SearchingPage;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.DisplayMetrics;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.WindowManager;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Spinner;
 
-import com.example.accepted.acceptedtalentplanet.LocationData;
 import com.example.accepted.acceptedtalentplanet.R;
 import com.example.accepted.acceptedtalentplanet.TalentSearching.Keyword_Adapter;
 
 import java.util.ArrayList;
-
-import static com.example.accepted.acceptedtalentplanet.SaveSharedPreference.hideKeyboard;
 
 /**
  * Created by Accepted on 2017-11-24.

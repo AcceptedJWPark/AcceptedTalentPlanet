@@ -2,7 +2,6 @@ package com.example.accepted.acceptedtalentplanet.CustomerService.Question.Quest
 
 import android.app.NotificationManager;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
