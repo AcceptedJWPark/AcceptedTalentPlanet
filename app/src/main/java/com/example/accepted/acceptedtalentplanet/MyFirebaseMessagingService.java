@@ -44,10 +44,10 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
 
+
         messagePushGrant = SaveSharedPreference.getMessagePushGrant(getApplicationContext());
         conditionPushGrant = SaveSharedPreference.getConditionPushGrant(getApplicationContext());
         answerPushGrant = SaveSharedPreference.getAnswerPushGrant(getApplicationContext());
-
 
 
         // [START_EXCLUDE]
@@ -73,7 +73,6 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             addNotificationList(remoteMessage.getData().get("type"));
 
 
-
             if (/* Check if data needs to be processed by long running job */ true) {
                 // For long-running tasks (10 seconds or more) use Firebase Job Dispatcher.
                 scheduleJob();
@@ -82,12 +81,11 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                 handleNow();
             }
         }
-        if(messagePushGrant || conditionPushGrant || answerPushGrant) {
+        if (messagePushGrant || conditionPushGrant || answerPushGrant) {
 
             isReadMessage = countAlarmPush_Message > 0 ? 1 : 0;
             isReadQna = countAlarmPush_Qna > 0 ? 1 : 0;
             isReadClaim = countAlarmPush_Claim > 0 ? 1 : 0;
-
 
 
             // Check if message contains a notification payload.
@@ -104,7 +102,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                 intent1.putExtra("alarmType", "Alarm");
             }
 
-            if(intent1 != null) {
+            if (intent1 != null) {
 
                 Intent intent = new Intent(this, MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

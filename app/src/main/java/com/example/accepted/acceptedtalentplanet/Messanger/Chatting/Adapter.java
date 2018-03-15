@@ -2,10 +2,8 @@ package com.example.accepted.acceptedtalentplanet.Messanger.Chatting;
 
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.graphics.Picture;
 import android.graphics.drawable.BitmapDrawable;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,7 +13,6 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.example.accepted.acceptedtalentplanet.Messanger.Chatting.ListItem;
 import com.example.accepted.acceptedtalentplanet.R;
 
 import java.util.ArrayList;
