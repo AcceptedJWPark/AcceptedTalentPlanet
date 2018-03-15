@@ -212,7 +212,6 @@ public class MainActivity extends AppCompatActivity {
 
     public void retrieveMessage(){
 
-
         RequestQueue postRequestQueue = VolleySingleton.getInstance(mContext).getRequestQueue();
         StringRequest postJsonRequest = new StringRequest(Request.Method.POST, SaveSharedPreference.getServerIp() + "Chat/retrieveMessage.do", new Response.Listener<String>(){
             @Override
@@ -228,8 +227,6 @@ public class MainActivity extends AppCompatActivity {
                         interval = 500;
                         lastMessageID = obj.getString("MESSAGE_ID");
                     }
-
-                    running = true;
 
                     if(i == 0)
                     {
@@ -267,7 +264,7 @@ public class MainActivity extends AppCompatActivity {
         }) {
             @Override
             protected Map<String, String> getParams(){
-                running = false;
+
                 Map<String, String> params = new HashMap();
                 params.put("userID", SaveSharedPreference.getUserId(mContext));
                 params.put("lastMessageID", lastMessageID);
@@ -305,11 +302,14 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void run(){
             while(running){
-                retrieveMessage();
-                try {
-                    Thread.sleep(interval);
-                }catch(InterruptedException e){
-                    e.printStackTrace();
+                synchronized (this) {
+                    retrieveMessage();
+                    try {
+                        Thread.sleep(interval);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    notify();
                 }
             }
         }
