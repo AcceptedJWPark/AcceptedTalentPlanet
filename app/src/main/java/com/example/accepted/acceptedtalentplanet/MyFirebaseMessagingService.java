@@ -8,6 +8,7 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.media.RingtoneManager;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
@@ -15,6 +16,8 @@ import android.util.Log;
 import com.example.accepted.acceptedtalentplanet.Alarm.ListItem;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
+
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 
@@ -71,6 +74,10 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
             addNotificationList(remoteMessage.getData().get("type"));
             addAlarmList(remoteMessage.getData().get("type"));
+
+            if(remoteMessage.getData().get("type").equals("Message")){
+                getMessage(remoteMessage.getData().get("datas"));
+            }
 
 
             if (/* Check if data needs to be processed by long running job */ true) {
@@ -194,6 +201,21 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         }
     }
 
+    private void getMessage(String datas){
+        try {
+            JSONObject obj = new JSONObject(datas);
+            String dbName = "/accepted.db";
+            SQLiteDatabase sqLiteDatabase = SQLiteDatabase.openOrCreateDatabase(getFilesDir() + dbName, null);
+
+            Log.d("TAG", "Datas: " + datas.toString());
+
+            int roomID = SaveSharedPreference.makeChatRoom(getApplicationContext(), obj.getString("USER_ID"), obj.getString("USER_NAME"));
+            sqLiteDatabase.execSQL("INSERT INTO TB_CHAT_LOG(MESSAGE_ID, ROOM_ID, USER_ID, CONTENT, CREATION_DATE, READED_FLAG) VALUES (" + obj.getString("MESSAGE_ID") + ", " + roomID + ", '" + obj.getString("USER_ID") + "','" + obj.getString("CONTENT").replace("'", "''") + "','" + obj.getString("CREATION_DATE_STRING") + "', 'N')");
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
     /**
      * Handle time allotted to BroadcastReceivers.
      */
@@ -236,5 +258,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 //
 //        notificationManager.notify(0 /* ID of notification */, notificationBuilder.build());
     }
+
+
 
 }
