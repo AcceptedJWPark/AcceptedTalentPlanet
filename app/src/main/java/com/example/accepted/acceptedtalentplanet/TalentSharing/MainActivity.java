@@ -146,9 +146,6 @@ public class MainActivity extends AppCompatActivity {
                         btn_takeSelect.performClick();
                     }
 
-
-
-
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -244,6 +241,7 @@ public class MainActivity extends AppCompatActivity {
 
     double findMinDistanceBetween(String lat, String lng, boolean isGive) {
         MyTalent mt;
+
         if (isGive)
             mt = SaveSharedPreference.getTakeTalentData(mContext);
         else
@@ -253,29 +251,28 @@ public class MainActivity extends AppCompatActivity {
             return 00000;
         }
 
-        double[] arrDistance = new double[9];
         GeoPoint gpPoint1 = mt.getArrGeoPoint();
         GeoPoint gpPoint2 = new GeoPoint(Double.valueOf(lat), Double.valueOf(lng));
-        int index = 0;
 
+        Log.d("My GP", gpPoint1.getLat() + ", " + gpPoint1.getLng());
+        Log.d("Target GP", gpPoint2.getLat() + ", " + gpPoint2.getLng());
 
         double distance = 0;
+
         Location locationA = new Location("A");
         locationA.setLatitude(gpPoint1.getLat());
         locationA.setLongitude(gpPoint1.getLng());
+
         Location locationB = new Location("B");
         locationB.setLatitude(gpPoint2.getLat());
         locationB.setLongitude(gpPoint2.getLng());
+
         distance = locationA.distanceTo(locationB);
 
-        arrDistance[index++] = distance;
+        Log.d("distance", distance + "");
 
-
-        return arrDistance[0] / 1000;
-
+        return distance / 1000;
     }
-
-
 
 }
 
