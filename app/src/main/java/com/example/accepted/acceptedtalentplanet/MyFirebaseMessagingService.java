@@ -38,6 +38,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
     private Intent intent1 = null;
 
+    private String datas = null;
     /**
      * Called when message is received.
      *
@@ -72,13 +73,17 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             //Log.d(TAG, "Message data payload: " + remoteMessage.getData());
             //Log.d(TAG, "Message content: " + remoteMessage.getData().get("message"));
 
-            addNotificationList(remoteMessage.getData().get("type"));
-            addAlarmList(remoteMessage.getData().get("type"));
-
             if(remoteMessage.getData().get("type").equals("Message")){
                 getMessage(remoteMessage.getData().get("datas"));
+                datas = remoteMessage.getData().get("datas");
             }
 
+            if(remoteMessage.getData().get("type").equals("Interest")){
+                Log.d("Interest", remoteMessage.getData().get("datas"));
+            }
+
+            addNotificationList(remoteMessage.getData().get("type"));
+            addAlarmList(remoteMessage.getData().get("type"));
 
             if (/* Check if data needs to be processed by long running job */ true) {
                 // For long-running tasks (10 seconds or more) use Firebase Job Dispatcher.
@@ -147,14 +152,32 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 //        // [END dispatch_job]
     }
 
+
     private void addAlarmList(String type){
         ArrayList<ListItem> arrayList = SaveSharedPreference.getPrefAlarmArry(getApplicationContext());
         if (arrayList == null) {
             arrayList = new ArrayList<>();
         }
+
+        String userName = null;
+        String content = null;
+        String date = null;
+
+
         switch (type){
             case "Message":
-                arrayList.add(0,new ListItem(R.drawable.testpicture, "김대지", alarmTxt,"18/ 03/ 15", 6, R.drawable.icon_delete, false));
+                try{
+                    JSONObject obj = new JSONObject(datas);
+                    userName = obj.getString("USER_NAME");
+                    content = obj.getString("CONTENT");
+                    date = obj.getString("CREATION_DATE_STRING");
+                    Log.d(date, "date = ");
+
+                }catch (Exception e)
+                {
+                    e.printStackTrace();
+                }
+                arrayList.add(0,new ListItem(R.drawable.testpicture, userName, content, countAlarmPush_Message,date,  6, R.drawable.icon_delete, false));
                 SaveSharedPreference.setPrefAlarmArray(getApplicationContext(), arrayList);
                 break;
             case "QNA":

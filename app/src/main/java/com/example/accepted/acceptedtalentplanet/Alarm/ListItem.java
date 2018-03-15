@@ -12,11 +12,13 @@ public class ListItem {
     private String name;
     private String text;
     private String date;
-    private int deleteIcon;
+    private boolean isDeleteClicked;
 
+    private int countMessage;
+
+    private int deleteIcon;
     private int activityChangeType;
     private int conditionType;
-    private boolean isDeleteClicked;
 
 
     public int getpicture() {
@@ -60,6 +62,16 @@ public class ListItem {
         this.activityChangeType = alarmType_CODE;
 
     }
+
+    public int getCountMessage() {
+        return countMessage;
+    }
+
+    public void setCountMessage(int countMessage) {
+        this.countMessage = countMessage;
+    }
+
+
     public void setDeleteIcon(int deleteIcon) {
         this.deleteIcon = deleteIcon;
     }
@@ -87,6 +99,18 @@ public class ListItem {
         this.picture = picture;
         this.name = name;
         this.text = text;
+        this.date = date;
+        this.activityChangeType = activityChangeType;
+        this.deleteIcon = deleteIcon;
+        this.isDeleteClicked = deleteClicked;
+    }
+
+    public ListItem(int picture, String name, String text, int countMessage, String date,  int activityChangeType, int deleteIcon, boolean deleteClicked)
+    {
+        this.picture = picture;
+        this.name = name;
+        this.text = text;
+        this.countMessage = countMessage;
         this.date = date;
         this.activityChangeType = activityChangeType;
         this.deleteIcon = deleteIcon;

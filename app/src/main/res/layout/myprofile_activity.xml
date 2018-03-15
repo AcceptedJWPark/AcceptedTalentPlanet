@@ -162,7 +162,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="2"
                         android:gravity="center|left"
-                        android:text="이름"
+                        android:text="이 름"
                         android:textColor="@color/textColor_normal"
                         android:textSize="@dimen/List_Title"
                         android:textStyle="bold" />
@@ -196,7 +196,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="2"
                         android:gravity="center|left"
-                        android:text="성별"
+                        android:text="성 별"
                         android:textColor="@color/textColor_normal"
                         android:textSize="@dimen/List_Title"
                         android:textStyle="bold" />
@@ -302,7 +302,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="2"
                         android:gravity="center|left"
-                        android:text="직업"
+                        android:text="직 업"
                         android:textColor="@color/textColor_normal"
                         android:textSize="@dimen/List_Title"
                         android:textStyle="bold" />

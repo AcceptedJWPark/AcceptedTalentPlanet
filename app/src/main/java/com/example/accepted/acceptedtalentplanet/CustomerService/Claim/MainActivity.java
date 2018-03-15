@@ -269,14 +269,10 @@ public class MainActivity extends AppCompatActivity {
                 try {
 
                     JSONObject obj = new JSONObject(response);
-
-                    if(obj.getString("result").equals("success")){
                         Toast.makeText(mContext, "신고가 정상적으로 접수되었습니다.", Toast.LENGTH_SHORT).show();
                         Intent i = new Intent(mContext, com.example.accepted.acceptedtalentplanet.CustomerService.MainActivity.class);
                         startActivity(i);
                         finish();
-                    }else
-                        Toast.makeText(mContext, "신고가 실패하였습니다.", Toast.LENGTH_SHORT).show();
 
                 } catch (JSONException e) {
                     e.printStackTrace();
