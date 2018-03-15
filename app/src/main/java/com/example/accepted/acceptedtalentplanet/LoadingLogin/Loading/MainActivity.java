@@ -39,8 +39,8 @@ import java.util.Map;
 public class MainActivity extends AppCompatActivity {
 
     Context mContext;
-    int interval = 100;
-    final int maxInterval = 500;
+    int interval = 500;
+    final int maxInterval = 1000;
 
     boolean running = false;
 
@@ -68,6 +68,9 @@ public class MainActivity extends AppCompatActivity {
 
         String sqlCreateTbl2 = "CREATE TABLE IF NOT EXISTS TB_CHAT_ROOM (ROOM_ID INTEGER PRIMARY KEY, USER_ID TEXT UNIQUE, USER_NAME TEXT, START_MESSAGE_ID INTEGER, CREATION_DATE TEXT, LAST_UPDATE_DATE TEXT, ACTIVATE_FLAG TEXT, PICTURE BLOB)";
         sqliteDatabase.execSQL(sqlCreateTbl2);
+
+        String sqlCreateTbl3 = "CREATE TABLE IF NOT EXISTS TB_FRIEND_LIST (MASTER_ID TEXT, FRIEND_ID TEXT, TALENT_TYPE TEXT, PRIMARY KEY(MASTER_ID, FRIEND_ID, TALENT_TYPE))";
+        sqliteDatabase.execSQL(sqlCreateTbl3);
 
         startLoading();
 
@@ -222,14 +225,14 @@ public class MainActivity extends AppCompatActivity {
                         int roomID = SaveSharedPreference.makeChatRoom(mContext, obj.getString("USER_ID"), obj.getString("USER_NAME"));
                         sqliteDatabase.execSQL("INSERT INTO TB_CHAT_LOG(MESSAGE_ID, ROOM_ID, USER_ID, CONTENT, CREATION_DATE, READED_FLAG) VALUES (" + obj.getString("MESSAGE_ID") + ", "+roomID+", '"+obj.getString("USER_ID")+"','"+ obj.getString("CONTENT").replace("'", "''")+"','" + obj.getString("CREATION_DATE_STRING") + "', 'N')");
 
-                        interval = 100;
+                        interval = 500;
                         lastMessageID = obj.getString("MESSAGE_ID");
                     }
 
                     if(i == 0)
                     {
                         if(interval < maxInterval){
-                            interval += 50;
+                            interval += 100;
                         }
                     }
 

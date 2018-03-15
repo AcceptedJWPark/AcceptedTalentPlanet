@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.CursorIndexOutOfBoundsException;
+import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.graphics.Bitmap;
@@ -220,33 +221,6 @@ public class SaveSharedPreference{
         return data;
     }
 
-    public static byte[] getFileDataFromDrawable(Context ctx, int id){
-        Drawable drawable = ContextCompat.getDrawable(ctx, id);
-        Bitmap bitmap = ((BitmapDrawable) drawable).getBitmap();
-        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.PNG, 0, byteArrayOutputStream);
-        return byteArrayOutputStream.toByteArray();
-    }
-
-    public static byte[] getFileDataFromDrawable(Context ctx, Drawable drawable){
-        Bitmap bitmap = ((BitmapDrawable) drawable).getBitmap();
-        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 80, byteArrayOutputStream);
-        return byteArrayOutputStream.toByteArray();
-    }
-
-    public static void putFriend(Context ctx, Friend friend){
-        ArrayList<Friend> friendList = getFriendList(ctx);
-        friendList.add(friend);
-
-        SharedPreferences.Editor editor = getSharedPreferences(ctx).edit();
-        Gson gson = new Gson();
-        String json = gson.toJson(friendList);
-        editor.putString(PREF_FRIEND_ARRAY, json);
-        editor.commit();
-
-    }
-
     public static void setPrefAlarmArray(Context ctx, ArrayList<ListItem> arrayList){
         SharedPreferences.Editor editor  = getSharedPreferences(ctx).edit();
         Gson gson = new Gson();
@@ -265,33 +239,63 @@ public class SaveSharedPreference{
         return arrayList;
     }
 
-    public static void removeFriend(Context ctx, Friend friend){
-        ArrayList<Friend> frinedList = getFriendList(ctx);
+    public static void putFriend(Context ctx, Friend friend){
+        SQLiteDatabase sqliteDatabase;
+        String dbName = "/accepted.db";
 
-        for(Friend f : frinedList){
-            if(f.getUserID().equals(friend.getUserID()) && f.getPartnerTalentType().equals(friend.getPartnerTalentType())){
-                frinedList.remove(f);
-                break;
-            }
+        try{
+            sqliteDatabase = SQLiteDatabase.openOrCreateDatabase(ctx.getFilesDir() + dbName, null);
+            String sqlUpsert = "INSERT OR REPLACE INTO TB_FRIEND_LIST(MASTER_ID, FRIEND_ID, TALENT_TYPE) VALUES ('" + getUserId(ctx) + "', '"+ friend.getUserID() + "', '" + friend.getPartnerTalentType() +"')";
+            sqliteDatabase.execSQL(sqlUpsert);
+
+            Log.d("insert friend", sqlUpsert);
+            sqliteDatabase.close();
+        }catch (SQLiteException e){
+            e.printStackTrace();
         }
+    }
 
-        SharedPreferences.Editor editor = getSharedPreferences(ctx).edit();
-        Gson gson = new Gson();
-        String json = gson.toJson(frinedList);
-        editor.putString(PREF_FRIEND_ARRAY, json);
-        editor.commit();
+    public static void removeFriend(Context ctx, Friend friend){
+        SQLiteDatabase sqliteDatabase;
+        String dbName = "/accepted.db";
+
+        try{
+            sqliteDatabase = SQLiteDatabase.openOrCreateDatabase(ctx.getFilesDir() + dbName, null);
+            String sqlDelete = "DELETE FROM TB_FRIEND_LIST WHERE MASTER_ID ='" + getUserId(ctx) + "' AND FRIEND_ID = '"+ friend.getUserID() + "' AND TALENT_TYPE = '" + friend.getPartnerTalentType() +"'";
+            Log.d("delete friend", sqlDelete);
+            sqliteDatabase.execSQL(sqlDelete);
+
+            sqliteDatabase.close();
+        }catch (SQLiteException e){
+            e.printStackTrace();
+        }
     }
 
     public static ArrayList<Friend> getFriendList(Context ctx){
-        Gson gson = new Gson();
+        SQLiteDatabase sqliteDatabase;
+        String dbName = "/accepted.db";
+        ArrayList<Friend> list = new ArrayList<>();
+        try{
+            sqliteDatabase = SQLiteDatabase.openOrCreateDatabase(ctx.getFilesDir() + dbName, null);
+            String sqlSelect = "SELECT * FROM TB_FRIEND_LIST WHERE MASTER_ID = '" + getUserId(ctx) + "'";
+            Cursor cursor = sqliteDatabase.rawQuery(sqlSelect, null);
+            cursor.moveToFirst();
 
-        String json = getSharedPreferences(ctx).getString(PREF_FRIEND_ARRAY, "");
-        Type listType = new TypeToken<ArrayList<Friend>>(){}.getType();
-        ArrayList<Friend> friendList = gson.fromJson(json, listType);
-        if(friendList == null)
-            friendList = new ArrayList<>();
+            Log.d("select friend", sqlSelect);
 
-        return friendList;
+            while(!cursor.isAfterLast()){
+                list.add(new Friend(cursor.getString(1), cursor.getString(2)));
+                cursor.moveToNext();
+            }
+
+            cursor.close();
+
+            sqliteDatabase.close();
+        }catch (SQLiteException e){
+            e.printStackTrace();
+        }
+
+        return list;
     }
 
 
@@ -524,8 +528,6 @@ public class SaveSharedPreference{
         }
 
         return -1;
-
-
     }
 
 }
