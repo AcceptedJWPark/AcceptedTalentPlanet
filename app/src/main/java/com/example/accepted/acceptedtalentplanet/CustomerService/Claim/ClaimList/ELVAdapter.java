@@ -74,6 +74,7 @@ public class ELVAdapter extends BaseExpandableListAdapter {
 
         String QuestionTitle = arrayList_Parent.get(groupPosition).getTitle();
         String isAnswered = arrayList_Parent.get(groupPosition).getIsAnswer();
+        String date = arrayList_Parent.get(groupPosition).getRegistDate();
 
         if(v==null) {
             LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -82,7 +83,7 @@ public class ELVAdapter extends BaseExpandableListAdapter {
             DisplayMetrics metrics = new DisplayMetrics();
             WindowManager windowManager = (WindowManager) mContext.getSystemService(Context.WINDOW_SERVICE);
             windowManager.getDefaultDisplay().getMetrics(metrics);
-            int Interesting_ListView_height = (int) (metrics.heightPixels*0.08);
+            int Interesting_ListView_height = (int) (metrics.heightPixels*0.1);
             ViewGroup.LayoutParams params1 = v.getLayoutParams();
             params1.height = Interesting_ListView_height;
             v.setLayoutParams(params1);
@@ -90,7 +91,9 @@ public class ELVAdapter extends BaseExpandableListAdapter {
         }
         TextView tv_Title_ClaimList = (TextView) v.findViewById(R.id.tv_ClaimList_Title);
         TextView tv_Condition_ClaimList = (TextView) v.findViewById(R.id.tv_ClaimList_Condition);
+        TextView tv_Date_ClaimList = (TextView) v.findViewById(R.id.tv_ClaimList_Date);
         tv_Title_ClaimList.setText(QuestionTitle);
+        tv_Date_ClaimList.setText(date);
         tv_Condition_ClaimList.setText(isAnswered);
         return v;
 
