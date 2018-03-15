@@ -39,15 +39,9 @@ import java.util.Map;
 public class MainActivity extends AppCompatActivity {
 
     Context mContext;
-    int interval = 500;
-    final int maxInterval = 1000;
-
-    boolean running = false;
 
     SQLiteDatabase sqliteDatabase;
-    String lastMessageID;
 
-    Thread thread1;
 
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -210,116 +204,6 @@ public class MainActivity extends AppCompatActivity {
         postRequestQueue.add(postJsonRequest);
     }
 
-    public void retrieveMessage(){
 
-        RequestQueue postRequestQueue = VolleySingleton.getInstance(mContext).getRequestQueue();
-        StringRequest postJsonRequest = new StringRequest(Request.Method.POST, SaveSharedPreference.getServerIp() + "Chat/retrieveMessage.do", new Response.Listener<String>(){
-            @Override
-            public void onResponse(String response){
-                try {
-                    JSONArray o = new JSONArray(response);
-                    int i = 0;
-                    for(i = 0; i < o.length(); i++) {
-                        JSONObject obj = o.getJSONObject(i);
-                        int roomID = SaveSharedPreference.makeChatRoom(mContext, obj.getString("USER_ID"), obj.getString("USER_NAME"));
-                        sqliteDatabase.execSQL("INSERT INTO TB_CHAT_LOG(MESSAGE_ID, ROOM_ID, USER_ID, CONTENT, CREATION_DATE, READED_FLAG) VALUES (" + obj.getString("MESSAGE_ID") + ", "+roomID+", '"+obj.getString("USER_ID")+"','"+ obj.getString("CONTENT").replace("'", "''")+"','" + obj.getString("CREATION_DATE_STRING") + "', 'N')");
-
-                        interval = 500;
-                        lastMessageID = obj.getString("MESSAGE_ID");
-                    }
-
-                    if(i == 0)
-                    {
-                        if(interval < maxInterval){
-                            interval += 100;
-                        }
-                    }
-
-                }
-                catch(JSONException e){
-                    e.printStackTrace();
-                }
-            }
-        }, new Response.ErrorListener(){
-            @Override
-            public void onErrorResponse(VolleyError error){
-                NetworkResponse response = error.networkResponse;
-                if (error instanceof ServerError && response != null) {
-                    try {
-                        String res = new String(response.data,
-                                HttpHeaderParser.parseCharset(response.headers, "utf-8"));
-                        // Now you can use any deserializer to make sense of data
-                        Log.d("res", res);
-
-                        JSONObject obj = new JSONObject(res);
-                    } catch (UnsupportedEncodingException e1) {
-                        // Couldn't properly decode data to string
-                        e1.printStackTrace();
-                    } catch (JSONException e2) {
-                        // returned data is not JSONObject?
-                        e2.printStackTrace();
-                    }
-                }
-            }
-        }) {
-            @Override
-            protected Map<String, String> getParams(){
-
-                Map<String, String> params = new HashMap();
-                params.put("userID", SaveSharedPreference.getUserId(mContext));
-                params.put("lastMessageID", lastMessageID);
-
-                return params;
-            }
-        };
-
-        postRequestQueue.add(postJsonRequest);
-
-    }
-
-    protected void onResume(){
-        super.onResume();
-
-        running = true;
-
-        String selectMaxData = "SELECT IFNULL(MAX(A.MESSAGE_ID), 0) AS MESSAGE_ID FROM TB_CHAT_LOG A WHERE A.USER_ID != '" + SaveSharedPreference.getUserId(mContext) + "'";
-        Cursor cursor = sqliteDatabase.rawQuery(selectMaxData, null);
-        cursor.moveToFirst();
-        lastMessageID = String.valueOf(cursor.getInt(0));
-
-
-        thread1 = new PollingThread();
-        thread1.start();
-    }
-
-    protected void onPause(){
-        super.onPause();
-
-        running = true;
-    }
-
-    class PollingThread extends Thread {
-        @Override
-        public void run(){
-            while(running){
-                synchronized (this) {
-                    retrieveMessage();
-                    try {
-                        Thread.sleep(interval);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                    notify();
-                }
-            }
-        }
-    }
-
-    @Override
-    protected void onDestroy(){
-        super.onDestroy();
-
-        thread1.interrupt();
-    }
 
 }

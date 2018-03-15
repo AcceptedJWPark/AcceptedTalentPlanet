@@ -225,7 +225,6 @@ public class SaveSharedPreference{
         SharedPreferences.Editor editor  = getSharedPreferences(ctx).edit();
         Gson gson = new Gson();
         String json = gson.toJson(arrayList);
-        Log.d("Array in SavePref", "Array Json: " + json);
         editor.putString(PREF_ALARM_ARRAY, json);
         editor.commit();
     }
@@ -234,7 +233,6 @@ public class SaveSharedPreference{
         Gson gson = new Gson();
         ArrayList<ListItem> arrayList;
         String json = getSharedPreferences(ctx).getString(PREF_ALARM_ARRAY, "");
-        Log.d("Array in SavePref", "Array Json: " + json);
         arrayList = gson.fromJson(json, new TypeToken<ArrayList<ListItem>>(){}.getType());
         return arrayList;
     }
