@@ -2,6 +2,8 @@ package com.example.accepted.acceptedtalentplanet.TalentSharing;
 
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Paint;
 import android.location.Location;
 import android.os.Bundle;
@@ -15,9 +17,13 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
+import com.android.volley.ServerError;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.StringRequest;
 import com.example.accepted.acceptedtalentplanet.GeoPoint;
 import com.example.accepted.acceptedtalentplanet.MyTalent;
@@ -29,6 +35,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -60,6 +67,15 @@ public class MainActivity extends AppCompatActivity {
     // 검색조건 관련 변수
     boolean isGiveTalent = true;
 
+    int interval = 100;
+    final int maxInterval = 500;
+    String lastMessageID;
+
+    static Thread thread1;
+    boolean running = false;
+
+    SQLiteDatabase sqliteDatabase;
+
 
 
     @Override
@@ -81,7 +97,9 @@ public class MainActivity extends AppCompatActivity {
         };
         DrawerLayout_ClickEvent(MainActivity.this,mClicklistener);
 
-
+        String dbName = "/accepted.db";
+        sqliteDatabase = SQLiteDatabase.openOrCreateDatabase(getFilesDir() + dbName, null);
+        Log.d("db path = ", getFilesDir() + dbName);
 
         drawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout_TalentSharing);
         view_DarawerLayout = (View) findViewById(R.id.view_DarawerLayout_TalentSharing);
@@ -272,6 +290,123 @@ public class MainActivity extends AppCompatActivity {
         Log.d("distance", distance + "");
 
         return distance / 1000;
+    }
+
+    protected void onResume(){
+        super.onResume();
+
+        running = true;
+
+        String selectMaxData = "SELECT IFNULL(MAX(A.MESSAGE_ID), 0) AS MESSAGE_ID FROM TB_CHAT_LOG A WHERE A.USER_ID != '" + SaveSharedPreference.getUserId(mContext) + "'";
+        Cursor cursor = sqliteDatabase.rawQuery(selectMaxData, null);
+        cursor.moveToFirst();
+        lastMessageID = String.valueOf(cursor.getInt(0));
+
+        Log.d("?", "??");
+
+        if(thread1 == null)
+            thread1 = new PollingThread();
+        if(!thread1.isAlive()) {
+            thread1.start();
+        }
+    }
+
+    protected void onPause(){
+        super.onPause();
+
+        running = true;
+    }
+
+    class PollingThread extends Thread {
+        @Override
+        public void run(){
+            while(running) {
+                try {
+                    retrieveMessage();
+                    Thread.sleep(interval);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    @Override
+    protected void onDestroy(){
+        super.onDestroy();
+
+        thread1.interrupt();
+    }
+
+    public void retrieveMessage(){
+
+        RequestQueue postRequestQueue = VolleySingleton.getInstance(mContext).getRequestQueue();
+        StringRequest postJsonRequest = new StringRequest(Request.Method.POST, SaveSharedPreference.getServerIp() + "Chat/retrieveMessage.do", new Response.Listener<String>(){
+            @Override
+            public void onResponse(String response){
+                try {
+                    JSONArray o = new JSONArray(response);
+                    Log.d("asdf", o.toString());
+                    int index = 0;
+                    for(index = 0; index < o.length(); index++) {
+                        JSONObject obj = o.getJSONObject(index);
+                        int roomID = SaveSharedPreference.makeChatRoom(mContext, obj.getString("USER_ID"), obj.getString("USER_NAME"));
+                        sqliteDatabase.execSQL("INSERT INTO TB_CHAT_LOG(MESSAGE_ID, ROOM_ID, USER_ID, CONTENT, CREATION_DATE, READED_FLAG) VALUES (" + obj.getString("MESSAGE_ID") + ", "+roomID+", '"+obj.getString("USER_ID")+"','"+ obj.getString("CONTENT").replace("'", "''")+"','" + obj.getString("CREATION_DATE_STRING") + "', 'N')");
+
+                        interval = 100;
+                        lastMessageID = obj.getString("MESSAGE_ID");
+                    }
+
+                    if(index == 0)
+                    {
+                        if(interval < maxInterval){
+                            interval += 50;
+                        }
+                    }
+                    Log.d("ga", "as");
+
+                }
+                catch(JSONException e){
+                    e.printStackTrace();
+                }finally {
+                    Log.d("lastMessageId", lastMessageID);
+                }
+            }
+        }, new Response.ErrorListener(){
+            @Override
+            public void onErrorResponse(VolleyError error){
+                NetworkResponse response = error.networkResponse;
+                if (error instanceof ServerError && response != null) {
+                    try {
+                        String res = new String(response.data,
+                                HttpHeaderParser.parseCharset(response.headers, "utf-8"));
+                        // Now you can use any deserializer to make sense of data
+                        Log.d("res", res);
+
+                        JSONObject obj = new JSONObject(res);
+                    } catch (UnsupportedEncodingException e1) {
+                        // Couldn't properly decode data to string
+                        e1.printStackTrace();
+                    } catch (JSONException e2) {
+                        // returned data is not JSONObject?
+                        e2.printStackTrace();
+                    }
+                }
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams(){
+
+                Map<String, String> params = new HashMap();
+                params.put("userID", SaveSharedPreference.getUserId(mContext));
+                params.put("lastMessageID", lastMessageID);
+
+                return params;
+            }
+        };
+
+        postRequestQueue.add(postJsonRequest);
+
     }
 
 }
