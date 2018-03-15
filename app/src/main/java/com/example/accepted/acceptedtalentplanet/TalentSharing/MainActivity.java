@@ -67,6 +67,12 @@ public class MainActivity extends AppCompatActivity {
     // 검색조건 관련 변수
     boolean isGiveTalent = true;
 
+    int interval = 100;
+    final int maxInterval = 500;
+    String lastMessageID;
+
+    static Thread thread1;
+    boolean running = false;
 
     SQLiteDatabase sqliteDatabase;
 
@@ -90,6 +96,10 @@ public class MainActivity extends AppCompatActivity {
             }
         };
         DrawerLayout_ClickEvent(MainActivity.this,mClicklistener);
+
+        String dbName = "/accepted.db";
+        sqliteDatabase = SQLiteDatabase.openOrCreateDatabase(getFilesDir() + dbName, null);
+        Log.d("db path = ", getFilesDir() + dbName);
 
         drawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout_TalentSharing);
         view_DarawerLayout = (View) findViewById(R.id.view_DarawerLayout_TalentSharing);
@@ -280,6 +290,101 @@ public class MainActivity extends AppCompatActivity {
         Log.d("distance", distance + "");
 
         return distance / 1000;
+    }
+
+    protected void onResume(){
+        super.onResume();
+
+        running = true;
+
+        String selectMaxData = "SELECT IFNULL(MAX(A.MESSAGE_ID), 0) AS MESSAGE_ID FROM TB_CHAT_LOG A WHERE A.USER_ID != '" + SaveSharedPreference.getUserId(mContext) + "'";
+        Cursor cursor = sqliteDatabase.rawQuery(selectMaxData, null);
+        cursor.moveToFirst();
+        lastMessageID = String.valueOf(cursor.getInt(0));
+
+        if(thread1 == null)
+            thread1 = new PollingThread();
+        if(!thread1.isAlive()) {
+            thread1.start();
+        }
+    }
+
+    protected void onPause(){
+        super.onPause();
+
+        running = true;
+    }
+
+    class PollingThread extends Thread {
+        @Override
+        public void run(){
+            while(running) {
+                try {
+                    retrieveMessage();
+                    Thread.sleep(interval);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    @Override
+    protected void onDestroy(){
+        super.onDestroy();
+
+        thread1.interrupt();
+    }
+
+    public void retrieveMessage(){
+
+        RequestQueue postRequestQueue = VolleySingleton.getInstance(mContext).getRequestQueue();
+        StringRequest postJsonRequest = new StringRequest(Request.Method.POST, SaveSharedPreference.getServerIp() + "Chat/retrieveMessage.do", new Response.Listener<String>(){
+            @Override
+            public void onResponse(String response){
+                try {
+                    JSONObject obj = new JSONObject(response);
+
+                }
+                catch(JSONException e){
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener(){
+            @Override
+            public void onErrorResponse(VolleyError error){
+                NetworkResponse response = error.networkResponse;
+                if (error instanceof ServerError && response != null) {
+                    try {
+                        String res = new String(response.data,
+                                HttpHeaderParser.parseCharset(response.headers, "utf-8"));
+                        // Now you can use any deserializer to make sense of data
+                        Log.d("res", res);
+
+                        JSONObject obj = new JSONObject(res);
+                    } catch (UnsupportedEncodingException e1) {
+                        // Couldn't properly decode data to string
+                        e1.printStackTrace();
+                    } catch (JSONException e2) {
+                        // returned data is not JSONObject?
+                        e2.printStackTrace();
+                    }
+                }
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams(){
+
+                Map<String, String> params = new HashMap();
+                params.put("userID", SaveSharedPreference.getUserId(mContext));
+                params.put("lastMessageID", lastMessageID);
+
+                return params;
+            }
+        };
+
+        postRequestQueue.add(postJsonRequest);
+
     }
 
 }
