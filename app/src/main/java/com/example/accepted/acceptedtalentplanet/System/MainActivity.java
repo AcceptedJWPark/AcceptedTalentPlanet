@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         swc_MessageRing = (Switch) findViewById(R.id.swc_MessageRing_System);
-        swc_MessageRing.setChecked(true);
+        swc_MessageRing.setChecked(SaveSharedPreference.getMessagePushGrant(mContext));
         swc_MessageRing.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         swc_ConditionRing = (Switch) findViewById(R.id.swc_ConditionRing_System);
-        swc_ConditionRing.setChecked(true);
+        swc_ConditionRing.setChecked(SaveSharedPreference.getConditionPushGrant(mContext));
         swc_ConditionRing.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -100,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         swc_AnswerRing = (Switch) findViewById(R.id.swc_AnswerRing_System);
-        swc_AnswerRing.setChecked(true);
+        swc_AnswerRing.setChecked(SaveSharedPreference.getAnswerPushGrant(mContext));
         swc_AnswerRing.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
