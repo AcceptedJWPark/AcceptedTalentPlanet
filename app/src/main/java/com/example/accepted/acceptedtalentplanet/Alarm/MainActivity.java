@@ -87,6 +87,7 @@ public class MainActivity extends AppCompatActivity {
         idDeleteClicked = false;
         listView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
+        adapter.initFlag();
         listView.setOnItemClickListener(mItemClickListener);
 
 
@@ -164,4 +165,5 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     };
+
 }
