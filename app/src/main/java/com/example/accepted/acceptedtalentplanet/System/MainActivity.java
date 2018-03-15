@@ -48,6 +48,9 @@ public class MainActivity extends AppCompatActivity {
         btn_Save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                SaveSharedPreference.setPrefMessagePushGrant(mContext, swc_MessageRing.isChecked());
+                SaveSharedPreference.setPrefConditionPushGrant(mContext, swc_ConditionRing.isChecked());
+                SaveSharedPreference.setPrefAnswerPushGrant(mContext, swc_AnswerRing.isChecked());
                 finish();
             }
         });
@@ -57,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
         ((TextView) findViewById(R.id.tv_toolbarTitle)).setText("설정");
         ((TextView) findViewById(R.id.DrawerUserID)).setText(SaveSharedPreference.getUserId(mContext));
 
-        View.OnClickListener mClicklistener = new  View.OnClickListener()
+        final View.OnClickListener mClicklistener = new  View.OnClickListener()
         {
             @Override
             public void onClick(View v) {
@@ -68,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         swc_MessageRing = (Switch) findViewById(R.id.swc_MessageRing_System);
-        swc_MessageRing.setChecked(true);
+        swc_MessageRing.setChecked(SaveSharedPreference.getMessagePushGrant(mContext));
         swc_MessageRing.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -76,12 +79,13 @@ public class MainActivity extends AppCompatActivity {
                 {
                     swc_MessageRing.setText("켜짐");
                 }
-                else
+                else {
                     swc_MessageRing.setText("꺼짐");
+                }
             }
         });
         swc_ConditionRing = (Switch) findViewById(R.id.swc_ConditionRing_System);
-        swc_ConditionRing.setChecked(true);
+        swc_ConditionRing.setChecked(SaveSharedPreference.getConditionPushGrant(mContext));
         swc_ConditionRing.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -89,13 +93,14 @@ public class MainActivity extends AppCompatActivity {
                 {
                     swc_ConditionRing.setText("켜짐");
                 }
-                else
+                else {
                     swc_ConditionRing.setText("꺼짐");
+                }
             }
         });
 
         swc_AnswerRing = (Switch) findViewById(R.id.swc_AnswerRing_System);
-        swc_AnswerRing.setChecked(true);
+        swc_AnswerRing.setChecked(SaveSharedPreference.getAnswerPushGrant(mContext));
         swc_AnswerRing.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -103,8 +108,9 @@ public class MainActivity extends AppCompatActivity {
                 {
                     swc_AnswerRing.setText("켜짐");
                 }
-                else
+                else {
                     swc_AnswerRing.setText("꺼짐");
+                }
             }
         });
 
@@ -176,8 +182,8 @@ public class MainActivity extends AppCompatActivity {
 //            }
 //        });
 
-
     }
+
 
 
 }

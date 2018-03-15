@@ -66,6 +66,12 @@ public class Adapter extends BaseAdapter {
         }
     }
 
+    public void initFlag(){
+        for(ListItem item :arrayList){
+            item.setdeleteClicked(false);
+        }
+    }
+
     @Override
     public View getView(final int position, View convertView, ViewGroup viewGroup) {
 
