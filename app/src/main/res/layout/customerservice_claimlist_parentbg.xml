@@ -46,27 +46,28 @@
         android:layout_weight="2"
         >
 
-        <View
-            android:layout_height="0dp"
-            android:layout_width="match_parent"
-            android:layout_weight="0.2"/>
-
+            <TextView
+                android:id="@+id/tv_ClaimList_Date"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:text="18.3.15"
+                android:textSize="@dimen/List_Title"
+                android:textColor="@color/textColor_object"
+                android:gravity="center"
+                />
 
         <TextView
             android:id="@+id/tv_ClaimList_Condition"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="0.8"
-            android:text="[조치 완료]"
+            android:layout_weight="1"
+            android:text="조치 완료"
             android:textSize="@dimen/List_Title"
             android:textColor="@color/textColor_object"
             android:gravity="center"
             />
 
-        <View
-            android:layout_height="0dp"
-            android:layout_width="match_parent"
-            android:layout_weight="0.2"/>
 
     </LinearLayout>
 

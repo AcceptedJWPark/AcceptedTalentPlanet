@@ -70,10 +70,11 @@ public class ListItem {
         this.isDeleteClicked = deleteClicked;
     }
 
-    public ListItem(int picture, String name, String date, int activityChangeType, int conditionType, int deleteIcon, boolean deleteClicked)
+    public ListItem(int picture, String name, String text, String date, int activityChangeType, int conditionType, int deleteIcon, boolean deleteClicked)
     {
         this.picture = picture;
         this.name = name;
+        this.text = text;
         this.date = date;
         this.activityChangeType = activityChangeType;
         this.conditionType = conditionType;
@@ -81,10 +82,11 @@ public class ListItem {
         this.isDeleteClicked = deleteClicked;
     }
 
-    public ListItem(int picture, String name, String date, int activityChangeType, int deleteIcon, boolean deleteClicked)
+    public ListItem(int picture, String name, String text, String date, int activityChangeType, int deleteIcon, boolean deleteClicked)
     {
         this.picture = picture;
         this.name = name;
+        this.text = text;
         this.date = date;
         this.activityChangeType = activityChangeType;
         this.deleteIcon = deleteIcon;

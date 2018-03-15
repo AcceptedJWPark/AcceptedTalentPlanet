@@ -79,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
                     for(int i = 0; i < obj.length(); i++){
                         JSONObject o = obj.getJSONObject(i);
 
-                        SimpleDateFormat sdf2 = new SimpleDateFormat("MMM, yyyy", Locale.ENGLISH);
+                        SimpleDateFormat sdf2 = new SimpleDateFormat("yy.M.dd", Locale.ENGLISH);
 
                         Date date = new java.sql.Date(Long.parseLong(o.getString("CREATION_DATE")));
                         String dateStr = sdf2.format(date);

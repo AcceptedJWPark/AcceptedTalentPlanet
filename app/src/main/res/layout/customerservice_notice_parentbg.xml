@@ -47,7 +47,6 @@
                 android:lines="1"
                 android:textColor="@color/textColor_object"
                 android:textSize="@dimen/ListView_SecondLine"
-                android:paddingLeft="5dp"
                 android:layout_marginTop="5dp"
                 android:text="Talent Planet 어플리케이션 서비스가 2018.3월 부로 Open 하였습니다."
                 />

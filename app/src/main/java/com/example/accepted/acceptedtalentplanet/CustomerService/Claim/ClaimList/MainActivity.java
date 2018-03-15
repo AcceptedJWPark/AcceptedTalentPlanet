@@ -121,11 +121,11 @@ public class MainActivity extends AppCompatActivity {
                     for(int i = 0; i < obj.length(); i++){
                         JSONObject o = obj.getJSONObject(i);
 
-                        SimpleDateFormat sdf2 = new SimpleDateFormat("dd MMM, yyyy", Locale.ENGLISH);
+                        SimpleDateFormat sdf2 = new SimpleDateFormat("yy.M.dd", Locale.ENGLISH);
 
                         Date date = new java.sql.Date(Long.parseLong(o.getString("CREATION_DATE")));
                         String dateStr = sdf2.format(date);
-                        String answerFlag = (o.getString("ANSWER_FLAG").equals("Y"))?"[조치 완료]" : "[조치 중]";
+                        String answerFlag = (o.getString("ANSWER_FLAG").equals("Y"))?"조치 완료" : "조치 중";
 
                         arrayList_Parent.add(new ListItem_Question(o.getString("CLAIM_SUMMARY"), answerFlag, dateStr));
                         ArrayList<ListItem_Answer> arrayList = new ArrayList<ListItem_Answer>();

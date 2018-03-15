@@ -69,39 +69,10 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             Log.d(TAG, "Message data payload: " + remoteMessage.getData());
             Log.d(TAG, "Message content: " + remoteMessage.getData().get("message"));
 
-            addAlarmList(remoteMessage.getData().get("type"));
             addNotificationList(remoteMessage.getData().get("type"));
+            addAlarmList(remoteMessage.getData().get("type"));
 
 
-            switch (remoteMessage.getData().get("type")) {
-                case "Message":
-                    arrayList.add(new ListItem(R.drawable.testpicture, "김대지", "2016.10.04 09:51", 6, R.drawable.icon_delete, false));
-                    countAlarmPush_Message++;
-                    alarmType = "Message";
-                    alarmTxt = "새로운 메세지 " +countAlarmPush_Message + "개 있습니다.";
-                    intent1 = new Intent(this, com.example.accepted.acceptedtalentplanet.Messanger.List.MainActivity.class);
-                    intent1.putExtra("alarmType", "Message");
-                    SaveSharedPreference.setPrefAlarmArray(getApplicationContext(), arrayList);
-                    break;
-                case "QNA":
-                    arrayList.add(new ListItem(R.drawable.logo_fakefile, "Talent Planet", "18/ 03/ 15", 4,R.drawable.icon_delete,false));
-                    countAlarmPush_Qna++;
-                    alarmType = "QNA";
-                    alarmTxt = "Q&A 문의하기 " + countAlarmPush_Qna + "건이 답변 완료되었습니다.";
-                    intent1 = new Intent(this, com.example.accepted.acceptedtalentplanet.CustomerService.Question.QuestionList.MainActivity.class);
-                    intent1.putExtra("alarmType", "QNA");
-                    SaveSharedPreference.setPrefAlarmArray(getApplicationContext(), arrayList);
-                    break;
-                case "Claim":
-                    arrayList.add(new ListItem(R.drawable.logo_fakefile, "Talent Planet", "18/ 03/ 15", 5,R.drawable.icon_delete,false));
-                    countAlarmPush_Claim++;
-                    alarmType = "Claim";
-                    alarmTxt = "신고하기 "+ countAlarmPush_Claim + "건이 조치 완료되었습니다.";
-                    intent1 = new Intent(this, com.example.accepted.acceptedtalentplanet.CustomerService.Claim.ClaimList.MainActivity.class);
-                    intent1.putExtra("alarmType", "Claim");
-                    SaveSharedPreference.setPrefAlarmArray(getApplicationContext(), arrayList);
-                    break;
-            }
             if (/* Check if data needs to be processed by long running job */ true) {
                 // For long-running tasks (10 seconds or more) use Firebase Job Dispatcher.
                 scheduleJob();
@@ -138,7 +109,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
             PendingIntent contentIntent = PendingIntent.getActivity(this, 0, intent1, PendingIntent.FLAG_UPDATE_CURRENT);
             NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this)
-            .setSmallIcon(R.drawable.logo_fakefile)
+            .setSmallIcon(R.drawable.icon_friendadd_clicked)
             .setContentTitle(alarmTxt)
             .setAutoCancel(true)
             .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))
@@ -176,15 +147,15 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         }
         switch (type){
             case "Message":
-                arrayList.add(new ListItem(R.drawable.testpicture, "김대지", "2016.10.04 09:51", 6, R.drawable.icon_delete, false));
+                arrayList.add(0,new ListItem(R.drawable.testpicture, "김대지", alarmTxt,"18/ 03/ 15", 6, R.drawable.icon_delete, false));
                 SaveSharedPreference.setPrefAlarmArray(getApplicationContext(), arrayList);
                 break;
             case "QNA":
-                arrayList.add(new ListItem("2016.11.03 15:41", 4, R.drawable.icon_delete, false));
+                arrayList.add(0,new ListItem(R.drawable.logo_fakefile, "Talent Planet", alarmTxt, "18/ 03/ 17", 4,R.drawable.icon_delete,false));
                 SaveSharedPreference.setPrefAlarmArray(getApplicationContext(), arrayList);
                 break;
             case "Claim":
-                arrayList.add(new ListItem("2016.12.01 17:05", 5, R.drawable.icon_delete, false));
+                arrayList.add(0,new ListItem(R.drawable.logo_fakefile, "Talent Planet", alarmTxt, "18/ 03/ 15", 5,R.drawable.icon_delete,false));
                 SaveSharedPreference.setPrefAlarmArray(getApplicationContext(), arrayList);
                 break;
         }
@@ -197,7 +168,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                 if(messagePushGrant) {
                     countAlarmPush_Message++;
                     alarmType = "Message";
-                    alarmTxt = "새로운 메세지 " + countAlarmPush_Message + "개 있습니다.";
+                    alarmTxt = "새로운 메세지 " + countAlarmPush_Message + "건이 도착했습니다.";
                     intent1 = new Intent(this, com.example.accepted.acceptedtalentplanet.Messanger.List.MainActivity.class);
                     intent1.putExtra("alarmType", "Message");
                 }
@@ -206,8 +177,8 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                 if(answerPushGrant) {
                     countAlarmPush_Qna++;
                     alarmType = "QNA";
-                    alarmTxt = "Q&A 답변완료 " + countAlarmPush_Qna + "건이 있습니다.";
-                    intent1 = new Intent(this, com.example.accepted.acceptedtalentplanet.Messanger.List.MainActivity.class);
+                    alarmTxt = "문의하신 Q&A " + countAlarmPush_Qna + "건이 답변 완료되었습니다.";
+                    intent1 = new Intent(this, com.example.accepted.acceptedtalentplanet.CustomerService.Question.QuestionList.MainActivity.class);
                     intent1.putExtra("alarmType", "QNA");
                 }
                 break;
@@ -215,7 +186,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                 if(answerPushGrant) {
                     countAlarmPush_Claim++;
                     alarmType = "Claim";
-                    alarmTxt = "신고하기 조치완료 " + countAlarmPush_Claim + "건이 있습니다.";
+                    alarmTxt = "신고하기 " + countAlarmPush_Claim + "건이 조치 완료되었습니다.";
                     intent1 = new Intent(this, com.example.accepted.acceptedtalentplanet.CustomerService.Claim.ClaimList.MainActivity.class);
                     intent1.putExtra("alarmType", "Claim");
                 }

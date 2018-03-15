@@ -96,18 +96,6 @@ public class MainActivity extends AppCompatActivity {
         arrayList_Parent = new ArrayList<ListItem_Question>();
         arrayList_Child = new ArrayList<ArrayList<ListItem_Answer>>();
 
-        int sizeList = 0;
-
-        arrayList_Parent.add(new ListItem_Question(
-                "T.Sharing 클릭시 오류가 발생합니다. 원인이 무엇인지 궁금하며 조속히 해결 바랍니다.",
-                "[답변 완료]",
-                "2017.11.05 13:42 등록"));
-        arrayList_Child.add(new ArrayList<ListItem_Answer>());
-        arrayList_Child.get(sizeList).add(new ListItem_Answer(
-                "T.Sharing 클릭시 오류가 발생합니다. 원인이 무엇인지 궁금하며 조속히 해결 바랍니다.",
-                "해당 문제에 대해 현재 원인 파악 중이며 빠른 시일 내에 해결 조치 하도록 하겠습니다. 불편을 끼쳐드려 죄송합니다."));
-
-
 
        /* arrayList_Parent.add(new ListItem_Question(
                 "문의 내용 (서버에서 받아오기)",
@@ -135,14 +123,14 @@ public class MainActivity extends AppCompatActivity {
 
                     for(int i = 0; i < obj.length(); i++){
                         JSONObject o = obj.getJSONObject(i);
-                        String str = (o.getString("ANSWER_FLAG").equals("N")) ? "[답변 대기]" : "[답변 완료]";
+                        String str = (o.getString("ANSWER_FLAG").equals("N")) ? "답변 대기" : "답변 완료";
 
-                        SimpleDateFormat sdf2 = new SimpleDateFormat("dd MMM, yyyy", Locale.ENGLISH);
+                        SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy.M.dd", Locale.ENGLISH);
 
                         Date date = new java.sql.Date(Long.parseLong(o.getString("CREATION_DATE")));
                         String dateStr = sdf2.format(date);
 
-                        arrayList_Parent.add(new ListItem_Question(o.getString("QUESTION_SUMMARY"), str, dateStr));
+                        arrayList_Parent.add(new ListItem_Question(o.getString("QUESTION_SUMMARY"), str, "등록일자 : " +dateStr));
                         ArrayList<ListItem_Answer> arrayList = new ArrayList<ListItem_Answer>();
                         if(!o.getString("ANSWER_FLAG").equals("N")) {
                             arrayList.add(new ListItem_Answer(o.getString("QUESTION_SUMMARY"), o.getString("ANSWER_SUMMARY")));

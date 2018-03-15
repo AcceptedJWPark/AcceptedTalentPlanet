@@ -36,15 +36,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
+                android:text="18.3.15"
                 android:gravity="center_vertical"
-                android:ellipsize="end"
+                android:textSize="@dimen/List_Title"
                 android:textColor="@color/textColor_object"
-                android:lines="1"
-                android:textSize="@dimen/ListView_SecondLine"
-                android:paddingLeft="5dp"
-                android:layout_marginTop="5dp"
-                android:text="2017.11.03 16:24 등록"
                 />
+
 
         </LinearLayout>
 
@@ -53,29 +50,20 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:layout_weight="2"
-        android:layout_marginLeft="5dp"
         >
 
-        <View
-            android:layout_height="0dp"
-            android:layout_width="match_parent"
-            android:layout_weight="0.2"/>
 
         <TextView
             android:id="@+id/tv_ParentisAnswer_QuestionList"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:text="[답변 완료]"
+            android:text="답변 완료"
             android:textSize="@dimen/List_Title"
             android:textColor="@color/textColor_object"
             android:gravity="center"
             android:layout_gravity="center"
             />
-        <View
-            android:layout_height="0dp"
-            android:layout_width="match_parent"
-            android:layout_weight="0.2"/>
 
     </LinearLayout>
 

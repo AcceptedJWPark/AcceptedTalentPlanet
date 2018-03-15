@@ -84,7 +84,7 @@ public class ELVAdapter extends BaseExpandableListAdapter {
             DisplayMetrics metrics = new DisplayMetrics();
             WindowManager windowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
             windowManager.getDefaultDisplay().getMetrics(metrics);
-            int Interesting_ListView_height = (int) (metrics.heightPixels*0.08);
+            int Interesting_ListView_height = (int) (metrics.heightPixels*0.1);
             ViewGroup.LayoutParams params1 = v.getLayoutParams();
             params1.height = Interesting_ListView_height;
             v.setLayoutParams(params1);

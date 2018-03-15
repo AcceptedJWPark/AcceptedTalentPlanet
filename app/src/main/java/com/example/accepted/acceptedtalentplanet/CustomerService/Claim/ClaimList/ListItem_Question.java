@@ -7,7 +7,18 @@ package com.example.accepted.acceptedtalentplanet.CustomerService.Claim.ClaimLis
 public class ListItem_Question {
 
     private String title;
+    private String RegistDate;
     private String isAnswer;
+
+
+
+    public String getRegistDate() {
+        return RegistDate;
+    }
+
+    public void setRegistDate(String registDate) {
+        RegistDate = registDate;
+    }
 
     public String getTitle() {
         return title;
@@ -31,6 +42,7 @@ public class ListItem_Question {
     {
         this.title = title;
         this.isAnswer = isAnswer;
+        this.RegistDate = RegistDate;
     }
 
 }

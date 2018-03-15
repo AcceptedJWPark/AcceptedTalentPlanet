@@ -229,6 +229,8 @@ public class MainActivity extends AppCompatActivity {
                         lastMessageID = obj.getString("MESSAGE_ID");
                     }
 
+                    running = true;
+
                     if(i == 0)
                     {
                         if(interval < maxInterval){
@@ -265,6 +267,7 @@ public class MainActivity extends AppCompatActivity {
         }) {
             @Override
             protected Map<String, String> getParams(){
+                running = false;
                 Map<String, String> params = new HashMap();
                 params.put("userID", SaveSharedPreference.getUserId(mContext));
                 params.put("lastMessageID", lastMessageID);

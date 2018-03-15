@@ -112,6 +112,7 @@ public class Adapter extends BaseAdapter {
         holder.iv_Picture.setBackgroundResource(arrayList.get(position).getpicture());
         holder.tv_Name.setText(arrayList.get(position).getName());
         holder.tv_Date.setText(arrayList.get(position).getDate());
+        holder.tv_Txt.setText(arrayList.get(position).gettxt());
 
         if (arrayList.get(position).getdeleteClicked())
         {
