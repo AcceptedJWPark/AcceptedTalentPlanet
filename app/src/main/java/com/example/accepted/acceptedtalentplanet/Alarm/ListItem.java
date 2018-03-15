@@ -11,12 +11,11 @@ public class ListItem {
     private int picture;
     private String name;
     private String text;
-    private String date1;
-    private String date2;
+    private String date;
     private int deleteIcon;
 
     private int activityChangeType;
-    private int alarmType;
+    private int conditionType;
     private boolean isDeleteClicked;
 
 
@@ -26,17 +25,14 @@ public class ListItem {
     public String getName() {
         return name;
     }
-    public String getregistDate1() {
-        return date1;
-    }
-    public String getregistDate2() {
-        return date2;
+    public String getDate() {
+        return date;
     }
     public String gettxt() {
         return text;
     }
     public int getalarmType_CODE() {
-        return alarmType;
+        return conditionType;
     }
     public int getactivityChange_CODE() {
         return activityChangeType;
@@ -55,10 +51,7 @@ public class ListItem {
         this.text = txt;
     }
     public void setregistDate1(String registDate1) {
-        this.date1 = registDate1;
-    }
-    public void setregistDate2(String registDate2) {
-        this.date2 = registDate2;
+        this.date = registDate1;
     }
     public void setName(String name) {
         this.name = name;
@@ -71,36 +64,28 @@ public class ListItem {
         this.deleteIcon = deleteIcon;
     }
     public void setalarmType_CODE(int alarmType_CODE) {
-        this.alarmType = alarmType_CODE;
+        this.conditionType = alarmType_CODE;
     }
     public void setdeleteClicked(boolean deleteClicked) {
         this.isDeleteClicked = deleteClicked;
     }
 
-    public ListItem(int picture, String name, String date1, int activityChangeType, int alarmType, int deleteIcon, boolean deleteClicked)
+    public ListItem(int picture, String name, String date, int activityChangeType, int conditionType, int deleteIcon, boolean deleteClicked)
     {
         this.picture = picture;
         this.name = name;
-        this.date1 = date1;
+        this.date = date;
         this.activityChangeType = activityChangeType;
-        this.alarmType = alarmType;
+        this.conditionType = conditionType;
         this.deleteIcon = deleteIcon;
         this.isDeleteClicked = deleteClicked;
     }
 
-    public ListItem(String date1, int activityChangeType, int deleteIcon, boolean deleteClicked)
-    {
-        this.date1 = date1;
-        this.activityChangeType = activityChangeType;
-        this.deleteIcon = deleteIcon;
-        this.isDeleteClicked = deleteClicked;
-    }
-
-    public ListItem(int picture, String name, String date1, int activityChangeType, int deleteIcon, boolean deleteClicked)
+    public ListItem(int picture, String name, String date, int activityChangeType, int deleteIcon, boolean deleteClicked)
     {
         this.picture = picture;
         this.name = name;
-        this.date1 = date1;
+        this.date = date;
         this.activityChangeType = activityChangeType;
         this.deleteIcon = deleteIcon;
         this.isDeleteClicked = deleteClicked;

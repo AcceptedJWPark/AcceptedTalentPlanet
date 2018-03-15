@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/Messanger_List_LL"
+    android:id="@+id/ll_Messanger_List"
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="60dp"
@@ -13,7 +13,7 @@
     android:weightSum="7"
     >
     <LinearLayout
-        android:id="@+id/pictureContainerLL"
+        android:id="@+id/ll_pictureContainer_List_Messanger"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
@@ -21,7 +21,7 @@
 
         >
         <ImageView
-            android:id="@+id/Messanger_List_Picture"
+            android:id="@+id/iv_pictureContainer_List_Messanger"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:adjustViewBounds="false"
@@ -31,7 +31,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/Messanger_List_TxtLL"
+        android:id="@+id/ll_txtContainer_List_Messanger"
         android:layout_width="0dp"
         android:layout_weight="5"
         android:layout_marginLeft="10dp"
@@ -50,7 +50,7 @@
             >
 
             <TextView
-                android:id="@+id/Messanger_List_Name"
+                android:id="@+id/ll_name_List_Messanger"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center|left"
@@ -71,7 +71,7 @@
             android:layout_weight="1">
 
             <TextView
-                android:id="@+id/Messanger_List_Txt"
+                android:id="@+id/ll_txt_List_Messanger"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:gravity="center_vertical"
@@ -91,7 +91,7 @@
         >
 
         <ImageView
-            android:id="@+id/Messanger_List_DeleteList"
+            android:id="@+id/iv_delete_List_Messanger"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:src="@drawable/icon_deletecheck"
@@ -102,7 +102,7 @@
 
 
         <LinearLayout
-            android:id="@+id/Messanger_List_DateLL"
+            android:id="@+id/ll_deleteContainer_Alarm"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
@@ -110,12 +110,13 @@
 
             >
             <TextView
-                android:id="@+id/Messanger_List_DateList"
+                android:id="@+id/tv_date_Alarm"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
+                android:includeFontPadding="false"
                 android:gravity="center|right"
-                android:text="AM 11:37"
+                android:text="18/ 12/ 15"
                 android:textSize="@dimen/Messanger_List_Date"
                 android:textColor="@color/textColor_object"
                 />
@@ -128,7 +129,7 @@
                 >
 
             <TextView
-                android:id="@+id/Messanger_List_Count"
+                android:id="@+id/tv_count_List_Alarm"
                 android:layout_width="@dimen/Messanger_List_Count"
                 android:layout_height="@dimen/Messanger_List_Count"
                 android:text="3"

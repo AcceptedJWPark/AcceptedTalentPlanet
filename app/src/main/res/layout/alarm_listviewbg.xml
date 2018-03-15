@@ -35,8 +35,8 @@
         android:layout_width="0dp"
         android:layout_weight="5"
         android:layout_marginLeft="5dp"
+        android:paddingRight="10dp"
         android:layout_height="match_parent"
-        android:gravity="center_vertical"
         android:orientation="vertical">
 
         <LinearLayout
@@ -44,6 +44,7 @@
             android:layout_height="0dp"
             android:layout_weight="1"
             android:paddingRight="5dp"
+            android:gravity="center|left"
             android:orientation="horizontal"
             >
 
@@ -51,68 +52,68 @@
             android:id="@+id/tv_Name_Alarm"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center|left"
             android:text="박종우"
             android:singleLine="true"
             android:textSize="@dimen/List_Title"
             android:textColor="#000000"
             android:textStyle="bold" />
 
+        </LinearLayout>
 
 
         <TextView
             android:id="@+id/tv_Txt_Alarm"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
             android:gravity="center|left"
-            android:text="님이 재능드림에 관심을 취소하였습니다."
+            android:text="새로운 메세지 3건이 도착하였습니다."
             android:singleLine="true"
             android:textSize="@dimen/List_SubTitle"
             android:textColor="@color/textColor_txtpage"
             />
 
-        </LinearLayout>
+    </LinearLayout>
 
+    <RelativeLayout
+        android:layout_weight="1"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        >
 
         <LinearLayout
+            android:id="@+id/ll_deleteContainer_Alarm"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1">
-            <TextView
-            android:id="@+id/tv_Date1_Alarm"
-            android:layout_width="wrap_content"
-            android:textColor="@color/textColor_normal"
             android:layout_height="match_parent"
-            android:gravity="center|left"
-            android:paddingLeft="5dp"
-            android:text="2017.11.30. 12:32"
-            android:textSize="@dimen/ListView_SecondLine"
-            />
-            <TextView
-                android:id="@+id/tv_Date2_Alarm_"
-                android:layout_width="wrap_content"
-                android:textColor="@color/textColor_normal"
-                android:layout_height="match_parent"
-                android:gravity="center|left"
-                android:paddingLeft="5dp"
-                android:text="등록"
-                android:textSize="@dimen/ListView_SecondLine"
-                />
-        </LinearLayout>
+            android:orientation="vertical"
+            android:gravity="center|right"
 
-    </LinearLayout>
+            >
+            <TextView
+                android:id="@+id/tv_date_Alarm"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:includeFontPadding="false"
+                android:gravity="center|right"
+                android:text="PM 15:36"
+                android:textSize="@dimen/Messanger_List_Date"
+                android:textColor="@color/textColor_object"
+                />
+
+
+        </LinearLayout>
 
         <ImageView
             android:id="@+id/iv_DeleteIcon_Alarm"
-            android:layout_weight="1"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:padding="10dp"
             android:src="@drawable/icon_deletecheck"
-            android:layout_height="match_parent"
             android:gravity="center"
-            android:visibility="invisible"
+            android:visibility="gone"
             />
-
+    </RelativeLayout>
 </LinearLayout>
 
 

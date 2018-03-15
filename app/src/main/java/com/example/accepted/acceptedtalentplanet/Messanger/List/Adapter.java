@@ -95,14 +95,14 @@ public class Adapter extends BaseAdapter {
         view.setLayoutParams(params1);
 
 
-            holder.messsanger_Pic = view.findViewById(R.id.Messanger_List_Picture);
-            holder.messanger_Name = view.findViewById(R.id.Messanger_List_Name);
-            holder.messanger_Content = view.findViewById(R.id.Messanger_List_Txt);
-            holder.messanger_Count = view.findViewById(R.id.Messanger_List_Count);
-            holder.Messanger_List_LL = view.findViewById(R.id.Messanger_List_LL);
-            holder.messanger_Date = view.findViewById(R.id.Messanger_List_DateList);
-            holder.Messanger_List_DateLL = view.findViewById(R.id.Messanger_List_DateLL);
-            holder.Messanger_List_DeleteList = view.findViewById(R.id.Messanger_List_DeleteList);
+            holder.messsanger_Pic = view.findViewById(R.id.iv_pictureContainer_List_Messanger);
+            holder.messanger_Name = view.findViewById(R.id.ll_name_List_Messanger);
+            holder.messanger_Content = view.findViewById(R.id.ll_txt_List_Messanger);
+            holder.messanger_Count = view.findViewById(R.id.tv_count_List_Alarm);
+            holder.Messanger_List_LL = view.findViewById(R.id.ll_Messanger_List);
+            holder.messanger_Date = view.findViewById(R.id.tv_date_Alarm);
+            holder.Messanger_List_DateLL = view.findViewById(R.id.ll_deleteContainer_Alarm);
+            holder.Messanger_List_DeleteList = view.findViewById(R.id.iv_delete_List_Messanger);
 
 
         view.setTag(holder);
