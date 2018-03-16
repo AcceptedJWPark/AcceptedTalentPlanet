@@ -148,6 +148,7 @@
                 android:paddingLeft="10dp"
                 android:hint="인증번호 입력"
                 android:textSize="@dimen/Edit_Hint"
+                android:inputType="number"
                 />
 
 

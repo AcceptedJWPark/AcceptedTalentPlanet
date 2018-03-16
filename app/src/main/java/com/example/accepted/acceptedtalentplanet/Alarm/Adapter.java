@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.support.v7.app.AlertDialog;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,9 +16,7 @@ import android.widget.TextView;
 import com.example.accepted.acceptedtalentplanet.R;
 import com.example.accepted.acceptedtalentplanet.SaveSharedPreference;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 
 /**
  * Created by Accepted on 2017-10-24.
@@ -84,13 +81,6 @@ public class Adapter extends BaseAdapter {
         ViewHolder holder;
         view = null;
 
-        String nowDateStr;
-        String[] nowDateTemp;
-        String nowDate;
-        String lastDate = arrayList.get(position).getDate();
-        String[] dateTemp;
-
-
 
 
         if (view == null) {
@@ -124,7 +114,6 @@ public class Adapter extends BaseAdapter {
 
         holder.iv_Picture.setBackgroundResource(arrayList.get(position).getpicture());
         holder.tv_Name.setText(arrayList.get(position).getName());
-        holder.tv_Date.setText(lastDate);
         holder.tv_Txt.setText(arrayList.get(position).gettxt());
 
         if (arrayList.get(position).getdeleteClicked())
@@ -171,7 +160,12 @@ public class Adapter extends BaseAdapter {
         DisplayMetrics dm = mContext.getResources().getDisplayMetrics();
         int size = Math.round(5*dm.density);
 
+        String lastDate = arrayList.get(position).getDate();
+
+
         switch (arrayList.get(position).getactivityChange_CODE()) {
+
+
             case 1:
                 switch (arrayList.get(position).getalarmType_CODE())
                 {
@@ -228,18 +222,19 @@ public class Adapter extends BaseAdapter {
                     }
                 }
                 break;
+            case 4:
+            {
+                holder.tv_Date.setText(lastDate);
+                break;
+            }
+
+            case 5 :
+            {
+                holder.tv_Date.setText(lastDate);
+                break;
+            }
             case 6:
             {
-                Log.d("lastdate = ", lastDate);
-                Date date = new Date();
-                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd,a hh:mm:ss");
-                nowDateStr = simpleDateFormat.format(date);
-                nowDateTemp = nowDateStr.split(",");
-                nowDate = nowDateTemp[0];
-                dateTemp = lastDate.split(",");
-                lastDate = dateTemp[0];
-                String dateTime = dateTemp[1].substring(0, 8);
-                lastDate = (lastDate.equals(nowDate))?dateTime : lastDate;
                 holder.tv_Date.setText(lastDate);
                 break;
             }

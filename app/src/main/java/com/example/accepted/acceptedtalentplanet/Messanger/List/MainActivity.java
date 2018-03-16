@@ -88,9 +88,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-//        messanger_Arraylist.add(new ListItem(R.drawable.testpicture,"박종우", "안녕하세요 박종우 입니다.","PM 16:12", 3,false));
-//        messanger_Arraylist.add(new ListItem(R.drawable.testpicture,"민권홍", "안녕하세요 민권홍 입니다.","18/Mar/05", 2,false));
-//        messanger_Arraylist.add(new ListItem(R.drawable.testpicture,"김용인", "안녕하세요 김용인 입니다.","18/Mar/06", 0,false));
 
         refreshChatLog();
     }
@@ -143,7 +140,7 @@ public class MainActivity extends AppCompatActivity {
             if(pictureData != null && !pictureData.equals("NODATA")){
                 picture = SaveSharedPreference.StringToBitMap(pictureData);
             }
-            messanger_Arraylist.add(new ListItem(R.drawable.testpicture, userName, userID, lastMessage ,lastDate, unreadedCount, false, roomID, picture));
+            messanger_Arraylist.add(0,new ListItem(R.drawable.testpicture, userName, userID, lastMessage ,lastDate, unreadedCount, false, roomID, picture));
             cursor.moveToNext();
         }
         cursor.close();
