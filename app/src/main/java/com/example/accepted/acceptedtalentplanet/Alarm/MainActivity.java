@@ -163,22 +163,8 @@ public class MainActivity extends AppCompatActivity {
                     break;
                 //Message case 6:
                 case 6:
-                    String userId;
-                    String userName;
-                    int roomId;
-                    userId = arrayList.get(position).getUserId();
-                    userName = arrayList.get(position).getUserName();
-                    roomId = arrayList.get(position).getRoomId();
-                    i = new Intent(mContext, com.example.accepted.acceptedtalentplanet.Messanger.Chatting.MainActivity.class);
-                    i.putExtra("userID",userId);
-                    i.putExtra("userName",userName);
-                    i.putExtra("roomID",roomId);
+                    i = new Intent(mContext, com.example.accepted.acceptedtalentplanet.Messanger.List.MainActivity.class);
                     view.getContext().startActivity(i);
-
-                    Log.d("receiverID : ",userId);
-                    Log.d("receiverID : ", userName);
-                    Log.d("receiverID : ", String.valueOf(roomId));
-
                     break;
             }
         }

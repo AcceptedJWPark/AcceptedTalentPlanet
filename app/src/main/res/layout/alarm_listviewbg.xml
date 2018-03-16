@@ -67,7 +67,7 @@
             android:layout_height="0dp"
             android:layout_weight="1"
             android:gravity="center|left"
-            android:text="새로운 메세지 3건이 도착하였습니다."
+            android:text="새로운 메세지가 도착하였습니다."
             android:singleLine="true"
             android:textSize="@dimen/List_SubTitle"
             android:textColor="@color/textColor_txtpage"

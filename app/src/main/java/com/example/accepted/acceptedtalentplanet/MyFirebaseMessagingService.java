@@ -19,7 +19,9 @@ import com.google.firebase.messaging.RemoteMessage;
 
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class MyFirebaseMessagingService extends FirebaseMessagingService {
     private static final String TAG = "MyFirebaseMsgService";
@@ -74,14 +76,14 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             //Log.d(TAG, "Message data payload: " + remoteMessage.getData());
             //Log.d(TAG, "Message content: " + remoteMessage.getData().get("message"));
 
-            if(remoteMessage.getData().get("type").equals("Message")){
-
-                datas = remoteMessage.getData().get("datas");
+            if(remoteMessage.getData().get("type").equals("Message"))
+            {
+                getMessage(remoteMessage.getData().get("datas"));
             }
 
-            if(remoteMessage.getData().get("type").equals("Interest")){
-                Log.d("Interest", remoteMessage.getData().get("datas"));
-            }
+            datas = remoteMessage.getData().get("datas");
+
+
 
             addNotificationList(remoteMessage.getData().get("type"));
             addAlarmList(remoteMessage.getData().get("type"));
@@ -162,58 +164,79 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
         String userName = null;
         String userId = null;
-        String content = null;
-        String date = null;
-        int roomId = -1;
+        String unformatedDate = null;
+        int talentID = -1;
+        int talentType = -1;
 
         switch (type){
-            case "Message":
-                try{
+            case "Message": {
+                try {
                     JSONObject obj = new JSONObject(datas);
-                    content = obj.getString("CONTENT");
-                    date = obj.getString("CREATION_DATE_STRING");
                     userName = obj.getString("USER_NAME");
                     userId = obj.getString("USER_ID");
-                    roomId = getMessage(datas);
-                    Log.d(date, "date = ");
+                    unformatedDate = obj.getString("CREATION_DATE_STRING");
 
-                }catch (Exception e)
-                {
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
 
+                String formattedDate = dateFormat(unformatedDate);
 
-
-                ListItem listItem = new ListItem(R.drawable.testpicture, userName, content, countAlarmPush_Message,date,  6, R.drawable.icon_delete, false);
-                listItem.setRoomId(roomId);
+                int countMessage = 1;
+                ListItem listItem = new ListItem(R.drawable.testpicture, userName, "새로운 메세지 1건이 있습니다.", 1, formattedDate, 6, R.drawable.icon_delete, false);
                 listItem.setUserId(userId);
                 listItem.setUserName(userName);
+                arrayList.add(0, listItem);
 
-                arrayList.add(0,listItem);
-
-                for(int i =1; i<=arrayList.size(); i++)
-                {
-                    if(arrayList.get(0).getUserId() == arrayList.get(i).getUserId())
-                    {
-                        listItem.setCountMessage(arrayList.get(i).getCountMessage()+1);
+                for (int i = 1; i < arrayList.size(); i++) {
+                    if (arrayList.get(0).getUserId().equals(arrayList.get(i).getUserId())) {
+                        countMessage = arrayList.get(i).getCountMessage() + 1;
                         arrayList.remove(i);
+                        arrayList.remove(0);
+                        listItem.settxt("새로운 메세지 " + countMessage + "건이 있습니다.");
+                        listItem.setCountMessage(countMessage);
+                        arrayList.add(0, listItem);
                     }
                 }
+                SaveSharedPreference.setPrefAlarmArray(getApplicationContext(), arrayList);
+                break;
+            }
+            case "QNA": {
 
-                Log.d("receiverID : ",userId);
-                Log.d("receiverID : ", userName);
-                Log.d("receiverID : ", String.valueOf(roomId));
+                try {
+                    JSONObject obj = new JSONObject(datas);
+                    unformatedDate = obj.getString("CREATION_DATE_STRING");
 
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                String formatedDate = dateFormat(unformatedDate);
+
+                arrayList.add(0, new ListItem(R.drawable.logo_fakefile, "Talent Planet", alarmTxt, formatedDate, 4, R.drawable.icon_delete, false));
+                SaveSharedPreference.setPrefAlarmArray(getApplicationContext(), arrayList);
+                Log.d("lastDate = ", unformatedDate);
+                break;
+            }
+            case "Claim": {
+
+                try {
+                    JSONObject obj = new JSONObject(datas);
+                    unformatedDate = obj.getString("CREATION_DATE_STRING");
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                String formatedDate = dateFormat(unformatedDate);
+
+                arrayList.add(0, new ListItem(R.drawable.logo_fakefile, "Talent Planet", alarmTxt, formatedDate, 5, R.drawable.icon_delete, false));
                 SaveSharedPreference.setPrefAlarmArray(getApplicationContext(), arrayList);
                 break;
-            case "QNA":
-                arrayList.add(0,new ListItem(R.drawable.logo_fakefile, "Talent Planet", alarmTxt, "18/ 03/ 17", 4,R.drawable.icon_delete,false));
+            }
+            case "Interest": {
+                arrayList.add(0, new ListItem(R.drawable.logo_fakefile, userName, talentID, "Talent Planet", unformatedDate, 1, talentType, R.drawable.icon_delete, false));
                 SaveSharedPreference.setPrefAlarmArray(getApplicationContext(), arrayList);
                 break;
-            case "Claim":
-                arrayList.add(0,new ListItem(R.drawable.logo_fakefile, "Talent Planet", alarmTxt, "18/ 03/ 15", 5,R.drawable.icon_delete,false));
-                SaveSharedPreference.setPrefAlarmArray(getApplicationContext(), arrayList);
-                break;
+            }
         }
     }
 
@@ -247,10 +270,16 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                     intent1.putExtra("alarmType", "Claim");
                 }
                 break;
+            case "Interest":
+                alarmType = "Interest";
+                alarmTxt = "받은 관심이 있습니다.";
+                intent1 = new Intent(this, com.example.accepted.acceptedtalentplanet.TalentCondition.MainActivity.class);
+                intent1.putExtra("alarmType", alarmType);
+                break;
         }
     }
 
-    private int getMessage(String datas){
+    private void getMessage(String datas){
         try {
             JSONObject obj = new JSONObject(datas);
             String dbName = "/accepted.db";
@@ -260,11 +289,9 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
             int roomID = SaveSharedPreference.makeChatRoom(getApplicationContext(), obj.getString("USER_ID"), obj.getString("USER_NAME"));
             sqLiteDatabase.execSQL("INSERT INTO TB_CHAT_LOG(MESSAGE_ID, ROOM_ID, USER_ID, CONTENT, CREATION_DATE, READED_FLAG) VALUES (" + obj.getString("MESSAGE_ID") + ", " + roomID + ", '" + obj.getString("USER_ID") + "','" + obj.getString("CONTENT").replace("'", "''") + "','" + obj.getString("CREATION_DATE_STRING") + "', 'N')");
-            return roomID;
         }catch(Exception e){
             e.printStackTrace();
         }
-        return -1;
     }
 
     /**
@@ -310,6 +337,21 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 //        notificationManager.notify(0 /* ID of notification */, notificationBuilder.build());
     }
 
+    private String dateFormat(String lastDate)
+    {
+        Date tempDate = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd,a hh:mm:ss");
+        String nowDateStr = sdf.format(tempDate);
+        String[] nowDateTemp = nowDateStr.split(",");
+        String nowDate = nowDateTemp[0];
+
+        String[] dateTemp = lastDate.split(",");
+        lastDate = dateTemp[0];
+        String dateTime = dateTemp[1].substring(0, 8);
+        lastDate = (lastDate.equals(nowDate)) ? dateTime : lastDate;
+
+        return lastDate;
+    }
 
 
 }

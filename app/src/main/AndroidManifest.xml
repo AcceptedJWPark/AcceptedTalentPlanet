@@ -46,7 +46,7 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyC3yIIQ6yAN3jfkLmzFY5NyqxVBA21AkQg"/>
 
-
+        <meta-data android:name="android.max_aspect" android:value="2.1" />
 
         <activity
             android:name=".LoadingLogin.Login.MainActivity"
