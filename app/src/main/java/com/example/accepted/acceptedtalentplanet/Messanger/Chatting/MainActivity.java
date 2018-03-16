@@ -3,6 +3,7 @@ package com.example.accepted.acceptedtalentplanet.Messanger.Chatting;
 import android.app.Activity;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.CursorIndexOutOfBoundsException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.graphics.Bitmap;
@@ -84,9 +85,12 @@ public class MainActivity extends AppCompatActivity {
         mContext = getApplicationContext();
         receiverID = getIntent().getStringExtra("userID");
         roomID = getIntent().getIntExtra("roomID", 0);
-
         tv_User = (TextView)findViewById(R.id.tv_User_Chatting_Messanger);
         tv_User.setText(getIntent().getStringExtra("userName"));
+
+        Log.d("receiverID : ",receiverID);
+        Log.d("receiverID : ", String.valueOf(roomID));
+        Log.d("receiverID : ",getIntent().getStringExtra("userName"));
 
         ((LinearLayout)findViewById(R.id.ll_PreContainer_Chatting_Messanger)).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -98,14 +102,19 @@ public class MainActivity extends AppCompatActivity {
         String dbName = "/accepted.db";
         try {
             sqliteDatabase = SQLiteDatabase.openOrCreateDatabase(getFilesDir() + dbName, null);
+
+            String getStartMessageID = "SELECT START_MESSAGE_ID FROM TB_CHAT_ROOM WHERE ROOM_ID = " + roomID;
+            Cursor cursor = sqliteDatabase.rawQuery(getStartMessageID, null);
+            cursor.moveToFirst();
+            lastMessageID = cursor.getString(0);
+
         } catch (SQLiteException e) {
             e.printStackTrace();
+        }catch (CursorIndexOutOfBoundsException e2)
+        {
+            e2.printStackTrace();
         }
-        String getStartMessageID = "SELECT START_MESSAGE_ID FROM TB_CHAT_ROOM WHERE ROOM_ID = " + roomID;
-        Cursor cursor = sqliteDatabase.rawQuery(getStartMessageID, null);
-        cursor.moveToFirst();
 
-        lastMessageID = cursor.getString(0);
 
 
 

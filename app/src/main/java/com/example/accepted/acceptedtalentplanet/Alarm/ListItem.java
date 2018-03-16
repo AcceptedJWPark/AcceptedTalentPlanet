@@ -20,6 +20,11 @@ public class ListItem {
     private int activityChangeType;
     private int conditionType;
 
+    private String userId;
+    private String userName;
+    private int roomId;
+
+
 
     public int getpicture() {
         return picture;
@@ -81,6 +86,31 @@ public class ListItem {
     public void setdeleteClicked(boolean deleteClicked) {
         this.isDeleteClicked = deleteClicked;
     }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public int getRoomId() {
+        return roomId;
+    }
+
+    public void setRoomId(int roomId) {
+        this.roomId = roomId;
+    }
+
 
     public ListItem(int picture, String name, String text, String date, int activityChangeType, int conditionType, int deleteIcon, boolean deleteClicked)
     {

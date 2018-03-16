@@ -236,7 +236,7 @@ public class MainActivity extends FragmentActivity {
                     ((TextView)findViewById(R.id.talent1_InterestingPopup)).setText(obj.getString("TALENT_KEYWORD1"));
                     ((TextView)findViewById(R.id.talent2_InterestingPopup)).setText(obj.getString("TALENT_KEYWORD2"));
                     ((TextView)findViewById(R.id.talent3_InterestingPopup)).setText(obj.getString("TALENT_KEYWORD3"));
-                    ((TextView)findViewById(R.id.location1_InterestingPopup)).setText(obj.getString("LOCATION1"));
+                    ((TextView)findViewById(R.id.location1_InterestingPopup)).setText(obj.getString("LOCATION"));
                     ((TextView)findViewById(R.id.level_InterestingPopup)).setText(SaveSharedPreference.getLevel(obj.getString("LEVEL")));
                     ((TextView)findViewById(R.id.point_InterestingPopup)).setText(obj.getString("T_POINT")+"P");
                     profileUserID = obj.getString("USER_ID");

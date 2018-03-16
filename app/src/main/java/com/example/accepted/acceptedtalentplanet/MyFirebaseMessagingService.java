@@ -36,6 +36,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     private int isReadQna;
     private int isReadClaim;
 
+
     private Intent intent1 = null;
 
     private String datas = null;
@@ -74,7 +75,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             //Log.d(TAG, "Message content: " + remoteMessage.getData().get("message"));
 
             if(remoteMessage.getData().get("type").equals("Message")){
-                getMessage(remoteMessage.getData().get("datas"));
+
                 datas = remoteMessage.getData().get("datas");
             }
 
@@ -160,24 +161,49 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         }
 
         String userName = null;
+        String userId = null;
         String content = null;
         String date = null;
-
+        int roomId = -1;
 
         switch (type){
             case "Message":
                 try{
                     JSONObject obj = new JSONObject(datas);
-                    userName = obj.getString("USER_NAME");
                     content = obj.getString("CONTENT");
                     date = obj.getString("CREATION_DATE_STRING");
+                    userName = obj.getString("USER_NAME");
+                    userId = obj.getString("USER_ID");
+                    roomId = getMessage(datas);
                     Log.d(date, "date = ");
 
                 }catch (Exception e)
                 {
                     e.printStackTrace();
                 }
-                arrayList.add(0,new ListItem(R.drawable.testpicture, userName, content, countAlarmPush_Message,date,  6, R.drawable.icon_delete, false));
+
+
+
+                ListItem listItem = new ListItem(R.drawable.testpicture, userName, content, countAlarmPush_Message,date,  6, R.drawable.icon_delete, false);
+                listItem.setRoomId(roomId);
+                listItem.setUserId(userId);
+                listItem.setUserName(userName);
+
+                arrayList.add(0,listItem);
+
+                for(int i =1; i<=arrayList.size(); i++)
+                {
+                    if(arrayList.get(0).getUserId() == arrayList.get(i).getUserId())
+                    {
+                        listItem.setCountMessage(arrayList.get(i).getCountMessage()+1);
+                        arrayList.remove(i);
+                    }
+                }
+
+                Log.d("receiverID : ",userId);
+                Log.d("receiverID : ", userName);
+                Log.d("receiverID : ", String.valueOf(roomId));
+
                 SaveSharedPreference.setPrefAlarmArray(getApplicationContext(), arrayList);
                 break;
             case "QNA":
@@ -224,7 +250,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         }
     }
 
-    private void getMessage(String datas){
+    private int getMessage(String datas){
         try {
             JSONObject obj = new JSONObject(datas);
             String dbName = "/accepted.db";
@@ -234,9 +260,11 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
             int roomID = SaveSharedPreference.makeChatRoom(getApplicationContext(), obj.getString("USER_ID"), obj.getString("USER_NAME"));
             sqLiteDatabase.execSQL("INSERT INTO TB_CHAT_LOG(MESSAGE_ID, ROOM_ID, USER_ID, CONTENT, CREATION_DATE, READED_FLAG) VALUES (" + obj.getString("MESSAGE_ID") + ", " + roomID + ", '" + obj.getString("USER_ID") + "','" + obj.getString("CONTENT").replace("'", "''") + "','" + obj.getString("CREATION_DATE_STRING") + "', 'N')");
+            return roomID;
         }catch(Exception e){
             e.printStackTrace();
         }
+        return -1;
     }
 
     /**
