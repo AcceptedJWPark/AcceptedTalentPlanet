@@ -663,6 +663,7 @@ public class MainActivity extends AppCompatActivity {
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap();
                 params.put("talentID", ((String) tv_TalentType.getText()).equals("관심재능 : ") ? takeTalentID : giveTalentID);
+                params.put("activityFlag", "X");
                 return params;
             }
         };
@@ -708,6 +709,7 @@ public class MainActivity extends AppCompatActivity {
                 Map<String, String> params = new HashMap();
                 params.put("talentID", ((String) tv_TalentType.getText()).equals("관심재능 : ") ? takeTalentID : giveTalentID);
                 params.put("userID", SaveSharedPreference.getUserId(mContext));
+                params.put("activityFlag", "C");
                 return params;
             }
         };
