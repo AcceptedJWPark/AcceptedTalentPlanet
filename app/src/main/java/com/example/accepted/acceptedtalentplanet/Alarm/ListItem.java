@@ -20,6 +20,8 @@ public class ListItem {
     private int activityChangeType;
     private int conditionType;
 
+    private int talentID;
+
 
     public int getpicture() {
         return picture;
@@ -66,11 +68,12 @@ public class ListItem {
     public int getCountMessage() {
         return countMessage;
     }
+    public int getTalentID(){return talentID;}
 
     public void setCountMessage(int countMessage) {
         this.countMessage = countMessage;
     }
-
+    public void setTalentID(int talentID){this.talentID = talentID;}
 
     public void setDeleteIcon(int deleteIcon) {
         this.deleteIcon = deleteIcon;
@@ -82,10 +85,11 @@ public class ListItem {
         this.isDeleteClicked = deleteClicked;
     }
 
-    public ListItem(int picture, String name, String text, String date, int activityChangeType, int conditionType, int deleteIcon, boolean deleteClicked)
+    public ListItem(int picture, String name, int talentID, String text, String date, int activityChangeType, int conditionType, int deleteIcon, boolean deleteClicked)
     {
         this.picture = picture;
         this.name = name;
+        this.talentID = talentID;
         this.text = text;
         this.date = date;
         this.activityChangeType = activityChangeType;
