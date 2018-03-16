@@ -19,9 +19,7 @@ import com.google.firebase.messaging.RemoteMessage;
 
 import org.json.JSONObject;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 
 public class MyFirebaseMessagingService extends FirebaseMessagingService {
     private static final String TAG = "MyFirebaseMsgService";
@@ -167,6 +165,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         String unformatedDate = null;
         int talentID = -1;
         int talentType = -1;
+        int roomId = -1;
 
         switch (type){
             case "Message": {
