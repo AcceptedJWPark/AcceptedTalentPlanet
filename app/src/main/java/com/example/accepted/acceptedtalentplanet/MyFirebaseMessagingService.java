@@ -19,7 +19,9 @@ import com.google.firebase.messaging.RemoteMessage;
 
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class MyFirebaseMessagingService extends FirebaseMessagingService {
     private static final String TAG = "MyFirebaseMsgService";
@@ -77,11 +79,11 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             if(remoteMessage.getData().get("type").equals("Message")){
 
                 datas = remoteMessage.getData().get("datas");
+            }else if(remoteMessage.getData().get("type").equals("Interest")){
+                datas = remoteMessage.getData().get("datas");
             }
 
-            if(remoteMessage.getData().get("type").equals("Interest")){
-                Log.d("Interest", remoteMessage.getData().get("datas"));
-            }
+
 
             addNotificationList(remoteMessage.getData().get("type"));
             addAlarmList(remoteMessage.getData().get("type"));
@@ -164,6 +166,8 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         String userId = null;
         String content = null;
         String date = null;
+        int talentID = -1;
+        int talentType = -1;
         int roomId = -1;
 
         switch (type){
@@ -191,9 +195,9 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
                 arrayList.add(0,listItem);
 
-                for(int i =1; i<=arrayList.size(); i++)
+                for(int i =1; i<arrayList.size(); i++)
                 {
-                    if(arrayList.get(0).getUserId() == arrayList.get(i).getUserId())
+                    if(arrayList.get(0).getUserId().equals(arrayList.get(i).getUserId()))
                     {
                         listItem.setCountMessage(arrayList.get(i).getCountMessage()+1);
                         arrayList.remove(i);
@@ -212,6 +216,22 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                 break;
             case "Claim":
                 arrayList.add(0,new ListItem(R.drawable.logo_fakefile, "Talent Planet", alarmTxt, "18/ 03/ 15", 5,R.drawable.icon_delete,false));
+                SaveSharedPreference.setPrefAlarmArray(getApplicationContext(), arrayList);
+                break;
+            case "Interest":
+                try{
+                    JSONObject obj = new JSONObject(datas);
+                    userName = obj.getString("USER_NAME");
+                    talentID = obj.getInt("TALENT_ID");
+                    String userID = obj.getString("USER_ID");
+                    talentType = (obj.getString("TALENT_FLAG").equals("Y"))?1:2;
+                    Date tempDate = new Date(obj.getLong("CREATION_DATE"));
+                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd,a hh:mm:ss");
+                    date = sdf.format(tempDate);
+                }catch(Exception e){
+                    e.printStackTrace();
+                }
+                arrayList.add(0, new ListItem(R.drawable.logo_fakefile, userName, talentID ,"Talent Planet", date, 1, talentType, R.drawable.icon_delete, false));
                 SaveSharedPreference.setPrefAlarmArray(getApplicationContext(), arrayList);
                 break;
         }
@@ -247,6 +267,12 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                     intent1.putExtra("alarmType", "Claim");
                 }
                 break;
+            case "Interest":
+                alarmType = "Interest";
+                alarmTxt = "받은 관심이 있습니다.";
+                intent1 = new Intent(this, com.example.accepted.acceptedtalentplanet.TalentCondition.MainActivity.class);
+                intent1.putExtra("alarmType", alarmType);
+                break;
         }
     }
 
@@ -260,6 +286,8 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
             int roomID = SaveSharedPreference.makeChatRoom(getApplicationContext(), obj.getString("USER_ID"), obj.getString("USER_NAME"));
             sqLiteDatabase.execSQL("INSERT INTO TB_CHAT_LOG(MESSAGE_ID, ROOM_ID, USER_ID, CONTENT, CREATION_DATE, READED_FLAG) VALUES (" + obj.getString("MESSAGE_ID") + ", " + roomID + ", '" + obj.getString("USER_ID") + "','" + obj.getString("CONTENT").replace("'", "''") + "','" + obj.getString("CREATION_DATE_STRING") + "', 'N')");
+
+            sqLiteDatabase.close();
             return roomID;
         }catch(Exception e){
             e.printStackTrace();
