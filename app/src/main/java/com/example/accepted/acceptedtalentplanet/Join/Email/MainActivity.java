@@ -106,7 +106,7 @@ public class MainActivity extends  AppCompatActivity {
     public void goNext(View v){
         if(isconfirmEmailCheck) {
             Intent intent = new Intent(this, com.example.accepted.acceptedtalentplanet.Join.Password.MainActivity.class);
-            intent.putExtra("et_Email", et_Email.getText().toString());
+            intent.putExtra("email", et_Email.getText().toString());
             startActivity(intent);
         }
         else{
@@ -147,7 +147,7 @@ public class MainActivity extends  AppCompatActivity {
             @Override
             protected Map<String, String> getParams(){
                 Map<String, String> params = new HashMap();
-                params.put("et_Email", jEmail);
+                params.put("email", jEmail);
                 params.put("emailCode", emailCode);
                 Log.d("setting param", jEmail);
 

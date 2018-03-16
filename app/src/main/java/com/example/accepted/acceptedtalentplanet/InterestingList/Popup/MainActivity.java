@@ -278,13 +278,14 @@ public class MainActivity extends FragmentActivity {
                 Map<String, String> params = new HashMap();
                 String senderID;
                 String masterID;
+                String myTalentID = "";
                 if(sendFlag){
                     if(talentFlag){
                         senderID =  SaveSharedPreference.getTakeTalentData(mContext).getTalentID();
-
-
+                        myTalentID = senderID;
                     }else{
                         senderID = SaveSharedPreference.getGiveTalentData(mContext).getTalentID();
+                        myTalentID = senderID;
                     }
                 }else{
                     senderID = talentID;
@@ -295,12 +296,16 @@ public class MainActivity extends FragmentActivity {
                 }else{
                     if(talentFlag){
                         masterID =  SaveSharedPreference.getTakeTalentData(mContext).getTalentID();
+                        myTalentID = masterID;
                     }else{
                         masterID = SaveSharedPreference.getGiveTalentData(mContext).getTalentID();
+                        myTalentID = masterID;
                     }
                 }
                 params.put("senderID", senderID);
                 params.put("masterID", masterID);
+                params.put("myTalentID", myTalentID);
+                params.put("activityFlag", "Y");
                 return params;
             }
         };
@@ -332,8 +337,6 @@ public class MainActivity extends FragmentActivity {
                 if(sendFlag){
                     if(talentFlag){
                         senderID =  SaveSharedPreference.getTakeTalentData(mContext).getTalentID();
-
-
                     }else{
                         senderID = SaveSharedPreference.getGiveTalentData(mContext).getTalentID();
                     }
