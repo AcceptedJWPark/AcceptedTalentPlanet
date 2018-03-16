@@ -88,8 +88,6 @@ public class MainActivity extends FragmentActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
-
         talentID = getIntent().getStringExtra("TalentID");
         sendFlag = (getIntent().getStringExtra("TalentFlag").equals("Give"))?true:false;
         requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -350,7 +348,7 @@ public class MainActivity extends FragmentActivity{
 
     public void removeInteresting(final String talentID) {
 
-        RequestQueue postRequestQueue = Volley.newRequestQueue(mContext, new HurlStack(null, getSocketFactory()));
+        RequestQueue postRequestQueue = VolleySingleton.getInstance(mContext).getRequestQueue();
         StringRequest postJsonRequest = new StringRequest(Request.Method.POST, SaveSharedPreference.getServerIp() + "Interest/removeInteresting.do", new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -385,64 +383,6 @@ public class MainActivity extends FragmentActivity{
 
         postRequestQueue.add(postJsonRequest);
 
-    }
-
-    private SSLSocketFactory getSocketFactory(){
-        CertificateFactory cf = null;
-        try{
-            cf = CertificateFactory.getInstance("X.509");
-            InputStream caInput = getResources().openRawResource(R.raw.accepted);
-            Certificate ca;
-            try{
-                ca= cf.generateCertificate(caInput);
-                Log.e("CERT", "ca="+((X509Certificate)ca).getSubjectDN());
-            }finally {
-                caInput.close();
-            }
-
-            String keyStoreType = KeyStore.getDefaultType();
-            KeyStore keyStore = KeyStore.getInstance(keyStoreType);
-            keyStore.load(null, null);
-            keyStore.setCertificateEntry("ca", ca);
-
-            String tmfAlgorithm = TrustManagerFactory.getDefaultAlgorithm();
-            TrustManagerFactory tmf = TrustManagerFactory.getInstance(tmfAlgorithm);
-            tmf.init(keyStore);
-
-            HostnameVerifier hostnameVerifier = new HostnameVerifier() {
-                @Override
-                public boolean verify(String s, SSLSession sslSession) {
-                    Log.e("CipherUsed", sslSession.getCipherSuite());
-                    return s.compareTo(SaveSharedPreference.getServerIp())==0;
-                }
-            };
-
-            HttpsURLConnection.setDefaultHostnameVerifier(hostnameVerifier);
-            SSLContext context = null;
-            context = SSLContext.getInstance("TLS");
-
-            context.init(null, tmf.getTrustManagers(), null);
-            HttpsURLConnection.setDefaultSSLSocketFactory(context.getSocketFactory());
-
-            SSLSocketFactory sf = context.getSocketFactory();
-
-            return sf;
-
-        }catch (CertificateException e){
-            e.printStackTrace();
-        }catch(NoSuchAlgorithmException e){
-            e.printStackTrace();
-        }catch(KeyStoreException e){
-            e.printStackTrace();
-        }catch (FileNotFoundException e){
-            e.printStackTrace();
-        }catch(IOException e){
-            e.printStackTrace();
-        }catch(KeyManagementException e){
-            e.printStackTrace();
-        }
-
-        return null;
     }
 
 }
