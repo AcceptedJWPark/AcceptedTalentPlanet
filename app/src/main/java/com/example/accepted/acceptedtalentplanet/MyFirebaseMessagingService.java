@@ -75,8 +75,10 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             //Log.d(TAG, "Message data payload: " + remoteMessage.getData());
             //Log.d(TAG, "Message content: " + remoteMessage.getData().get("message"));
 
-            if(remoteMessage.getData().get("type").equals("Message") || remoteMessage.getData().get("type").equals("Interest")){
+            if(remoteMessage.getData().get("type").equals("Message")){
                 getMessage(remoteMessage.getData().get("datas"));
+                datas = remoteMessage.getData().get("datas");
+            }else if(remoteMessage.getData().get("type").equals("Interest")){
                 datas = remoteMessage.getData().get("datas");
             }
 
