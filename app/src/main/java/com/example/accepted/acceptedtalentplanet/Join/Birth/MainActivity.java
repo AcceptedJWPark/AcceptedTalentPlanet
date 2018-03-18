@@ -3,15 +3,22 @@ package com.example.accepted.acceptedtalentplanet.Join.Birth;
 /**
  * Created by kwonhong on 2017-10-01.
  */
+
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -46,6 +53,12 @@ public class MainActivity extends  AppCompatActivity {
 
     private Context mContext;
 
+    private RelativeLayout rl_preContainer;
+    private TextView tv_TitleContainer;
+    private LinearLayout ll_birthContainer;
+    private View trashView;
+    private Button btn_Accept;
+
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,6 +81,41 @@ public class MainActivity extends  AppCompatActivity {
                 finish();
             }
         });
+
+        rl_preContainer = (RelativeLayout) findViewById(R.id.rl_preContainer_join_birth);
+        tv_TitleContainer = (TextView) findViewById(R.id.tv_TitleContainer_join_birth);
+        ll_birthContainer = (LinearLayout) findViewById(R.id.ll_birthContainer_join_birth);
+        trashView = findViewById(R.id.trashView_join_birth);
+        btn_Accept = (Button) findViewById(R.id.btn_Accept_birth_join);
+
+        DisplayMetrics metrics = new DisplayMetrics();
+        WindowManager windowManager = (WindowManager) getApplicationContext().getSystemService(Context.WINDOW_SERVICE);
+        windowManager.getDefaultDisplay().getMetrics(metrics);
+
+        int preContainer_height = (int) (metrics.heightPixels*0.06);
+        int titleContainer_height = (int) (metrics.heightPixels*0.1);
+        int birthContainer_height= (int) (metrics.heightPixels*0.065);
+        int trashView_height= (int) (metrics.heightPixels*0.02);
+        int btn_Accept_height= (int) (metrics.heightPixels*0.04);
+
+        ViewGroup.LayoutParams params1 = rl_preContainer.getLayoutParams();
+        ViewGroup.LayoutParams params2 = tv_TitleContainer.getLayoutParams();
+        ViewGroup.LayoutParams params3 = ll_birthContainer.getLayoutParams();
+        ViewGroup.LayoutParams params4 = trashView.getLayoutParams();
+        ViewGroup.LayoutParams params5 = btn_Accept.getLayoutParams();
+
+        params1.height = preContainer_height;
+        params2.height = titleContainer_height;
+        params3.height = birthContainer_height;
+        params4.height = trashView_height;
+        params5.height = btn_Accept_height;
+
+        rl_preContainer.setLayoutParams(params1);
+        tv_TitleContainer.setLayoutParams(params2);
+        ll_birthContainer.setLayoutParams(params3);
+        trashView.setLayoutParams(params4);
+        btn_Accept.setLayoutParams(params5);
+
 
 
         et_Year = (EditText)findViewById(R.id.et_Yeat_birth_Join);

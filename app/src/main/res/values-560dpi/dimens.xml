@@ -75,6 +75,8 @@
     <dimen name="Claim_List_BtnLayout">30dp</dimen>
     <dimen name="Claim_List_Layout2">30dp</dimen>
     <dimen name="Claim_Edit_Layout">120dp</dimen>
+    <dimen name="Question_Edit_Layout">150dp</dimen>
+
     <dimen name="TalentSharing_BtnLayout">30dp</dimen>
     <dimen name="TalentSharing_ListLayout2">50dp</dimen>
 

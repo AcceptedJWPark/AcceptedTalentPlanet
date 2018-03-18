@@ -5,20 +5,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#ffffff"
-    android:weightSum="24"
     android:focusable="true"
     android:clickable="true"
     android:focusableInTouchMode="true"
     >
 
     <RelativeLayout
+        android:id="@+id/rl_preContainer_join_email"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="40dp"
         android:gravity="center_vertical"
-        android:layout_marginTop="10dp"
-        android:layout_weight="1"
         >
 
         <LinearLayout
@@ -50,9 +48,9 @@
         </RelativeLayout>
 
         <TextView
+            android:id="@+id/tv_TitleContainer_join_email"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="2.4"
+            android:layout_height="60dp"
             android:layout_gravity="center"
             android:gravity="center"
             android:textColor="@color/textColor_txtpage"
@@ -63,9 +61,9 @@
 
 
     <LinearLayout
+        android:id="@+id/ll_birthContainer_join_email"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1.6"
+        android:layout_height="45dp"
         android:paddingTop="3dp"
         android:paddingBottom="3dp"
         android:layout_marginLeft="50dp"
@@ -77,7 +75,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:background="@drawable/bgr_inputbox"
-            android:layout_weight="8"
+            android:layout_weight="9"
             android:hint="E-mail"
             android:paddingLeft="10dp"
             android:inputType="textEmailAddress"
@@ -106,6 +104,7 @@
                 android:textColor="@color/textcolor_bigbtn"
                 android:textSize="@dimen/ListView_Btn"
                 android:onClick="emailCheck"
+                android:includeFontPadding="false"
                 />
 
             <View
@@ -119,14 +118,17 @@
 
     </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/ll_ll_AcceptEmailContainer_Email_Join"
+    <View
+        android:id="@+id/trashView1_join_email"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1.6"
+        android:layout_height="10dp"/>
+
+    <LinearLayout
+        android:id="@+id/ll_AcceptEmailContainer_Join_email"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
         android:orientation="vertical"
-        android:visibility="invisible"
-        android:layout_marginTop="15dp"
+        android:visibility="visible"
         >
 
 
@@ -144,7 +146,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:background="@drawable/bgr_inputbox"
-                android:layout_weight="8"
+                android:layout_weight="9"
                 android:paddingLeft="10dp"
                 android:hint="인증번호 입력"
                 android:textSize="@dimen/Edit_Hint"
@@ -177,6 +179,7 @@
                 android:textAllCaps="false"
                 android:textSize="@dimen/ListView_Btn"
                 android:onClick="acceptEmail"
+                android:includeFontPadding="false"
                 />
 
                 <View
@@ -192,18 +195,22 @@
 
     </LinearLayout>
 
-    <Button
-        android:id="@+id/btn_Accept_Email_Join"
+    <View
+        android:id="@+id/trashView2_join_email"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:layout_marginTop="15dp"
+        android:layout_height="10dp"/>
+
+
+    <Button
+        android:id="@+id/btn_Accept_join_email"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
         android:layout_marginLeft="50dp"
         android:layout_marginRight="50dp"
         android:background="@drawable/bgr_bigbtn"
         android:onClick="goNext"
         android:text="다 음"
-        android:visibility="invisible"
+        android:visibility="visible"
         android:textColor="@color/textcolor_bigbtn"
         android:textAllCaps="false"
         android:textSize="@dimen/BigBtn"

@@ -188,7 +188,7 @@ public class MainActivity extends AppCompatActivity {
         int TalentResister_Picture_LL_height = (int) (metrics.heightPixels*0.188);
         int TalentResister_Button_height = (int) (metrics.heightPixels*0.042);
         int TalentResister_Devider_height = (int) (metrics.heightPixels*0.045);
-        int TalentResister_List_LL_height = (int) (metrics.heightPixels*0.0705);
+        int TalentResister_List_LL_height = (int) (metrics.heightPixels*0.0775);
 
         double TalentResister_Picture_width = TalentResister_Picture_LL_height*0.7;
         double TalentResister_Picture_height = TalentResister_Picture_LL_height*0.7;

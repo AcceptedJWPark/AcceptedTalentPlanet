@@ -44,11 +44,10 @@
             >
 
 
-            <LinearLayout
+            <RelativeLayout
                 android:id="@+id/MyProfile_WholeLL"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical"
                 android:clickable="true"
                 android:focusableInTouchMode="true"
                 >
@@ -106,6 +105,7 @@
                     android:gravity="center_vertical"
                     android:textSize="@dimen/Divider"
                     android:paddingLeft="15dp"
+                    android:layout_below="@+id/rl_Container_MyProfile"
                     android:text="계정 정보"
                     />
 
@@ -121,6 +121,7 @@
                     android:orientation="horizontal"
                     android:paddingLeft="30dp"
                     android:paddingRight="30dp"
+                    android:layout_below="@+id/tv_Divider1_MyProfile"
                     android:weightSum="10">
 
                     <TextView
@@ -154,6 +155,7 @@
                     android:gravity="center"
                     android:orientation="horizontal"
                     android:paddingLeft="30dp"
+                    android:layout_below="@+id/ll_Container2_MyProfile"
                     android:paddingRight="30dp"
                     android:weightSum="10">
 
@@ -187,6 +189,7 @@
                     android:layout_height="@dimen/MyProfile_List_Layout"
                     android:gravity="center"
                     android:orientation="horizontal"
+                    android:layout_below="@+id/ll_Container3_MyProfile"
                     android:paddingLeft="30dp"
                     android:paddingRight="30dp"
                     android:weightSum="10">
@@ -242,6 +245,7 @@
                     android:gravity="center"
                     android:orientation="horizontal"
                     android:paddingLeft="30dp"
+                    android:layout_below="@+id/ll_Container4_MyProfile"
                     android:paddingRight="30dp"
                     android:weightSum="10">
 
@@ -295,6 +299,7 @@
                     android:orientation="horizontal"
                     android:paddingLeft="30dp"
                     android:paddingRight="30dp"
+                    android:layout_below="@+id/ll_Container5_MyProfile"
                     android:weightSum="10">
 
                     <TextView
@@ -349,6 +354,7 @@
                     android:background="@drawable/brg_divider"
                     android:textColor="@color/textcolor_devider"
                     android:textStyle="bold"
+                    android:layout_below="@+id/ll_Container6_MyProfile"
                     android:gravity="center_vertical"
                     android:textSize="@dimen/Divider"
                     android:paddingLeft="15dp"
@@ -364,6 +370,7 @@
                     android:orientation="horizontal"
                     android:paddingLeft="30dp"
                     android:paddingRight="30dp"
+                    android:layout_below="@+id/tv_Divider2_MyProfile"
                     android:weightSum="10">
 
                     <TextView
@@ -434,6 +441,7 @@
                     android:gravity="center"
                     android:orientation="horizontal"
                     android:paddingLeft="30dp"
+                    android:layout_below="@+id/ll_Container7_MyProfile"
                     android:paddingRight="30dp"
                     android:weightSum="10">
 
@@ -505,6 +513,7 @@
                     android:layout_height="@dimen/MyProfile_List_Layout"
                     android:gravity="center"
                     android:orientation="horizontal"
+                    android:layout_below="@+id/ll_Container8_MyProfile"
                     android:paddingLeft="30dp"
                     android:paddingRight="30dp"
                     android:weightSum="10">
@@ -547,22 +556,6 @@
 
                     </LinearLayout>
 
-
-
-                    <View
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="0.5"/>
-
-
-
-
-                    <View
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="3.5"/>
-
-
                 </LinearLayout>
 
 
@@ -571,10 +564,10 @@
                         android:id="@+id/btn_Save_MyProfile"
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
-                        android:layout_marginTop="5dp"
                         android:layout_marginLeft="120dp"
                         android:layout_marginRight="120dp"
                         android:layout_gravity="center"
+                        android:layout_below="@+id/ll_Container1_MyProfile"
                         android:textSize="@dimen/BigBtn"
                         android:background="@drawable/bgr_bigbtn"
                         android:text="저장하기"
@@ -583,7 +576,7 @@
 
 
 
-            </LinearLayout>
+            </RelativeLayout>
 
         </ScrollView>
 

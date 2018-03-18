@@ -26,7 +26,6 @@ import com.example.accepted.acceptedtalentplanet.MyTalent;
 import com.example.accepted.acceptedtalentplanet.R;
 import com.example.accepted.acceptedtalentplanet.SaveSharedPreference;
 import com.example.accepted.acceptedtalentplanet.VolleySingleton;
-import com.google.firebase.iid.FirebaseInstanceId;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -53,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
     private LinearLayout ll_ClickHere_Login;
     private Button btn_Login;
     private TextView tv_companyTitle;
+    private View trashView;
 
 
 
@@ -70,40 +70,46 @@ public class MainActivity extends AppCompatActivity {
         ll_ClickHere_Login = (LinearLayout) findViewById(R.id.ll_ClickHere_Login);
         btn_Login = (Button) findViewById(R.id.btn_Login_Login);
         tv_companyTitle = (TextView) findViewById(R.id.tv_companyTitle_Login);
+        trashView = (View) findViewById(R.id.trashView_Login);
 
         DisplayMetrics metrics = new DisplayMetrics();
         WindowManager windowManager = (WindowManager) getApplicationContext().getSystemService(Context.WINDOW_SERVICE);
         windowManager.getDefaultDisplay().getMetrics(metrics);
 
-        int ll_Title_height = (int) (metrics.heightPixels*0.4);
+        int ll_Title_height = (int) (metrics.heightPixels*0.33);
         int ll_Info_height = (int) (metrics.heightPixels*0.15);
-        int ll_ClickHere_height = (int) (metrics.heightPixels*0.08);
-        int btn_height = (int) (metrics.heightPixels*0.045);
-        int tv_companyTitle_height = (int) (metrics.heightPixels*0.325);
+        int ll_ClickHere_height = (int) (metrics.heightPixels*0.1);
+        int btn_height = (int) (metrics.heightPixels*0.05);
+        int tv_companyTitle_height = (int) (metrics.heightPixels*0.35);
+        int tv_trashView_height = (int) (metrics.heightPixels*0.02);
 
         ViewGroup.LayoutParams params1 = ll_Title.getLayoutParams();
         ViewGroup.LayoutParams params2 = ll_Info.getLayoutParams();
         ViewGroup.LayoutParams params3 = ll_ClickHere_Login.getLayoutParams();
         ViewGroup.LayoutParams params4 = btn_Login.getLayoutParams();
         ViewGroup.LayoutParams params5 = tv_companyTitle.getLayoutParams();
+        ViewGroup.LayoutParams params6 = trashView.getLayoutParams();
 
         params1.height = ll_Title_height;
         params2.height = ll_Info_height;
         params3.height = ll_ClickHere_height;
         params4.height = btn_height;
         params5.height = tv_companyTitle_height;
+        params6.height = tv_trashView_height;
 
         ll_Title.setLayoutParams(params1);
         ll_Info.setLayoutParams(params2);
         ll_ClickHere_Login.setLayoutParams(params3);
         btn_Login.setLayoutParams(params4);
         tv_companyTitle.setLayoutParams(params5);
+        trashView.setLayoutParams(params6);
 
 
 
         et_Email = (EditText)findViewById(R.id.Login_ID);
         et_Password = (EditText)findViewById(R.id.Login_Password);
-        FcmToken = FirebaseInstanceId.getInstance().getToken();
+        FcmToken = SaveSharedPreference.getFcmToken(mContext);
+        Log.d("FcmToken", FcmToken);
 
 
 
@@ -150,8 +156,8 @@ public class MainActivity extends AppCompatActivity {
                     String result = obj.getString("result");
                     if(result.equals("success")){
                         String userName = obj.getString("userName");
-                        SaveSharedPreference.setPrefUsrName(MainActivity.this, userName);
-                        SaveSharedPreference.setPrefUsrId(MainActivity.this, userID);
+                        SaveSharedPreference.setPrefUsrName(mContext, userName);
+                        SaveSharedPreference.setPrefUsrId(mContext, userID);
                         getMyTalent();
                         Handler handler = new Handler();
                         handler.postDelayed(new Runnable() {
@@ -163,8 +169,10 @@ public class MainActivity extends AppCompatActivity {
                         },500);
 
                         if(FcmToken != null) {
-                            SaveSharedPreference.setPrefFcmToken(mContext, FcmToken);
                             saveFcmToken();
+                        }else{
+                            FcmToken = SaveSharedPreference.getFcmToken(mContext);
+                            Log.d("tq11", FcmToken);
                         }
 
                     }else if(result.equals("fail")){
