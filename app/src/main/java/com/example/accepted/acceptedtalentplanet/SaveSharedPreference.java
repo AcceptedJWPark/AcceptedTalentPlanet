@@ -156,7 +156,7 @@ public class SaveSharedPreference{
     }
 
     public static String getServerIp(){
-        return SERVER_IP;
+        return SERVER_IP2;
     }
 
     public static String getLevel(String Level) {

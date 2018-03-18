@@ -53,7 +53,8 @@ public class MainActivity extends AppCompatActivity {
 
         et_Email = (EditText)findViewById(R.id.Login_ID);
         et_Password = (EditText)findViewById(R.id.Login_Password);
-        FcmToken = FirebaseInstanceId.getInstance().getToken();
+        FcmToken = SaveSharedPreference.getFcmToken(mContext);
+        Log.d("FcmToken", FcmToken);
 
 
 
@@ -100,8 +101,8 @@ public class MainActivity extends AppCompatActivity {
                     String result = obj.getString("result");
                     if(result.equals("success")){
                         String userName = obj.getString("userName");
-                        SaveSharedPreference.setPrefUsrName(MainActivity.this, userName);
-                        SaveSharedPreference.setPrefUsrId(MainActivity.this, userID);
+                        SaveSharedPreference.setPrefUsrName(mContext, userName);
+                        SaveSharedPreference.setPrefUsrId(mContext, userID);
                         getMyTalent();
                         Handler handler = new Handler();
                         handler.postDelayed(new Runnable() {
@@ -113,8 +114,10 @@ public class MainActivity extends AppCompatActivity {
                         },500);
 
                         if(FcmToken != null) {
-                            SaveSharedPreference.setPrefFcmToken(mContext, FcmToken);
                             saveFcmToken();
+                        }else{
+                            FcmToken = SaveSharedPreference.getFcmToken(mContext);
+                            Log.d("tq11", FcmToken);
                         }
 
                     }else if(result.equals("fail")){
