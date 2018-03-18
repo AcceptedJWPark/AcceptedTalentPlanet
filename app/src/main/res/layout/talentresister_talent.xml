@@ -7,7 +7,6 @@
     android:orientation="vertical"
     android:background="#ffffff"
     tools:mContext=".TalentResister.Talent.MainActivity"
-    android:weightSum="24"
     android:clickable="true"
     android:focusable="true"
     android:focusableInTouchMode="true"

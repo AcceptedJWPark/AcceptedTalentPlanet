@@ -109,7 +109,6 @@ public class MainActivity extends AppCompatActivity {
         et_Email = (EditText)findViewById(R.id.Login_ID);
         et_Password = (EditText)findViewById(R.id.Login_Password);
         FcmToken = SaveSharedPreference.getFcmToken(mContext);
-        Log.d("FcmToken", FcmToken);
 
 
 
@@ -172,7 +171,6 @@ public class MainActivity extends AppCompatActivity {
                             saveFcmToken();
                         }else{
                             FcmToken = SaveSharedPreference.getFcmToken(mContext);
-                            Log.d("tq11", FcmToken);
                         }
 
                     }else if(result.equals("fail")){

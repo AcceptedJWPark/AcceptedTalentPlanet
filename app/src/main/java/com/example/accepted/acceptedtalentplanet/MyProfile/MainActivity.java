@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.res.Configuration;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -11,13 +12,13 @@ import android.graphics.Matrix;
 import android.media.ExifInterface;
 import android.net.Uri;
 import android.os.Build;
+import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v4.content.FileProvider;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
@@ -184,11 +185,14 @@ public class MainActivity extends AppCompatActivity {
         WindowManager windowManager = (WindowManager) getApplicationContext().getSystemService(Context.WINDOW_SERVICE);
         windowManager.getDefaultDisplay().getMetrics(metrics);
 
-        int TalentResister_Toolbar_height = (int) (metrics.heightPixels*0.055);
-        int TalentResister_Picture_LL_height = (int) (metrics.heightPixels*0.188);
-        int TalentResister_Button_height = (int) (metrics.heightPixels*0.042);
-        int TalentResister_Devider_height = (int) (metrics.heightPixels*0.045);
-        int TalentResister_List_LL_height = (int) (metrics.heightPixels*0.0775);
+        int statusBarHeight = getStatusBarHeight();
+        int displayHeight_NoStatus = metrics.heightPixels - statusBarHeight;
+
+        double TalentResister_Toolbar_height = (displayHeight_NoStatus*0.055);
+        double TalentResister_Picture_LL_height = (displayHeight_NoStatus*0.188);
+        double TalentResister_Button_height = (displayHeight_NoStatus*0.042);
+        double TalentResister_Devider_height = (displayHeight_NoStatus*0.045);
+        double TalentResister_List_LL_height =  (displayHeight_NoStatus*0.0775);
 
         double TalentResister_Picture_width = TalentResister_Picture_LL_height*0.7;
         double TalentResister_Picture_height = TalentResister_Picture_LL_height*0.7;
@@ -210,19 +214,19 @@ public class MainActivity extends AppCompatActivity {
 
         ViewGroup.LayoutParams params14 = rl_PictureContainer.getLayoutParams();
 
-        params1.height = TalentResister_Toolbar_height;
-        params2.height = TalentResister_Picture_LL_height;
-        params3.height = TalentResister_Button_height;
-        params4.height = TalentResister_Devider_height;
-        params5.height = TalentResister_Devider_height;
-        params6.height = TalentResister_List_LL_height;
-        params7.height = TalentResister_List_LL_height;
-        params8.height = TalentResister_List_LL_height;
-        params9.height = TalentResister_List_LL_height;
-        params10.height = TalentResister_List_LL_height;
-        params11.height = TalentResister_List_LL_height;
-        params12.height = TalentResister_List_LL_height;
-        params13.height = TalentResister_List_LL_height;
+        params1.height = (int) TalentResister_Toolbar_height;
+        params2.height = (int) TalentResister_Picture_LL_height;
+        params3.height = (int) TalentResister_Button_height;
+        params4.height = (int) TalentResister_Devider_height;
+        params5.height = (int) TalentResister_Devider_height;
+        params6.height = (int) TalentResister_List_LL_height;
+        params7.height = (int) TalentResister_List_LL_height;
+        params8.height = (int) TalentResister_List_LL_height;
+        params9.height = (int) TalentResister_List_LL_height;
+        params10.height = (int) TalentResister_List_LL_height;
+        params11.height = (int) TalentResister_List_LL_height;
+        params12.height = (int) TalentResister_List_LL_height;
+        params13.height = (int) TalentResister_List_LL_height;
 
         params14.width = (int) TalentResister_Picture_width;
         params14.height = (int) TalentResister_Picture_height;
@@ -639,6 +643,19 @@ public class MainActivity extends AppCompatActivity {
 
         VolleySingleton.getInstance(mContext).getRequestQueue().add(volleyMultipartRequest);
 
+    }
+
+    public int getStatusBarHeight(){
+        int statusBarHeight = 0;
+        int screenSizeType = ((mContext).getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK);
+        if(screenSizeType != Configuration.SCREENLAYOUT_SIZE_XLARGE){
+            int resourceId = mContext.getResources().getIdentifier("status_bar_height","dimen","android");
+            if(resourceId>0)
+            {
+                statusBarHeight = mContext.getResources().getDimensionPixelOffset(resourceId);
+            }
+        }
+        return statusBarHeight;
     }
 
 

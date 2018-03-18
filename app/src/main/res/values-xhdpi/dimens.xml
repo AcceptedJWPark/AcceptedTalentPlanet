@@ -30,6 +30,13 @@
     <dimen name="ListView_ChildTxt_Question">9.775dp</dimen>
     <dimen name="ListView_ChildTxt_Answer">10.625dp</dimen>
     <dimen name="ListView_ChildTxt_Signature">10.625dp</dimen>
+    <dimen name="Messanger_List_Name">11.05dp</dimen>
+    <dimen name="Messanger_List_Content">10.625dp</dimen>
+    <dimen name="Messanger_List_Date">8.5dp</dimen>
+    <dimen name="Messanger_List_Count">17dp</dimen>
+    <dimen name="Messanger_Chatting_Text">9.775dp</dimen>
+    <dimen name="Messanger_Chatting_TextWidth">212.5dp</dimen>
+    <dimen name="Messanger_Chatting_EditTxt_minHeight">34dp</dimen>
     <dimen name="SpinnerTxt">10.625dp</dimen>
     <dimen name="TalentSearching_SpinnerTxt">9.775dp</dimen>
     <dimen name="TalentResister_SpinnerTxt">10.2dp</dimen>
@@ -59,12 +66,14 @@
     <dimen name="Claim_List_BtnLayout">25.5dp</dimen>
     <dimen name="Claim_List_Layout2">25.5dp</dimen>
     <dimen name="Claim_Edit_Layout">102dp</dimen>
+    <dimen name="Question_Edit_Layout">127.5dp</dimen>
     <dimen name="TalentSharing_BtnLayout">25.5dp</dimen>
     <dimen name="TalentSharing_ListLayout2">42.5dp</dimen>
     <dimen name="Login_btn_margin">102dp</dimen>
     <dimen name="DialogTxtSize">3.825dp</dimen>
     <dimen name="Picture_Width">68dp</dimen>
     <dimen name="Picture_Height">68dp</dimen>
+
 
 
 

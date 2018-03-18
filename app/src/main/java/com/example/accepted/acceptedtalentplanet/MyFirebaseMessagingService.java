@@ -70,6 +70,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         // TODO(developer): Handle FCM messages here.
         // Not getting messages here? See why this may be: https://goo.gl/39bRNJ
         Log.d(TAG, "From: " + remoteMessage.getFrom());
+        Log.d(TAG, "Datas = " + remoteMessage.getData().get("datas"));
 
         // Check if message contains a data payload.
         if (remoteMessage.getData().size() > 0) {
@@ -241,7 +242,9 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             case "Interest": {
                 try {
                     JSONObject obj = new JSONObject(datas);
-                    unformatedDate = obj.getString("CREATION_DATE_STRING");
+                    Date tempDate = new Date(obj.getLong("CREATION_DATE"));
+                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd,a hh:mm:ss");
+                    unformatedDate = sdf.format(tempDate);
                     userName = obj.getString("USER_NAME");
                     talentID = obj.getInt("TALENT_ID");
                     talentType = (obj.getString("TALENT_FLAG").equals("Y"))? 1 : 2;
@@ -376,7 +379,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             Log.d("TAG", "Datas: " + datas.toString());
 
             int roomID = SaveSharedPreference.makeChatRoom(getApplicationContext(), obj.getString("USER_ID"), obj.getString("USER_NAME"));
-            sqLiteDatabase.execSQL("INSERT INTO TB_CHAT_LOG(MESSAGE_ID, ROOM_ID, USER_ID, CONTENT, CREATION_DATE, READED_FLAG) VALUES (" + obj.getString("MESSAGE_ID") + ", " + roomID + ", '" + obj.getString("USER_ID") + "','" + obj.getString("CONTENT").replace("'", "''") + "','" + obj.getString("CREATION_DATE_STRING") + "', 'N')");
+            sqLiteDatabase.execSQL("INSERT OR REPLACE INTO TB_CHAT_LOG(MESSAGE_ID, ROOM_ID, USER_ID, CONTENT, CREATION_DATE, READED_FLAG) VALUES (" + obj.getString("MESSAGE_ID") + ", " + roomID + ", '" + obj.getString("USER_ID") + "','" + obj.getString("CONTENT").replace("'", "''") + "','" + obj.getString("CREATION_DATE_STRING") + "', 'N')");
 
             sqLiteDatabase.close();
         }catch(Exception e){

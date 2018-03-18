@@ -91,4 +91,13 @@ public class MyTalent implements Serializable{
 
     public GeoPoint getArrGeoPoint() { return gp; }
 
+    @Override
+    public String toString(){
+        StringBuilder sb = new StringBuilder();
+
+        sb.append("TALENT_Keywords = ").append(Keyword1).append(", ").append(Keyword2).append(", ").append(Keyword3).append("\n");
+        sb.append("LOCATION = ").append(getLocation());
+        return sb.toString();
+    }
+
 }

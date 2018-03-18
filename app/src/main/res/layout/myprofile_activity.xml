@@ -7,12 +7,10 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/MyProfile_wholeLL"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:orientation="vertical"
         android:theme="@style/AppTheme.NoActionBar"
         android:background="#ffffff"
         >
@@ -41,6 +39,10 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fillViewport="true"
+            android:clickable="true"
+            android:focusableInTouchMode="true"
+            android:focusable="true"
+            android:layout_below="@+id/ll_Toolbar_MyProfile"
             >
 
 
@@ -50,6 +52,7 @@
                 android:layout_height="match_parent"
                 android:clickable="true"
                 android:focusableInTouchMode="true"
+                android:focusable="true"
                 >
 
                 <RelativeLayout
@@ -580,7 +583,7 @@
 
         </ScrollView>
 
-    </LinearLayout>
+    </RelativeLayout>
 
 
     <FrameLayout
