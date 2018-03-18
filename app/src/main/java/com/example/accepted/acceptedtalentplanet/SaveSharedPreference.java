@@ -94,9 +94,19 @@ public class SaveSharedPreference{
     }
 
     public static void setPrefFcmToken(Context ctx, String token){
-        SharedPreferences.Editor editor = getSharedPreferences(ctx).edit();
-        editor.putString(PREF_FCM_TOKEN, token);
-        editor.commit();
+        SQLiteDatabase sqliteDatabase;
+        String dbName = "/accepted.db";
+
+        try{
+            sqliteDatabase = SQLiteDatabase.openOrCreateDatabase(ctx.getFilesDir() + dbName, null);
+            String sqlUpsert = "INSERT OR REPLACE INTO TB_FCM_TOKEN(TOKEN) VALUES ('"+token+"')";
+            sqliteDatabase.execSQL(sqlUpsert);
+
+            Log.d("insert friend", sqlUpsert);
+            sqliteDatabase.close();
+        }catch (SQLiteException e){
+            e.printStackTrace();
+        }
     }
 
     public static void setPrefMessagePushGrant(Context ctx, boolean pushGrant){
@@ -136,7 +146,29 @@ public class SaveSharedPreference{
     }
 
     public static String getFcmToken(Context ctx){
-        return getSharedPreferences(ctx).getString(PREF_FCM_TOKEN, "");
+        SQLiteDatabase sqliteDatabase;
+        String dbName = "/accepted.db";
+        String token = null;
+        try{
+            sqliteDatabase = SQLiteDatabase.openOrCreateDatabase(ctx.getFilesDir() + dbName, null);
+            String sqlSelect = "SELECT * FROM TB_FCM_TOKEN";
+            Cursor cursor = sqliteDatabase.rawQuery(sqlSelect, null);
+            cursor.moveToFirst();
+
+            Log.d("select TOKEN", sqlSelect);
+
+            token = cursor.getString(0);
+
+            cursor.close();
+
+            sqliteDatabase.close();
+        }catch (SQLiteException e){
+            e.printStackTrace();
+        }catch (CursorIndexOutOfBoundsException e){
+            e.printStackTrace();
+        }
+
+        return token;
     }
 
     public static boolean getMessagePushGrant(Context ctx){
@@ -156,7 +188,7 @@ public class SaveSharedPreference{
     }
 
     public static String getServerIp(){
-        return SERVER_IP;
+        return SERVER_IP2;
     }
 
     public static String getLevel(String Level) {

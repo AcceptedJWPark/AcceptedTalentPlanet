@@ -68,7 +68,8 @@ public class MainActivity extends AppCompatActivity {
     boolean isGiveTalent = true;
 
     int interval = 100;
-    final int maxInterval = 500;
+    final int maxInterval = 30000;
+    int count = 0;
     String lastMessageID;
 
     static Thread thread1;
@@ -320,6 +321,10 @@ public class MainActivity extends AppCompatActivity {
         public void run(){
             while(running) {
                 try {
+                    if(count < 3000){
+                        count++;
+                    }if(count == 3000)
+                        interval = maxInterval;
                     retrieveMessage();
                     Thread.sleep(interval);
                 } catch (InterruptedException e) {
@@ -344,7 +349,10 @@ public class MainActivity extends AppCompatActivity {
             public void onResponse(String response){
                 try {
                     JSONObject obj = new JSONObject(response);
-
+                    if(obj.getString("result").equals("success")) {
+                        interval = 100;
+                        count = 0;
+                    }
                 }
                 catch(JSONException e){
                     e.printStackTrace();

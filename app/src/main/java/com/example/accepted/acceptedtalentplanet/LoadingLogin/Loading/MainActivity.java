@@ -23,6 +23,7 @@ import com.example.accepted.acceptedtalentplanet.MyTalent;
 import com.example.accepted.acceptedtalentplanet.R;
 import com.example.accepted.acceptedtalentplanet.SaveSharedPreference;
 import com.example.accepted.acceptedtalentplanet.VolleySingleton;
+import com.google.firebase.iid.FirebaseInstanceId;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -49,7 +50,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.loading_start);
 
-
         mContext = getApplicationContext();
 
         String dbName = "/accepted.db";
@@ -57,14 +57,17 @@ public class MainActivity extends AppCompatActivity {
         Log.d("db path = ", getFilesDir() + dbName);
 
 
-        String sqlCreateTbl = "CREATE TABLE IF NOT EXISTS TB_CHAT_LOG (MESSAGE_ID INTEGER, ROOM_ID INTEGER, USER_ID TEXT, CONTENT TEXT, CREATION_DATE TEXT, READED_FLAG TEXT)";
+        String sqlCreateTbl = "CREATE TABLE IF NOT EXISTS TB_CHAT_LOG (MESSAGE_ID INTEGER PRIMARY KEY, ROOM_ID INTEGER, USER_ID TEXT, CONTENT TEXT, CREATION_DATE TEXT, READED_FLAG TEXT)";
         sqliteDatabase.execSQL(sqlCreateTbl);
 
-        String sqlCreateTbl2 = "CREATE TABLE IF NOT EXISTS TB_CHAT_ROOM (ROOM_ID INTEGER PRIMARY KEY, USER_ID TEXT UNIQUE, USER_NAME TEXT, START_MESSAGE_ID INTEGER, CREATION_DATE TEXT, LAST_UPDATE_DATE TEXT, ACTIVATE_FLAG TEXT, PICTURE BLOB)";
+        String sqlCreateTbl2 = "CREATE TABLE IF NOT EXISTS TB_CHAT_ROOM (ROOM_ID INTEGER, USER_ID TEXT, USER_NAME TEXT, START_MESSAGE_ID INTEGER, CREATION_DATE TEXT, LAST_UPDATE_DATE TEXT, ACTIVATE_FLAG TEXT, PICTURE BLOB, PRIMARY KEY(ROOM_ID, USER_ID))";
         sqliteDatabase.execSQL(sqlCreateTbl2);
 
         String sqlCreateTbl3 = "CREATE TABLE IF NOT EXISTS TB_FRIEND_LIST (MASTER_ID TEXT, FRIEND_ID TEXT, TALENT_TYPE TEXT, PRIMARY KEY(MASTER_ID, FRIEND_ID, TALENT_TYPE))";
         sqliteDatabase.execSQL(sqlCreateTbl3);
+
+        String sqlCreateTbl4 = "CREATE TABLE IF NOT EXISTS TB_FCM_TOKEN (TOKEN TEXT)";
+        sqliteDatabase.execSQL(sqlCreateTbl4);
 
         startLoading();
 
@@ -80,15 +83,16 @@ public class MainActivity extends AppCompatActivity {
                 getMyTalent();
                 if(SaveSharedPreference.getUserId(MainActivity.this).length() == 0) {
                     intent = new Intent(getBaseContext(), com.example.accepted.acceptedtalentplanet.LoadingLogin.Login.MainActivity.class);
+                    if(SaveSharedPreference.getFcmToken(mContext) == null)
+                        FirebaseInstanceId.getInstance().getToken();
                 }else{
                     intent = new Intent(getBaseContext(), com.example.accepted.acceptedtalentplanet.TalentSharing.MainActivity.class);
-
                 }
                     startActivity(intent);
                     finish();
 
             }
-        },1000);
+        },3000);
     }
 
     public void getMyTalent(){

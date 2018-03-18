@@ -70,6 +70,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         // TODO(developer): Handle FCM messages here.
         // Not getting messages here? See why this may be: https://goo.gl/39bRNJ
         Log.d(TAG, "From: " + remoteMessage.getFrom());
+        Log.d(TAG, "Datas = " + remoteMessage.getData().get("datas"));
 
         // Check if message contains a data payload.
         if (remoteMessage.getData().size() > 0) {
@@ -239,8 +240,71 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                 break;
             }
             case "Interest": {
-                arrayList.add(0, new ListItem(R.drawable.logo_fakefile, userName, talentID, "Talent Planet", unformatedDate, 1, talentType, R.drawable.icon_delete, false));
+                try {
+                    JSONObject obj = new JSONObject(datas);
+                    Date tempDate = new Date(obj.getLong("CREATION_DATE"));
+                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd,a hh:mm:ss");
+                    unformatedDate = sdf.format(tempDate);
+                    userName = obj.getString("USER_NAME");
+                    talentID = obj.getInt("TALENT_ID");
+                    talentType = (obj.getString("TALENT_FLAG").equals("Y"))? 1 : 2;
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                String formatedDate = dateFormat(unformatedDate);
+                arrayList.add(0, new ListItem(R.drawable.logo_fakefile, userName, talentID, "Talent Planet", formatedDate, 1, talentType, R.drawable.icon_delete, false));
                 SaveSharedPreference.setPrefAlarmArray(getApplicationContext(), arrayList);
+                break;
+            }
+            case "InterestingMatching":{
+                try {
+                    JSONObject obj = new JSONObject(datas);
+                    Date tempDate = new Date(obj.getLong("LAST_UPDATE_DATE"));
+                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd,a hh:mm:ss");
+                    unformatedDate = sdf.format(tempDate);
+                    userName = obj.getString("USER_NAME");
+                    talentID = obj.getInt("TALENT_ID");
+                    talentType = (obj.getString("TALENT_FLAG").equals("Y"))? 1 : 2;
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+                String formatedDate = dateFormat(unformatedDate);
+                arrayList.add(0, new ListItem(R.drawable.logo_fakefile, userName, talentID, "Talent Planet", formatedDate, 1, talentType, R.drawable.icon_delete, false));
+                break;
+            }
+            case "InterestingCancel":{
+                try {
+                    JSONObject obj = new JSONObject(datas);
+                    Date tempDate = new Date(obj.getLong("LAST_UPDATE_DATE"));
+                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd,a hh:mm:ss");
+                    unformatedDate = sdf.format(tempDate);
+                    userName = obj.getString("USER_NAME");
+                    talentID = obj.getInt("TALENT_ID");
+                    talentType = (obj.getString("TALENT_FLAG").equals("Y"))? 1 : 2;
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+                String formatedDate = dateFormat(unformatedDate);
+                arrayList.add(0, new ListItem(R.drawable.logo_fakefile, userName, talentID, "Talent Planet", formatedDate, 1, talentType, R.drawable.icon_delete, false));
+                break;
+            }
+            case "InterestingComplete":{
+                try {
+                    JSONObject obj = new JSONObject(datas);
+                    Date tempDate = new Date(obj.getLong("LAST_UPDATE_DATE"));
+                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd,a hh:mm:ss");
+                    unformatedDate = sdf.format(tempDate);
+                    userName = obj.getString("USER_NAME");
+                    talentID = obj.getInt("TALENT_ID");
+                    talentType = (obj.getString("TALENT_FLAG").equals("Y"))? 1 : 2;
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+                String formatedDate = dateFormat(unformatedDate);
+                arrayList.add(0, new ListItem(R.drawable.logo_fakefile, userName, talentID, "Talent Planet", formatedDate, 1, talentType, R.drawable.icon_delete, false));
                 break;
             }
         }
@@ -282,6 +346,27 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                 intent1 = new Intent(this, com.example.accepted.acceptedtalentplanet.TalentCondition.MainActivity.class);
                 intent1.putExtra("alarmType", alarmType);
                 break;
+            case "InterestingMatching":
+                alarmType = "InterestingMatching";
+                alarmTxt = "진행중으로 변경되었습니다.";
+                intent1 = new Intent(this, com.example.accepted.acceptedtalentplanet.TalentCondition.MainActivity.class);
+                intent1.putExtra("alarmType", alarmType);
+                break;
+
+            case "InterestingCancel":
+                alarmType = "InterestingCancel";
+                alarmTxt = "취소되었습니다.";
+                intent1 = new Intent(this, com.example.accepted.acceptedtalentplanet.SharingList.MainActivity.class);
+                intent1.putExtra("alarmType", alarmType);
+                break;
+
+            case "InterestingComplete":
+                alarmType = "InterestingComplete";
+                alarmTxt = "상대방이 완료하였습니다.";
+                intent1 = new Intent(this, com.example.accepted.acceptedtalentplanet.TalentCondition.MainActivity.class);
+                intent1.putExtra("alarmType", alarmType);
+                break;
+
         }
     }
 
@@ -294,7 +379,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             Log.d("TAG", "Datas: " + datas.toString());
 
             int roomID = SaveSharedPreference.makeChatRoom(getApplicationContext(), obj.getString("USER_ID"), obj.getString("USER_NAME"));
-            sqLiteDatabase.execSQL("INSERT INTO TB_CHAT_LOG(MESSAGE_ID, ROOM_ID, USER_ID, CONTENT, CREATION_DATE, READED_FLAG) VALUES (" + obj.getString("MESSAGE_ID") + ", " + roomID + ", '" + obj.getString("USER_ID") + "','" + obj.getString("CONTENT").replace("'", "''") + "','" + obj.getString("CREATION_DATE_STRING") + "', 'N')");
+            sqLiteDatabase.execSQL("INSERT OR REPLACE INTO TB_CHAT_LOG(MESSAGE_ID, ROOM_ID, USER_ID, CONTENT, CREATION_DATE, READED_FLAG) VALUES (" + obj.getString("MESSAGE_ID") + ", " + roomID + ", '" + obj.getString("USER_ID") + "','" + obj.getString("CONTENT").replace("'", "''") + "','" + obj.getString("CREATION_DATE_STRING") + "', 'N')");
 
             sqLiteDatabase.close();
         }catch(Exception e){

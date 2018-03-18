@@ -685,7 +685,7 @@ public class MainActivity extends AppCompatActivity {
                         Toast.makeText(mContext, "재능공유에 성공하였습니다.", Toast.LENGTH_SHORT).show();
                         int point = Integer.parseInt(obj.getString("point"));
                         boolean talentFlag = ((String) tv_TalentType.getText()).equals("관심재능 : ") ? true : false;
-                        MyTalent mt = (talentFlag)?SaveSharedPreference.getGiveTalentData(mContext):SaveSharedPreference.getTakeTalentData(mContext);
+                        MyTalent mt = (talentFlag)?SaveSharedPreference.getTakeTalentData(mContext):SaveSharedPreference.getGiveTalentData(mContext);
 
                         mt.setStatus("C");
                         if(!talentFlag){
@@ -709,7 +709,10 @@ public class MainActivity extends AppCompatActivity {
                 Map<String, String> params = new HashMap();
                 params.put("talentID", ((String) tv_TalentType.getText()).equals("관심재능 : ") ? takeTalentID : giveTalentID);
                 params.put("userID", SaveSharedPreference.getUserId(mContext));
-                params.put("activityFlag", "C");
+                if(flag.equals("Take"))
+                    params.put("activityFlag", "C");
+                else
+                    params.put("activityFlag", "Y");
                 return params;
             }
         };
