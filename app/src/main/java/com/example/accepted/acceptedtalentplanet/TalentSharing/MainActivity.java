@@ -3,6 +3,7 @@ package com.example.accepted.acceptedtalentplanet.TalentSharing;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
+import android.database.CursorIndexOutOfBoundsException;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Paint;
 import android.location.Location;
@@ -68,8 +69,8 @@ public class MainActivity extends AppCompatActivity {
     boolean isGiveTalent = true;
 
     int interval = 100;
-    final int maxInterval = 500;
-    String lastMessageID;
+    final int maxInterval = 30000;
+    int count = 0;
 
     static Thread thread1;
     boolean running = false;
@@ -97,10 +98,6 @@ public class MainActivity extends AppCompatActivity {
         };
         DrawerLayout_ClickEvent(MainActivity.this,mClicklistener);
 
-        String dbName = "/accepted.db";
-        sqliteDatabase = SQLiteDatabase.openOrCreateDatabase(getFilesDir() + dbName, null);
-        Log.d("db path = ", getFilesDir() + dbName);
-
         drawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout_TalentSharing);
         view_DarawerLayout = (View) findViewById(R.id.view_DarawerLayout_TalentSharing);
 
@@ -111,7 +108,7 @@ public class MainActivity extends AppCompatActivity {
         arrayList = new ArrayList<>();
         arrayList_Original = new ArrayList<>();
         getTalentSharing();
-
+        retrieveMessage();
     }
 
     public void getTalentSharing() {
@@ -291,52 +288,80 @@ public class MainActivity extends AppCompatActivity {
 
         return distance / 1000;
     }
-
-    protected void onResume(){
-        super.onResume();
-
-        running = true;
-
-        String selectMaxData = "SELECT IFNULL(MAX(A.MESSAGE_ID), 0) AS MESSAGE_ID FROM TB_CHAT_LOG A WHERE A.USER_ID != '" + SaveSharedPreference.getUserId(mContext) + "'";
-        Cursor cursor = sqliteDatabase.rawQuery(selectMaxData, null);
-        cursor.moveToFirst();
-        lastMessageID = String.valueOf(cursor.getInt(0));
-
-        if(thread1 == null)
-            thread1 = new PollingThread();
-        if(!thread1.isAlive()) {
-            thread1.start();
-        }
-    }
-
-    protected void onPause(){
-        super.onPause();
-
-        running = true;
-    }
-
-    class PollingThread extends Thread {
-        @Override
-        public void run(){
-            while(running) {
-                try {
-                    retrieveMessage();
-                    Thread.sleep(interval);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-    }
-
-    @Override
-    protected void onDestroy(){
-        super.onDestroy();
-
-        thread1.interrupt();
-    }
+//
+//    protected void onResume(){
+//        super.onResume();
+//
+//        running = true;
+//
+//        String selectMaxData = "SELECT IFNULL(MAX(A.MESSAGE_ID), 0) AS MESSAGE_ID FROM TB_CHAT_LOG A WHERE A.USER_ID != '" + SaveSharedPreference.getUserId(mContext) + "'";
+//        Cursor cursor = sqliteDatabase.rawQuery(selectMaxData, null);
+//        cursor.moveToFirst();
+//
+//        if(thread1 == null)
+//            thread1 = new PollingThread();
+//        if(!thread1.isAlive()) {
+//            thread1.start();
+//        }
+//    }
+//
+//    protected void onPause(){
+//        super.onPause();
+//
+//        running = true;
+//    }
+//
+//    class PollingThread extends Thread {
+//        @Override
+//        public void run(){
+//            while(running) {
+//                try {
+//                    if(count < 3000){
+//                        count++;
+//                    }if(count == 3000)
+//                        interval = maxInterval;
+//                    retrieveMessage();
+//                    Thread.sleep(interval);
+//                } catch (InterruptedException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        }
+//    }
+//
+//    @Override
+//    protected void onDestroy(){
+//        super.onDestroy();
+//
+//        thread1.interrupt();
+//    }
 
     public void retrieveMessage(){
+        int maxMessageID = 0;
+        try {
+            String dbName = "/accepted.db";
+            SQLiteDatabase sqLiteDatabase = SQLiteDatabase.openOrCreateDatabase(getFilesDir() + dbName, null);
+
+            String selectMaxMessage = "SELECT IFNULL(MAX(D01.MESSAGE_ID), 0) AS MESSAGE_ID\n" +
+                                      "FROM   TB_CHAT_LOG D01\n" +
+                                      "     , TB_CHAT_ROOM D02\n" +
+                                      "WHERE  D01.ROOM_ID = D02.ROOM_ID\n" +
+                                      "AND    D02.MASTER_ID = '" + SaveSharedPreference.getUserId(mContext) + "'";
+            Cursor cursor = sqLiteDatabase.rawQuery(selectMaxMessage, null);
+            cursor.moveToFirst();
+
+            maxMessageID = cursor.getInt(0);
+
+            cursor.close();
+            sqLiteDatabase.close();
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+
+        if(maxMessageID == 0)
+            return;
+
+        final int lastMessageID = maxMessageID;
 
         RequestQueue postRequestQueue = VolleySingleton.getInstance(mContext).getRequestQueue();
         StringRequest postJsonRequest = new StringRequest(Request.Method.POST, SaveSharedPreference.getServerIp() + "Chat/retrieveMessage.do", new Response.Listener<String>(){
@@ -344,7 +369,10 @@ public class MainActivity extends AppCompatActivity {
             public void onResponse(String response){
                 try {
                     JSONObject obj = new JSONObject(response);
-
+                    if(obj.getString("result").equals("success")) {
+                        interval = 100;
+                        count = 0;
+                    }
                 }
                 catch(JSONException e){
                     e.printStackTrace();
@@ -377,7 +405,7 @@ public class MainActivity extends AppCompatActivity {
 
                 Map<String, String> params = new HashMap();
                 params.put("userID", SaveSharedPreference.getUserId(mContext));
-                params.put("lastMessageID", lastMessageID);
+                params.put("lastMessageID", String.valueOf(lastMessageID));
 
                 return params;
             }

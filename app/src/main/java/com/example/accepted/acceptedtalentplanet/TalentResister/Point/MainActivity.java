@@ -100,8 +100,14 @@ public class MainActivity extends AppCompatActivity {
                     if(result.equals("success")){
                         Toast.makeText(getApplicationContext(), "등록이 완료되었습니다.", Toast.LENGTH_SHORT).show();
                         MyTalent mt = (isTalentRegisted) ? SaveSharedPreference.getGiveTalentData(mContext) : SaveSharedPreference.getTakeTalentData(mContext);
+
                         mt.setStatus("P");
                         mt.setTalentID(obj.getString("talentID"));
+                        if(isTalentRegisted){
+                            SaveSharedPreference.setGiveTalentData(mContext, mt);
+                        }else{
+                            SaveSharedPreference.setTakeTalentData(mContext, mt);
+                        }
                     }else if(result.equals("TalentRegistFail")){
                         Toast.makeText(getApplicationContext(), "재능 등록이 실패했습니다.", Toast.LENGTH_SHORT).show();
                     }else {
