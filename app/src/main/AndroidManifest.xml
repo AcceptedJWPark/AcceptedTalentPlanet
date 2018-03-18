@@ -22,6 +22,7 @@
         android:supportsRtl="true"
         android:largeHeap="true"
         android:theme="@style/AppTheme.NoActionBar">
+        <meta-data android:name="android.max_aspect" android:value="2.1" />
         <activity android:name=".LoadingLogin.Loading.MainActivity"
             >
             <intent-filter>
@@ -46,12 +47,13 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyC3yIIQ6yAN3jfkLmzFY5NyqxVBA21AkQg"/>
 
-        <meta-data android:name="android.max_aspect" android:value="2.1" />
+
 
         <activity
             android:name=".LoadingLogin.Login.MainActivity"
-            android:windowSoftInputMode="stateAlwaysHidden"
+
             />
+
         <activity
             android:name=".LoadingLogin.PasswordLost.Confirm.MainActivity"
             android:windowSoftInputMode="stateAlwaysHidden"
