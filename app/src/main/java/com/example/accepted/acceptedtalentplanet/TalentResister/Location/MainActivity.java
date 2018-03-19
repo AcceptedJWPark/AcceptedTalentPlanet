@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Point;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
@@ -54,7 +55,8 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                                                                     GoogleApiClient.ConnectionCallbacks,
                                                                     GoogleApiClient.OnConnectionFailedListener,
                                                                     com.google.android.gms.location.LocationListener,
-                                                                    GoogleMap.OnMarkerClickListener {
+                                                                    GoogleMap.OnMarkerClickListener,
+                                                                    GoogleMap.OnMapClickListener{
     private String keyword1, keyword2, keyword3;
     private String location;
     private boolean isRegisted;
@@ -125,7 +127,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         autocompleteFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
             @Override
             public void onPlaceSelected(Place place) {
-                Log.d("Place : ", String.valueOf(place.getName()));
+                Log.d("Place : ", place.getLatLng().latitude + ", " + place.getLatLng().longitude);
                 Location location = new Location("");
                 location.setLatitude(place.getLatLng().latitude);
                 location.setLongitude(place.getLatLng().longitude);
@@ -245,10 +247,12 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             }
         });
         gMap.setOnMarkerClickListener(this);
+        gMap.setOnMapClickListener(this);
         Log.d("isHavingData", isHavingData+"");
         if(isHavingData){
 
             GeoPoint geoPoint = data.getArrGeoPoint();
+            Log.d("having data", "data = " + geoPoint.getLng() + ", " + geoPoint.getLat());
 
             if (geoPoint != null && geoPoint.getLng() != 0 && location != null) {
                 Geocoder geocoder = new Geocoder(this, Locale.getDefault());
@@ -273,6 +277,33 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                 }
 
             }
+        }
+    }
+
+    @Override
+    public void onMapClick(LatLng point) {
+        Point screenPt = gMap.getProjection().toScreenLocation(point);
+
+        LatLng latLng = gMap.getProjection().fromScreenLocation(screenPt);
+        Geocoder geocoder = new Geocoder(this, Locale.getDefault());
+        mCurrentLocation = new Location("");
+        mCurrentLocation.setLatitude(point.latitude);
+        mCurrentLocation.setLongitude(point.longitude);
+        List<Address> list = null;
+        try{
+            list = geocoder.getFromLocation(mCurrentLocation.getLatitude(),mCurrentLocation.getLongitude() , 1);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        if(list == null){
+            Log.d("주소찾기", "실패");
+        }else if(list.size() > 0){
+            Address addr = list.get(0);
+
+            Log.d("MyLocation", "location: " + mCurrentLocation.getLatitude() + ", " + mCurrentLocation.getLongitude() + ", " + addr.getAddressLine(0) + "," + addr.toString());
+            setCurrentLocation(mCurrentLocation,"현재위치" , addr.getAddressLine(0));
+
         }
     }
 
@@ -330,6 +361,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         markerOptions.title(name);
         markerOptions.snippet(addr);
         gMap.addMarker(markerOptions);
+        Log.d("Current Loc", location.getLatitude()+", "+location.getLongitude());
 
         gMap.moveCamera(CameraUpdateFactory.newLatLng(latlng));
         gMap.animateCamera(CameraUpdateFactory.zoomTo(15));
