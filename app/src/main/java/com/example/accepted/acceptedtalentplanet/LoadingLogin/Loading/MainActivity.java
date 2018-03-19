@@ -30,6 +30,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -153,6 +155,10 @@ public class MainActivity extends AppCompatActivity {
                         talentPoint = Integer.parseInt(obj.getString("TALENT_POINT"));
                     }
                     SaveSharedPreference.setPrefTalentPoint(mContext, talentPoint);
+                    Date date = new Date();
+                    SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd hh:mm:ss");
+
+                    Log.d("Image Downloading", "start : " + sdf.format(date));
                     getMyPicture();
 
                 }
@@ -182,6 +188,9 @@ public class MainActivity extends AppCompatActivity {
             public void onResponse(String response){
                 try {
                     if(response.length() != 0) {
+                        Date date = new Date();
+                        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd hh:mm:ss");
+                        Log.d("Image Downloading", "end : " + sdf.format(date) );
                         JSONObject obj = new JSONObject(response);
                         if(!obj.getString("FILE_DATA").equals("Tk9EQVRB")){
                             SaveSharedPreference.setMyPicture(obj.getString("FILE_DATA"));

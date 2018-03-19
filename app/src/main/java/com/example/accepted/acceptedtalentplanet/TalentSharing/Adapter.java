@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.accepted.acceptedtalentplanet.R;
@@ -61,14 +62,7 @@ public class Adapter extends BaseAdapter {
 
             holder = new ViewHolder();
 
-            DisplayMetrics metrics = new DisplayMetrics();
-            WindowManager windowManager = (WindowManager) mContext.getSystemService(Context.WINDOW_SERVICE);
-            windowManager.getDefaultDisplay().getMetrics(metrics);
-            int Interesting_ListView_height = (int) (metrics.heightPixels*0.1);
 
-            ViewGroup.LayoutParams params1 = view.getLayoutParams();
-            params1.height = Interesting_ListView_height;
-            view.setLayoutParams(params1);
             String fileData = arrayList.get(position).getFileData();
             Log.d("fileData = ", fileData);
 
@@ -77,7 +71,51 @@ public class Adapter extends BaseAdapter {
             holder.tv_talent1 = view.findViewById(R.id.tv_talent1_TalentSharing);
             holder.tv_talent2 = view.findViewById(R.id.tv_talent2_TalentSharing);
             holder.tv_talent3 = view.findViewById(R.id.tv_talent3_TalentSharing);
+
             holder.tv_distance = view.findViewById(R.id.tv_distance_TalentSharing);
+            holder.ll_pictureContainer = view.findViewById(R.id.ll_pictureContainer_TalentSharing);
+            holder.ll_txtContainer = view.findViewById(R.id.ll_txtContainer_TalentSharing);
+            holder.trashView1 = view.findViewById(R.id.trashView1_TalentSharing);
+            holder.trashView2 = view.findViewById(R.id.trashView2_TalentSharing);
+            holder.trashView3 = view.findViewById(R.id.trashView3_TalentSharing);
+            holder.trashView4 = view.findViewById(R.id.trashView4_TalentSharing);
+
+
+            DisplayMetrics metrics = new DisplayMetrics();
+            WindowManager windowManager = (WindowManager) mContext.getSystemService(Context.WINDOW_SERVICE);
+            windowManager.getDefaultDisplay().getMetrics(metrics);
+            int Interesting_ListView_height = (int) (metrics.heightPixels*0.1);
+            int Interesting_ListView_width = metrics.widthPixels;
+            Log.d(String.valueOf(Interesting_ListView_width), "width");
+
+            ViewGroup.LayoutParams params1 = view.getLayoutParams();
+            ViewGroup.LayoutParams params2 = holder.tv_distance.getLayoutParams();
+            ViewGroup.LayoutParams params3 = holder.ll_pictureContainer.getLayoutParams();
+            ViewGroup.LayoutParams params4 = holder.ll_txtContainer.getLayoutParams();
+            ViewGroup.LayoutParams params5 = holder.trashView1.getLayoutParams();
+            ViewGroup.LayoutParams params6 = holder.trashView2.getLayoutParams();
+            ViewGroup.LayoutParams params7 = holder.trashView3.getLayoutParams();
+            ViewGroup.LayoutParams params8 = holder.trashView4.getLayoutParams();
+
+
+            params1.height = Interesting_ListView_height;
+            params2.width = (int) (Interesting_ListView_width*0.16);
+            params2.height = (int) (Interesting_ListView_width*0.16);
+            params3.width = (int) (Interesting_ListView_width*0.56);
+            params4.width = (int) (Interesting_ListView_width*0.16);
+            params5.width = (int) (Interesting_ListView_width*0.03);
+            params6.width = (int) (Interesting_ListView_width*0.03);
+            params7.width = (int) (Interesting_ListView_width*0.03);
+            params8.width = (int) (Interesting_ListView_width*0.03);
+
+            view.setLayoutParams(params1);
+            holder.ll_pictureContainer.setLayoutParams(params2);
+            holder.ll_txtContainer.setLayoutParams(params3);
+            holder.tv_distance.setLayoutParams(params4);
+            holder.trashView1.setLayoutParams(params5);
+            holder.trashView2.setLayoutParams(params6);
+            holder.trashView3.setLayoutParams(params7);
+            holder.trashView4.setLayoutParams(params8);
 
 
             view.setOnClickListener(new View.OnClickListener() {
@@ -117,7 +155,14 @@ public class Adapter extends BaseAdapter {
         TextView tv_talent1;
         TextView tv_talent2;
         TextView tv_talent3;
+
         TextView tv_distance;
+        LinearLayout ll_pictureContainer;
+        LinearLayout ll_txtContainer;
+        View trashView1;
+        View trashView2;
+        View trashView3;
+        View trashView4;
     }
 
 }
