@@ -40,6 +40,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.bumptech.glide.Glide;
 import com.example.accepted.acceptedtalentplanet.BuildConfig;
 import com.example.accepted.acceptedtalentplanet.MyProfileData;
 import com.example.accepted.acceptedtalentplanet.R;
@@ -280,6 +281,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(mContext, pictureExpand.class);
+                intent.putExtra("Activity", "Profile");
                 startActivity(intent);
             }
         });
@@ -521,7 +523,14 @@ public class MainActivity extends AppCompatActivity {
         }
 
         try {
-            Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), imgUri); //BitmapFactory.decodeFile(imagePath);
+            BitmapFactory.Options options = new BitmapFactory.Options();
+            options.inJustDecodeBounds = true;
+            BitmapFactory.decodeFile(imagePath, options); //MediaStore.Images.Media.getBitmap(this.getContentResolver(), imgUri);
+
+            options.inSampleSize = setSimpleSize(options, 1024, 1024);
+
+            options.inJustDecodeBounds = false;
+            Bitmap bitmap = BitmapFactory.decodeFile(imagePath, options);
             bitmap = rotate(bitmap, exifDegree);
             if(bitmap == null){
                 Log.d("bitmap = ", "null");
@@ -530,14 +539,22 @@ public class MainActivity extends AppCompatActivity {
             SaveSharedPreference.setMyPicture(bitmap);
 
             uploadBitmap(bitmap);
-        }catch (IOException e){
+        }catch (Exception e){
                     e.printStackTrace();//bitmap = rotate(bitmap, exifDegree);
         }
 
     }
 
     private void getPictureForPhoto(){
-        Bitmap bitmap = BitmapFactory.decodeFile(currentPhotoPath);
+        BitmapFactory.Options options = new BitmapFactory.Options();
+        options.inJustDecodeBounds = true;
+        BitmapFactory.decodeFile(currentPhotoPath, options);
+
+        options.inSampleSize = setSimpleSize(options, 512, 512);
+
+        options.inJustDecodeBounds = false;
+        Bitmap bitmap = BitmapFactory.decodeFile(currentPhotoPath, options);
+
         ExifInterface exif = null;
         try{
             exif = new ExifInterface(currentPhotoPath);
@@ -673,6 +690,24 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         return statusBarHeight;
+    }
+
+    private int setSimpleSize(BitmapFactory.Options options, int requestWidth, int requestHeight){
+        // 이미지 사이즈를 체크할 원본 이미지 가로/세로 사이즈를 임시 변수에 대입.
+        int originalWidth = options.outWidth;
+        int originalHeight = options.outHeight;
+
+        // 원본 이미지 비율인 1로 초기화
+        int size = 1;
+
+        // 해상도가 깨지지 않을만한 요구되는 사이즈까지 2의 배수의 값으로 원본 이미지를 나눈다.
+        while(requestWidth < originalWidth || requestHeight < originalHeight){
+            originalWidth = originalWidth / 2;
+            originalHeight = originalHeight / 2;
+
+            size = size * 2;
+        }
+        return size;
     }
 
 
