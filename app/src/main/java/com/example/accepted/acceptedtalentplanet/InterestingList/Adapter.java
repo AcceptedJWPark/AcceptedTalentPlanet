@@ -2,6 +2,10 @@ package com.example.accepted.acceptedtalentplanet.InterestingList;
 
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.CursorIndexOutOfBoundsException;
+import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Bitmap;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,7 +17,9 @@ import android.widget.TextView;
 
 import com.example.accepted.acceptedtalentplanet.InterestingList.Popup.MainActivity;
 import com.example.accepted.acceptedtalentplanet.R;
+import com.example.accepted.acceptedtalentplanet.SaveSharedPreference;
 
+import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 
 /**
@@ -31,7 +37,9 @@ public class Adapter extends BaseAdapter {
     private TextView tv_Talent2;
     private TextView tv_Talent3;
     private TextView tv_GiveTakeTxt;
-
+    private String fileData;
+    private Bitmap bitmap;
+    byte[] bytes;
     public Adapter(Context context, ArrayList<ListItem> arrayList) {
         this.mContext = context;
         this.arrayList = arrayList;
@@ -57,12 +65,12 @@ public class Adapter extends BaseAdapter {
     public View getView(int position, View view, ViewGroup viewGroup) {
         final int index = position;
         if(view == null) {
-            view = LayoutInflater.from(mContext).inflate(R.layout.interestinglist_listviewbg, viewGroup,false);
+            view = LayoutInflater.from(mContext).inflate(R.layout.interestinglist_listviewbg, viewGroup, false);
 
             DisplayMetrics metrics = new DisplayMetrics();
             WindowManager windowManager = (WindowManager) mContext.getSystemService(Context.WINDOW_SERVICE);
             windowManager.getDefaultDisplay().getMetrics(metrics);
-            int Interesting_ListView_height = (int) (metrics.heightPixels*0.1);
+            int Interesting_ListView_height = (int) (metrics.heightPixels * 0.1);
 
             ViewGroup.LayoutParams params1 = view.getLayoutParams();
             params1.height = Interesting_ListView_height;
@@ -76,20 +84,45 @@ public class Adapter extends BaseAdapter {
             iv_GiveTakeIcon = view.findViewById(R.id.iv_GiveTakeIcon_InterestingList);
 
             tv_GiveTakeTxt = view.findViewById(R.id.tv_GiveTakeTxt_InterestingList);
+            fileData = "Tk9EQVRB";
+            try {
+                String dbName = "/accepted.db";
+                SQLiteDatabase sqLiteDatabase = SQLiteDatabase.openOrCreateDatabase(mContext.getFilesDir() + dbName, null);
+
+                String selectPicture = "SELECT PICTURE FROM TB_IMAGES WHERE MASTER_ID = '" + SaveSharedPreference.getUserId(mContext) + "' AND USER_ID = '" + arrayList.get(position).getUserID() + "'";
+                Cursor cursor = sqLiteDatabase.rawQuery(selectPicture, null);
+
+                cursor.moveToFirst();
+
+                fileData = cursor.getString(0);
+
+                cursor.close();
+                sqLiteDatabase.close();
+            } catch (CursorIndexOutOfBoundsException e) {
+                e.printStackTrace();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(mContext, MainActivity.class);
-                    intent.putExtra("TalentID", ((ListItem)getItem(index)).getTalentID());
+                    intent.putExtra("TalentID", ((ListItem) getItem(index)).getTalentID());
                     intent.putExtra("codeGiveTake", arrayList.get(index).getGiveTake_Code());
                     mContext.startActivity(intent);
                 }
             });
 
+
         }
 
+        if(fileData.equals("Tk9EQVRB")) {
+            iv_Picture.setBackgroundResource(arrayList.get(position).getPicture());
+        }else{
+            iv_Picture.setImageBitmap(SaveSharedPreference.StringToBitMap(fileData));
+        }
 
-        iv_Picture.setBackgroundResource(arrayList.get(position).getPicture());
         tv_Name.setText(arrayList.get(position).getName());
         tv_Talent1.setText(arrayList.get(position).getTalent1());
         tv_Talent2.setText(arrayList.get(position).getTalent2());

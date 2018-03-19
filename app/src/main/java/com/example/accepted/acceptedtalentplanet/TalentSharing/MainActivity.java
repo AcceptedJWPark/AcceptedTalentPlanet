@@ -128,7 +128,19 @@ public class MainActivity extends AppCompatActivity {
                         JSONObject o = obj.getJSONObject(index);
                         Log.d("getTalentSharing", o.toString());
                         double distance = findMinDistanceBetween(o.getString("GP_LAT"), o.getString("GP_LNG"), o.getString("TALENT_FLAG").equals("Y"));
-                        ListItem target = new ListItem(R.drawable.testpicture, o.getString("USER_NAME"), o.getString("TALENT_KEYWORD1"), o.getString("TALENT_KEYWORD2"), o.getString("TALENT_KEYWORD3"), o.getString("seq"), o.getString("TALENT_FLAG"), o.getString("STATUS_FLAG"),(String.format("%.1f",  distance) + "km"), "Profile 보기", o.getString("USER_ID"), distance, o.getString("FILE_DATA"));
+                        ListItem target = new ListItem(R.drawable.testpicture, o.getString("USER_NAME"), o.getString("TALENT_KEYWORD1"), o.getString("TALENT_KEYWORD2"), o.getString("TALENT_KEYWORD3"), o.getString("seq"), o.getString("TALENT_FLAG"), o.getString("STATUS_FLAG"),(String.format("%.1f",  distance) + "km"), "Profile 보기", o.getString("USER_ID"), distance);
+                        try {
+                            String dbName = "/accepted.db";
+                            SQLiteDatabase sqLiteDatabase = SQLiteDatabase.openOrCreateDatabase(getFilesDir() + dbName, null);
+
+                            String insertSql = "INSERT OR REPLACE INTO TB_IMAGES (MASTER_ID, USER_ID, PICTURE) VALUES ('" + SaveSharedPreference.getUserId(mContext) + "','" + o.getString("USER_ID") + "', '" + o.getString("FILE_DATA") + "')";
+                            Log.d("insert image", insertSql);
+                            sqLiteDatabase.execSQL(insertSql);
+
+                            sqLiteDatabase.close();
+                        }catch(Exception e){
+                            e.printStackTrace();
+                        }
                         arrayList_Original.add(target);
                         if(isGiveTalent){
                             if(o.getString("TALENT_FLAG").equals("N"))

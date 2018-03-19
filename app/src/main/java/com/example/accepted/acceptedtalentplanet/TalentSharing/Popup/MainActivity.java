@@ -3,6 +3,10 @@ package com.example.accepted.acceptedtalentplanet.TalentSharing.Popup;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.CursorIndexOutOfBoundsException;
+import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AlertDialog;
@@ -32,6 +36,7 @@ import com.example.accepted.acceptedtalentplanet.pictureExpand;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -63,7 +68,7 @@ public class MainActivity extends FragmentActivity{
     boolean addedFriend = false;
     boolean sendFlag = true;
     String talentID;
-
+    Bitmap bitmap = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -109,7 +114,6 @@ public class MainActivity extends FragmentActivity{
                 MainActivity.this.finish();
             }
         });
-
 
         iv_addfriendOn = findViewById(R.id.TalentSharingPopup_addfriendList_on);
         iv_addfriendOff = findViewById(R.id.TalentSharingPopup_addfriendList_off);
@@ -193,11 +197,43 @@ public class MainActivity extends FragmentActivity{
                     ((TextView)findViewById(R.id.dividerTalentType_TalentSharing)).setText(TalentText);
                     statusFlag = obj.getString("STATUS_FLAG");
 
-                    if(!obj.getString("FILE_DATA").equals("Tk9EQVRB")){
-                        ((ImageView)findViewById(R.id.TalentSharing_popup_picture)).setImageBitmap(SaveSharedPreference.StringToBitMap(obj.getString("FILE_DATA")));
+                    UserID = obj.getString("USER_ID");
+
+                    String fileData = "Tk9EQVRB";
+                    try {
+                        String dbName = "/accepted.db";
+                        SQLiteDatabase sqLiteDatabase = SQLiteDatabase.openOrCreateDatabase(mContext.getFilesDir() + dbName, null);
+
+                        String selectPicture = "SELECT PICTURE FROM TB_IMAGES WHERE MASTER_ID = '" + SaveSharedPreference.getUserId(mContext) + "' AND USER_ID = '" + UserID + "'";
+                        Log.d("image query", selectPicture);
+                        Cursor cursor = sqLiteDatabase.rawQuery(selectPicture, null);
+
+                        cursor.moveToFirst();
+
+                        fileData = cursor.getString(0);
+
+                        cursor.close();
+                        sqLiteDatabase.close();
+                    } catch (CursorIndexOutOfBoundsException e) {
+                        e.printStackTrace();
+                    } catch (Exception e) {
+                        e.printStackTrace();
                     }
 
-                    UserID = obj.getString("USER_ID");
+
+                    if(!fileData.equals("Tk9EQVRB")){
+                        ((ImageView)findViewById(R.id.TalentSharing_popup_picture)).setImageBitmap(SaveSharedPreference.StringToBitMap(fileData));
+                        ((ImageView)findViewById(R.id.TalentSharing_popup_picture)).setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                Intent intent = new Intent(mContext, pictureExpand.class);
+                                intent.putExtra("Activity", "Popup");
+                                intent.putExtra("userID", UserID);
+                                startActivity(intent);
+                            }
+                        });
+                    }
+
                     ArrayList<Friend> friendList = SaveSharedPreference.getFriendList(mContext);
                     addedFriend = false;
                     for(Friend f : friendList){

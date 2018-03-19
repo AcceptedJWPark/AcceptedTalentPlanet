@@ -2,6 +2,9 @@ package com.example.accepted.acceptedtalentplanet.TalentSharing;
 
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.CursorIndexOutOfBoundsException;
+import android.database.sqlite.SQLiteDatabase;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -58,13 +61,30 @@ public class Adapter extends BaseAdapter {
         final int index = position;
 
         if(view == null) {
-            view = LayoutInflater.from(mContext).inflate(R.layout.talentsharing_listviewbg, viewGroup,false);
+            view = LayoutInflater.from(mContext).inflate(R.layout.talentsharing_listviewbg, viewGroup, false);
 
             holder = new ViewHolder();
 
 
-            String fileData = arrayList.get(position).getFileData();
-            Log.d("fileData = ", fileData);
+            String fileData = "Tk9EQVRB";
+            try {
+                String dbName = "/accepted.db";
+                SQLiteDatabase sqLiteDatabase = SQLiteDatabase.openOrCreateDatabase(mContext.getFilesDir() + dbName, null);
+
+                String selectPicture = "SELECT PICTURE FROM TB_IMAGES WHERE MASTER_ID = '" + SaveSharedPreference.getUserId(mContext) + "' AND USER_ID = '" + arrayList.get(position).getUserID() + "'";
+                Cursor cursor = sqLiteDatabase.rawQuery(selectPicture, null);
+
+                cursor.moveToFirst();
+
+                fileData = cursor.getString(0);
+
+                cursor.close();
+                sqLiteDatabase.close();
+            } catch (CursorIndexOutOfBoundsException e) {
+                e.printStackTrace();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
 
             holder.iv_picture = view.findViewById(R.id.iv_picture_TalentSharing);
             holder.tv_Name = view.findViewById(R.id.tv_Name_TalentSharing);
@@ -84,7 +104,7 @@ public class Adapter extends BaseAdapter {
             DisplayMetrics metrics = new DisplayMetrics();
             WindowManager windowManager = (WindowManager) mContext.getSystemService(Context.WINDOW_SERVICE);
             windowManager.getDefaultDisplay().getMetrics(metrics);
-            int Interesting_ListView_height = (int) (metrics.heightPixels*0.1);
+            int Interesting_ListView_height = (int) (metrics.heightPixels * 0.1);
             int Interesting_ListView_width = metrics.widthPixels;
             Log.d(String.valueOf(Interesting_ListView_width), "width");
 
@@ -99,14 +119,14 @@ public class Adapter extends BaseAdapter {
 
 
             params1.height = Interesting_ListView_height;
-            params2.width = (int) (Interesting_ListView_width*0.16);
-            params2.height = (int) (Interesting_ListView_width*0.16);
-            params3.width = (int) (Interesting_ListView_width*0.56);
-            params4.width = (int) (Interesting_ListView_width*0.16);
-            params5.width = (int) (Interesting_ListView_width*0.03);
-            params6.width = (int) (Interesting_ListView_width*0.03);
-            params7.width = (int) (Interesting_ListView_width*0.03);
-            params8.width = (int) (Interesting_ListView_width*0.03);
+            params2.width = (int) (Interesting_ListView_width * 0.16);
+            params2.height = (int) (Interesting_ListView_width * 0.16);
+            params3.width = (int) (Interesting_ListView_width * 0.56);
+            params4.width = (int) (Interesting_ListView_width * 0.16);
+            params5.width = (int) (Interesting_ListView_width * 0.03);
+            params6.width = (int) (Interesting_ListView_width * 0.03);
+            params7.width = (int) (Interesting_ListView_width * 0.03);
+            params8.width = (int) (Interesting_ListView_width * 0.03);
 
             view.setLayoutParams(params1);
             holder.ll_pictureContainer.setLayoutParams(params2);
@@ -122,18 +142,18 @@ public class Adapter extends BaseAdapter {
                 @Override
                 public void onClick(View view) {
                     Intent intent = new Intent(mContext, MainActivity.class);
-                    intent.putExtra("TalentID", ((ListItem)getItem(index)).getTalentID());
-                    String talentFlag = (((ListItem)getItem(index)).getTalentFlag()) ? "Give" : "Take";
+                    intent.putExtra("TalentID", ((ListItem) getItem(index)).getTalentID());
+                    String talentFlag = (((ListItem) getItem(index)).getTalentFlag()) ? "Give" : "Take";
                     intent.putExtra("TalentFlag", talentFlag);
                     mContext.startActivity(intent);
                 }
             });
 
-        if(fileData.equals("Tk9EQVRB")) {
-            holder.iv_picture.setBackgroundResource(arrayList.get(position).getPicture());
-        }else{
-            holder.iv_picture.setImageBitmap(SaveSharedPreference.StringToBitMap(fileData));
-        }
+            if (fileData.equals("Tk9EQVRB")) {
+                holder.iv_picture.setBackgroundResource(arrayList.get(position).getPicture());
+            } else {
+                holder.iv_picture.setImageBitmap(SaveSharedPreference.StringToBitMap(fileData));
+            }
             holder.tv_Name.setText(arrayList.get(position).getName());
             holder.tv_talent1.setText(arrayList.get(position).getTalent1());
             holder.tv_talent2.setText(arrayList.get(position).getTalent2());

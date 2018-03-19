@@ -281,6 +281,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(mContext, pictureExpand.class);
+                intent.putExtra("Activity", "Profile");
                 startActivity(intent);
             }
         });
@@ -376,10 +377,9 @@ public class MainActivity extends AppCompatActivity {
                     cb_isShowGender.setChecked(!genderFlag);
                     cb_isShowBirth.setChecked(!birthFlag);
                     cb_isShowJob.setChecked(!jobFlag);
-                    if(!obj.getString("FILE_DATA").equals("NODATA")) {
-                        Bitmap bitmap = SaveSharedPreference.StringToBitMap(obj.getString("FILE_DATA"));
-                        if (bitmap != null)
-                            iv_Picture.setImageBitmap(bitmap);
+                    Bitmap bitmap = SaveSharedPreference.getMyPicture();
+                    if(bitmap != null){
+                        iv_Picture.setImageBitmap(bitmap);
                     }
                 }
                 catch(JSONException e){
@@ -526,7 +526,7 @@ public class MainActivity extends AppCompatActivity {
             options.inJustDecodeBounds = true;
             BitmapFactory.decodeFile(imagePath, options); //MediaStore.Images.Media.getBitmap(this.getContentResolver(), imgUri);
 
-            options.inSampleSize = setSimpleSize(options, 512, 512);
+            options.inSampleSize = setSimpleSize(options, 1024, 1024);
 
             options.inJustDecodeBounds = false;
             Bitmap bitmap = BitmapFactory.decodeFile(imagePath, options);

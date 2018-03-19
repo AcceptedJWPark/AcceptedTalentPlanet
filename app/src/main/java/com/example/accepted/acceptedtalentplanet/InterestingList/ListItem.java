@@ -14,6 +14,7 @@ public class ListItem {
     private String talentType;
     private String date;
     private String talentID;
+    private String userID;
 
     private int giveTake_Code;
 
@@ -50,6 +51,8 @@ public class ListItem {
 
     public String getTalentID() { return talentID; }
 
+    public String getUserID() { return userID; }
+
 
     public void setGiveTake_Code(int GiveTake_CODE) {
         this.giveTake_Code = GiveTake_CODE;
@@ -85,10 +88,11 @@ public class ListItem {
     public void setTalentID(String talentID) { this.talentID = talentID; }
 
 
-    public ListItem(int pictire, String name, String talent1, String talent2, String talent3, String talentType, String registDate, String talentID, int giveTake_Type)
+    public ListItem(int pictire, String name, String userID, String talent1, String talent2, String talent3, String talentType, String registDate, String talentID, int giveTake_Type)
     {
         this.picture = pictire;
         this.name = name;
+        this.userID = userID;
         this.talent1 = talent1;
         this.talent2 = talent2;
         this.talent3 = talent3;

@@ -71,6 +71,9 @@ public class MainActivity extends AppCompatActivity {
         String sqlCreateTbl4 = "CREATE TABLE IF NOT EXISTS TB_FCM_TOKEN (TOKEN TEXT)";
         sqliteDatabase.execSQL(sqlCreateTbl4);
 
+        String sqlCreateTbl5 = "CREATE TABLE IF NOT EXISTS TB_IMAGES (MASTER_ID TEXT, USER_ID TEXT, PICTURE BLOB, PRIMARY KEY(MASTER_ID, USER_ID))";
+        sqliteDatabase.execSQL(sqlCreateTbl5);
+
         startLoading();
 
     }

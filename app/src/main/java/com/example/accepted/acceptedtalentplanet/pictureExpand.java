@@ -2,14 +2,22 @@ package com.example.accepted.acceptedtalentplanet;
 
 import android.content.Context;
 import android.content.res.Configuration;
+import android.database.Cursor;
+import android.database.CursorIndexOutOfBoundsException;
+import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+
+import java.io.ByteArrayOutputStream;
 
 /**
  * Created by Accepted on 2018-03-19.
@@ -18,7 +26,6 @@ import android.widget.LinearLayout;
 public class pictureExpand extends AppCompatActivity {
 
     LinearLayout ll_CloseContainer;
-    ImageView iv_Picture_pictureExpand;
     Context mContext;
 
 
@@ -27,6 +34,8 @@ public class pictureExpand extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         mContext = getApplicationContext();
+        String type = getIntent().getStringExtra("Activity");
+        String UserID = getIntent().getStringExtra("userID");
         setContentView(R.layout.pictureexpand_activity);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
@@ -36,6 +45,39 @@ public class pictureExpand extends AppCompatActivity {
                 finish();
             }
         });
+
+        if(type.equals("Profile")){
+            Bitmap bitmap = SaveSharedPreference.getMyPicture();
+            if(bitmap != null){
+                ((ImageView) findViewById(R.id.iv_Picture_pictureExpand)).setImageBitmap(bitmap);
+            }
+        }else {
+
+            String fileData = "Tk9EQVRB";
+            try {
+                String dbName = "/accepted.db";
+                SQLiteDatabase sqLiteDatabase = SQLiteDatabase.openOrCreateDatabase(mContext.getFilesDir() + dbName, null);
+
+                String selectPicture = "SELECT PICTURE FROM TB_IMAGES WHERE MASTER_ID = '" + SaveSharedPreference.getUserId(mContext) + "' AND USER_ID = '" + UserID + "'";
+                Log.d("image query", selectPicture);
+                Cursor cursor = sqLiteDatabase.rawQuery(selectPicture, null);
+
+                cursor.moveToFirst();
+
+                fileData = cursor.getString(0);
+
+                cursor.close();
+                sqLiteDatabase.close();
+            } catch (CursorIndexOutOfBoundsException e) {
+                e.printStackTrace();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            if (!fileData.equals("Tk9EQVRB")) {
+                ((ImageView) findViewById(R.id.iv_Picture_pictureExpand)).setImageBitmap(SaveSharedPreference.StringToBitMap(fileData));
+            }
+        }
 
         ll_CloseContainer = (LinearLayout) findViewById(R.id.ll_CloseContainer_pictureExpand);
         DisplayMetrics metrics = new DisplayMetrics();

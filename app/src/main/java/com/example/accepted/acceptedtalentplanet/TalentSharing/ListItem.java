@@ -98,7 +98,7 @@ public class ListItem implements Comparable<ListItem> {
 
     public void setUserID(String userID) { this.userID = userID; }
 
-    public ListItem(int pictire, String name, String talent1, String talent2, String talent3, String talentID, String isGiveTalent, String status_flag, String distance, String showProfile, String userID, double distance_Compare, String fileData)
+    public ListItem(int pictire, String name, String talent1, String talent2, String talent3, String talentID, String isGiveTalent, String status_flag, String distance, String showProfile, String userID, double distance_Compare)
     {
         this.picture = pictire;
         this.name = name;
@@ -112,7 +112,6 @@ public class ListItem implements Comparable<ListItem> {
         this.showProfile = showProfile;
         this.userID = userID;
         this.distance_Compare = distance_Compare;
-        this.fileData = fileData;
     }
 
     @Override

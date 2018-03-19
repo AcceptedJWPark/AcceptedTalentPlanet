@@ -3,6 +3,11 @@ package com.example.accepted.acceptedtalentplanet.InterestingList.Popup;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.CursorIndexOutOfBoundsException;
+import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AlertDialog;
@@ -70,7 +75,6 @@ public class MainActivity extends FragmentActivity {
         setContentView(R.layout.interestinglist_popup);
         mContext = getApplicationContext();
 
-
         Display display = ((WindowManager) getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();
         mContext = getApplicationContext();
         int width = (int) (display.getWidth() * 1);
@@ -78,13 +82,7 @@ public class MainActivity extends FragmentActivity {
         getWindow().getAttributes().width = width;
         getWindow().getAttributes().height = height;
 
-        ((ImageView)findViewById(R.id.TalentSharing_popup_picture)).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(mContext, pictureExpand.class);
-                startActivity(intent);
-            }
-        });
+
 
 
         rl_FriendIconContainer = findViewById(R.id.Interesting_popup_container);
@@ -250,6 +248,39 @@ public class MainActivity extends FragmentActivity {
                     ((TextView)findViewById(R.id.point_InterestingPopup)).setText(obj.getString("T_POINT")+"P");
                     profileUserID = obj.getString("USER_ID");
                     talentFlag = (obj.getString("TALENT_FLAG").equals("Y"))? true : false;
+
+                    String fileData = "Tk9EQVRB";
+                    try {
+                        String dbName = "/accepted.db";
+                        SQLiteDatabase sqLiteDatabase = SQLiteDatabase.openOrCreateDatabase(mContext.getFilesDir() + dbName, null);
+
+                        String selectPicture = "SELECT PICTURE FROM TB_IMAGES WHERE MASTER_ID = '" + SaveSharedPreference.getUserId(mContext) + "' AND USER_ID = '" + profileUserID + "'";
+                        Log.d("image query", selectPicture);
+                        Cursor cursor = sqLiteDatabase.rawQuery(selectPicture, null);
+
+                        cursor.moveToFirst();
+
+                        fileData = cursor.getString(0);
+
+                        cursor.close();
+                        sqLiteDatabase.close();
+                    } catch (CursorIndexOutOfBoundsException e) {
+                        e.printStackTrace();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    if(!fileData.equals("Tk9EQVRB")) {
+                        ((ImageView) findViewById(R.id.Interesting_popup_picture)).setImageBitmap(SaveSharedPreference.StringToBitMap(fileData));
+                        ((ImageView) findViewById(R.id.Interesting_popup_picture)).setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Intent intent = new Intent(mContext, pictureExpand.class);
+                                intent.putExtra("Activity", "Interest");
+                                intent.putExtra("userID", profileUserID);
+                                startActivity(intent);
+                            }
+                        });
+                    }
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
