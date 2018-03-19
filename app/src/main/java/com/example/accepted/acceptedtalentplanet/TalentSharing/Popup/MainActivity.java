@@ -3,6 +3,7 @@ package com.example.accepted.acceptedtalentplanet.TalentSharing.Popup;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AlertDialog;
@@ -32,6 +33,7 @@ import com.example.accepted.acceptedtalentplanet.pictureExpand;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -63,7 +65,7 @@ public class MainActivity extends FragmentActivity{
     boolean addedFriend = false;
     boolean sendFlag = true;
     String talentID;
-
+    Bitmap bitmap = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -109,7 +111,6 @@ public class MainActivity extends FragmentActivity{
                 MainActivity.this.finish();
             }
         });
-
 
         iv_addfriendOn = findViewById(R.id.TalentSharingPopup_addfriendList_on);
         iv_addfriendOff = findViewById(R.id.TalentSharingPopup_addfriendList_off);
@@ -194,7 +195,20 @@ public class MainActivity extends FragmentActivity{
                     statusFlag = obj.getString("STATUS_FLAG");
 
                     if(!obj.getString("FILE_DATA").equals("Tk9EQVRB")){
-                        ((ImageView)findViewById(R.id.TalentSharing_popup_picture)).setImageBitmap(SaveSharedPreference.StringToBitMap(obj.getString("FILE_DATA")));
+                        bitmap = SaveSharedPreference.StringToBitMap(obj.getString("FILE_DATA"));
+                        ((ImageView)findViewById(R.id.TalentSharing_popup_picture)).setImageBitmap(bitmap);
+                        ((ImageView)findViewById(R.id.TalentSharing_popup_picture)).setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                Intent intent = new Intent(mContext, pictureExpand.class);
+                                ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                                bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
+                                byte[] bytes = stream.toByteArray();
+                                intent.putExtra("Activity", "Popup");
+                                intent.putExtra("bitmapBytes", bytes);
+                                startActivity(intent);
+                            }
+                        });
                     }
 
                     UserID = obj.getString("USER_ID");

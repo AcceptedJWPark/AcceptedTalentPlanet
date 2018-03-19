@@ -3,6 +3,8 @@ package com.example.accepted.acceptedtalentplanet.InterestingList.Popup;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AlertDialog;
@@ -71,6 +73,21 @@ public class MainActivity extends FragmentActivity {
         mContext = getApplicationContext();
 
 
+        if(getIntent().hasExtra("bitmapBytes")) {
+            final byte[] bytes = getIntent().getByteArrayExtra("bitmapBytes");
+            final Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+            ((ImageView)findViewById(R.id.Interesting_popup_picture)).setImageBitmap(bitmap);
+            ((ImageView)findViewById(R.id.Interesting_popup_picture)).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(mContext, pictureExpand.class);
+                    intent.putExtra("Activity", "Interest");
+                    intent.putExtra("bitmapBytes", bytes);
+                    startActivity(intent);
+                }
+            });
+        }
+
         Display display = ((WindowManager) getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();
         mContext = getApplicationContext();
         int width = (int) (display.getWidth() * 1);
@@ -78,13 +95,7 @@ public class MainActivity extends FragmentActivity {
         getWindow().getAttributes().width = width;
         getWindow().getAttributes().height = height;
 
-        ((ImageView)findViewById(R.id.TalentSharing_popup_picture)).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(mContext, pictureExpand.class);
-                startActivity(intent);
-            }
-        });
+
 
 
         rl_FriendIconContainer = findViewById(R.id.Interesting_popup_container);
