@@ -27,6 +27,7 @@ import com.example.accepted.acceptedtalentplanet.InterestingList.DialogActivity;
 import com.example.accepted.acceptedtalentplanet.R;
 import com.example.accepted.acceptedtalentplanet.SaveSharedPreference;
 import com.example.accepted.acceptedtalentplanet.VolleySingleton;
+import com.example.accepted.acceptedtalentplanet.pictureExpand;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -76,6 +77,14 @@ public class MainActivity extends FragmentActivity {
         int height = (int) (display.getHeight() * 0.9);
         getWindow().getAttributes().width = width;
         getWindow().getAttributes().height = height;
+
+        ((ImageView)findViewById(R.id.TalentSharing_popup_picture)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext, pictureExpand.class);
+                startActivity(intent);
+            }
+        });
 
 
         rl_FriendIconContainer = findViewById(R.id.Interesting_popup_container);

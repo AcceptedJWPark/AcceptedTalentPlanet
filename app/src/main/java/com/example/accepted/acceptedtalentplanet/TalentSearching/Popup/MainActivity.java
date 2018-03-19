@@ -1,6 +1,7 @@
 package com.example.accepted.acceptedtalentplanet.TalentSearching.Popup;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
@@ -18,6 +19,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.example.accepted.acceptedtalentplanet.R;
 import com.example.accepted.acceptedtalentplanet.SaveSharedPreference;
 import com.example.accepted.acceptedtalentplanet.VolleySingleton;
+import com.example.accepted.acceptedtalentplanet.pictureExpand;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -31,9 +33,10 @@ import java.util.Map;
 
 public class MainActivity extends FragmentActivity{
 
-    ImageView talentSharing_pupupclosebtn;
-    boolean genderPBS, birthPBS, jobPBS;
-    Context mContext;
+    private ImageView popupClosebtn;
+    private boolean genderPBS, birthPBS, jobPBS;
+    private Context mContext;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,9 +56,17 @@ public class MainActivity extends FragmentActivity{
         getWindow().getAttributes().height = height;
 
 
+        ((ImageView)findViewById(R.id.TalentSharing_popup_picture)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext, pictureExpand.class);
+                startActivity(intent);
+            }
+        });
 
-        talentSharing_pupupclosebtn = (ImageView) findViewById(R.id.iv_CloseIcon_InterestingPopup);
-        talentSharing_pupupclosebtn.setOnClickListener(new View.OnClickListener() {
+
+        popupClosebtn = (ImageView) findViewById(R.id.iv_CloseIcon_InterestingPopup);
+        popupClosebtn.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {

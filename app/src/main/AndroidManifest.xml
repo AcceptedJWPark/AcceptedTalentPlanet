@@ -158,6 +158,10 @@
         <activity
             android:name=".Messanger.List.MainActivity"
             />
+
+        <activity
+            android:name=".pictureExpand"
+            />
         
         <!-- firebase service -->
         <!-- [START firebase_service] -->

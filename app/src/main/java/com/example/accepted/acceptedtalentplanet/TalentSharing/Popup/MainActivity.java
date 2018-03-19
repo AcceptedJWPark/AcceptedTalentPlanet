@@ -22,38 +22,19 @@ import android.widget.Toast;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
-import com.android.volley.toolbox.HurlStack;
 import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
 import com.example.accepted.acceptedtalentplanet.Friend;
 import com.example.accepted.acceptedtalentplanet.R;
 import com.example.accepted.acceptedtalentplanet.SaveSharedPreference;
 import com.example.accepted.acceptedtalentplanet.VolleySingleton;
+import com.example.accepted.acceptedtalentplanet.pictureExpand;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
-import java.security.KeyManagementException;
-import java.security.KeyStore;
-import java.security.KeyStoreException;
-import java.security.NoSuchAlgorithmException;
-import java.security.cert.Certificate;
-import java.security.cert.CertificateException;
-import java.security.cert.CertificateFactory;
-import java.security.cert.X509Certificate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-
-import javax.net.ssl.HostnameVerifier;
-import javax.net.ssl.HttpsURLConnection;
-import javax.net.ssl.SSLContext;
-import javax.net.ssl.SSLSession;
-import javax.net.ssl.SSLSocketFactory;
-import javax.net.ssl.TrustManagerFactory;
 
 /**
  * Created by Accepted on 2017-10-24.
@@ -111,6 +92,13 @@ public class MainActivity extends FragmentActivity{
         TalentSharing_popup_container.setLayoutParams(params);
 
 
+        ((ImageView)findViewById(R.id.TalentSharing_popup_picture)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext, pictureExpand.class);
+                startActivity(intent);
+            }
+        });
 
 
         iv_ClosePopupIcon = (ImageView) findViewById(R.id.iv_CloseIcon_InterestingPopup);
