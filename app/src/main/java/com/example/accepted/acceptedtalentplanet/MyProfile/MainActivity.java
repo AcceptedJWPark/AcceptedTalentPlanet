@@ -281,6 +281,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(mContext, pictureExpand.class);
+                intent.putExtra("Activity", "Profile");
                 startActivity(intent);
             }
         });
@@ -526,7 +527,7 @@ public class MainActivity extends AppCompatActivity {
             options.inJustDecodeBounds = true;
             BitmapFactory.decodeFile(imagePath, options); //MediaStore.Images.Media.getBitmap(this.getContentResolver(), imgUri);
 
-            options.inSampleSize = setSimpleSize(options, 512, 512);
+            options.inSampleSize = setSimpleSize(options, 1024, 1024);
 
             options.inJustDecodeBounds = false;
             Bitmap bitmap = BitmapFactory.decodeFile(imagePath, options);
