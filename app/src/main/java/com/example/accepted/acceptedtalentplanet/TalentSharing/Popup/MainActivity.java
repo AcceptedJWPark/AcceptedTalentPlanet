@@ -213,7 +213,7 @@ public class MainActivity extends FragmentActivity{
                     ArrayList<Friend> friendList = SaveSharedPreference.getFriendList(mContext);
                     addedFriend = false;
                     for(Friend f : friendList){
-                        if(f.getUserID().equals(UserID)){
+                        if(f.getUserID().equals(UserID) && f.getPartnerTalentType().equals(talentFlag)){
                             addedFriend = true;
                             break;
                         }

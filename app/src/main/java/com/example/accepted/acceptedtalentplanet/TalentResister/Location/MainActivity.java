@@ -220,6 +220,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         }
         if(!isHavingData)
             getCurrentLocation();
+        updateLocationUI();
     }
 
     @Override
@@ -272,7 +273,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                     Address addr = list.get(0);
 
                     Log.d("MyLocation", "location: " + mCurrentLocation.getLatitude() + ", " + mCurrentLocation.getLongitude() + ", " + addr.getAddressLine(0) + "," + addr.toString());
-                    setCurrentLocation(mCurrentLocation,"현재위치" , addr.getAddressLine(0));
+                    setCurrentLocation(mCurrentLocation,"기존위치" , addr.getAddressLine(0));
 
                 }
 
@@ -302,7 +303,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             Address addr = list.get(0);
 
             Log.d("MyLocation", "location: " + mCurrentLocation.getLatitude() + ", " + mCurrentLocation.getLongitude() + ", " + addr.getAddressLine(0) + "," + addr.toString());
-            setCurrentLocation(mCurrentLocation,"현재위치" , addr.getAddressLine(0));
+            setCurrentLocation(mCurrentLocation,"선택위치" , addr.getAddressLine(0));
 
         }
     }
