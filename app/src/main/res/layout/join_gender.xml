@@ -12,13 +12,12 @@
     >
 
     <RelativeLayout
+        android:id="@+id/rl_preContainer_join_gender"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginTop="10dp"
+        android:layout_height="40dp"
         android:gravity="center_vertical"
-        android:layout_weight="1"
         >
 
         <LinearLayout
@@ -50,9 +49,9 @@
     </RelativeLayout>
 
         <TextView
+            android:id="@+id/tv_TitleContainer_join_gender"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="2.4"
+            android:layout_height="60dp"
             android:layout_gravity="center"
             android:gravity="center"
             android:textSize="@dimen/Page_Txt"
@@ -63,12 +62,12 @@
 
 
     <LinearLayout
+            android:id="@+id/ll_genderContainer_join_gender"
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+        android:layout_height="45dp"
             android:layout_marginRight="60dp"
             android:layout_marginLeft="60dp"
-            android:layout_weight="1.6"
             >
 
             <Spinner
@@ -107,21 +106,25 @@
         </LinearLayout>
 
 
-    <Button
+    <View
+        android:id="@+id/trashView_join_gender"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_height="10dp"/>
+
+
+    <Button
+        android:id="@+id/btn_Next_join_gender"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
         android:layout_marginLeft="60dp"
         android:layout_marginRight="60dp"
-        android:layout_marginTop="15dp"
         android:background="@drawable/bgr_bigbtn"
         android:onClick="goNext"
-        android:paddingLeft="30dp"
-        android:paddingRight="30dp"
         android:text="다 음"
-        android:textAllCaps="false"
         android:textColor="@color/textcolor_bigbtn"
         android:textSize="@dimen/BigBtn"
         />
+
+
 
 </LinearLayout>

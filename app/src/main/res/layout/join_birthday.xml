@@ -5,20 +5,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#ffffff"
-    android:weightSum="24"
     android:focusable="true"
     android:clickable="true"
     android:focusableInTouchMode="true"
     >
 
         <RelativeLayout
+            android:id="@+id/rl_preContainer_join_birth"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="40dp"
             android:gravity="center_vertical"
-            android:layout_marginTop="10dp"
-            android:layout_weight="1"
             >
 
             <LinearLayout
@@ -50,9 +48,9 @@
 
 
         <TextView
+            android:id="@+id/tv_TitleContainer_join_birth"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="2.4"
+            android:layout_height="60dp"
             android:layout_gravity="center"
             android:gravity="center"
             android:textSize="@dimen/Page_Txt"
@@ -63,10 +61,10 @@
 
 
     <LinearLayout
+        android:id="@+id/ll_birthContainer_join_birth"
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1.5"
+            android:layout_height="45dp"
             android:layout_marginLeft="40dp"
             android:layout_marginRight="40dp"
             >
@@ -130,13 +128,17 @@
 
     </LinearLayout>
 
-    <Button
+    <View
+        android:id="@+id/trashView_join_birth"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_height="10dp"/>
+
+    <Button
+        android:id="@+id/btn_Accept_birth_join"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
         android:layout_marginLeft="40dp"
         android:layout_marginRight="40dp"
-        android:layout_marginTop="15dp"
         android:background="@drawable/bgr_bigbtn"
         android:onClick="goRegist"
         android:text="가입 완료"

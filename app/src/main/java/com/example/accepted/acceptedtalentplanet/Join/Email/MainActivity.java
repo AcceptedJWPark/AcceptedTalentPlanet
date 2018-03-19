@@ -3,6 +3,7 @@ package com.example.accepted.acceptedtalentplanet.Join.Email;
 /**
  * Created by kwonhong on 2017-10-01.
  */
+
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,12 +11,17 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -40,8 +46,16 @@ public class MainActivity extends  AppCompatActivity {
     private String emailCode;
     private boolean isconfirmEmailCheck = false;
     private Context mContext;
-    EditText et_EmailCode;
-    EditText et_Email;
+    private EditText et_EmailCode;
+    private EditText et_Email;
+
+    private RelativeLayout rl_preContainer;
+    private TextView tv_TitleContainer;
+    private LinearLayout ll_EmailContainer;
+    private LinearLayout ll_EmailAcceptContainer;
+    private View trashView1;
+    private View trashView2;
+    private Button btn_Accept;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,6 +72,51 @@ public class MainActivity extends  AppCompatActivity {
 
         et_EmailCode = (EditText) findViewById(R.id.et_EmailCode_Email_Join);
         et_Email = (EditText)findViewById(R.id.et_Email_Join);
+
+        rl_preContainer = (RelativeLayout) findViewById(R.id.rl_preContainer_join_email);
+        tv_TitleContainer = (TextView) findViewById(R.id.tv_TitleContainer_join_email);
+        ll_EmailContainer = (LinearLayout) findViewById(R.id.ll_birthContainer_join_email);
+        ll_EmailAcceptContainer = (LinearLayout) findViewById(R.id.ll_AcceptEmailContainer_Join_email);
+        trashView1 = (View) findViewById(R.id.trashView1_join_email);
+        trashView2 = (View) findViewById(R.id.trashView2_join_email);
+        btn_Accept = (Button) findViewById(R.id.btn_Accept_join_email);
+
+
+        DisplayMetrics metrics = new DisplayMetrics();
+        WindowManager windowManager = (WindowManager) getApplicationContext().getSystemService(Context.WINDOW_SERVICE);
+        windowManager.getDefaultDisplay().getMetrics(metrics);
+
+
+        int preContainer= (int) (metrics.heightPixels*0.06);
+        int Title_height = (int) (metrics.heightPixels*0.1);
+        int emailAccept_height = (int) (metrics.heightPixels*0.065);
+        int trashView1_height= (int) (metrics.heightPixels*0.015);
+        int trashView2_height= (int) (metrics.heightPixels*0.02);
+        int nextBtn_height= (int) (metrics.heightPixels*0.04);
+
+        ViewGroup.LayoutParams params1 = rl_preContainer.getLayoutParams();
+        ViewGroup.LayoutParams params2 = tv_TitleContainer.getLayoutParams();
+        ViewGroup.LayoutParams params3 = ll_EmailContainer.getLayoutParams();
+        ViewGroup.LayoutParams params4 = ll_EmailAcceptContainer.getLayoutParams();
+        ViewGroup.LayoutParams params5 = trashView1.getLayoutParams();
+        ViewGroup.LayoutParams params6 = trashView2.getLayoutParams();
+        ViewGroup.LayoutParams params7 = btn_Accept.getLayoutParams();
+
+        params1.height = preContainer;
+        params2.height = Title_height;
+        params3.height = emailAccept_height;
+        params4.height = emailAccept_height;
+        params5.height = trashView1_height;
+        params6.height = trashView2_height;
+        params7.height = nextBtn_height;
+
+        rl_preContainer.setLayoutParams(params1);
+        tv_TitleContainer.setLayoutParams(params2);
+        ll_EmailContainer.setLayoutParams(params3);
+        ll_EmailAcceptContainer.setLayoutParams(params4);
+        trashView1.setLayoutParams(params5);
+        trashView2.setLayoutParams(params6);
+        btn_Accept.setLayoutParams(params7);
 
 
         findViewById(R.id.btn_ConfirmEmail).setOnClickListener(mClickListener);
@@ -167,8 +226,8 @@ public class MainActivity extends  AppCompatActivity {
                     Log.d("response", emailCode);
                     postRequestQueue.add(sendMailRequest);
                     Toast.makeText(mContext, "E-mail에서 인증번호를 확인해주세요.", Toast.LENGTH_SHORT).show();
-                    ((LinearLayout)findViewById(R.id.ll_ll_AcceptEmailContainer_Email_Join)).setVisibility(View.VISIBLE);
-                    ((Button) findViewById(R.id.btn_Accept_Email_Join)).setVisibility(View.VISIBLE);
+                    ((LinearLayout)findViewById(R.id.ll_AcceptEmailContainer_Join_email)).setVisibility(View.VISIBLE);
+                    ((Button) findViewById(R.id.btn_Accept_join_email)).setVisibility(View.VISIBLE);
                 }
                 catch(JSONException e){
                     e.printStackTrace();

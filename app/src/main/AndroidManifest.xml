@@ -21,7 +21,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:largeHeap="true"
-        android:theme="@style/AppTheme.NoActionBar">
+        android:theme="@style/AppTheme.NoActionBar"
+        >
         <meta-data android:name="android.max_aspect" android:value="2.1" />
         <activity android:name=".LoadingLogin.Loading.MainActivity"
             >
@@ -51,7 +52,7 @@
 
         <activity
             android:name=".LoadingLogin.Login.MainActivity"
-
+            android:windowSoftInputMode="adjustNothing|stateAlwaysHidden"
             />
 
         <activity
@@ -82,7 +83,9 @@
         <activity
             android:name=".Join.Birth.MainActivity"
             android:theme="@style/AppTheme" />
-        <activity android:name=".MyProfile.MainActivity"/>
+        <activity android:name=".MyProfile.MainActivity"
+            android:windowSoftInputMode="adjustNothing|stateAlwaysHidden"
+            />
 
         <activity android:name=".MyProfile.CompleteList.MainActivity"/>
 

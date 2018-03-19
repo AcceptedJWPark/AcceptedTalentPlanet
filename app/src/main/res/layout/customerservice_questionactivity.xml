@@ -5,17 +5,15 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="#ffffff"
-    android:weightSum="24"
     android:focusable="true"
     android:clickable="true"
     android:focusableInTouchMode="true"
     >
 
     <LinearLayout
-        android:id="@+id/claim_toolbar"
+        android:id="@+id/ll_Toolbar_Question"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1.32"
+        android:layout_height="@dimen/MyProfile_Toolbar"
         android:gravity="center"
         android:background="@color/toolbarcolor_background"
         >
@@ -62,9 +60,9 @@
 
 
     <TextView
+        android:id="@+id/tv_Title_Question"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="2"
+        android:layout_height="60dp"
         android:gravity="center"
         android:textColor="@color/textColor_txtpage"
         android:textSize="@dimen/Page_Txt"
@@ -74,9 +72,9 @@
 
 
     <RelativeLayout
+        android:id="@+id/rl_QuestionContainer_Question"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="6"
+        android:layout_height="@dimen/Question_Edit_Layout"
         android:layout_marginRight="40dp"
         android:layout_marginLeft="40dp"
         android:background="@drawable/bgr_edittxt_box"
@@ -159,12 +157,11 @@
     <Button
         android:id="@+id/btn_Save_Question"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_height="30dp"
         android:background="@drawable/bgr_bigbtn"
+        android:layout_marginTop="10dp"
         android:layout_marginRight="40dp"
         android:layout_marginLeft="40dp"
-        android:layout_marginTop="10dp"
         android:text="문의하기"
         android:textSize="@dimen/BigBtn"
         android:textColor="@color/textcolor_bigbtn"

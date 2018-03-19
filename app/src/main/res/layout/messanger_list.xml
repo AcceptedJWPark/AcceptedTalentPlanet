@@ -8,7 +8,7 @@
     >
 
     <LinearLayout
-        android:id="@+id/claim_toolbar"
+        android:id="@+id/ll_Toolbar_Question"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1.32"
