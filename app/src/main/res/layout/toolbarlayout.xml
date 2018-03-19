@@ -1,16 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="40dp"
     android:background="#002c62"
+    android:orientation="horizontal"
     android:clickable="true"
     android:focusable="true"
     android:focusableInTouchMode="true"
     >
 
-    <ImageView
+    <LinearLayout
         android:id="@+id/DrawerLayout_OpenIcon"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:layout_weight="1"
+        android:clickable="true"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        >
+
+    <ImageView
         android:layout_width="@dimen/Toolbar_Img"
         android:layout_height="@dimen/Toolbar_Img"
         android:layout_centerVertical="true"
@@ -18,35 +29,44 @@
         android:src="@drawable/icon_menu2"
         android:layout_alignParentLeft="true"
         android:layout_marginLeft="15dp"
-        android:clickable="true"
-        android:focusable="false"
-        android:focusableInTouchMode="false"
         />
 
+    </LinearLayout>
     <TextView
         android:id="@+id/tv_toolbarTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="8"
         android:text="Home"
+        android:gravity="center"
         android:textColor="#ffffff"
         android:layout_centerInParent="true"
         android:textSize="@dimen/ToolbarTxt"
         />
 
-    <ImageView
+
+    <LinearLayout
         android:id="@+id/DrawerLayout_AlarmIcon"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:layout_weight="1"
+        android:clickable="true"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        >
+
+    <ImageView
         android:layout_width="@dimen/Toolbar_Img"
         android:layout_height="@dimen/Toolbar_Img"
         android:layout_centerVertical="true"
         android:tint="#ffffff"
         android:paddingLeft="5dp"
-
         android:layout_marginRight="15dp"
         android:src="@android:drawable/ic_popup_reminder"
         android:layout_alignParentRight="true"
-        android:clickable="true"
-        android:focusable="false"
-        android:focusableInTouchMode="false"
         />
+    </LinearLayout>
 
-</RelativeLayout>
+
+</LinearLayout>

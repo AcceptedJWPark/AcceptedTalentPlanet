@@ -17,7 +17,7 @@
         android:id="@+id/ll_Toolbar_Question"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1.32"
+        android:layout_weight="1.5"
         android:gravity="center"
         android:background="@color/toolbarcolor_background"
         >
@@ -104,20 +104,16 @@
         android:id="@+id/listView_Give_FriendList"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="21.68"
+        android:layout_weight="21.86"
         android:visibility="visible"
-        android:layout_marginRight="5dp"
-        android:layout_marginLeft="5dp"
         >
     </ListView>
     <ListView
         android:id="@+id/listView_Take_FriendList"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="21.68"
+        android:layout_weight="21.86"
         android:visibility="visible"
-        android:layout_marginRight="5dp"
-        android:layout_marginLeft="5dp"
         >
     </ListView>
 

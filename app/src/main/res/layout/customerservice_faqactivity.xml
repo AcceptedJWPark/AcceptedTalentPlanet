@@ -12,7 +12,7 @@
         android:id="@+id/ll_Toolbar_Question"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1.32"
+        android:layout_weight="1.5"
         android:background="@color/toolbarcolor_background"
         android:gravity="center">
 
@@ -59,7 +59,7 @@
         android:id="@+id/elv_Faq"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="22.68"
+        android:layout_weight="22.5"
         >
 
     </ExpandableListView>

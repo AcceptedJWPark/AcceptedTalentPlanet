@@ -26,6 +26,7 @@
             android:layout_height="match_parent"
             android:adjustViewBounds="false"
             android:layout_weight="1"
+            android:scaleType="fitXY"
             android:gravity="center"
             />
     </LinearLayout>

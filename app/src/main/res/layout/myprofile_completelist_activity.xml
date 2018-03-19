@@ -15,7 +15,7 @@
         android:id="@+id/ll_Toolbar_Question"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1.32"
+        android:layout_weight="1.5"
         android:gravity="center"
         android:background="@color/toolbarcolor_background"
         >
@@ -61,16 +61,12 @@
 
     </LinearLayout>
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.3"/>
 
     <ListView
         android:id="@+id/listView_CompleteList_MyProfile"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="21.9"
+        android:layout_weight="22.5"
         android:layout_marginRight="5dp"
         android:layout_marginLeft="5dp"
         >

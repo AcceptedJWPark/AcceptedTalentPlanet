@@ -73,6 +73,7 @@
             android:adjustViewBounds="false"
             android:layout_alignParentLeft="true"
             android:gravity="center"
+            android:scaleType="fitXY"
             android:visibility="invisible"
             />
 

@@ -28,6 +28,7 @@
             android:adjustViewBounds="false"
             android:layout_weight="1"
             android:gravity="center"
+            android:scaleType="fitXY"
             />
     </LinearLayout>
 

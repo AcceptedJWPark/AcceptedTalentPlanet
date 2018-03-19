@@ -14,7 +14,7 @@
         android:id="@+id/ll_Toolbar_Question"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1.32"
+        android:layout_weight="1.5"
         android:gravity="center"
         android:background="@color/toolbarcolor_background"
         >

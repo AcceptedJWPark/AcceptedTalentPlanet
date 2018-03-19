@@ -11,7 +11,7 @@
         android:id="@+id/ll_Toolbar_Question"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1.32"
+        android:layout_weight="1.5"
         android:gravity="center"
         android:background="#002c62"
         android:paddingLeft="10dp"
@@ -82,7 +82,7 @@
         android:id="@+id/Messanger_List_ListView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="22.68"
+        android:layout_weight="22.5"
         />
 
 </LinearLayout>

@@ -27,6 +27,7 @@
         android:adjustViewBounds="false"
         android:gravity="center"
         android:background="@drawable/testpicture2"
+        android:scaleType="fitXY"
     />
     </LinearLayout>
 
