@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000000"
+    android:orientation="vertical"
+    >
+
+    <LinearLayout
+        android:id="@+id/ll_CloseContainer_pictureExpand"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:gravity="right|center"
+        android:layout_margin="10dp"
+        >
+
+        <ImageView
+            android:id="@+id/iv_Close_pictureExpand"
+            android:layout_width="@dimen/Toolbar_Pre_Img"
+            android:layout_height="@dimen/Toolbar_Pre_Img"
+            android:src="@drawable/icon_close2"
+
+            />
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/iv_Picture_pictureExpand"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/testpicture2"
+        />
+
+
+
+</LinearLayout>

@@ -46,6 +46,7 @@ import com.example.accepted.acceptedtalentplanet.R;
 import com.example.accepted.acceptedtalentplanet.SaveSharedPreference;
 import com.example.accepted.acceptedtalentplanet.VolleyMultipartRequest;
 import com.example.accepted.acceptedtalentplanet.VolleySingleton;
+import com.example.accepted.acceptedtalentplanet.pictureExpand;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -275,8 +276,16 @@ public class MainActivity extends AppCompatActivity {
         final AlertDialog.Builder AlarmDeleteDialog = new AlertDialog.Builder(MainActivity.this);
 
         iv_Picture = (ImageView) findViewById(R.id.iv_Picture_MyProfile);
-        iv_PictureIcon = (ImageView) findViewById(R.id.iv_PictureIcon_MyProfile);
+        iv_Picture.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext, pictureExpand.class);
+                startActivity(intent);
+            }
+        });
 
+
+        iv_PictureIcon = (ImageView) findViewById(R.id.iv_PictureIcon_MyProfile);
         iv_PictureIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
