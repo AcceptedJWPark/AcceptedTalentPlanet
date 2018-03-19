@@ -229,11 +229,15 @@
                             android:id="@+id/cb_isShowGender_MyProfile"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
-                            android:layout_weight="2"
+                            android:layout_weight="0.8"
                             android:text="비공개"
                             android:textColor="@color/textColor_object"
                             android:textSize="@dimen/CheckBox_Txt"
                             />
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"/>
 
 
                     </LinearLayout>
@@ -282,11 +286,16 @@
                             android:id="@+id/cb_isShowBirth_MyProfile"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
-                            android:layout_weight="2"
+                            android:layout_weight="0.8"
                             android:text="비공개"
                             android:textColor="@color/textColor_object"
                             android:textSize="@dimen/CheckBox_Txt"
                             />
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"/>
 
                     </LinearLayout>
                 </LinearLayout>
@@ -340,11 +349,17 @@
                             android:id="@+id/cb_isShowJob_MyProfile"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
-                            android:layout_weight="2"
+                            android:layout_weight="0.8"
                             android:text="비공개"
                             android:textColor="@color/textColor_object"
                             android:textSize="@dimen/CheckBox_Txt"
                             />
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"/>
+
 
                     </LinearLayout>
 
@@ -562,22 +577,28 @@
                 </LinearLayout>
 
 
+                <LinearLayout
+                    android:id="@+id/ll_SaveContainer_MyProfile"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_below="@+id/ll_Container1_MyProfile"
+                    android:gravity="center"
+
+                    >
 
                     <Button
                         android:id="@+id/btn_Save_MyProfile"
                         android:layout_width="match_parent"
-                        android:layout_height="40dp"
+                        android:layout_height="30dp"
                         android:layout_marginLeft="120dp"
                         android:layout_marginRight="120dp"
-                        android:layout_gravity="center"
-                        android:layout_below="@+id/ll_Container1_MyProfile"
                         android:textSize="@dimen/BigBtn"
                         android:background="@drawable/bgr_bigbtn"
                         android:text="저장하기"
                         android:textColor="@color/textcolor_bigbtn"
                         />
 
-
+                </LinearLayout>
 
             </RelativeLayout>
 

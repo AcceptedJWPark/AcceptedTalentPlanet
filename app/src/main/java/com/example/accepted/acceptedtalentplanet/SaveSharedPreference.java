@@ -25,10 +25,13 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.android.volley.NetworkResponse;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.ServerError;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.HttpHeaderParser;
+import com.android.volley.toolbox.StringRequest;
 import com.example.accepted.acceptedtalentplanet.Alarm.ListItem;
 import com.example.accepted.acceptedtalentplanet.Messanger.List.MainActivity;
 import com.google.gson.Gson;
@@ -43,6 +46,8 @@ import java.lang.reflect.Type;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 import static android.text.TextUtils.isEmpty;
 
@@ -347,7 +352,7 @@ public class SaveSharedPreference{
         ((LinearLayout) ((Activity)context).findViewById(R.id.SlidingMenu_LogOut)).setOnClickListener(listener);
 
     }
-    public static void DrawerLayout_Open(View view, Context mContext, DrawerLayout drawerLayout, View drawerView) {
+    public static void DrawerLayout_Open(View view, final Context mContext, DrawerLayout drawerLayout, View drawerView) {
 
         Intent i;
 
@@ -435,6 +440,36 @@ public class SaveSharedPreference{
             }
 
             case R.id.SlidingMenu_LogOut : {
+                final String userID = getUserId(mContext);
+                RequestQueue postRequestQueue = VolleySingleton.getInstance(mContext).getRequestQueue();
+                StringRequest postJsonRequest = new StringRequest(Request.Method.POST, SaveSharedPreference.getServerIp() + "Login/saveFCMToken.do", new Response.Listener<String>(){
+                    @Override
+                    public void onResponse(String response){
+                        try {
+                            JSONObject obj = new JSONObject(response);
+                            if(obj.getString("result").equals("success")){
+                                Log.d("saveToken", "토큰 저장 성공");
+                            }else{
+                                Log.d("saveToken", "토큰 저장 실패");
+                            }
+                        }
+                        catch(JSONException e){
+                            e.printStackTrace();
+                        }
+                    }
+                }, SaveSharedPreference.getErrorListener()) {
+                    @Override
+                    protected Map<String, String> getParams(){
+                        Map<String, String> params = new HashMap();
+                        params.put("userID", userID);
+                        params.put("fcmToken", "");
+
+
+                        return params;
+                    }
+                };
+
+                postRequestQueue.add(postJsonRequest);
                 clearUserInfo(mContext);
                 i = new Intent(mContext, com.example.accepted.acceptedtalentplanet.LoadingLogin.Login.MainActivity.class);
                 mContext.startActivity(i);

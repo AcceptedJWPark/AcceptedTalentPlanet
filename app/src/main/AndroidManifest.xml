@@ -84,7 +84,7 @@
             android:name=".Join.Birth.MainActivity"
             android:theme="@style/AppTheme" />
         <activity android:name=".MyProfile.MainActivity"
-            android:windowSoftInputMode="adjustNothing|stateAlwaysHidden"
+            android:windowSoftInputMode="stateAlwaysHidden"
             />
 
         <activity android:name=".MyProfile.CompleteList.MainActivity"/>
