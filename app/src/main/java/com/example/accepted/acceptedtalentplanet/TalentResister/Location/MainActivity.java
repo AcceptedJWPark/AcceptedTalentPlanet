@@ -18,14 +18,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.util.DisplayMetrics;
 import android.util.Log;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.WindowManager;
-import android.widget.Button;
-import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import com.example.accepted.acceptedtalentplanet.GeoPoint;
 import com.example.accepted.acceptedtalentplanet.MyTalent;
@@ -65,10 +58,6 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     private Context mContext;
 
-    private LinearLayout ll_TxtContainer;
-    private Button btn_Next;
-
-
     private FragmentManager fragmentManager;
     private MapFragment mapFragment;
     private GoogleMap gMap;
@@ -96,25 +85,8 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                 .addApi(LocationServices.API)
                 .build();
 
-        ll_TxtContainer = (LinearLayout) findViewById(R.id.ll_TxtContainer_TalentResister);
-        btn_Next = (Button) findViewById(R.id.btn_Next_TalentRegister);
 
 
-        DisplayMetrics metrics = new DisplayMetrics();
-        WindowManager windowManager = (WindowManager) getApplicationContext().getSystemService(Context.WINDOW_SERVICE);
-        windowManager.getDefaultDisplay().getMetrics(metrics);
-
-        int TalentResister_Location_Txt_LL_height = metrics.heightPixels/16;
-        int TalentResister_Location_Btn_height = metrics.heightPixels/24;
-
-        ViewGroup.LayoutParams params2 = ll_TxtContainer.getLayoutParams();
-        ViewGroup.LayoutParams params3 = btn_Next.getLayoutParams();
-
-        params2.height = TalentResister_Location_Txt_LL_height;
-        params3.height = TalentResister_Location_Btn_height;
-
-        ll_TxtContainer.setLayoutParams(params2);
-        btn_Next.setLayoutParams(params3);
 
         fragmentManager = getFragmentManager();
         mapFragment = (MapFragment)fragmentManager.findFragmentById(R.id.frg_Map_TalentRegister);
@@ -317,7 +289,6 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                 .setPositiveButton("확인", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        Toast.makeText(mContext, "확인 선택", Toast.LENGTH_SHORT).show();
                         dialog.cancel();
                         SaveSharedPreference.setGeoPointArr(mContext, new GeoPoint(mCurrentLocation.getLatitude(), mCurrentLocation.getLongitude()));
                         location = marker.getSnippet();
@@ -339,7 +310,6 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                 .setNegativeButton("닫기", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        Toast.makeText(mContext, "취소 하기 클릭", Toast.LENGTH_SHORT).show();
                         dialog.cancel();
                     }
                 });
@@ -369,24 +339,6 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     }
 
 
-
-    //TODO: 장소 3개 입력이 안되면 오류 발생, 1개 이상 입력되면 넘어가야함
-    public void goNext(View v){
-
-        Intent i = new Intent(this, com.example.accepted.acceptedtalentplanet.TalentResister.Level.MainActivity.class);
-        i.putExtra("talentFlag", isRegisted);
-        i.putExtra("talent1", keyword1);
-        i.putExtra("talent2", keyword2);
-        i.putExtra("talent3", keyword3);
-        i.putExtra("loc", location);
-        i.putExtra("isHavingData", isHavingData);
-
-        if(isHavingData){
-            i.putExtra("data", data);
-        }
-        startActivity(i);
-
-    }
 
 
     private void updateLocationUI(){

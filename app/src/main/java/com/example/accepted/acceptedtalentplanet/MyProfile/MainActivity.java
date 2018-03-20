@@ -40,7 +40,6 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-import com.bumptech.glide.Glide;
 import com.example.accepted.acceptedtalentplanet.BuildConfig;
 import com.example.accepted.acceptedtalentplanet.MyProfileData;
 import com.example.accepted.acceptedtalentplanet.R;
@@ -73,8 +72,8 @@ public class MainActivity extends AppCompatActivity {
     private View view_DrawerLayout;
 
     private android.support.v7.widget.Toolbar ll_Toolbar;
-    private ImageView iv_DrawerLayoutIcon;
-    private ImageView iv_AlarmIcon;
+    private LinearLayout iv_DrawerLayoutIcon;
+    private LinearLayout iv_AlarmIcon;
 
     private Button btn_Save;
     private TextView tv_Divider1;
@@ -131,8 +130,8 @@ public class MainActivity extends AppCompatActivity {
         et_Job.setOnFocusChangeListener(new View.OnFocusChangeListener() {
            @Override
            public void onFocusChange(View v, boolean hasFocus) {
-             iv_DrawerLayoutIcon = (ImageView) findViewById(R.id.DrawerLayout_OpenIcon);
-             iv_AlarmIcon = (ImageView) findViewById(R.id.DrawerLayout_AlarmIcon);
+             iv_DrawerLayoutIcon = (LinearLayout) findViewById(R.id.DrawerLayout_OpenIcon);
+             iv_AlarmIcon = (LinearLayout) findViewById(R.id.DrawerLayout_AlarmIcon);
                if(!hasFocus)
                {
                    hideKeyboard(v,mContext);
@@ -195,7 +194,7 @@ public class MainActivity extends AppCompatActivity {
 
         int toolbar_height = (int) (displayHeight_NoStatus*0.055);
         int picture_LL_height = (int) (displayHeight_NoStatus*0.188);
-        int btn_height = (int) (displayHeight_NoStatus*0.042);
+        int btn_height = (int) (displayHeight_NoStatus*0.04);
         int Devider_height = (int) (displayHeight_NoStatus*0.045);
         int List_height = (int) (displayHeight_NoStatus*0.075);
         int btnContainer_height =  (displayHeight_NoStatus-(toolbar_height+picture_LL_height+Devider_height*2+List_height*8));

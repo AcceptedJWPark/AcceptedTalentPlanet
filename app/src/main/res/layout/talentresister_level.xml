@@ -12,7 +12,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="80dp"
+        android:layout_height="70dp"
         android:orientation="vertical"
         android:layout_marginTop="30dp"
         >
@@ -36,7 +36,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="70dp"
         android:orientation="horizontal"
         android:paddingLeft="5dp"
         android:paddingRight="5dp"
@@ -45,7 +45,7 @@
         <LinearLayout
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:gravity="center"
             android:orientation="vertical">
             <CheckBox
@@ -66,7 +66,7 @@
         <LinearLayout
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:gravity="center"
             android:orientation="vertical">
 
@@ -87,7 +87,7 @@
         <LinearLayout
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:gravity="center"
             android:orientation="vertical">
             <CheckBox
@@ -107,7 +107,7 @@
         <LinearLayout
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:gravity="center"
             android:orientation="vertical">
             <CheckBox
@@ -127,7 +127,7 @@
         <LinearLayout
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:gravity="center"
             android:orientation="vertical">
             <CheckBox
@@ -148,11 +148,12 @@
 
 
     <Button
+        android:id="@+id/btn_level_TalentRegister"
         android:layout_width="match_parent"
         android:layout_height="30dp"
         android:layout_gravity="center"
-        android:layout_marginTop="20dp"
         android:layout_marginLeft="80dp"
+        android:layout_marginTop="20dp"
         android:layout_marginRight="80dp"
         android:background="@drawable/bgr_bigbtn"
         android:onClick="goNext"

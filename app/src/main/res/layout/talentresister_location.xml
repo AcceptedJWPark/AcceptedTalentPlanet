@@ -16,10 +16,8 @@
     <LinearLayout
         android:id="@+id/ll_TxtContainer_TalentResister"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="70dp"
         android:gravity="center_vertical"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
         android:orientation="vertical">
 
         <TextView
@@ -59,20 +57,6 @@
         android:layout_height="match_parent"
         class="com.google.android.gms.maps.MapFragment"/>
 
-    <Button
-        android:id="@+id/btn_Next_TalentRegister"
-        android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:layout_marginLeft="70dp"
-        android:textSize="@dimen/BigBtn"
-        android:layout_marginRight="70dp"
-        android:background="@drawable/bgr_bigbtn"
-        android:onClick="goNext"
-        android:layout_marginBottom="25dp"
-        android:layout_alignParentBottom="true"
-        android:text="다 음"
-        android:textAllCaps="false"
-        android:textColor="@color/textcolor_bigbtn" />
 
 
 </LinearLayout>
