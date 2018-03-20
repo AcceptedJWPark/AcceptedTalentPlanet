@@ -16,8 +16,8 @@
             android:gravity="center|left"
             android:textColor="@color/textColor_txtpage"
             android:lineSpacingExtra="10dp"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
+            android:paddingLeft="@dimen/Margin_btn"
+            android:paddingRight="@dimen/Margin_btn"
             android:textSize="@dimen/ListView_ChildTxt_Question"
             android:text="박종우님과 재 드림 기타, 드럼, 종우님과 재 드림 기타, 드럼, 피, 드럼, 피아노 완료의 건"
             />

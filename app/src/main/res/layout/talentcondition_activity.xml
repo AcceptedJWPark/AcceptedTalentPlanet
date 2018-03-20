@@ -46,7 +46,7 @@
         android:paddingTop="1dp"
         android:paddingBottom="1dp"
         android:gravity="center"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="@dimen/Margin_btn"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
         >
@@ -85,8 +85,8 @@
         android:layout_weight="2.4"
         android:gravity="center_vertical"
         android:orientation="vertical"
-        android:layout_marginTop="30dp"
-        android:layout_marginBottom="30dp"
+        android:layout_marginTop="@dimen/Margin_txtContainer"
+        android:layout_marginBottom="@dimen/Margin_txtContainer"
         >
 
         <LinearLayout
@@ -182,7 +182,7 @@
             android:layout_height="0dp"
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="@dimen/Margin_txtContainer"
             android:layout_weight="1"
             android:gravity="center_vertical"
             android:orientation="horizontal">

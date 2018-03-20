@@ -55,8 +55,8 @@
         android:paddingTop="1dp"
         android:paddingBottom="1dp"
         android:gravity="center"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginTop="@dimen/Margin_btn"
+        android:layout_marginBottom="@dimen/Margin_btn"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
         >
@@ -93,7 +93,7 @@
                 android:gravity="center"
                 android:textSize="@dimen/Page_Txt"
                 android:textColor="@color/textColor_txtpage"
-                android:layout_marginBottom="10dp"
+                android:layout_marginBottom="@dimen/Margin_btn"
                 android:text="박종우님의 재능을 공유할 수 있는 회원 리스트 입니다."
                 />
 
@@ -129,8 +129,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="20.68"
-                    android:layout_marginTop="2dp"
-                    android:layout_marginBottom="2dp"
                     >
                 </ListView>
 
