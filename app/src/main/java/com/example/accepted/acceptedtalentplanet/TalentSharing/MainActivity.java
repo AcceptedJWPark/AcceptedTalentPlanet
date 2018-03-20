@@ -4,7 +4,6 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
-import android.database.CursorIndexOutOfBoundsException;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Paint;
 import android.location.Location;
@@ -52,27 +51,29 @@ import static com.example.accepted.acceptedtalentplanet.SaveSharedPreference.Dra
  */
 
 public class MainActivity extends AppCompatActivity {
-    ArrayList<ListItem> arrayList_Original;
-    ArrayList<ListItem> arrayList;
-    Adapter adapter;
-    Context mContext;
-    ListView listView;
+    private ArrayList<ListItem> arrayList_Original;
+    private ArrayList<ListItem> arrayList;
+    private Adapter adapter;
+    private Context mContext;
+    private ListView listView;
 
-    DrawerLayout drawerLayout;
-    View view_DarawerLayout;
+    private DrawerLayout drawerLayout;
+    private View view_DarawerLayout;
 
-    TextView tv_Txt;
+    private TextView tv_Txt;
 
-    Button btn_giveSelect;
-    Button btn_takeSelect;
+    private Button btn_giveSelect;
+    private Button btn_takeSelect;
+
+    private ProgressBar pb;
 
 
     // 검색조건 관련 변수
-    boolean isGiveTalent = true;
+    private boolean isGiveTalent = true;
 
-    int interval = 100;
-    final int maxInterval = 30000;
-    int count = 0;
+    private int interval = 100;
+    private final int maxInterval = 30000;
+    private int count = 0;
 
     static Thread thread1;
     boolean running = false;
@@ -117,6 +118,10 @@ public class MainActivity extends AppCompatActivity {
 
         getTalentSharing();
         retrieveMessage();
+
+
+        pb = (ProgressBar) findViewById(R.id.pb_TalentSharing);
+
     }
 
     public void getTalentSharing() {
