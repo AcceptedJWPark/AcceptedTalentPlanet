@@ -1,6 +1,5 @@
 package com.example.accepted.acceptedtalentplanet.TalentSharing;
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
@@ -14,6 +13,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -65,7 +65,6 @@ public class MainActivity extends AppCompatActivity {
     private Button btn_giveSelect;
     private Button btn_takeSelect;
 
-    private ProgressBar pb;
 
 
     // 검색조건 관련 변수
@@ -80,6 +79,7 @@ public class MainActivity extends AppCompatActivity {
 
     SQLiteDatabase sqliteDatabase;
     private ProgressBar progressBar;
+    private LinearLayout progressBarContainer;
     int progressRate = 0;
 
 
@@ -112,7 +112,6 @@ public class MainActivity extends AppCompatActivity {
         listView = (ListView) findViewById(R.id.listView_TalentSharing);
 
         retrieveMessage();
-        pb = (ProgressBar) findViewById(R.id.pb_TalentSharing);
         if(getIntent().hasExtra("Activity")){
             getTalentSharing();
         }else{
@@ -142,7 +141,9 @@ public class MainActivity extends AppCompatActivity {
         arrayList = new ArrayList<>();
         arrayList_Original = new ArrayList<>();
         progressBar = (ProgressBar)findViewById(R.id.progressBar);
-        progressBar.setVisibility(View.VISIBLE);
+        progressBarContainer = (LinearLayout) findViewById(R.id.progressBarContainer_TalentSharing);
+        progressBarContainer.setVisibility(View.VISIBLE);
+        listView.setVisibility(View.GONE);
 
         RequestQueue postRequestQueue = VolleySingleton.getInstance(mContext).getRequestQueue();
         StringRequest postJsonRequest = new StringRequest(Request.Method.POST, SaveSharedPreference.getServerIp() + "TalentSharing/getTalentSharing.do", new Response.Listener<String>() {
@@ -185,8 +186,8 @@ public class MainActivity extends AppCompatActivity {
 
                     adapter = new Adapter(mContext, arrayList);
                     listView.setAdapter(adapter);
-
-                    progressBar.setVisibility(View.GONE);
+                    progressBarContainer.setVisibility(View.GONE);
+                    listView.setVisibility(View.VISIBLE);
 
                 } catch (JSONException e) {
                     e.printStackTrace();
