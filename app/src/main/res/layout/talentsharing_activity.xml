@@ -80,17 +80,34 @@
                     />
             </LinearLayout>
 
-            <TextView
-                android:id="@+id/tv_Txt_TalentSharing"
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                android:gravity="center"
+                android:layout_marginBottom="@dimen/Margin_btn"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                >
+
+            <TextView
+                android:id="@+id/tv_Txt_TalentSharing"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:textSize="@dimen/Page_Txt"
                 android:textColor="@color/textColor_txtpage"
-                android:layout_marginBottom="@dimen/Margin_btn"
+                android:layout_centerInParent="true"
                 android:text="박종우님의 재능을 공유할 수 있는 회원 리스트 입니다."
                 />
+
+                <ImageView
+                    android:id="@+id/iv_renew_TalentSharing"
+                    android:layout_width="@dimen/Popup_Icon"
+                    android:layout_height="@dimen/Popup_Icon"
+                    android:layout_alignParentRight="true"
+                    android:src="@android:drawable/stat_notify_sync_noanim"
+                    android:tint="@color/colorPrimaryDark"
+                    />
+            </RelativeLayout>
 
                 <LinearLayout
                     android:id="@+id/ll_progressBar_TalentSharing"
@@ -126,7 +143,7 @@
         android:layout_weight="20.68"
         android:gravity="center"
         android:orientation="vertical"
-        android:visibility="visible"
+        android:visibility="gone"
         >
     <ProgressBar
         android:id="@+id/progressBar"
@@ -149,7 +166,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="20.68"
-                    android:visibility="gone"
+                    android:visibility="visible"
                     >
                 </ListView>
 

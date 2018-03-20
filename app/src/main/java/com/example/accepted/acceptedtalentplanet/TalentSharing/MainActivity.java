@@ -13,6 +13,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
@@ -67,6 +68,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+
     // 검색조건 관련 변수
     private boolean isGiveTalent = true;
 
@@ -112,6 +114,7 @@ public class MainActivity extends AppCompatActivity {
         listView = (ListView) findViewById(R.id.listView_TalentSharing);
 
         retrieveMessage();
+
         if(getIntent().hasExtra("Activity")){
             getTalentSharing();
         }else{
@@ -135,6 +138,14 @@ public class MainActivity extends AppCompatActivity {
             btn_takeSelect.setFocusableInTouchMode(true);
             btn_takeSelect.performClick();
         }
+
+        ((ImageView)findViewById(R.id.iv_renew_TalentSharing)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getTalentSharing();
+            }
+        });
+
     }
 
     public void getTalentSharing() {
@@ -182,16 +193,13 @@ public class MainActivity extends AppCompatActivity {
 
                     }
 
-
-
-                    adapter = new Adapter(mContext, arrayList);
-                    listView.setAdapter(adapter);
-                    progressBarContainer.setVisibility(View.GONE);
-                    listView.setVisibility(View.VISIBLE);
-
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
+                adapter = new Adapter(mContext, arrayList);
+                listView.setAdapter(adapter);
+                progressBarContainer.setVisibility(View.GONE);
+                listView.setVisibility(View.VISIBLE);
             }
         }, SaveSharedPreference.getErrorListener()) {
             @Override
