@@ -92,6 +92,7 @@ public class MainActivity extends AppCompatActivity {
                         FirebaseInstanceId.getInstance().getToken();
                 }else{
                     intent = new Intent(getBaseContext(), com.example.accepted.acceptedtalentplanet.TalentSharing.MainActivity.class);
+                    intent.putExtra("Activity", true);
                 }
                     startActivity(intent);
                     finish();

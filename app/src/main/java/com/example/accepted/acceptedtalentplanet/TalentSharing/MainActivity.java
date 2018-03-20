@@ -13,6 +13,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -50,8 +51,8 @@ import static com.example.accepted.acceptedtalentplanet.SaveSharedPreference.Dra
  */
 
 public class MainActivity extends AppCompatActivity {
-    private ArrayList<ListItem> arrayList_Original;
-    private ArrayList<ListItem> arrayList;
+    private static ArrayList<ListItem> arrayList_Original;
+    private static ArrayList<ListItem> arrayList;
     private Adapter adapter;
     private Context mContext;
     private ListView listView;
@@ -64,7 +65,6 @@ public class MainActivity extends AppCompatActivity {
     private Button btn_giveSelect;
     private Button btn_takeSelect;
 
-    private ProgressBar pb;
 
 
     // 검색조건 관련 변수
@@ -78,6 +78,9 @@ public class MainActivity extends AppCompatActivity {
     boolean running = false;
 
     SQLiteDatabase sqliteDatabase;
+    private ProgressBar progressBar;
+    private LinearLayout progressBarContainer;
+    int progressRate = 0;
 
 
 
@@ -107,22 +110,42 @@ public class MainActivity extends AppCompatActivity {
         btn_takeSelect = (Button) findViewById(R.id.btn_takeSelect_TalentSharing);
 
         listView = (ListView) findViewById(R.id.listView_TalentSharing);
-        arrayList = new ArrayList<>();
-        arrayList_Original = new ArrayList<>();
-        getTalentSharing();
+
         retrieveMessage();
+        if(getIntent().hasExtra("Activity")){
+            getTalentSharing();
+        }else{
+            adapter = new Adapter(mContext, arrayList);
+            listView.setAdapter(adapter);
+        }
+
+        btn_giveSelect.setOnClickListener(changeTalentFlag);
+        btn_takeSelect.setOnClickListener(changeTalentFlag);
 
 
-        pb = (ProgressBar) findViewById(R.id.pb_TalentSharing);
-
+        Intent i = getIntent();
+        String flag = i.getStringExtra("TalentSharing_TalentFlag");
+        if(flag == null) flag = "Give";
+        if(flag.equals("Give"))
+        {
+            btn_giveSelect.setFocusableInTouchMode(true);
+            btn_giveSelect.performClick();
+        }else if(flag.equals("Take"))
+        {
+            btn_takeSelect.setFocusableInTouchMode(true);
+            btn_takeSelect.performClick();
+        }
     }
 
     public void getTalentSharing() {
-
+        arrayList = new ArrayList<>();
+        arrayList_Original = new ArrayList<>();
+        progressBar = (ProgressBar)findViewById(R.id.progressBar);
+        progressBarContainer = (LinearLayout) findViewById(R.id.progressBarContainer_TalentSharing);
+        progressBarContainer.setVisibility(View.VISIBLE);
+        listView.setVisibility(View.GONE);
 
         RequestQueue postRequestQueue = VolleySingleton.getInstance(mContext).getRequestQueue();
-
-
         StringRequest postJsonRequest = new StringRequest(Request.Method.POST, SaveSharedPreference.getServerIp() + "TalentSharing/getTalentSharing.do", new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -156,28 +179,15 @@ public class MainActivity extends AppCompatActivity {
                             if(o.getString("TALENT_FLAG").equals("Y"))
                                 arrayList.add(target);
                         }
+
                     }
 
 
 
                     adapter = new Adapter(mContext, arrayList);
                     listView.setAdapter(adapter);
-                    btn_giveSelect.setOnClickListener(changeTalentFlag);
-                    btn_takeSelect.setOnClickListener(changeTalentFlag);
-
-
-                    Intent i = getIntent();
-                    String flag = i.getStringExtra("TalentSharing_TalentFlag");
-                    if(flag == null) flag = "Give";
-                    if(flag.equals("Give"))
-                    {
-                        btn_giveSelect.setFocusableInTouchMode(true);
-                        btn_giveSelect.performClick();
-                    }else if(flag.equals("Take"))
-                    {
-                        btn_takeSelect.setFocusableInTouchMode(true);
-                        btn_takeSelect.performClick();
-                    }
+                    progressBarContainer.setVisibility(View.GONE);
+                    listView.setVisibility(View.VISIBLE);
 
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -188,13 +198,12 @@ public class MainActivity extends AppCompatActivity {
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap();
                 params.put("userID", SaveSharedPreference.getUserId(mContext));
+
                 return params;
             }
         };
 
-
         postRequestQueue.add(postJsonRequest);
-
     }
 
     Button.OnClickListener changeTalentFlag = new View.OnClickListener(){
