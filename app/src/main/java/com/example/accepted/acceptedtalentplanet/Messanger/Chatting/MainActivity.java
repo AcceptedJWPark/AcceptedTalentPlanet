@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
     public SQLiteDatabase sqliteDatabase = null;
 
     public Thread thread1;
-    public boolean running;
+    public boolean running = true;
 
     public String lastMessageID = "0";
     private Bitmap picture = null;
@@ -317,14 +317,9 @@ public class MainActivity extends AppCompatActivity {
             adapter.notifyDataSetChanged();
             listView.setSelection(adapter.getCount() - 1);
         }
+
         thread1 = new MainActivity.PollingThread();
         thread1.start();
-    }
-
-    protected void onResume(){
-        super.onResume();
-
-        running = true;
     }
 
     protected void onPause(){

@@ -26,6 +26,8 @@ import com.example.accepted.acceptedtalentplanet.MyTalent;
 import com.example.accepted.acceptedtalentplanet.R;
 import com.example.accepted.acceptedtalentplanet.SaveSharedPreference;
 import com.example.accepted.acceptedtalentplanet.VolleySingleton;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.FirebaseInstanceIdService;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -171,7 +173,7 @@ public class MainActivity extends AppCompatActivity {
                         if(FcmToken != null) {
                             saveFcmToken();
                         }else{
-                            FcmToken = SaveSharedPreference.getFcmToken(mContext);
+                            FcmToken = FirebaseInstanceId.getInstance().getToken();
                         }
 
                     }else if(result.equals("fail")){
