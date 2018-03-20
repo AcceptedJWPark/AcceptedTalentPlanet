@@ -3,6 +3,7 @@ package com.example.accepted.acceptedtalentplanet.Messanger.List;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.CursorIndexOutOfBoundsException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.graphics.Bitmap;
@@ -93,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void refreshChatLog(){
-        String selectBasicChat = "SELECT D01.ROOM_ID, D01.USER_NAME, D01.PICTURE, D03.UNREADED_COUNT, D06.CONTENT, D06.CREATION_DATE, D01.USER_ID, D01.START_MESSAGE_ID\n" +
+        String selectBasicChat = "SELECT D01.ROOM_ID, D01.USER_NAME, D03.UNREADED_COUNT, D06.CONTENT, D06.CREATION_DATE, D01.USER_ID, D01.START_MESSAGE_ID\n" +
                 "FROM   TB_CHAT_ROOM D01\n" +
                 "\t   LEFT OUTER JOIN (SELECT D02.ROOM_ID, COUNT(D02.ROOM_ID) AS UNREADED_COUNT\n" +
                 "        FROM   TB_CHAT_LOG D02\n" +
@@ -120,11 +121,28 @@ public class MainActivity extends AppCompatActivity {
         while(!cursor.isAfterLast()){
             int roomID = cursor.getInt(0);
             String userName = cursor.getString(1);
-            String pictureData = (cursor.getString(2) == null)? "NODATA" : cursor.getString(2);
-            int unreadedCount = cursor.getInt(3);
-            String lastMessage = (cursor.getString(4)==null) ? "NODATA" : cursor.getString(4);
-            String lastDate = (cursor.getString(5) == null)? "NODATA" : cursor.getString(5);
-            String userID = cursor.getString(6);
+            int unreadedCount = cursor.getInt(2);
+            String lastMessage = (cursor.getString(3)==null) ? "NODATA" : cursor.getString(3);
+            String lastDate = (cursor.getString(4) == null)? "NODATA" : cursor.getString(4);
+            String userID = cursor.getString(5);
+
+            String fileData = "Tk9EQVRB";
+            try {
+
+                String selectPicture = "SELECT PICTURE FROM TB_IMAGES WHERE MASTER_ID = '" + SaveSharedPreference.getUserId(mContext) + "' AND USER_ID = '" + userID + "'";
+                Log.d("image query", selectPicture);
+                Cursor cursor2 = sqliteDatabase.rawQuery(selectPicture, null);
+
+                cursor2.moveToFirst();
+
+                fileData = cursor2.getString(0);
+
+                cursor2.close();
+            } catch (CursorIndexOutOfBoundsException e) {
+                e.printStackTrace();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
 
             if(!lastDate.equals("NODATA")) {
                 String[] dateTemp = lastDate.split(",");
@@ -136,10 +154,10 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-            Log.d("datas = ", roomID + userName + pictureData + unreadedCount + lastMessage + lastDate);
+            Log.d("datas = ", roomID + userName + fileData + unreadedCount + lastMessage + lastDate);
             Bitmap picture = null;
-            if(pictureData != null && !pictureData.equals("NODATA")){
-                picture = SaveSharedPreference.StringToBitMap(pictureData);
+            if(fileData != null && !fileData.equals("Tk9EQVRB")){
+                picture = SaveSharedPreference.StringToBitMap(fileData);
             }
             messanger_Arraylist.add(0,new ListItem(R.drawable.testpicture, userName, userID, lastMessage ,lastDate, unreadedCount, false, roomID, picture));
             cursor.moveToNext();
