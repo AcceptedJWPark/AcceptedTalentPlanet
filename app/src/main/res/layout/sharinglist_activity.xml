@@ -67,8 +67,8 @@
         android:paddingTop="1dp"
         android:paddingBottom="1dp"
         android:gravity="center"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginTop="@dimen/Margin_btn"
+        android:layout_marginBottom="@dimen/Margin_btn"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
         >

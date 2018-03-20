@@ -74,7 +74,10 @@
     <dimen name="Picture_Width">88dp</dimen>
     <dimen name="Picture_Height">88dp</dimen>
 
-
+    <dimen name="Margin_et">5dp</dimen>
+    <dimen name="Margin_btn">10dp</dimen>
+    <dimen name="Margin_title">20dp</dimen>
+    <dimen name="Margin_txtContainer">30dp</dimen>
 
 
 </resources>

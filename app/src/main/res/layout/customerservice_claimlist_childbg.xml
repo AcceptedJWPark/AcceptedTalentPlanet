@@ -175,8 +175,8 @@
 
             <LinearLayout
                 android:gravity="center|left"
-                android:paddingTop="10dp"
-                android:paddingBottom="10dp"
+                android:paddingTop="@dimen/Margin_btn"
+                android:paddingBottom="@dimen/Margin_btn"
                 android:paddingLeft="20dp"
                 android:paddingRight="20dp"
                 android:layout_width="match_parent"
