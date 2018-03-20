@@ -102,9 +102,9 @@ public class Adapter extends BaseAdapter {
 
 
             params1.height = TalentSharing_ListView_height;
-            params2.width = (int) (TalentSharing_ListView_width*0.14);
-            params2.height = (int) (TalentSharing_ListView_width*0.14);
-            params3.width = (int) (TalentSharing_ListView_width*0.56);
+            params2.width = (int) (TalentSharing_ListView_width*0.13);
+            params2.height = (int) (TalentSharing_ListView_width*0.13);
+            params3.width = (int) (TalentSharing_ListView_width*0.57);
             params4.width = (int) (TalentSharing_ListView_width*0.16);
             params5.width = (int) (TalentSharing_ListView_width*0.04);
             params6.width = (int) (TalentSharing_ListView_width*0.04);

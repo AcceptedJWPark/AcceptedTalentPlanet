@@ -94,9 +94,9 @@ public class Adapter extends BaseAdapter{
             ViewGroup.LayoutParams params6 = holder.trashView3.getLayoutParams();
 
             params1.height = Friendlist_ListView_height;
-            params2.width = (int) (FriendList_ListView_width * 0.14);
-            params2.height = (int) (FriendList_ListView_width * 0.14);
-            params3.width = (int) (FriendList_ListView_width * 0.76);
+            params2.width = (int) (FriendList_ListView_width * 0.13);
+            params2.height = (int) (FriendList_ListView_width * 0.13);
+            params3.width = (int) (FriendList_ListView_width * 0.77);
             params4.width = (int) (FriendList_ListView_width * 0.04);
             params5.width = (int) (FriendList_ListView_width * 0.04);
             params6.width = (int) (FriendList_ListView_width * 0.04);
