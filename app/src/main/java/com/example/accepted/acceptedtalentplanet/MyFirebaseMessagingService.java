@@ -84,8 +84,6 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
             datas = remoteMessage.getData().get("datas");
 
-
-
             addNotificationList(remoteMessage.getData().get("type"));
             addAlarmList(remoteMessage.getData().get("type"));
 
