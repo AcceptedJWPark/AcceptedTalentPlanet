@@ -17,6 +17,7 @@ import android.view.WindowManager;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.accepted.acceptedtalentplanet.R;
@@ -85,16 +86,6 @@ public class Adapter extends BaseAdapter {
             view = inflater.inflate(R.layout.messanger_list_bg, parent, false);
             holder = new ViewHolder();
 
-        DisplayMetrics metrics = new DisplayMetrics();
-        WindowManager windowManager = (WindowManager) mContext.getSystemService(Context.WINDOW_SERVICE);
-        windowManager.getDefaultDisplay().getMetrics(metrics);
-        int messanger_ListView_height = (int) (metrics.heightPixels*0.1);
-
-        ViewGroup.LayoutParams params1 = view.getLayoutParams();
-        params1.height = messanger_ListView_height;
-        view.setLayoutParams(params1);
-
-
             holder.messsanger_Pic = view.findViewById(R.id.iv_pictureContainer_List_Messanger);
             holder.messanger_Name = view.findViewById(R.id.ll_name_List_Messanger);
             holder.messanger_Content = view.findViewById(R.id.ll_txt_List_Messanger);
@@ -103,6 +94,52 @@ public class Adapter extends BaseAdapter {
             holder.messanger_Date = view.findViewById(R.id.tv_date_Alarm);
             holder.Messanger_List_DateLL = view.findViewById(R.id.ll_deleteContainer_Alarm);
             holder.Messanger_List_DeleteList = view.findViewById(R.id.iv_delete_List_Messanger);
+
+            holder.ll_pictureContainer = view.findViewById(R.id.ll_pictureContainer_List_Messanger);
+            holder.ll_txtContainer = view.findViewById(R.id.ll_txtContainer_List_Messanger);
+            holder.rl_dateContainer = view.findViewById(R.id.rl_dateContainer_List_Messanger);
+
+            holder.trashView1 = view.findViewById(R.id.trashView1_MessageList);
+            holder.trashView2 = view.findViewById(R.id.trashView2_MessageList);
+            holder.trashView3 = view.findViewById(R.id.trashView3_MessageList);
+            holder.trashView4 = view.findViewById(R.id.trashView4_MessageList);
+
+            DisplayMetrics metrics = new DisplayMetrics();
+            WindowManager windowManager = (WindowManager) mContext.getSystemService(Context.WINDOW_SERVICE);
+            windowManager.getDefaultDisplay().getMetrics(metrics);
+            int messanger_ListView_height = (int) (metrics.heightPixels*0.1);
+            int Interesting_ListView_width = metrics.widthPixels;
+
+            ViewGroup.LayoutParams params1 = view.getLayoutParams();
+            ViewGroup.LayoutParams params2 = holder.ll_pictureContainer.getLayoutParams();
+            ViewGroup.LayoutParams params3 = holder.ll_txtContainer.getLayoutParams();
+            ViewGroup.LayoutParams params4 = holder.rl_dateContainer.getLayoutParams();
+            ViewGroup.LayoutParams params5 = holder.trashView1.getLayoutParams();
+            ViewGroup.LayoutParams params6 = holder.trashView2.getLayoutParams();
+            ViewGroup.LayoutParams params7 = holder.trashView3.getLayoutParams();
+            ViewGroup.LayoutParams params8 = holder.trashView4.getLayoutParams();
+
+            params1.height = messanger_ListView_height;
+            params2.width = (int) (Interesting_ListView_width * 0.13);
+            params2.height = (int) (Interesting_ListView_width * 0.13);
+            params3.width = (int) (Interesting_ListView_width * 0.57);
+            params4.width = (int) (Interesting_ListView_width * 0.16);
+            params5.width = (int) (Interesting_ListView_width * 0.04);
+            params6.width = (int) (Interesting_ListView_width * 0.04);
+            params7.width = (int) (Interesting_ListView_width * 0.04);
+            params8.width = (int) (Interesting_ListView_width * 0.04);
+
+            view.setLayoutParams(params1);
+            holder.ll_pictureContainer.setLayoutParams(params2);
+            holder.ll_txtContainer.setLayoutParams(params3);
+            holder.rl_dateContainer.setLayoutParams(params4);
+            holder.trashView1.setLayoutParams(params5);
+            holder.trashView2.setLayoutParams(params6);
+            holder.trashView3.setLayoutParams(params7);
+            holder.trashView4.setLayoutParams(params8);
+
+
+
 
 
         view.setTag(holder);
@@ -225,5 +262,14 @@ public class Adapter extends BaseAdapter {
         LinearLayout Messanger_List_DateLL;
         LinearLayout Messanger_List_LL;
         ImageView Messanger_List_DeleteList;
+
+        LinearLayout ll_pictureContainer;
+        LinearLayout ll_txtContainer;
+        RelativeLayout rl_dateContainer;
+
+        View trashView1;
+        View trashView2;
+        View trashView3;
+        View trashView4;
     }
 }

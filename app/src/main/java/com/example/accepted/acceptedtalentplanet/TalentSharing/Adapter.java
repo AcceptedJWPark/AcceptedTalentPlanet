@@ -61,7 +61,7 @@ public class Adapter extends BaseAdapter {
         final int index = position;
 
         if(view == null) {
-            view = LayoutInflater.from(mContext).inflate(R.layout.talentsharing_listviewbg, viewGroup, false);
+            view = LayoutInflater.from(mContext).inflate(R.layout.talentsharing_listviewbg, viewGroup,false);
 
             holder = new ViewHolder();
 
@@ -104,9 +104,9 @@ public class Adapter extends BaseAdapter {
             DisplayMetrics metrics = new DisplayMetrics();
             WindowManager windowManager = (WindowManager) mContext.getSystemService(Context.WINDOW_SERVICE);
             windowManager.getDefaultDisplay().getMetrics(metrics);
-            int Interesting_ListView_height = (int) (metrics.heightPixels * 0.1);
-            int Interesting_ListView_width = metrics.widthPixels;
-            Log.d(String.valueOf(Interesting_ListView_width), "width");
+            int TalentSharing_ListView_height = (int) (metrics.heightPixels*0.1);
+            int TalentSharing_ListView_width = metrics.widthPixels;
+            Log.d(String.valueOf(TalentSharing_ListView_width), "width");
 
             ViewGroup.LayoutParams params1 = view.getLayoutParams();
             ViewGroup.LayoutParams params2 = holder.tv_distance.getLayoutParams();
@@ -118,15 +118,15 @@ public class Adapter extends BaseAdapter {
             ViewGroup.LayoutParams params8 = holder.trashView4.getLayoutParams();
 
 
-            params1.height = Interesting_ListView_height;
-            params2.width = (int) (Interesting_ListView_width * 0.16);
-            params2.height = (int) (Interesting_ListView_width * 0.16);
-            params3.width = (int) (Interesting_ListView_width * 0.56);
-            params4.width = (int) (Interesting_ListView_width * 0.16);
-            params5.width = (int) (Interesting_ListView_width * 0.03);
-            params6.width = (int) (Interesting_ListView_width * 0.03);
-            params7.width = (int) (Interesting_ListView_width * 0.03);
-            params8.width = (int) (Interesting_ListView_width * 0.03);
+            params1.height = TalentSharing_ListView_height;
+            params2.width = (int) (TalentSharing_ListView_width*0.13);
+            params2.height = (int) (TalentSharing_ListView_width*0.13);
+            params3.width = (int) (TalentSharing_ListView_width*0.57);
+            params4.width = (int) (TalentSharing_ListView_width*0.16);
+            params5.width = (int) (TalentSharing_ListView_width*0.04);
+            params6.width = (int) (TalentSharing_ListView_width*0.04);
+            params7.width = (int) (TalentSharing_ListView_width*0.04);
+            params8.width = (int) (TalentSharing_ListView_width*0.04);
 
             view.setLayoutParams(params1);
             holder.ll_pictureContainer.setLayoutParams(params2);
@@ -161,8 +161,6 @@ public class Adapter extends BaseAdapter {
             holder.tv_distance.setText(arrayList.get(position).getdistance());
 
         }
-
-
 
         return view;
     }
