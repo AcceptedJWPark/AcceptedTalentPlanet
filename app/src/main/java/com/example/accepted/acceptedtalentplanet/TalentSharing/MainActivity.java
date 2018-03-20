@@ -1,5 +1,6 @@
 package com.example.accepted.acceptedtalentplanet.TalentSharing;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
@@ -15,6 +16,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -76,6 +78,8 @@ public class MainActivity extends AppCompatActivity {
     boolean running = false;
 
     SQLiteDatabase sqliteDatabase;
+    private ProgressBar progressBar;
+    int progressRate = 0;
 
 
 
@@ -107,16 +111,16 @@ public class MainActivity extends AppCompatActivity {
         listView = (ListView) findViewById(R.id.listView_TalentSharing);
         arrayList = new ArrayList<>();
         arrayList_Original = new ArrayList<>();
+
+        progressBar = (ProgressBar)findViewById(R.id.progressBar);
+        progressBar.setVisibility(View.VISIBLE);
+
         getTalentSharing();
         retrieveMessage();
     }
 
     public void getTalentSharing() {
-
-
         RequestQueue postRequestQueue = VolleySingleton.getInstance(mContext).getRequestQueue();
-
-
         StringRequest postJsonRequest = new StringRequest(Request.Method.POST, SaveSharedPreference.getServerIp() + "TalentSharing/getTalentSharing.do", new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -150,6 +154,7 @@ public class MainActivity extends AppCompatActivity {
                             if(o.getString("TALENT_FLAG").equals("Y"))
                                 arrayList.add(target);
                         }
+
                     }
 
 
@@ -173,6 +178,8 @@ public class MainActivity extends AppCompatActivity {
                         btn_takeSelect.performClick();
                     }
 
+                    progressBar.setVisibility(View.GONE);
+
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -182,13 +189,12 @@ public class MainActivity extends AppCompatActivity {
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap();
                 params.put("userID", SaveSharedPreference.getUserId(mContext));
+
                 return params;
             }
         };
 
-
         postRequestQueue.add(postJsonRequest);
-
     }
 
     Button.OnClickListener changeTalentFlag = new View.OnClickListener(){

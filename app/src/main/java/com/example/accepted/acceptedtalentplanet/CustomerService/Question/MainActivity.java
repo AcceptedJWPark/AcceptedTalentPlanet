@@ -81,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
         int ll_Toolbar_height = (int) (metrics.heightPixels*0.055);
         int tv_Title_height = (int) (metrics.heightPixels*0.1);
         int rl_qustionContainer_height = (int) (metrics.heightPixels*0.2);
-        int btn_Save_height = (int) (metrics.heightPixels*0.042);
+        int btn_Save_height = (int) (metrics.heightPixels*0.04);
 
         ViewGroup.LayoutParams params1 = ll_Toolbar.getLayoutParams();
         ViewGroup.LayoutParams params2 = tv_Title.getLayoutParams();

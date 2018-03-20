@@ -64,10 +64,6 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     private Context mContext;
 
-    private LinearLayout ll_TxtContainer;
-    private Button btn_Next;
-
-
     private FragmentManager fragmentManager;
     private MapFragment mapFragment;
     private GoogleMap gMap;
@@ -95,25 +91,8 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                 .addApi(LocationServices.API)
                 .build();
 
-        ll_TxtContainer = (LinearLayout) findViewById(R.id.ll_TxtContainer_TalentResister);
-        btn_Next = (Button) findViewById(R.id.btn_Next_TalentRegister);
 
 
-        DisplayMetrics metrics = new DisplayMetrics();
-        WindowManager windowManager = (WindowManager) getApplicationContext().getSystemService(Context.WINDOW_SERVICE);
-        windowManager.getDefaultDisplay().getMetrics(metrics);
-
-        int TalentResister_Location_Txt_LL_height = metrics.heightPixels/16;
-        int TalentResister_Location_Btn_height = metrics.heightPixels/24;
-
-        ViewGroup.LayoutParams params2 = ll_TxtContainer.getLayoutParams();
-        ViewGroup.LayoutParams params3 = btn_Next.getLayoutParams();
-
-        params2.height = TalentResister_Location_Txt_LL_height;
-        params3.height = TalentResister_Location_Btn_height;
-
-        ll_TxtContainer.setLayoutParams(params2);
-        btn_Next.setLayoutParams(params3);
 
         fragmentManager = getFragmentManager();
         mapFragment = (MapFragment)fragmentManager.findFragmentById(R.id.frg_Map_TalentRegister);
@@ -369,24 +348,6 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     }
 
 
-
-    //TODO: 장소 3개 입력이 안되면 오류 발생, 1개 이상 입력되면 넘어가야함
-    public void goNext(View v){
-
-        Intent i = new Intent(this, com.example.accepted.acceptedtalentplanet.TalentResister.Level.MainActivity.class);
-        i.putExtra("talentFlag", isRegisted);
-        i.putExtra("talent1", keyword1);
-        i.putExtra("talent2", keyword2);
-        i.putExtra("talent3", keyword3);
-        i.putExtra("loc", location);
-        i.putExtra("isHavingData", isHavingData);
-
-        if(isHavingData){
-            i.putExtra("data", data);
-        }
-        startActivity(i);
-
-    }
 
 
     private void updateLocationUI(){
