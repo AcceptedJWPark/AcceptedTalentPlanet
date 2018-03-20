@@ -53,29 +53,10 @@ public class pictureExpand extends AppCompatActivity {
             }
         }else {
 
-            String fileData = "Tk9EQVRB";
-            try {
-                String dbName = "/accepted.db";
-                SQLiteDatabase sqLiteDatabase = SQLiteDatabase.openOrCreateDatabase(mContext.getFilesDir() + dbName, null);
+            Bitmap bitmap = SaveSharedPreference.getPictureFromDB(mContext, UserID);
 
-                String selectPicture = "SELECT PICTURE FROM TB_IMAGES WHERE MASTER_ID = '" + SaveSharedPreference.getUserId(mContext) + "' AND USER_ID = '" + UserID + "'";
-                Log.d("image query", selectPicture);
-                Cursor cursor = sqLiteDatabase.rawQuery(selectPicture, null);
-
-                cursor.moveToFirst();
-
-                fileData = cursor.getString(0);
-
-                cursor.close();
-                sqLiteDatabase.close();
-            } catch (CursorIndexOutOfBoundsException e) {
-                e.printStackTrace();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-
-            if (!fileData.equals("Tk9EQVRB")) {
-                ((ImageView) findViewById(R.id.iv_Picture_pictureExpand)).setImageBitmap(SaveSharedPreference.StringToBitMap(fileData));
+            if (bitmap != null) {
+                ((ImageView) findViewById(R.id.iv_Picture_pictureExpand)).setImageBitmap(bitmap);
             }
         }
 

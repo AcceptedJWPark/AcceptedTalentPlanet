@@ -589,4 +589,32 @@ public class SaveSharedPreference{
         return -1;
     }
 
+    static public Bitmap getPictureFromDB(Context ctx, String UserID){
+        String fileData = "Tk9EQVRB";
+        try {
+            String dbName = "/accepted.db";
+            SQLiteDatabase sqLiteDatabase = SQLiteDatabase.openOrCreateDatabase(ctx.getFilesDir() + dbName, null);
+
+            String selectPicture = "SELECT PICTURE FROM TB_IMAGES WHERE MASTER_ID = '" + getUserId(ctx) + "' AND USER_ID = '" + UserID + "'";
+            Log.d("image query", selectPicture);
+            Cursor cursor = sqLiteDatabase.rawQuery(selectPicture, null);
+
+            cursor.moveToFirst();
+
+            fileData = cursor.getString(0);
+
+            cursor.close();
+            sqLiteDatabase.close();
+        } catch (CursorIndexOutOfBoundsException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        if(fileData.equals("Tk9EQVRB"))
+            return null;
+
+        return StringToBitMap(fileData);
+    }
+
 }

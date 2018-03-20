@@ -162,17 +162,6 @@ public class Adapter extends BaseAdapter{
         holder.tv_Talent3.setText(arrayList.get(position).getKeyword3());
 
             switch (arrayList.get(position).getConditionType()) {
-                case 1: {
-                    holder.tv_Condition.setText("받은 관심");
-                    holder.tv_Txt.setText("관심을 받았습니다.");
-                    break;
-                }
-
-                case 2: {
-                    holder.tv_Condition.setText("보낸 관심");
-                    holder.tv_Txt.setText("관심을 보냈습니다.");
-                    break;
-                }
 
                 case 3: {
                     holder.tv_Condition.setText("진행중");
