@@ -308,30 +308,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void getPicture(){
-        String fileData = "Tk9EQVRB";
-        try {
-            String dbName = "/accepted.db";
-            SQLiteDatabase sqLiteDatabase = SQLiteDatabase.openOrCreateDatabase(mContext.getFilesDir() + dbName, null);
-
-            String selectPicture = "SELECT PICTURE FROM TB_IMAGES WHERE MASTER_ID = '" + SaveSharedPreference.getUserId(mContext) + "' AND USER_ID = '" + receiverID + "'";
-            Log.d("image query", selectPicture);
-            Cursor cursor = sqLiteDatabase.rawQuery(selectPicture, null);
-
-            cursor.moveToFirst();
-
-            fileData = cursor.getString(0);
-
-            cursor.close();
-            sqLiteDatabase.close();
-        } catch (CursorIndexOutOfBoundsException e) {
-            e.printStackTrace();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        if (!fileData.equals("Tk9EQVRB")) {
-            picture = SaveSharedPreference.StringToBitMap(fileData);
-        }
+        picture = SaveSharedPreference.getPictureFromDB(mContext, receiverID);
 
         adapter = new Adapter(arrayList, mContext, picture);
 

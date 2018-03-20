@@ -126,24 +126,6 @@ public class MainActivity extends AppCompatActivity {
             String lastDate = (cursor.getString(4) == null)? "NODATA" : cursor.getString(4);
             String userID = cursor.getString(5);
 
-            String fileData = "Tk9EQVRB";
-            try {
-
-                String selectPicture = "SELECT PICTURE FROM TB_IMAGES WHERE MASTER_ID = '" + SaveSharedPreference.getUserId(mContext) + "' AND USER_ID = '" + userID + "'";
-                Log.d("image query", selectPicture);
-                Cursor cursor2 = sqliteDatabase.rawQuery(selectPicture, null);
-
-                cursor2.moveToFirst();
-
-                fileData = cursor2.getString(0);
-
-                cursor2.close();
-            } catch (CursorIndexOutOfBoundsException e) {
-                e.printStackTrace();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-
             if(!lastDate.equals("NODATA")) {
                 String[] dateTemp = lastDate.split(",");
                 lastDate = dateTemp[0];
@@ -152,13 +134,7 @@ public class MainActivity extends AppCompatActivity {
                 lastDate = (lastDate.equals(nowDate))?dateTime : lastDate;
             }
 
-
-
-            Log.d("datas = ", roomID + userName + fileData + unreadedCount + lastMessage + lastDate);
-            Bitmap picture = null;
-            if(fileData != null && !fileData.equals("Tk9EQVRB")){
-                picture = SaveSharedPreference.StringToBitMap(fileData);
-            }
+            Bitmap picture = SaveSharedPreference.getPictureFromDB(mContext, userID);
             messanger_Arraylist.add(0,new ListItem(R.drawable.testpicture, userName, userID, lastMessage ,lastDate, unreadedCount, false, roomID, picture));
             cursor.moveToNext();
         }

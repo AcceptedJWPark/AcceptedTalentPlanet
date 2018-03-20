@@ -2,6 +2,7 @@ package com.example.accepted.acceptedtalentplanet.FriendList;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +14,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.accepted.acceptedtalentplanet.R;
+import com.example.accepted.acceptedtalentplanet.SaveSharedPreference;
 import com.example.accepted.acceptedtalentplanet.TalentSharing.Popup.MainActivity;
 
 import java.util.ArrayList;
@@ -62,6 +64,7 @@ public class Adapter extends BaseAdapter{
             view = LayoutInflater.from(mContext).inflate(R.layout.friendlist_listviewbg, viewGroup, false);
 
             holder = new ViewHolder();
+            Bitmap bitmap = SaveSharedPreference.getPictureFromDB(mContext, arrayList.get(position).getUserID());
 
             holder.iv_Picture = view.findViewById(R.id.im_Picture_FriendList);
             holder.tv_Name = view.findViewById(R.id.tv_Name_FriendList);
@@ -118,7 +121,10 @@ public class Adapter extends BaseAdapter{
             });
 
 
-            holder.iv_Picture.setBackgroundResource(arrayList.get(position).getpicture());
+            if(bitmap == null)
+                holder.iv_Picture.setBackgroundResource(arrayList.get(position).getpicture());
+            else
+                holder.iv_Picture.setImageBitmap(bitmap);
             holder.tv_Name.setText(arrayList.get(position).getname());
             holder.tv_Talent1.setText(arrayList.get(position).getTalent1());
             holder.tv_Talent2.setText(arrayList.get(position).getTalent2());

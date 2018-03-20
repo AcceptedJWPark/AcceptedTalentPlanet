@@ -7,6 +7,7 @@ import android.database.Cursor;
 import android.database.CursorIndexOutOfBoundsException;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AlertDialog;
@@ -199,30 +200,11 @@ public class MainActivity extends FragmentActivity{
 
                     UserID = obj.getString("USER_ID");
 
-                    String fileData = "Tk9EQVRB";
-                    try {
-                        String dbName = "/accepted.db";
-                        SQLiteDatabase sqLiteDatabase = SQLiteDatabase.openOrCreateDatabase(mContext.getFilesDir() + dbName, null);
-
-                        String selectPicture = "SELECT PICTURE FROM TB_IMAGES WHERE MASTER_ID = '" + SaveSharedPreference.getUserId(mContext) + "' AND USER_ID = '" + UserID + "'";
-                        Log.d("image query", selectPicture);
-                        Cursor cursor = sqLiteDatabase.rawQuery(selectPicture, null);
-
-                        cursor.moveToFirst();
-
-                        fileData = cursor.getString(0);
-
-                        cursor.close();
-                        sqLiteDatabase.close();
-                    } catch (CursorIndexOutOfBoundsException e) {
-                        e.printStackTrace();
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
+                    Bitmap bitmap = SaveSharedPreference.getPictureFromDB(mContext, UserID);
 
 
-                    if(!fileData.equals("Tk9EQVRB")){
-                        ((ImageView)findViewById(R.id.TalentSharing_popup_picture)).setImageBitmap(SaveSharedPreference.StringToBitMap(fileData));
+                    if(bitmap != null){
+                        ((ImageView)findViewById(R.id.TalentSharing_popup_picture)).setImageBitmap(bitmap);
                         ((ImageView)findViewById(R.id.TalentSharing_popup_picture)).setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {

@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.CursorIndexOutOfBoundsException;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Bitmap;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -66,25 +67,7 @@ public class Adapter extends BaseAdapter {
             holder = new ViewHolder();
 
 
-            String fileData = "Tk9EQVRB";
-            try {
-                String dbName = "/accepted.db";
-                SQLiteDatabase sqLiteDatabase = SQLiteDatabase.openOrCreateDatabase(mContext.getFilesDir() + dbName, null);
-
-                String selectPicture = "SELECT PICTURE FROM TB_IMAGES WHERE MASTER_ID = '" + SaveSharedPreference.getUserId(mContext) + "' AND USER_ID = '" + arrayList.get(position).getUserID() + "'";
-                Cursor cursor = sqLiteDatabase.rawQuery(selectPicture, null);
-
-                cursor.moveToFirst();
-
-                fileData = cursor.getString(0);
-
-                cursor.close();
-                sqLiteDatabase.close();
-            } catch (CursorIndexOutOfBoundsException e) {
-                e.printStackTrace();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            Bitmap bitmap = SaveSharedPreference.getPictureFromDB(mContext, arrayList.get(position).getUserID());
 
             holder.iv_picture = view.findViewById(R.id.iv_picture_TalentSharing);
             holder.tv_Name = view.findViewById(R.id.tv_Name_TalentSharing);
@@ -149,10 +132,10 @@ public class Adapter extends BaseAdapter {
                 }
             });
 
-            if (fileData.equals("Tk9EQVRB")) {
+            if (bitmap == null) {
                 holder.iv_picture.setBackgroundResource(arrayList.get(position).getPicture());
             } else {
-                holder.iv_picture.setImageBitmap(SaveSharedPreference.StringToBitMap(fileData));
+                holder.iv_picture.setImageBitmap(bitmap);
             }
             holder.tv_Name.setText(arrayList.get(position).getName());
             holder.tv_talent1.setText(arrayList.get(position).getTalent1());
