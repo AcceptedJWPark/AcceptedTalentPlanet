@@ -81,20 +81,10 @@ public class MainActivity extends AppCompatActivity {
         WindowManager windowManager = (WindowManager) getApplicationContext().getSystemService(Context.WINDOW_SERVICE);
         windowManager.getDefaultDisplay().getMetrics(metrics);
 
-        int TalentResister_TalentLL_height = metrics.heightPixels/14;
-        int TalentResister_Talent_Txt_LL_height = metrics.heightPixels/10;
-        int TalentResister_Talent_Btn_height = metrics.heightPixels/24;
+        int TalentResister_Talent_Btn_height = (int) (metrics.heightPixels*0.04);
 
-        ViewGroup.LayoutParams params1 = ll_InputContainer.getLayoutParams();
-        ViewGroup.LayoutParams params2 = ll_TxtContainer.getLayoutParams();
         ViewGroup.LayoutParams params3 = btn_Next.getLayoutParams();
-
-        params1.height = TalentResister_TalentLL_height;
-        params2.height = TalentResister_Talent_Txt_LL_height;
         params3.height = TalentResister_Talent_Btn_height;
-
-        ll_InputContainer.setLayoutParams(params1);
-        ll_TxtContainer.setLayoutParams(params2);
         btn_Next.setLayoutParams(params3);
 
         listView = (ListView) findViewById(R.id.listView_Talent_TalentRegister);

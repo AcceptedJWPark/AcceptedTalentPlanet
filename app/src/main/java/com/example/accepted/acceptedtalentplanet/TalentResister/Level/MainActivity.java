@@ -1,9 +1,14 @@
 package com.example.accepted.acceptedtalentplanet.TalentResister.Level;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.DisplayMetrics;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.Toast;
@@ -20,6 +25,8 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
     private int level;
     private CheckBox[] cbs = new CheckBox[5];
     private CheckBox cb1, cb2, cb3, cb4, cb5;
+
+    private Button btn_level;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +64,18 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
 
         for(int index = 0; index < 5; index ++)
             cbs[index].setOnCheckedChangeListener(this);
+
+        btn_level = (Button) findViewById(R.id.btn_level_TalentRegister);
+
+        DisplayMetrics metrics = new DisplayMetrics();
+        WindowManager windowManager = (WindowManager) getApplicationContext().getSystemService(Context.WINDOW_SERVICE);
+        windowManager.getDefaultDisplay().getMetrics(metrics);
+
+        int Btn_height = (int) (metrics.heightPixels*0.04);
+
+        ViewGroup.LayoutParams params1 = btn_level.getLayoutParams();
+        params1.height = Btn_height;
+        btn_level.setLayoutParams(params1);
 
 
     }

@@ -35,7 +35,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="0.8"
-            android:text="1회 공유포인트는 최대 300P로 제한됩니다."
+            android:text="(1회 공유포인트는 최대 300P로 제한됩니다.)"
             android:gravity="center"
             android:textColor="@color/textColor_object"
             android:textSize="@dimen/Page_Txt_Example"
@@ -97,6 +97,7 @@
 
 
     <Button
+        android:id="@+id/btn_point_TalentRegister"
         android:layout_width="match_parent"
         android:layout_height="30dp"
         android:layout_gravity="center"

@@ -211,8 +211,8 @@ public class MainActivity extends AppCompatActivity {
         int claim_Toolbar_height = (int) (metrics.heightPixels*0.055);
         int claim_LL1_height = (int) (metrics.heightPixels*0.17);
         int claim_LL2_height = (int) (metrics.heightPixels*0.21);
-        int claim_LL3_height = (int) (metrics.heightPixels*0.042);
-        int claim_LL4_height = (int) (metrics.heightPixels*0.042);
+        int claim_LL3_height = (int) (metrics.heightPixels*0.04);
+        int claim_LL4_height = (int) (metrics.heightPixels*0.04);
         int claim_Devider1_height = (int) (metrics.heightPixels*0.00625);
         int claim_Txt_height1 = (int) (metrics.heightPixels*0.075);
         int claim_Txt_height2 = (int) (metrics.heightPixels*0.09);
