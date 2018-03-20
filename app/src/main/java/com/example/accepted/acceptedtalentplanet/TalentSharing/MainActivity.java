@@ -196,6 +196,8 @@ public class MainActivity extends AppCompatActivity {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
+
+                Collections.sort(arrayList);
                 adapter = new Adapter(mContext, arrayList);
                 listView.setAdapter(adapter);
                 progressBarContainer.setVisibility(View.GONE);
