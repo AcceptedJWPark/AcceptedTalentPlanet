@@ -17,6 +17,10 @@ import com.example.accepted.acceptedtalentplanet.SaveSharedPreference;
 import java.util.ArrayList;
 
 import static com.example.accepted.acceptedtalentplanet.MyFirebaseMessagingService.countAlarmPush_Claim;
+import static com.example.accepted.acceptedtalentplanet.MyFirebaseMessagingService.countAlarmPush_Condition_Give;
+import static com.example.accepted.acceptedtalentplanet.MyFirebaseMessagingService.countAlarmPush_Condition_Take;
+import static com.example.accepted.acceptedtalentplanet.MyFirebaseMessagingService.countAlarmPush_Intersting_Give;
+import static com.example.accepted.acceptedtalentplanet.MyFirebaseMessagingService.countAlarmPush_Intersting_Take;
 import static com.example.accepted.acceptedtalentplanet.MyFirebaseMessagingService.countAlarmPush_Message;
 import static com.example.accepted.acceptedtalentplanet.MyFirebaseMessagingService.countAlarmPush_Qna;
 
@@ -57,6 +61,11 @@ public class MainActivity extends AppCompatActivity {
         countAlarmPush_Message = 0;
         countAlarmPush_Qna = 0;
         countAlarmPush_Claim = 0;
+        countAlarmPush_Intersting_Take = 0;
+        countAlarmPush_Intersting_Give = 0;
+        countAlarmPush_Condition_Give = 0;
+        countAlarmPush_Condition_Take = 0;
+
         NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         if(notificationManager != null)
         {notificationManager.cancel(0);}

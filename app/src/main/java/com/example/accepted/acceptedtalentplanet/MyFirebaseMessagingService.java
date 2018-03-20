@@ -31,11 +31,21 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     public static int countAlarmPush_Message = 0;
     public static int countAlarmPush_Qna = 0;
     public static int countAlarmPush_Claim = 0;
+    public static int countAlarmPush_Intersting_Give = 0;
+    public static int countAlarmPush_Intersting_Take = 0;
+    public static int countAlarmPush_Condition_Give = 0;
+    public static int countAlarmPush_Condition_Take = 0;
+
     private boolean messagePushGrant;
     private boolean conditionPushGrant;
     private boolean answerPushGrant;
+    private boolean interesting_Give_PushGrant;
+    private boolean interesting_Take_PushGrant;
+
     private int isReadMessage;
     private int isReadQna;
+    private int isReadInteresting_Give;
+    private int isReadInteresting_Take;
     private int isReadClaim;
 
 
@@ -95,11 +105,13 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                 handleNow();
             }
         }
-        if (messagePushGrant || conditionPushGrant || answerPushGrant) {
+        if (messagePushGrant || conditionPushGrant || answerPushGrant || interesting_Give_PushGrant || interesting_Take_PushGrant ) {
 
             isReadMessage = countAlarmPush_Message > 0 ? 1 : 0;
             isReadQna = countAlarmPush_Qna > 0 ? 1 : 0;
             isReadClaim = countAlarmPush_Claim > 0 ? 1 : 0;
+            isReadInteresting_Give = countAlarmPush_Intersting_Give > 0 ? 1 : 0;
+            isReadInteresting_Take = countAlarmPush_Intersting_Take > 0 ? 1 : 0;
 
 
             // Check if message contains a notification payload.
@@ -110,8 +122,8 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             // Also if you intend on generating your own notifications as a result of a received FCM
             // message, here is where that should be initiated. See sendNotification method below.
 
-            if (isReadMessage + isReadQna + isReadClaim > 1) {
-                alarmTxt = "새로운 알림 " + String.valueOf(countAlarmPush_Message + countAlarmPush_Qna + countAlarmPush_Claim) + "건이 있습니다.";
+            if (isReadMessage + isReadQna + isReadClaim + isReadInteresting_Give + isReadInteresting_Take> 1) {
+                alarmTxt = "새로운 알림 " + String.valueOf(countAlarmPush_Message + countAlarmPush_Qna + countAlarmPush_Claim + countAlarmPush_Intersting_Give + countAlarmPush_Intersting_Take) + "건이 있습니다.";
                 intent1 = new Intent(this, com.example.accepted.acceptedtalentplanet.Alarm.MainActivity.class);
                 intent1.putExtra("alarmType", "Alarm");
             }
@@ -245,11 +257,12 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                     unformatedDate = sdf.format(tempDate);
                     userName = obj.getString("USER_NAME");
                     talentID = obj.getInt("TALENT_ID");
-                    talentType = (obj.getString("TALENT_FLAG").equals("Y"))? 1 : 2;
+                    talentType = (obj.getString("TALENT_FLAG").equals("Y"))? 2 : 1;
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
                 String formatedDate = dateFormat(unformatedDate);
+                Log.d(formatedDate,"formatedDate");
                 arrayList.add(0, new ListItem(R.drawable.logo_fakefile, userName, talentID, "Talent Planet", formatedDate, 1, talentType, R.drawable.icon_delete, false));
                 SaveSharedPreference.setPrefAlarmArray(getApplicationContext(), arrayList);
                 break;
@@ -262,7 +275,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                     unformatedDate = sdf.format(tempDate);
                     userName = obj.getString("USER_NAME");
                     talentID = obj.getInt("TALENT_ID");
-                    talentType = (obj.getString("TALENT_FLAG").equals("Y"))? 1 : 2;
+                    talentType = (obj.getString("TALENT_FLAG").equals("Y"))? 2 : 1;
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -279,7 +292,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                     unformatedDate = sdf.format(tempDate);
                     userName = obj.getString("USER_NAME");
                     talentID = obj.getInt("TALENT_ID");
-                    talentType = (obj.getString("TALENT_FLAG").equals("Y"))? 1 : 2;
+                    talentType = (obj.getString("TALENT_FLAG").equals("Y"))? 2 : 1;
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -296,7 +309,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                     unformatedDate = sdf.format(tempDate);
                     userName = obj.getString("USER_NAME");
                     talentID = obj.getInt("TALENT_ID");
-                    talentType = (obj.getString("TALENT_FLAG").equals("Y"))? 1 : 2;
+                    talentType = (obj.getString("TALENT_FLAG").equals("Y"))? 2 : 1;
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -310,9 +323,9 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
     private void addNotificationList(String type){
         intent1 = null;
-        switch (type){
+        switch (type) {
             case "Message":
-                if(messagePushGrant) {
+                if (messagePushGrant) {
                     countAlarmPush_Message++;
                     alarmType = "Message";
                     alarmTxt = "새로운 메세지 " + countAlarmPush_Message + "건이 도착했습니다.";
@@ -321,7 +334,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                 }
                 break;
             case "QNA":
-                if(answerPushGrant) {
+                if (answerPushGrant) {
                     countAlarmPush_Qna++;
                     alarmType = "QNA";
                     alarmTxt = "문의하신 Q&A " + countAlarmPush_Qna + "건이 답변 완료되었습니다.";
@@ -330,7 +343,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                 }
                 break;
             case "Claim":
-                if(answerPushGrant) {
+                if (answerPushGrant) {
                     countAlarmPush_Claim++;
                     alarmType = "Claim";
                     alarmTxt = "신고하기 " + countAlarmPush_Claim + "건이 조치 완료되었습니다.";
@@ -338,33 +351,87 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                     intent1.putExtra("alarmType", "Claim");
                 }
                 break;
-            case "Interest":
-                alarmType = "Interest";
-                alarmTxt = "받은 관심이 있습니다.";
-                intent1 = new Intent(this, com.example.accepted.acceptedtalentplanet.TalentCondition.MainActivity.class);
-                intent1.putExtra("alarmType", alarmType);
+            case "Interest": {
+                int talentType = -1;
+                try {
+                    JSONObject obj = new JSONObject(datas);
+                    talentType = (obj.getString("TALENT_FLAG").equals("Y")) ? 2 : 1;
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+                if (talentType == 1) {
+                    countAlarmPush_Intersting_Give++;
+                    alarmTxt = "재능 드림에 받은 관심이 " + countAlarmPush_Intersting_Give + "건 있습니다.";
+                    intent1 = new Intent(this, com.example.accepted.acceptedtalentplanet.InterestingList.MainActivity.class);
+                    intent1.putExtra("TalentFlag", "Give");
+                } else {
+                    countAlarmPush_Intersting_Take++;
+                    alarmTxt = "관심 재능에 받은 관심이 " + countAlarmPush_Intersting_Take + "건 있습니다.";
+                    intent1 = new Intent(this, com.example.accepted.acceptedtalentplanet.InterestingList.MainActivity.class);
+                    intent1.putExtra("TalentFlag", "Take");
+                }
                 break;
-            case "InterestingMatching":
-                alarmType = "InterestingMatching";
-                alarmTxt = "진행중으로 변경되었습니다.";
+            }
+            case "InterestingMatching": {
+                int talentType = -1;
+                try {
+                    JSONObject obj = new JSONObject(datas);
+                    talentType = (obj.getString("TALENT_FLAG").equals("Y")) ? 2 : 1;
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
                 intent1 = new Intent(this, com.example.accepted.acceptedtalentplanet.TalentCondition.MainActivity.class);
-                intent1.putExtra("alarmType", alarmType);
+                if (talentType == 1) {
+                    alarmTxt = "재능 드림 상태가 진행중으로 변경되었습니다.";
+                    intent1.putExtra("TalentCondition_TalentFlag", "Give");
+                } else {
+                    alarmTxt = "관심 재능 상태가 진행중으로 변경되었습니다.";
+                    intent1.putExtra("TalentCondition_TalentFlag", "Take");
+                }
                 break;
+            }
 
             case "InterestingCancel":
+                {
+                    int talentType = -1;
+                    try {
+                        JSONObject obj = new JSONObject(datas);
+                        talentType = (obj.getString("TALENT_FLAG").equals("Y")) ? 2 : 1;
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+
+                    if (talentType == 1) {
+                        alarmTxt = "진행 중인 재능 드림이 취소 되었습니다.";
+                    } else {
+                        alarmTxt = "진행 중인 관심 재능이 취소되었습니다.";
+                    }
                 alarmType = "InterestingCancel";
-                alarmTxt = "취소되었습니다.";
                 intent1 = new Intent(this, com.example.accepted.acceptedtalentplanet.SharingList.MainActivity.class);
                 intent1.putExtra("alarmType", alarmType);
                 break;
+            }
+                case "InterestingComplete":
+                {
+                    int talentType = -1;
+                    try {
+                        JSONObject obj = new JSONObject(datas);
+                        talentType = (obj.getString("TALENT_FLAG").equals("Y")) ? 2 : 1;
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    intent1 = new Intent(this, com.example.accepted.acceptedtalentplanet.TalentCondition.MainActivity.class);
+                    if (talentType == 1) {
+                        alarmTxt = "진행 중인 재능 드림이 완료되었습니다.";
+                        intent1.putExtra("TalentCondition_TalentFlag", "Give");
 
-            case "InterestingComplete":
-                alarmType = "InterestingComplete";
-                alarmTxt = "상대방이 완료하였습니다.";
-                intent1 = new Intent(this, com.example.accepted.acceptedtalentplanet.TalentCondition.MainActivity.class);
-                intent1.putExtra("alarmType", alarmType);
-                break;
-
+                    } else {
+                        alarmTxt = "진행 중인 관심 재능이완료 되었습니다.";
+                        intent1.putExtra("TalentCondition_TalentFlag", "Take");
+                    }
+                    break;
+            }
         }
     }
 

@@ -88,8 +88,6 @@ public class MainActivity extends AppCompatActivity {
                 getMyTalent();
                 if(SaveSharedPreference.getUserId(MainActivity.this).length() == 0) {
                     intent = new Intent(getBaseContext(), com.example.accepted.acceptedtalentplanet.LoadingLogin.Login.MainActivity.class);
-                    if(SaveSharedPreference.getFcmToken(mContext) == null)
-                        FirebaseInstanceId.getInstance().getToken();
                 }else{
                     intent = new Intent(getBaseContext(), com.example.accepted.acceptedtalentplanet.TalentSharing.MainActivity.class);
                     intent.putExtra("Activity", true);

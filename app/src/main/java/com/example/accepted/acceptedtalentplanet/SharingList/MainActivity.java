@@ -153,14 +153,14 @@ public class MainActivity extends AppCompatActivity {
                         int TalentType = (o.getString("TALENT_FLAG").equals("Y"))?2: 1;
 
                         ListItem target = new ListItem(o.getString("USER_NAME") + "님과", Integer.parseInt(o.getString("STATUS")), dateStr, o.getString("TALENT_KEYWORD1"), o.getString("TALENT_KEYWORD2"), o.getString("TALENT_KEYWORD3"), TalentType, o.getString("TALENT_ID"), o.getString("MY_TALENT_ID"));
-                        arrayList_Original.add(target);
+                        arrayList_Original.add(0,target);
                         if(isGiveTalent){
                             if(TalentType == 1){
-                                arrayList.add(target);
+                                arrayList.add(0,target);
                             }
                         }else{
                             if(TalentType == 2){
-                                arrayList.add(target);
+                                arrayList.add(0,target);
                             }
                         }
 

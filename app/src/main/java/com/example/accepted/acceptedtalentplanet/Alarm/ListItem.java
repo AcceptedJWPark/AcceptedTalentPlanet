@@ -59,9 +59,6 @@ public class ListItem {
     public void settxt(String txt) {
         this.text = txt;
     }
-    public void setregistDate1(String registDate1) {
-        this.date = registDate1;
-    }
     public void setName(String name) {
         this.name = name;
     }

@@ -33,6 +33,7 @@ import com.example.accepted.acceptedtalentplanet.MyTalent;
 import com.example.accepted.acceptedtalentplanet.R;
 import com.example.accepted.acceptedtalentplanet.SaveSharedPreference;
 import com.example.accepted.acceptedtalentplanet.VolleySingleton;
+import com.google.firebase.iid.FirebaseInstanceId;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -92,6 +93,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.talentsharing_activity);
 
         mContext = getApplicationContext();
+
+        if(SaveSharedPreference.getFcmToken(mContext) == null){
+            FirebaseInstanceId.getInstance().getToken();
+        }
+
+        saveFcmToken();
 
         ((TextView) findViewById(R.id.tv_toolbarTitle)).setText("T.Sharing");
         ((TextView) findViewById(R.id.DrawerUserID)).setText(SaveSharedPreference.getUserId(mContext));
@@ -325,53 +332,39 @@ public class MainActivity extends AppCompatActivity {
 
         return distance / 1000;
     }
-//
-//    protected void onResume(){
-//        super.onResume();
-//
-//        running = true;
-//
-//        String selectMaxData = "SELECT IFNULL(MAX(A.MESSAGE_ID), 0) AS MESSAGE_ID FROM TB_CHAT_LOG A WHERE A.USER_ID != '" + SaveSharedPreference.getUserId(mContext) + "'";
-//        Cursor cursor = sqliteDatabase.rawQuery(selectMaxData, null);
-//        cursor.moveToFirst();
-//
-//        if(thread1 == null)
-//            thread1 = new PollingThread();
-//        if(!thread1.isAlive()) {
-//            thread1.start();
-//        }
-//    }
-//
-//    protected void onPause(){
-//        super.onPause();
-//
-//        running = true;
-//    }
-//
-//    class PollingThread extends Thread {
-//        @Override
-//        public void run(){
-//            while(running) {
-//                try {
-//                    if(count < 3000){
-//                        count++;
-//                    }if(count == 3000)
-//                        interval = maxInterval;
-//                    retrieveMessage();
-//                    Thread.sleep(interval);
-//                } catch (InterruptedException e) {
-//                    e.printStackTrace();
-//                }
-//            }
-//        }
-//    }
-//
-//    @Override
-//    protected void onDestroy(){
-//        super.onDestroy();
-//
-//        thread1.interrupt();
-//    }
+
+    public void saveFcmToken(){
+        RequestQueue postRequestQueue = VolleySingleton.getInstance(mContext).getRequestQueue();
+        StringRequest postJsonRequest = new StringRequest(Request.Method.POST, SaveSharedPreference.getServerIp() + "Login/saveFCMToken.do", new Response.Listener<String>(){
+            @Override
+            public void onResponse(String response){
+                try {
+                    JSONObject obj = new JSONObject(response);
+                    if(obj.getString("result").equals("success")){
+                        Log.d("saveToken", "토큰 저장 성공");
+                    }else{
+                        Log.d("saveToken", "토큰 저장 실패");
+                    }
+                }
+                catch(JSONException e){
+                    e.printStackTrace();
+                }
+            }
+        }, SaveSharedPreference.getErrorListener()) {
+            @Override
+            protected Map<String, String> getParams(){
+                Map<String, String> params = new HashMap();
+                params.put("userID", SaveSharedPreference.getUserId(mContext));
+                params.put("fcmToken", SaveSharedPreference.getFcmToken(mContext));
+
+
+                return params;
+            }
+        };
+
+        postRequestQueue.add(postJsonRequest);
+
+    }
 
     public void retrieveMessage(){
         int maxMessageID = 0;

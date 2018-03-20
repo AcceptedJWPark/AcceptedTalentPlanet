@@ -1,10 +1,12 @@
 package com.example.accepted.acceptedtalentplanet.InterestingList;
 
+import android.app.NotificationManager;
 import android.content.Context;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -25,6 +27,9 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+
+import static com.example.accepted.acceptedtalentplanet.MyFirebaseMessagingService.countAlarmPush_Intersting_Give;
+import static com.example.accepted.acceptedtalentplanet.MyFirebaseMessagingService.countAlarmPush_Intersting_Take;
 
 /**
  * Created by Accepted on 2017-10-24.
@@ -49,8 +54,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.interestinglist_activity);
 
-
         mContext = getApplicationContext();
+
+        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        if(notificationManager != null)
+        {notificationManager.cancel(0);}
+
         listView = (ListView) findViewById(R.id.lv_InterestingList);
         arrayList = new ArrayList<>();
 
@@ -73,14 +82,21 @@ public class MainActivity extends AppCompatActivity {
         giveTalentFlag = getIntent().getStringExtra("TalentFlag").equals("Give");
         if (giveTalentFlag)
         {
+            countAlarmPush_Intersting_Give = 0;
+
+
             btn_SelectGive.setFocusableInTouchMode(true);
             btn_SelectGive.performClick();
         }
         else
         {
+            countAlarmPush_Intersting_Take = 0;
+
             btn_SelectTake.setFocusableInTouchMode(true);
             btn_SelectTake.performClick();
         }
+
+        Log.d(getIntent().getStringExtra("TalentFlag"),"Talent Flag");
 
         getInterestList();
 
@@ -127,7 +143,7 @@ public class MainActivity extends AppCompatActivity {
                         JSONObject o = obj.getJSONObject(index);
                         int type = Integer.parseInt(o.getString("TYPE_FLAG"));
                         ListItem target = new ListItem(R.drawable.testpicture, o.getString("USER_NAME"), o.getString("USER_ID"), o.getString("TALENT_KEYWORD1"), o.getString("TALENT_KEYWORD2"), o.getString("TALENT_KEYWORD3"), "["+str+"]", o.getString("CREATION_DATE") + " 등록", o.getString("TALENT_ID"),type);
-                        arrayList.add(target);
+                        arrayList.add(0,target);
                     }
 
                     adapter = new Adapter(mContext, arrayList);
