@@ -120,9 +120,9 @@ public class Adapter extends BaseAdapter {
             ViewGroup.LayoutParams params8 = holder.trashView4.getLayoutParams();
 
             params1.height = messanger_ListView_height;
-            params2.width = (int) (Interesting_ListView_width * 0.14);
-            params2.height = (int) (Interesting_ListView_width * 0.14);
-            params3.width = (int) (Interesting_ListView_width * 0.56);
+            params2.width = (int) (Interesting_ListView_width * 0.13);
+            params2.height = (int) (Interesting_ListView_width * 0.13);
+            params3.width = (int) (Interesting_ListView_width * 0.57);
             params4.width = (int) (Interesting_ListView_width * 0.16);
             params5.width = (int) (Interesting_ListView_width * 0.04);
             params6.width = (int) (Interesting_ListView_width * 0.04);
