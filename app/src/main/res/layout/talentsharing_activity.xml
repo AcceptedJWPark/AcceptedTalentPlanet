@@ -97,6 +97,33 @@
                 android:text="박종우님의 재능을 공유할 수 있는 회원 리스트 입니다."
                 />
 
+                <LinearLayout
+                    android:id="@+id/ll_progressBar_TalentSharing"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:visibility="gone"
+                    >
+
+                    <ProgressBar
+                        android:id="@+id/pb_TalentSharing"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="로딩중 입니다."
+                        android:gravity="center"
+                        android:textSize="@dimen/Page_Txt"
+                        android:textColor="@color/textColor_txtpage"
+                        />
+
+                </LinearLayout>
+
+
                 <ListView
                     android:id="@+id/listView_TalentSharing"
                     android:layout_width="match_parent"
