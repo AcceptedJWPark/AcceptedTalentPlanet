@@ -308,44 +308,17 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void getPicture(){
+        picture = SaveSharedPreference.getPictureFromDB(mContext, receiverID);
 
-        RequestQueue postRequestQueue = VolleySingleton.getInstance(mContext).getRequestQueue();
-        StringRequest postJsonRequest = new StringRequest(Request.Method.POST, SaveSharedPreference.getServerIp() + "Chat/getPicture.do", new Response.Listener<String>(){
-            @Override
-            public void onResponse(String response){
-                try {
-                    JSONObject obj = new JSONObject(response);
-                    if (!obj.getString("FILE_DATA").equals("Tk9EQVRB")) {
-                        Log.d("picture", obj.getString("FILE_DATA"));
-                        picture = SaveSharedPreference.StringToBitMap(obj.getString("FILE_DATA"));
-                        sqliteDatabase.execSQL("UPDATE TB_CHAT_ROOM SET PICTURE = '" + obj.getString("FILE_DATA") + "' WHERE ROOM_ID = " + roomID);
+        adapter = new Adapter(arrayList, mContext, picture);
 
-                    }
-
-                    adapter = new Adapter(arrayList, mContext, picture);
-
-                    if (refreshChatLog()) {
-                        listView.setAdapter(adapter);
-                        adapter.notifyDataSetChanged();
-                        listView.setSelection(adapter.getCount() - 1);
-                    }
-                    thread1 = new MainActivity.PollingThread();
-                    thread1.start();
-                }
-                catch(JSONException e){
-                    e.printStackTrace();
-                }
-            }
-        }, SaveSharedPreference.getErrorListener()) {
-            @Override
-            protected Map<String, String> getParams(){
-                Map<String, String> params = new HashMap();
-                params.put("userID", receiverID);
-                return params;
-            }
-        };
-
-        postRequestQueue.add(postJsonRequest);
+        if (refreshChatLog()) {
+            listView.setAdapter(adapter);
+            adapter.notifyDataSetChanged();
+            listView.setSelection(adapter.getCount() - 1);
+        }
+        thread1 = new MainActivity.PollingThread();
+        thread1.start();
     }
 
     protected void onResume(){

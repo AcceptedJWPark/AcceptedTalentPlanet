@@ -14,6 +14,7 @@ public class ListItem {
     private String talent2;
     private String talent3;
     private String talentID;
+    private String userID;
 
     public int getConditionType() {
         return conditionType;
@@ -37,6 +38,7 @@ public class ListItem {
         return name;
     }
     public String getTalentID(){ return talentID; }
+    public String getUserID(){ return userID; }
     public void setTalentType(int TalentType_CODE) {
         this.talentType = TalentType_CODE;
     }
@@ -63,10 +65,11 @@ public class ListItem {
     }
 
 
-    public ListItem(int picture, String name, String talent1, String talent2, String talent3, int conditionType, int talentType, String TalentID)
+    public ListItem(int picture, String name, String userID, String talent1, String talent2, String talent3, int conditionType, int talentType, String TalentID)
         {
             this.picture = picture;
             this.name = name;
+            this.userID = userID;
             this.talent1 = talent1;
             this.talent2 = talent2;
             this.talent3 = talent3;
