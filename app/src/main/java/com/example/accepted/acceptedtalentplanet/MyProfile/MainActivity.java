@@ -525,7 +525,7 @@ public class MainActivity extends AppCompatActivity {
             options.inJustDecodeBounds = true;
             BitmapFactory.decodeFile(imagePath, options); //MediaStore.Images.Media.getBitmap(this.getContentResolver(), imgUri);
 
-            options.inSampleSize = setSimpleSize(options, 1024, 1024);
+            options.inSampleSize = setSimpleSize(options, 960, 720);
 
             options.inJustDecodeBounds = false;
             Bitmap bitmap = BitmapFactory.decodeFile(imagePath, options);
@@ -548,7 +548,7 @@ public class MainActivity extends AppCompatActivity {
         options.inJustDecodeBounds = true;
         BitmapFactory.decodeFile(currentPhotoPath, options);
 
-        options.inSampleSize = setSimpleSize(options, 512, 512);
+        options.inSampleSize = setSimpleSize(options, 960, 720);
 
         options.inJustDecodeBounds = false;
         Bitmap bitmap = BitmapFactory.decodeFile(currentPhotoPath, options);
@@ -625,7 +625,7 @@ public class MainActivity extends AppCompatActivity {
 
     public byte[] getFileDataFromDrawable(Bitmap bitmap){
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.PNG, 80, byteArrayOutputStream);
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 80, byteArrayOutputStream);
         return byteArrayOutputStream.toByteArray();
     }
 

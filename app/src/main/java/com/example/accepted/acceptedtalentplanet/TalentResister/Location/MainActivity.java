@@ -18,7 +18,14 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.example.accepted.acceptedtalentplanet.GeoPoint;
 import com.example.accepted.acceptedtalentplanet.MyTalent;
@@ -48,7 +55,6 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                                                                     GoogleApiClient.ConnectionCallbacks,
                                                                     GoogleApiClient.OnConnectionFailedListener,
                                                                     com.google.android.gms.location.LocationListener,
-                                                                    GoogleMap.OnMarkerClickListener,
                                                                     GoogleMap.OnMapClickListener{
     private String keyword1, keyword2, keyword3;
     private String location;
@@ -219,7 +225,6 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                 return true;
             }
         });
-        gMap.setOnMarkerClickListener(this);
         gMap.setOnMapClickListener(this);
         Log.d("isHavingData", isHavingData+"");
         if(isHavingData){
@@ -280,49 +285,11 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         }
     }
 
-    @Override
-    public boolean onMarkerClick(final Marker marker){
-        final AlertDialog.Builder ProgressorCancelPopup = new AlertDialog.Builder(MainActivity.this);
-        Log.d("geo point", mCurrentLocation.getLatitude() +", "+ mCurrentLocation.getLongitude());
-
-        ProgressorCancelPopup.setMessage("선택한 위치가 \"" + marker.getSnippet() + "\"가 맞습니까?")
-                .setPositiveButton("확인", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.cancel();
-                        SaveSharedPreference.setGeoPointArr(mContext, new GeoPoint(mCurrentLocation.getLatitude(), mCurrentLocation.getLongitude()));
-                        location = marker.getSnippet();
-                        Intent i = new Intent(mContext, com.example.accepted.acceptedtalentplanet.TalentResister.Level.MainActivity.class);
-                        i.putExtra("talentFlag", isRegisted);
-                        i.putExtra("talent1", keyword1);
-                        i.putExtra("talent2", keyword2);
-                        i.putExtra("talent3", keyword3);
-                        i.putExtra("loc", location);
-                        i.putExtra("isHavingData", isHavingData);
-
-                        if(isHavingData){
-                            i.putExtra("data", data);
-                        }
-                        startActivity(i);
-
-                    }
-                })
-                .setNegativeButton("닫기", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.cancel();
-                    }
-                });
-
-        AlertDialog alertDialog = ProgressorCancelPopup.create();
-        alertDialog.show();
-
-        return false;
-    }
 
 
 
-    private void setCurrentLocation(Location location, String name, String addr){
+
+    private void setCurrentLocation(Location location, String name, final String addr){
         gMap.clear();
 
         LatLng latlng = new LatLng(location.getLatitude(), location.getLongitude());
@@ -331,7 +298,49 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         markerOptions.position(latlng);
         markerOptions.title(name);
         markerOptions.snippet(addr);
-        gMap.addMarker(markerOptions);
+        Marker marker = gMap.addMarker(markerOptions);
+        gMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
+            @Override
+            public void onInfoWindowClick(Marker marker) {
+                final AlertDialog.Builder ProgressorCancelPopup = new AlertDialog.Builder(MainActivity.this);
+                Log.d("geo point", mCurrentLocation.getLatitude() +", "+ mCurrentLocation.getLongitude());
+
+                ProgressorCancelPopup.setMessage("선택한 위치가 \"" + marker.getSnippet() + "\"가 맞습니까?")
+                        .setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                Toast.makeText(mContext, "확인 선택", Toast.LENGTH_SHORT).show();
+                                dialog.cancel();
+                                SaveSharedPreference.setGeoPointArr(mContext, new GeoPoint(mCurrentLocation.getLatitude(), mCurrentLocation.getLongitude()));
+
+                                Intent i = new Intent(mContext, com.example.accepted.acceptedtalentplanet.TalentResister.Level.MainActivity.class);
+                                i.putExtra("talentFlag", isRegisted);
+                                i.putExtra("talent1", keyword1);
+                                i.putExtra("talent2", keyword2);
+                                i.putExtra("talent3", keyword3);
+                                i.putExtra("loc", addr);
+                                i.putExtra("isHavingData", isHavingData);
+
+                                if(isHavingData){
+                                    i.putExtra("data", data);
+                                }
+                                startActivity(i);
+
+                            }
+                        })
+                        .setNegativeButton("닫기", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                Toast.makeText(mContext, "취소 하기 클릭", Toast.LENGTH_SHORT).show();
+                                dialog.cancel();
+                            }
+                        });
+
+                AlertDialog alertDialog = ProgressorCancelPopup.create();
+                alertDialog.show();
+            }
+        });
+        marker.showInfoWindow();
         Log.d("Current Loc", location.getLatitude()+", "+location.getLongitude());
 
         gMap.moveCamera(CameraUpdateFactory.newLatLng(latlng));
