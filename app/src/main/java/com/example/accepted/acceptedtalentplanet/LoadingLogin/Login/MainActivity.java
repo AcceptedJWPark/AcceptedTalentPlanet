@@ -110,7 +110,7 @@ public class MainActivity extends AppCompatActivity {
 
         et_Email = (EditText)findViewById(R.id.Login_ID);
         et_Password = (EditText)findViewById(R.id.Login_Password);
-        FcmToken = SaveSharedPreference.getFcmToken(mContext);
+        //FcmToken = SaveSharedPreference.getFcmToken(mContext);
 
 
 
@@ -169,12 +169,6 @@ public class MainActivity extends AppCompatActivity {
                                 startActivity(intent);
                             }
                         },500);
-
-                        if(FcmToken != null) {
-                            saveFcmToken();
-                        }else{
-                            FcmToken = FirebaseInstanceId.getInstance().getToken();
-                        }
 
                     }else if(result.equals("fail")){
                         Toast.makeText(getApplicationContext(), "비밀번호를 잘못 입력하셨습니다.", Toast.LENGTH_SHORT).show();
@@ -254,38 +248,7 @@ public class MainActivity extends AppCompatActivity {
         postRequestQueue.add(postJsonRequest);
     }
 
-    public void saveFcmToken(){
-            RequestQueue postRequestQueue = VolleySingleton.getInstance(mContext).getRequestQueue();
-            StringRequest postJsonRequest = new StringRequest(Request.Method.POST, SaveSharedPreference.getServerIp() + "Login/saveFCMToken.do", new Response.Listener<String>(){
-                @Override
-                public void onResponse(String response){
-                    try {
-                        JSONObject obj = new JSONObject(response);
-                        if(obj.getString("result").equals("success")){
-                            Log.d("saveToken", "토큰 저장 성공");
-                        }else{
-                            Log.d("saveToken", "토큰 저장 실패");
-                        }
-                    }
-                    catch(JSONException e){
-                        e.printStackTrace();
-                    }
-                }
-            }, SaveSharedPreference.getErrorListener()) {
-                @Override
-                protected Map<String, String> getParams(){
-                    Map<String, String> params = new HashMap();
-                    params.put("userID", SaveSharedPreference.getUserId(mContext));
-                    params.put("fcmToken", FcmToken);
 
-
-                    return params;
-                }
-            };
-
-            postRequestQueue.add(postJsonRequest);
-
-    }
 
     public void getMyTalentPoint(){
 

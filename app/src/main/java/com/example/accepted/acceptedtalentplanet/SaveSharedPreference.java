@@ -81,6 +81,7 @@ public class SaveSharedPreference{
     }
 
     public static void setPrefUsrId(Context ctx, String useId){
+        Log.d("perf userid", useId);
         SharedPreferences.Editor editor = getSharedPreferences(ctx).edit();
         editor.putString(PREF_USER_ID, useId);
         editor.commit();
