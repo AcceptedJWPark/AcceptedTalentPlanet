@@ -196,6 +196,7 @@ public class Adapter extends BaseAdapter {
         int size = Math.round(5*dm.density);
 
         String lastDate = arrayList.get(position).getDate();
+        String alarmTxt = arrayList.get(position).gettxt();
         Log.d(lastDate,"lastDate");
 
         switch (arrayList.get(position).getactivityChange_CODE()) {
@@ -215,22 +216,22 @@ public class Adapter extends BaseAdapter {
 
                     if(arrayList.get(position).getalarmType_CODE() == 1)
                     {
-                        holder.tv_Txt.setText("재능드림이 진행 중입니다.");
+                        holder.tv_Txt.setText("재능 드림 상태가 진행중으로 변경되었습니다.");
                         holder.tv_Date.setText(lastDate);
                     }
                     else if(arrayList.get(position).getalarmType_CODE() == 2)
                     {
-                        holder.tv_Txt.setText("관심재능이 진행 중입니다.");
+                        holder.tv_Txt.setText("관심 재능 상태가 진행중으로 변경되었습니다.");
                         holder.tv_Date.setText(lastDate);
                     }
                     else if(arrayList.get(position).getalarmType_CODE() == 3)
                     {
-                        holder.tv_Txt.setText("재능드림이 완료되었습니다.");
+                        holder.tv_Txt.setText("진행 중인 재능 드림이 완료되었습니다.");
                         holder.tv_Date.setText(lastDate);
                     }
                     else
                     {
-                        holder.tv_Txt.setText("관심재능이 완료되었습니다.");
+                        holder.tv_Txt.setText("진행 중인 관심 재능이 완료되었습니다.");
                         holder.tv_Date.setText(lastDate);
                     }
                 break;
@@ -244,24 +245,26 @@ public class Adapter extends BaseAdapter {
                 }
                 else if(arrayList.get(position).getalarmType_CODE() == 2)
                 {
-                    holder.tv_Txt.setText("재능드림 진행을 취소하였습니다.");
+                    holder.tv_Txt.setText("진행 중인 재능 드림이 취소 되었습니다.");
                     holder.tv_Date.setText(lastDate);
                 }
                 else
                 {
-                    holder.tv_Txt.setText("관심재능 진행을 취소하였습니다.");
+                    holder.tv_Txt.setText("진행 중인 관심 재능이 취소 되었습니다.");
                     holder.tv_Date.setText(lastDate);
                 }
 
                 break;
             case 4:
             {
+                holder.tv_Txt.setText(alarmTxt);
                 holder.tv_Date.setText(lastDate);
                 break;
             }
 
             case 5 :
             {
+                holder.tv_Txt.setText(alarmTxt);
                 holder.tv_Date.setText(lastDate);
                 break;
             }

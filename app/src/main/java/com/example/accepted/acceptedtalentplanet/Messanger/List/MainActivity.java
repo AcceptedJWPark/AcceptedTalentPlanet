@@ -1,9 +1,7 @@
 package com.example.accepted.acceptedtalentplanet.Messanger.List;
 
-import android.app.NotificationManager;
 import android.content.Context;
 import android.database.Cursor;
-import android.database.CursorIndexOutOfBoundsException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.graphics.Bitmap;
@@ -11,7 +9,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -46,8 +43,6 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
         setContentView(R.layout.messanger_list);
 
         countAlarmPush_Message = 0;
-        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        notificationManager.cancel(0);
 
         mContext = getApplicationContext();
         messanger_Listview = (ListView) findViewById(R.id.Messanger_List_ListView);

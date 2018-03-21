@@ -21,10 +21,13 @@ import com.google.firebase.messaging.RemoteMessage;
 
 import org.json.JSONObject;
 
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import static com.example.accepted.acceptedtalentplanet.Messanger.Chatting.MainActivity.receiverID;
 
 public class MyFirebaseMessagingService extends FirebaseMessagingService {
     private static final String TAG = "MyFirebaseMsgService";
@@ -51,6 +54,8 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     private int isReadCondition;
     private int isReadCancel;
 
+    private String topActivityName;
+
 
     private Intent intent1 = null;
 
@@ -68,6 +73,12 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         messagePushGrant = SaveSharedPreference.getMessagePushGrant(getApplicationContext());
         conditionPushGrant = SaveSharedPreference.getConditionPushGrant(getApplicationContext());
         answerPushGrant = SaveSharedPreference.getAnswerPushGrant(getApplicationContext());
+
+        ActivityManager am = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
+        List<ActivityManager.RunningTaskInfo> info = am.getRunningTasks(1);
+        ComponentName topActivity = info.get(0).topActivity;
+        topActivityName = topActivity.getClassName();
+
 
 
         // [START_EXCLUDE]
@@ -131,35 +142,30 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                 intent1 = new Intent(this, com.example.accepted.acceptedtalentplanet.Alarm.MainActivity.class);
                 intent1.putExtra("alarmType", "Alarm");
             }
-
             if (intent1 != null) {
+                    Intent intent = new Intent(this, MainActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
-                Intent intent = new Intent(this, MainActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    PendingIntent contentIntent = PendingIntent.getActivity(this, 0, intent1, PendingIntent.FLAG_UPDATE_CURRENT);
+                    NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this)
+                            .setSmallIcon(R.drawable.icon_friendadd_clicked)
+                            .setContentTitle(alarmTxt)
+                            .setAutoCancel(true)
+                            .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))
+                            .setVibrate(new long[]{1, 1000})
+                            .setWhen(System.currentTimeMillis());
+                    mBuilder.setContentIntent(contentIntent);
+                    NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+                    notificationManager.notify(0, mBuilder.build());
 
-            PendingIntent contentIntent = PendingIntent.getActivity(this, 0, intent1, PendingIntent.FLAG_UPDATE_CURRENT);
-            NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this)
-                    .setSmallIcon(R.drawable.icon_friendadd_clicked)
-                    .setContentTitle(alarmTxt)
-                    .setAutoCancel(true)
-                    .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))
-                    .setVibrate(new long[]{1, 1000})
-                    .setWhen(System.currentTimeMillis());
-            mBuilder.setContentIntent(contentIntent);
-            NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-            notificationManager.notify(0, mBuilder.build());
-
-            Log.d(String.valueOf(remoteMessage.getData().size()), "countAlarm = ");
+                    Log.d(String.valueOf(remoteMessage.getData().size()), "countAlarm = ");
+                }
+            }
         }
-        }
 
-        ActivityManager am = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
-        List<ActivityManager.RunningTaskInfo> info = am.getRunningTasks(1);
-        ComponentName topActivity = info.get(0).topActivity;
-        String topActivityName = topActivity.getPackageName();
-        Log.d("ActivityName", topActivityName);
 
-    }
+
+
     // [END receive_message]
 
     /**
@@ -240,7 +246,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                     e.printStackTrace();
                 }
                 String formatedDate = dateFormat(unformatedDate);
-
+                alarmTxt = "Q&A 질문에 대한 답변이 완료되었습니다.";
                 arrayList.add(0, new ListItem(R.drawable.logo_fakefile, "Talent Planet", alarmTxt, formatedDate, 4, R.drawable.icon_delete, false));
                 SaveSharedPreference.setPrefAlarmArray(getApplicationContext(), arrayList);
                 Log.d("lastDate = ", unformatedDate);
@@ -256,7 +262,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                     e.printStackTrace();
                 }
                 String formatedDate = dateFormat(unformatedDate);
-
+                alarmTxt = "신고하기에 대한 조치가 완료되었습니다.";
                 arrayList.add(0, new ListItem(R.drawable.logo_fakefile, "Talent Planet", alarmTxt, formatedDate, 5, R.drawable.icon_delete, false));
                 SaveSharedPreference.setPrefAlarmArray(getApplicationContext(), arrayList);
                 break;
@@ -336,15 +342,33 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     private void addNotificationList(String type){
         intent1 = null;
         switch (type) {
-            case "Message":
+            case "Message": {
+                String userId = null;
+                String recieverID1 = null;
+                try {
+                    JSONObject obj = new JSONObject(datas);
+                    String userName = obj.getString("USER_NAME");
+                    userId = obj.getString("USER_ID");
+                    String unformatedDate = obj.getString("CREATION_DATE_STRING");
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
                 if (messagePushGrant) {
-                    countAlarmPush_Message++;
-                    alarmType = "Message";
-                    alarmTxt = "새로운 메세지 " + countAlarmPush_Message + "건이 도착했습니다.";
-                    intent1 = new Intent(this, com.example.accepted.acceptedtalentplanet.Messanger.List.MainActivity.class);
-                    intent1.putExtra("alarmType", "Message");
+                    if (topActivityName.equals("com.example.accepted.acceptedtalentplanet.Messanger.List.MainActivity")) {
+                        return;
+                    } else if (topActivityName.equals("com.example.accepted.acceptedtalentplanet.Messanger.Chatting.MainActivity") && userId.equals(receiverID)) {
+                        return;
+                    } else {
+                        countAlarmPush_Message++;
+                        alarmType = "Message";
+                        alarmTxt = "새로운 메세지 " + countAlarmPush_Message + "건이 도착했습니다.";
+                        intent1 = new Intent(this, com.example.accepted.acceptedtalentplanet.Messanger.List.MainActivity.class);
+                        intent1.putExtra("alarmType", "Message");
+                    }
                 }
                 break;
+            }
             case "QNA":
                 if (answerPushGrant) {
                     countAlarmPush_Qna++;
@@ -470,6 +494,9 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             SQLiteDatabase sqLiteDatabase = SQLiteDatabase.openOrCreateDatabase(getFilesDir() + dbName, null);
 
             Log.d("TAG", "Datas: " + datas.toString());
+
+
+
 
             int roomID = SaveSharedPreference.makeChatRoom(getApplicationContext(), obj.getString("USER_ID"), obj.getString("USER_NAME"));
             sqLiteDatabase.execSQL("INSERT OR REPLACE INTO TB_CHAT_LOG(MESSAGE_ID, ROOM_ID, USER_ID, CONTENT, CREATION_DATE, READED_FLAG) VALUES (" + obj.getString("MESSAGE_ID") + ", " + roomID + ", '" + obj.getString("USER_ID") + "','" + obj.getString("CONTENT").replace("'", "''") + "','" + obj.getString("CREATION_DATE_STRING") + "', 'N')");

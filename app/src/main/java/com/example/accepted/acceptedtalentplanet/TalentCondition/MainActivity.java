@@ -1,6 +1,5 @@
 package com.example.accepted.acceptedtalentplanet.TalentCondition;
 
-import android.app.NotificationManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -86,9 +85,6 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
         mContext = getApplicationContext();
 
         countAlarmPush_Condition = 0;
-        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        if(notificationManager != null)
-        {notificationManager.cancel(0);}
 
         ((TextView) findViewById(R.id.tv_toolbarTitle)).setText("나의 재능 현황");
         ((TextView) findViewById(R.id.DrawerUserID)).setText(SaveSharedPreference.getUserId(mContext));
