@@ -41,7 +41,7 @@ import static com.example.accepted.acceptedtalentplanet.MyFirebaseMessagingServi
 import static com.example.accepted.acceptedtalentplanet.SaveSharedPreference.DrawerLayout_ClickEvent;
 import static com.example.accepted.acceptedtalentplanet.SaveSharedPreference.DrawerLayout_Open;
 
-public class MainActivity extends AppCompatActivity implements MyFirebaseMessagingService.ConditionChangedListener{
+public class MainActivity extends AppCompatActivity implements MyFirebaseMessagingService.MessageReceivedListener{
 
     private DrawerLayout drawerLayout;
     private View view_drawerView;
@@ -570,7 +570,7 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
     public void onResume(){
         super.onResume();
         getMyTalent();
-        MyFirebaseMessagingService.setOnConditionChangedListener(this);
+        MyFirebaseMessagingService.setOnMessageReceivedListener(this);
     }
 
     public void getMyTalent() {
@@ -788,7 +788,7 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
     }
 
     @Override
-    public void onConditionChanged(){
+    public void onMessageRecieved(){
         Message msg = handler.obtainMessage();
         handler.sendMessage(msg);
     }
@@ -796,7 +796,7 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
     @Override
     public void onPause(){
         super.onPause();
-        MyFirebaseMessagingService.setOnConditionChangedListener(null);
+        MyFirebaseMessagingService.setOnMessageReceivedListener(null);
     }
 
     Handler handler = new Handler(){

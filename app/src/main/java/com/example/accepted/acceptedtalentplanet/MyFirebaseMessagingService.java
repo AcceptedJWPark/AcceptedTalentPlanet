@@ -26,6 +26,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.TimeZone;
 
 import static com.example.accepted.acceptedtalentplanet.Messanger.Chatting.MainActivity.receiverID;
 
@@ -53,6 +54,9 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     private int isReadClaim;
     private int isReadCondition;
     private int isReadCancel;
+
+
+    private TimeZone time= TimeZone.getTimeZone("Asia/Seoul");
 
     private String topActivityName;
 
@@ -110,6 +114,10 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
             addNotificationList(remoteMessage.getData().get("type"));
             addAlarmList(remoteMessage.getData().get("type"));
+
+            if(mMessageReceivedListener != null){
+                update();
+            }
 
             if (/* Check if data needs to be processed by long running job */ true) {
                 // For long-running tasks (10 seconds or more) use Firebase Job Dispatcher.
@@ -214,7 +222,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                 ListItem listItem = new ListItem(R.drawable.testpicture, userName, "새로운 메세지 1건이 있습니다.", 1, formattedDate, 6, R.drawable.icon_delete, false);
                 listItem.setUserId(userId);
                 listItem.setUserName(userName);
-                if(arrayList.size()>1) {
+                if(arrayList.size()>0) {
                     arrayList.add(0, listItem);
                     for (int i = 1; i < arrayList.size(); i++) {
                         if(arrayList.get(i).getactivityChange_CODE() == 6) {
@@ -270,9 +278,12 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             case "Interest": {
                 try {
                     JSONObject obj = new JSONObject(datas);
+                    Log.d("long time = ", obj.getLong("CREATION_DATE") + "");
                     Date tempDate = new Date(obj.getLong("CREATION_DATE"));
                     SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd,a hh:mm:ss");
+                    sdf.setTimeZone(time);
                     unformatedDate = sdf.format(tempDate);
+                    Log.d("unformatedDate", unformatedDate);
                     userName = obj.getString("USER_NAME");
                     talentID = obj.getInt("TALENT_ID");
                     talentType = (obj.getString("TALENT_FLAG").equals("Y"))? 2 : 1;
@@ -290,6 +301,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                     JSONObject obj = new JSONObject(datas);
                     Date tempDate = new Date(obj.getLong("LAST_UPDATE_DATE"));
                     SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd,a hh:mm:ss");
+                    sdf.setTimeZone(time);
                     unformatedDate = sdf.format(tempDate);
                     userName = obj.getString("USER_NAME");
                     talentID = obj.getInt("TALENT_ID");
@@ -307,6 +319,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                     JSONObject obj = new JSONObject(datas);
                     Date tempDate = new Date(obj.getLong("LAST_UPDATE_DATE"));
                     SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd,a hh:mm:ss");
+                    sdf.setTimeZone(time);
                     unformatedDate = sdf.format(tempDate);
                     userName = obj.getString("USER_NAME");
                     talentID = obj.getInt("TALENT_ID");
@@ -324,6 +337,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                     JSONObject obj = new JSONObject(datas);
                     Date tempDate = new Date(obj.getLong("LAST_UPDATE_DATE"));
                     SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd,a hh:mm:ss");
+                    sdf.setTimeZone(time);
                     unformatedDate = sdf.format(tempDate);
                     userName = obj.getString("USER_NAME");
                     talentID = obj.getInt("TALENT_ID");
@@ -482,9 +496,6 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                     }
                 }
         }
-        if(type.contains("Interesting")){
-            conditionChanged();
-        }
     }
 
     private void getMessage(String datas){
@@ -500,7 +511,6 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
             int roomID = SaveSharedPreference.makeChatRoom(getApplicationContext(), obj.getString("USER_ID"), obj.getString("USER_NAME"));
             sqLiteDatabase.execSQL("INSERT OR REPLACE INTO TB_CHAT_LOG(MESSAGE_ID, ROOM_ID, USER_ID, CONTENT, CREATION_DATE, READED_FLAG) VALUES (" + obj.getString("MESSAGE_ID") + ", " + roomID + ", '" + obj.getString("USER_ID") + "','" + obj.getString("CONTENT").replace("'", "''") + "','" + obj.getString("CREATION_DATE_STRING") + "', 'N')");
-            update();
             sqLiteDatabase.close();
         }catch(Exception e){
             e.printStackTrace();
@@ -554,9 +564,12 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     {
         Date tempDate = new Date();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd,a hh:mm:ss");
+        sdf.setTimeZone(time);
         String nowDateStr = sdf.format(tempDate);
         String[] nowDateTemp = nowDateStr.split(",");
         String nowDate = nowDateTemp[0];
+
+        Log.d("LastDate, NowDate", lastDate + ", " + nowDateStr);
 
         String[] dateTemp = lastDate.split(",");
         lastDate = dateTemp[0];
@@ -578,21 +591,6 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     private void update(){
         if(mMessageReceivedListener != null){
             mMessageReceivedListener.onMessageRecieved();
-        }
-    }
-
-    private static ConditionChangedListener mConditionChangedListener;
-    public interface ConditionChangedListener{
-        public void onConditionChanged();
-    }
-
-    public static void setOnConditionChangedListener(ConditionChangedListener listener){
-        mConditionChangedListener = listener;
-    }
-
-    private void conditionChanged(){
-        if(mConditionChangedListener != null){
-            mConditionChangedListener.onConditionChanged();
         }
     }
 

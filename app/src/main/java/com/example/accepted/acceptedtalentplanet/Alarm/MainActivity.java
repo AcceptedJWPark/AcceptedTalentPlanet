@@ -4,6 +4,8 @@ import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -11,12 +13,13 @@ import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 
+import com.example.accepted.acceptedtalentplanet.MyFirebaseMessagingService;
 import com.example.accepted.acceptedtalentplanet.R;
 import com.example.accepted.acceptedtalentplanet.SaveSharedPreference;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements MyFirebaseMessagingService.MessageReceivedListener {
 
     private Context mContext;
 
@@ -56,18 +59,9 @@ public class MainActivity extends AppCompatActivity {
 
 
         mContext = getApplicationContext();
-        arrayList = SaveSharedPreference.getPrefAlarmArry(mContext);
-
-        Log.d("Alarm", "AlarmArray is null: " + (arrayList == null));
-
-        if(arrayList == null){
-            arrayList = new ArrayList<>();
-        }
-
-        //TODO:알람 Case에 맞게 데이터 받기.
 
         listView = (ListView) findViewById(R.id.listView_Alarm);
-        adapter = new Adapter(MainActivity.this, arrayList);
+        listView.setOnItemClickListener(mItemClickListener);
 
         lv_PreContainer = (ImageView) findViewById(R.id.iv_PreContainer_Alarm);
         lv_PreContainer.setOnClickListener(new View.OnClickListener() {
@@ -77,14 +71,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        idDeleteClicked = false;
-        listView.setAdapter(adapter);
-        adapter.notifyDataSetChanged();
-        adapter.initFlag();
-        listView.setOnItemClickListener(mItemClickListener);
-
-
         iv_DeleteIcon = (ImageView) findViewById(R.id.iv_DeleteIcon_Alarm);
+        idDeleteClicked = false;
+
         iv_DeleteIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -106,6 +95,28 @@ public class MainActivity extends AppCompatActivity {
                 }
 
         });
+
+        initView();
+
+    }
+
+    private void initView(){
+        arrayList = SaveSharedPreference.getPrefAlarmArry(mContext);
+
+        Log.d("Alarm", "AlarmArray is null: " + (arrayList == null));
+
+        if(arrayList == null){
+            arrayList = new ArrayList<>();
+        }
+
+        //TODO:알람 Case에 맞게 데이터 받기.
+
+        adapter = new Adapter(MainActivity.this, arrayList);
+
+
+        listView.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
+        adapter.initFlag();
 
     }
 
@@ -160,6 +171,30 @@ public class MainActivity extends AppCompatActivity {
                     view.getContext().startActivity(i);
                     break;
             }
+        }
+    };
+
+    @Override
+    public void onMessageRecieved(){
+        Message msg = handler.obtainMessage();
+        handler.sendMessage(msg);
+    }
+
+    @Override
+    public void onPause(){
+        super.onPause();
+        MyFirebaseMessagingService.setOnMessageReceivedListener(null);
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+        MyFirebaseMessagingService.setOnMessageReceivedListener(this);
+    }
+
+    Handler handler = new Handler(){
+        public void handleMessage(Message msg){
+            initView();
         }
     };
 
