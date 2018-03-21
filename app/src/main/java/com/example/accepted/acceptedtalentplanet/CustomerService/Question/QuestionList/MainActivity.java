@@ -1,6 +1,5 @@
 package com.example.accepted.acceptedtalentplanet.CustomerService.Question.QuestionList;
 
-import android.app.NotificationManager;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -56,9 +55,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.customerservice_questionlistactivity);
 
         countAlarmPush_Qna = 0;
-        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        if(notificationManager != null)
-        {notificationManager.cancel(0);}
 
 
         mContext = getBaseContext();

@@ -1,6 +1,5 @@
 package com.example.accepted.acceptedtalentplanet.CustomerService.Claim.ClaimList;
 
-import android.app.NotificationManager;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -48,9 +47,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.customerservice_claimlist_activity);
 
         countAlarmPush_Claim = 0;
-        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        if(notificationManager != null)
-        {notificationManager.cancel(0);}
 
 
         mContext = getApplicationContext();
