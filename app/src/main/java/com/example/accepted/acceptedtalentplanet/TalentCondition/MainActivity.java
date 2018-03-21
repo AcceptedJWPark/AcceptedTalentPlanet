@@ -3,6 +3,7 @@ package com.example.accepted.acceptedtalentplanet.TalentCondition;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.os.Handler;
@@ -15,6 +16,7 @@ import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -69,6 +71,8 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
 
     private int giveTalentCode;
     private int takeTalentCode;
+
+    private String givePartnerID, takePartnerID;
 
     private String flag, giveStatus, takeStatus;
     private String giveTalentID, takeTalentID, targetGiveTalentID, targetTakeTalentID;
@@ -263,6 +267,9 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
                     ll_TextContainer.setLayoutParams(params1);
                     btn_TalentRegist.setVisibility(GONE);
                     tv_Condition.setText("진행 중...");
+                    Bitmap bitmap = SaveSharedPreference.getPictureFromDB(mContext, givePartnerID);
+                    if(bitmap != null)
+                        ((ImageView)findViewById(R.id.TalentCondition_ProfilePicture)).setImageBitmap(bitmap);
                     final AlertDialog.Builder AlarmDeleteDialog = new AlertDialog.Builder(MainActivity.this);
                     btn_Left.setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -453,6 +460,9 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
                     ll_TextContainer.setLayoutParams(params1);
                     btn_TalentRegist.setVisibility(GONE);
                     tv_Condition.setText("진행 중...");
+                    Bitmap bitmap = SaveSharedPreference.getPictureFromDB(mContext, takePartnerID);
+                    if(bitmap != null)
+                        ((ImageView)findViewById(R.id.TalentCondition_ProfilePicture)).setImageBitmap(bitmap);
                     final AlertDialog.Builder AlarmDeleteDialog = new AlertDialog.Builder(MainActivity.this);
                     btn_Left.setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -598,6 +608,7 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
                                 case "M":
                                     giveTalentCode = 2;
                                     targetGiveTalentID = o.getString("TARGET_TALENT_ID");
+                                    givePartnerID = o.getString("PARTNER_USER_ID");
                                     break;
                                 case "C":
                                     if(givePartnerCompFlag)
@@ -620,6 +631,7 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
                                 case "M":
                                     takeTalentCode = 2;
                                     targetTakeTalentID = o.getString("TARGET_TALENT_ID");
+                                    takePartnerID = o.getString("PARTNER_USER_ID");
                                     break;
                                 case "C":
                                     takeTalentCode = 3;
