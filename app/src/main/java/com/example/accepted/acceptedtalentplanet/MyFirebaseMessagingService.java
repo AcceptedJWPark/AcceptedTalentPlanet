@@ -497,7 +497,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
             int roomID = SaveSharedPreference.makeChatRoom(getApplicationContext(), obj.getString("USER_ID"), obj.getString("USER_NAME"));
             sqLiteDatabase.execSQL("INSERT OR REPLACE INTO TB_CHAT_LOG(MESSAGE_ID, ROOM_ID, USER_ID, CONTENT, CREATION_DATE, READED_FLAG) VALUES (" + obj.getString("MESSAGE_ID") + ", " + roomID + ", '" + obj.getString("USER_ID") + "','" + obj.getString("CONTENT").replace("'", "''") + "','" + obj.getString("CREATION_DATE_STRING") + "', 'N')");
-
+            update();
             sqLiteDatabase.close();
         }catch(Exception e){
             e.printStackTrace();
@@ -561,6 +561,21 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         lastDate = (lastDate.equals(nowDate)) ? dateTime : lastDate;
 
         return lastDate;
+    }
+
+    private static MessageReceivedListener mMessageReceivedListener;
+    public interface MessageReceivedListener{
+        public void onMessageRecieved();
+    }
+
+    public static void setOnMessageReceivedListener(MessageReceivedListener listener){
+        mMessageReceivedListener = listener;
+    }
+
+    private void update(){
+        if(mMessageReceivedListener != null){
+            mMessageReceivedListener.onMessageRecieved();
+        }
     }
 
 

@@ -26,6 +26,7 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.StringRequest;
+import com.example.accepted.acceptedtalentplanet.MyFirebaseMessagingService;
 import com.example.accepted.acceptedtalentplanet.R;
 import com.example.accepted.acceptedtalentplanet.SaveSharedPreference;
 import com.example.accepted.acceptedtalentplanet.VolleySingleton;
@@ -43,7 +44,7 @@ import java.util.Map;
  * Created by Accepted on 2018-03-06.
  */
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements MyFirebaseMessagingService.MessageReceivedListener {
 
     private Context mContext;
     private ListView listView;
@@ -192,8 +193,10 @@ public class MainActivity extends AppCompatActivity {
         String selectBasicChat = "SELECT * FROM TB_CHAT_LOG WHERE ROOM_ID = " + roomID +" AND MESSAGE_ID > "+lastMessageID+"";
         Cursor cursor = sqliteDatabase.rawQuery(selectBasicChat, null);
         cursor.moveToFirst();
+        Log.d("asdf", roomID + ",tq1," + lastMessageID);
         boolean isRunning = false;
         while(!cursor.isAfterLast()){
+            Log.d("asdf", "tq1");
             isRunning = true;
 
             String sender = cursor.getString(2);
@@ -280,7 +283,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onResponse(String response){
                 try {
-                    refreshChatLog();
                     Log.d("result = ", response);
                     JSONObject obj = new JSONObject(response);
                     SimpleDateFormat sdf = new SimpleDateFormat("a hh:mm");
@@ -290,7 +292,12 @@ public class MainActivity extends AppCompatActivity {
                     }else{
                         Toast.makeText(mContext, "메세지 전송 실패.", Toast.LENGTH_SHORT).show();
                     }
-
+                    Log.d("asdf", "tq," + roomID);
+                    if(refreshChatLog()){
+                        listView.setAdapter(adapter);
+                        adapter.notifyDataSetChanged();
+                        listView.setSelection(adapter.getCount() - 1);
+                    }
                 }
                 catch(JSONException e){
                     e.printStackTrace();
@@ -312,6 +319,12 @@ public class MainActivity extends AppCompatActivity {
         postRequestQueue.add(postJsonRequest);
     }
 
+    @Override
+    public void onResume(){
+        super.onResume();
+        MyFirebaseMessagingService.setOnMessageReceivedListener(this);
+    }
+
     public void getPicture(){
         picture = SaveSharedPreference.getPictureFromDB(mContext, receiverID);
 
@@ -322,40 +335,11 @@ public class MainActivity extends AppCompatActivity {
             adapter.notifyDataSetChanged();
             listView.setSelection(adapter.getCount() - 1);
         }
-
-        thread1 = new MainActivity.PollingThread();
-        thread1.start();
     }
 
     protected void onPause(){
         super.onPause();
-
-        running = false;
-    }
-
-    class PollingThread extends Thread {
-        @Override
-        public void run(){
-            while(running){
-                Bundle bd = new Bundle();
-                if(refreshChatLog()){
-                    bd.putBoolean("arg", true);
-                }else{
-                    bd.putBoolean("arg", false);
-                }
-
-                Message msg = m_hd.obtainMessage();
-                msg.setData(bd);
-
-                m_hd.sendMessage(msg);
-
-                try {
-                    Thread.sleep(interval);
-                }catch(InterruptedException e){
-                    e.printStackTrace();
-                }
-            }
-        }
+        MyFirebaseMessagingService.setOnMessageReceivedListener(null);
     }
 
     Handler m_hd = new Handler(){
@@ -378,6 +362,21 @@ public class MainActivity extends AppCompatActivity {
         if(thread1 != null)
             thread1.interrupt();
         sqliteDatabase.close();
+    }
+
+    @Override
+    public void onMessageRecieved(){
+        Bundle bd = new Bundle();
+        if(refreshChatLog()){
+            bd.putBoolean("arg", true);
+        }else{
+            bd.putBoolean("arg", false);
+        }
+
+        Message msg = m_hd.obtainMessage();
+        msg.setData(bd);
+
+        m_hd.sendMessage(msg);
     }
 
 

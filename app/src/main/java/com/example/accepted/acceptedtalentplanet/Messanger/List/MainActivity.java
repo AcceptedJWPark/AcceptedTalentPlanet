@@ -6,11 +6,14 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 
+import com.example.accepted.acceptedtalentplanet.MyFirebaseMessagingService;
 import com.example.accepted.acceptedtalentplanet.R;
 import com.example.accepted.acceptedtalentplanet.SaveSharedPreference;
 
@@ -20,7 +23,7 @@ import java.util.Date;
 
 import static com.example.accepted.acceptedtalentplanet.MyFirebaseMessagingService.countAlarmPush_Message;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements MyFirebaseMessagingService.MessageReceivedListener {
 
     Context mContext;
     ArrayList<ListItem> messanger_Arraylist;
@@ -42,7 +45,6 @@ public class MainActivity extends AppCompatActivity {
         countAlarmPush_Message = 0;
 
         mContext = getApplicationContext();
-
         messanger_Listview = (ListView) findViewById(R.id.Messanger_List_ListView);
         messanger_Listview.setAdapter(messanger_ArrayAdapter);
         MessangerList_Deletebtn = (LinearLayout) findViewById(R.id.MessangerList_DeleteBtn);
@@ -83,6 +85,7 @@ public class MainActivity extends AppCompatActivity {
     public void onResume(){
         super.onResume();
         refreshChatLog();
+        MyFirebaseMessagingService.setOnMessageReceivedListener(this);
     }
 
     public void refreshChatLog(){
@@ -145,6 +148,24 @@ public class MainActivity extends AppCompatActivity {
         messanger_Listview.setAdapter(messanger_ArrayAdapter);
         messanger_ArrayAdapter.notifyDataSetChanged();
     }
+
+    @Override
+    public void onMessageRecieved(){
+        Message msg = handler.obtainMessage();
+        handler.sendMessage(msg);
+    }
+
+    @Override
+    public void onPause(){
+        super.onPause();
+        MyFirebaseMessagingService.setOnMessageReceivedListener(null);
+    }
+
+    Handler handler = new Handler(){
+        public void handleMessage(Message msg){
+            refreshChatLog();
+        }
+    };
 
 
 
