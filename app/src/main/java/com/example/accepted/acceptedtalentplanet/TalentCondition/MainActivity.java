@@ -5,6 +5,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Paint;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AlertDialog;
@@ -21,6 +23,7 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.StringRequest;
+import com.example.accepted.acceptedtalentplanet.MyFirebaseMessagingService;
 import com.example.accepted.acceptedtalentplanet.MyTalent;
 import com.example.accepted.acceptedtalentplanet.R;
 import com.example.accepted.acceptedtalentplanet.SaveSharedPreference;
@@ -37,7 +40,7 @@ import static android.view.View.GONE;
 import static com.example.accepted.acceptedtalentplanet.SaveSharedPreference.DrawerLayout_ClickEvent;
 import static com.example.accepted.acceptedtalentplanet.SaveSharedPreference.DrawerLayout_Open;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements MyFirebaseMessagingService.MessageReceivedListener{
 
     private DrawerLayout drawerLayout;
     private View view_drawerView;
@@ -564,6 +567,7 @@ public class MainActivity extends AppCompatActivity {
     public void onResume(){
         super.onResume();
         getMyTalent();
+        MyFirebaseMessagingService.setOnMessageReceivedListener(this);
     }
 
     public void getMyTalent() {
@@ -779,4 +783,22 @@ public class MainActivity extends AppCompatActivity {
         postRequestQueue.add(postJsonRequest);
 
     }
+
+    @Override
+    public void onMessageRecieved(){
+        Message msg = handler.obtainMessage();
+        handler.sendMessage(msg);
+    }
+
+    @Override
+    public void onPause(){
+        super.onPause();
+        MyFirebaseMessagingService.setOnMessageReceivedListener(null);
+    }
+
+    Handler handler = new Handler(){
+        public void handleMessage(Message msg){
+            getMyTalent();
+        }
+    };
 }
