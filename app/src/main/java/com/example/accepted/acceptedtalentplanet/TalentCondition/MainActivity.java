@@ -1,5 +1,6 @@
 package com.example.accepted.acceptedtalentplanet.TalentCondition;
 
+import android.app.NotificationManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -37,10 +38,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static android.view.View.GONE;
+import static com.example.accepted.acceptedtalentplanet.MyFirebaseMessagingService.countAlarmPush_Condition;
 import static com.example.accepted.acceptedtalentplanet.SaveSharedPreference.DrawerLayout_ClickEvent;
 import static com.example.accepted.acceptedtalentplanet.SaveSharedPreference.DrawerLayout_Open;
 
-public class MainActivity extends AppCompatActivity implements MyFirebaseMessagingService.MessageReceivedListener{
+public class MainActivity extends AppCompatActivity implements MyFirebaseMessagingService.ConditionChangedListener{
 
     private DrawerLayout drawerLayout;
     private View view_drawerView;
@@ -82,6 +84,11 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
         setContentView(R.layout.talentcondition_activity);
 
         mContext = getApplicationContext();
+
+        countAlarmPush_Condition = 0;
+        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        if(notificationManager != null)
+        {notificationManager.cancel(0);}
 
         ((TextView) findViewById(R.id.tv_toolbarTitle)).setText("나의 재능 현황");
         ((TextView) findViewById(R.id.DrawerUserID)).setText(SaveSharedPreference.getUserId(mContext));
@@ -567,7 +574,7 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
     public void onResume(){
         super.onResume();
         getMyTalent();
-        MyFirebaseMessagingService.setOnMessageReceivedListener(this);
+        MyFirebaseMessagingService.setOnConditionChangedListener(this);
     }
 
     public void getMyTalent() {
@@ -785,7 +792,7 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
     }
 
     @Override
-    public void onMessageRecieved(){
+    public void onConditionChanged(){
         Message msg = handler.obtainMessage();
         handler.sendMessage(msg);
     }
@@ -793,7 +800,7 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
     @Override
     public void onPause(){
         super.onPause();
-        MyFirebaseMessagingService.setOnMessageReceivedListener(null);
+        MyFirebaseMessagingService.setOnConditionChangedListener(null);
     }
 
     Handler handler = new Handler(){
