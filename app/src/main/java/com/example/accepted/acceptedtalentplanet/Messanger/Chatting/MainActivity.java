@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
     final int interval = 100;
 
     final int maxInterval = 5000;
-    public String receiverID;
+    public static String receiverID;
 
     public int roomID;
 
@@ -181,6 +181,11 @@ public class MainActivity extends AppCompatActivity {
 
         getPicture();
 
+    }
+
+    public static String getReceiverID()
+    {
+        return receiverID;
     }
 
     public boolean refreshChatLog(){
