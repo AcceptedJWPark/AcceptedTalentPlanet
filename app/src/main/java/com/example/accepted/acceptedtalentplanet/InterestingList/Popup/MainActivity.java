@@ -158,6 +158,7 @@ public class MainActivity extends FragmentActivity {
                                     Intent i = new Intent(getBaseContext(), com.example.accepted.acceptedtalentplanet.TalentCondition.MainActivity.class);
                                     i.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                                     startActivity(i);
+                                    finish();
                                 }
                             })
                             .setNegativeButton("닫기", new DialogInterface.OnClickListener() {
@@ -191,6 +192,7 @@ public class MainActivity extends FragmentActivity {
                                     Intent i = new Intent(getBaseContext(), com.example.accepted.acceptedtalentplanet.TalentCondition.MainActivity.class);
                                     i.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                                     startActivity(i);
+                                    finish();
                                 }
                             })
                             .setNegativeButton("취소하기", new DialogInterface.OnClickListener() {

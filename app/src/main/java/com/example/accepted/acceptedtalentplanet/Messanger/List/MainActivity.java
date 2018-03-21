@@ -46,16 +46,7 @@ public class MainActivity extends AppCompatActivity {
         NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         notificationManager.cancel(0);
 
-        String dbName = "/accepted.db";
-        try {
-            sqliteDatabase = SQLiteDatabase.openOrCreateDatabase(getFilesDir() + dbName, null);
-        } catch (SQLiteException e) {
-            e.printStackTrace();
-        }
-
         mContext = getApplicationContext();
-        messanger_Arraylist = new ArrayList<>();
-        messanger_ArrayAdapter = new Adapter(messanger_Arraylist, MainActivity.this);
 
         messanger_Listview = (ListView) findViewById(R.id.Messanger_List_ListView);
         messanger_Listview.setAdapter(messanger_ArrayAdapter);
@@ -93,7 +84,23 @@ public class MainActivity extends AppCompatActivity {
         refreshChatLog();
     }
 
+    @Override
+    public void onResume(){
+        super.onResume();
+        refreshChatLog();
+    }
+
     public void refreshChatLog(){
+        messanger_Arraylist = new ArrayList<>();
+        messanger_ArrayAdapter = new Adapter(messanger_Arraylist, MainActivity.this);
+
+        String dbName = "/accepted.db";
+        try {
+            sqliteDatabase = SQLiteDatabase.openOrCreateDatabase(getFilesDir() + dbName, null);
+        } catch (SQLiteException e) {
+            e.printStackTrace();
+        }
+
         String selectBasicChat = "SELECT D01.ROOM_ID, D01.USER_NAME, D03.UNREADED_COUNT, D06.CONTENT, D06.CREATION_DATE, D01.USER_ID, D01.START_MESSAGE_ID\n" +
                 "FROM   TB_CHAT_ROOM D01\n" +
                 "\t   LEFT OUTER JOIN (SELECT D02.ROOM_ID, COUNT(D02.ROOM_ID) AS UNREADED_COUNT\n" +
