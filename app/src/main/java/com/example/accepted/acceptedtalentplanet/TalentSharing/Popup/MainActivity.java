@@ -97,16 +97,6 @@ public class MainActivity extends FragmentActivity{
         params.height = (int) picturewidth;
         TalentSharing_popup_container.setLayoutParams(params);
 
-
-        ((ImageView)findViewById(R.id.TalentSharing_popup_picture)).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(mContext, pictureExpand.class);
-                startActivity(intent);
-            }
-        });
-
-
         iv_ClosePopupIcon = (ImageView) findViewById(R.id.iv_CloseIcon_InterestingPopup);
         iv_ClosePopupIcon.setOnClickListener(new View.OnClickListener() {
 
@@ -158,6 +148,7 @@ public class MainActivity extends FragmentActivity{
                 i.putExtra("roomID", roomID);
                 i.putExtra("userName", UserName);
                 startActivity(i);
+                finish();
             }
         });
 

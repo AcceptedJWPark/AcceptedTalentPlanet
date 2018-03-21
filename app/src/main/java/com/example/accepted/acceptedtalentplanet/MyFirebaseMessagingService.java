@@ -198,16 +198,18 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                 ListItem listItem = new ListItem(R.drawable.testpicture, userName, "새로운 메세지 1건이 있습니다.", 1, formattedDate, 6, R.drawable.icon_delete, false);
                 listItem.setUserId(userId);
                 listItem.setUserName(userName);
-
+                arrayList.add(0, listItem);
                 if(arrayList.size()>1) {
                     for (int i = 1; i < arrayList.size(); i++) {
-                        if (arrayList.get(0).getUserId().equals(arrayList.get(i).getUserId())) {
-                            countMessage = arrayList.get(i).getCountMessage() + 1;
-                            arrayList.remove(i);
-                            arrayList.remove(0);
-                            listItem.settxt("새로운 메세지 " + countMessage + "건이 있습니다.");
-                            listItem.setCountMessage(countMessage);
-                            arrayList.add(0, listItem);
+                        if(arrayList.get(i).getactivityChange_CODE() == 6) {
+                            if (arrayList.get(0).getUserId().equals(arrayList.get(i).getUserId())) {
+                                countMessage = arrayList.get(i).getCountMessage() + 1;
+                                arrayList.remove(i);
+                                arrayList.remove(0);
+                                listItem.settxt("새로운 메세지 " + countMessage + "건이 있습니다.");
+                                listItem.setCountMessage(countMessage);
+                                arrayList.add(0, listItem);
+                            }
                         }
                     }
                 }

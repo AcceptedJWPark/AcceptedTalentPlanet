@@ -136,6 +136,22 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    public void onResume(){
+        super.onResume();
+        arrayList_Friend = SaveSharedPreference.getFriendList(mContext);
+
+        if(arrayList_Friend.size() > 0)
+            getFriendList();
+        else {
+            arrayList.clear();
+            adapter = new Adapter(mContext, arrayList);
+            listView_Give.setAdapter(adapter);
+        }
+
+
+    }
+
     public void getFriendList() {
         RequestQueue postRequestQueue = VolleySingleton.getInstance(mContext).getRequestQueue();
         StringRequest postJsonRequest = new StringRequest(Request.Method.POST, SaveSharedPreference.getServerIp() + "FriendList/getFriendList.do", new Response.Listener<String>() {
