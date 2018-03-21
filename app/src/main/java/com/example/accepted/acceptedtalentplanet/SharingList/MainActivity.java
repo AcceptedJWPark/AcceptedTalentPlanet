@@ -1,5 +1,6 @@
 package com.example.accepted.acceptedtalentplanet.SharingList;
 
+import android.app.NotificationManager;
 import android.content.Context;
 import android.graphics.Paint;
 import android.os.Bundle;
@@ -31,6 +32,8 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
+import static com.example.accepted.acceptedtalentplanet.MyFirebaseMessagingService.countAlarmPush_Cancel;
+
 /**
  * Created by Accepted on 2017-09-29.
  */
@@ -57,6 +60,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.sharinglist_activity);
 
         mContext = getApplicationContext();
+
+        countAlarmPush_Cancel = 0;
+        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        if(notificationManager != null)
+        {notificationManager.cancel(0);}
 
 
         listView_Give = (ListView) findViewById(R.id.listView_Give_SharingList);
