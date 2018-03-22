@@ -94,9 +94,10 @@ public class MainActivity extends AppCompatActivity {
                             arrayList.add(item);
                     }
 
-                    adapter = new Adapter(mContext, arrayList);
-                    listView_Give.setAdapter(adapter);
+
                 }
+                adapter = new Adapter(mContext, arrayList);
+                listView_Give.setAdapter(adapter);
 
             }
         });
@@ -121,9 +122,9 @@ public class MainActivity extends AppCompatActivity {
                             arrayList.add(item);
                     }
 
-                    adapter = new Adapter(mContext, arrayList);
-                    listView_Take.setAdapter(adapter);
                 }
+                adapter = new Adapter(mContext, arrayList);
+                listView_Take.setAdapter(adapter);
             }
         });
 
@@ -144,9 +145,14 @@ public class MainActivity extends AppCompatActivity {
         if(arrayList_Friend.size() > 0)
             getFriendList();
         else {
-            arrayList.clear();
+            arrayList = new ArrayList<>();
+            arrayList_Original = new ArrayList<>();
             adapter = new Adapter(mContext, arrayList);
-            listView_Give.setAdapter(adapter);
+            if(listView_Give.getVisibility() == View.VISIBLE) {
+                listView_Give.setAdapter(adapter);
+            }else{
+                listView_Take.setAdapter(adapter);
+            }
         }
 
 

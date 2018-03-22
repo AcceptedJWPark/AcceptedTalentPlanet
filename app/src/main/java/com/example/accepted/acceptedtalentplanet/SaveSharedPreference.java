@@ -143,6 +143,7 @@ public class SaveSharedPreference{
         SharedPreferences.Editor editor = getSharedPreferences(ctx).edit();
         editor.clear();
         editor.commit();
+        myPicture = null;
     }
 
     public static String getFcmToken(Context ctx){
@@ -612,10 +613,10 @@ public class SaveSharedPreference{
             e.printStackTrace();
         }
 
-        if(fileData.equals("Tk9EQVRB"))
-            return null;
+        if(!fileData.equals("Tk9EQVRB"))
+            return StringToBitMap(fileData);
 
-        return StringToBitMap(fileData);
+        return null;
     }
 
 

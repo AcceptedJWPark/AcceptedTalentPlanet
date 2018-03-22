@@ -614,8 +614,10 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
                                 case "C":
                                     if(givePartnerCompFlag)
                                         giveTalentCode = 3;
-                                    else
+                                    else {
                                         giveTalentCode = 2;
+                                        givePartnerID = o.getString("PARTNER_USER_ID");
+                                    }
                                     targetGiveTalentID = o.getString("TARGET_TALENT_ID");
                                     break;
                             }
@@ -635,7 +637,12 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
                                     takePartnerID = o.getString("PARTNER_USER_ID");
                                     break;
                                 case "C":
-                                    takeTalentCode = 3;
+                                    if(takePartnerCompFlag) {
+                                        takeTalentCode = 3;
+                                    }else{
+                                        takeTalentCode = 2;
+                                        takePartnerID = o.getString("PARTNER_USER_ID");
+                                    }
                                     targetTakeTalentID = o.getString("TARGET_TALENT_ID");
                                     break;
                             }

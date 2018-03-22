@@ -230,6 +230,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                 mCurrentLocation = new Location("");
                 mCurrentLocation.setLatitude(geoPoint.getLat());
                 mCurrentLocation.setLongitude(geoPoint.getLng());
+
                 List<Address> list = null;
                 try{
                     list = geocoder.getFromLocation(mCurrentLocation.getLatitude(),mCurrentLocation.getLongitude() , 1);
@@ -244,10 +245,16 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
                     Log.d("MyLocation", "location: " + mCurrentLocation.getLatitude() + ", " + mCurrentLocation.getLongitude() + ", " + addr.getAddressLine(0) + "," + addr.toString());
                     setCurrentLocation(mCurrentLocation,"기존위치" , addr.getAddressLine(0));
-
                 }
 
             }
+        }else{
+            mCurrentLocation = new Location("");
+            mCurrentLocation.setLatitude(37.567759717923146);
+            mCurrentLocation.setLongitude(126.98008608072996);
+            LatLng latlng = new LatLng(37.567759717923146,126.98008608072996 );
+            gMap.moveCamera(CameraUpdateFactory.newLatLng(latlng));
+            gMap.animateCamera(CameraUpdateFactory.zoomTo(15));
         }
     }
 
@@ -376,7 +383,6 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     private void getCurrentLocation() {
         try {
-            Log.d("getCurLoc", "i am in");
             LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, mLocationRequest, this);
             updateLocationUI();
         }catch (SecurityException e){
