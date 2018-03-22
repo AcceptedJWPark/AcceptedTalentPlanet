@@ -144,7 +144,7 @@ public class MainActivity extends AppCompatActivity {
         if(arrayList_Friend.size() > 0)
             getFriendList();
         else {
-            arrayList.clear();
+            arrayList = new ArrayList<>();
             adapter = new Adapter(mContext, arrayList);
             listView_Give.setAdapter(adapter);
         }
