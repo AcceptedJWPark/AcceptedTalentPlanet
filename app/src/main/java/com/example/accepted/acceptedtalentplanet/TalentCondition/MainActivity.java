@@ -223,8 +223,8 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
         } else {
             switch (Code) {
                 case 1: {
-                    tv_Txt.setText("관심목록 확인 또는 T.Sharing을 확인해보세요!");
-                    btn_Left.setText("관심목록 확인");
+                    tv_Txt.setText("Shall we 목록 확인 또는 T.Sharing을 진행해보세요!");
+                    btn_Left.setText("Shall we ?");
                     btn_Right.setText("T.Sharing");
                     btn_Left.setVisibility(View.VISIBLE);
                     btn_Right.setVisibility(View.VISIBLE);
@@ -279,14 +279,15 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
                                 return;
                             }
                             AlarmDeleteDialog.setMessage("재능공유 완료 시 포인트 공유가 이루어집니다.")
-                                    .setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                                    .setPositiveButton("공유 완료", new DialogInterface.OnClickListener() {
                                         @Override
                                         public void onClick(DialogInterface dialog, int which) {
+                                            tv_Txt.setText("상대방의 \"완료 하기\"를 대기중입니다.");
                                             completeSharingTalent();
                                             dialog.cancel();
                                         }
                                     })
-                                    .setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                                    .setNegativeButton("닫기", new DialogInterface.OnClickListener() {
                                         @Override
                                         public void onClick(DialogInterface dialog, int which) {
                                             dialog.cancel();
@@ -294,17 +295,23 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
                                     });
                             AlertDialog alertDialog = AlarmDeleteDialog.create();
                             alertDialog.show();
+                            btn_Right.setText("신고 하기");
+                            btn_Right.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    Toast.makeText(mContext, "신고 대상 넘겨서 신고하기 액티비티로 이동해야 함",Toast.LENGTH_SHORT).show();
+                                }
+                            });
                         }
                     });
                     btn_Right.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
                             if(giveStatus.equals("C")){
-                                Toast.makeText(mContext, "상대방이 완료를 누르지 않았습니다.", Toast.LENGTH_SHORT).show();
                                 return;
                             }
                             AlarmDeleteDialog.setMessage("진행 취소 하시겠습니까?")
-                                    .setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                                    .setPositiveButton("진행 취소", new DialogInterface.OnClickListener() {
                                         @Override
                                         public void onClick(DialogInterface dialog, int which) {
                                             cancelSharingTalent();
@@ -314,7 +321,7 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
                                             startActivity(i);
                                         }
                                     })
-                                    .setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                                    .setNegativeButton("닫기", new DialogInterface.OnClickListener() {
                                         @Override
                                         public void onClick(DialogInterface dialog, int which) {
                                             dialog.cancel();
@@ -341,7 +348,7 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
                         @Override
                         public void onClick(View v) {
                             AlarmReregist.setMessage("재등록 하시겠습니까?")
-                                    .setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                                    .setPositiveButton("재등록", new DialogInterface.OnClickListener() {
                                         @Override
                                         public void onClick(DialogInterface dialog, int which) {
                                             reRegistTalent();
@@ -351,7 +358,7 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
                                             startActivity(i);
                                         }
                                     })
-                                    .setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                                    .setNegativeButton("닫기", new DialogInterface.OnClickListener() {
                                         @Override
                                         public void onClick(DialogInterface dialog, int which) {
                                             dialog.cancel();
@@ -416,8 +423,8 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
         } else {
             switch (Code) {
                 case 1: {
-                    tv_Txt.setText("관심목록 확인 또는 T.Sharing을 확인해보세요!");
-                    btn_Left.setText("관심목록 확인");
+                    tv_Txt.setText("Shall we 목록 확인 또는 T.Sharing을 진행해보세요!");
+                    btn_Left.setText("Shall we ?");
                     btn_Right.setText("T.Sharing");
                     btn_Left.setVisibility(View.VISIBLE);
                     btn_Right.setVisibility(View.VISIBLE);
@@ -449,6 +456,10 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
                 }
                 case 2: {
                     tv_Txt.setText("아래 회원과 재능을 공유하였다면 완료하기 버튼을 눌러주세요!");
+                    Bitmap bitmap = SaveSharedPreference.getPictureFromDB(mContext, takePartnerID);
+                    if(bitmap != null)
+                        ((ImageView)findViewById(R.id.TalentCondition_ProfilePicture)).setImageBitmap(bitmap);
+                    final AlertDialog.Builder AlarmDeleteDialog = new AlertDialog.Builder(MainActivity.this);
                     btn_Left.setText("완료 하기");
                     btn_Right.setText("진행 취소");
                     btn_Left.setVisibility(View.VISIBLE);
@@ -461,66 +472,73 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
                     btn_TalentRegist.setVisibility(GONE);
                     tv_Condition.setText("진행 중...");
 
-                    Bitmap bitmap = SaveSharedPreference.getPictureFromDB(mContext, takePartnerID);
-                    if(bitmap != null)
-                        ((ImageView)findViewById(R.id.TalentCondition_ProfilePicture)).setImageBitmap(bitmap);
-                    final AlertDialog.Builder AlarmDeleteDialog = new AlertDialog.Builder(MainActivity.this);
-                    btn_Left.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            if(!takePartnerCompFlag){
-                                Toast.makeText(mContext, "상대방이 완료하기를 누르지 않았습니다.", Toast.LENGTH_SHORT).show();
-                                return;
+                    if(!takePartnerCompFlag)
+                    {
+                        tv_Txt.setText("상대방의 \"완료하기\"를 대기중입니다.");
+                        btn_Left.setBackgroundResource(R.drawable.bgr_preinterested);
+                        btn_Left.setOnClickListener(null);
+                        btn_Right.setText("진행 취소");
+                        btn_Right.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                AlarmDeleteDialog.setMessage("진행 취소 하시겠습니까?")
+                                        .setPositiveButton("진행 취소", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int which) {
+                                                cancelSharingTalent();
+                                                dialog.cancel();
+                                                Intent i = new Intent(MainActivity.this, MainActivity.class);
+                                                i.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                                                startActivity(i);
+                                            }
+                                        })
+                                        .setNegativeButton("닫기", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int which) {
+                                                dialog.cancel();
+                                            }
+                                        });
+                                AlertDialog alertDialog = AlarmDeleteDialog.create();
+                                alertDialog.show();
                             }
-                            AlarmDeleteDialog.setMessage("재능공유 완료 시 포인트 공유가 이루어집니다.")
-                                    .setPositiveButton("확인", new DialogInterface.OnClickListener() {
-                                        @Override
-                                        public void onClick(DialogInterface dialog, int which) {
-                                            completeSharingTalent();
-                                            dialog.cancel();
-                                            Intent i = new Intent(MainActivity.this, MainActivity.class);
-                                            i.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                                            startActivity(i);
-                                        }
-                                    })
-                                    .setNegativeButton("취소", new DialogInterface.OnClickListener() {
-                                        @Override
-                                        public void onClick(DialogInterface dialog, int which) {
-                                            dialog.cancel();
-                                        }
-                                    });
-                            AlertDialog alertDialog = AlarmDeleteDialog.create();
-                            alertDialog.show();
-                        }
-                    });
-                    btn_Right.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            if(takePartnerCompFlag){
-                                Toast.makeText(mContext, "상대방이 이미 완료를 눌러 취소 불가합니다.", Toast.LENGTH_SHORT).show();
-                                return;
+                        });
+                    }
+                    else
+                    {
+                        btn_Left.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v){
+                                AlarmDeleteDialog.setMessage("재능공유 완료 시 포인트 공유가 이루어집니다.")
+                                        .setPositiveButton("공유 완료", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int which) {
+                                                completeSharingTalent();
+                                                dialog.cancel();
+                                                Intent i = new Intent(MainActivity.this, MainActivity.class);
+                                                i.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                                                startActivity(i);
+                                            }
+                                        })
+                                        .setNegativeButton("닫기", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int which) {
+                                                dialog.cancel();
+                                            }
+                                        });
+                                AlertDialog alertDialog = AlarmDeleteDialog.create();
+                                alertDialog.show();
                             }
-                            AlarmDeleteDialog.setMessage("진행 취소 하시겠습니까?")
-                                    .setPositiveButton("확인", new DialogInterface.OnClickListener() {
-                                        @Override
-                                        public void onClick(DialogInterface dialog, int which) {
-                                            cancelSharingTalent();
-                                            dialog.cancel();
-                                            Intent i = new Intent(MainActivity.this, MainActivity.class);
-                                            i.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                                            startActivity(i);
-                                        }
-                                    })
-                                    .setNegativeButton("취소", new DialogInterface.OnClickListener() {
-                                        @Override
-                                        public void onClick(DialogInterface dialog, int which) {
-                                            dialog.cancel();
-                                        }
-                                    });
-                            AlertDialog alertDialog = AlarmDeleteDialog.create();
-                            alertDialog.show();
-                        }
-                    });
+                        });
+                        btn_Right.setText("신고 하기");
+                        btn_Right.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Toast.makeText(mContext, "신고 대상 넘겨서 신고하기 액티비티로 이동해야 함",Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                    }
+
+
                     break;
                 }
                 case 3: {
@@ -537,7 +555,7 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
                         @Override
                         public void onClick(View v) {
                             AlarmReregist.setMessage("재등록 하시겠습니까?")
-                                    .setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                                    .setPositiveButton("재등록", new DialogInterface.OnClickListener() {
                                         @Override
                                         public void onClick(DialogInterface dialog, int which) {
                                             reRegistTalent();
@@ -547,7 +565,7 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
                                             startActivity(i);
                                         }
                                     })
-                                    .setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                                    .setNegativeButton("닫기", new DialogInterface.OnClickListener() {
                                         @Override
                                         public void onClick(DialogInterface dialog, int which) {
                                             dialog.cancel();

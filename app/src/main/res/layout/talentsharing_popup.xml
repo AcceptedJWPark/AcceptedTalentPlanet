@@ -468,7 +468,8 @@
             android:layout_marginLeft="5dp"
             android:layout_weight="1"
             android:background="@drawable/bgr_bigbtn"
-            android:text="관심"
+            android:textAllCaps="false"
+            android:text="Shall we?"
             android:textColor="@color/textcolor_bigbtn"
             android:textSize="@dimen/Popup_BigBtn"
             />
