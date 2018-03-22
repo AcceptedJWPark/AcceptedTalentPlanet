@@ -460,6 +460,7 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
                     ll_TextContainer.setLayoutParams(params1);
                     btn_TalentRegist.setVisibility(GONE);
                     tv_Condition.setText("진행 중...");
+
                     Bitmap bitmap = SaveSharedPreference.getPictureFromDB(mContext, takePartnerID);
                     if(bitmap != null)
                         ((ImageView)findViewById(R.id.TalentCondition_ProfilePicture)).setImageBitmap(bitmap);
