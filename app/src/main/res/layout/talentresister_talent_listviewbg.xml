@@ -5,28 +5,24 @@
     android:layout_height="wrap_content"
     android:gravity="center_vertical"
     android:orientation="vertical"
+    android:background="@drawable/bgr_inputbox"
     >
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:layout_marginTop="5dp"
         android:layout_marginBottom="5dp"
         >
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"/>
 
 
         <TextView
             android:id="@+id/tv_LocationTxt_TalentRegister"
-            android:layout_width="0dp"
-            android:layout_weight="7"
-            android:layout_height="match_parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:gravity="center"
+            android:layout_centerInParent="true"
             android:textSize="@dimen/Page_ItemSubTitle"
             android:singleLine="true"
             android:textColor="@color/textColor_object"
@@ -35,21 +31,17 @@
         
         <ImageView
             android:id="@+id/iv_DeleteIcon_TalentRegister"
-            android:layout_width="0dp"
-            android:layout_weight="0.8"
-            android:layout_height="match_parent"
+            android:layout_width="@dimen/Toolbar_Pre_Img"
+            android:layout_height="@dimen/Toolbar_Pre_Img"
+            android:layout_alignParentRight="true"
             android:src="@android:drawable/ic_menu_close_clear_cancel"
             />
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"/>
+
         
         
         
-        
-    </LinearLayout>
+    </RelativeLayout>
   
 
 

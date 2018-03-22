@@ -77,6 +77,7 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
     public String lastMessageID = "0";
     private Bitmap picture = null;
 
+    Activity activity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -183,6 +184,7 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
         getPicture();
 
     }
+
 
     public static String getReceiverID()
     {

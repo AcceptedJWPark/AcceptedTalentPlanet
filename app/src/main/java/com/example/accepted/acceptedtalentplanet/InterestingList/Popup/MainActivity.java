@@ -3,11 +3,7 @@ package com.example.accepted.acceptedtalentplanet.InterestingList.Popup;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.database.Cursor;
-import android.database.CursorIndexOutOfBoundsException;
-import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AlertDialog;
@@ -153,7 +149,6 @@ public class MainActivity extends FragmentActivity {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
                                     removeInteresting(talentID);
-                                    Toast.makeText(mContext, "관심 취소 완료", Toast.LENGTH_SHORT).show();
                                     dialog.cancel();
                                     Intent i = new Intent(getBaseContext(), com.example.accepted.acceptedtalentplanet.TalentCondition.MainActivity.class);
                                     i.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
@@ -164,7 +159,6 @@ public class MainActivity extends FragmentActivity {
                             .setNegativeButton("닫기", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
-                                    Toast.makeText(mContext, "취소 하기 클릭", Toast.LENGTH_SHORT).show();
                                     dialog.cancel();
                                 }
                             });
@@ -187,7 +181,6 @@ public class MainActivity extends FragmentActivity {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
                                     doSharingTalent(talentID);
-                                    Toast.makeText(mContext, "진행 하기 클릭", Toast.LENGTH_SHORT).show();
                                     dialog.cancel();
                                     Intent i = new Intent(getBaseContext(), com.example.accepted.acceptedtalentplanet.TalentCondition.MainActivity.class);
                                     i.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
@@ -195,10 +188,9 @@ public class MainActivity extends FragmentActivity {
                                     finish();
                                 }
                             })
-                            .setNegativeButton("취소하기", new DialogInterface.OnClickListener() {
+                            .setNegativeButton("닫기", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
-                                    Toast.makeText(mContext, "취소 하기 클릭", Toast.LENGTH_SHORT).show();
                                     dialog.cancel();
                                 }
                             });

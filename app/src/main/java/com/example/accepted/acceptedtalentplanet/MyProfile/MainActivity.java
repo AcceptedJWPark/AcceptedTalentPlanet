@@ -266,6 +266,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
+
         btn_Save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -284,6 +286,8 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+
 
 
         iv_PictureIcon = (ImageView) findViewById(R.id.iv_PictureIcon_MyProfile);
@@ -364,7 +368,7 @@ public class MainActivity extends AppCompatActivity {
                     ((TextView)findViewById(R.id.tv_Name_MyProfile)).setText(myProfileData.getUserName());
                     ((TextView)findViewById(R.id.tv_Gender_MyProfile)).setText(myProfileData.getGender());
                     ((TextView)findViewById(R.id.tv_Birthday_MyProfile)).setText(myProfileData.getBirth());
-                    ((TextView)findViewById(R.id.et_Job_MyProfile)).setText(myProfileData.getJob());
+                    ((TextView)findViewById(R.id.et_Job_MyProfile)).setText((myProfileData.getJob().equals("미등록"))?null:myProfileData.getJob());
                     ((TextView)findViewById(R.id.tv_GiveTalent1_MyProfile)).setText(TalentGive[0]);
                     ((TextView)findViewById(R.id.tv_GiveTalent2_MyProfile)).setText(TalentGive[1]);
                     ((TextView)findViewById(R.id.tv_GiveTalent3_MyProfile)).setText(TalentGive[2]);
@@ -395,6 +399,7 @@ public class MainActivity extends AppCompatActivity {
         };
 
         postRequestQueue.add(postJsonRequest);
+
     }
 
     public void saveMyProfile(){
@@ -615,7 +620,6 @@ public class MainActivity extends AppCompatActivity {
             {
                 if(!(grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED && grantResults[1] == PackageManager.PERMISSION_GRANTED))
                 {
-                    Toast.makeText(mContext, "permission denied", Toast.LENGTH_SHORT);
                 }
 
 
@@ -637,7 +641,6 @@ public class MainActivity extends AppCompatActivity {
             public void onResponse(NetworkResponse response) {
                 try {
                     JSONObject obj = new JSONObject(new String(response.data));
-                    Toast.makeText(mContext, obj.getString("result"), Toast.LENGTH_SHORT).show();
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -645,7 +648,6 @@ public class MainActivity extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(mContext, error.getMessage(), Toast.LENGTH_SHORT).show();
             }
         }){
             @Override

@@ -1,5 +1,6 @@
 package com.example.accepted.acceptedtalentplanet.Messanger.List;
 
+import android.app.Activity;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -36,6 +37,8 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
     boolean deleteBtn_Clicked;
 
     SQLiteDatabase sqliteDatabase;
+
+    Activity activity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -148,6 +151,7 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
         messanger_Listview.setAdapter(messanger_ArrayAdapter);
         messanger_ArrayAdapter.notifyDataSetChanged();
     }
+
 
     @Override
     public void onMessageRecieved(){

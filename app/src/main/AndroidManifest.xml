@@ -23,6 +23,7 @@
         android:supportsRtl="true"
         android:largeHeap="true"
         android:theme="@style/AppTheme.NoActionBar"
+        android:launchMode="singleTask"
         >
         <meta-data android:name="android.max_aspect" android:value="2.1" />
         <activity android:name=".LoadingLogin.Loading.MainActivity"

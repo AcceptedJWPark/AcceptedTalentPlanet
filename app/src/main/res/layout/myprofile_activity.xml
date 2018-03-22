@@ -344,7 +344,7 @@
                             android:scrollHorizontally="false"
                             android:textColor="@color/textColor_object"
                             android:singleLine="true"
-                            android:text="무직"
+                            android:hint="미등록"
                             android:textSize="@dimen/List_SubTitle"
                             />
 

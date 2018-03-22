@@ -1,4 +1,4 @@
-package com.example.accepted.acceptedtalentplanet.TalentResister.Location;
+package com.example.accepted.acceptedtalentplanet.TalentResister.Talent;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -49,10 +49,11 @@ public class Adapter extends BaseAdapter {
         if(convertView==null)
         {
             LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = inflater.inflate(R.layout.talentresister_location_listviewbg, null);
+            convertView = inflater.inflate(R.layout.talentresister_talent_listviewbg, null);
         }
         TextView tv_LocationTxt = (TextView) convertView.findViewById(R.id.tv_LocationTxt_TalentRegister);
         tv_LocationTxt.setText(arrayList.get(position));
+
 
         ImageView iv_DeleteIcon = convertView.findViewById(R.id.iv_DeleteIcon_TalentRegister);
         iv_DeleteIcon.setOnClickListener(new View.OnClickListener() {

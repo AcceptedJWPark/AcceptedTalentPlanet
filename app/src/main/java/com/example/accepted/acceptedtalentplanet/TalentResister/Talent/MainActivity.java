@@ -18,7 +18,6 @@ import android.widget.Toast;
 import com.example.accepted.acceptedtalentplanet.MyTalent;
 import com.example.accepted.acceptedtalentplanet.R;
 import com.example.accepted.acceptedtalentplanet.SaveSharedPreference;
-import com.example.accepted.acceptedtalentplanet.TalentResister.Location.Adapter;
 
 import java.util.ArrayList;
 

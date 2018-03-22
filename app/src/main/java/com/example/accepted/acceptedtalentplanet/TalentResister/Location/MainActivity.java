@@ -18,14 +18,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.util.DisplayMetrics;
 import android.util.Log;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.WindowManager;
-import android.widget.Button;
-import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import com.example.accepted.acceptedtalentplanet.GeoPoint;
 import com.example.accepted.acceptedtalentplanet.MyTalent;
@@ -309,7 +302,6 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                         .setPositiveButton("확인", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                Toast.makeText(mContext, "확인 선택", Toast.LENGTH_SHORT).show();
                                 dialog.cancel();
                                 SaveSharedPreference.setGeoPointArr(mContext, new GeoPoint(mCurrentLocation.getLatitude(), mCurrentLocation.getLongitude()));
 
@@ -331,7 +323,6 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                         .setNegativeButton("닫기", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                Toast.makeText(mContext, "취소 하기 클릭", Toast.LENGTH_SHORT).show();
                                 dialog.cancel();
                             }
                         });

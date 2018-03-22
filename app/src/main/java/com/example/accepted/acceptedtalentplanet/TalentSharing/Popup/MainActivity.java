@@ -3,11 +3,7 @@ package com.example.accepted.acceptedtalentplanet.TalentSharing.Popup;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.database.Cursor;
-import android.database.CursorIndexOutOfBoundsException;
-import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AlertDialog;
@@ -37,7 +33,6 @@ import com.example.accepted.acceptedtalentplanet.pictureExpand;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -140,7 +135,6 @@ public class MainActivity extends FragmentActivity{
             public void onClick(View view) {
                 int roomID = SaveSharedPreference.makeChatRoom(mContext, UserID, UserName);
                 if(roomID < 0){
-                    Toast.makeText(mContext, "채팅방 생성 실패", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 Intent i = new Intent(mContext, com.example.accepted.acceptedtalentplanet.Messanger.Chatting.MainActivity.class);
@@ -238,7 +232,6 @@ public class MainActivity extends FragmentActivity{
                                             @Override
                                             public void onClick(DialogInterface dialog, int which) {
                                                 removeInteresting(talentID);
-                                                Toast.makeText(mContext, "관심 취소 완료", Toast.LENGTH_SHORT).show();
                                                 dialog.cancel();
                                                 Intent i = new Intent(getBaseContext(), com.example.accepted.acceptedtalentplanet.TalentSharing.MainActivity.class);
                                                 i.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
@@ -249,7 +242,6 @@ public class MainActivity extends FragmentActivity{
                                         .setNegativeButton("닫기", new DialogInterface.OnClickListener() {
                                             @Override
                                             public void onClick(DialogInterface dialog, int which) {
-                                                Toast.makeText(mContext, "취소 하기 클릭", Toast.LENGTH_SHORT).show();
                                                 dialog.cancel();
                                             }
                                         });
@@ -294,7 +286,7 @@ public class MainActivity extends FragmentActivity{
     public void sendInterest(final String talentID) {
         if(talentFlag.equals("Y")){
             if(point > SaveSharedPreference.getTalentPoint(mContext)){
-                Toast.makeText(mContext, "현재 사용 가능한 포인트가 재능드림 포인트보다 적습니다.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(mContext, "현재 사용 가능한 포인트가 부족합니다.", Toast.LENGTH_SHORT).show();
                 return;
             }
         }
@@ -320,7 +312,6 @@ public class MainActivity extends FragmentActivity{
                         startActivity(intent);
                         finish();
                     }else {
-                        Toast.makeText(getApplicationContext(), "관심보내기에 실패했습니다.", Toast.LENGTH_SHORT).show();
                     }
 
                 } catch (JSONException e) {

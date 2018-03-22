@@ -113,7 +113,9 @@ public class MainActivity extends AppCompatActivity {
         DrawerLayout_ClickEvent(MainActivity.this,mClicklistener);
 
         drawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout_TalentSharing);
+
         view_DarawerLayout = (View) findViewById(R.id.view_DarawerLayout_TalentSharing);
+
 
         btn_giveSelect = (Button) findViewById(R.id.btn_giveSelect_TalentSharing);
         btn_takeSelect = (Button) findViewById(R.id.btn_takeSelect_TalentSharing);
@@ -122,12 +124,8 @@ public class MainActivity extends AppCompatActivity {
 
         retrieveMessage();
 
-        if(getIntent().hasExtra("Activity")){
-            getTalentSharing();
-        }else{
-            adapter = new Adapter(mContext, arrayList);
-            listView.setAdapter(adapter);
-        }
+
+        getTalentSharing();
 
         btn_giveSelect.setOnClickListener(changeTalentFlag);
         btn_takeSelect.setOnClickListener(changeTalentFlag);
@@ -253,7 +251,7 @@ public class MainActivity extends AppCompatActivity {
                 btn_takeSelect.setTextColor(getResources().getColor(R.color.textcolor_giveortake_unclicked));
                 btn_takeSelect.setPaintFlags(btn_takeSelect.getPaintFlags() &~ Paint.FAKE_BOLD_TEXT_FLAG);
 
-                tv_Txt.setText(SaveSharedPreference.getUserName(mContext) + "님의 재능을 공유할 수 있는 회원리스트 입니다.");
+                tv_Txt.setText(SaveSharedPreference.getUserName(mContext) + "님의 재능을 공유할 수 있는 회원입니다.");
 
             }else{
                 MyTalent mt = SaveSharedPreference.getTakeTalentData(mContext);
@@ -278,7 +276,7 @@ public class MainActivity extends AppCompatActivity {
                 btn_giveSelect.setBackground(ContextCompat.getDrawable(mContext, R.drawable.bgr_giveortake_unclicked));
                 btn_giveSelect.setTextColor(getResources().getColor(R.color.textcolor_giveortake_unclicked));
                 btn_giveSelect.setPaintFlags(btn_giveSelect.getPaintFlags() &~ Paint.FAKE_BOLD_TEXT_FLAG);
-                tv_Txt.setText(SaveSharedPreference.getUserName(mContext) + "님께 재능을 공유할 수 있는 회원리스트 입니다.");
+                tv_Txt.setText(SaveSharedPreference.getUserName(mContext) + "님께 재능을 공유할 수 있는 회원입니다.");
             }
 
             arrayList.clear();

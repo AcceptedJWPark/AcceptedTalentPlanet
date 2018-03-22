@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
 
 
 
+
     // 관심 보냄 - 재능 드림 : 1 - 1
     // 공유 진행 - 재능 드림 : 2 - 1
     // 공유 진행 - 관심 재능 : 2 - 2
@@ -59,6 +60,18 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
 
 
         mContext = getApplicationContext();
+        arrayList = SaveSharedPreference.getPrefAlarmArry(mContext);
+
+        Log.d("Alarm", "AlarmArray is null: " + (arrayList == null));
+
+
+
+
+        if(arrayList == null){
+            arrayList = new ArrayList<>();
+        }
+
+        //TODO:알람 Case에 맞게 데이터 받기.
 
         listView = (ListView) findViewById(R.id.listView_Alarm);
         listView.setOnItemClickListener(mItemClickListener);
@@ -95,6 +108,8 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
                 }
 
         });
+
+
 
         initView();
 
