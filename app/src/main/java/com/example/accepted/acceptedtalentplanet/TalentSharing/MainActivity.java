@@ -121,13 +121,7 @@ public class MainActivity extends AppCompatActivity {
         listView = (ListView) findViewById(R.id.listView_TalentSharing);
 
         retrieveMessage();
-
-        if(getIntent().hasExtra("Activity")){
-            getTalentSharing();
-        }else{
-            adapter = new Adapter(mContext, arrayList);
-            listView.setAdapter(adapter);
-        }
+        getTalentSharing();
 
         btn_giveSelect.setOnClickListener(changeTalentFlag);
         btn_takeSelect.setOnClickListener(changeTalentFlag);

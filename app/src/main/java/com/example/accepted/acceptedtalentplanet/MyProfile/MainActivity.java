@@ -113,6 +113,7 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String AUTHORITY = BuildConfig.APPLICATION_ID + ".fileprovider";
 
+    private Bitmap bitmap = null;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -275,15 +276,17 @@ public class MainActivity extends AppCompatActivity {
 
         final AlertDialog.Builder AlarmDeleteDialog = new AlertDialog.Builder(MainActivity.this);
 
-        iv_Picture = (ImageView) findViewById(R.id.iv_Picture_MyProfile);
-        iv_Picture.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(mContext, pictureExpand.class);
-                intent.putExtra("Activity", "Profile");
-                startActivity(intent);
-            }
-        });
+        if(bitmap != null) {
+            iv_Picture = (ImageView) findViewById(R.id.iv_Picture_MyProfile);
+            iv_Picture.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(mContext, pictureExpand.class);
+                    intent.putExtra("Activity", "Profile");
+                    startActivity(intent);
+                }
+            });
+        }
 
 
         iv_PictureIcon = (ImageView) findViewById(R.id.iv_PictureIcon_MyProfile);
@@ -376,9 +379,9 @@ public class MainActivity extends AppCompatActivity {
                     cb_isShowGender.setChecked(!genderFlag);
                     cb_isShowBirth.setChecked(!birthFlag);
                     cb_isShowJob.setChecked(!jobFlag);
-                    Bitmap bitmap = SaveSharedPreference.getMyPicture();
+                    bitmap = SaveSharedPreference.getMyPicture();
                     if(bitmap != null){
-                        iv_Picture.setImageBitmap(bitmap);
+                        ((ImageView)findViewById(R.id.iv_Picture_MyProfile)).setImageBitmap(bitmap);
                     }
                 }
                 catch(JSONException e){
