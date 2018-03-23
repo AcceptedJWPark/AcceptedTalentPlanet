@@ -129,39 +129,35 @@ public class MainActivity extends AppCompatActivity {
 
         et_Job = (EditText) findViewById(R.id.et_Job_MyProfile);
         et_Job.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-           @Override
-           public void onFocusChange(View v, boolean hasFocus) {
-             iv_DrawerLayoutIcon = (LinearLayout) findViewById(R.id.DrawerLayout_OpenIcon);
-             iv_AlarmIcon = (LinearLayout) findViewById(R.id.DrawerLayout_AlarmIcon);
-               if(!hasFocus)
-               {
-                   hideKeyboard(v,mContext);
-                   iv_DrawerLayoutIcon.setFocusable(false);
-                   iv_DrawerLayoutIcon.setFocusableInTouchMode(false);
-                   iv_AlarmIcon.setFocusable(false);
-                   iv_AlarmIcon.setFocusableInTouchMode(false);
-               }
-               else
-               {
-                   iv_DrawerLayoutIcon.setFocusable(true);
-                   iv_DrawerLayoutIcon.setFocusableInTouchMode(true);
-                   iv_AlarmIcon.setFocusable(true);
-                   iv_AlarmIcon.setFocusableInTouchMode(true);
-               }
-           }
-       });
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                iv_DrawerLayoutIcon = (LinearLayout) findViewById(R.id.DrawerLayout_OpenIcon);
+                iv_AlarmIcon = (LinearLayout) findViewById(R.id.DrawerLayout_AlarmIcon);
+                if (!hasFocus) {
+                    hideKeyboard(v, mContext);
+                    iv_DrawerLayoutIcon.setFocusable(false);
+                    iv_DrawerLayoutIcon.setFocusableInTouchMode(false);
+                    iv_AlarmIcon.setFocusable(false);
+                    iv_AlarmIcon.setFocusableInTouchMode(false);
+                } else {
+                    iv_DrawerLayoutIcon.setFocusable(true);
+                    iv_DrawerLayoutIcon.setFocusableInTouchMode(true);
+                    iv_AlarmIcon.setFocusable(true);
+                    iv_AlarmIcon.setFocusableInTouchMode(true);
+                }
+            }
+        });
 
         ((TextView) findViewById(R.id.tv_toolbarTitle)).setText("My Profile");
         ((TextView) findViewById(R.id.DrawerUserID)).setText(SaveSharedPreference.getUserId(mContext));
 
-        View.OnClickListener mClicklistener = new  View.OnClickListener()
-        {
+        View.OnClickListener mClicklistener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                    DrawerLayout_Open(v,MainActivity.this, drawerLayout, view_DrawerLayout);
-                }
+                DrawerLayout_Open(v, MainActivity.this, drawerLayout, view_DrawerLayout);
+            }
         };
-        DrawerLayout_ClickEvent(MainActivity.this,mClicklistener);
+        DrawerLayout_ClickEvent(MainActivity.this, mClicklistener);
         getMyProfile();
 
         ll_Toolbar = (android.support.v7.widget.Toolbar) findViewById(R.id.ll_Toolbar_MyProfile);
@@ -181,11 +177,11 @@ public class MainActivity extends AppCompatActivity {
 
         ll_SaveContainer = (LinearLayout) findViewById(R.id.ll_SaveContainer_MyProfile);
 
-        cb_isShowGender = (CheckBox)findViewById(R.id.cb_isShowGender_MyProfile);
-        cb_isShowBirth = (CheckBox)findViewById(R.id.cb_isShowBirth_MyProfile);
-        cb_isShowJob = (CheckBox)findViewById(R.id.cb_isShowJob_MyProfile);
+        cb_isShowGender = (CheckBox) findViewById(R.id.cb_isShowGender_MyProfile);
+        cb_isShowBirth = (CheckBox) findViewById(R.id.cb_isShowBirth_MyProfile);
+        cb_isShowJob = (CheckBox) findViewById(R.id.cb_isShowJob_MyProfile);
 
-        
+
         DisplayMetrics metrics = new DisplayMetrics();
         WindowManager windowManager = (WindowManager) getApplicationContext().getSystemService(Context.WINDOW_SERVICE);
         windowManager.getDefaultDisplay().getMetrics(metrics);
@@ -193,15 +189,15 @@ public class MainActivity extends AppCompatActivity {
         int statusBarHeight = getStatusBarHeight();
         int displayHeight_NoStatus = metrics.heightPixels - statusBarHeight;
 
-        int toolbar_height = (int) (displayHeight_NoStatus*0.055);
-        int picture_LL_height = (int) (displayHeight_NoStatus*0.188);
-        int btn_height = (int) (displayHeight_NoStatus*0.04);
-        int Devider_height = (int) (displayHeight_NoStatus*0.045);
-        int List_height = (int) (displayHeight_NoStatus*0.075);
-        int btnContainer_height =  (displayHeight_NoStatus-(toolbar_height+picture_LL_height+Devider_height*2+List_height*8));
+        int toolbar_height = (int) (displayHeight_NoStatus * 0.055);
+        int picture_LL_height = (int) (displayHeight_NoStatus * 0.188);
+        int btn_height = (int) (displayHeight_NoStatus * 0.04);
+        int Devider_height = (int) (displayHeight_NoStatus * 0.045);
+        int List_height = (int) (displayHeight_NoStatus * 0.075);
+        int btnContainer_height = (displayHeight_NoStatus - (toolbar_height + picture_LL_height + Devider_height * 2 + List_height * 8));
 
-        int TalentResister_Picture_width = (int) (picture_LL_height*0.7);
-        int TalentResister_Picture_height = (int) (picture_LL_height*0.7);
+        int TalentResister_Picture_width = (int) (picture_LL_height * 0.7);
+        int TalentResister_Picture_height = (int) (picture_LL_height * 0.7);
 
 
         ViewGroup.LayoutParams params1 = ll_Toolbar.getLayoutParams();
@@ -268,7 +264,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-
         btn_Save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -279,7 +274,8 @@ public class MainActivity extends AppCompatActivity {
         final AlertDialog.Builder AlarmDeleteDialog = new AlertDialog.Builder(MainActivity.this);
         iv_Picture = (ImageView) findViewById(R.id.iv_Picture_MyProfile);
 
-        if(bitmap != null) {
+        bitmap = SaveSharedPreference.getMyPicture();
+        if (bitmap != null) {
             iv_Picture.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -291,14 +287,12 @@ public class MainActivity extends AppCompatActivity {
         }
 
 
-
-
         iv_PictureIcon = (ImageView) findViewById(R.id.iv_PictureIcon_MyProfile);
         iv_PictureIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(Build.VERSION.SDK_INT > 22){
-                    requestPermissions(new String[] {android.Manifest.permission.READ_EXTERNAL_STORAGE, android.Manifest.permission.WRITE_EXTERNAL_STORAGE, android.Manifest.permission.CAMERA}, 1);
+                if (Build.VERSION.SDK_INT > 22) {
+                    requestPermissions(new String[]{android.Manifest.permission.READ_EXTERNAL_STORAGE, android.Manifest.permission.WRITE_EXTERNAL_STORAGE, android.Manifest.permission.CAMERA}, 1);
                 }
                 AlarmDeleteDialog.setMessage("사진을 가져올 곳을 선택해주세요.")
                         .setPositiveButton("카메라", new DialogInterface.OnClickListener() {
@@ -321,8 +315,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-
-
         View.OnClickListener listener_give = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -341,12 +333,12 @@ public class MainActivity extends AppCompatActivity {
             }
         };
 
-        ((TextView)findViewById(R.id.tv_GiveTalent1_MyProfile)).setOnClickListener(listener_give);
-        ((TextView)findViewById(R.id.tv_GiveTalent2_MyProfile)).setOnClickListener(listener_give);
-        ((TextView)findViewById(R.id.tv_GiveTalent3_MyProfile)).setOnClickListener(listener_give);
-        ((TextView)findViewById(R.id.tv_TakeTalent1_MyProfile)).setOnClickListener(listener_take);
-        ((TextView)findViewById(R.id.tv_TakeTalent2_MyProfile)).setOnClickListener(listener_take);
-        ((TextView)findViewById(R.id.tv_TakeTalent3_MyProfile)).setOnClickListener(listener_take);
+        ((TextView) findViewById(R.id.tv_GiveTalent1_MyProfile)).setOnClickListener(listener_give);
+        ((TextView) findViewById(R.id.tv_GiveTalent2_MyProfile)).setOnClickListener(listener_give);
+        ((TextView) findViewById(R.id.tv_GiveTalent3_MyProfile)).setOnClickListener(listener_give);
+        ((TextView) findViewById(R.id.tv_TakeTalent1_MyProfile)).setOnClickListener(listener_take);
+        ((TextView) findViewById(R.id.tv_TakeTalent2_MyProfile)).setOnClickListener(listener_take);
+        ((TextView) findViewById(R.id.tv_TakeTalent3_MyProfile)).setOnClickListener(listener_take);
     }
 
 
