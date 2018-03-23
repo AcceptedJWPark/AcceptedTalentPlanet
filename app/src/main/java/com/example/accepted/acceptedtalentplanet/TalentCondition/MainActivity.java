@@ -578,8 +578,8 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
                                             Log.d("reRegist", "true");
                                             reRegistTalent();
                                             dialog.cancel();
-                                            Intent i = new Intent(MainActivity.this, MainActivity.class);
-                                            i.putExtra("TalentCondition_TalentFlag","Take");
+                                            Intent i = new Intent(MainActivity.this, com.example.accepted.acceptedtalentplanet.MainActivity.class);
+                                            i.putExtra("TalentSharing_TalentFlag","Take");
                                             startActivity(i);
                                             finish();
                                         }
