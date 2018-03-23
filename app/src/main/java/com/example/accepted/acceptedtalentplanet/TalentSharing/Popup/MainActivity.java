@@ -1,12 +1,10 @@
 package com.example.accepted.acceptedtalentplanet.TalentSharing.Popup;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
-import android.support.v7.app.AlertDialog;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Display;
@@ -214,6 +212,7 @@ public class MainActivity extends FragmentActivity{
                     Log.d("hasFlag", String.valueOf(hasFlag));
                     btn_SendInterest = (Button)findViewById(R.id.btn_SendInterest_TalentSharing);
                     if(!hasFlag){
+                        btn_SendInterest.setBackgroundResource(R.drawable.bgr_bigbtn);
                         btn_SendInterest.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
@@ -221,37 +220,40 @@ public class MainActivity extends FragmentActivity{
                             }
                         });
                     }else{
-                        btn_SendInterest.setText("관심 취소");
-                        final AlertDialog.Builder ProgressorCancelPopup = new AlertDialog.Builder(MainActivity.this);
-                        btn_SendInterest.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                float textSize = getResources().getDimension(R.dimen.DialogTxtSize);
-                                ProgressorCancelPopup.setMessage("관심을 취소하시겠습니까?")
-                                        .setPositiveButton("관심취소", new DialogInterface.OnClickListener() {
-                                            @Override
-                                            public void onClick(DialogInterface dialog, int which) {
-                                                removeInteresting(talentID);
-                                                dialog.cancel();
-                                                Intent i = new Intent(getBaseContext(), com.example.accepted.acceptedtalentplanet.TalentSharing.MainActivity.class);
-                                                i.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                                                startActivity(i);
-                                                finish();
-                                            }
-                                        })
-                                        .setNegativeButton("닫기", new DialogInterface.OnClickListener() {
-                                            @Override
-                                            public void onClick(DialogInterface dialog, int which) {
-                                                dialog.cancel();
-                                            }
-                                        });
+                        btn_SendInterest.setText("Shall we ?");
+                        btn_SendInterest.setOnClickListener(null);
+                        btn_SendInterest.setBackgroundResource(R.drawable.bgr_preinterested);
 
-                                AlertDialog alertDialog = ProgressorCancelPopup.create();
-                                alertDialog.show();
-                                TextView msgView = (TextView) alertDialog.findViewById(android.R.id.message);
-                                msgView.setTextSize(textSize);
-                            }
-                        });
+//                        final AlertDialog.Builder ProgressorCancelPopup = new AlertDialog.Builder(MainActivity.this);
+//                        btn_SendInterest.setOnClickListener(new View.OnClickListener() {
+//                            @Override
+//                            public void onClick(View v) {
+//                                float textSize = getResources().getDimension(R.dimen.DialogTxtSize);
+//                                ProgressorCancelPopup.setMessage("관심을 취소하시겠습니까?")
+//                                        .setPositiveButton("관심취소", new DialogInterface.OnClickListener() {
+//                                            @Override
+//                                            public void onClick(DialogInterface dialog, int which) {
+//                                                removeInteresting(talentID);
+//                                                dialog.cancel();
+//                                                Intent i = new Intent(getBaseContext(), com.example.accepted.acceptedtalentplanet.TalentSharing.MainActivity.class);
+//                                                i.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+//                                                startActivity(i);
+//                                                finish();
+//                                            }
+//                                        })
+//                                        .setNegativeButton("닫기", new DialogInterface.OnClickListener() {
+//                                            @Override
+//                                            public void onClick(DialogInterface dialog, int which) {
+//                                                dialog.cancel();
+//                                            }
+//                                        });
+//
+//                                AlertDialog alertDialog = ProgressorCancelPopup.create();
+//                                alertDialog.show();
+//                                TextView msgView = (TextView) alertDialog.findViewById(android.R.id.message);
+//                                msgView.setTextSize(textSize);
+//                            }
+//                        });
                     }
 
                     if (addedFriend) {
