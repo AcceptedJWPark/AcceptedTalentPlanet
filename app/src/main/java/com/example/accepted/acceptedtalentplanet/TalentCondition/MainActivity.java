@@ -840,6 +840,7 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
 
     Handler handler = new Handler(){
         public void handleMessage(Message msg){
+            Log.d("get Message", "true");
             getMyTalent();
         }
     };
