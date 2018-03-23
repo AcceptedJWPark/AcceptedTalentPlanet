@@ -40,6 +40,7 @@ import java.util.Map;
 
 import static android.view.View.GONE;
 import static com.example.accepted.acceptedtalentplanet.MyFirebaseMessagingService.countAlarmPush_Condition;
+import static com.example.accepted.acceptedtalentplanet.SaveSharedPreference.DrawerLayout_ClickEvent;
 import static com.example.accepted.acceptedtalentplanet.SaveSharedPreference.DrawerLayout_Open;
 
 public class MainActivity extends AppCompatActivity implements MyFirebaseMessagingService.MessageReceivedListener{
@@ -92,14 +93,17 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
         ((TextView) findViewById(R.id.tv_toolbarTitle)).setText("나의 재능 현황");
         ((TextView) findViewById(R.id.DrawerUserID)).setText(SaveSharedPreference.getUserId(mContext));
 
-        final View.OnClickListener mClicklistener = new  View.OnClickListener()
+        drawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout_TalentCondition);
+        view_drawerView = findViewById(R.id.view_drawerView_TalentCondition);
+
+        View.OnClickListener mClicklistener = new  View.OnClickListener()
         {
             @Override
             public void onClick(View v) {
-                DrawerLayout_Open(v,MainActivity.this, drawerLayout, view_drawerView);
+                DrawerLayout_Open(v, com.example.accepted.acceptedtalentplanet.TalentCondition.MainActivity.this, drawerLayout, view_drawerView);
             }
         };
-
+        DrawerLayout_ClickEvent(com.example.accepted.acceptedtalentplanet.TalentCondition.MainActivity.this,mClicklistener);
 
         getMyTalent();
 
@@ -321,8 +325,9 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
                                             cancelSharingTalent();
                                             dialog.cancel();
                                             Intent i = new Intent(MainActivity.this, MainActivity.class);
-                                            i.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                                            i.putExtra("TalentCondition_TalentFlag","Give");
                                             startActivity(i);
+                                            finish();
                                         }
                                     })
                                     .setNegativeButton("닫기", new DialogInterface.OnClickListener() {
@@ -359,8 +364,9 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
                                             reRegistTalent();
                                             dialog.cancel();
                                             Intent i = new Intent(MainActivity.this, MainActivity.class);
-                                            i.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                                            i.putExtra("TalentCondition_TalentFlag","Give");
                                             startActivity(i);
+                                            finish();
                                         }
                                     })
                                     .setNegativeButton("닫기", new DialogInterface.OnClickListener() {
@@ -495,8 +501,9 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
                                                 cancelSharingTalent();
                                                 dialog.cancel();
                                                 Intent i = new Intent(MainActivity.this, MainActivity.class);
-                                                i.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                                                i.putExtra("TalentCondition_TalentFlag","Take");
                                                 startActivity(i);
+                                                finish();
                                             }
                                         })
                                         .setNegativeButton("닫기", new DialogInterface.OnClickListener() {
@@ -522,8 +529,9 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
                                                 completeSharingTalent();
                                                 dialog.cancel();
                                                 Intent i = new Intent(MainActivity.this, MainActivity.class);
-                                                i.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                                                i.putExtra("TalentCondition_TalentFlag","Take");
                                                 startActivity(i);
+                                                finish();
                                             }
                                         })
                                         .setNegativeButton("닫기", new DialogInterface.OnClickListener() {
@@ -569,8 +577,9 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
                                             reRegistTalent();
                                             dialog.cancel();
                                             Intent i = new Intent(MainActivity.this, MainActivity.class);
-                                            i.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                                            i.putExtra("TalentCondition_TalentFlag","Take");
                                             startActivity(i);
+                                            finish();
                                         }
                                     })
                                     .setNegativeButton("닫기", new DialogInterface.OnClickListener() {

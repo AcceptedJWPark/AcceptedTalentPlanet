@@ -176,8 +176,7 @@ public class MainActivity extends FragmentActivity {
 
         } else
             {
-            btn_Progress.setText("진행하기");
-                btn_Progress.setBackgroundResource(R.drawable.bgr_bigbtn);
+
             btn_Progress.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -189,7 +188,7 @@ public class MainActivity extends FragmentActivity {
                                     doSharingTalent(talentID);
                                     dialog.cancel();
                                     Intent i = new Intent(getBaseContext(), com.example.accepted.acceptedtalentplanet.TalentCondition.MainActivity.class);
-                                    i.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                                    i.putExtra("TalentSharing_TalentFlag","Give");
                                     startActivity(i);
                                     finish();
                                 }
