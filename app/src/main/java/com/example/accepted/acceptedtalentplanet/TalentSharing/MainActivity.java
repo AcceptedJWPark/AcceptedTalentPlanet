@@ -69,6 +69,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+    private final long FINISH_INTERVAL_TIME = 2000;
 
     // 검색조건 관련 변수
     private boolean isGiveTalent = true;
@@ -129,6 +130,8 @@ public class MainActivity extends AppCompatActivity {
 
         btn_giveSelect.setOnClickListener(changeTalentFlag);
         btn_takeSelect.setOnClickListener(changeTalentFlag);
+
+
 
 
         Intent i = getIntent();
