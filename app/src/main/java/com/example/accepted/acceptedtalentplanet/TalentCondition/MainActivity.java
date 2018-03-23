@@ -40,7 +40,6 @@ import java.util.Map;
 
 import static android.view.View.GONE;
 import static com.example.accepted.acceptedtalentplanet.MyFirebaseMessagingService.countAlarmPush_Condition;
-import static com.example.accepted.acceptedtalentplanet.SaveSharedPreference.DrawerLayout_ClickEvent;
 import static com.example.accepted.acceptedtalentplanet.SaveSharedPreference.DrawerLayout_Open;
 
 public class MainActivity extends AppCompatActivity implements MyFirebaseMessagingService.MessageReceivedListener{
@@ -101,28 +100,6 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
             }
         };
 
-
-    drawerLayout.addDrawerListener(new DrawerLayout.DrawerListener() {
-        @Override
-        public void onDrawerSlide(View drawerView, float slideOffset) {
-            DrawerLayout_ClickEvent(MainActivity.this,mClicklistener);
-        }
-
-        @Override
-        public void onDrawerOpened(View drawerView) {
-            DrawerLayout_ClickEvent(MainActivity.this,mClicklistener);
-        }
-
-        @Override
-        public void onDrawerClosed(View drawerView) {
-
-        }
-
-        @Override
-        public void onDrawerStateChanged(int newState) {
-            DrawerLayout_ClickEvent(MainActivity.this,mClicklistener);
-        }
-    });
 
         getMyTalent();
 
