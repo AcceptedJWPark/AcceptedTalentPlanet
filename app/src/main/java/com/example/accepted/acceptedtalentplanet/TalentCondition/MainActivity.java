@@ -574,6 +574,7 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
                                     .setPositiveButton("재등록", new DialogInterface.OnClickListener() {
                                         @Override
                                         public void onClick(DialogInterface dialog, int which) {
+                                            Log.d("reRegist", "true");
                                             reRegistTalent();
                                             dialog.cancel();
                                             Intent i = new Intent(MainActivity.this, MainActivity.class);
@@ -795,7 +796,7 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
             MyTalent mt = SaveSharedPreference.getTakeTalentData(mContext);
             int myTalentPoint = SaveSharedPreference.getTalentPoint(mContext);
             if(mt.getPoint() > myTalentPoint){
-                Toast.makeText(mContext, "현재 사용가능한 포인트는 "+ myTalentPoint + "P 입니다.", Toast.LENGTH_SHORT);
+                Toast.makeText(mContext, "현재 사용가능한 포인트는 "+ myTalentPoint + "P 입니다.", Toast.LENGTH_SHORT).show();
                 return;
             }
         }

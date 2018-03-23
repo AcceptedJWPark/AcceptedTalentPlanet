@@ -188,7 +188,7 @@ public class MainActivity extends FragmentActivity {
                                     doSharingTalent(talentID);
                                     dialog.cancel();
                                     Intent i = new Intent(getBaseContext(), com.example.accepted.acceptedtalentplanet.TalentCondition.MainActivity.class);
-                                    i.putExtra("TalentSharing_TalentFlag","Give");
+                                    i.putExtra("TalentSharing_TalentFlag",(talentFlag)?"Give":"Take");
                                     startActivity(i);
                                     finish();
                                 }
