@@ -139,8 +139,9 @@ public class MainActivity extends FragmentActivity {
         final AlertDialog.Builder ProgressorCancelPopup = new AlertDialog.Builder(this);
 
         if (sendFlag) {
-            btn_Progress.setText("관심 취소");
+            btn_Progress.setText("진행하기");
             btn_Progress.setBackgroundResource(R.drawable.bgr_preinterested);
+            btn_Progress.setOnClickListener(null);
 
             //btn_Progress.setTextColor(Color.parseColor("#d2d2d2"));
 //            btn_Progress.setOnClickListener(new View.OnClickListener() {
@@ -175,7 +176,7 @@ public class MainActivity extends FragmentActivity {
 
         } else
             {
-
+            btn_Progress.setText("진행하기");
             btn_Progress.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
