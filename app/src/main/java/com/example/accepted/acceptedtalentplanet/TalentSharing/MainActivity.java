@@ -70,6 +70,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     private final long FINISH_INTERVAL_TIME = 2000;
+    private long   backPressedTime = 0;
 
     // 검색조건 관련 변수
     private boolean isGiveTalent = true;
@@ -445,6 +446,25 @@ public class MainActivity extends AppCompatActivity {
         postRequestQueue.add(postJsonRequest);
 
     }
+
+    @Override
+    public void onBackPressed() {
+        long tempTime = System.currentTimeMillis();
+        long intervalTime = tempTime - backPressedTime;
+
+        if(0<= intervalTime && FINISH_INTERVAL_TIME >= intervalTime)
+        {
+            System.exit(0);
+            super.onBackPressed();
+
+        }
+        else
+        {
+            backPressedTime = tempTime;
+            Toast.makeText(mContext, "뒤로가기를 누르면 종료됩니다.", Toast.LENGTH_SHORT).show();
+        }
+    }
+
 
 }
 
