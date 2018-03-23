@@ -227,6 +227,7 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
                     btn_Right.setText("T.Sharing");
                     btn_Left.setVisibility(View.VISIBLE);
                     btn_Right.setVisibility(View.VISIBLE);
+                    btn_Left.setBackgroundResource(R.drawable.bgr_bigbtn);
                     params1.bottomMargin = marginvalue;
                     params2.bottomMargin = marginvalue;
                     params2.topMargin = 0;
@@ -257,6 +258,7 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
                     tv_Txt.setText("아래 회원과 재능을 공유하였다면 완료하기 버튼을 눌러주세요!");
                     btn_Left.setText("완료 하기");
                     btn_Right.setText("진행 취소");
+                    btn_Left.setBackgroundResource(R.drawable.bgr_bigbtn);
                     btn_Left.setVisibility(View.VISIBLE);
                     btn_Right.setVisibility(View.VISIBLE);
                     ll_PictureContainer.setVisibility(View.VISIBLE);
@@ -277,11 +279,14 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
                                 Toast.makeText(mContext, "상대방이 완료를 누르지 않았습니다.", Toast.LENGTH_SHORT).show();
                                 return;
                             }
+
                             AlarmDeleteDialog.setMessage("재능공유 완료 시 포인트 공유가 이루어집니다.")
                                     .setPositiveButton("공유 완료", new DialogInterface.OnClickListener() {
                                         @Override
                                         public void onClick(DialogInterface dialog, int which) {
                                             tv_Txt.setText("상대방의 \"완료 하기\"를 대기중입니다.");
+                                            btn_Left.setBackgroundResource(R.drawable.bgr_preinterested);
+                                            btn_Left.setOnClickListener(null);
                                             completeSharingTalent();
                                             dialog.cancel();
                                         }
@@ -337,6 +342,7 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
                 case 3: {
                     tv_Txt.setText("재능 재등록을 진행해야 회원님의 재능이 활성화 됩니다.");
                     btn_Left.setText("재능드림 재등록");
+                    btn_Left.setBackgroundResource(R.drawable.bgr_bigbtn);
                     params1.bottomMargin = marginvalue;
                     params2.bottomMargin = marginvalue;
                     params2.topMargin = 0;
@@ -461,6 +467,7 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
                         ((ImageView)findViewById(R.id.TalentCondition_ProfilePicture)).setImageBitmap(bitmap);
                     final AlertDialog.Builder AlarmDeleteDialog = new AlertDialog.Builder(MainActivity.this);
                     btn_Left.setText("완료 하기");
+                    btn_Left.setBackgroundResource(R.drawable.bgr_bigbtn);
                     btn_Right.setText("진행 취소");
                     btn_Left.setVisibility(View.VISIBLE);
                     btn_Right.setVisibility(View.VISIBLE);
@@ -840,6 +847,7 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
 
     Handler handler = new Handler(){
         public void handleMessage(Message msg){
+            Log.d("get Message", "true");
             getMyTalent();
         }
     };
