@@ -457,10 +457,11 @@
             android:layout_height="match_parent"
             android:layout_marginLeft="5dp"
             android:layout_weight="1"
-            android:background="@drawable/bgr_bigbtn"
+            android:background="@drawable/bgr_preinterested"
             android:textColor="@color/textcolor_bigbtn"
             android:textSize="@dimen/Popup_BigBtn"
-            android:text="진행 또는 취소"
+            android:textAllCaps="false"
+            android:text="Let's Share!"
             />
 
     </LinearLayout>

@@ -96,13 +96,22 @@
             />
     </LinearLayout>
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:text="재능 공유 진행 시 모든 관심 내역은 삭제 됩니다."
+        android:gravity="center"
+        android:textSize="@dimen/Page_Txt"
+        android:textColor="@color/textColor_txtpage"
+        />
 
 
     <ListView
         android:id="@+id/lv_InterestingList"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="21.86"
+        android:layout_weight="20.86"
         >
     </ListView>
 

@@ -127,7 +127,7 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:gravity="center|bottom"
-        android:text="관심목록 확인 또는 T.Sharing을 진행해보세요!"
+        android:text="Shall we 목록 확인 또는 T.Sharing을 진행해보세요!"
         android:textColor="@color/textColor_txtpage"
         android:textSize="@dimen/Page_Txt" />
 
@@ -196,7 +196,8 @@
                 android:layout_marginRight="5dp"
                 android:layout_weight="1"
                 android:background="@drawable/bgr_bigbtn"
-                android:text="관심목록 확인"
+                android:textAllCaps="false"
+                android:text="Shall we ?"
                 android:textColor="@color/textcolor_bigbtn"
                 android:textSize="@dimen/BigBtn"
                 android:visibility="visible" />

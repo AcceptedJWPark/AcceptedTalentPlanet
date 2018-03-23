@@ -139,44 +139,48 @@ public class MainActivity extends FragmentActivity {
         final AlertDialog.Builder ProgressorCancelPopup = new AlertDialog.Builder(this);
 
         if (sendFlag) {
-            //btn_Progress.setTextColor(Color.parseColor("#d2d2d2"));
-            btn_Progress.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    float textSize = getResources().getDimension(R.dimen.DialogTxtSize);
-                    ProgressorCancelPopup.setMessage("관심을 취소하시겠습니까?")
-                            .setPositiveButton("관심취소", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    removeInteresting(talentID);
-                                    dialog.cancel();
-                                    Intent i = new Intent(getBaseContext(), com.example.accepted.acceptedtalentplanet.TalentCondition.MainActivity.class);
-                                    i.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                                    startActivity(i);
-                                    finish();
-                                }
-                            })
-                            .setNegativeButton("닫기", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    dialog.cancel();
-                                }
-                            });
-
-                    AlertDialog alertDialog = ProgressorCancelPopup.create();
-                    alertDialog.show();
-                    TextView msgView = (TextView) alertDialog.findViewById(android.R.id.message);
-                    msgView.setTextSize(textSize);
-                }
-            });
             btn_Progress.setText("관심 취소");
-        } else {
+            btn_Progress.setBackgroundResource(R.drawable.bgr_preinterested);
+
+            //btn_Progress.setTextColor(Color.parseColor("#d2d2d2"));
+//            btn_Progress.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    float textSize = getResources().getDimension(R.dimen.DialogTxtSize);
+//                    ProgressorCancelPopup.setMessage("관심을 취소하시겠습니까?")
+//                            .setPositiveButton("관심취소", new DialogInterface.OnClickListener() {
+//                                @Override
+//                                public void onClick(DialogInterface dialog, int which) {
+//                                    removeInteresting(talentID);
+//                                    dialog.cancel();
+//                                    Intent i = new Intent(getBaseContext(), com.example.accepted.acceptedtalentplanet.TalentCondition.MainActivity.class);
+//                                    i.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+//                                    startActivity(i);
+//                                    finish();
+//                                }
+//                            })
+//                            .setNegativeButton("닫기", new DialogInterface.OnClickListener() {
+//                                @Override
+//                                public void onClick(DialogInterface dialog, int which) {
+//                                    dialog.cancel();
+//                                }
+//                            });
+//
+//                    AlertDialog alertDialog = ProgressorCancelPopup.create();
+//                    alertDialog.show();
+//                    TextView msgView = (TextView) alertDialog.findViewById(android.R.id.message);
+//                    msgView.setTextSize(textSize);
+//                }
+//            });
+
+        } else
+            {
 
             btn_Progress.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     float textSize = getResources().getDimension(R.dimen.DialogTxtSize);
-                    ProgressorCancelPopup.setMessage("재능 진행 또는 관심 취소를 진행해주세요!")
+                    ProgressorCancelPopup.setMessage("재능 공유를 진행합니다.")
                             .setPositiveButton("진행하기", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
