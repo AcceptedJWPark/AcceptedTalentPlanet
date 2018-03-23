@@ -364,10 +364,6 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
                                         public void onClick(DialogInterface dialog, int which) {
                                             reRegistTalent();
                                             dialog.cancel();
-                                            Intent i = new Intent(MainActivity.this, com.example.accepted.acceptedtalentplanet.TalentSharing.MainActivity.class);
-                                            i.putExtra("TalentSharing_TalentFlag","Give");
-                                            startActivity(i);
-                                            finish();
                                         }
                                     })
                                     .setNegativeButton("닫기", new DialogInterface.OnClickListener() {
@@ -578,10 +574,6 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
                                             Log.d("reRegist", "true");
                                             reRegistTalent();
                                             dialog.cancel();
-                                            Intent i = new Intent(MainActivity.this, com.example.accepted.acceptedtalentplanet.TalentSharing.MainActivity.class);
-                                            i.putExtra("TalentSharing_TalentFlag","Take");
-                                            startActivity(i);
-                                            finish();
                                         }
                                     })
                                     .setNegativeButton("닫기", new DialogInterface.OnClickListener() {
@@ -816,6 +808,11 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
                             mt.setTalentID(obj.getString("talentID"));
                             mt.setStatus("P");
                             SaveSharedPreference.setTakeTalentData(mContext, mt);
+
+                            Intent i = new Intent(MainActivity.this, com.example.accepted.acceptedtalentplanet.TalentSharing.MainActivity.class);
+                            i.putExtra("TalentSharing_TalentFlag","Take");
+                            startActivity(i);
+                            finish();
                         }
                         else
                         {
@@ -823,6 +820,11 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
                             mt.setTalentID(obj.getString("talentID"));
                             mt.setStatus("P");
                             SaveSharedPreference.setGiveTalentData(mContext, mt);
+
+                            Intent i = new Intent(MainActivity.this, com.example.accepted.acceptedtalentplanet.TalentSharing.MainActivity.class);
+                            i.putExtra("TalentSharing_TalentFlag","Give");
+                            startActivity(i);
+                            finish();
                         }
                     }
 
