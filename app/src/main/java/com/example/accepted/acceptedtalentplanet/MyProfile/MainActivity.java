@@ -277,9 +277,9 @@ public class MainActivity extends AppCompatActivity {
         });
 
         final AlertDialog.Builder AlarmDeleteDialog = new AlertDialog.Builder(MainActivity.this);
+        iv_Picture = (ImageView) findViewById(R.id.iv_Picture_MyProfile);
 
         if(bitmap != null) {
-            iv_Picture = (ImageView) findViewById(R.id.iv_Picture_MyProfile);
             iv_Picture.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

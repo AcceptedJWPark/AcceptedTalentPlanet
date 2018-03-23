@@ -93,14 +93,36 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
         ((TextView) findViewById(R.id.tv_toolbarTitle)).setText("나의 재능 현황");
         ((TextView) findViewById(R.id.DrawerUserID)).setText(SaveSharedPreference.getUserId(mContext));
 
-        View.OnClickListener mClicklistener = new  View.OnClickListener()
+        final View.OnClickListener mClicklistener = new  View.OnClickListener()
         {
             @Override
             public void onClick(View v) {
                 DrawerLayout_Open(v,MainActivity.this, drawerLayout, view_drawerView);
             }
         };
-        DrawerLayout_ClickEvent(MainActivity.this,mClicklistener);
+
+
+    drawerLayout.addDrawerListener(new DrawerLayout.DrawerListener() {
+        @Override
+        public void onDrawerSlide(View drawerView, float slideOffset) {
+            DrawerLayout_ClickEvent(MainActivity.this,mClicklistener);
+        }
+
+        @Override
+        public void onDrawerOpened(View drawerView) {
+            DrawerLayout_ClickEvent(MainActivity.this,mClicklistener);
+        }
+
+        @Override
+        public void onDrawerClosed(View drawerView) {
+
+        }
+
+        @Override
+        public void onDrawerStateChanged(int newState) {
+            DrawerLayout_ClickEvent(MainActivity.this,mClicklistener);
+        }
+    });
 
         getMyTalent();
 
@@ -426,6 +448,7 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
                     tv_Txt.setText("Shall we 목록 확인 또는 T.Sharing을 진행해보세요!");
                     btn_Left.setText("Shall we ?");
                     btn_Right.setText("T.Sharing");
+                    btn_Left.setBackgroundResource(R.drawable.bgr_bigbtn);
                     btn_Left.setVisibility(View.VISIBLE);
                     btn_Right.setVisibility(View.VISIBLE);
                     btn_TalentRegist.setVisibility(GONE);
@@ -544,6 +567,7 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
                 case 3: {
                     tv_Txt.setText("재능 재등록을 진행해야 회원님의 재능이 활성화 됩니다.");
                     btn_Left.setText("관심재능 재등록");
+                    btn_Left.setBackgroundResource(R.drawable.bgr_bigbtn);
                     btn_Right.setText("관심재능 수정하기");
                     params1.bottomMargin = marginvalue;
                     params2.bottomMargin = marginvalue;
