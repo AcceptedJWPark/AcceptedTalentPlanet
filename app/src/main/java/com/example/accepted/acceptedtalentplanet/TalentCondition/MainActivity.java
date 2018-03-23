@@ -157,6 +157,7 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
 
         Intent i = getIntent();
         flag = i.getStringExtra("TalentCondition_TalentFlag");
+
         if(flag == null) flag = "Give";
 
         else if(flag.equals("Give"))
