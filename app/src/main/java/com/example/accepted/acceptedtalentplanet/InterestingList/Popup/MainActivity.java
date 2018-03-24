@@ -64,6 +64,8 @@ public class MainActivity extends FragmentActivity {
     boolean talentFlag = true;
     boolean genderPBS, birthPBS, jobPBS;
 
+    private int targetPoint = 0;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -181,7 +183,7 @@ public class MainActivity extends FragmentActivity {
                 @Override
                 public void onClick(View v) {
                     float textSize = getResources().getDimension(R.dimen.DialogTxtSize);
-                    ProgressorCancelPopup.setMessage("상대방의 포인트" + "Point" + "로 진행됩니다.")
+                    ProgressorCancelPopup.setMessage("상대방의 포인트" + targetPoint + "P 로 진행됩니다.")
                             .setPositiveButton("진행하기", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
@@ -247,6 +249,7 @@ public class MainActivity extends FragmentActivity {
                     ((TextView)findViewById(R.id.point_InterestingPopup)).setText(obj.getString("T_POINT")+"P");
                     profileUserID = obj.getString("USER_ID");
                     talentFlag = (obj.getString("TALENT_FLAG").equals("Y"))? true : false;
+                    targetPoint = Integer.parseInt(obj.getString("T_POINT"));
 
                     ArrayList<Friend> friendList = SaveSharedPreference.getFriendList(mContext);
                     addedFriend = false;

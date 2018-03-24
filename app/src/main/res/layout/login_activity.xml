@@ -8,7 +8,7 @@
     android:clickable="true"
     android:focusable="true"
     android:focusableInTouchMode="true"
-    android:background="@drawable/bgr_bigbtn"
+    android:background="@drawable/bgr_login"
     >
 
 
@@ -23,25 +23,13 @@
 
             <ImageView
                 android:id="@+id/login_logoimg"
-                android:layout_width="80dp"
-                android:layout_height="50dp"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
                 android:layout_centerInParent="true"
                 android:adjustViewBounds="true"
-                android:src="@drawable/logo_fakefile"
+                android:src="@drawable/logo_4_w"
                 />
 
-            <TextView
-                android:id="@+id/login_logotitle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_below="@+id/login_logoimg"
-                android:gravity="center"
-                android:text="Talent Planet"
-                android:letterSpacing="0.1"
-                android:textColor="@color/loginMainTitle"
-                android:textSize="@dimen/LogIn_Title"
-                android:textStyle="bold" />
 
     </LinearLayout>
 

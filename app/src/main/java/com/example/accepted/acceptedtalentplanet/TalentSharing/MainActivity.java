@@ -48,6 +48,7 @@ import java.util.Map;
 
 import static com.example.accepted.acceptedtalentplanet.SaveSharedPreference.DrawerLayout_ClickEvent;
 import static com.example.accepted.acceptedtalentplanet.SaveSharedPreference.DrawerLayout_Open;
+import static com.example.accepted.acceptedtalentplanet.SaveSharedPreference.getMyPicture;
 
 /**
  * Created by Accepted on 2017-10-24.
@@ -71,9 +72,8 @@ public class MainActivity extends AppCompatActivity {
     private Button btn_takeSelect;
 
 
-
     private final long FINISH_INTERVAL_TIME = 2000;
-    private long   backPressedTime = 0;
+    private long backPressedTime = 0;
 
     // 검색조건 관련 변수
     private boolean isGiveTalent = true;
@@ -91,7 +91,6 @@ public class MainActivity extends AppCompatActivity {
     int progressRate = 0;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -99,7 +98,9 @@ public class MainActivity extends AppCompatActivity {
 
         mContext = getApplicationContext();
 
-        if(SaveSharedPreference.getFcmToken(mContext) == null){
+
+
+        if (SaveSharedPreference.getFcmToken(mContext) == null) {
             FirebaseInstanceId.getInstance().getToken();
         }
 
@@ -109,14 +110,13 @@ public class MainActivity extends AppCompatActivity {
         ((TextView) findViewById(R.id.tv_toolbarTitle)).setText("T.Sharing");
         ((TextView) findViewById(R.id.DrawerUserID)).setText(SaveSharedPreference.getUserId(mContext));
 
-        View.OnClickListener mClicklistener = new  View.OnClickListener()
-        {
+        View.OnClickListener mClicklistener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DrawerLayout_Open(v,MainActivity.this, drawerLayout, view_DarawerLayout);
+                DrawerLayout_Open(v, MainActivity.this, drawerLayout, view_DarawerLayout);
             }
         };
-        DrawerLayout_ClickEvent(MainActivity.this,mClicklistener);
+        DrawerLayout_ClickEvent(MainActivity.this, mClicklistener);
 
         drawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout_TalentSharing);
 
@@ -137,22 +137,18 @@ public class MainActivity extends AppCompatActivity {
         btn_takeSelect.setOnClickListener(changeTalentFlag);
 
 
-
-
         Intent i = getIntent();
         String flag = i.getStringExtra("TalentSharing_TalentFlag");
-        if(flag == null) flag = "Give";
-        if(flag.equals("Give"))
-        {
+        if (flag == null) flag = "Give";
+        if (flag.equals("Give")) {
             btn_giveSelect.setFocusableInTouchMode(true);
             btn_giveSelect.performClick();
-        }else if(flag.equals("Take"))
-        {
+        } else if (flag.equals("Take")) {
             btn_takeSelect.setFocusableInTouchMode(true);
             btn_takeSelect.performClick();
         }
 
-        ((ImageView)findViewById(R.id.iv_renew_TalentSharing)).setOnClickListener(new View.OnClickListener() {
+        ((ImageView) findViewById(R.id.iv_renew_TalentSharing)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 getTalentSharing();
@@ -164,7 +160,7 @@ public class MainActivity extends AppCompatActivity {
     public void getTalentSharing() {
         arrayList = new ArrayList<>();
         arrayList_Original = new ArrayList<>();
-        progressBar = (ProgressBar)findViewById(R.id.progressBar);
+        progressBar = (ProgressBar) findViewById(R.id.progressBar);
         progressBarContainer = (LinearLayout) findViewById(R.id.progressBarContainer_TalentSharing);
         progressBarContainer.setVisibility(View.VISIBLE);
         listView.setVisibility(View.GONE);
@@ -181,7 +177,7 @@ public class MainActivity extends AppCompatActivity {
                         JSONObject o = obj.getJSONObject(index);
                         Log.d("getTalentSharing", o.toString());
                         double distance = findMinDistanceBetween(o.getString("GP_LAT"), o.getString("GP_LNG"), o.getString("TALENT_FLAG").equals("Y"));
-                        ListItem target = new ListItem(R.drawable.testpicture, o.getString("USER_NAME"), o.getString("TALENT_KEYWORD1"), o.getString("TALENT_KEYWORD2"), o.getString("TALENT_KEYWORD3"), o.getString("seq"), o.getString("TALENT_FLAG"), o.getString("STATUS_FLAG"),(String.format("%.1f",  distance) + "km"), "Profile 보기", o.getString("USER_ID"), distance);
+                        ListItem target = new ListItem(R.drawable.testpicture, o.getString("USER_NAME"), o.getString("TALENT_KEYWORD1"), o.getString("TALENT_KEYWORD2"), o.getString("TALENT_KEYWORD3"), o.getString("seq"), o.getString("TALENT_FLAG"), o.getString("STATUS_FLAG"), (String.format("%.1f", distance) + "km"), "Profile 보기", o.getString("USER_ID"), distance);
                         try {
                             String dbName = "/accepted.db";
                             SQLiteDatabase sqLiteDatabase = SQLiteDatabase.openOrCreateDatabase(getFilesDir() + dbName, null);
@@ -191,16 +187,15 @@ public class MainActivity extends AppCompatActivity {
                             sqLiteDatabase.execSQL(insertSql);
 
                             sqLiteDatabase.close();
-                        }catch(Exception e){
+                        } catch (Exception e) {
                             e.printStackTrace();
                         }
                         arrayList_Original.add(target);
-                        if(isGiveTalent){
-                            if(o.getString("TALENT_FLAG").equals("N"))
+                        if (isGiveTalent) {
+                            if (o.getString("TALENT_FLAG").equals("N"))
                                 arrayList.add(target);
-                        }
-                        else{
-                            if(o.getString("TALENT_FLAG").equals("Y"))
+                        } else {
+                            if (o.getString("TALENT_FLAG").equals("Y"))
                                 arrayList.add(target);
                         }
 
@@ -229,22 +224,22 @@ public class MainActivity extends AppCompatActivity {
         postRequestQueue.add(postJsonRequest);
     }
 
-    Button.OnClickListener changeTalentFlag = new View.OnClickListener(){
-        public void onClick(View v){
-            tv_Txt = (TextView)findViewById(R.id.tv_Txt_TalentSharing);
-            isGiveTalent = (((Button)v).getId() == R.id.btn_giveSelect_TalentSharing) ? true : false;
+    Button.OnClickListener changeTalentFlag = new View.OnClickListener() {
+        public void onClick(View v) {
+            tv_Txt = (TextView) findViewById(R.id.tv_Txt_TalentSharing);
+            isGiveTalent = (((Button) v).getId() == R.id.btn_giveSelect_TalentSharing) ? true : false;
 
-            if(isGiveTalent){
+            if (isGiveTalent) {
                 MyTalent mt = SaveSharedPreference.getGiveTalentData(mContext);
 
 
-                if(mt == null){
+                if (mt == null) {
                     Toast.makeText(mContext, "재능 기부 등록을 먼저 진행해주세요.", Toast.LENGTH_SHORT).show();
                     Intent i = new Intent(mContext, com.example.accepted.acceptedtalentplanet.TalentResister.MainActivity.class);
                     i.putExtra("GiveFlag", true);
                     startActivity(i);
                     finish();
-                }else if(mt.getStatus() == null || mt.getStatus().equals("C")){
+                } else if (mt.getStatus() == null || mt.getStatus().equals("C")) {
                     Toast.makeText(mContext, "재능 기부 재등록을 먼저 진행해주세요.", Toast.LENGTH_SHORT).show();
                     Intent i = new Intent(mContext, com.example.accepted.acceptedtalentplanet.TalentCondition.MainActivity.class);
                     i.putExtra("GiveFlag", true);
@@ -257,20 +252,20 @@ public class MainActivity extends AppCompatActivity {
                 btn_giveSelect.setTextColor(getResources().getColor(R.color.textcolor_giveortake_clicked));
                 btn_takeSelect.setBackground(ContextCompat.getDrawable(mContext, R.drawable.bgr_giveortake_unclicked));
                 btn_takeSelect.setTextColor(getResources().getColor(R.color.textcolor_giveortake_unclicked));
-                btn_takeSelect.setPaintFlags(btn_takeSelect.getPaintFlags() &~ Paint.FAKE_BOLD_TEXT_FLAG);
+                btn_takeSelect.setPaintFlags(btn_takeSelect.getPaintFlags() & ~Paint.FAKE_BOLD_TEXT_FLAG);
 
                 tv_Txt.setText(SaveSharedPreference.getUserName(mContext) + "님의 재능을 공유할 수 있는 회원입니다.");
 
-            }else{
+            } else {
                 MyTalent mt = SaveSharedPreference.getTakeTalentData(mContext);
-                
-                if(mt == null){
+
+                if (mt == null) {
                     Toast.makeText(mContext, "관심 재능 등록을 먼저 진행해주세요.", Toast.LENGTH_SHORT).show();
                     Intent i = new Intent(mContext, com.example.accepted.acceptedtalentplanet.TalentResister.MainActivity.class);
                     i.putExtra("GiveFlag", false);
                     startActivity(i);
                     finish();
-                }else if(mt.getStatus() == null || mt.getStatus().equals("C")){
+                } else if (mt.getStatus() == null || mt.getStatus().equals("C")) {
                     Toast.makeText(mContext, "관심 재능 재등록을 먼저 진행해주세요.", Toast.LENGTH_SHORT).show();
                     Intent i = new Intent(mContext, com.example.accepted.acceptedtalentplanet.TalentCondition.MainActivity.class);
                     i.putExtra("GiveFlag", false);
@@ -283,17 +278,17 @@ public class MainActivity extends AppCompatActivity {
                 btn_takeSelect.setTextColor(getResources().getColor(R.color.textcolor_giveortake_clicked));
                 btn_giveSelect.setBackground(ContextCompat.getDrawable(mContext, R.drawable.bgr_giveortake_unclicked));
                 btn_giveSelect.setTextColor(getResources().getColor(R.color.textcolor_giveortake_unclicked));
-                btn_giveSelect.setPaintFlags(btn_giveSelect.getPaintFlags() &~ Paint.FAKE_BOLD_TEXT_FLAG);
+                btn_giveSelect.setPaintFlags(btn_giveSelect.getPaintFlags() & ~Paint.FAKE_BOLD_TEXT_FLAG);
                 tv_Txt.setText(SaveSharedPreference.getUserName(mContext) + "님께 재능을 공유할 수 있는 회원입니다.");
             }
 
             arrayList.clear();
             ListItem tmp;
-            for(int index = 0; index < arrayList_Original.size(); index++){
+            for (int index = 0; index < arrayList_Original.size(); index++) {
                 tmp = arrayList_Original.get(index);
-                if(tmp.getTalentFlag() && !isGiveTalent)
+                if (tmp.getTalentFlag() && !isGiveTalent)
                     arrayList.add(tmp);
-                else if(tmp.getTalentFlag() == false && isGiveTalent)
+                else if (tmp.getTalentFlag() == false && isGiveTalent)
                     arrayList.add(tmp);
             }
             Collections.sort(arrayList);
@@ -339,26 +334,25 @@ public class MainActivity extends AppCompatActivity {
         return distance / 1000;
     }
 
-    public void saveFcmToken(){
+    public void saveFcmToken() {
         RequestQueue postRequestQueue = VolleySingleton.getInstance(mContext).getRequestQueue();
-        StringRequest postJsonRequest = new StringRequest(Request.Method.POST, SaveSharedPreference.getServerIp() + "Login/saveFCMToken.do", new Response.Listener<String>(){
+        StringRequest postJsonRequest = new StringRequest(Request.Method.POST, SaveSharedPreference.getServerIp() + "Login/saveFCMToken.do", new Response.Listener<String>() {
             @Override
-            public void onResponse(String response){
+            public void onResponse(String response) {
                 try {
                     JSONObject obj = new JSONObject(response);
-                    if(obj.getString("result").equals("success")){
+                    if (obj.getString("result").equals("success")) {
                         Log.d("saveToken", "토큰 저장 성공");
-                    }else{
+                    } else {
                         Log.d("saveToken", "토큰 저장 실패");
                     }
-                }
-                catch(JSONException e){
+                } catch (JSONException e) {
                     e.printStackTrace();
                 }
             }
         }, SaveSharedPreference.getErrorListener()) {
             @Override
-            protected Map<String, String> getParams(){
+            protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap();
                 params.put("userID", SaveSharedPreference.getUserId(mContext));
                 params.put("fcmToken", SaveSharedPreference.getFcmToken(mContext));
@@ -372,17 +366,17 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void retrieveMessage(){
+    public void retrieveMessage() {
         int maxMessageID = 0;
         try {
             String dbName = "/accepted.db";
             SQLiteDatabase sqLiteDatabase = SQLiteDatabase.openOrCreateDatabase(getFilesDir() + dbName, null);
 
             String selectMaxMessage = "SELECT IFNULL(MAX(D01.MESSAGE_ID), 0) AS MESSAGE_ID\n" +
-                                      "FROM   TB_CHAT_LOG D01\n" +
-                                      "     , TB_CHAT_ROOM D02\n" +
-                                      "WHERE  D01.ROOM_ID = D02.ROOM_ID\n" +
-                                      "AND    D02.MASTER_ID = '" + SaveSharedPreference.getUserId(mContext) + "'";
+                    "FROM   TB_CHAT_LOG D01\n" +
+                    "     , TB_CHAT_ROOM D02\n" +
+                    "WHERE  D01.ROOM_ID = D02.ROOM_ID\n" +
+                    "AND    D02.MASTER_ID = '" + SaveSharedPreference.getUserId(mContext) + "'";
             Cursor cursor = sqLiteDatabase.rawQuery(selectMaxMessage, null);
             cursor.moveToFirst();
 
@@ -390,33 +384,32 @@ public class MainActivity extends AppCompatActivity {
 
             cursor.close();
             sqLiteDatabase.close();
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
-        if(maxMessageID == 0)
+        if (maxMessageID == 0)
             return;
 
         final int lastMessageID = maxMessageID;
 
         RequestQueue postRequestQueue = VolleySingleton.getInstance(mContext).getRequestQueue();
-        StringRequest postJsonRequest = new StringRequest(Request.Method.POST, SaveSharedPreference.getServerIp() + "Chat/retrieveMessage.do", new Response.Listener<String>(){
+        StringRequest postJsonRequest = new StringRequest(Request.Method.POST, SaveSharedPreference.getServerIp() + "Chat/retrieveMessage.do", new Response.Listener<String>() {
             @Override
-            public void onResponse(String response){
+            public void onResponse(String response) {
                 try {
                     JSONObject obj = new JSONObject(response);
-                    if(obj.getString("result").equals("success")) {
+                    if (obj.getString("result").equals("success")) {
                         interval = 100;
                         count = 0;
                     }
-                }
-                catch(JSONException e){
+                } catch (JSONException e) {
                     e.printStackTrace();
                 }
             }
-        }, new Response.ErrorListener(){
+        }, new Response.ErrorListener() {
             @Override
-            public void onErrorResponse(VolleyError error){
+            public void onErrorResponse(VolleyError error) {
                 NetworkResponse response = error.networkResponse;
                 if (error instanceof ServerError && response != null) {
                     try {
@@ -437,7 +430,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }) {
             @Override
-            protected Map<String, String> getParams(){
+            protected Map<String, String> getParams() {
 
                 Map<String, String> params = new HashMap();
                 params.put("userID", SaveSharedPreference.getUserId(mContext));
@@ -456,18 +449,21 @@ public class MainActivity extends AppCompatActivity {
         long tempTime = System.currentTimeMillis();
         long intervalTime = tempTime - backPressedTime;
 
-        if(0<= intervalTime && FINISH_INTERVAL_TIME >= intervalTime)
-        {
+        if (0 <= intervalTime && FINISH_INTERVAL_TIME >= intervalTime) {
 
             finish();
             super.onBackPressed();
 
-        }
-        else
-        {
+        } else {
             backPressedTime = tempTime;
             Toast.makeText(mContext, "뒤로가기를 누르면 종료됩니다.", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+        drawerLayout.closeDrawers();
     }
 
 

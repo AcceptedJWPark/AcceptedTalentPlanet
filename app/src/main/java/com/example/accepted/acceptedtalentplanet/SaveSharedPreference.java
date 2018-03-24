@@ -332,6 +332,8 @@ public class SaveSharedPreference{
 
     public static void DrawerLayout_ClickEvent(Context context, View.OnClickListener listener){
 
+
+
         ((LinearLayout) ((Activity)context).findViewById(R.id.DrawerLayout_OpenIcon)).setOnClickListener(listener);
         ((ImageView) ((Activity)context).findViewById(R.id.DrawerCloseImg)).setOnClickListener(listener);
         ((LinearLayout) ((Activity)context).findViewById(R.id.DrawerLayout_AlarmIcon)).setOnClickListener(listener);
@@ -381,7 +383,6 @@ public class SaveSharedPreference{
             case R.id.SlidingMenu_Profile : {
                 i = new Intent(mContext, com.example.accepted.acceptedtalentplanet.MyProfile.MainActivity.class);
                 mContext.startActivity(i);
-                drawerLayout.closeDrawers();
                 break;
             }
 
@@ -393,7 +394,6 @@ public class SaveSharedPreference{
 
             case R.id.SlidingMenu_MyTalentProcess : {
                 i = new Intent(mContext, com.example.accepted.acceptedtalentplanet.TalentCondition.MainActivity.class);
-
                 mContext.startActivity(i);
                 break;
             }
@@ -402,7 +402,6 @@ public class SaveSharedPreference{
                 i = new Intent(mContext, com.example.accepted.acceptedtalentplanet.TalentSharing.MainActivity.class);
                 i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 mContext.startActivity(i);
-                drawerLayout.closeDrawers();
                 break;
             }
 //            case R.id.SlidingMenu_TalentSearching : {
