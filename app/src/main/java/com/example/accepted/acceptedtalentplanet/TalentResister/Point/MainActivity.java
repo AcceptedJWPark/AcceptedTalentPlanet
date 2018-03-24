@@ -99,6 +99,15 @@ public class MainActivity extends AppCompatActivity {
         final String point = et_Point.getText().toString();
         int myTalentPoint = SaveSharedPreference.getTalentPoint(mContext);
 
+        if(point == null || point.isEmpty()){
+            Toast.makeText(getApplicationContext(), "포인트를 입력해주세요.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if(Integer.parseInt(point) <= 0){
+            Toast.makeText(getApplicationContext(), "포인트는 0보다 커야합니다.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         if(!isTalentRegisted && myTalentPoint < Integer.parseInt(point)){
             Toast.makeText(getApplicationContext(), "현재 사용가능 포인트는 " + myTalentPoint +"P 입니다.", Toast.LENGTH_SHORT).show();
             return;

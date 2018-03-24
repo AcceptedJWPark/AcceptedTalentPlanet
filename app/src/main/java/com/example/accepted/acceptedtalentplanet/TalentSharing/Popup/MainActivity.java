@@ -213,7 +213,7 @@ public class MainActivity extends FragmentActivity{
                     hasFlag = (obj.getString("HAS_FLAG").equals("N"))? false : true;
                     Log.d("hasFlag", String.valueOf(hasFlag));
                     btn_SendInterest = (Button)findViewById(R.id.btn_SendInterest_TalentSharing);
-                    if(!hasFlag){
+                    if(!hasFlag && statusFlag.equals("P")){
                         btn_SendInterest.setBackgroundResource(R.drawable.bgr_bigbtn);
                         final AlertDialog.Builder shallWeAlert = new AlertDialog.Builder(MainActivity.this);
                         btn_SendInterest.setOnClickListener(new View.OnClickListener() {
@@ -221,7 +221,7 @@ public class MainActivity extends FragmentActivity{
                             public void onClick(View view) {
                                         float textSize = getResources().getDimension(R.dimen.DialogTxtSize);
                                         String Shallwe = "Shall we";
-                                        shallWeAlert.setMessage("상대방의 포인트" + "Point" + "로 진행됩니다.")
+                                        shallWeAlert.setMessage("상대방의 포인트" + point + "P 로 진행됩니다.")
                                                 .setPositiveButton(Shallwe, new DialogInterface.OnClickListener() {
                                                     @Override
                                                     public void onClick(DialogInterface dialog, int which) {
