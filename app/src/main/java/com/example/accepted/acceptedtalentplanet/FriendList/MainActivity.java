@@ -200,7 +200,11 @@ public class MainActivity extends AppCompatActivity {
                     }
 
                     adapter = new Adapter(mContext, arrayList);
-                    listView_Give.setAdapter(adapter);
+                    if(listView_Give.getVisibility() == View.VISIBLE) {
+                        listView_Give.setAdapter(adapter);
+                    }else{
+                        listView_Take.setAdapter(adapter);
+                    }
 
 
                 } catch (JSONException e) {

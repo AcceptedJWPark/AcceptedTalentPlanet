@@ -80,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
                         int TalentType = (o.getString("TALENT_FLAG").equals("Y"))?1:2;
                         String point = (TalentType == 1)? "-":"+";
                         point = point + o.getString("T_POINT") + "p";
-                        arrayList.add(new ListItem(TalentType, o.getString("USER_NAME")+ "님과", dateStr, o.getString("TALENT_KEYWORD1"), o.getString("TALENT_KEYWORD2"), o.getString("TALENT_KEYWORD3"), point));
+                        arrayList.add(0,new ListItem(TalentType, o.getString("USER_NAME")+ "님과", dateStr, o.getString("TALENT_KEYWORD1"), o.getString("TALENT_KEYWORD2"), o.getString("TALENT_KEYWORD3"), point));
 
 
                     }
