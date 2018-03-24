@@ -166,6 +166,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                     NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
                     notificationManager.notify(0, mBuilder.build());
 
+
                     Log.d(String.valueOf(remoteMessage.getData().size()), "countAlarm = ");
                 }
             }

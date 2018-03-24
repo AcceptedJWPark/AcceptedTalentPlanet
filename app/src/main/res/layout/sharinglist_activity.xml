@@ -100,12 +100,29 @@
 
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:text="친구를 추가하여 Shall we를 전달할 수 있습니다."
+            android:gravity="center"
+            android:textSize="@dimen/Page_Txt"
+            android:textColor="@color/textColor_txtpage"
+            />
+    </LinearLayout>
 
     <ListView
         android:id="@+id/listView_Give_SharingList"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="21.5"
+        android:layout_weight="20.5"
         android:visibility="visible"
         >
     </ListView>
@@ -114,7 +131,7 @@
         android:id="@+id/listView_Take_SharingList"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="21.5"
+        android:layout_weight="20.5"
         android:visibility="gone"
         >
     </ListView>

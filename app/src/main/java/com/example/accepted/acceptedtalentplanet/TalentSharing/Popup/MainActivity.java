@@ -1,6 +1,8 @@
 package com.example.accepted.acceptedtalentplanet.TalentSharing.Popup;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
@@ -213,10 +215,39 @@ public class MainActivity extends FragmentActivity{
                     btn_SendInterest = (Button)findViewById(R.id.btn_SendInterest_TalentSharing);
                     if(!hasFlag){
                         btn_SendInterest.setBackgroundResource(R.drawable.bgr_bigbtn);
+                        final AlertDialog.Builder shallWeAlert = new AlertDialog.Builder(MainActivity.this);
                         btn_SendInterest.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
-                                sendInterest(talentID);
+                                        float textSize = getResources().getDimension(R.dimen.DialogTxtSize);
+                                        String Shallwe = "Shall we";
+                                        shallWeAlert.setMessage("상대방의 포인트" + "Point" + "로 진행됩니다.")
+                                                .setPositiveButton(Shallwe, new DialogInterface.OnClickListener() {
+                                                    @Override
+                                                    public void onClick(DialogInterface dialog, int which) {
+                                                        sendInterest(talentID);
+                                                        dialog.cancel();
+                                                        Intent i = new Intent(getBaseContext(), com.example.accepted.acceptedtalentplanet.TalentSharing.MainActivity.class);
+                                                        i.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                                                        startActivity(i);
+                                                        finish();
+                                                    }
+                                                })
+                                                .setNegativeButton("닫기", new DialogInterface.OnClickListener() {
+                                                    @Override
+                                                    public void onClick(DialogInterface dialog, int which) {
+                                                        dialog.cancel();
+                                                    }
+                                                });
+
+                                        AlertDialog alertDialog = shallWeAlert.create();
+                                        alertDialog.show();
+                                        alertDialog.getButton((DialogInterface.BUTTON_NEGATIVE)).setAllCaps(false);
+                                        alertDialog.getButton((DialogInterface.BUTTON_POSITIVE)).setAllCaps(false);
+                                        alertDialog.show();
+                                        TextView msgView = (TextView) alertDialog.findViewById(android.R.id.message);
+                                        msgView.setTextSize(textSize);
+
                             }
                         });
                     }else{
@@ -308,7 +339,7 @@ public class MainActivity extends FragmentActivity{
                     JSONObject obj = new JSONObject(response);
                     String result = obj.getString("result");
                     if(result.equals("success")){
-                        Toast.makeText(getApplicationContext(), "관심을 보냈습니다.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Shall we가 전달되었습니다.", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(MainActivity.this, com.example.accepted.acceptedtalentplanet.TalentSharing.MainActivity.class);
                         intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                         startActivity(intent);

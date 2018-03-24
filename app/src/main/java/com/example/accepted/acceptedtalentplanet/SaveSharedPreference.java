@@ -374,6 +374,7 @@ public class SaveSharedPreference{
             {
                 i = new Intent(mContext, com.example.accepted.acceptedtalentplanet.Alarm.MainActivity.class);
                 mContext.startActivity(i);
+                ((Activity)mContext).finish();
                 break;
             }
 
@@ -397,6 +398,7 @@ public class SaveSharedPreference{
 
             case R.id.SlidingMenu_TSharing : {
                 i = new Intent(mContext, com.example.accepted.acceptedtalentplanet.TalentSharing.MainActivity.class);
+                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 mContext.startActivity(i);
                 break;
             }

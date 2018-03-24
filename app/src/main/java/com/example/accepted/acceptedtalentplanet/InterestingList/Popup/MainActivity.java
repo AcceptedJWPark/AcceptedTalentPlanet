@@ -24,6 +24,7 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.StringRequest;
+import com.example.accepted.acceptedtalentplanet.Friend;
 import com.example.accepted.acceptedtalentplanet.InterestingList.DialogActivity;
 import com.example.accepted.acceptedtalentplanet.R;
 import com.example.accepted.acceptedtalentplanet.SaveSharedPreference;
@@ -33,6 +34,7 @@ import com.example.accepted.acceptedtalentplanet.pictureExpand;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -123,6 +125,9 @@ public class MainActivity extends FragmentActivity {
                 iv_AddFriendOn.setVisibility(View.GONE);
                 iv_AddFriendOff.setVisibility(View.VISIBLE);
                 Toast.makeText(mContext, "친구 목록에서 삭제되었습니다.", Toast.LENGTH_SHORT).show();
+                Friend friend = new Friend(profileUserID, (talentFlag)?"Give":"Take");
+                SaveSharedPreference.removeFriend(mContext, friend);
+                addedFriend = false;
             }
         });
         iv_AddFriendOff.setOnClickListener(new View.OnClickListener() {
@@ -130,7 +135,10 @@ public class MainActivity extends FragmentActivity {
             public void onClick(View v) {
                 iv_AddFriendOff.setVisibility(View.GONE);
                 iv_AddFriendOn.setVisibility(View.VISIBLE);
-                Toast.makeText(mContext, "친구 목록에 추가되었습니다.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(mContext,"친구 목록에 추가되었습니다.",Toast.LENGTH_SHORT).show();
+                Friend friend = new Friend(profileUserID, (talentFlag)?"Give":"Take");
+                SaveSharedPreference.putFriend(mContext, friend);
+                addedFriend = true;
             }
         });
 
@@ -181,7 +189,7 @@ public class MainActivity extends FragmentActivity {
                 @Override
                 public void onClick(View v) {
                     float textSize = getResources().getDimension(R.dimen.DialogTxtSize);
-                    ProgressorCancelPopup.setMessage("재능 공유를 진행합니다.")
+                    ProgressorCancelPopup.setMessage("상대방의 포인트" + "Point" + "로 진행됩니다.")
                             .setPositiveButton("진행하기", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
@@ -247,6 +255,15 @@ public class MainActivity extends FragmentActivity {
                     ((TextView)findViewById(R.id.point_InterestingPopup)).setText(obj.getString("T_POINT")+"P");
                     profileUserID = obj.getString("USER_ID");
                     talentFlag = (obj.getString("TALENT_FLAG").equals("Y"))? true : false;
+
+                    ArrayList<Friend> friendList = SaveSharedPreference.getFriendList(mContext);
+                    addedFriend = false;
+                    for(Friend f : friendList){
+                        if(f.getUserID().equals(profileUserID) && f.getPartnerTalentType().equals((talentFlag)?"Take":"Give")){
+                            addedFriend = true;
+                            break;
+                        }
+                    }
 
                     Bitmap bitmap = SaveSharedPreference.getPictureFromDB(mContext, profileUserID);
                     if(bitmap != null) {

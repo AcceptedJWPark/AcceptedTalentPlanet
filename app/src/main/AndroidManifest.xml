@@ -23,7 +23,7 @@
         android:supportsRtl="true"
         android:largeHeap="true"
         android:theme="@style/AppTheme.NoActionBar"
-        android:launchMode="singleTask"
+
         >
         <meta-data android:name="android.max_aspect" android:value="2.1" />
         <activity android:name=".LoadingLogin.Loading.MainActivity"
@@ -103,14 +103,16 @@
             android:windowSoftInputMode="adjustNothing"/>
 
         <activity android:name=".TalentCondition.MainActivity"/>
-        <activity android:name=".TalentSharing.MainActivity"/>
+        <activity android:name=".TalentSharing.MainActivity"
+            />
 
         <activity android:name=".CustomerService.MainActivity"/>
         <activity android:name=".CustomerService.Faq.MainActivity"/>
         <activity android:name=".CustomerService.Introduction.MainActivity"/>
         <activity android:name=".CustomerService.Version.MainActivity"/>
         <activity android:name=".CustomerService.Notice.MainActivity"/>
-        <activity android:name=".CustomerService.Question.MainActivity"/>
+        <activity android:name=".CustomerService.Question.MainActivity"
+            />
         <activity android:name=".CustomerService.Question.QuestionList.MainActivity"/>
         <activity android:name=".CustomerService.Update.MainActivity"/>
         <activity android:name=".CustomerService.Manual.AnswerList.MainActivity"/>

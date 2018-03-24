@@ -253,6 +253,7 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
                         @Override
                         public void onClick(View v) {
                             Intent intent = new Intent(mContext, com.example.accepted.acceptedtalentplanet.TalentSharing.MainActivity.class);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             intent.putExtra("TalentSharing_TalentFlag","Give");
                             startActivity(intent);
                         }
@@ -457,6 +458,7 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
                         @Override
                         public void onClick(View v) {
                             Intent intent = new Intent(mContext, com.example.accepted.acceptedtalentplanet.TalentSharing.MainActivity.class);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             intent.putExtra("TalentSharing_TalentFlag","Take");
                             startActivity(intent);
                         }
@@ -810,6 +812,7 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
                             SaveSharedPreference.setTakeTalentData(mContext, mt);
 
                             Intent i = new Intent(MainActivity.this, com.example.accepted.acceptedtalentplanet.TalentSharing.MainActivity.class);
+                            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             i.putExtra("TalentSharing_TalentFlag","Take");
                             startActivity(i);
                             finish();
@@ -822,6 +825,7 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
                             SaveSharedPreference.setGiveTalentData(mContext, mt);
 
                             Intent i = new Intent(MainActivity.this, com.example.accepted.acceptedtalentplanet.TalentSharing.MainActivity.class);
+                            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             i.putExtra("TalentSharing_TalentFlag","Give");
                             startActivity(i);
                             finish();

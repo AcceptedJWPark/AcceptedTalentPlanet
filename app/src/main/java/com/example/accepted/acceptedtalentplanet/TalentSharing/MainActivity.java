@@ -1,5 +1,6 @@
 package com.example.accepted.acceptedtalentplanet.TalentSharing;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
@@ -59,6 +60,8 @@ public class MainActivity extends AppCompatActivity {
     private Context mContext;
     private ListView listView;
 
+    Activity activity;
+
     private DrawerLayout drawerLayout;
     private View view_DarawerLayout;
 
@@ -99,6 +102,7 @@ public class MainActivity extends AppCompatActivity {
         if(SaveSharedPreference.getFcmToken(mContext) == null){
             FirebaseInstanceId.getInstance().getToken();
         }
+
 
         saveFcmToken();
 
@@ -454,7 +458,8 @@ public class MainActivity extends AppCompatActivity {
 
         if(0<= intervalTime && FINISH_INTERVAL_TIME >= intervalTime)
         {
-            System.exit(0);
+
+            finish();
             super.onBackPressed();
 
         }
