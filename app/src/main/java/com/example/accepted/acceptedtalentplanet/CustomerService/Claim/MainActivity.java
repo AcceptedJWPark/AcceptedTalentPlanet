@@ -1,10 +1,19 @@
 package com.example.accepted.acceptedtalentplanet.CustomerService.Claim;
 
 import android.app.Activity;
+import android.content.ClipData;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
+import android.media.ExifInterface;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
@@ -22,17 +31,21 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.StringRequest;
 import com.example.accepted.acceptedtalentplanet.R;
 import com.example.accepted.acceptedtalentplanet.SaveSharedPreference;
+import com.example.accepted.acceptedtalentplanet.VolleyMultipartRequest;
 import com.example.accepted.acceptedtalentplanet.VolleySingleton;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -62,9 +75,11 @@ public class MainActivity extends AppCompatActivity {
     private Context mContext;
 
     private Button btn_SaveClaim;
+    private TextView tv_AttachFile;
 
     private String name, keyword1, keyword2, keyword3, myTalentID, tarTalentID, talentFlag;
     private int status;
+    private final int GALLERY_CODE = 1112;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.customerservice_claimactivity);
 
         final boolean isSelect = getIntent().getBooleanExtra("isSelected", false);
-        if(isSelect){
+        if (isSelect) {
             name = getIntent().getStringExtra("name");
             keyword1 = getIntent().getStringExtra("keyword1");
             keyword2 = getIntent().getStringExtra("keyword2");
@@ -98,10 +113,10 @@ public class MainActivity extends AppCompatActivity {
         });
 
         //TODO : ??
-        if(isSelect){
-            String str = (talentFlag.equals("Give"))?"재능드림":"관심재능";
+        if (isSelect) {
+            String str = (talentFlag.equals("Give")) ? "재능드림" : "관심재능";
             tv_Txt = (TextView) findViewById(R.id.tv_txt_Claim);
-            tv_Txt.setText("\"" + name + " " + str + " " +keyword1+", "+keyword2+", "+keyword3 + "의 건" + "\"");
+            tv_Txt.setText("\"" + name + " " + str + " " + keyword1 + ", " + keyword2 + ", " + keyword3 + "의 건" + "\"");
         }
 
 
@@ -119,8 +134,7 @@ public class MainActivity extends AppCompatActivity {
         et_Claim.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-                if(!hasFocus)
-                {
+                if (!hasFocus) {
                     hideKeyboard(v, mContext);
                 }
 
@@ -156,66 +170,75 @@ public class MainActivity extends AppCompatActivity {
 
         btn_SaveClaim = (Button) findViewById(R.id.btn_SaveClaim_Claim);
         btn_SaveClaim.setOnClickListener(new View.OnClickListener() {
+                                             @Override
+                                             public void onClick(View v) {
+                                                 AlertDialog.Builder AlarmDeleteDialog = new AlertDialog.Builder(MainActivity.this);
+                                                 if (et_Claim.getText().length() == 0) {
+                                                     Toast.makeText(mContext, "신고 내용을 입력해주세요.", Toast.LENGTH_SHORT).show();
+                                                     return;
+                                                 } else if (isSelect) {
+                                                     AlarmDeleteDialog.setMessage("신고하시겠습니까?")
+                                                             .setPositiveButton("신고하기", new DialogInterface.OnClickListener() {
+                                                                 @Override
+                                                                 public void onClick(DialogInterface dialog, int which) {
+                                                                     requestClaim();
+                                                                     dialog.cancel();
+                                                                     finish();
+                                                                 }
+                                                             })
+                                                             .setNegativeButton("취소하기", new DialogInterface.OnClickListener() {
+                                                                 @Override
+                                                                 public void onClick(DialogInterface dialog, int which) {
+                                                                     dialog.cancel();
+                                                                 }
+                                                             });
+                                                     AlertDialog alertDialog = AlarmDeleteDialog.create();
+                                                     alertDialog.show();
+                                                 } else {
+                                                     AlarmDeleteDialog.setMessage("신고 대상이 없으면 조치가 어려울 수 있습니다.")
+                                                             .setPositiveButton("신고하기", new DialogInterface.OnClickListener() {
+                                                                 @Override
+                                                                 public void onClick(DialogInterface dialog, int which) {
+                                                                     requestClaim();
+                                                                     dialog.cancel();
+                                                                     finish();
+                                                                 }
+                                                             })
+                                                             .setNegativeButton("취소하기", new DialogInterface.OnClickListener() {
+                                                                 @Override
+                                                                 public void onClick(DialogInterface dialog, int which) {
+                                                                     dialog.cancel();
+                                                                 }
+                                                             });
+                                                     AlertDialog alertDialog = AlarmDeleteDialog.create();
+                                                     alertDialog.show();
+                                                 }
+                                             }
+                                         });
+
+        tv_AttachFile = (TextView)findViewById(R.id.tv_Claim_AttachFile);
+        tv_AttachFile.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                AlertDialog.Builder AlarmDeleteDialog = new AlertDialog.Builder(MainActivity.this);
-                if(et_Claim.getText().length() == 0)
-                {
-                    Toast.makeText(mContext, "신고 내용을 입력해주세요.", Toast.LENGTH_SHORT).show();
-                    return;
+            public void onClick(View view) {
+                if (Build.VERSION.SDK_INT > 22) {
+                    requestPermissions(new String[]{android.Manifest.permission.READ_EXTERNAL_STORAGE, android.Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
                 }
-                else if(isSelect){
-                    AlarmDeleteDialog.setMessage("신고하시겠습니까?")
-                            .setPositiveButton("신고하기", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    requestClaim();
-                                    dialog.cancel();
-                                    finish();
-                                }
-                            })
-                            .setNegativeButton("취소하기", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    dialog.cancel();
-                                }
-                            });
-                    AlertDialog alertDialog = AlarmDeleteDialog.create();
-                    alertDialog.show();
-                }else{
-                    AlarmDeleteDialog.setMessage("신고 대상이 없으면 조치가 어려울 수 있습니다.")
-                            .setPositiveButton("신고하기", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    requestClaim();
-                                    dialog.cancel();
-                                    finish();
-                                }
-                            })
-                            .setNegativeButton("취소하기", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    dialog.cancel();
-                                }
-                            });
-                    AlertDialog alertDialog = AlarmDeleteDialog.create();
-                    alertDialog.show();
-                }
-    }
+                selectGallery();
+            }
         });
 
         DisplayMetrics metrics = new DisplayMetrics();
         WindowManager windowManager = (WindowManager) getApplicationContext().getSystemService(Context.WINDOW_SERVICE);
         windowManager.getDefaultDisplay().getMetrics(metrics);
 
-        int claim_Toolbar_height = (int) (metrics.heightPixels*0.055);
-        int claim_LL1_height = (int) (metrics.heightPixels*0.17);
-        int claim_LL2_height = (int) (metrics.heightPixels*0.21);
-        int claim_LL3_height = (int) (metrics.heightPixels*0.04);
-        int claim_LL4_height = (int) (metrics.heightPixels*0.04);
-        int claim_Devider1_height = (int) (metrics.heightPixels*0.00625);
-        int claim_Txt_height1 = (int) (metrics.heightPixels*0.075);
-        int claim_Txt_height2 = (int) (metrics.heightPixels*0.09);
+        int claim_Toolbar_height = (int) (metrics.heightPixels * 0.055);
+        int claim_LL1_height = (int) (metrics.heightPixels * 0.17);
+        int claim_LL2_height = (int) (metrics.heightPixels * 0.21);
+        int claim_LL3_height = (int) (metrics.heightPixels * 0.04);
+        int claim_LL4_height = (int) (metrics.heightPixels * 0.04);
+        int claim_Devider1_height = (int) (metrics.heightPixels * 0.00625);
+        int claim_Txt_height1 = (int) (metrics.heightPixels * 0.075);
+        int claim_Txt_height2 = (int) (metrics.heightPixels * 0.09);
 
         ViewGroup.LayoutParams params1 = ll_Toolbar.getLayoutParams();
         ViewGroup.LayoutParams params2 = ll_Container1.getLayoutParams();
@@ -251,24 +274,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == 1)
-            if (resultCode == Activity.RESULT_OK) {
-                tv_Txt = (TextView) findViewById(R.id.tv_txt_Claim);
-                tv_Txt.setText(data.getStringExtra("data"));
-            }
-    }
-
     //TODO 신고대상 없어도 내역 추가 되는 걸로 수정//
     public void requestClaim() {
-        RequestQueue postRequestQueue = VolleySingleton.getInstance(mContext).getRequestQueue();
-        StringRequest postJsonRequest = new StringRequest(Request.Method.POST, SaveSharedPreference.getServerIp() + "Customer/requestClaim.do", new Response.Listener<String>() {
+
+        VolleyMultipartRequest volleyMultipartRequest = new VolleyMultipartRequest(Request.Method.POST, SaveSharedPreference.getServerIp() + "Customer/requestClaim.do", new Response.Listener<NetworkResponse>() {
             @Override
-            public void onResponse(String response) {
+            public void onResponse(NetworkResponse response) {
                 try {
 
-                    JSONObject obj = new JSONObject(response);
+                    JSONObject obj = new JSONObject(new String(response.data));
                         Toast.makeText(mContext, "신고가 정상적으로 접수되었습니다.", Toast.LENGTH_SHORT).show();
                         Intent i = new Intent(mContext, com.example.accepted.acceptedtalentplanet.CustomerService.MainActivity.class);
                         startActivity(i);
@@ -324,11 +338,150 @@ public class MainActivity extends AppCompatActivity {
                 params.put("status", strStatus);
                 return params;
             }
+
+            @Override
+            protected Map<String, VolleyMultipartRequest.DataPart> getByteData(){
+                Map<String, VolleyMultipartRequest.DataPart> params = new HashMap<>();
+                long imagename = System.currentTimeMillis();
+                //params.put("pic", new VolleyMultipartRequest.DataPart(imagename + ".png", getFileDataFromDrawable()));
+                return params;
+            }
         };
 
 
-        postRequestQueue.add(postJsonRequest);
+        VolleySingleton.getInstance(mContext).getRequestQueue().add(volleyMultipartRequest);
 
+    }
+
+    private void selectGallery(){
+        Intent intent = new Intent(Intent.ACTION_PICK);
+        intent.setData(MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
+        intent.setType("image/*");
+        startActivityForResult(intent, GALLERY_CODE);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data){
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(resultCode == RESULT_OK){
+            switch(requestCode){
+                case GALLERY_CODE:
+                    //sendPicture(data.getData());
+
+                    Uri uri = data.getData();
+                    ClipData clipData = data.getClipData();
+
+                    if(clipData != null){
+                        clipData.getItemCount();
+                        Uri urione = clipData.getItemAt(0).getUri();
+                    }
+                    else if(uri != null){
+
+                    }
+                    break;
+                case 1:
+                    tv_Txt = (TextView) findViewById(R.id.tv_txt_Claim);
+                    tv_Txt.setText(data.getStringExtra("data"));
+                    break;
+            }
+        }
+    }
+
+    public byte[] getFileDataFromDrawable(Bitmap bitmap){
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 80, byteArrayOutputStream);
+        return byteArrayOutputStream.toByteArray();
+    }
+
+    private void sendPicture(Uri imgUri){
+        String imagePath = getRealPathFromURI(imgUri);
+        Log.d("image Path = ", imagePath);
+        ExifInterface exif = null;
+        try {
+            exif = new ExifInterface(imagePath);
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+
+        int exifOrientation;
+        int exifDegree;
+
+        if(exif != null){
+            exifOrientation = exif.getAttributeInt(ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_NORMAL);
+            exifDegree = exifOrientationToDegrees(exifOrientation);
+        }else{
+            exifDegree = 0;
+        }
+
+        try {
+            BitmapFactory.Options options = new BitmapFactory.Options();
+            options.inJustDecodeBounds = true;
+            BitmapFactory.decodeFile(imagePath, options); //MediaStore.Images.Media.getBitmap(this.getContentResolver(), imgUri);
+
+            options.inSampleSize = setSimpleSize(options, 960, 720);
+
+            options.inJustDecodeBounds = false;
+            Bitmap bitmap = BitmapFactory.decodeFile(imagePath, options);
+            bitmap = rotate(bitmap, exifDegree);
+            if(bitmap == null){
+                Log.d("bitmap = ", "null");
+            }
+
+            //uploadBitmap(bitmap);
+        }catch (Exception e){
+            e.printStackTrace();//bitmap = rotate(bitmap, exifDegree);
+        }
+
+    }
+
+    private int setSimpleSize(BitmapFactory.Options options, int requestWidth, int requestHeight){
+        // 이미지 사이즈를 체크할 원본 이미지 가로/세로 사이즈를 임시 변수에 대입.
+        int originalWidth = options.outWidth;
+        int originalHeight = options.outHeight;
+
+        // 원본 이미지 비율인 1로 초기화
+        int size = 1;
+
+        // 해상도가 깨지지 않을만한 요구되는 사이즈까지 2의 배수의 값으로 원본 이미지를 나눈다.
+        while(requestWidth < originalWidth || requestHeight < originalHeight){
+            originalWidth = originalWidth / 2;
+            originalHeight = originalHeight / 2;
+
+            size = size * 2;
+        }
+        return size;
+    }
+
+    private int exifOrientationToDegrees(int exifOrientation){
+        if(exifOrientation == ExifInterface.ORIENTATION_ROTATE_90){
+            return 90;
+        }else if(exifOrientation == ExifInterface.ORIENTATION_ROTATE_180){
+            return 180;
+        }else if(exifOrientation == ExifInterface.ORIENTATION_ROTATE_270){
+            return 270;
+        }
+
+        return 0;
+    }
+    private Bitmap rotate(Bitmap src, float degree){
+        Matrix matrix = new Matrix();
+
+        matrix.postRotate(degree);
+
+        return Bitmap.createBitmap(src, 0, 0, src.getWidth(), src.getHeight(), matrix, true);
+    }
+
+    private String getRealPathFromURI(Uri contentUri){
+        int column_index = 0;
+        String[] proj = {MediaStore.Images.Media.DATA};
+        Cursor cursor = getContentResolver().query(contentUri, proj, null, null, null);
+        if(cursor.moveToFirst()){
+            column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+        }
+
+        return cursor.getString(column_index);
     }
 
 }
