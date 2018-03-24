@@ -80,6 +80,7 @@ public class MainActivity extends AppCompatActivity {
     private String name, keyword1, keyword2, keyword3, myTalentID, tarTalentID, talentFlag;
     private int status;
     private final int GALLERY_CODE = 1112;
+    private final int CLAIM_CODE = 1113;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -108,7 +109,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), com.example.accepted.acceptedtalentplanet.SharingList.MainActivity.class);
-                startActivity(intent);
+                intent.putExtra("isClaimActivity", true);
+                startActivityForResult(intent, CLAIM_CODE);
             }
         });
 
@@ -385,6 +387,21 @@ public class MainActivity extends AppCompatActivity {
                     tv_Txt = (TextView) findViewById(R.id.tv_txt_Claim);
                     tv_Txt.setText(data.getStringExtra("data"));
                     break;
+                case CLAIM_CODE:
+                    name = data.getStringExtra("name");
+                    keyword1 = data.getStringExtra("keyword1");
+                    keyword2 = data.getStringExtra("keyword2");
+                    keyword3 = data.getStringExtra("keyword3");
+                    myTalentID = data.getStringExtra("myTalentID");
+                    tarTalentID = data.getStringExtra("tarTalentID");
+                    talentFlag = data.getStringExtra("talentFlag");
+                    status = data.getIntExtra("status", 0);
+
+                    String str = (talentFlag.equals("Give")) ? "재능드림" : "관심재능";
+                    tv_Txt = (TextView) findViewById(R.id.tv_txt_Claim);
+                    tv_Txt.setText("\"" + name + " " + str + " " + keyword1 + ", " + keyword2 + ", " + keyword3 + "의 건" + "\"");
+                    break;
+
             }
         }
     }

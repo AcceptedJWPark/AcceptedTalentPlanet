@@ -53,6 +53,8 @@ public class MainActivity extends AppCompatActivity {
     private Button btn_SelectGive;
     private Button btn_SelectTake;
 
+    private boolean isClaimActivity = false;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +63,8 @@ public class MainActivity extends AppCompatActivity {
 
         mContext = getApplicationContext();
 
+        isClaimActivity = getIntent().getBooleanExtra("isClaimActivity", false);
+        Log.d("Claim Flag = ", isClaimActivity + "");
         countAlarmPush_Cancel = 0;
         NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         if(notificationManager != null)
@@ -91,6 +95,7 @@ public class MainActivity extends AppCompatActivity {
                         arrayList.add(item);
                 }
                 adapter = new Adapter(MainActivity.this, arrayList);
+                adapter.setIsClaimActivity(isClaimActivity);
                 listView_Give.setAdapter(adapter);
 
                 listView_Give.setVisibility(View.VISIBLE);
@@ -114,6 +119,7 @@ public class MainActivity extends AppCompatActivity {
                         arrayList.add(item);
                 }
                 adapter = new Adapter(MainActivity.this, arrayList);
+                adapter.setIsClaimActivity(isClaimActivity);
                 listView_Take.setAdapter(adapter);
 
                 listView_Take.setVisibility(View.VISIBLE);
@@ -174,6 +180,7 @@ public class MainActivity extends AppCompatActivity {
 
                     }
                     adapter = new Adapter(MainActivity.this, arrayList);
+                    adapter.setIsClaimActivity(isClaimActivity);
                     listView_Give.setAdapter(adapter);
 
                 } catch (JSONException e) {
