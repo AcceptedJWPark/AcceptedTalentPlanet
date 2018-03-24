@@ -98,6 +98,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 adapter = new Adapter(mContext, arrayList);
                 listView_Give.setAdapter(adapter);
+                talentFlag = true;
 
             }
         });
@@ -125,6 +126,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 adapter = new Adapter(mContext, arrayList);
                 listView_Take.setAdapter(adapter);
+                talentFlag = false;
             }
         });
 
@@ -149,8 +151,10 @@ public class MainActivity extends AppCompatActivity {
             arrayList_Original = new ArrayList<>();
             adapter = new Adapter(mContext, arrayList);
             if(listView_Give.getVisibility() == View.VISIBLE) {
+                Log.d("list View Friend", "C");
                 listView_Give.setAdapter(adapter);
             }else{
+                Log.d("list View Friend", "D");
                 listView_Take.setAdapter(adapter);
             }
         }
@@ -201,8 +205,10 @@ public class MainActivity extends AppCompatActivity {
 
                     adapter = new Adapter(mContext, arrayList);
                     if(listView_Give.getVisibility() == View.VISIBLE) {
+                        Log.d("list View Friend", "A");
                         listView_Give.setAdapter(adapter);
                     }else{
+                        Log.d("list View Friend", "B");
                         listView_Take.setAdapter(adapter);
                     }
 
