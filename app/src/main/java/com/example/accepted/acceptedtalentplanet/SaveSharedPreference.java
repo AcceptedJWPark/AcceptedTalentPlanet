@@ -374,13 +374,14 @@ public class SaveSharedPreference{
             {
                 i = new Intent(mContext, com.example.accepted.acceptedtalentplanet.Alarm.MainActivity.class);
                 mContext.startActivity(i);
-                ((Activity)mContext).finish();
+
                 break;
             }
 
             case R.id.SlidingMenu_Profile : {
                 i = new Intent(mContext, com.example.accepted.acceptedtalentplanet.MyProfile.MainActivity.class);
                 mContext.startActivity(i);
+                drawerLayout.closeDrawers();
                 break;
             }
 
@@ -392,6 +393,7 @@ public class SaveSharedPreference{
 
             case R.id.SlidingMenu_MyTalentProcess : {
                 i = new Intent(mContext, com.example.accepted.acceptedtalentplanet.TalentCondition.MainActivity.class);
+
                 mContext.startActivity(i);
                 break;
             }
@@ -400,6 +402,7 @@ public class SaveSharedPreference{
                 i = new Intent(mContext, com.example.accepted.acceptedtalentplanet.TalentSharing.MainActivity.class);
                 i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 mContext.startActivity(i);
+                drawerLayout.closeDrawers();
                 break;
             }
 //            case R.id.SlidingMenu_TalentSearching : {
@@ -470,6 +473,7 @@ public class SaveSharedPreference{
                 postRequestQueue.add(postJsonRequest);
                 clearUserInfo(mContext);
                 i = new Intent(mContext, com.example.accepted.acceptedtalentplanet.LoadingLogin.Login.MainActivity.class);
+                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
                 mContext.startActivity(i);
                 ((Activity)mContext).finish();
                 break;

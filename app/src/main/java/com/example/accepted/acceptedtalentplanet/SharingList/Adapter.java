@@ -1,5 +1,6 @@
 package com.example.accepted.acceptedtalentplanet.SharingList;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.util.DisplayMetrics;
@@ -29,6 +30,7 @@ public class Adapter extends BaseAdapter{
     private ArrayList<ListItem> arrayList;
     private Spn_Adapter spn_Adapter = null;
     private ArrayList<MyModel> arrayList_Model;
+    private boolean isClaimActivity = false;
 
     public Adapter(Context mContext, ArrayList<ListItem> arrayList) {
             this.mContext = mContext;
@@ -43,6 +45,10 @@ public class Adapter extends BaseAdapter{
     @Override
     public int getCount() {
         return arrayList.size();
+    }
+
+    public void setIsClaimActivity(boolean isClaimActivity){
+        this.isClaimActivity = isClaimActivity;
     }
 
     @Override
@@ -118,28 +124,41 @@ public class Adapter extends BaseAdapter{
 
                         switch (spinner_position) {
                             case 1:
-
                                 Intent i = new Intent(mContext, MainActivity.class);
                                 String str = (arrayList.get(position).getTalentType() == 1) ? "Give": "Take";
                                 i.putExtra("TalentID", arrayList.get(position).getTalentID());
                                 i.putExtra("TalentFlag", str);
                                 mContext.startActivity(i);
                                 break;
-
-
                             case 2:
-                                Intent b = new Intent(mContext, com.example.accepted.acceptedtalentplanet.CustomerService.Claim.MainActivity.class);
-                                String str2 = (arrayList.get(position).getTalentType() == 1) ? "Give": "Take";
-                                b.putExtra("isSelected", true);
-                                b.putExtra("name", arrayList.get(position).getname());
-                                b.putExtra("keyword1", arrayList.get(position).getKeyword1());
-                                b.putExtra("keyword2", arrayList.get(position).getKeyword2());
-                                b.putExtra("keyword3", arrayList.get(position).getKeyword3());
-                                b.putExtra("myTalentID", arrayList.get(position).getMyTalentID());
-                                b.putExtra("tarTalentID", arrayList.get(position).getTalentID());
-                                b.putExtra("talentFlag", str2);
-                                b.putExtra("status", arrayList.get(position).getConditionType());
-                                mContext.startActivity(b);
+                                if(isClaimActivity) {Intent intent = new Intent();
+                                    String str2 = (arrayList.get(position).getTalentType() == 1) ? "Give" : "Take";
+                                    intent.putExtra("name", arrayList.get(position).getname());
+                                    intent.putExtra("keyword1", arrayList.get(position).getKeyword1());
+                                    intent.putExtra("keyword2", arrayList.get(position).getKeyword2());
+                                    intent.putExtra("keyword3", arrayList.get(position).getKeyword3());
+                                    intent.putExtra("myTalentID", arrayList.get(position).getMyTalentID());
+                                    intent.putExtra("tarTalentID", arrayList.get(position).getTalentID());
+                                    intent.putExtra("talentFlag", str2);
+                                    intent.putExtra("status", arrayList.get(position).getConditionType());
+                                    ((Activity)mContext).setResult(Activity.RESULT_OK, intent);
+                                    ((Activity)mContext).finish();
+
+                                }else{
+                                    Intent b = new Intent(mContext, com.example.accepted.acceptedtalentplanet.CustomerService.Claim.MainActivity.class);
+                                    String str2 = (arrayList.get(position).getTalentType() == 1) ? "Give" : "Take";
+                                    b.putExtra("isSelected", true);
+                                    b.putExtra("name", arrayList.get(position).getname());
+                                    b.putExtra("keyword1", arrayList.get(position).getKeyword1());
+                                    b.putExtra("keyword2", arrayList.get(position).getKeyword2());
+                                    b.putExtra("keyword3", arrayList.get(position).getKeyword3());
+                                    b.putExtra("myTalentID", arrayList.get(position).getMyTalentID());
+                                    b.putExtra("tarTalentID", arrayList.get(position).getTalentID());
+                                    b.putExtra("talentFlag", str2);
+                                    b.putExtra("status", arrayList.get(position).getConditionType());
+                                    mContext.startActivity(b);
+
+                                }
                                 break;
 
                         }
