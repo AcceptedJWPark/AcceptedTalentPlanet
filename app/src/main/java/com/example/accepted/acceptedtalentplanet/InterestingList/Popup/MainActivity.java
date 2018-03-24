@@ -251,7 +251,6 @@ public class MainActivity extends FragmentActivity {
                     ArrayList<Friend> friendList = SaveSharedPreference.getFriendList(mContext);
                     addedFriend = false;
                     for(Friend f : friendList){
-                        Log.d("Friend List : ",  f.getUserID() + ", " + f.getPartnerTalentType());
                         if(f.getUserID().equals(profileUserID) && f.getPartnerTalentType().equals(obj.getString("TALENT_FLAG"))){
                             addedFriend = true;
                             break;
@@ -265,6 +264,7 @@ public class MainActivity extends FragmentActivity {
                         iv_AddFriendOn.setVisibility(View.GONE);
                         iv_AddFriendOff.setVisibility(View.VISIBLE);
                     }
+
 
                     Bitmap bitmap = SaveSharedPreference.getPictureFromDB(mContext, profileUserID);
                     if(bitmap != null) {
