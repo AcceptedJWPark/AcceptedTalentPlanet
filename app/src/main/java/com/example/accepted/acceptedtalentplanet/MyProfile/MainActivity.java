@@ -708,5 +708,11 @@ public class MainActivity extends AppCompatActivity {
         return size;
     }
 
+    @Override
+    public void onResume(){
+        super.onResume();
+        drawerLayout.closeDrawers();
+    }
+
 
 }

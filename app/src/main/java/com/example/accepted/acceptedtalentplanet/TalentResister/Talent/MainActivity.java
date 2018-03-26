@@ -4,13 +4,16 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -23,14 +26,14 @@ import java.util.ArrayList;
 
 import static com.example.accepted.acceptedtalentplanet.SaveSharedPreference.hideKeyboard;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements TextWatcher{
     private String talent1, talent2, talent3;
     private String[] talentList;
     private boolean isTalentRegisted;
     private boolean isHavingData;
     private MyTalent data;
 
-    private EditText et_Talent;
+    private AutoCompleteTextView et_Talent;
 
     private Context mContext;
     private ListView listView;
@@ -40,7 +43,10 @@ public class MainActivity extends AppCompatActivity {
 
     private LinearLayout ll_InputContainer;
     private LinearLayout ll_TxtContainer;
+
     private Button btn_Next;
+
+    private String registed_Talent[] = {"디자인","헬스","헬스1","헬스2","헬스3","헬스4","코딩","컴퓨터","자바","다이어트"};
 
 
 
@@ -51,7 +57,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.talentresister_talent);
 
         mContext = getApplicationContext();
-
 
         Intent i = getIntent();
 
@@ -73,7 +78,6 @@ public class MainActivity extends AppCompatActivity {
         }
 
         ll_InputContainer = (LinearLayout) findViewById(R.id.ll_InputContainer_Talent_TalentRegister);
-        ll_TxtContainer = (LinearLayout) findViewById(R.id.ll_TxtContainer_TalentResister);
         btn_Next = (Button) findViewById(R.id.btn_Next_Talent_TalentResister);
 
         DisplayMetrics metrics = new DisplayMetrics();
@@ -81,18 +85,27 @@ public class MainActivity extends AppCompatActivity {
         windowManager.getDefaultDisplay().getMetrics(metrics);
 
         int TalentResister_Talent_Btn_height = (int) (metrics.heightPixels*0.04);
+        int TalentResister_ll_InputContainer_height = (int) (metrics.heightPixels*0.065);
 
-        ViewGroup.LayoutParams params3 = btn_Next.getLayoutParams();
-        params3.height = TalentResister_Talent_Btn_height;
-        btn_Next.setLayoutParams(params3);
+        ViewGroup.LayoutParams params1 = btn_Next.getLayoutParams();
+        ViewGroup.LayoutParams params2 = ll_InputContainer.getLayoutParams();
+        params1.height = TalentResister_Talent_Btn_height;
+        params2.height = TalentResister_ll_InputContainer_height;
+        btn_Next.setLayoutParams(params1);
+        ll_InputContainer.setLayoutParams(params2);
+
+
 
         listView = (ListView) findViewById(R.id.listView_Talent_TalentRegister);
 
         adapter = new Adapter(mContext, arrayList);
         listView.setAdapter(adapter);
 
+
         btn_Add = (Button) findViewById(R.id.btn_Add_Talent_TalentRegister);
-        et_Talent = (EditText) findViewById(R.id.et_Talent_TalentRegister);
+        et_Talent = (AutoCompleteTextView) findViewById(R.id.et_Talent_TalentRegister);
+        et_Talent.addTextChangedListener(this);
+        et_Talent.setAdapter(new ArrayAdapter<String>(this,R.layout.talentregister_atc,registed_Talent));
         btn_Add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -189,7 +202,18 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    @Override
+    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
+    }
 
+    @Override
+    public void onTextChanged(CharSequence s, int start, int before, int count) {
 
+    }
+
+    @Override
+    public void afterTextChanged(Editable s) {
+
+    }
 }

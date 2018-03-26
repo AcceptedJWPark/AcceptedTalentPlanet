@@ -312,7 +312,8 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
                             btn_Right.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {
-                                    Toast.makeText(mContext, "신고 대상 넘겨서 신고하기 액티비티로 이동해야 함",Toast.LENGTH_SHORT).show();
+                                    Intent i = new Intent(mContext, com.example.accepted.acceptedtalentplanet.CustomerService.Claim.MainActivity.class);
+                                    startActivity(i);
                                 }
                             });
                         }
@@ -550,7 +551,8 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
                         btn_Right.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                Toast.makeText(mContext, "신고 대상 넘겨서 신고하기 액티비티로 이동해야 함",Toast.LENGTH_SHORT).show();
+                                Intent i = new Intent(mContext, com.example.accepted.acceptedtalentplanet.CustomerService.Claim.MainActivity.class);
+                                startActivity(i);
                             }
                         });
                     }
@@ -616,6 +618,7 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
         super.onResume();
         getMyTalent();
         MyFirebaseMessagingService.setOnMessageReceivedListener(this);
+        drawerLayout.closeDrawers();
     }
 
     public void getMyTalent() {
