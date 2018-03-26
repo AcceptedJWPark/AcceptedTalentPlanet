@@ -97,9 +97,7 @@ public class MainActivity extends AppCompatActivity {
 
         mContext = getApplicationContext();
 
-
-
-        if (SaveSharedPreference.getFcmToken(mContext) == null) {
+        if(SaveSharedPreference.getFcmToken(mContext) == null){
             FirebaseInstanceId.getInstance().getToken();
         }
 
@@ -109,13 +107,16 @@ public class MainActivity extends AppCompatActivity {
         ((TextView) findViewById(R.id.tv_toolbarTitle)).setText("T.Sharing");
         ((TextView) findViewById(R.id.DrawerUserID)).setText(SaveSharedPreference.getUserId(mContext));
 
-        View.OnClickListener mClicklistener = new View.OnClickListener() {
+        if(SaveSharedPreference.getMyPicture() != null)
+            ((ImageView) findViewById(R.id.DrawerPicture)).setImageBitmap(SaveSharedPreference.getMyPicture());
+        View.OnClickListener mClicklistener = new  View.OnClickListener()
+        {
             @Override
             public void onClick(View v) {
-                DrawerLayout_Open(v, MainActivity.this, drawerLayout, view_DarawerLayout);
+                DrawerLayout_Open(v,MainActivity.this, drawerLayout, view_DarawerLayout);
             }
         };
-        DrawerLayout_ClickEvent(MainActivity.this, mClicklistener);
+        DrawerLayout_ClickEvent(MainActivity.this,mClicklistener);
 
         drawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout_TalentSharing);
 
@@ -372,10 +373,10 @@ public class MainActivity extends AppCompatActivity {
             SQLiteDatabase sqLiteDatabase = SQLiteDatabase.openOrCreateDatabase(getFilesDir() + dbName, null);
 
             String selectMaxMessage = "SELECT IFNULL(MAX(D01.MESSAGE_ID), 0) AS MESSAGE_ID\n" +
-                    "FROM   TB_CHAT_LOG D01\n" +
-                    "     , TB_CHAT_ROOM D02\n" +
-                    "WHERE  D01.ROOM_ID = D02.ROOM_ID\n" +
-                    "AND    D02.MASTER_ID = '" + SaveSharedPreference.getUserId(mContext) + "'";
+                                      "FROM   TB_CHAT_LOG D01\n" +
+                                      "     , TB_CHAT_ROOM D02\n" +
+                                      "WHERE  D01.ROOM_ID = D02.ROOM_ID\n" +
+                                      "AND    D02.MASTER_ID = '" + SaveSharedPreference.getUserId(mContext) + "'";
             Cursor cursor = sqLiteDatabase.rawQuery(selectMaxMessage, null);
             cursor.moveToFirst();
 

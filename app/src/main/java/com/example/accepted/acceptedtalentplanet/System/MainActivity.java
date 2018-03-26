@@ -1,5 +1,6 @@
 package com.example.accepted.acceptedtalentplanet.System;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,6 +8,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -59,6 +61,8 @@ public class MainActivity extends AppCompatActivity {
         view_DrawerLayout = (View) findViewById(R.id.view_DrawerLayout_System);
         ((TextView) findViewById(R.id.tv_toolbarTitle)).setText("설정");
         ((TextView) findViewById(R.id.DrawerUserID)).setText(SaveSharedPreference.getUserId(mContext));
+        if(SaveSharedPreference.getMyPicture() != null)
+            ((ImageView) findViewById(R.id.DrawerPicture)).setImageBitmap(SaveSharedPreference.getMyPicture());
 
         final View.OnClickListener mClicklistener = new  View.OnClickListener()
         {

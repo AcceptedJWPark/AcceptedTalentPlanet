@@ -80,12 +80,12 @@ public class MainActivity extends AppCompatActivity {
 
     private void startLoading()
     {
+        getMyTalent();
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 Intent intent;
-                getMyTalent();
                 if(SaveSharedPreference.getUserId(MainActivity.this).length() == 0) {
                     intent = new Intent(getBaseContext(), com.example.accepted.acceptedtalentplanet.LoadingLogin.Login.MainActivity.class);
                 }else{
