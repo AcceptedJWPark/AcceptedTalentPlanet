@@ -127,54 +127,51 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:gravity="center|bottom"
-        android:text="Shall we 목록 확인 또는 T.Sharing을 진행해보세요!"
+        android:text="Shall we List 확인 또는 T.Sharing을 진행해보세요!"
         android:textColor="@color/textColor_txtpage"
         android:textSize="@dimen/Page_Txt" />
 
     </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/ll_PictureContainer_TalentCondition"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="5"
-            android:orientation="vertical"
+    <LinearLayout
+        android:id="@+id/ll_PictureContainer_TalentCondition"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="5"
+        android:gravity="center"
+        android:orientation="vertical">
+
+
+        <RelativeLayout
+            android:id="@+id/TalentCondition_ProfileShowLL"
+            android:layout_width="@dimen/TalentCondition_Picture"
+            android:layout_height="@dimen/TalentCondition_Picture"
+            android:background="@drawable/bgr_picture_container"
+            android:padding="5dp">
+
+            <ImageView
+                android:id="@+id/TalentCondition_ProfilePicture"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:adjustViewBounds="false"
+                android:scaleType="fitXY"
+                android:src="@drawable/testpicture" />
+
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="2dp"
             android:gravity="center"
-            >
+            android:text="Profile 보기"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="@dimen/ListView_Btn"
+            android:textStyle="bold" />
 
 
-                <RelativeLayout
-                    android:id="@+id/TalentCondition_ProfileShowLL"
-                    android:layout_width="@dimen/TalentCondition_Picture"
-                    android:layout_height="@dimen/TalentCondition_Picture"
-                    android:padding="5dp"
-                    android:background="@drawable/bgr_picture_container"
-                    >
-
-                <ImageView
-                    android:id="@+id/TalentCondition_ProfilePicture"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:adjustViewBounds="false"
-                    android:src="@drawable/testpicture"
-                    android:scaleType="fitXY"
-                    />
-
-            </RelativeLayout>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:gravity="center"
-                android:text="Profile 보기"
-                android:layout_marginTop="2dp"
-                android:textStyle="bold"
-                android:textColor="@color/colorPrimaryDark"
-                android:textSize="@dimen/ListView_Btn" />
-
-
-        </LinearLayout>
+    </LinearLayout>
 
 
         <LinearLayout
@@ -201,6 +198,7 @@
                 android:textColor="@color/textcolor_bigbtn"
                 android:textSize="@dimen/BigBtn"
                 android:visibility="visible" />
+
 
 
             <Button

@@ -1,5 +1,6 @@
 package com.example.accepted.acceptedtalentplanet.TalentSearching;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Paint;
@@ -10,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -79,6 +81,9 @@ public class MainActivity extends AppCompatActivity {
         slidingMenuDL = (DrawerLayout) findViewById(R.id.TalentSearching_listboxDL);
         drawerView = (View) findViewById(R.id.TalentSearching_container);
         ((TextView) findViewById(R.id.tv_toolbarTitle)).setText("재능 검색");
+        if(SaveSharedPreference.getMyPicture() != null)
+            ((ImageView) findViewById(R.id.DrawerPicture)).setImageBitmap(SaveSharedPreference.getMyPicture());
+
         View.OnClickListener mClicklistener = new  View.OnClickListener()
         {
             @Override

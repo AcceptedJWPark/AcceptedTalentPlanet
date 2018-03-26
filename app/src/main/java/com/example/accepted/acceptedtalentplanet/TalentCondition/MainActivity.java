@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
     private TextView tv_TalentType;
     private TextView tv_Txt;
 
-    private Button btn_Left;
+    private TextView btn_Left;
     private Button btn_Right;
     private Button btn_TalentRegist;
 
@@ -80,6 +80,9 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
     private boolean givePartnerCompFlag = false;
     private boolean takePartnerCompFlag = false;
 
+    private boolean unread_Shallwe_Give = true;
+    private boolean unread_Shallwe_Take = false;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,6 +98,8 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
 
         drawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout_TalentCondition);
         view_drawerView = findViewById(R.id.view_drawerView_TalentCondition);
+        if(SaveSharedPreference.getMyPicture() != null)
+            ((ImageView) findViewById(R.id.DrawerPicture)).setImageBitmap(SaveSharedPreference.getMyPicture());
 
         View.OnClickListener mClicklistener = new  View.OnClickListener()
         {
@@ -111,7 +116,7 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
         tv_TalentType = (TextView)findViewById(R.id.tv_TalentType_TalentCondition);
         tv_Txt = (TextView) findViewById(R.id.tv_Txt_TalentCondition);
 
-        btn_Left = (Button) findViewById(R.id.btn_Left_TalentCondition);
+        btn_Left = (TextView) findViewById(R.id.btn_Left_TalentCondition);
         btn_Right = (Button) findViewById(R.id.btn_Right_TalentCondition);
         btn_TalentRegist = (Button) findViewById(R.id.btn_TalentRegist_TalentCondition);
         ll_PictureContainer = (LinearLayout) findViewById(R.id.ll_PictureContainer_TalentCondition);
@@ -227,8 +232,13 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
         } else {
             switch (Code) {
                 case 1: {
-                    tv_Txt.setText("Shall we 목록 확인 또는 T.Sharing을 진행해보세요!");
-                    btn_Left.setText("Shall we ?");
+                    if(unread_Shallwe_Give) {
+                        tv_Txt.setText("새로운 Shall we List가 3건 있습니다.");
+                    }else
+                    {
+                        tv_Txt.setText("T.Sharing에서 재능 공유 상대를 찾아보세요!");
+                    }
+                    btn_Left.setText("Shall we");
                     btn_Right.setText("T.Sharing");
                     btn_Left.setVisibility(View.VISIBLE);
                     btn_Right.setVisibility(View.VISIBLE);
@@ -433,8 +443,13 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
         } else {
             switch (Code) {
                 case 1: {
-                    tv_Txt.setText("Shall we 목록 확인 또는 T.Sharing을 진행해보세요!");
-                    btn_Left.setText("Shall we ?");
+                    if(unread_Shallwe_Take) {
+                        tv_Txt.setText("새로운 Shall we List가 3건 있습니다.");
+                    }else
+                    {
+                        tv_Txt.setText("T.Sharing에서 재능 공유 상대를 찾아보세요!");
+                    }
+                    btn_Left.setText("Shall we");
                     btn_Right.setText("T.Sharing");
                     btn_Left.setBackgroundResource(R.drawable.bgr_bigbtn);
                     btn_Left.setVisibility(View.VISIBLE);

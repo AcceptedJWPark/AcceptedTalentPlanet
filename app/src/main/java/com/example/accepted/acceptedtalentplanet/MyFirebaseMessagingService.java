@@ -12,7 +12,6 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
-import android.media.RingtoneManager;
 import android.os.Build;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
@@ -22,7 +21,6 @@ import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
 import org.json.JSONObject;
-
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -173,7 +171,10 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                         .setVibrate(new long[]{1, 1000})
                         .setWhen(System.currentTimeMillis());
                 mBuilder = mBuilder.setContentIntent(contentIntent);
+
+
                 notificationManager.notify(1, mBuilder.build());
+
 
 
                 Log.d(String.valueOf(remoteMessage.getData().size()), "countAlarm = ");

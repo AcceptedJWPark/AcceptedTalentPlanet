@@ -9,6 +9,7 @@
     <dimen name="Popup_Icon">30dp</dimen>
     <dimen name="List_Title">12dp</dimen>
     <dimen name="DrawerLL_Title">11dp</dimen>
+    <dimen name="DrawerLL_New">10dp</dimen>
     <dimen name="List_SubTitle">11.5dp</dimen>
     <dimen name="Divider">11.5dp</dimen>
     <dimen name="GiveorTakeBtn">12dp</dimen>
