@@ -5,6 +5,7 @@ package com.example.accepted.acceptedtalentplanet;
  */
 
 import android.app.ActivityManager;
+import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.ComponentName;
@@ -12,6 +13,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.media.RingtoneManager;
+import android.os.Build;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
@@ -84,7 +86,6 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         topActivityName = topActivity.getClassName();
 
 
-
         // [START_EXCLUDE]
         // There are two types of messages data messages and notification messages. Data messages are handled
         // here in onMessageReceived whether the app is in the foreground or background. Data messages are the type
@@ -105,8 +106,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             //Log.d(TAG, "Message data payload: " + remoteMessage.getData());
             //Log.d(TAG, "Message content: " + remoteMessage.getData().get("message"));
 
-            if(remoteMessage.getData().get("type").equals("Message"))
-            {
+            if (remoteMessage.getData().get("type").equals("Message")) {
                 getMessage(remoteMessage.getData().get("datas"));
             }
 
@@ -115,7 +115,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             addNotificationList(remoteMessage.getData().get("type"));
             addAlarmList(remoteMessage.getData().get("type"));
 
-            if(mMessageReceivedListener != null){
+            if (mMessageReceivedListener != null) {
                 update();
             }
 
@@ -134,8 +134,8 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             isReadClaim = countAlarmPush_Claim > 0 ? 1 : 0;
             isReadInteresting_Give = countAlarmPush_Intersting_Give > 0 ? 1 : 0;
             isReadInteresting_Take = countAlarmPush_Intersting_Take > 0 ? 1 : 0;
-            isReadCondition = countAlarmPush_Condition > 0? 1:0;
-            isReadCancel = countAlarmPush_Cancel > 0? 1:0;
+            isReadCondition = countAlarmPush_Condition > 0 ? 1 : 0;
+            isReadCancel = countAlarmPush_Cancel > 0 ? 1 : 0;
 
             // Check if message contains a notification payload.
             if (remoteMessage.getNotification() != null) {
@@ -145,32 +145,41 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             // Also if you intend on generating your own notifications as a result of a received FCM
             // message, here is where that should be initiated. See sendNotification method below.
 
-            if (isReadMessage + isReadQna + isReadClaim + isReadInteresting_Give + isReadInteresting_Take + isReadCondition + isReadCancel> 1) {
+            if (isReadMessage + isReadQna + isReadClaim + isReadInteresting_Give + isReadInteresting_Take + isReadCondition + isReadCancel > 1) {
                 alarmTxt = "새로운 알림 " + String.valueOf(countAlarmPush_Message + countAlarmPush_Qna + countAlarmPush_Claim + countAlarmPush_Intersting_Give + countAlarmPush_Intersting_Take + countAlarmPush_Condition + countAlarmPush_Cancel) + "건이 있습니다.";
                 intent1 = new Intent(this, com.example.accepted.acceptedtalentplanet.Alarm.MainActivity.class);
                 intent1.putExtra("alarmType", "Alarm");
             }
             if (intent1 != null) {
-                    Intent intent = new Intent(this, MainActivity.class);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                Intent intent = new Intent(this, MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
-                    PendingIntent contentIntent = PendingIntent.getActivity(this, 0, intent1, PendingIntent.FLAG_UPDATE_CURRENT);
-                    NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this)
-                            .setSmallIcon(R.drawable.icon_friendadd_clicked)
-                            .setContentTitle(alarmTxt)
-                            .setAutoCancel(true)
-                            .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))
-                            .setVibrate(new long[]{1, 1000})
-                            .setWhen(System.currentTimeMillis());
-                    mBuilder.setContentIntent(contentIntent);
-                    NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-                    notificationManager.notify(0, mBuilder.build());
-
-
-                    Log.d(String.valueOf(remoteMessage.getData().size()), "countAlarm = ");
+                PendingIntent contentIntent = PendingIntent.getActivity(this, 0, intent1, PendingIntent.FLAG_UPDATE_CURRENT);
+                NotificationCompat.Builder mBuilder;
+                NotificationManager notificationManager = (NotificationManager) getSystemService(NotificationManager.class);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    NotificationChannel channel = new NotificationChannel("my_channel_0",
+                            "Channel human readable title",
+                            NotificationManager.IMPORTANCE_DEFAULT);
+                    notificationManager.createNotificationChannel(channel);
+                    mBuilder = new NotificationCompat.Builder(this, channel.getId());
+                    Log.d("this is ", channel.getId());
+                } else {
+                    mBuilder = new NotificationCompat.Builder(this, "my_channel_0");
                 }
+                mBuilder = mBuilder.setSmallIcon(R.drawable.icon_friendadd_clicked)
+                        .setContentTitle(alarmTxt)
+                        .setAutoCancel(true)
+                        .setVibrate(new long[]{1, 1000})
+                        .setWhen(System.currentTimeMillis());
+                mBuilder = mBuilder.setContentIntent(contentIntent);
+                notificationManager.notify(1, mBuilder.build());
+
+
+                Log.d(String.valueOf(remoteMessage.getData().size()), "countAlarm = ");
             }
         }
+    }
 
 
 
