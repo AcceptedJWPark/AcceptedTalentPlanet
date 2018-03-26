@@ -1,5 +1,6 @@
 package com.example.accepted.acceptedtalentplanet.TalentCondition;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -95,6 +96,8 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
 
         drawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout_TalentCondition);
         view_drawerView = findViewById(R.id.view_drawerView_TalentCondition);
+        if(SaveSharedPreference.getMyPicture() != null)
+            ((ImageView) findViewById(R.id.DrawerPicture)).setImageBitmap(SaveSharedPreference.getMyPicture());
 
         View.OnClickListener mClicklistener = new  View.OnClickListener()
         {

@@ -352,9 +352,6 @@ public class SaveSharedPreference{
 
         Intent i;
 
-        if(getMyPicture() != null)
-            ((ImageView) ((Activity)mContext).findViewById(R.id.DrawerPicture)).setImageBitmap(getMyPicture());
-
         switch (view.getId())
         {
 

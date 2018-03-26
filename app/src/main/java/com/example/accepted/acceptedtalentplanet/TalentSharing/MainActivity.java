@@ -109,6 +109,8 @@ public class MainActivity extends AppCompatActivity {
         ((TextView) findViewById(R.id.tv_toolbarTitle)).setText("T.Sharing");
         ((TextView) findViewById(R.id.DrawerUserID)).setText(SaveSharedPreference.getUserId(mContext));
 
+        if(SaveSharedPreference.getMyPicture() != null)
+            ((ImageView) findViewById(R.id.DrawerPicture)).setImageBitmap(SaveSharedPreference.getMyPicture());
         View.OnClickListener mClicklistener = new  View.OnClickListener()
         {
             @Override
