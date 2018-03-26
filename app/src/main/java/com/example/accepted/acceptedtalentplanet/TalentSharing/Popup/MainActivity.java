@@ -213,7 +213,7 @@ public class MainActivity extends FragmentActivity{
                     hasFlag = (obj.getString("HAS_FLAG").equals("N"))? false : true;
                     Log.d("hasFlag", String.valueOf(hasFlag));
                     btn_SendInterest = (Button)findViewById(R.id.btn_SendInterest_TalentSharing);
-                    if(!hasFlag){
+                    if(!hasFlag && statusFlag.equals("P")){
                         btn_SendInterest.setBackgroundResource(R.drawable.bgr_bigbtn);
                         final AlertDialog.Builder shallWeAlert = new AlertDialog.Builder(MainActivity.this);
                         btn_SendInterest.setOnClickListener(new View.OnClickListener() {

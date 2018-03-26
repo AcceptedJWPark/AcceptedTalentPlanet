@@ -45,7 +45,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="관심 목록"
+                android:text="Shall we List"
                 android:textSize="@dimen/ToolbarTxt"
                 android:gravity="center"
                 android:layout_centerInParent="true"
@@ -100,7 +100,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:text="재능 공유 진행 시 모든 관심 내역은 삭제 됩니다."
+        android:text="재능 공유 진행 시 모든 Shall we List는 삭제 됩니다."
         android:gravity="center"
         android:textSize="@dimen/Page_Txt"
         android:textColor="@color/textColor_txtpage"

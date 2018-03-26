@@ -25,7 +25,6 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.StringRequest;
 import com.example.accepted.acceptedtalentplanet.Friend;
-import com.example.accepted.acceptedtalentplanet.InterestingList.DialogActivity;
 import com.example.accepted.acceptedtalentplanet.R;
 import com.example.accepted.acceptedtalentplanet.SaveSharedPreference;
 import com.example.accepted.acceptedtalentplanet.VolleySingleton;
@@ -50,7 +49,6 @@ public class MainActivity extends FragmentActivity {
     private Button btn_Message;
 
     private ImageView iv_CloseIcon;
-    private DialogActivity dialogActivity;
 
     private RelativeLayout rl_FriendIconContainer;
 
@@ -211,18 +209,7 @@ public class MainActivity extends FragmentActivity {
         }
         getProfileInfo(talentID);
     }
-        private View.OnClickListener ProgressListener = new View.OnClickListener() {
-            public void onClick(View v) {
-                doSharingTalent(talentID);
 
-            }
-        };
-
-        private View.OnClickListener CancelListener = new View.OnClickListener() {
-            public void onClick(View v) {
-                dialogActivity.dismiss();
-            }
-        };
 
     public void getProfileInfo(final String talentID) {
         final String TalentID = talentID;
