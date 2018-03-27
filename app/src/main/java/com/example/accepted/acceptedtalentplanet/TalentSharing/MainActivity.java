@@ -129,8 +129,6 @@ public class MainActivity extends AppCompatActivity {
         listView = (ListView) findViewById(R.id.listView_TalentSharing);
 
         retrieveMessage();
-
-
         getTalentSharing();
 
         btn_giveSelect.setOnClickListener(changeTalentFlag);
@@ -228,23 +226,43 @@ public class MainActivity extends AppCompatActivity {
         public void onClick(View v) {
             tv_Txt = (TextView) findViewById(R.id.tv_Txt_TalentSharing);
             isGiveTalent = (((Button) v).getId() == R.id.btn_giveSelect_TalentSharing) ? true : false;
-
+            ((ImageView) findViewById(R.id.iv_renew_TalentSharing)).setVisibility(View.VISIBLE);
             if (isGiveTalent) {
                 MyTalent mt = SaveSharedPreference.getGiveTalentData(mContext);
 
-
                 if (mt == null) {
-                    Toast.makeText(mContext, "재능 기부 등록을 먼저 진행해주세요.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(mContext, "재능 드림 등록을 먼저 진행해주세요.", Toast.LENGTH_SHORT).show();
                     Intent i = new Intent(mContext, com.example.accepted.acceptedtalentplanet.TalentResister.MainActivity.class);
                     i.putExtra("GiveFlag", true);
                     startActivity(i);
                     finish();
                 } else if (mt.getStatus() == null || mt.getStatus().equals("C")) {
-                    Toast.makeText(mContext, "재능 기부 재등록을 먼저 진행해주세요.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(mContext, "재능 드림 재등록을 먼저 진행해주세요.", Toast.LENGTH_SHORT).show();
                     Intent i = new Intent(mContext, com.example.accepted.acceptedtalentplanet.TalentCondition.MainActivity.class);
                     i.putExtra("GiveFlag", true);
                     startActivity(i);
                     finish();
+                }
+
+                if(mt.getStatus().equals("M"))
+                {
+                    tv_Txt.setText("회원님의 재능 드림이 진행 중입니다.");
+                    ((ImageView) findViewById(R.id.iv_renew_TalentSharing)).setVisibility(View.GONE);
+                    ((TextView) findViewById(R.id.clickToCondition_TalentSharing)).setVisibility(View.VISIBLE);
+                    ((TextView) findViewById(R.id.clickToCondition_TalentSharing)).setText("나의 재능 현황");
+                    ((TextView) findViewById(R.id.clickToCondition_TalentSharing)).setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent i = new Intent(mContext, com.example.accepted.acceptedtalentplanet.TalentCondition.MainActivity.class);
+                            i.putExtra("TalentCondition_TalentFlag", "Give.");
+                            startActivity(i);
+                        }
+                    });
+                }
+                else
+                {
+                    tv_Txt.setText(SaveSharedPreference.getUserName(mContext) + "님의 재능을 공유할 수 있는 회원입니다.");
+                    ((TextView) findViewById(R.id.clickToCondition_TalentSharing)).setVisibility(View.GONE);
                 }
 
                 btn_giveSelect.setBackground(ContextCompat.getDrawable(mContext, R.drawable.bgr_giveortake_clicked));
@@ -254,7 +272,6 @@ public class MainActivity extends AppCompatActivity {
                 btn_takeSelect.setTextColor(getResources().getColor(R.color.textcolor_giveortake_unclicked));
                 btn_takeSelect.setPaintFlags(btn_takeSelect.getPaintFlags() & ~Paint.FAKE_BOLD_TEXT_FLAG);
 
-                tv_Txt.setText(SaveSharedPreference.getUserName(mContext) + "님의 재능을 공유할 수 있는 회원입니다.");
 
             } else {
                 MyTalent mt = SaveSharedPreference.getTakeTalentData(mContext);
@@ -273,13 +290,35 @@ public class MainActivity extends AppCompatActivity {
                     finish();
                 }
 
+                Log.d("status",mt.getStatus());
+
+                if(mt.getStatus().equals("M"))
+                {
+                    tv_Txt.setText("회원님의 관심 재능이 진행 중입니다.");
+                    ((ImageView) findViewById(R.id.iv_renew_TalentSharing)).setVisibility(View.GONE);
+                    ((TextView) findViewById(R.id.clickToCondition_TalentSharing)).setVisibility(View.VISIBLE);
+                    ((TextView) findViewById(R.id.clickToCondition_TalentSharing)).setText("나의 재능 현황");
+                    ((TextView) findViewById(R.id.clickToCondition_TalentSharing)).setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent i = new Intent(mContext, com.example.accepted.acceptedtalentplanet.TalentCondition.MainActivity.class);
+                            i.putExtra("TalentCondition_TalentFlag", "Take");
+                            startActivity(i);
+                        }
+                    });
+                }
+                else
+                {
+                    tv_Txt.setText(SaveSharedPreference.getUserName(mContext) + "님께 재능을 공유할 수 있는 회원입니다.");
+                    ((TextView) findViewById(R.id.clickToCondition_TalentSharing)).setVisibility(View.GONE);
+                }
+
                 btn_takeSelect.setBackground(ContextCompat.getDrawable(mContext, R.drawable.bgr_giveortake_clicked));
                 btn_takeSelect.setPaintFlags(btn_takeSelect.getPaintFlags() | Paint.FAKE_BOLD_TEXT_FLAG);
                 btn_takeSelect.setTextColor(getResources().getColor(R.color.textcolor_giveortake_clicked));
                 btn_giveSelect.setBackground(ContextCompat.getDrawable(mContext, R.drawable.bgr_giveortake_unclicked));
                 btn_giveSelect.setTextColor(getResources().getColor(R.color.textcolor_giveortake_unclicked));
                 btn_giveSelect.setPaintFlags(btn_giveSelect.getPaintFlags() & ~Paint.FAKE_BOLD_TEXT_FLAG);
-                tv_Txt.setText(SaveSharedPreference.getUserName(mContext) + "님께 재능을 공유할 수 있는 회원입니다.");
             }
 
             arrayList.clear();

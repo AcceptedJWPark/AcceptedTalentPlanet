@@ -1,7 +1,6 @@
 package com.example.accepted.acceptedtalentplanet.InterestingList;
 
 import android.content.Context;
-import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
@@ -87,6 +86,8 @@ public class MainActivity extends AppCompatActivity {
         }
 
         Log.d(getIntent().getStringExtra("TalentFlag"),"Talent Flag");
+
+
 
     }
 

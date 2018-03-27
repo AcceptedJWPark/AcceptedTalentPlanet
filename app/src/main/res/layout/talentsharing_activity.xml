@@ -89,15 +89,34 @@
                 android:layout_marginRight="15dp"
                 >
 
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:orientation="horizontal"
+                    >
+
             <TextView
                 android:id="@+id/tv_Txt_TalentSharing"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/Page_Txt"
                 android:textColor="@color/textColor_txtpage"
-                android:layout_centerInParent="true"
                 android:text="박종우님의 재능을 공유할 수 있는 회원입니다."
                 />
+
+                    <TextView
+                        android:id="@+id/clickToCondition_TalentSharing"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="나의 재능 현황"
+                        android:layout_marginLeft="@dimen/Margin_et"
+                        android:textColor="@color/loginPasswordLost"
+                        android:textStyle="bold"
+                        android:textSize="@dimen/Page_Txt"
+                        />
+                </LinearLayout>
+
 
                 <ImageView
                     android:id="@+id/iv_renew_TalentSharing"
