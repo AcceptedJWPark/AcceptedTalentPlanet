@@ -67,6 +67,8 @@
             android:layout_height="45dp"
             android:layout_marginLeft="40dp"
             android:layout_marginRight="40dp"
+        android:paddingTop="@dimen/Margin_et"
+        android:paddingBottom="@dimen/Margin_et"
             >
 
         <EditText
@@ -109,10 +111,9 @@
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1.5"
+            android:layout_weight="1.2"
             android:gravity="center"
             android:layout_marginLeft="@dimen/Margin_et"
-            android:background="@drawable/bgr_inputbox"
             >
         <CheckBox
             android:id="@+id/Join_BirthDayNoShowCheck"

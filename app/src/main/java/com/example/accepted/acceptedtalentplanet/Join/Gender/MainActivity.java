@@ -58,7 +58,7 @@ public class MainActivity extends  AppCompatActivity {
 
         int preContainer_height = (int) (metrics.heightPixels*0.06);
         int titleContainer_height = (int) (metrics.heightPixels*0.1);
-        int genderContainer_height= (int) (metrics.heightPixels*0.065);
+        int genderContainer_height= (int) (metrics.heightPixels*0.06);
         int btn_Next_height= (int) (metrics.heightPixels*0.04);
         int trashView_height= (int) (metrics.heightPixels*0.02);
 

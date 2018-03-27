@@ -22,8 +22,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-import static com.example.accepted.acceptedtalentplanet.MyFirebaseMessagingService.countAlarmPush_Message;
-
 public class MainActivity extends AppCompatActivity implements MyFirebaseMessagingService.MessageReceivedListener {
 
     Context mContext;
@@ -44,8 +42,6 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.messanger_list);
-
-        countAlarmPush_Message = 0;
 
         mContext = getApplicationContext();
         messanger_Listview = (ListView) findViewById(R.id.Messanger_List_ListView);

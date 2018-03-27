@@ -102,7 +102,8 @@
         <activity android:name=".TalentResister.Talent.MainActivity"
             android:windowSoftInputMode="adjustNothing"/>
 
-        <activity android:name=".TalentCondition.MainActivity"/>
+        <activity android:name=".TalentCondition.MainActivity"
+            />
         <activity android:name=".TalentSharing.MainActivity"
             />
 
@@ -113,15 +114,21 @@
         <activity android:name=".CustomerService.Notice.MainActivity"/>
         <activity android:name=".CustomerService.Question.MainActivity"
             />
-        <activity android:name=".CustomerService.Question.QuestionList.MainActivity"/>
+        <activity android:name=".CustomerService.Question.QuestionList.MainActivity"
+            android:launchMode="singleTask"
+            />
         <activity android:name=".CustomerService.Update.MainActivity"/>
         <activity android:name=".CustomerService.Manual.AnswerList.MainActivity"/>
         <activity android:name=".CustomerService.Manual.MainActivity"/>
-        <activity android:name=".CustomerService.Claim.ClaimList.MainActivity" />
+        <activity android:name=".CustomerService.Claim.ClaimList.MainActivity"
+            android:launchMode="singleTask"
+            />
         <activity android:name=".CustomerService.Claim.MainActivity"
             />
 
-        <activity android:name=".SharingList.MainActivity"/>
+        <activity android:name=".SharingList.MainActivity"
+            android:launchMode="singleTask"
+            />
         <activity android:name=".TalentSearching.SearchingPage.MainActivity"
             android:windowSoftInputMode="adjustNothing"/>
         <activity android:name=".TalentSearching.MainActivity"/>
@@ -137,6 +144,7 @@
 
         <activity
             android:name=".InterestingList.MainActivity"
+            android:launchMode="singleTask"
             >
         </activity>
 
@@ -161,6 +169,7 @@
 
         <activity
             android:name=".Messanger.List.MainActivity"
+            android:launchMode="singleTask"
             />
 
         <activity

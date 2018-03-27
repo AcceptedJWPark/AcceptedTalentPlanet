@@ -81,8 +81,8 @@ public class MainActivity extends AppCompatActivity {
         windowManager.getDefaultDisplay().getMetrics(metrics);
 
         int Title_height = (int) (metrics.heightPixels*0.1);
-        int EmailAccept_height = (int) (metrics.heightPixels*0.065);
-        int trashView1_height= (int) (metrics.heightPixels*0.015);
+        int EmailAccept_height = (int) (metrics.heightPixels*0.06);
+        int trashView1_height= (int) (metrics.heightPixels*0.01);
         int trashView2_height= (int) (metrics.heightPixels*0.02);
         int nextBtn_height = (int) (metrics.heightPixels*0.04);
 

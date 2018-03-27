@@ -68,6 +68,8 @@
         android:layout_height="45dp"
             android:layout_marginRight="60dp"
             android:layout_marginLeft="60dp"
+        android:paddingTop="@dimen/Margin_et"
+        android:paddingBottom="@dimen/Margin_et"
             >
 
             <Spinner
@@ -89,7 +91,6 @@
             android:layout_weight="2"
             android:gravity="center"
             android:layout_marginLeft="@dimen/Margin_et"
-            android:background="@drawable/bgr_inputbox"
             >
             <CheckBox
                 android:id="@+id/cb_isShowGender_Gender_Join"
