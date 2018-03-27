@@ -130,8 +130,6 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             }
 
             if (intent1 != null) {
-                Intent intent = new Intent(this, MainActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
                 PendingIntent contentIntent = PendingIntent.getActivity(this, 0, intent1, PendingIntent.FLAG_UPDATE_CURRENT);
                 NotificationCompat.Builder mBuilder;
@@ -152,6 +150,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                         .setContentTitle(alarmTxt)
                         .setAutoCancel(true)
                         .setVibrate(new long[]{1, 1000})
+                        .setDefaults(Notification.DEFAULT_SOUND)
                         .setWhen(System.currentTimeMillis())
                         .setContentIntent(contentIntent);
                      notificationManagerCompat = NotificationManagerCompat.from(this);
@@ -515,7 +514,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
 
             int roomID = SaveSharedPreference.makeChatRoom(getApplicationContext(), obj.getString("USER_ID"), obj.getString("USER_NAME"));
-            sqLiteDatabase.execSQL("INSERT OR REPLACE INTO TB_CHAT_LOG(MESSAGE_ID, ROOM_ID, USER_ID, CONTENT, CREATION_DATE, READED_FLAG) VALUES (" + obj.getString("MESSAGE_ID") + ", " + roomID + ", '" + obj.getString("USER_ID") + "','" + obj.getString("CONTENT").replace("'", "''") + "','" + obj.getString("CREATION_DATE_STRING") + "', 'N')");
+            sqLiteDatabase.execSQL("INSERT OR REPLACE INTO TB_CHAT_LOG(MESSAGE_ID, ROOM_ID, MASTER_ID, USER_ID, CONTENT, CREATION_DATE, READED_FLAG) VALUES (" + obj.getString("MESSAGE_ID") + ", " + roomID + ",'" + SaveSharedPreference.getUserId(getApplicationContext()) + "' , '" + obj.getString("USER_ID") + "','" + obj.getString("CONTENT").replace("'", "''") + "','" + obj.getString("CREATION_DATE_STRING") + "', 'N')");
             sqLiteDatabase.close();
         }catch(Exception e){
             e.printStackTrace();

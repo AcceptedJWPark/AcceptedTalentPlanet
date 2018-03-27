@@ -192,7 +192,7 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
     }
 
     public boolean refreshChatLog(){
-        String selectBasicChat = "SELECT * FROM TB_CHAT_LOG WHERE ROOM_ID = " + roomID +" AND MESSAGE_ID > "+lastMessageID+"";
+        String selectBasicChat = "SELECT * FROM TB_CHAT_LOG WHERE ROOM_ID = " + roomID +" AND MASTER_ID = '"+ SaveSharedPreference.getUserId(mContext) +"' AND MESSAGE_ID > "+lastMessageID+"";
         Cursor cursor = sqliteDatabase.rawQuery(selectBasicChat, null);
         cursor.moveToFirst();
         Log.d("asdf", roomID + ",tq1," + lastMessageID);
@@ -201,9 +201,9 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
             Log.d("asdf", "tq1");
             isRunning = true;
 
-            String sender = cursor.getString(2);
-            String content = cursor.getString(3);
-            String creationDate = cursor.getString(4);
+            String sender = cursor.getString(3);
+            String content = cursor.getString(4);
+            String creationDate = cursor.getString(5);
             String[] nowDateTemp = creationDate.split(",");
             final String nowDate = nowDateTemp[0];
             final String nowTime = nowDateTemp[1].substring(0, 8);
@@ -290,7 +290,7 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
                     SimpleDateFormat sdf = new SimpleDateFormat("a hh:mm");
                     String dateStr = sdf.format(date);
                     if(obj.getString("MESSAGE_ID") != null && !obj.getString("MESSAGE_ID").isEmpty()){
-                        sqliteDatabase.execSQL("INSERT INTO TB_CHAT_LOG(MESSAGE_ID, ROOM_ID, USER_ID, CONTENT, CREATION_DATE) VALUES (" + obj.getString("MESSAGE_ID") + ","+roomID+" ,'"+SaveSharedPreference.getUserId(mContext)+"','"+content+"','"+nowDateStr+"')");
+                        sqliteDatabase.execSQL("INSERT INTO TB_CHAT_LOG(MESSAGE_ID, ROOM_ID, MASTER_ID, USER_ID, CONTENT, CREATION_DATE) VALUES (" + obj.getString("MESSAGE_ID") + ","+roomID+" ,'" + SaveSharedPreference.getUserId(mContext) + "', '"+SaveSharedPreference.getUserId(mContext)+"','"+content+"','"+nowDateStr+"')");
                     }else{
                         Toast.makeText(mContext, "메세지 전송 실패.", Toast.LENGTH_SHORT).show();
                     }
