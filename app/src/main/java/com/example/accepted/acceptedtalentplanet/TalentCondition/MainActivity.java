@@ -40,7 +40,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static android.view.View.GONE;
-import static com.example.accepted.acceptedtalentplanet.MyFirebaseMessagingService.countAlarmPush_Condition;
 import static com.example.accepted.acceptedtalentplanet.SaveSharedPreference.DrawerLayout_ClickEvent;
 import static com.example.accepted.acceptedtalentplanet.SaveSharedPreference.DrawerLayout_Open;
 
@@ -88,8 +87,6 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
         setContentView(R.layout.talentcondition_activity);
 
         mContext = getApplicationContext();
-
-        countAlarmPush_Condition = 0;
 
         ((TextView) findViewById(R.id.tv_toolbarTitle)).setText("나의 재능 현황");
         ((TextView) findViewById(R.id.DrawerUserID)).setText(SaveSharedPreference.getUserId(mContext));

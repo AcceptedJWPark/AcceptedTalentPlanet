@@ -26,7 +26,6 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
-import static com.example.accepted.acceptedtalentplanet.MyFirebaseMessagingService.countAlarmPush_Claim;
 
 /**
  * Created by Accepted on 2017-11-03.
@@ -45,8 +44,6 @@ public class MainActivity extends AppCompatActivity {
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.customerservice_claimlist_activity);
-
-        countAlarmPush_Claim = 0;
 
 
         mContext = getApplicationContext();

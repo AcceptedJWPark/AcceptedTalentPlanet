@@ -28,9 +28,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.example.accepted.acceptedtalentplanet.MyFirebaseMessagingService.countAlarmPush_Intersting_Give;
-import static com.example.accepted.acceptedtalentplanet.MyFirebaseMessagingService.countAlarmPush_Intersting_Take;
-
 /**
  * Created by Accepted on 2017-10-24.
  */
@@ -82,16 +79,11 @@ public class MainActivity extends AppCompatActivity {
         giveTalentFlag = getIntent().getStringExtra("TalentFlag").equals("Give");
         if (giveTalentFlag)
         {
-            countAlarmPush_Intersting_Give = 0;
-
-
             btn_SelectGive.setFocusableInTouchMode(true);
             btn_SelectGive.performClick();
         }
         else
         {
-            countAlarmPush_Intersting_Take = 0;
-
             btn_SelectTake.setFocusableInTouchMode(true);
             btn_SelectTake.performClick();
         }

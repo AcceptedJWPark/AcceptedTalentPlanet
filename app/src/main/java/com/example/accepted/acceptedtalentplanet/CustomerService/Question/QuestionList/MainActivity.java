@@ -32,8 +32,6 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
-import static com.example.accepted.acceptedtalentplanet.MyFirebaseMessagingService.countAlarmPush_Qna;
-
 /**
  * Created by Accepted on 2017-11-03.
  */
@@ -53,8 +51,6 @@ public class MainActivity extends AppCompatActivity {
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.customerservice_questionlistactivity);
-
-        countAlarmPush_Qna = 0;
 
 
         mContext = getBaseContext();

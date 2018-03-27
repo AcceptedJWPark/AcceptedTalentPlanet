@@ -5,7 +5,9 @@ package com.example.accepted.acceptedtalentplanet;
  */
 
 import android.app.ActivityManager;
+import android.app.Notification;
 import android.app.NotificationChannel;
+import android.app.NotificationChannelGroup;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.ComponentName;
@@ -15,6 +17,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.media.RingtoneManager;
 import android.os.Build;
 import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.NotificationManagerCompat;
 import android.util.Log;
 
 import com.example.accepted.acceptedtalentplanet.Alarm.ListItem;
@@ -34,28 +37,22 @@ import static com.example.accepted.acceptedtalentplanet.Messanger.Chatting.MainA
 
 public class MyFirebaseMessagingService extends FirebaseMessagingService {
     private static final String TAG = "MyFirebaseMsgService";
+    private static final String GROUP_KEY_ALARM = "Alarm";
+    private static final int MESSAGE_NOTIFICATION_ID = 1;
+    private static final int CONDITION_NOTIFICATION_ID = 2;
+    private static final int BOARD_NOTIFICATION_ID = 3;
+    private static final int INTERESTING_NOTIFICATION_ID = 4;
+    private static final int SUMMARY_NOTIFICATION_ID = 0;
+    private static final String MY_CHANNEL_ID = "NOTIFICATION_CHANNEL_1";
+
+    private static NotificationManagerCompat notificationManagerCompat;
 
     private String alarmType = null;
     private String alarmTxt = null;
-    public static int countAlarmPush_Message = 0;
-    public static int countAlarmPush_Qna = 0;
-    public static int countAlarmPush_Claim = 0;
-    public static int countAlarmPush_Intersting_Give = 0;
-    public static int countAlarmPush_Intersting_Take = 0;
-    public static int countAlarmPush_Condition = 0;
-    public static int countAlarmPush_Cancel = 0;
 
     private boolean messagePushGrant;
     private boolean conditionPushGrant;
     private boolean answerPushGrant;
-
-    private int isReadMessage;
-    private int isReadQna;
-    private int isReadInteresting_Give;
-    private int isReadInteresting_Take;
-    private int isReadClaim;
-    private int isReadCondition;
-    private int isReadCancel;
 
 
     private TimeZone time= TimeZone.getTimeZone("Asia/Seoul");
@@ -129,27 +126,11 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         }
         if (messagePushGrant || conditionPushGrant || answerPushGrant) {
 
-            isReadMessage = countAlarmPush_Message > 0 ? 1 : 0;
-            isReadQna = countAlarmPush_Qna > 0 ? 1 : 0;
-            isReadClaim = countAlarmPush_Claim > 0 ? 1 : 0;
-            isReadInteresting_Give = countAlarmPush_Intersting_Give > 0 ? 1 : 0;
-            isReadInteresting_Take = countAlarmPush_Intersting_Take > 0 ? 1 : 0;
-            isReadCondition = countAlarmPush_Condition > 0 ? 1 : 0;
-            isReadCancel = countAlarmPush_Cancel > 0 ? 1 : 0;
-
             // Check if message contains a notification payload.
             if (remoteMessage.getNotification() != null) {
                 //Log.d(TAG, "Message Notification Body: " + remoteMessage.getNotification().getBody());
             }
 
-            // Also if you intend on generating your own notifications as a result of a received FCM
-            // message, here is where that should be initiated. See sendNotification method below.
-
-            if (isReadMessage + isReadQna + isReadClaim + isReadInteresting_Give + isReadInteresting_Take + isReadCondition + isReadCancel > 1) {
-                alarmTxt = "새로운 알림 " + String.valueOf(countAlarmPush_Message + countAlarmPush_Qna + countAlarmPush_Claim + countAlarmPush_Intersting_Give + countAlarmPush_Intersting_Take + countAlarmPush_Condition + countAlarmPush_Cancel) + "건이 있습니다.";
-                intent1 = new Intent(this, com.example.accepted.acceptedtalentplanet.Alarm.MainActivity.class);
-                intent1.putExtra("alarmType", "Alarm");
-            }
             if (intent1 != null) {
                 Intent intent = new Intent(this, MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -158,25 +139,52 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                 NotificationCompat.Builder mBuilder;
                 NotificationManager notificationManager = (NotificationManager) getSystemService(NotificationManager.class);
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                    NotificationChannel channel = new NotificationChannel("my_channel_0",
+                    NotificationChannel channel = new NotificationChannel(MY_CHANNEL_ID,
                             "Channel human readable title",
                             NotificationManager.IMPORTANCE_DEFAULT);
                     notificationManager.createNotificationChannel(channel);
-                    mBuilder = new NotificationCompat.Builder(this, channel.getId());
+                        mBuilder = new NotificationCompat.Builder(this, channel.getId());
+
                     Log.d("this is ", channel.getId());
                 } else {
-                    mBuilder = new NotificationCompat.Builder(this, "my_channel_0");
+                    mBuilder = new NotificationCompat.Builder(this, MY_CHANNEL_ID);
+
                 }
-                mBuilder = mBuilder.setSmallIcon(R.drawable.icon_friendadd_clicked)
+                mBuilder.setSmallIcon(R.drawable.icon_friendadd_clicked)
                         .setContentTitle(alarmTxt)
                         .setAutoCancel(true)
                         .setVibrate(new long[]{1, 1000})
-                        .setWhen(System.currentTimeMillis());
-                mBuilder = mBuilder.setContentIntent(contentIntent);
-                notificationManager.notify(1, mBuilder.build());
+                        .setWhen(System.currentTimeMillis())
+                        .setContentIntent(contentIntent);
+                     notificationManagerCompat = NotificationManagerCompat.from(this);
+                     Notification summaryNotification =
+                             new NotificationCompat.Builder(this, MY_CHANNEL_ID)
+                                     .setContentTitle("새로운 알람이 있습니다.")
+                                     .setSmallIcon(R.drawable.icon_friendadd_clicked)
+                                     .setStyle(new NotificationCompat.InboxStyle()
+                                             .setSummaryText("알람을 확인하세요!"))
+                                     //specify which group this notification belongs to
+                                     .setGroup(GROUP_KEY_ALARM)
+                                     //set this notification as the summary for the group
+                                     .setGroupSummary(true)
+                                     .setGroupAlertBehavior(Notification.GROUP_ALERT_CHILDREN)
+                                     .build();
+                     summaryNotification.defaults = 0;
+                     notificationManagerCompat.notify(SUMMARY_NOTIFICATION_ID, summaryNotification);
 
 
-                Log.d(String.valueOf(remoteMessage.getData().size()), "countAlarm = ");
+                mBuilder.setGroup(GROUP_KEY_ALARM);
+
+                if(remoteMessage.getData().get("type").equals("Interest")){
+                    notificationManagerCompat.notify(INTERESTING_NOTIFICATION_ID, mBuilder.build());
+                }else if(remoteMessage.getData().get("type").equals("Message")){
+                    notificationManagerCompat.notify(MESSAGE_NOTIFICATION_ID, mBuilder.build());
+                }else if(remoteMessage.getData().get("type").contains("Interesting")){
+                    notificationManagerCompat.notify(CONDITION_NOTIFICATION_ID, mBuilder.build());
+                }else{
+                    notificationManagerCompat.notify(BOARD_NOTIFICATION_ID, mBuilder.build());
+                }
+
             }
         }
     }
@@ -384,9 +392,8 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                     } else if (topActivityName.equals("com.example.accepted.acceptedtalentplanet.Messanger.Chatting.MainActivity") && userId.equals(receiverID)) {
                         return;
                     } else {
-                        countAlarmPush_Message++;
                         alarmType = "Message";
-                        alarmTxt = "새로운 메세지 " + countAlarmPush_Message + "건이 도착했습니다.";
+                        alarmTxt = "새로운 메세지가 도착했습니다.";
                         intent1 = new Intent(this, com.example.accepted.acceptedtalentplanet.Messanger.List.MainActivity.class);
                         intent1.putExtra("alarmType", "Message");
                     }
@@ -395,18 +402,16 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             }
             case "QNA":
                 if (answerPushGrant) {
-                    countAlarmPush_Qna++;
                     alarmType = "QNA";
-                    alarmTxt = "문의하신 Q&A " + countAlarmPush_Qna + "건이 답변 완료되었습니다.";
+                    alarmTxt = "문의하신 Q&A의 답변 완료되었습니다.";
                     intent1 = new Intent(this, com.example.accepted.acceptedtalentplanet.CustomerService.Question.QuestionList.MainActivity.class);
                     intent1.putExtra("alarmType", "QNA");
                 }
                 break;
             case "Claim":
                 if (answerPushGrant) {
-                    countAlarmPush_Claim++;
                     alarmType = "Claim";
-                    alarmTxt = "신고하기 " + countAlarmPush_Claim + "건이 조치 완료되었습니다.";
+                    alarmTxt = "신고하신 건의 조치가 완료되었습니다.";
                     intent1 = new Intent(this, com.example.accepted.acceptedtalentplanet.CustomerService.Claim.ClaimList.MainActivity.class);
                     intent1.putExtra("alarmType", "Claim");
                 }
@@ -422,13 +427,11 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                     }
 
                     if (talentType == 1) {
-                        countAlarmPush_Intersting_Give++;
-                        alarmTxt = "재능 드림에 받은 관심이 " + countAlarmPush_Intersting_Give + "건 있습니다.";
+                        alarmTxt = "재능 드림에 받은 관심이 있습니다.";
                         intent1 = new Intent(this, com.example.accepted.acceptedtalentplanet.InterestingList.MainActivity.class);
                         intent1.putExtra("TalentFlag", "Give");
                     } else {
-                        countAlarmPush_Intersting_Take++;
-                        alarmTxt = "관심 재능에 받은 관심이 " + countAlarmPush_Intersting_Take + "건 있습니다.";
+                        alarmTxt = "관심 재능에 받은 관심이 있습니다.";
                         intent1 = new Intent(this, com.example.accepted.acceptedtalentplanet.InterestingList.MainActivity.class);
                         intent1.putExtra("TalentFlag", "Take");
                     }
@@ -446,11 +449,9 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                     }
                     intent1 = new Intent(this, com.example.accepted.acceptedtalentplanet.TalentCondition.MainActivity.class);
                     if (talentType == 1) {
-                        countAlarmPush_Condition++;
                         alarmTxt = "재능 드림 상태가 진행중으로 변경되었습니다.";
                         intent1.putExtra("TalentCondition_TalentFlag", "Give");
                     } else {
-                        countAlarmPush_Condition++;
                         alarmTxt = "관심 재능 상태가 진행중으로 변경되었습니다.";
                         intent1.putExtra("TalentCondition_TalentFlag", "Take");
                     }
@@ -470,10 +471,8 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                         }
 
                         if (talentType == 1) {
-                            countAlarmPush_Condition++;
                             alarmTxt = "진행 중인 재능 드림이 취소 되었습니다.";
                         } else {
-                            countAlarmPush_Condition++;
                             alarmTxt = "진행 중인 관심 재능이 취소되었습니다.";
                         }
                         alarmType = "InterestingCancel";
@@ -493,12 +492,10 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                         }
                         intent1 = new Intent(this, com.example.accepted.acceptedtalentplanet.TalentCondition.MainActivity.class);
                         if (talentType == 1) {
-                            countAlarmPush_Condition++;
                             alarmTxt = "진행 중인 재능 드림이 완료되었습니다.";
                             intent1.putExtra("TalentCondition_TalentFlag", "Give");
 
                         } else {
-                            countAlarmPush_Condition++;
                             alarmTxt = "진행 중인 관심 재능이완료 되었습니다.";
                             intent1.putExtra("TalentCondition_TalentFlag", "Take");
                         }
