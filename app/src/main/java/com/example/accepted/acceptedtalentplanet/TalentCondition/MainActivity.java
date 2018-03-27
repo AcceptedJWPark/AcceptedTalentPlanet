@@ -71,6 +71,9 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
     private int giveTalentCode;
     private int takeTalentCode;
 
+    private int giveInterestCount;
+    private int takeInterestCount;
+
     private String givePartnerID, takePartnerID;
 
     private String flag, giveStatus, takeStatus;
@@ -229,8 +232,8 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
         } else {
             switch (Code) {
                 case 1: {
-                    if(unread_Shallwe_Give) {
-                        tv_Txt.setText("새로운 Shall we List가 3건 있습니다.");
+                    if(giveInterestCount > 0) {
+                        tv_Txt.setText("새로운 Shall we List가 "+ giveInterestCount + "건 있습니다.");
                     }else
                     {
                         tv_Txt.setText("T.Sharing에서 재능 공유 상대를 찾아보세요!");
@@ -440,8 +443,8 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
         } else {
             switch (Code) {
                 case 1: {
-                    if(unread_Shallwe_Take) {
-                        tv_Txt.setText("새로운 Shall we List가 3건 있습니다.");
+                    if(takeInterestCount > 0) {
+                        tv_Txt.setText("새로운 Shall we List가 " + takeInterestCount + "건 있습니다.");
                     }else
                     {
                         tv_Txt.setText("T.Sharing에서 재능 공유 상대를 찾아보세요!");
@@ -647,6 +650,7 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
                             giveStatus = o.getString("STATUS_FLAG");
                             giveTalentID = o.getString("seq");
                             givePartnerCompFlag = o.getString("TARGET_COMP_FLAG").equals("C");
+                            giveInterestCount = o.getInt("INTEREST_COUNT");
 
                             switch (giveStatus){
                                 case "P":
@@ -672,6 +676,7 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
                             takeStatus = o.getString("STATUS_FLAG");
                             takeTalentID = o.getString("seq");
                             takePartnerCompFlag = o.getString("TARGET_COMP_FLAG").equals("C");
+                            takeInterestCount = o.getInt("INTEREST_COUNT");
 
                             switch (takeStatus){
                                 case "P":
@@ -731,6 +736,15 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
 
                     }else{
                         Toast.makeText(mContext, "이미 상대방이 완료를 눌러 취소할 수 없습니다.", Toast.LENGTH_SHORT).show();
+                    }
+                    boolean talentFlag = ((String) tv_TalentType.getText()).equals("관심재능 : ") ? true : false;
+                    MyTalent mt = (talentFlag)?SaveSharedPreference.getTakeTalentData(mContext):SaveSharedPreference.getGiveTalentData(mContext);
+
+                    mt.setStatus("P");
+                    if(!talentFlag){
+                        SaveSharedPreference.setGiveTalentData(mContext, mt);
+                    }else{
+                        SaveSharedPreference.setTakeTalentData(mContext, mt);
                     }
 
                 } catch (JSONException e) {

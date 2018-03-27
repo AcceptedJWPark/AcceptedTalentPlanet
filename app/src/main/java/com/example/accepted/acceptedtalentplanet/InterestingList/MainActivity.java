@@ -138,6 +138,18 @@ public class MainActivity extends AppCompatActivity {
                         int type = Integer.parseInt(o.getString("TYPE_FLAG"));
                         ListItem target = new ListItem(R.drawable.testpicture, o.getString("USER_NAME"), o.getString("USER_ID"), o.getString("TALENT_KEYWORD1"), o.getString("TALENT_KEYWORD2"), o.getString("TALENT_KEYWORD3"), "["+str+"]", o.getString("CREATION_DATE") + " 등록", o.getString("TALENT_ID"),type);
                         arrayList.add(0,target);
+
+//                        try {
+//                            String dbName = "/accepted.db";
+//                            SQLiteDatabase sqLiteDatabase = SQLiteDatabase.openOrCreateDatabase(getFilesDir() + dbName, null);
+//
+//
+//                            int roomID = SaveSharedPreference.makeChatRoom(getApplicationContext(), o.getString("USER_ID"), o.getString("USER_NAME"));
+//                            sqLiteDatabase.execSQL("INSERT OR REPLACE INTO TB_CHAT_LOG(MESSAGE_ID, ROOM_ID, MASTER_ID, USER_ID, CONTENT, CREATION_DATE, READED_FLAG) VALUES (" + obj.getString("MESSAGE_ID") + ", " + roomID + ",'" + SaveSharedPreference.getUserId(getApplicationContext()) + "' , '" + obj.getString("USER_ID") + "','" + obj.getString("CONTENT").replace("'", "''") + "','" + obj.getString("CREATION_DATE_STRING") + "', 'N')");
+//                            sqLiteDatabase.close();
+//                        }catch(Exception e){
+//                            e.printStackTrace();
+//                        }
                     }
 
                     adapter = new Adapter(mContext, arrayList);

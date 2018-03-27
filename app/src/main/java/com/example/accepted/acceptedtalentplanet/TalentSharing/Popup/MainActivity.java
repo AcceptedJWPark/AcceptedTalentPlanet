@@ -142,6 +142,7 @@ public class MainActivity extends FragmentActivity{
                 i.putExtra("roomID", roomID);
                 i.putExtra("userName", UserName);
                 startActivity(i);
+
                 finish();
             }
         });

@@ -74,6 +74,12 @@ public class MainActivity extends AppCompatActivity {
         String sqlCreateTbl5 = "CREATE TABLE IF NOT EXISTS TB_IMAGES (MASTER_ID TEXT, USER_ID TEXT, PICTURE BLOB, PRIMARY KEY(MASTER_ID, USER_ID))";
         sqliteDatabase.execSQL(sqlCreateTbl5);
 
+        String sqlCreateTbl6 = "CREATE TABLE IF NOT EXISTS TB_GRANT (USER_ID TEXT PRIMARY KEY, MESSAGE_GRANT INT, CONDITION_GRANT INT, ANSWER_GRANT INT)";
+        sqliteDatabase.execSQL(sqlCreateTbl6);
+
+        String sqlCreateTbl7 = "CREATE TABLE IF NOT EXISTS TB_READED_INTEREST (USER_ID TEXT, TALENT_ID INT, PRIMARY KEY(USER_ID, TALENT_ID))";
+        sqliteDatabase.execSQL(sqlCreateTbl7);
+
         startLoading();
 
     }

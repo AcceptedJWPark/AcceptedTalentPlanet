@@ -57,6 +57,7 @@ public class MainActivity extends FragmentActivity {
 
     String talentID;
     String profileUserID;
+    String userName;
     boolean addedFriend = false;
     boolean sendFlag = true;
     boolean talentFlag = true;
@@ -131,6 +132,24 @@ public class MainActivity extends FragmentActivity {
                 Friend friend = new Friend(profileUserID, (talentFlag)?"Y":"N");
                 SaveSharedPreference.putFriend(mContext, friend);
                 addedFriend = true;
+            }
+        });
+
+        btn_Message = (Button)findViewById(R.id.Popup_Message);
+        btn_Message.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int roomID = SaveSharedPreference.makeChatRoom(mContext, profileUserID, userName);
+                if(roomID < 0){
+                    return;
+                }
+                Intent i = new Intent(mContext, com.example.accepted.acceptedtalentplanet.Messanger.Chatting.MainActivity.class);
+                i.putExtra("userID", profileUserID);
+                i.putExtra("roomID", roomID);
+                i.putExtra("userName", userName);
+                startActivity(i);
+
+                finish();
             }
         });
 
@@ -223,8 +242,9 @@ public class MainActivity extends FragmentActivity {
                     genderPBS = (obj.getString("GENDER_FLAG").equals("Y"))?true:false;
                     birthPBS = (obj.getString("BIRTH_FLAG").equals("Y"))?true:false;
                     jobPBS = (obj.getString("JOB_FLAG").equals("Y"))?true:false;
+                    userName = obj.getString("USER_NAME");
                     String Gender = (obj.getString("GENDER").equals("남")) ? "남자" : "여자";
-                    ((TextView)findViewById(R.id.name_InterestingPopup)).setText(obj.getString("USER_NAME"));
+                    ((TextView)findViewById(R.id.name_InterestingPopup)).setText(userName);
                     ((TextView)findViewById(R.id.gender_InterestingPopup)).setText((genderPBS)?Gender:"비공개");
                     ((TextView)findViewById(R.id.birth_InterestingPopup)).setText((birthPBS)?obj.getString("USER_BIRTH"):"비공개");
                     ((TextView)findViewById(R.id.job_InterestingPopup)).setText((jobPBS)?obj.getString("JOB"):"비공개");
