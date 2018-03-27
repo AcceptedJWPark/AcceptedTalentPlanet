@@ -129,8 +129,6 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             }
 
             if (intent1 != null) {
-                Intent intent = new Intent(this, MainActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
                 PendingIntent contentIntent = PendingIntent.getActivity(this, 0, intent1, PendingIntent.FLAG_UPDATE_CURRENT);
                 NotificationCompat.Builder mBuilder;
@@ -166,6 +164,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                                      //set this notification as the summary for the group
                                      .setGroupSummary(true)
                                      .setGroupAlertBehavior(Notification.GROUP_ALERT_CHILDREN)
+                                     .setAutoCancel(true)
                                      .build();
                      summaryNotification.defaults = 0;
                      notificationManagerCompat.notify(SUMMARY_NOTIFICATION_ID, summaryNotification);
@@ -517,7 +516,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
 
             int roomID = SaveSharedPreference.makeChatRoom(getApplicationContext(), obj.getString("USER_ID"), obj.getString("USER_NAME"));
-            sqLiteDatabase.execSQL("INSERT OR REPLACE INTO TB_CHAT_LOG(MESSAGE_ID, ROOM_ID, USER_ID, CONTENT, CREATION_DATE, READED_FLAG) VALUES (" + obj.getString("MESSAGE_ID") + ", " + roomID + ", '" + obj.getString("USER_ID") + "','" + obj.getString("CONTENT").replace("'", "''") + "','" + obj.getString("CREATION_DATE_STRING") + "', 'N')");
+            sqLiteDatabase.execSQL("INSERT OR REPLACE INTO TB_CHAT_LOG(MESSAGE_ID, ROOM_ID, MASTER_ID, USER_ID, CONTENT, CREATION_DATE, READED_FLAG) VALUES (" + obj.getString("MESSAGE_ID") + ", " + roomID + ",'" + SaveSharedPreference.getUserId(getApplicationContext()) + "' , '" + obj.getString("USER_ID") + "','" + obj.getString("CONTENT").replace("'", "''") + "','" + obj.getString("CREATION_DATE_STRING") + "', 'N')");
             sqLiteDatabase.close();
         }catch(Exception e){
             e.printStackTrace();
