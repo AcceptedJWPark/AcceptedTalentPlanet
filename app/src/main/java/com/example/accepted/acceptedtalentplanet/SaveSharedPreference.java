@@ -109,22 +109,21 @@ public class SaveSharedPreference{
         }
     }
 
-    public static void setPrefMessagePushGrant(Context ctx, boolean pushGrant){
-        SharedPreferences.Editor editor = getSharedPreferences(ctx).edit();
-        editor.putBoolean(PREF_MESSAGE_PUSH_GRANT, pushGrant);
-        editor.commit();
-    }
+    public static void setPrefPushGrant(Context ctx, boolean messageGrant, boolean conditionGrant, boolean answerGrant){
+        SQLiteDatabase sqliteDatabase;
+        String dbName = "/accepted.db";
 
-    public static void setPrefConditionPushGrant(Context ctx, boolean pushGrant){
-        SharedPreferences.Editor editor = getSharedPreferences(ctx).edit();
-        editor.putBoolean(PREF_CONDITION_PUSH_GRANT, pushGrant);
-        editor.commit();
-    }
+        try{
+            sqliteDatabase = SQLiteDatabase.openOrCreateDatabase(ctx.getFilesDir() + dbName, null);
+            String sqlUpsert = "INSERT OR REPLACE INTO TB_GRANT(USER_ID, MESSAGE_GRANT, CONDITION_GRANT, ANSWER_GRANT) VALUES ('"+getUserId(ctx)+"', "+ ((messageGrant) ? 1 : 0) + ", " + ((conditionGrant) ? 1 : 0)  + ", " + ((answerGrant) ? 1 : 0)  + ")";
+            sqliteDatabase.execSQL(sqlUpsert);
 
-    public static void setPrefAnswerPushGrant(Context ctx, boolean pushGrant){
-        SharedPreferences.Editor editor = getSharedPreferences(ctx).edit();
-        editor.putBoolean(PREF_ANSWER_PUSH_GRANT, pushGrant);
-        editor.commit();
+            Log.d("grant upsert = ", sqlUpsert);
+
+            sqliteDatabase.close();
+        }catch (SQLiteException e){
+            e.printStackTrace();
+        }
     }
 
     public static int getTalentPoint(Context ctx){
@@ -173,15 +172,77 @@ public class SaveSharedPreference{
     }
 
     public static boolean getMessagePushGrant(Context ctx){
-        return getSharedPreferences(ctx).getBoolean(PREF_MESSAGE_PUSH_GRANT, true);
+        SQLiteDatabase sqliteDatabase;
+        String dbName = "/accepted.db";
+        boolean pushGrant = true;
+        try{
+            sqliteDatabase = SQLiteDatabase.openOrCreateDatabase(ctx.getFilesDir() + dbName, null);
+            String sqlSelect = "SELECT MESSAGE_GRANT FROM TB_GRANT WHERE USER_ID = '" + getUserId(ctx) + "'";
+            Cursor cursor = sqliteDatabase.rawQuery(sqlSelect, null);
+            cursor.moveToFirst();
+            Log.d("message grant query = ", sqlSelect);
+            Log.d("message grant = ", cursor.getInt(0) + "");
+
+            pushGrant = (cursor.getInt(0) > 0);
+
+            cursor.close();
+
+            sqliteDatabase.close();
+        }catch (SQLiteException e){
+            e.printStackTrace();
+        }catch (CursorIndexOutOfBoundsException e){
+            e.printStackTrace();
+        }
+
+        return pushGrant;
     }
 
     public static boolean getConditionPushGrant(Context ctx){
-        return getSharedPreferences(ctx).getBoolean(PREF_CONDITION_PUSH_GRANT, true);
+        SQLiteDatabase sqliteDatabase;
+        String dbName = "/accepted.db";
+        boolean pushGrant = true;
+        try{
+            sqliteDatabase = SQLiteDatabase.openOrCreateDatabase(ctx.getFilesDir() + dbName, null);
+            String sqlSelect = "SELECT CONDITION_GRANT FROM TB_GRANT WHERE USER_ID = '" + getUserId(ctx) + "'";
+            Cursor cursor = sqliteDatabase.rawQuery(sqlSelect, null);
+            cursor.moveToFirst();
+
+            pushGrant = (cursor.getInt(0) > 0);
+
+            cursor.close();
+
+            sqliteDatabase.close();
+        }catch (SQLiteException e){
+            e.printStackTrace();
+        }catch (CursorIndexOutOfBoundsException e){
+            e.printStackTrace();
+        }
+
+        return pushGrant;
     }
 
     public static boolean getAnswerPushGrant(Context ctx){
-        return getSharedPreferences(ctx).getBoolean(PREF_ANSWER_PUSH_GRANT, true);
+        SQLiteDatabase sqliteDatabase;
+        String dbName = "/accepted.db";
+        boolean pushGrant = true;
+        try{
+            sqliteDatabase = SQLiteDatabase.openOrCreateDatabase(ctx.getFilesDir() + dbName, null);
+            String sqlSelect = "SELECT ANSWER_GRANT FROM TB_GRANT WHERE USER_ID = '" + getUserId(ctx) + "'";
+            Cursor cursor = sqliteDatabase.rawQuery(sqlSelect, null);
+            cursor.moveToFirst();
+
+            pushGrant = (cursor.getInt(0) > 0);
+
+            cursor.close();
+
+            sqliteDatabase.close();
+        }catch (SQLiteException e){
+            e.printStackTrace();
+        }catch (CursorIndexOutOfBoundsException e){
+            e.printStackTrace();
+        }
+
+        return pushGrant;
     }
 
     public static boolean checkSession(){
@@ -189,7 +250,7 @@ public class SaveSharedPreference{
     }
 
     public static String getServerIp(){
-        return SERVER_IP;
+        return SERVER_IP2;
     }
 
     public static String getLevel(String Level) {

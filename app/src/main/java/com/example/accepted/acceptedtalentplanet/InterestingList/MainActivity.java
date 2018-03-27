@@ -90,8 +90,13 @@ public class MainActivity extends AppCompatActivity {
 
         Log.d(getIntent().getStringExtra("TalentFlag"),"Talent Flag");
 
-        getInterestList();
+    }
 
+    @Override
+     public void onResume(){
+        super.onResume();
+        arrayList = new ArrayList<>();
+        getInterestList();
     }
 
     Button.OnClickListener changeTalentFlag = new View.OnClickListener(){

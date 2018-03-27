@@ -50,9 +50,7 @@ public class MainActivity extends AppCompatActivity {
         btn_Save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SaveSharedPreference.setPrefMessagePushGrant(mContext, swc_MessageRing.isChecked());
-                SaveSharedPreference.setPrefConditionPushGrant(mContext, swc_ConditionRing.isChecked());
-                SaveSharedPreference.setPrefAnswerPushGrant(mContext, swc_AnswerRing.isChecked());
+                SaveSharedPreference.setPrefPushGrant(mContext, swc_MessageRing.isChecked(), swc_ConditionRing.isChecked(), swc_AnswerRing.isChecked());
                 finish();
             }
         });
