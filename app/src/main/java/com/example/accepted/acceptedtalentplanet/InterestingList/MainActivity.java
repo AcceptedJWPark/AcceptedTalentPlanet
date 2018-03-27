@@ -1,6 +1,5 @@
 package com.example.accepted.acceptedtalentplanet.InterestingList;
 
-import android.app.NotificationManager;
 import android.content.Context;
 import android.graphics.Paint;
 import android.os.Bundle;
@@ -53,10 +52,6 @@ public class MainActivity extends AppCompatActivity {
 
         mContext = getApplicationContext();
 
-        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        if(notificationManager != null)
-        {notificationManager.cancel(0);}
-
         listView = (ListView) findViewById(R.id.lv_InterestingList);
         arrayList = new ArrayList<>();
 
@@ -76,6 +71,7 @@ public class MainActivity extends AppCompatActivity {
         btn_SelectGive.setOnClickListener(changeTalentFlag);
         btn_SelectTake.setOnClickListener(changeTalentFlag);
 
+        getInterestList();
         giveTalentFlag = getIntent().getStringExtra("TalentFlag").equals("Give");
         if (giveTalentFlag)
         {
@@ -90,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
 
         Log.d(getIntent().getStringExtra("TalentFlag"),"Talent Flag");
 
-        getInterestList();
+
 
     }
 
