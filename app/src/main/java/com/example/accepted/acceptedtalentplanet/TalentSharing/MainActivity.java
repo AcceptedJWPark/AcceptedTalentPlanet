@@ -231,20 +231,21 @@ public class MainActivity extends AppCompatActivity {
                 MyTalent mt = SaveSharedPreference.getGiveTalentData(mContext);
 
                 if (mt == null) {
+
                     Toast.makeText(mContext, "재능 드림 등록을 먼저 진행해주세요.", Toast.LENGTH_SHORT).show();
                     Intent i = new Intent(mContext, com.example.accepted.acceptedtalentplanet.TalentResister.MainActivity.class);
                     i.putExtra("GiveFlag", true);
+                    i.putExtra("TalentCondition_TalentFlag", "Give");
                     startActivity(i);
                     finish();
                 } else if (mt.getStatus() == null || mt.getStatus().equals("C")) {
                     Toast.makeText(mContext, "재능 드림 재등록을 먼저 진행해주세요.", Toast.LENGTH_SHORT).show();
                     Intent i = new Intent(mContext, com.example.accepted.acceptedtalentplanet.TalentCondition.MainActivity.class);
                     i.putExtra("GiveFlag", true);
+                    i.putExtra("TalentCondition_TalentFlag", "Give");
                     startActivity(i);
                     finish();
-                }
-
-                if(mt.getStatus().equals("M"))
+                } else if(mt.getStatus().equals("M"))
                 {
                     tv_Txt.setText("회원님의 재능 드림이 진행 중입니다.");
                     ((ImageView) findViewById(R.id.iv_renew_TalentSharing)).setVisibility(View.GONE);
@@ -254,7 +255,8 @@ public class MainActivity extends AppCompatActivity {
                         @Override
                         public void onClick(View v) {
                             Intent i = new Intent(mContext, com.example.accepted.acceptedtalentplanet.TalentCondition.MainActivity.class);
-                            i.putExtra("TalentCondition_TalentFlag", "Give.");
+                            i.putExtra("GiveFlag", true);
+                            i.putExtra("TalentCondition_TalentFlag", "Give");
                             startActivity(i);
                         }
                     });
@@ -280,19 +282,18 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(mContext, "관심 재능 등록을 먼저 진행해주세요.", Toast.LENGTH_SHORT).show();
                     Intent i = new Intent(mContext, com.example.accepted.acceptedtalentplanet.TalentResister.MainActivity.class);
                     i.putExtra("GiveFlag", false);
+                    i.putExtra("TalentCondition_TalentFlag", "Take");
                     startActivity(i);
                     finish();
                 } else if (mt.getStatus() == null || mt.getStatus().equals("C")) {
                     Toast.makeText(mContext, "관심 재능 재등록을 먼저 진행해주세요.", Toast.LENGTH_SHORT).show();
                     Intent i = new Intent(mContext, com.example.accepted.acceptedtalentplanet.TalentCondition.MainActivity.class);
                     i.putExtra("GiveFlag", false);
+                    i.putExtra("TalentCondition_TalentFlag", "Take");
                     startActivity(i);
                     finish();
                 }
-
-                Log.d("status",mt.getStatus());
-
-                if(mt.getStatus().equals("M"))
+                else if(mt.getStatus().equals("M"))
                 {
                     tv_Txt.setText("회원님의 관심 재능이 진행 중입니다.");
                     ((ImageView) findViewById(R.id.iv_renew_TalentSharing)).setVisibility(View.GONE);
@@ -302,6 +303,7 @@ public class MainActivity extends AppCompatActivity {
                         @Override
                         public void onClick(View v) {
                             Intent i = new Intent(mContext, com.example.accepted.acceptedtalentplanet.TalentCondition.MainActivity.class);
+                            i.putExtra("GiveFlag", false);
                             i.putExtra("TalentCondition_TalentFlag", "Take");
                             startActivity(i);
                         }
