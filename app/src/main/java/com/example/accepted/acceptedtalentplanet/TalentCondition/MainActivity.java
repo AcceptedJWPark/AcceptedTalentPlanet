@@ -737,6 +737,15 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
                     }else{
                         Toast.makeText(mContext, "이미 상대방이 완료를 눌러 취소할 수 없습니다.", Toast.LENGTH_SHORT).show();
                     }
+                    boolean talentFlag = ((String) tv_TalentType.getText()).equals("관심재능 : ") ? true : false;
+                    MyTalent mt = (talentFlag)?SaveSharedPreference.getTakeTalentData(mContext):SaveSharedPreference.getGiveTalentData(mContext);
+
+                    mt.setStatus("P");
+                    if(!talentFlag){
+                        SaveSharedPreference.setGiveTalentData(mContext, mt);
+                    }else{
+                        SaveSharedPreference.setTakeTalentData(mContext, mt);
+                    }
 
                 } catch (JSONException e) {
                     e.printStackTrace();
