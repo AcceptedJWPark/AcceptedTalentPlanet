@@ -1,6 +1,7 @@
 package com.example.accepted.acceptedtalentplanet.InterestingList;
 
 import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
@@ -141,17 +142,15 @@ public class MainActivity extends AppCompatActivity {
                         ListItem target = new ListItem(R.drawable.testpicture, o.getString("USER_NAME"), o.getString("USER_ID"), o.getString("TALENT_KEYWORD1"), o.getString("TALENT_KEYWORD2"), o.getString("TALENT_KEYWORD3"), "["+str+"]", o.getString("CREATION_DATE") + " 등록", o.getString("TALENT_ID"),type);
                         arrayList.add(0,target);
 
-//                        try {
-//                            String dbName = "/accepted.db";
-//                            SQLiteDatabase sqLiteDatabase = SQLiteDatabase.openOrCreateDatabase(getFilesDir() + dbName, null);
-//
-//
-//                            int roomID = SaveSharedPreference.makeChatRoom(getApplicationContext(), o.getString("USER_ID"), o.getString("USER_NAME"));
-//                            sqLiteDatabase.execSQL("INSERT OR REPLACE INTO TB_READED_INTEREST(USER_ID, TALENT_ID) VALUES ('"+ userID + "', " + o.getInt("seq") ;
-//                            sqLiteDatabase.close();
-//                        }catch(Exception e){
-//                            e.printStackTrace();
-//                        }
+                        try {
+                            String dbName = "/accepted.db";
+                            SQLiteDatabase sqLiteDatabase = SQLiteDatabase.openOrCreateDatabase(getFilesDir() + dbName, null);
+
+                            sqLiteDatabase.execSQL("INSERT OR REPLACE INTO TB_READED_INTEREST(USER_ID, TALENT_ID) VALUES ('"+ userID + "', " + o.getInt("MATCHED_KEY"));
+                            sqLiteDatabase.close();
+                        }catch(Exception e){
+                            e.printStackTrace();
+                        }
                     }
 
                     adapter = new Adapter(mContext, arrayList);

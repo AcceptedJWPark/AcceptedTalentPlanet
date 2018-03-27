@@ -510,7 +510,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                     }
                     MyTalent mt = (talentType == 1)?SaveSharedPreference.getTakeTalentData(getApplicationContext()):SaveSharedPreference.getGiveTalentData(getApplicationContext());
 
-                    mt.setStatus("P");
+                    mt.setStatus("C");
                     if(talentType == 2){
                         SaveSharedPreference.setGiveTalentData(getApplicationContext(), mt);
                     }else{
