@@ -46,6 +46,8 @@ public class MainActivity extends AppCompatActivity {
     private Button btn_SelectGive;
     private Button btn_SelectTake;
 
+    private String userID;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
         listView = (ListView) findViewById(R.id.lv_InterestingList);
         arrayList = new ArrayList<>();
 
-
+        userID = SaveSharedPreference.getUserId(mContext);
 
         ll_PreContainer = (LinearLayout) findViewById(R.id.ll_PreContainer_InterestingList);
         ll_PreContainer.setOnClickListener(new View.OnClickListener() {
@@ -144,7 +146,7 @@ public class MainActivity extends AppCompatActivity {
 //
 //
 //                            int roomID = SaveSharedPreference.makeChatRoom(getApplicationContext(), o.getString("USER_ID"), o.getString("USER_NAME"));
-//                            sqLiteDatabase.execSQL("INSERT OR REPLACE INTO TB_CHAT_LOG(MESSAGE_ID, ROOM_ID, MASTER_ID, USER_ID, CONTENT, CREATION_DATE, READED_FLAG) VALUES (" + obj.getString("MESSAGE_ID") + ", " + roomID + ",'" + SaveSharedPreference.getUserId(getApplicationContext()) + "' , '" + obj.getString("USER_ID") + "','" + obj.getString("CONTENT").replace("'", "''") + "','" + obj.getString("CREATION_DATE_STRING") + "', 'N')");
+//                            sqLiteDatabase.execSQL("INSERT OR REPLACE INTO TB_READED_INTEREST(USER_ID, TALENT_ID) VALUES ('"+ userID + "', " + o.getInt("seq") ;
 //                            sqLiteDatabase.close();
 //                        }catch(Exception e){
 //                            e.printStackTrace();
@@ -163,7 +165,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap();
-                params.put("userID", SaveSharedPreference.getUserId(mContext));
+                params.put("userID", userID);
                 params.put("talentFlag", (giveTalentFlag)?"Give":"Take");
                 return params;
             }

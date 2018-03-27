@@ -25,6 +25,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.StringRequest;
 import com.example.accepted.acceptedtalentplanet.Friend;
+import com.example.accepted.acceptedtalentplanet.MyTalent;
 import com.example.accepted.acceptedtalentplanet.R;
 import com.example.accepted.acceptedtalentplanet.SaveSharedPreference;
 import com.example.accepted.acceptedtalentplanet.VolleySingleton;
@@ -315,6 +316,14 @@ public class MainActivity extends FragmentActivity {
             public void onResponse(String response) {
                 try {
                     JSONObject obj = new JSONObject(response);
+                    MyTalent mt = (talentFlag)?SaveSharedPreference.getTakeTalentData(mContext):SaveSharedPreference.getGiveTalentData(mContext);
+
+                    mt.setStatus("M");
+                    if(!talentFlag){
+                        SaveSharedPreference.setGiveTalentData(mContext, mt);
+                    }else{
+                        SaveSharedPreference.setTakeTalentData(mContext, mt);
+                    }
 
                 } catch (JSONException e) {
                     e.printStackTrace();
