@@ -1,6 +1,5 @@
 package com.example.accepted.acceptedtalentplanet.InterestingList;
 
-import android.app.NotificationManager;
 import android.content.Context;
 import android.graphics.Paint;
 import android.os.Bundle;
@@ -52,10 +51,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.interestinglist_activity);
 
         mContext = getApplicationContext();
-
-        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        if(notificationManager != null)
-        {notificationManager.cancel(0);}
 
         listView = (ListView) findViewById(R.id.lv_InterestingList);
         arrayList = new ArrayList<>();
