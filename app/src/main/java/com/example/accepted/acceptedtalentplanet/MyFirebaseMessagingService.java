@@ -130,8 +130,6 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             }
 
             if (intent1 != null) {
-                Intent intent = new Intent(this, MainActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
                 PendingIntent contentIntent = PendingIntent.getActivity(this, 0, intent1, PendingIntent.FLAG_UPDATE_CURRENT);
                 NotificationCompat.Builder mBuilder;
@@ -152,6 +150,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                         .setContentTitle(alarmTxt)
                         .setAutoCancel(true)
                         .setVibrate(new long[]{1, 1000})
+                        .setDefaults(Notification.DEFAULT_SOUND)
                         .setWhen(System.currentTimeMillis())
                         .setContentIntent(contentIntent);
                      notificationManagerCompat = NotificationManagerCompat.from(this);
