@@ -90,8 +90,13 @@ public class MainActivity extends AppCompatActivity {
 
         Log.d(getIntent().getStringExtra("TalentFlag"),"Talent Flag");
 
-        getInterestList();
+    }
 
+    @Override
+     public void onResume(){
+        super.onResume();
+        arrayList = new ArrayList<>();
+        getInterestList();
     }
 
     Button.OnClickListener changeTalentFlag = new View.OnClickListener(){
@@ -136,6 +141,7 @@ public class MainActivity extends AppCompatActivity {
                         int type = Integer.parseInt(o.getString("TYPE_FLAG"));
                         ListItem target = new ListItem(R.drawable.testpicture, o.getString("USER_NAME"), o.getString("USER_ID"), o.getString("TALENT_KEYWORD1"), o.getString("TALENT_KEYWORD2"), o.getString("TALENT_KEYWORD3"), "["+str+"]", o.getString("CREATION_DATE") + " 등록", o.getString("TALENT_ID"),type);
                         arrayList.add(0,target);
+                        Log.d("asdaasd", o.toString());
                     }
 
                     adapter = new Adapter(mContext, arrayList);
