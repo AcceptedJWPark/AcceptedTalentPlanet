@@ -438,14 +438,25 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                 break;
             }
             case "InterestingMatching": {
+
+                int talentType = -1;
+                try {
+                    JSONObject obj = new JSONObject(datas);
+                    talentType = (obj.getString("TALENT_FLAG").equals("Y")) ? 2 : 1;
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                MyTalent mt = (talentType == 1)?SaveSharedPreference.getTakeTalentData(getApplicationContext()):SaveSharedPreference.getGiveTalentData(getApplicationContext());
+
+                mt.setStatus("M");
+                if(talentType == 2){
+                    SaveSharedPreference.setGiveTalentData(getApplicationContext(), mt);
+                }else{
+                    SaveSharedPreference.setTakeTalentData(getApplicationContext(), mt);
+                }
+
                 if(conditionPushGrant) {
-                    int talentType = -1;
-                    try {
-                        JSONObject obj = new JSONObject(datas);
-                        talentType = (obj.getString("TALENT_FLAG").equals("Y")) ? 2 : 1;
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
+
                     intent1 = new Intent(this, com.example.accepted.acceptedtalentplanet.TalentCondition.MainActivity.class);
                     if (talentType == 2) {
                         alarmTxt = "재능 드림 상태가 진행중으로 변경되었습니다.";
@@ -460,14 +471,23 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
             case "InterestingCancel":
                 {
+                    int talentType = -1;
+                    try {
+                        JSONObject obj = new JSONObject(datas);
+                        talentType = (obj.getString("TALENT_FLAG").equals("Y")) ? 2 : 1;
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    MyTalent mt = (talentType == 1)?SaveSharedPreference.getTakeTalentData(getApplicationContext()):SaveSharedPreference.getGiveTalentData(getApplicationContext());
+
+                    mt.setStatus("P");
+                    if(talentType == 2){
+                        SaveSharedPreference.setGiveTalentData(getApplicationContext(), mt);
+                    }else{
+                        SaveSharedPreference.setTakeTalentData(getApplicationContext(), mt);
+                    }
                     if(conditionPushGrant) {
-                        int talentType = -1;
-                        try {
-                            JSONObject obj = new JSONObject(datas);
-                            talentType = (obj.getString("TALENT_FLAG").equals("Y")) ? 2 : 1;
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
+
 
                         if (talentType == 2) {
                             alarmTxt = "진행 중인 재능 드림이 취소 되었습니다.";
@@ -481,14 +501,23 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                     }
             }
                 case "InterestingComplete": {
+                    int talentType = -1;
+                    try {
+                        JSONObject obj = new JSONObject(datas);
+                        talentType = (obj.getString("TALENT_FLAG").equals("Y")) ? 2 : 1;
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    MyTalent mt = (talentType == 1)?SaveSharedPreference.getTakeTalentData(getApplicationContext()):SaveSharedPreference.getGiveTalentData(getApplicationContext());
+
+                    mt.setStatus("P");
+                    if(talentType == 2){
+                        SaveSharedPreference.setGiveTalentData(getApplicationContext(), mt);
+                    }else{
+                        SaveSharedPreference.setTakeTalentData(getApplicationContext(), mt);
+                    }
                     if (conditionPushGrant) {
-                        int talentType = -1;
-                        try {
-                            JSONObject obj = new JSONObject(datas);
-                            talentType = (obj.getString("TALENT_FLAG").equals("Y")) ? 2 : 1;
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
+
                         intent1 = new Intent(this, com.example.accepted.acceptedtalentplanet.TalentCondition.MainActivity.class);
                         if (talentType == 2) {
                             alarmTxt = "진행 중인 재능 드림이 완료되었습니다.";
