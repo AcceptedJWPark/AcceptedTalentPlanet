@@ -425,7 +425,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                         e.printStackTrace();
                     }
 
-                    if (talentType == 1) {
+                    if (talentType == 2) {
                         alarmTxt = "재능 드림에 받은 관심이 있습니다.";
                         intent1 = new Intent(this, com.example.accepted.acceptedtalentplanet.InterestingList.MainActivity.class);
                         intent1.putExtra("TalentFlag", "Give");
@@ -447,7 +447,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                         e.printStackTrace();
                     }
                     intent1 = new Intent(this, com.example.accepted.acceptedtalentplanet.TalentCondition.MainActivity.class);
-                    if (talentType == 1) {
+                    if (talentType == 2) {
                         alarmTxt = "재능 드림 상태가 진행중으로 변경되었습니다.";
                         intent1.putExtra("TalentCondition_TalentFlag", "Give");
                     } else {
