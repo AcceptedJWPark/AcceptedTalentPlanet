@@ -71,7 +71,6 @@ public class MainActivity extends AppCompatActivity {
         btn_SelectGive.setOnClickListener(changeTalentFlag);
         btn_SelectTake.setOnClickListener(changeTalentFlag);
 
-        getInterestList();
         giveTalentFlag = getIntent().getStringExtra("TalentFlag").equals("Give");
         if (giveTalentFlag)
         {
@@ -88,6 +87,13 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+    }
+
+    @Override
+     public void onResume(){
+        super.onResume();
+        arrayList = new ArrayList<>();
+        getInterestList();
     }
 
     Button.OnClickListener changeTalentFlag = new View.OnClickListener(){
