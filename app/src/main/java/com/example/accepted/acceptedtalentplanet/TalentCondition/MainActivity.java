@@ -3,6 +3,10 @@ package com.example.accepted.acceptedtalentplanet.TalentCondition;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.CursorIndexOutOfBoundsException;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteException;
 import android.graphics.Bitmap;
 import android.graphics.Paint;
 import android.os.Bundle;
@@ -35,6 +39,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -713,7 +718,32 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap();
+                StringBuilder sb = new StringBuilder();
+
+                try{
+                    String dbName = "/accepted.db";
+                    SQLiteDatabase sqliteDatabase = SQLiteDatabase.openOrCreateDatabase(getFilesDir() + dbName, null);
+                    String sqlSelect = "SELECT TALENT_ID FROM TB_READED_INTEREST WHERE USER_ID = '" + SaveSharedPreference.getUserId(mContext) + "'";
+                    Cursor cursor = sqliteDatabase.rawQuery(sqlSelect, null);
+                    cursor.moveToFirst();
+
+                    while(!cursor.isAfterLast()){
+                        sb.append(cursor.getInt(0)).append("\n");
+                        cursor.moveToNext();
+                    }
+
+                    cursor.close();
+
+                    sqliteDatabase.close();
+                }catch (SQLiteException e){
+                    e.printStackTrace();
+                }catch (CursorIndexOutOfBoundsException e){
+                    e.printStackTrace();
+                }
+
+                Log.d("matchingKeys = ", sb.toString());
                 params.put("userID", SaveSharedPreference.getUserId(mContext));
+                params.put("matchingKeys", sb.toString());
                 return params;
             }
         };

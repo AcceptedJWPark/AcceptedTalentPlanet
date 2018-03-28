@@ -488,7 +488,6 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                     }
                     if(conditionPushGrant) {
 
-
                         if (talentType == 2) {
                             alarmTxt = "진행 중인 재능 드림이 취소 되었습니다.";
                         } else {
