@@ -30,6 +30,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.StringRequest;
 import com.example.accepted.acceptedtalentplanet.GeoPoint;
+import com.example.accepted.acceptedtalentplanet.MyFirebaseMessagingService;
 import com.example.accepted.acceptedtalentplanet.MyTalent;
 import com.example.accepted.acceptedtalentplanet.R;
 import com.example.accepted.acceptedtalentplanet.SaveSharedPreference;
@@ -109,6 +110,12 @@ public class MainActivity extends AppCompatActivity {
 
         if(SaveSharedPreference.getMyPicture() != null)
             ((ImageView) findViewById(R.id.DrawerPicture)).setImageBitmap(SaveSharedPreference.getMyPicture());
+        if(MyFirebaseMessagingService.isNewMessageArrive){
+            findViewById(R.id.Icon_NewMessage).setVisibility(View.VISIBLE);
+        }else{
+            findViewById(R.id.Icon_NewMessage).setVisibility(View.GONE);
+        }
+
         View.OnClickListener mClicklistener = new  View.OnClickListener()
         {
             @Override

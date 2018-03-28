@@ -238,6 +238,7 @@
                 android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/Icon_NewMessage"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/Toolbar_Pre_Img"
                 android:layout_alignParentRight="true"

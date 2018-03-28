@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.example.accepted.acceptedtalentplanet.MyFirebaseMessagingService;
 import com.example.accepted.acceptedtalentplanet.R;
 import com.example.accepted.acceptedtalentplanet.SaveSharedPreference;
 
@@ -51,6 +52,12 @@ public class MainActivity extends AppCompatActivity {
         v_drawerView = (View) findViewById(R.id.v_drawerView_CustomerService);
         if(SaveSharedPreference.getMyPicture() != null)
             ((ImageView) findViewById(R.id.DrawerPicture)).setImageBitmap(SaveSharedPreference.getMyPicture());
+
+        if(MyFirebaseMessagingService.isNewMessageArrive){
+            findViewById(R.id.Icon_NewMessage).setVisibility(View.VISIBLE);
+        }else{
+            findViewById(R.id.Icon_NewMessage).setVisibility(View.GONE);
+        }
 
         View.OnClickListener mClicklistener = new  View.OnClickListener()
         {

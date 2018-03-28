@@ -19,6 +19,7 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.StringRequest;
+import com.example.accepted.acceptedtalentplanet.MyFirebaseMessagingService;
 import com.example.accepted.acceptedtalentplanet.MyTalent;
 import com.example.accepted.acceptedtalentplanet.R;
 import com.example.accepted.acceptedtalentplanet.SaveSharedPreference;
@@ -84,6 +85,12 @@ public class MainActivity extends AppCompatActivity {
         ((TextView) findViewById(R.id.DrawerUserID)).setText(SaveSharedPreference.getUserId(mContext));
         if(SaveSharedPreference.getMyPicture() != null)
             ((ImageView) findViewById(R.id.DrawerPicture)).setImageBitmap(SaveSharedPreference.getMyPicture());
+
+        if(MyFirebaseMessagingService.isNewMessageArrive){
+            findViewById(R.id.Icon_NewMessage).setVisibility(View.VISIBLE);
+        }else{
+            findViewById(R.id.Icon_NewMessage).setVisibility(View.GONE);
+        }
 
         View.OnClickListener mClicklistener = new  View.OnClickListener()
         {

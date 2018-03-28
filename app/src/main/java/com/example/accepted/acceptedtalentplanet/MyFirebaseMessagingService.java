@@ -41,6 +41,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     private static final int INTERESTING_NOTIFICATION_ID = 4;
     private static final int SUMMARY_NOTIFICATION_ID = 0;
     private static final String MY_CHANNEL_ID = "NOTIFICATION_CHANNEL_1";
+    public static boolean isNewMessageArrive = false;
 
     private static NotificationManagerCompat notificationManagerCompat;
 
@@ -534,6 +535,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
     private void getMessage(String datas){
         try {
+            isNewMessageArrive = true;
             JSONObject obj = new JSONObject(datas);
             String dbName = "/accepted.db";
             SQLiteDatabase sqLiteDatabase = SQLiteDatabase.openOrCreateDatabase(getFilesDir() + dbName, null);
