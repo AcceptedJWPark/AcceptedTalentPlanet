@@ -154,11 +154,6 @@ public class MainActivity extends AppCompatActivity {
         if(SaveSharedPreference.getMyPicture() != null)
             ((ImageView)findViewById(R.id.DrawerPicture)).setImageBitmap(SaveSharedPreference.getMyPicture());
 
-        if(MyFirebaseMessagingService.isNewMessageArrive){
-            findViewById(R.id.Icon_NewMessage).setVisibility(View.VISIBLE);
-        }else{
-            findViewById(R.id.Icon_NewMessage).setVisibility(View.GONE);
-        }
 
         View.OnClickListener mClicklistener = new View.OnClickListener() {
             @Override
@@ -712,6 +707,11 @@ public class MainActivity extends AppCompatActivity {
     public void onResume(){
         super.onResume();
         drawerLayout.closeDrawers();
+        if(MyFirebaseMessagingService.isNewMessageArrive){
+            findViewById(R.id.Icon_NewMessage).setVisibility(View.VISIBLE);
+        }else{
+            findViewById(R.id.Icon_NewMessage).setVisibility(View.GONE);
+        }
     }
 
 
