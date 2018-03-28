@@ -510,6 +510,11 @@ public class MainActivity extends AppCompatActivity {
     public void onResume(){
         super.onResume();
         drawerLayout.closeDrawers();
+        if(MyFirebaseMessagingService.isNewMessageArrive){
+            findViewById(R.id.Icon_NewMessage).setVisibility(View.VISIBLE);
+        }else{
+            findViewById(R.id.Icon_NewMessage).setVisibility(View.GONE);
+        }
     }
 
 

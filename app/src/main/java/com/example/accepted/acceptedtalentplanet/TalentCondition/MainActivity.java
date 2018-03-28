@@ -106,11 +106,6 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
         if(SaveSharedPreference.getMyPicture() != null)
             ((ImageView) findViewById(R.id.DrawerPicture)).setImageBitmap(SaveSharedPreference.getMyPicture());
 
-        if(MyFirebaseMessagingService.isNewMessageArrive){
-            findViewById(R.id.Icon_NewMessage).setVisibility(View.VISIBLE);
-        }else{
-            findViewById(R.id.Icon_NewMessage).setVisibility(View.GONE);
-        }
 
         View.OnClickListener mClicklistener = new  View.OnClickListener()
         {
@@ -642,6 +637,11 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
         getMyTalent();
         MyFirebaseMessagingService.setOnMessageReceivedListener(this);
         drawerLayout.closeDrawers();
+        if(MyFirebaseMessagingService.isNewMessageArrive){
+            findViewById(R.id.Icon_NewMessage).setVisibility(View.VISIBLE);
+        }else{
+            findViewById(R.id.Icon_NewMessage).setVisibility(View.GONE);
+        }
     }
 
     public void getMyTalent() {
