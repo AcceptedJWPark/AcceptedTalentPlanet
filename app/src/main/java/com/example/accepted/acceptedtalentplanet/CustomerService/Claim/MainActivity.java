@@ -1,6 +1,5 @@
 package com.example.accepted.acceptedtalentplanet.CustomerService.Claim;
 
-import android.app.Activity;
 import android.content.ClipData;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -11,7 +10,6 @@ import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 import android.media.ExifInterface;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v7.app.AlertDialog;
@@ -33,9 +31,7 @@ import android.widget.Toast;
 
 import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
-import com.android.volley.RequestQueue;
 import com.android.volley.Response;
-import com.android.volley.toolbox.StringRequest;
 import com.example.accepted.acceptedtalentplanet.R;
 import com.example.accepted.acceptedtalentplanet.SaveSharedPreference;
 import com.example.accepted.acceptedtalentplanet.VolleyMultipartRequest;
@@ -163,7 +159,6 @@ public class MainActivity extends AppCompatActivity {
         ll_Toolbar = (LinearLayout) findViewById(R.id.ll_Toolbar_Claim);
         ll_Container1 = (LinearLayout) findViewById(R.id.ll_Container1_claim);
         ll_Container2 = (LinearLayout) findViewById(R.id.ll_Container2_claim);
-        ll_Container3 = (LinearLayout) findViewById(R.id.ll_Container3_claim);
         ll_Container4 = (LinearLayout) findViewById(R.id.ll_Container4_claim);
         ll_Container5 = (LinearLayout) findViewById(R.id.ll_Container5_claim);
 
@@ -218,16 +213,6 @@ public class MainActivity extends AppCompatActivity {
                                              }
                                          });
 
-        tv_AttachFile = (TextView)findViewById(R.id.tv_Claim_AttachFile);
-        tv_AttachFile.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (Build.VERSION.SDK_INT > 22) {
-                    requestPermissions(new String[]{android.Manifest.permission.READ_EXTERNAL_STORAGE, android.Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
-                }
-                selectGallery();
-            }
-        });
 
         DisplayMetrics metrics = new DisplayMetrics();
         WindowManager windowManager = (WindowManager) getApplicationContext().getSystemService(Context.WINDOW_SERVICE);
@@ -236,7 +221,6 @@ public class MainActivity extends AppCompatActivity {
         int claim_Toolbar_height = (int) (metrics.heightPixels * 0.055);
         int claim_LL1_height = (int) (metrics.heightPixels * 0.17);
         int claim_LL2_height = (int) (metrics.heightPixels * 0.21);
-        int claim_LL3_height = (int) (metrics.heightPixels * 0.04);
         int claim_LL4_height = (int) (metrics.heightPixels * 0.04);
         int claim_Devider1_height = (int) (metrics.heightPixels * 0.00625);
         int claim_Txt_height1 = (int) (metrics.heightPixels * 0.075);
@@ -245,7 +229,6 @@ public class MainActivity extends AppCompatActivity {
         ViewGroup.LayoutParams params1 = ll_Toolbar.getLayoutParams();
         ViewGroup.LayoutParams params2 = ll_Container1.getLayoutParams();
         ViewGroup.LayoutParams params3 = ll_Container2.getLayoutParams();
-        ViewGroup.LayoutParams params4 = ll_Container3.getLayoutParams();
         ViewGroup.LayoutParams params5 = ll_Container4.getLayoutParams();
         ViewGroup.LayoutParams params6 = v_Divider.getLayoutParams();
         ViewGroup.LayoutParams params9 = tv_Txt.getLayoutParams();
@@ -255,7 +238,6 @@ public class MainActivity extends AppCompatActivity {
 
         params2.height = claim_LL1_height;
         params3.height = claim_LL2_height;
-        params4.height = claim_LL3_height;
         params5.height = claim_LL4_height;
 
         params6.height = claim_Devider1_height;
@@ -266,7 +248,6 @@ public class MainActivity extends AppCompatActivity {
         ll_Toolbar.setLayoutParams(params1);
         ll_Container1.setLayoutParams(params2);
         ll_Container2.setLayoutParams(params3);
-        ll_Container3.setLayoutParams(params4);
         ll_Container4.setLayoutParams(params5);
         ll_Container5.setLayoutParams(params10);
 
@@ -397,9 +378,22 @@ public class MainActivity extends AppCompatActivity {
                     talentFlag = data.getStringExtra("talentFlag");
                     status = data.getIntExtra("status", 0);
 
+
+                    String strStatus = null;
+                    if(status == 3)
+                    {
+                        strStatus = "진행";
+                    }else if(status == 4)
+                    {
+                        strStatus = "완료";
+                    }else
+                    {
+                        strStatus = "취소";
+                    }
+
                     String str = (talentFlag.equals("Give")) ? "재능드림" : "관심재능";
                     tv_Txt = (TextView) findViewById(R.id.tv_txt_Claim);
-                    tv_Txt.setText("\"" + name + " " + str + " " + keyword1 + ", " + keyword2 + ", " + keyword3 + "의 건" + "\"");
+                    tv_Txt.setText("\"" + name + " " + str + " " + keyword1 + ", " + keyword2 + ", " + keyword3 + " " + strStatus + "의 건" + "\"");
                     break;
 
             }
