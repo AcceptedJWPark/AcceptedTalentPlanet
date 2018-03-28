@@ -83,6 +83,7 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
     @Override
     public void onResume(){
         super.onResume();
+        MyFirebaseMessagingService.isNewMessageArrive = false;
         refreshChatLog();
         MyFirebaseMessagingService.setOnMessageReceivedListener(this);
     }

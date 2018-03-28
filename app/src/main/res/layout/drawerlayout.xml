@@ -221,6 +221,7 @@
                 android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/Icon_NewMessage"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/Toolbar_Pre_Img"
                 android:layout_alignParentRight="true"
@@ -230,6 +231,7 @@
                 android:textSize="@dimen/DrawerLL_Title"
                 android:text="NEW"
                 android:textStyle="bold"
+                android:visibility="gone"
                 />
 
 
@@ -272,6 +274,7 @@
                 android:textSize="@dimen/DrawerLL_Title"
                 android:text="NEW"
                 android:textStyle="bold"
+                android:visibility="gone"
                 />
 
 

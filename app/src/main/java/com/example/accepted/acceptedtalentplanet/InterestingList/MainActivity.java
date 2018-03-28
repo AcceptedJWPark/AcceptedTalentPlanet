@@ -146,7 +146,7 @@ public class MainActivity extends AppCompatActivity {
                             String dbName = "/accepted.db";
                             SQLiteDatabase sqLiteDatabase = SQLiteDatabase.openOrCreateDatabase(getFilesDir() + dbName, null);
 
-                            sqLiteDatabase.execSQL("INSERT OR REPLACE INTO TB_READED_INTEREST(USER_ID, TALENT_ID) VALUES ('"+ userID + "', " + o.getInt("MATCHED_KEY"));
+                            sqLiteDatabase.execSQL("INSERT OR REPLACE INTO TB_READED_INTEREST(USER_ID, TALENT_ID) VALUES ('"+ userID + "', " + o.getInt("MATCHED_KEY") + ")");
                             sqLiteDatabase.close();
                         }catch(Exception e){
                             e.printStackTrace();
