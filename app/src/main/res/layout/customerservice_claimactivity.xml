@@ -329,50 +329,13 @@
 
 
 
-            <LinearLayout
-                android:id="@+id/ll_Container3_claim"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/Claim_List_Layout2"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="50dp"
-                android:layout_marginRight="50dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:gravity="center|left"
-                    android:layout_weight="5"
-                    android:paddingLeft="6dp"
-                    android:layout_marginRight="5dp"
-                    android:background="@drawable/bgr_edittxt_box"
-                    android:textSize="@dimen/Edit_Hint"
-                    />
-
-
-                <TextView
-                    android:id="@+id/tv_Claim_AttachFile"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:text="첨부"
-                    android:background="@drawable/bgr_smallbtn"
-                    android:gravity="center"
-                    android:paddingBottom="4dp"
-                    android:paddingTop="4dp"
-                    android:textColor="@color/textcolor_smallbtn"
-                    android:textSize="@dimen/ListView_Btn"
-                    />
-
-            </LinearLayout>
 
 
             <LinearLayout
                 android:id="@+id/ll_Container4_claim"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/Claim_List_Layout2"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
+                android:layout_marginTop="@dimen/Margin_btn"
                 android:layout_marginLeft="50dp"
                 android:layout_marginRight="50dp">
 

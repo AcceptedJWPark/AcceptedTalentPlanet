@@ -136,18 +136,6 @@
             android:text="나의 재능 현황"
             android:textStyle="bold" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/Toolbar_Pre_Img"
-                android:layout_alignParentRight="true"
-                android:layout_centerInParent="true"
-                android:gravity="center"
-                android:textColor="@color/colorPrimaryDark"
-                android:textSize="@dimen/DrawerLL_Title"
-                android:text="NEW"
-                android:textStyle="bold"
-                android:visibility="gone"
-                />
 
         <View
             android:layout_width="match_parent"
