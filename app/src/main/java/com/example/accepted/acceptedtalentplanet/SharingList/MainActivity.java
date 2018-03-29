@@ -32,6 +32,8 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
+import static com.example.accepted.acceptedtalentplanet.SaveSharedPreference.checkDuplicatedLogin;
+
 
 /**
  * Created by Accepted on 2017-09-29.
@@ -138,7 +140,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume(){
         super.onResume();
-        //adapter.notifyDataSetChanged();
+        checkDuplicatedLogin(mContext, this);
     }
 
     public void getSharingList() {

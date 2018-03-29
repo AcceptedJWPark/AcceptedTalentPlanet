@@ -2,10 +2,13 @@ package com.example.accepted.acceptedtalentplanet.LoadingLogin.Login;
 
 import android.content.Context;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteException;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
@@ -157,6 +160,9 @@ public class MainActivity extends AppCompatActivity {
                         SaveSharedPreference.setPrefUsrName(mContext, userName);
                         SaveSharedPreference.setPrefUsrId(mContext, userID);
                         getMyTalent();
+                        getMyTalentPoint();
+                        getMyPicture();
+                        getFriendList();
                         Handler handler = new Handler();
                         handler.postDelayed(new Runnable() {
                             @Override
@@ -225,7 +231,6 @@ public class MainActivity extends AppCompatActivity {
                             SaveSharedPreference.setTakeTalentData(mContext, talent);
                         }
                     }
-                    getMyTalentPoint();
 
                 }
                 catch(JSONException e){
@@ -259,7 +264,6 @@ public class MainActivity extends AppCompatActivity {
                     int talentPoint = Integer.parseInt(obj.getString("TALENT_POINT"));
                     SaveSharedPreference.setPrefTalentPoint(mContext, talentPoint);
 
-                    getMyPicture();
 
                 }
                 catch(JSONException e){
@@ -299,7 +303,6 @@ public class MainActivity extends AppCompatActivity {
                             SaveSharedPreference.setMyPicture(obj.getString("FILE_DATA"));
                         }
                     }
-
                 }
                 catch(JSONException e){
                     e.printStackTrace();
@@ -312,6 +315,42 @@ public class MainActivity extends AppCompatActivity {
                 params.put("userID", SaveSharedPreference.getUserId(mContext));
 
 
+                return params;
+            }
+        };
+
+        postRequestQueue.add(postJsonRequest);
+    }
+
+    public void getFriendList(){
+        RequestQueue postRequestQueue = VolleySingleton.getInstance(mContext).getRequestQueue();
+        StringRequest postJsonRequest = new StringRequest(Request.Method.POST, SaveSharedPreference.getServerIp() + "FriendList/getFriendList.do", new Response.Listener<String>(){
+            @Override
+            public void onResponse(String response){
+                try {
+                    JSONArray obj = new JSONArray(response);
+                    SQLiteDatabase sqliteDatabase;
+                    String dbName = "/accepted.db";
+                    sqliteDatabase = SQLiteDatabase.openOrCreateDatabase(getFilesDir() + dbName, null);
+                    for(int i = 0; i < obj.length(); i++) {
+                        JSONObject o = obj.getJSONObject(i);
+                        String sqlUpsert = "INSERT OR REPLACE INTO TB_FRIEND_LIST(MASTER_ID, FRIEND_ID, TALENT_TYPE) VALUES ('" + SaveSharedPreference.getUserId(mContext) + "', '" + o.getString("FRIEND_USER_ID") + "', '" + o.getString("PARTNER_TALENT_FLAG") + "')";
+                        sqliteDatabase.execSQL(sqlUpsert);
+                    }
+
+                    sqliteDatabase.close();
+                }
+                catch(JSONException e){
+                    e.printStackTrace();
+                }catch (SQLiteException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, SaveSharedPreference.getErrorListener()) {
+            @Override
+            protected Map<String, String> getParams(){
+                Map<String, String> params = new HashMap();
+                params.put("userID", SaveSharedPreference.getUserId(mContext));
                 return params;
             }
         };

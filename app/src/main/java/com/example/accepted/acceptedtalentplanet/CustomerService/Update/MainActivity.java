@@ -26,6 +26,8 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
+import static com.example.accepted.acceptedtalentplanet.SaveSharedPreference.checkDuplicatedLogin;
+
 /**
  * Created by Accepted on 2017-10-31.
  */
@@ -53,14 +55,15 @@ public class MainActivity extends AppCompatActivity {
 
         expandableListView.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
             int lastClickedPosition = 0;
+
             @Override
             public boolean onGroupClick(ExpandableListView parent, View v, int groupPosition, long id) {
                 boolean isExpand = (!expandableListView.isGroupExpanded(groupPosition));
                 expandableListView.collapseGroup(lastClickedPosition);
-                if(isExpand)
-                {
+                if (isExpand) {
                     expandableListView.expandGroup(groupPosition);
-                }lastClickedPosition = groupPosition;
+                }
+                lastClickedPosition = groupPosition;
                 return true;
             }
         });
@@ -70,20 +73,19 @@ public class MainActivity extends AppCompatActivity {
 
 
     //TODO : 업데이트 내역을 서버에서 확인하고 서버에 입력해서 답변 다는 방법?
-    private void setArrayData()
-    {
+    private void setArrayData() {
 
         arrayList_Parent.add(new ListItem
                 ("Application Service Open",
-                "Talent Planet Service Open : Mar.2018 \n Version : 1.01",
-                "Mar.2018"));
+                        "Talent Planet Service Open : Mar.2018 \n Version : 1.01",
+                        "Mar.2018"));
 
 
         ArrayList<String> arrayList1 = new ArrayList<String>();
         arrayList1.add("Talent Planet Service Open : Mar.2018 \n Version : 1.01");
 
 
-        arrayList_Child.put(arrayList_Parent.get(0),arrayList1);
+        arrayList_Child.put(arrayList_Parent.get(0), arrayList1);
 
     }
 
@@ -95,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
                 try {
                     ArrayList<ArrayList<String>> arrayLists = new ArrayList<>();
                     JSONArray obj = new JSONArray(response);
-                    for(int i = 0; i < obj.length(); i++){
+                    for (int i = 0; i < obj.length(); i++) {
                         JSONObject o = obj.getJSONObject(i);
 
                         SimpleDateFormat sdf2 = new SimpleDateFormat("yy.M.dd", Locale.ENGLISH);
@@ -123,7 +125,7 @@ public class MainActivity extends AppCompatActivity {
 
                 } catch (JSONException e) {
                     e.printStackTrace();
-                } catch(Exception e){
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
@@ -140,4 +142,10 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        checkDuplicatedLogin(mContext, this);
     }
+
+}

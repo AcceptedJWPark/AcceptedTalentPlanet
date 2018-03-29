@@ -1,5 +1,6 @@
 package com.example.accepted.acceptedtalentplanet.CustomerService.Manual.AnswerList;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -12,6 +13,8 @@ import com.example.accepted.acceptedtalentplanet.R;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+
+import static com.example.accepted.acceptedtalentplanet.SaveSharedPreference.checkDuplicatedLogin;
 
 /**
  * Created by Accepted on 2017-10-31.
@@ -27,12 +30,16 @@ public class MainActivity extends AppCompatActivity {
 
     private Button btn_Pre;
 
+    private Context mContext;
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.customerservice_manual_answerlist);
+
+        mContext = getApplicationContext();
 
         Intent intent = getIntent();
         String valueTypes = intent.getStringExtra("Value");
@@ -374,6 +381,12 @@ public class MainActivity extends AppCompatActivity {
             arrayList2.add(" 관심을 주고 받은 상대의 리스트를 클릭하면 상대의 프로필이 팝업됩니다. 재능 공유를 진행하기 위해서는 관심 목록에서 \"진행 또는 취소\" → \"진행 하기\"를 통해 재능 공유가 진행 될 수 있습니다. 반대로 회원님께 관심을 보낸 대상이 마음에 들지 않는다면 \"진행 또는 취소\" → \"취소 하기\"를 통해 관심 취소가 가능합니다.");
             arrayList_Child.put(this.arrayList_Parent.get(2),arrayList2);
         }
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+        checkDuplicatedLogin(mContext, this);
     }
 
 

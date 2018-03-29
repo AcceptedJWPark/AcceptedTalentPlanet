@@ -40,6 +40,8 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.example.accepted.acceptedtalentplanet.SaveSharedPreference.checkDuplicatedLogin;
+
 /**
  * Created by Accepted on 2018-03-06.
  */
@@ -324,6 +326,7 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
     @Override
     public void onResume(){
         super.onResume();
+        checkDuplicatedLogin(mContext, this);
         MyFirebaseMessagingService.setOnMessageReceivedListener(this);
     }
 

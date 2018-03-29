@@ -1,6 +1,7 @@
 package com.example.accepted.acceptedtalentplanet.CustomerService.Manual;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -11,6 +12,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.accepted.acceptedtalentplanet.R;
+
+import static com.example.accepted.acceptedtalentplanet.SaveSharedPreference.checkDuplicatedLogin;
 
 /**
  * Created by Accepted on 2017-10-31.
@@ -31,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView tv_SharingList;
     private TextView tv_Interesting;
 
+    private Context mContext;
 
     private LinearLayout ll_PreContainer;
     private Button btn_NextToQuestion;
@@ -40,6 +44,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.customerservice_manual_activity);
+
+        mContext = getApplicationContext();
 
         tv_MyProfile = (TextView) findViewById(R.id.tv_MyProfile_Manual);
         tv_MyTalent = (TextView) findViewById(R.id.tv_MyTalent_Manual);
@@ -179,8 +185,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void hideKeyboard(View view) {
-        InputMethodManager inputMethodManager =(InputMethodManager)getSystemService(Activity.INPUT_METHOD_SERVICE);
+        InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Activity.INPUT_METHOD_SERVICE);
         inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+        checkDuplicatedLogin(mContext, this);
     }
 
 

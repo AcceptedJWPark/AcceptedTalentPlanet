@@ -12,6 +12,8 @@ import com.example.accepted.acceptedtalentplanet.R;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import static com.example.accepted.acceptedtalentplanet.SaveSharedPreference.checkDuplicatedLogin;
+
 /**
  * Created by Accepted on 2017-10-31.
  */
@@ -140,6 +142,10 @@ public class MainActivity extends AppCompatActivity {
         arrayList_Child.put(arrayList_Parent.get(11),arrayList12);
     }
 
-
+    @Override
+    public void onResume(){
+        super.onResume();
+        checkDuplicatedLogin(mContext, this);
+    }
 
     }

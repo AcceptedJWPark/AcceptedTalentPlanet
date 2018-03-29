@@ -37,6 +37,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.example.accepted.acceptedtalentplanet.SaveSharedPreference.checkDuplicatedLogin;
+
 /**
  * Created by Accepted on 2017-10-24.
  */
@@ -62,6 +64,7 @@ public class MainActivity extends FragmentActivity{
     RelativeLayout TalentSharing_popup_container;
 
     boolean addedFriend = false;
+    boolean firstFriendFlag;
     boolean sendFlag = true;
     String talentID;
     Bitmap bitmap = null;
@@ -210,6 +213,8 @@ public class MainActivity extends FragmentActivity{
                             break;
                         }
                     }
+
+                    firstFriendFlag = addedFriend;
 
                     hasFlag = (obj.getString("HAS_FLAG").equals("N"))? false : true;
                     Log.d("hasFlag", String.valueOf(hasFlag));
@@ -406,5 +411,49 @@ public class MainActivity extends FragmentActivity{
         postRequestQueue.add(postJsonRequest);
 
     }
+    @Override
+    public void onDestroy(){
+        super.onDestroy();
+        if(firstFriendFlag != addedFriend){
+            updateFriendList();
+        }
+    }
+
+    public void updateFriendList() {
+
+        RequestQueue postRequestQueue = VolleySingleton.getInstance(mContext).getRequestQueue();
+        StringRequest postJsonRequest = new StringRequest(Request.Method.POST, SaveSharedPreference.getServerIp() + "FriendList/updateFriendList.do", new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONObject obj = new JSONObject(response);
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, SaveSharedPreference.getErrorListener()) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap();
+                params.put("userID", SaveSharedPreference.getUserId(mContext));
+                params.put("friendID", UserID);
+                params.put("talentFlag", talentFlag);
+                params.put("updateFlag", (addedFriend)?"I":"D");
+                return params;
+            }
+        };
+
+
+        postRequestQueue.add(postJsonRequest);
+
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+        checkDuplicatedLogin(mContext, this);
+    }
+
 
 }

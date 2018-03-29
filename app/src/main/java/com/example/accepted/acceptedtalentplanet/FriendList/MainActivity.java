@@ -28,6 +28,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.example.accepted.acceptedtalentplanet.SaveSharedPreference.checkDuplicatedLogin;
+
 /**
  * Created by Accepted on 2017-09-29.
  */
@@ -61,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
         arrayList_Friend = SaveSharedPreference.getFriendList(mContext);
 
         if(arrayList_Friend.size() > 0)
-            getFriendList();
+            getFriendInfo();
 
         listView_Give = (ListView) findViewById(R.id.listView_Give_FriendList);
         listView_Take = (ListView) findViewById(R.id.listView_Take_FriendList);
@@ -142,10 +144,11 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onResume(){
         super.onResume();
+        checkDuplicatedLogin(mContext, this);
         arrayList_Friend = SaveSharedPreference.getFriendList(mContext);
 
         if(arrayList_Friend.size() > 0)
-            getFriendList();
+            getFriendInfo();
         else {
             arrayList = new ArrayList<>();
             arrayList_Original = new ArrayList<>();
@@ -162,9 +165,9 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void getFriendList() {
+    public void getFriendInfo() {
         RequestQueue postRequestQueue = VolleySingleton.getInstance(mContext).getRequestQueue();
-        StringRequest postJsonRequest = new StringRequest(Request.Method.POST, SaveSharedPreference.getServerIp() + "FriendList/getFriendList.do", new Response.Listener<String>() {
+        StringRequest postJsonRequest = new StringRequest(Request.Method.POST, SaveSharedPreference.getServerIp() + "FriendList/getFriendInfo.do", new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 try {

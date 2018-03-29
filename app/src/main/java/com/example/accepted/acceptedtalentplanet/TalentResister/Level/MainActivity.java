@@ -16,6 +16,8 @@ import android.widget.Toast;
 import com.example.accepted.acceptedtalentplanet.MyTalent;
 import com.example.accepted.acceptedtalentplanet.R;
 
+import static com.example.accepted.acceptedtalentplanet.SaveSharedPreference.checkDuplicatedLogin;
+
 public class MainActivity extends AppCompatActivity implements CompoundButton.OnCheckedChangeListener {
     private String Talent1, Talent2, Talent3;
     private String location;
@@ -25,6 +27,7 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
     private int level;
     private CheckBox[] cbs = new CheckBox[5];
     private CheckBox cb1, cb2, cb3, cb4, cb5;
+    private Context mContext;
 
     private Button btn_level;
 
@@ -32,6 +35,9 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.talentresister_level);
+
+        mContext = getApplicationContext();
+
         Intent i = getIntent();
         isTalentRegister = i.getBooleanExtra("talentFlag", true);
         isHavingData = i.getBooleanExtra("isHavingData", false);
@@ -145,6 +151,11 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
         return -1;
     }
 
+    @Override
+    public void onResume(){
+        super.onResume();
+        checkDuplicatedLogin(mContext, this);
+    }
 
 
 }

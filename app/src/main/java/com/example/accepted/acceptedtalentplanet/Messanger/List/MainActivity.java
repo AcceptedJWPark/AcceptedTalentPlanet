@@ -22,6 +22,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+import static com.example.accepted.acceptedtalentplanet.SaveSharedPreference.checkDuplicatedLogin;
+
 public class MainActivity extends AppCompatActivity implements MyFirebaseMessagingService.MessageReceivedListener {
 
     Context mContext;
@@ -83,6 +85,7 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
     @Override
     public void onResume(){
         super.onResume();
+        checkDuplicatedLogin(mContext, this);
         MyFirebaseMessagingService.isNewMessageArrive = false;
         refreshChatLog();
         MyFirebaseMessagingService.setOnMessageReceivedListener(this);

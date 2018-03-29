@@ -14,16 +14,22 @@ import android.widget.TextView;
 
 import com.example.accepted.acceptedtalentplanet.R;
 
+import static com.example.accepted.acceptedtalentplanet.SaveSharedPreference.checkDuplicatedLogin;
+
 public class MainActivity extends AppCompatActivity {
 
     private ViewPager vp_Intro1;
     private TextView text_Intro;
+
+    private Context mContext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.customerservice_introductionmain);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
+        mContext = getApplicationContext();
 
         text_Intro = findViewById(R.id.text_Intro);
         vp_Intro1 = (ViewPager) findViewById(R.id.vp_Intro1_Introduction);
@@ -130,5 +136,11 @@ public class MainActivity extends AppCompatActivity {
         public int getCount() {
             return 3;
         }
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+        checkDuplicatedLogin(mContext, this);
     }
 }

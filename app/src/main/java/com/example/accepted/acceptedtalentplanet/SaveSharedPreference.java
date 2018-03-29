@@ -19,6 +19,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
@@ -103,6 +104,21 @@ public class SaveSharedPreference{
             sqliteDatabase.execSQL(sqlUpsert);
 
             Log.d("insert friend", sqlUpsert);
+            sqliteDatabase.close();
+        }catch (SQLiteException e){
+            e.printStackTrace();
+        }
+    }
+
+    public static void removePrefFcmToken(Context ctx){
+        SQLiteDatabase sqliteDatabase;
+        String dbName = "/accepted.db";
+
+        try{
+            sqliteDatabase = SQLiteDatabase.openOrCreateDatabase(ctx.getFilesDir() + dbName, null);
+            String sqlUpsert = "DELETE FROM TB_FCM_TOKEN";
+            sqliteDatabase.execSQL(sqlUpsert);
+
             sqliteDatabase.close();
         }catch (SQLiteException e){
             e.printStackTrace();
@@ -250,7 +266,7 @@ public class SaveSharedPreference{
     }
 
     public static String getServerIp(){
-        return SERVER_IP2;
+        return SERVER_IP;
     }
 
     public static String getLevel(String Level) {
@@ -498,6 +514,7 @@ public class SaveSharedPreference{
             }
 
             case R.id.SlidingMenu_LogOut : {
+                removePrefFcmToken(mContext);
                 final String userID = getUserId(mContext);
                 RequestQueue postRequestQueue = VolleySingleton.getInstance(mContext).getRequestQueue();
                 StringRequest postJsonRequest = new StringRequest(Request.Method.POST, SaveSharedPreference.getServerIp() + "Login/saveFCMToken.do", new Response.Listener<String>(){
@@ -680,6 +697,42 @@ public class SaveSharedPreference{
             return StringToBitMap(fileData);
 
         return null;
+    }
+
+    public static void checkDuplicatedLogin(final Context ctx, final Activity activity){
+
+        RequestQueue postRequestQueue = VolleySingleton.getInstance(ctx).getRequestQueue();
+        StringRequest postJsonRequest = new StringRequest(Request.Method.POST, SaveSharedPreference.getServerIp() + "Login/checkDuplicatedLogin.do", new Response.Listener<String>(){
+            @Override
+            public void onResponse(String response){
+                try {
+                    JSONObject obj = new JSONObject(response);
+                    Log.d("checkDup", obj.toString());
+                    if(obj.getString("DUP_FLAG").equals("N")){
+                        removePrefFcmToken(ctx);
+                        Toast.makeText(ctx, "다른 기기에서 로그인되어 접속이 종료됩니다.", Toast.LENGTH_SHORT).show();
+                        clearUserInfo(ctx);
+                        Intent i = new Intent(ctx, com.example.accepted.acceptedtalentplanet.LoadingLogin.Login.MainActivity.class);
+                        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
+                        ctx.startActivity(i);
+                        activity.finish();
+                    }
+                }
+                catch(JSONException e){
+                    e.printStackTrace();
+                }
+            }
+        }, SaveSharedPreference.getErrorListener()) {
+            @Override
+            protected Map<String, String> getParams(){
+                Map<String, String> params = new HashMap();
+                params.put("userID", getUserId(ctx));
+                params.put("token", getFcmToken(ctx));
+                return params;
+            }
+        };
+
+        postRequestQueue.add(postJsonRequest);
     }
 
 

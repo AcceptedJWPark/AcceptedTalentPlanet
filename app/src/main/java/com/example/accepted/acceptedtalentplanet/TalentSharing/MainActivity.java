@@ -49,6 +49,7 @@ import java.util.Map;
 
 import static com.example.accepted.acceptedtalentplanet.SaveSharedPreference.DrawerLayout_ClickEvent;
 import static com.example.accepted.acceptedtalentplanet.SaveSharedPreference.DrawerLayout_Open;
+import static com.example.accepted.acceptedtalentplanet.SaveSharedPreference.checkDuplicatedLogin;
 
 /**
  * Created by Accepted on 2017-10-24.
@@ -99,11 +100,11 @@ public class MainActivity extends AppCompatActivity {
         mContext = getApplicationContext();
 
         if(SaveSharedPreference.getFcmToken(mContext) == null){
-            FirebaseInstanceId.getInstance().getToken();
+            SaveSharedPreference.setPrefFcmToken(mContext,FirebaseInstanceId.getInstance().getToken());
+            saveFcmToken();
+        }else{
+            checkDuplicatedLogin(mContext, this);
         }
-
-
-        saveFcmToken();
 
         ((TextView) findViewById(R.id.tv_toolbarTitle)).setText("T.Sharing");
         ((TextView) findViewById(R.id.DrawerUserID)).setText(SaveSharedPreference.getUserId(mContext));
@@ -391,6 +392,7 @@ public class MainActivity extends AppCompatActivity {
                     JSONObject obj = new JSONObject(response);
                     if (obj.getString("result").equals("success")) {
                         Log.d("saveToken", "토큰 저장 성공");
+
                     } else {
                         Log.d("saveToken", "토큰 저장 실패");
                     }
