@@ -123,7 +123,7 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
 
 
         arrayList = new ArrayList<>();
-        adapter = new Adapter(arrayList, mContext, picture);
+        adapter = new Adapter(arrayList, MainActivity.this, picture);
 
         sv_Messanger_Chatting = (ScrollView) findViewById(R.id.sv_Messanger_Chatting);
 
@@ -222,7 +222,7 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
             if(arrayList.size() == 0){
                 isTimeChanged = true;
                 isDateChanged = true;
-                arrayList.add(new ListItem(R.drawable.testpicture, content, creationDate, messageType, isPicture, isTimeChanged, isDateChanged));
+                arrayList.add(new ListItem(R.drawable.picure_basic, content, creationDate, messageType, isPicture, isTimeChanged, isDateChanged));
             }else{
                 int prevPosition = arrayList.size() - 1;
                 ListItem temp = arrayList.get(prevPosition);
@@ -250,7 +250,7 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
                     isTimeChanged = true;
                 }
 
-                arrayList.add(new ListItem(R.drawable.testpicture, content, creationDate, messageType, isPicture, isTimeChanged, isDateChanged));
+                arrayList.add(new ListItem(R.drawable.picure_basic, content, creationDate, messageType, isPicture, isTimeChanged, isDateChanged));
 
             }
             cursor.moveToNext();
@@ -333,7 +333,7 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
     public void getPicture(){
         picture = SaveSharedPreference.getPictureFromDB(mContext, receiverID);
 
-        adapter = new Adapter(arrayList, mContext, picture);
+        adapter = new Adapter(arrayList, MainActivity.this, picture);
 
         if (refreshChatLog()) {
             listView.setAdapter(adapter);

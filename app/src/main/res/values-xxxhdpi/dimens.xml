@@ -69,7 +69,7 @@
     <dimen name="Question_Edit_Layout">165dp</dimen>
     <dimen name="TalentSharing_BtnLayout">33dp</dimen>
     <dimen name="TalentSharing_ListLayout2">55dp</dimen>
-    <dimen name="Login_btn_margin">132dp</dimen>
+    <dimen name="Login_btn_margin">10dp</dimen>
     <dimen name="DialogTxtSize">4.95dp</dimen>
     <dimen name="Picture_Width">88dp</dimen>
     <dimen name="Picture_Height">88dp</dimen>

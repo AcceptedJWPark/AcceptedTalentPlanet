@@ -10,6 +10,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.support.v7.app.AlertDialog;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +20,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.accepted.acceptedtalentplanet.R;
 
@@ -73,7 +75,7 @@ public class Adapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(final int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, final View convertView, ViewGroup parent) {
         final int roomID = messanger_Arraylist.get(position).getRoomID();
         final String userID = messanger_Arraylist.get(position).getMessanger_userID();
         View view = convertView;
@@ -162,12 +164,49 @@ public class Adapter extends BaseAdapter {
         });
 
 
+        final View finalView = view;
+        holder.ll_pictureContainer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                final AlertDialog.Builder AlarmDeleteDialog = new AlertDialog.Builder(new ContextThemeWrapper(mContext, R.style.myDialog));
+
+                AlarmDeleteDialog.setMessage("상대방 프로필 보기")
+                        .setPositiveButton("관심 재능", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                Toast.makeText(mContext,"관심 재능 클릭",Toast.LENGTH_SHORT).show();
+                                dialog.cancel();
+                            }
+                        })
+                        .setNegativeButton("재능 드림", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                Toast.makeText(mContext,"재능 드림 클릭",Toast.LENGTH_SHORT).show();
+                                dialog.cancel();
+                            }
+                        })
+                        .setNeutralButton("닫기", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.cancel();
+                            }
+                        });
+
+                AlertDialog alertDialog = AlarmDeleteDialog.create();
+                alertDialog.show();
+                alertDialog.getButton((DialogInterface.BUTTON_POSITIVE)).setTextColor(finalView.getResources().getColor(R.color.loginPasswordLost));
+                alertDialog.getButton((DialogInterface.BUTTON_NEGATIVE)).setTextColor(finalView.getResources().getColor(R.color.loginPasswordLost));
+                alertDialog.getButton((DialogInterface.BUTTON_NEUTRAL)).setTextColor(finalView.getResources().getColor(R.color.loginPasswordLost));
+
+            }
+        });
 
 
         holder.Messanger_List_DeleteList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AlertDialog.Builder AlarmDeleteDialog = new AlertDialog.Builder(mContext);
+                AlertDialog.Builder AlarmDeleteDialog = new AlertDialog.Builder(new ContextThemeWrapper(mContext, R.style.myDialog));
                 float textSize = mContext.getResources().getDimension(R.dimen.DialogTxtSize);
                 AlarmDeleteDialog.setMessage("메시지를 삭제 하시겠습니까?")
                         .setPositiveButton("삭제", new DialogInterface.OnClickListener() {
@@ -211,8 +250,11 @@ public class Adapter extends BaseAdapter {
                                 dialog.cancel();
                             }
                         });
+
                 AlertDialog alertDialog = AlarmDeleteDialog.create();
                 alertDialog.show();
+                alertDialog.getButton((DialogInterface.BUTTON_POSITIVE)).setTextColor(finalView.getResources().getColor(R.color.loginPasswordLost));
+                alertDialog.getButton((DialogInterface.BUTTON_NEGATIVE)).setTextColor(finalView.getResources().getColor(R.color.loginPasswordLost));
                 TextView msgView = (TextView) alertDialog.findViewById(android.R.id.message);
                 msgView.setTextSize(textSize);
             }

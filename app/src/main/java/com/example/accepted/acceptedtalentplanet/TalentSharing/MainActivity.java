@@ -183,7 +183,7 @@ public class MainActivity extends AppCompatActivity {
                         JSONObject o = obj.getJSONObject(index);
                         Log.d("getTalentSharing", o.toString());
                         double distance = findMinDistanceBetween(o.getString("GP_LAT"), o.getString("GP_LNG"), o.getString("TALENT_FLAG").equals("Y"));
-                        ListItem target = new ListItem(R.drawable.testpicture, o.getString("USER_NAME"), o.getString("TALENT_KEYWORD1"), o.getString("TALENT_KEYWORD2"), o.getString("TALENT_KEYWORD3"), o.getString("seq"), o.getString("TALENT_FLAG"), o.getString("STATUS_FLAG"), (String.format("%.1f", distance) + "km"), "Profile 보기", o.getString("USER_ID"), distance);
+                        ListItem target = new ListItem(R.drawable.picure_basic, o.getString("USER_NAME"), o.getString("TALENT_KEYWORD1"), o.getString("TALENT_KEYWORD2"), o.getString("TALENT_KEYWORD3"), o.getString("seq"), o.getString("TALENT_FLAG"), o.getString("STATUS_FLAG"), (String.format("%.1f", distance) + "km"), "Profile 보기", o.getString("USER_ID"), distance);
                         try {
                             String dbName = "/accepted.db";
                             SQLiteDatabase sqLiteDatabase = SQLiteDatabase.openOrCreateDatabase(getFilesDir() + dbName, null);

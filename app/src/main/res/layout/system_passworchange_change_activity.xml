@@ -11,70 +11,76 @@
     android:focusableInTouchMode="true"
     >
 
-    <LinearLayout
-        android:id="@+id/ll_TitleContainer_pswlost_change"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:orientation="vertical"
-        >
 
     <TextView
-        android:id="@+id/tv_TitleContainer_pswlost_change"
+        android:id="@+id/tv_TitleContainer_psw_System"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_height="60dp"
         android:layout_gravity="center"
         android:gravity="center"
         android:textSize="@dimen/Page_Txt"
         android:textColor="@color/textColor_txtpage"
-        android:text="&quot;새로운 비밀번호를 입력해주세요.&quot;"
+        android:text="&quot;기존 비밀번호와 새로운 비밀번호를 입력해주세요.&quot;"
         />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.8"
-            android:text="(영문, 숫자, 특수문자 두 개 이상 조합)"
-            android:gravity="center|top"
-            android:textColor="@color/textColor_object"
-            android:textSize="@dimen/Page_Txt_Example"
-            />
-
-    </LinearLayout>
-
-    <View
-        android:id="@+id/trashView1_psw_Change"
-        android:layout_width="match_parent"
-        android:layout_height="10dp"/>
 
     <LinearLayout
-        android:id="@+id/ll_NewPswContainer_Change_PasswordLost"
+        android:id="@+id/ll_NewPswContainer_Old_System"
         android:layout_width="match_parent"
         android:layout_height="45dp"
         android:layout_marginLeft="70dp"
         android:layout_marginRight="70dp"
+        android:paddingTop="@dimen/Margin_et"
+        android:paddingBottom="@dimen/Margin_et"
         android:orientation="horizontal">
 
         <EditText
-            android:id="@+id/et_NewPassword_Change_PasswordLost"
+            android:id="@+id/et_OldPassword_System"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/bgr_inputbox"
             android:paddingLeft="10dp"
-            android:hint="새 비밀번호 입력"
+            android:background="@drawable/bgr_inputbox"
+            android:hint="기존 비밀번호 입력"
             android:inputType="textPassword"
             android:textSize="@dimen/Edit_Hint" />
 
     </LinearLayout>
 
     <View
-        android:id="@+id/trashView2_psw_Change"
+        android:id="@+id/trashView1_psw_System"
+        android:layout_width="match_parent"
+        android:layout_height="10dp"/>
+
+    <LinearLayout
+        android:id="@+id/ll_NewPswContainer_New_System"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginLeft="70dp"
+        android:layout_marginRight="70dp"
+        android:paddingTop="@dimen/Margin_et"
+        android:paddingBottom="@dimen/Margin_et"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/et_NewPassword_System"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="새 비밀번호 입력"
+            android:paddingLeft="10dp"
+            android:background="@drawable/bgr_inputbox"
+            android:inputType="textPassword"
+            android:textSize="@dimen/Edit_Hint" />
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/trashView2_psw_System"
         android:layout_width="match_parent"
         android:layout_height="10dp"/>
 
 
     <Button
-        android:id="@+id/btn_Next_Change_PasswordLost"
+        android:id="@+id/btn_Next_PasswordChange_System"
         android:layout_width="match_parent"
         android:layout_height="30dp"
         android:layout_marginLeft="70dp"

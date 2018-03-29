@@ -1,6 +1,5 @@
 package com.example.accepted.acceptedtalentplanet.MyProfile;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -181,7 +180,6 @@ public class MainActivity extends AppCompatActivity {
         ll_Container8 = (LinearLayout) findViewById(R.id.ll_Container8_MyProfile);
         rl_PictureContainer = (RelativeLayout) findViewById(R.id.rl_PictureContainer_MyProfile);
 
-        ll_SaveContainer = (LinearLayout) findViewById(R.id.ll_SaveContainer_MyProfile);
 
         cb_isShowGender = (CheckBox) findViewById(R.id.cb_isShowGender_MyProfile);
         cb_isShowBirth = (CheckBox) findViewById(R.id.cb_isShowBirth_MyProfile);
@@ -193,14 +191,12 @@ public class MainActivity extends AppCompatActivity {
         windowManager.getDefaultDisplay().getMetrics(metrics);
 
         int statusBarHeight = getStatusBarHeight();
-        int displayHeight_NoStatus = metrics.heightPixels - statusBarHeight;
 
-        int toolbar_height = (int) (displayHeight_NoStatus * 0.055);
-        int picture_LL_height = (int) (displayHeight_NoStatus * 0.188);
-        int btn_height = (int) (displayHeight_NoStatus * 0.04);
-        int Devider_height = (int) (displayHeight_NoStatus * 0.045);
-        int List_height = (int) (displayHeight_NoStatus * 0.075);
-        int btnContainer_height = (displayHeight_NoStatus - (toolbar_height + picture_LL_height + Devider_height * 2 + List_height * 8));
+        int toolbar_height = (int) (metrics.heightPixels * 0.055);
+        int picture_LL_height = (int) (metrics.heightPixels * 0.188);
+        int btn_height = (int) (metrics.heightPixels * 0.04);
+        int Devider_height = (int) (metrics.heightPixels * 0.045);
+        int List_height = (int) (metrics.heightPixels * 0.072);
 
         int TalentResister_Picture_width = (int) (picture_LL_height * 0.7);
         int TalentResister_Picture_height = (int) (picture_LL_height * 0.7);
@@ -221,7 +217,6 @@ public class MainActivity extends AppCompatActivity {
         ViewGroup.LayoutParams params13 = ll_Container8.getLayoutParams();
 
         ViewGroup.LayoutParams params14 = rl_PictureContainer.getLayoutParams();
-        ViewGroup.LayoutParams params15 = ll_SaveContainer.getLayoutParams();
 
         params1.height = toolbar_height;
         params2.height = picture_LL_height;
@@ -240,7 +235,6 @@ public class MainActivity extends AppCompatActivity {
         params14.width = TalentResister_Picture_width;
         params14.height = TalentResister_Picture_height;
 
-        params15.height = btnContainer_height;
 
         ll_Toolbar.setLayoutParams(params1);
         rl_Container.setLayoutParams(params2);
@@ -257,7 +251,6 @@ public class MainActivity extends AppCompatActivity {
         ll_Container8.setLayoutParams(params13);
 
         rl_PictureContainer.setLayoutParams(params14);
-        ll_SaveContainer.setLayoutParams(params15);
 
 
         iv_CompleteListIcon = (ImageView) findViewById(R.id.iv_CompleteListIcon_MyProfile);

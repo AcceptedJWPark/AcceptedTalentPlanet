@@ -62,7 +62,7 @@
                 android:clickable="true"
                 android:focusableInTouchMode="false"
                 android:focusable="false"
-                android:src="@drawable/testpicture"
+                android:src="@drawable/picure_basic"
                 android:scaleType="fitXY"
                 />
 

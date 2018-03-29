@@ -1,6 +1,5 @@
 package com.example.accepted.acceptedtalentplanet.TalentSearching;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Paint;
@@ -149,7 +148,7 @@ public class MainActivity extends AppCompatActivity {
                     for(int i = 0; i < obj.length(); i++) {
                         JSONObject o = obj.getJSONObject(i);
                         Log.d("Obj = ", o.toString());
-                        talentSearching_listItemArrayList.add(new ListItem(R.drawable.testpicture, o.getString("USER_NAME"), o.getString("TALENT_KEYWORD1"), o.getString("TALENT_KEYWORD2"), o.getString("TALENT_KEYWORD3"), o.getString("seq")));
+                        talentSearching_listItemArrayList.add(new ListItem(R.drawable.picure_basic, o.getString("USER_NAME"), o.getString("TALENT_KEYWORD1"), o.getString("TALENT_KEYWORD2"), o.getString("TALENT_KEYWORD3"), o.getString("seq")));
 
                     }
                     TalentSearching_ListView = (ListView) findViewById(R.id.TalentSearching_ListView);

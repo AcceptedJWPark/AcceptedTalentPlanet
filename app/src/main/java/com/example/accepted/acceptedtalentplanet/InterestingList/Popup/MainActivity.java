@@ -4,11 +4,14 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AlertDialog;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.ContextThemeWrapper;
 import android.view.Display;
 import android.view.View;
 import android.view.ViewGroup;
@@ -159,7 +162,7 @@ public class MainActivity extends FragmentActivity {
 
 
         btn_Progress = findViewById(R.id.btn_Progress_InterestingPopup);
-        final AlertDialog.Builder ProgressorCancelPopup = new AlertDialog.Builder(this);
+        final AlertDialog.Builder ProgressorCancelPopup = new AlertDialog.Builder(new ContextThemeWrapper(MainActivity.this, R.style.myDialog));
 
         if (sendFlag) {
             btn_Progress.setText("진행하기");
@@ -223,8 +226,14 @@ public class MainActivity extends FragmentActivity {
                                 }
                             });
 
+
+
                     AlertDialog alertDialog = ProgressorCancelPopup.create();
                     alertDialog.show();
+                    alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.WHITE));
+                    alertDialog.getButton((DialogInterface.BUTTON_NEGATIVE)).setTextColor(getResources().getColor(R.color.loginPasswordLost));
+                    alertDialog.getButton((DialogInterface.BUTTON_POSITIVE)).setTextColor(getResources().getColor(R.color.loginPasswordLost));
+
                     TextView msgView = (TextView) alertDialog.findViewById(android.R.id.message);
                     msgView.setTextSize(textSize);
                 }

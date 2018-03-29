@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -132,6 +133,7 @@ public class Adapter extends BaseAdapter{
                                 break;
                             case 2:
                                 if(isClaimActivity) {Intent intent = new Intent();
+                                    Log.d("case2-1","claimClicked");
                                     String str2 = (arrayList.get(position).getTalentType() == 1) ? "Give" : "Take";
                                     intent.putExtra("name", arrayList.get(position).getname());
                                     intent.putExtra("keyword1", arrayList.get(position).getKeyword1());
@@ -145,6 +147,7 @@ public class Adapter extends BaseAdapter{
                                     ((Activity)mContext).finish();
 
                                 }else{
+                                    Log.d("case2-2","claimClicked");
                                     Intent b = new Intent(mContext, com.example.accepted.acceptedtalentplanet.CustomerService.Claim.MainActivity.class);
                                     String str2 = (arrayList.get(position).getTalentType() == 1) ? "Give" : "Take";
                                     b.putExtra("isSelected", true);

@@ -143,7 +143,7 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
             }
 
             Bitmap picture = SaveSharedPreference.getPictureFromDB(mContext, userID);
-            messanger_Arraylist.add(0,new ListItem(R.drawable.testpicture, userName, userID, lastMessage ,lastDate, unreadedCount, false, roomID, picture));
+            messanger_Arraylist.add(0,new ListItem(R.drawable.picure_basic, userName, userID, lastMessage ,lastDate, unreadedCount, false, roomID, picture));
             cursor.moveToNext();
         }
         cursor.close();

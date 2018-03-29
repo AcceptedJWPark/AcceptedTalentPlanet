@@ -31,7 +31,7 @@
             android:layout_height="match_parent"
             android:adjustViewBounds="false"
             android:gravity="center"
-            android:background="@drawable/testpicture"
+            android:background="@drawable/picure_basic"
             android:scaleType="fitXY"
             />
     </LinearLayout>

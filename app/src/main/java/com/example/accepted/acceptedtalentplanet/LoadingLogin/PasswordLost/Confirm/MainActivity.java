@@ -81,8 +81,8 @@ public class MainActivity extends AppCompatActivity {
         windowManager.getDefaultDisplay().getMetrics(metrics);
 
         int Title_height = (int) (metrics.heightPixels*0.1);
-        int EmailAccept_height = (int) (metrics.heightPixels*0.06);
-        int trashView1_height= (int) (metrics.heightPixels*0.01);
+        int EmailAccept_height = (int) (metrics.heightPixels*0.05);
+        int trashView1_height= (int) (metrics.heightPixels*0.02);
         int trashView2_height= (int) (metrics.heightPixels*0.02);
         int nextBtn_height = (int) (metrics.heightPixels*0.04);
 
@@ -133,6 +133,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void PasswordLost_emailCheck(View v)
     {
+        Log.d("클릭 됨","클릭 됨");
         emailCheck(v);
     }
 
@@ -152,6 +153,13 @@ public class MainActivity extends AppCompatActivity {
 
         //E-mail 주소 패턴 확인
         if (TextUtils.isEmpty(jEmail)) {
+            return;
+        }
+        else if (!Patterns.EMAIL_ADDRESS.matcher(jEmail).matches()) {
+            Toast.makeText(getApplicationContext(), "잘못된 E-mail 주소입니다.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
             RequestFuture<String> future = RequestFuture.newFuture();
             final RequestQueue postRequestQueue = VolleySingleton.getInstance(mContext).getRequestQueue();
 
@@ -188,8 +196,8 @@ public class MainActivity extends AppCompatActivity {
 
                         Toast.makeText(mContext, "E-mail에서 인증번호를 확인해주세요.", Toast.LENGTH_SHORT).show();
                         ll_AcceptEmailContainer.setVisibility(View.VISIBLE);
-
                         btn_Next.setVisibility(View.VISIBLE);
+
                     } catch (JSONException e) {
                         e.printStackTrace();
                     } catch (Exception e) {
@@ -235,14 +243,10 @@ public class MainActivity extends AppCompatActivity {
             };
 
             postRequestQueue.add(emailDupCheckReq);
-        }
-        else if (!Patterns.EMAIL_ADDRESS.matcher(jEmail).matches()) {
-            Toast.makeText(getApplicationContext(), "잘못된 E-mail 주소입니다.", Toast.LENGTH_SHORT).show();
-            return;
+
         }
 
 
-    }
 
 
 

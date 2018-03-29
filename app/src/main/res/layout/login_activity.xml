@@ -160,13 +160,12 @@
     <Button
         android:id="@+id/btn_Login_Login"
         android:textAllCaps="false"
-        android:layout_width="match_parent"
+        android:layout_width="@dimen/Login_btn"
         android:layout_height="30dp"
-        android:layout_marginLeft="@dimen/Login_btn_margin"
-        android:layout_marginRight="@dimen/Login_btn_margin"
         android:background="@drawable/bgr_bigbtn2"
         android:textColor="@color/textcolor_bigbtn"
         android:layout_below="@+id/trashView_Login"
+        android:layout_centerHorizontal="true"
         android:onClick="loginClicked"
         android:text="로그인"
         android:textSize="@dimen/BigBtn"/>

@@ -53,6 +53,7 @@ import static android.text.TextUtils.isEmpty;
 public class SaveSharedPreference{
     static final String PREF_USER_NAME = "username";
     static final String PREF_USER_ID = "userid";
+    static final String PREF_USER_PW = "userpw";
     static final String SERVER_IP = "https://13.124.141.242/Accepted/";
     static final String SERVER_IP2 = "https://221.162.94.43:8443/Accepted/";
     static final String PREF_GIVE_DATA = "giveData";
@@ -80,6 +81,13 @@ public class SaveSharedPreference{
         editor.putString(PREF_USER_NAME, userName);
         editor.commit();
     }
+
+    public static void setPrefUsrPw(Context ctx, String usePw){
+        Log.d("perf userpw", usePw);
+        SharedPreferences.Editor editor = getSharedPreferences(ctx).edit();
+        editor.putString(PREF_USER_PW, usePw);
+        editor.commit();
+}
 
     public static void setPrefUsrId(Context ctx, String useId){
         Log.d("perf userid", useId);
@@ -144,6 +152,11 @@ public class SaveSharedPreference{
 
     public static int getTalentPoint(Context ctx){
         return getSharedPreferences(ctx).getInt(PREF_TALENT_POINT, 0);
+    }
+
+    public static String getPrefUserPw(Context ctx)
+    {
+        return getSharedPreferences(ctx).getString(PREF_USER_PW,"");
     }
 
     public static String getUserName(Context ctx){
