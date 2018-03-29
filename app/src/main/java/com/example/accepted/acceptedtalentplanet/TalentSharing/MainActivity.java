@@ -49,7 +49,6 @@ import java.util.Map;
 
 import static com.example.accepted.acceptedtalentplanet.SaveSharedPreference.DrawerLayout_ClickEvent;
 import static com.example.accepted.acceptedtalentplanet.SaveSharedPreference.DrawerLayout_Open;
-import static com.example.accepted.acceptedtalentplanet.SaveSharedPreference.checkDuplicatedLogin;
 
 /**
  * Created by Accepted on 2017-10-24.
@@ -102,8 +101,6 @@ public class MainActivity extends AppCompatActivity {
         if(SaveSharedPreference.getFcmToken(mContext) == null){
             SaveSharedPreference.setPrefFcmToken(mContext,FirebaseInstanceId.getInstance().getToken());
             saveFcmToken();
-        }else{
-            checkDuplicatedLogin(mContext, this);
         }
 
         ((TextView) findViewById(R.id.tv_toolbarTitle)).setText("T.Sharing");

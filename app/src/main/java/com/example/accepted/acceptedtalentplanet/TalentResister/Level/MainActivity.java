@@ -16,7 +16,6 @@ import android.widget.Toast;
 import com.example.accepted.acceptedtalentplanet.MyTalent;
 import com.example.accepted.acceptedtalentplanet.R;
 
-import static com.example.accepted.acceptedtalentplanet.SaveSharedPreference.checkDuplicatedLogin;
 
 public class MainActivity extends AppCompatActivity implements CompoundButton.OnCheckedChangeListener {
     private String Talent1, Talent2, Talent3;
@@ -149,12 +148,6 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
             }
         }
         return -1;
-    }
-
-    @Override
-    public void onResume(){
-        super.onResume();
-        checkDuplicatedLogin(mContext, this);
     }
 
 

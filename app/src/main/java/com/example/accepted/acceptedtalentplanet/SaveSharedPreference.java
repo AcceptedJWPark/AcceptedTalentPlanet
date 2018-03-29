@@ -699,41 +699,41 @@ public class SaveSharedPreference{
         return null;
     }
 
-    public static void checkDuplicatedLogin(final Context ctx, final Activity activity){
-
-        RequestQueue postRequestQueue = VolleySingleton.getInstance(ctx).getRequestQueue();
-        StringRequest postJsonRequest = new StringRequest(Request.Method.POST, SaveSharedPreference.getServerIp() + "Login/checkDuplicatedLogin.do", new Response.Listener<String>(){
-            @Override
-            public void onResponse(String response){
-                try {
-                    JSONObject obj = new JSONObject(response);
-                    Log.d("checkDup", obj.toString());
-                    if(obj.getString("DUP_FLAG").equals("N")){
-                        removePrefFcmToken(ctx);
-                        Toast.makeText(ctx, "다른 기기에서 로그인되어 접속이 종료됩니다.", Toast.LENGTH_SHORT).show();
-                        clearUserInfo(ctx);
-                        Intent i = new Intent(ctx, com.example.accepted.acceptedtalentplanet.LoadingLogin.Login.MainActivity.class);
-                        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
-                        ctx.startActivity(i);
-                        activity.finish();
-                    }
-                }
-                catch(JSONException e){
-                    e.printStackTrace();
-                }
-            }
-        }, SaveSharedPreference.getErrorListener()) {
-            @Override
-            protected Map<String, String> getParams(){
-                Map<String, String> params = new HashMap();
-                params.put("userID", getUserId(ctx));
-                params.put("token", getFcmToken(ctx));
-                return params;
-            }
-        };
-
-        postRequestQueue.add(postJsonRequest);
-    }
+//    public static void checkDuplicatedLogin(final Context ctx, final Activity activity){
+//
+//        RequestQueue postRequestQueue = VolleySingleton.getInstance(ctx).getRequestQueue();
+//        StringRequest postJsonRequest = new StringRequest(Request.Method.POST, SaveSharedPreference.getServerIp() + "Login/checkDuplicatedLogin.do", new Response.Listener<String>(){
+//            @Override
+//            public void onResponse(String response){
+//                try {
+//                    JSONObject obj = new JSONObject(response);
+//                    Log.d("checkDup", obj.toString());
+//                    if(obj.getString("DUP_FLAG").equals("N")){
+//                        removePrefFcmToken(ctx);
+//                        Toast.makeText(ctx, "다른 기기에서 로그인되어 접속이 종료됩니다.", Toast.LENGTH_SHORT).show();
+//                        clearUserInfo(ctx);
+//                        Intent i = new Intent(ctx, com.example.accepted.acceptedtalentplanet.LoadingLogin.Login.MainActivity.class);
+//                        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
+//                        ctx.startActivity(i);
+//                        activity.finish();
+//                    }
+//                }
+//                catch(JSONException e){
+//                    e.printStackTrace();
+//                }
+//            }
+//        }, SaveSharedPreference.getErrorListener()) {
+//            @Override
+//            protected Map<String, String> getParams(){
+//                Map<String, String> params = new HashMap();
+//                params.put("userID", getUserId(ctx));
+//                params.put("token", getFcmToken(ctx));
+//                return params;
+//            }
+//        };
+//
+//        postRequestQueue.add(postJsonRequest);
+//    }
 
 
 }

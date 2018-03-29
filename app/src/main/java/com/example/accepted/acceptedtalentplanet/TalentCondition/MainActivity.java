@@ -46,7 +46,6 @@ import java.util.Map;
 import static android.view.View.GONE;
 import static com.example.accepted.acceptedtalentplanet.SaveSharedPreference.DrawerLayout_ClickEvent;
 import static com.example.accepted.acceptedtalentplanet.SaveSharedPreference.DrawerLayout_Open;
-import static com.example.accepted.acceptedtalentplanet.SaveSharedPreference.checkDuplicatedLogin;
 
 public class MainActivity extends AppCompatActivity implements MyFirebaseMessagingService.MessageReceivedListener{
 
@@ -635,7 +634,6 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
     @Override
     public void onResume(){
         super.onResume();
-        checkDuplicatedLogin(mContext, this);
         getMyTalent();
         MyFirebaseMessagingService.setOnMessageReceivedListener(this);
         drawerLayout.closeDrawers();

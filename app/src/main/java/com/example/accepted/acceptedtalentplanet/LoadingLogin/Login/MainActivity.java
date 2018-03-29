@@ -67,6 +67,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.login_activity);
         mContext = getApplicationContext();
 
+        if(getIntent().hasExtra("dupFlag")){
+            Toast.makeText(mContext, "다른 기기에서 로그인되어 접속이 종료됩니다.", Toast.LENGTH_SHORT).show();
+        }
+
         ll_Title = (LinearLayout) findViewById(R.id.ll_title_Login);
         ll_Info = (LinearLayout) findViewById(R.id.ll_info_Login);
         ll_ClickHere_Login = (LinearLayout) findViewById(R.id.ll_ClickHere_Login);
