@@ -24,6 +24,7 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.StringRequest;
+import com.bumptech.glide.Glide;
 import com.example.accepted.acceptedtalentplanet.Friend;
 import com.example.accepted.acceptedtalentplanet.MyTalent;
 import com.example.accepted.acceptedtalentplanet.R;
@@ -37,8 +38,6 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-
-import static com.example.accepted.acceptedtalentplanet.SaveSharedPreference.checkDuplicatedLogin;
 
 /**
  * Created by Accepted on 2017-11-30.
@@ -282,9 +281,9 @@ public class MainActivity extends FragmentActivity {
                     }
 
 
-                    Bitmap bitmap = SaveSharedPreference.getPictureFromDB(mContext, profileUserID);
-                    if(bitmap != null) {
-                        ((ImageView) findViewById(R.id.Interesting_popup_picture)).setImageBitmap(bitmap);
+
+                    if(!obj.getString("S_FILE_PATH").equals("NODATA")) {
+                        Glide.with(mContext).load(SaveSharedPreference.getImageUri() + obj.getString("S_FILE_PATH")).into((ImageView) findViewById(R.id.Interesting_popup_picture));
                         ((ImageView) findViewById(R.id.Interesting_popup_picture)).setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
@@ -462,12 +461,6 @@ public class MainActivity extends FragmentActivity {
 
         postRequestQueue.add(postJsonRequest);
 
-    }
-
-    @Override
-    public void onResume(){
-        super.onResume();
-        checkDuplicatedLogin(mContext, this);
     }
 
 

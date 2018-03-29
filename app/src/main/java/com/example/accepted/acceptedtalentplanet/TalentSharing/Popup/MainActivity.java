@@ -24,6 +24,7 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.StringRequest;
+import com.bumptech.glide.Glide;
 import com.example.accepted.acceptedtalentplanet.Friend;
 import com.example.accepted.acceptedtalentplanet.R;
 import com.example.accepted.acceptedtalentplanet.SaveSharedPreference;
@@ -37,7 +38,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.example.accepted.acceptedtalentplanet.SaveSharedPreference.checkDuplicatedLogin;
 
 /**
  * Created by Accepted on 2017-10-24.
@@ -67,7 +67,6 @@ public class MainActivity extends FragmentActivity{
     boolean firstFriendFlag;
     boolean sendFlag = true;
     String talentID;
-    Bitmap bitmap = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -189,11 +188,10 @@ public class MainActivity extends FragmentActivity{
 
                     UserID = obj.getString("USER_ID");
 
-                    Bitmap bitmap = SaveSharedPreference.getPictureFromDB(mContext, UserID);
 
 
-                    if(bitmap != null){
-                        ((ImageView)findViewById(R.id.TalentSharing_popup_picture)).setImageBitmap(bitmap);
+                    if(!obj.getString("S_FILE_PATH").equals("NODATA")){
+                        Glide.with(mContext).load(SaveSharedPreference.getImageUri() + obj.getString("S_FILE_PATH")).into((ImageView)findViewById(R.id.TalentSharing_popup_picture));
                         ((ImageView)findViewById(R.id.TalentSharing_popup_picture)).setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
@@ -448,12 +446,5 @@ public class MainActivity extends FragmentActivity{
         postRequestQueue.add(postJsonRequest);
 
     }
-
-    @Override
-    public void onResume(){
-        super.onResume();
-        checkDuplicatedLogin(mContext, this);
-    }
-
 
 }

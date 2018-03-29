@@ -29,6 +29,7 @@ import com.android.volley.ServerError;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.StringRequest;
+import com.bumptech.glide.Glide;
 import com.example.accepted.acceptedtalentplanet.GeoPoint;
 import com.example.accepted.acceptedtalentplanet.MyFirebaseMessagingService;
 import com.example.accepted.acceptedtalentplanet.MyTalent;
@@ -49,7 +50,6 @@ import java.util.Map;
 
 import static com.example.accepted.acceptedtalentplanet.SaveSharedPreference.DrawerLayout_ClickEvent;
 import static com.example.accepted.acceptedtalentplanet.SaveSharedPreference.DrawerLayout_Open;
-import static com.example.accepted.acceptedtalentplanet.SaveSharedPreference.checkDuplicatedLogin;
 
 /**
  * Created by Accepted on 2017-10-24.
@@ -102,20 +102,19 @@ public class MainActivity extends AppCompatActivity {
         if(SaveSharedPreference.getFcmToken(mContext) == null){
             SaveSharedPreference.setPrefFcmToken(mContext,FirebaseInstanceId.getInstance().getToken());
             saveFcmToken();
-        }else{
-            checkDuplicatedLogin(mContext, this);
         }
 
         ((TextView) findViewById(R.id.tv_toolbarTitle)).setText("T.Sharing");
         ((TextView) findViewById(R.id.DrawerUserID)).setText(SaveSharedPreference.getUserId(mContext));
 
-        if(SaveSharedPreference.getMyPicture() != null)
-            ((ImageView) findViewById(R.id.DrawerPicture)).setImageBitmap(SaveSharedPreference.getMyPicture());
         if(MyFirebaseMessagingService.isNewMessageArrive){
             findViewById(R.id.Icon_NewMessage).setVisibility(View.VISIBLE);
         }else{
             findViewById(R.id.Icon_NewMessage).setVisibility(View.GONE);
         }
+
+        if(SaveSharedPreference.getMyThumbPicturePath() != null)
+            Glide.with(mContext).load(SaveSharedPreference.getImageUri() + SaveSharedPreference.getMyThumbPicturePath()).into((ImageView) findViewById(R.id.DrawerPicture));
 
         View.OnClickListener mClicklistener = new  View.OnClickListener()
         {
@@ -183,19 +182,8 @@ public class MainActivity extends AppCompatActivity {
                         JSONObject o = obj.getJSONObject(index);
                         Log.d("getTalentSharing", o.toString());
                         double distance = findMinDistanceBetween(o.getString("GP_LAT"), o.getString("GP_LNG"), o.getString("TALENT_FLAG").equals("Y"));
-                        ListItem target = new ListItem(R.drawable.testpicture, o.getString("USER_NAME"), o.getString("TALENT_KEYWORD1"), o.getString("TALENT_KEYWORD2"), o.getString("TALENT_KEYWORD3"), o.getString("seq"), o.getString("TALENT_FLAG"), o.getString("STATUS_FLAG"), (String.format("%.1f", distance) + "km"), "Profile 보기", o.getString("USER_ID"), distance);
-                        try {
-                            String dbName = "/accepted.db";
-                            SQLiteDatabase sqLiteDatabase = SQLiteDatabase.openOrCreateDatabase(getFilesDir() + dbName, null);
+                        ListItem target = new ListItem(R.drawable.testpicture, o.getString("USER_NAME"), o.getString("TALENT_KEYWORD1"), o.getString("TALENT_KEYWORD2"), o.getString("TALENT_KEYWORD3"), o.getString("seq"), o.getString("TALENT_FLAG"), o.getString("STATUS_FLAG"), (String.format("%.1f", distance) + "km"), "Profile 보기", o.getString("USER_ID"), distance, o.getString("S_FILE_PATH"));
 
-                            String insertSql = "INSERT OR REPLACE INTO TB_IMAGES (MASTER_ID, USER_ID, PICTURE) VALUES ('" + SaveSharedPreference.getUserId(mContext) + "','" + o.getString("USER_ID") + "', '" + o.getString("FILE_DATA") + "')";
-                            Log.d("insert image", insertSql);
-                            sqLiteDatabase.execSQL(insertSql);
-
-                            sqLiteDatabase.close();
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
                         arrayList_Original.add(target);
                         if (isGiveTalent) {
                             if (o.getString("TALENT_FLAG").equals("N"))

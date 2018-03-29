@@ -8,7 +8,6 @@ import android.widget.LinearLayout;
 
 import com.example.accepted.acceptedtalentplanet.R;
 
-import static com.example.accepted.acceptedtalentplanet.SaveSharedPreference.checkDuplicatedLogin;
 
 /**
  * Created by Accepted on 2017-10-31.
@@ -37,9 +36,4 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    @Override
-    public void onResume(){
-        super.onResume();
-        checkDuplicatedLogin(mContext, this);
-    }
 }

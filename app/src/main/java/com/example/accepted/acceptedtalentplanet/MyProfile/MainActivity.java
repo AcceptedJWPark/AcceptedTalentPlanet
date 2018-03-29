@@ -40,6 +40,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.bumptech.glide.Glide;
 import com.example.accepted.acceptedtalentplanet.BuildConfig;
 import com.example.accepted.acceptedtalentplanet.MyFirebaseMessagingService;
 import com.example.accepted.acceptedtalentplanet.MyProfileData;
@@ -62,7 +63,6 @@ import java.util.Map;
 
 import static com.example.accepted.acceptedtalentplanet.SaveSharedPreference.DrawerLayout_ClickEvent;
 import static com.example.accepted.acceptedtalentplanet.SaveSharedPreference.DrawerLayout_Open;
-import static com.example.accepted.acceptedtalentplanet.SaveSharedPreference.checkDuplicatedLogin;
 import static com.example.accepted.acceptedtalentplanet.SaveSharedPreference.hideKeyboard;
 
 public class MainActivity extends AppCompatActivity {
@@ -115,7 +115,6 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String AUTHORITY = BuildConfig.APPLICATION_ID + ".fileprovider";
 
-    private Bitmap bitmap = null;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -152,9 +151,10 @@ public class MainActivity extends AppCompatActivity {
 
         ((TextView) findViewById(R.id.tv_toolbarTitle)).setText("My Profile");
         ((TextView) findViewById(R.id.DrawerUserID)).setText(SaveSharedPreference.getUserId(mContext));
-        if(SaveSharedPreference.getMyPicture() != null)
-            ((ImageView)findViewById(R.id.DrawerPicture)).setImageBitmap(SaveSharedPreference.getMyPicture());
-
+        if(SaveSharedPreference.getMyThumbPicturePath() != null) {
+            Glide.with(mContext).load(SaveSharedPreference.getImageUri() + SaveSharedPreference.getMyThumbPicturePath()).into((ImageView) findViewById(R.id.DrawerPicture));
+            Glide.with(mContext).load(SaveSharedPreference.getImageUri() + SaveSharedPreference.getMyThumbPicturePath()).into((ImageView) findViewById(R.id.iv_Picture_MyProfile));
+        }
 
         View.OnClickListener mClicklistener = new View.OnClickListener() {
             @Override
@@ -184,6 +184,8 @@ public class MainActivity extends AppCompatActivity {
         cb_isShowGender = (CheckBox) findViewById(R.id.cb_isShowGender_MyProfile);
         cb_isShowBirth = (CheckBox) findViewById(R.id.cb_isShowBirth_MyProfile);
         cb_isShowJob = (CheckBox) findViewById(R.id.cb_isShowJob_MyProfile);
+
+
 
 
         DisplayMetrics metrics = new DisplayMetrics();
@@ -273,13 +275,13 @@ public class MainActivity extends AppCompatActivity {
         final AlertDialog.Builder AlarmDeleteDialog = new AlertDialog.Builder(MainActivity.this);
         iv_Picture = (ImageView) findViewById(R.id.iv_Picture_MyProfile);
 
-        bitmap = SaveSharedPreference.getMyPicture();
-        if (bitmap != null) {
+        if (SaveSharedPreference.getMyThumbPicturePath() != null) {
             iv_Picture.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(mContext, pictureExpand.class);
                     intent.putExtra("Activity", "Profile");
+                    intent.putExtra("userID", SaveSharedPreference.getUserId(mContext));
                     startActivity(intent);
                 }
             });
@@ -374,10 +376,6 @@ public class MainActivity extends AppCompatActivity {
                     cb_isShowGender.setChecked(!genderFlag);
                     cb_isShowBirth.setChecked(!birthFlag);
                     cb_isShowJob.setChecked(!jobFlag);
-                    bitmap = SaveSharedPreference.getMyPicture();
-                    if(bitmap != null){
-                        ((ImageView)findViewById(R.id.iv_Picture_MyProfile)).setImageBitmap(bitmap);
-                    }
                 }
                 catch(JSONException e){
                     e.printStackTrace();
@@ -533,7 +531,6 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("bitmap = ", "null");
             }
             iv_Picture.setImageBitmap(bitmap);
-            SaveSharedPreference.setMyPicture(bitmap);
 
             uploadBitmap(bitmap);
         }catch (Exception e){
@@ -572,7 +569,6 @@ public class MainActivity extends AppCompatActivity {
         bitmap = rotate(bitmap, exifDegree);
 
         iv_Picture.setImageBitmap(bitmap);
-        SaveSharedPreference.setMyPicture(bitmap);
         uploadBitmap(bitmap);
     }
 
@@ -635,6 +631,11 @@ public class MainActivity extends AppCompatActivity {
             public void onResponse(NetworkResponse response) {
                 try {
                     JSONObject obj = new JSONObject(new String(response.data));
+                    SaveSharedPreference.setMyPicturePath(obj.getString("FILE_PATH"), obj.getString("S_FILE_PATH"));
+
+                    Glide.with(mContext).load(SaveSharedPreference.getImageUri() + SaveSharedPreference.getMyThumbPicturePath()).into((ImageView) findViewById(R.id.DrawerPicture));
+                    Glide.with(mContext).load(SaveSharedPreference.getImageUri() + SaveSharedPreference.getMyThumbPicturePath()).into((ImageView) findViewById(R.id.iv_Picture_MyProfile));
+
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -707,7 +708,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onResume(){
         super.onResume();
-        checkDuplicatedLogin(mContext, this);
         drawerLayout.closeDrawers();
         if(MyFirebaseMessagingService.isNewMessageArrive){
             findViewById(R.id.Icon_NewMessage).setVisibility(View.VISIBLE);

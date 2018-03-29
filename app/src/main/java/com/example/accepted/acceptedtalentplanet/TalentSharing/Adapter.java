@@ -17,6 +17,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.accepted.acceptedtalentplanet.R;
 import com.example.accepted.acceptedtalentplanet.SaveSharedPreference;
 import com.example.accepted.acceptedtalentplanet.TalentSharing.Popup.MainActivity;
@@ -65,9 +66,6 @@ public class Adapter extends BaseAdapter {
             view = LayoutInflater.from(mContext).inflate(R.layout.talentsharing_listviewbg, viewGroup,false);
 
             holder = new ViewHolder();
-
-
-            Bitmap bitmap = SaveSharedPreference.getPictureFromDB(mContext, arrayList.get(position).getUserID());
 
             holder.iv_picture = view.findViewById(R.id.iv_picture_TalentSharing);
             holder.tv_Name = view.findViewById(R.id.tv_Name_TalentSharing);
@@ -132,10 +130,11 @@ public class Adapter extends BaseAdapter {
                 }
             });
 
-            if (bitmap == null) {
+            if (arrayList.get(position).getImagePath().equals("NODATA")) {
                 holder.iv_picture.setBackgroundResource(arrayList.get(position).getPicture());
             } else {
-                holder.iv_picture.setImageBitmap(bitmap);
+                Glide.with(mContext).load(SaveSharedPreference.getImageUri() + arrayList.get(position).getImagePath()).into(holder.iv_picture);
+                Log.d("imagePath", SaveSharedPreference.getImageUri() + arrayList.get(position).getImagePath());
             }
             holder.tv_Name.setText(arrayList.get(position).getName());
             holder.tv_talent1.setText(arrayList.get(position).getTalent1());
