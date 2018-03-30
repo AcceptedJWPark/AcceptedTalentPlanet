@@ -18,6 +18,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.ContextThemeWrapper;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
@@ -96,6 +97,7 @@ public class MainActivity extends AppCompatActivity {
         }
         mContext = getApplicationContext();
 
+
         spn_ClaimType = (Spinner) findViewById(R.id.spn_ClaimType_Claim);
         ArrayAdapter adapter = ArrayAdapter.createFromResource(this, R.array.CustomerService_ClaimSpinnerList, R.layout.customerservice_claim_spinnertext);
         spn_ClaimType.setAdapter(adapter);
@@ -169,7 +171,9 @@ public class MainActivity extends AppCompatActivity {
         btn_SaveClaim.setOnClickListener(new View.OnClickListener() {
                                              @Override
                                              public void onClick(View v) {
-                                                 AlertDialog.Builder AlarmDeleteDialog = new AlertDialog.Builder(MainActivity.this);
+
+                                                 Log.d(String.valueOf(isSelect),"선택?");
+                                                 AlertDialog.Builder AlarmDeleteDialog = new AlertDialog.Builder(new ContextThemeWrapper(MainActivity.this, R.style.myDialog));
                                                  if (et_Claim.getText().length() == 0) {
                                                      Toast.makeText(mContext, "신고 내용을 입력해주세요.", Toast.LENGTH_SHORT).show();
                                                      return;
@@ -183,7 +187,7 @@ public class MainActivity extends AppCompatActivity {
                                                                      finish();
                                                                  }
                                                              })
-                                                             .setNegativeButton("취소하기", new DialogInterface.OnClickListener() {
+                                                             .setNegativeButton("닫기", new DialogInterface.OnClickListener() {
                                                                  @Override
                                                                  public void onClick(DialogInterface dialog, int which) {
                                                                      dialog.cancel();
@@ -191,24 +195,11 @@ public class MainActivity extends AppCompatActivity {
                                                              });
                                                      AlertDialog alertDialog = AlarmDeleteDialog.create();
                                                      alertDialog.show();
+                                                     alertDialog.getButton((DialogInterface.BUTTON_NEGATIVE)).setTextColor(getResources().getColor(R.color.loginPasswordLost));
+                                                     alertDialog.getButton((DialogInterface.BUTTON_POSITIVE)).setTextColor(getResources().getColor(R.color.loginPasswordLost));
                                                  } else {
-                                                     AlarmDeleteDialog.setMessage("신고 대상이 없으면 조치가 어려울 수 있습니다.")
-                                                             .setPositiveButton("신고하기", new DialogInterface.OnClickListener() {
-                                                                 @Override
-                                                                 public void onClick(DialogInterface dialog, int which) {
-                                                                     requestClaim();
-                                                                     dialog.cancel();
-                                                                     finish();
-                                                                 }
-                                                             })
-                                                             .setNegativeButton("취소하기", new DialogInterface.OnClickListener() {
-                                                                 @Override
-                                                                 public void onClick(DialogInterface dialog, int which) {
-                                                                     dialog.cancel();
-                                                                 }
-                                                             });
-                                                     AlertDialog alertDialog = AlarmDeleteDialog.create();
-                                                     alertDialog.show();
+                                                     Toast.makeText(MainActivity.this,"공유 내역을 선택해주세요.",Toast.LENGTH_SHORT).show();
+                                                     return;
                                                  }
                                              }
                                          });
@@ -257,7 +248,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    //TODO 신고대상 없어도 내역 추가 되는 걸로 수정//
     public void requestClaim() {
 
         VolleyMultipartRequest volleyMultipartRequest = new VolleyMultipartRequest(Request.Method.POST, SaveSharedPreference.getServerIp() + "Customer/requestClaim.do", new Response.Listener<NetworkResponse>() {

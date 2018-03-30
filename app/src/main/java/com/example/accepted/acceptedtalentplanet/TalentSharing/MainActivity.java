@@ -50,6 +50,7 @@ import java.util.Map;
 
 import static com.example.accepted.acceptedtalentplanet.SaveSharedPreference.DrawerLayout_ClickEvent;
 import static com.example.accepted.acceptedtalentplanet.SaveSharedPreference.DrawerLayout_Open;
+import static com.example.accepted.acceptedtalentplanet.SaveSharedPreference.checkDuplicatedLogin;
 
 /**
  * Created by Accepted on 2017-10-24.

@@ -130,15 +130,12 @@
             android:gravity="center"
             >
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+            <ImageView
+                android:layout_width="@dimen/Toolbar_Pre_Img"
+                android:layout_height="@dimen/Toolbar_Pre_Img"
                 android:gravity="center"
-                android:textColor="#ffffff"
-                android:textStyle="bold"
-                android:textSize="@dimen/Messanger_Chatting_Text"
-                android:text="전 송"
-                android:includeFontPadding="false"
+                android:src="@drawable/icon_send"
+                android:scaleType="fitXY"
                 />
 
         </LinearLayout>

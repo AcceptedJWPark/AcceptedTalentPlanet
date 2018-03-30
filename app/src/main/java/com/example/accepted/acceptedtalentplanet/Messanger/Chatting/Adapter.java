@@ -1,9 +1,12 @@
 package com.example.accepted.acceptedtalentplanet.Messanger.Chatting;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
+import android.support.v7.app.AlertDialog;
 import android.util.DisplayMetrics;
+import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.accepted.acceptedtalentplanet.R;
@@ -119,9 +123,47 @@ public class Adapter extends BaseAdapter {
         if(messanger_Chatting_Arraylist.get(position).isPicture())
         {
             holder.Messanger_Chatting_Picture.setVisibility(View.VISIBLE);
-        }else
+            final View finalView = view;
+            holder.Messanger_Chatting_Picture.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    final AlertDialog.Builder AlarmDeleteDialog = new AlertDialog.Builder(new ContextThemeWrapper(mContext, R.style.myDialog));
+
+                            AlarmDeleteDialog.setMessage("상대방 프로필 보기")
+                                    .setPositiveButton("관심 재능", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            Toast.makeText(mContext,"관심 재능 클릭",Toast.LENGTH_SHORT).show();
+                                            dialog.cancel();
+                                        }
+                                    })
+                                    .setNegativeButton("재능 드림", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            Toast.makeText(mContext,"재능 드림 클릭",Toast.LENGTH_SHORT).show();
+                                            dialog.cancel();
+                                        }
+                                    })
+                            .setNeutralButton("닫기", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.cancel();
+                                }
+                            });
+
+                            AlertDialog alertDialog = AlarmDeleteDialog.create();
+                            alertDialog.show();
+                    alertDialog.getButton((DialogInterface.BUTTON_POSITIVE)).setTextColor(finalView.getResources().getColor(R.color.loginPasswordLost));
+                    alertDialog.getButton((DialogInterface.BUTTON_NEGATIVE)).setTextColor(finalView.getResources().getColor(R.color.loginPasswordLost));
+                    alertDialog.getButton((DialogInterface.BUTTON_NEUTRAL)).setTextColor(finalView.getResources().getColor(R.color.loginPasswordLost));
+
+                        }
+                    });
+            }else
         {
             holder.Messanger_Chatting_Picture.setVisibility(View.INVISIBLE);
+            holder.Messanger_Chatting_Picture.setOnClickListener(null);
         }
 
         if(messanger_Chatting_Arraylist.get(position).isTimeChanged())

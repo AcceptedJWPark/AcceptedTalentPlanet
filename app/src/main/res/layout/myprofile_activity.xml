@@ -84,7 +84,7 @@
                         android:focusable="false"
                         android:focusableInTouchMode="false"
                         android:layout_centerHorizontal="true"
-                        android:src="@drawable/testpicture"
+                        android:src="@drawable/picure_basic"
                         android:scaleType="fitXY"
                         />
                     </RelativeLayout>
@@ -575,12 +575,11 @@
 
                     <Button
                         android:id="@+id/btn_Save_MyProfile"
-                        android:layout_width="match_parent"
+                        android:layout_width="@dimen/Login_btn"
                         android:layout_height="30dp"
-                        android:layout_marginLeft="@dimen/Login_btn_margin"
-                        android:layout_marginRight="@dimen/Login_btn_margin"
                         android:textSize="@dimen/BigBtn"
                         android:background="@drawable/bgr_bigbtn"
+                        android:layout_gravity="center"
                         android:text="저장하기"
                         android:textColor="@color/textcolor_bigbtn"
                         />

@@ -1,6 +1,5 @@
 package com.example.accepted.acceptedtalentplanet.System;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -130,7 +129,7 @@ public class MainActivity extends AppCompatActivity {
         tv_Password.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(mContext, com.example.accepted.acceptedtalentplanet.LoadingLogin.PasswordLost.Confirm.MainActivity.class);
+                Intent i = new Intent(mContext, com.example.accepted.acceptedtalentplanet.System.PasswordChange.MainActivity.class);
                 startActivity(i);
             }
         });

@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.ContextThemeWrapper;
 import android.view.Display;
 import android.view.View;
 import android.view.ViewGroup;
@@ -219,7 +220,7 @@ public class MainActivity extends FragmentActivity{
                     btn_SendInterest = (Button)findViewById(R.id.btn_SendInterest_TalentSharing);
                     if(!hasFlag && statusFlag.equals("P")){
                         btn_SendInterest.setBackgroundResource(R.drawable.bgr_bigbtn);
-                        final AlertDialog.Builder shallWeAlert = new AlertDialog.Builder(MainActivity.this);
+                        final AlertDialog.Builder shallWeAlert = new AlertDialog.Builder(new ContextThemeWrapper(MainActivity.this, R.style.myDialog));
                         btn_SendInterest.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
@@ -247,7 +248,9 @@ public class MainActivity extends FragmentActivity{
                                         AlertDialog alertDialog = shallWeAlert.create();
                                         alertDialog.show();
                                         alertDialog.getButton((DialogInterface.BUTTON_NEGATIVE)).setAllCaps(false);
+                                        alertDialog.getButton((DialogInterface.BUTTON_NEGATIVE)).setTextColor(getResources().getColor(R.color.loginPasswordLost));
                                         alertDialog.getButton((DialogInterface.BUTTON_POSITIVE)).setAllCaps(false);
+                                        alertDialog.getButton((DialogInterface.BUTTON_POSITIVE)).setTextColor(getResources().getColor(R.color.loginPasswordLost));
                                         alertDialog.show();
                                         TextView msgView = (TextView) alertDialog.findViewById(android.R.id.message);
                                         msgView.setTextSize(textSize);

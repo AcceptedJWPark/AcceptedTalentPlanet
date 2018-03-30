@@ -29,7 +29,6 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.StringRequest;
-import com.bumptech.glide.Glide;
 import com.example.accepted.acceptedtalentplanet.MyFirebaseMessagingService;
 import com.example.accepted.acceptedtalentplanet.MyTalent;
 import com.example.accepted.acceptedtalentplanet.R;
@@ -40,13 +39,13 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 import static android.view.View.GONE;
 import static com.example.accepted.acceptedtalentplanet.SaveSharedPreference.DrawerLayout_ClickEvent;
 import static com.example.accepted.acceptedtalentplanet.SaveSharedPreference.DrawerLayout_Open;
+import static com.example.accepted.acceptedtalentplanet.SaveSharedPreference.checkDuplicatedLogin;
 
 public class MainActivity extends AppCompatActivity implements MyFirebaseMessagingService.MessageReceivedListener{
 
@@ -322,6 +321,8 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
                                     });
                             AlertDialog alertDialog = AlarmDeleteDialog.create();
                             alertDialog.show();
+                            alertDialog.getButton((DialogInterface.BUTTON_NEGATIVE)).setTextColor(getResources().getColor(R.color.loginPasswordLost));
+                            alertDialog.getButton((DialogInterface.BUTTON_POSITIVE)).setTextColor(getResources().getColor(R.color.loginPasswordLost));
                             btn_Right.setText("신고 하기");
                             btn_Right.setOnClickListener(new View.OnClickListener() {
                                 @Override
@@ -358,6 +359,8 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
                                     });
                             AlertDialog alertDialog = AlarmDeleteDialog.create();
                             alertDialog.show();
+                            alertDialog.getButton((DialogInterface.BUTTON_NEGATIVE)).setTextColor(getResources().getColor(R.color.loginPasswordLost));
+                            alertDialog.getButton((DialogInterface.BUTTON_POSITIVE)).setTextColor(getResources().getColor(R.color.loginPasswordLost));
                         }
                     });
                     break;
@@ -373,7 +376,7 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
                     params2.topMargin = 0;
                     ll_TextContainer.setLayoutParams(params1);
                     ll_BtnContainer.setLayoutParams(params2);
-                    final AlertDialog.Builder AlarmReregist = new AlertDialog.Builder(MainActivity.this);
+                    final AlertDialog.Builder AlarmReregist = new AlertDialog.Builder(new ContextThemeWrapper(mContext, R.style.myDialog));
                     btn_Left.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
@@ -393,6 +396,8 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
                                     });
                             AlertDialog alertDialog = AlarmReregist.create();
                             alertDialog.show();
+                            alertDialog.getButton((DialogInterface.BUTTON_NEGATIVE)).setTextColor(getResources().getColor(R.color.loginPasswordLost));
+                            alertDialog.getButton((DialogInterface.BUTTON_POSITIVE)).setTextColor(getResources().getColor(R.color.loginPasswordLost));
                         }
                     });
                     btn_Right.setText("재능드림 수정하기");
@@ -537,6 +542,8 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
                                         });
                                 AlertDialog alertDialog = AlarmDeleteDialog.create();
                                 alertDialog.show();
+                                alertDialog.getButton((DialogInterface.BUTTON_NEGATIVE)).setTextColor(getResources().getColor(R.color.loginPasswordLost));
+                                alertDialog.getButton((DialogInterface.BUTTON_POSITIVE)).setTextColor(getResources().getColor(R.color.loginPasswordLost));
                             }
                         });
                     }
@@ -565,6 +572,8 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
                                         });
                                 AlertDialog alertDialog = AlarmDeleteDialog.create();
                                 alertDialog.show();
+                                alertDialog.getButton((DialogInterface.BUTTON_NEGATIVE)).setTextColor(getResources().getColor(R.color.loginPasswordLost));
+                                alertDialog.getButton((DialogInterface.BUTTON_POSITIVE)).setTextColor(getResources().getColor(R.color.loginPasswordLost));
                             }
                         });
                         btn_Right.setText("신고 하기");
@@ -590,7 +599,7 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
                     params2.topMargin = 0;
                     ll_TextContainer.setLayoutParams(params1);
                     ll_BtnContainer.setLayoutParams(params2);
-                    final AlertDialog.Builder AlarmReregist = new AlertDialog.Builder(MainActivity.this);
+                    final AlertDialog.Builder AlarmReregist = new AlertDialog.Builder(new ContextThemeWrapper(mContext, R.style.myDialog));
                     btn_Left.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
@@ -611,6 +620,8 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
                                     });
                             AlertDialog alertDialog = AlarmReregist.create();
                             alertDialog.show();
+                            alertDialog.getButton((DialogInterface.BUTTON_NEGATIVE)).setTextColor(getResources().getColor(R.color.loginPasswordLost));
+                            alertDialog.getButton((DialogInterface.BUTTON_POSITIVE)).setTextColor(getResources().getColor(R.color.loginPasswordLost));
                         }
                     });
                     btn_Right.setOnClickListener(new View.OnClickListener() {

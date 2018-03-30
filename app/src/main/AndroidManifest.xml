@@ -27,6 +27,7 @@
         >
         <meta-data android:name="android.max_aspect" android:value="2.1" />
         <activity android:name=".LoadingLogin.Loading.MainActivity"
+            android:screenOrientation="portrait"
             >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -55,126 +56,158 @@
         <activity
             android:name=".LoadingLogin.Login.MainActivity"
             android:windowSoftInputMode="adjustNothing|stateAlwaysHidden"
+            android:screenOrientation="portrait"
             />
 
         <activity
             android:name=".LoadingLogin.PasswordLost.Confirm.MainActivity"
             android:windowSoftInputMode="stateAlwaysHidden"
+            android:screenOrientation="portrait"
             />
         <activity
             android:name=".LoadingLogin.PasswordLost.Change.MainActivity"
             android:windowSoftInputMode="stateAlwaysHidden"
+            android:screenOrientation="portrait"
             />
 
 
         <activity
         android:name=".MainActivity"
-        android:theme="@style/AppTheme" />
+        android:theme="@style/AppTheme"
+        android:screenOrientation="portrait"/>
         <activity
             android:name=".Join.Email.MainActivity"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppTheme"
+            android:screenOrientation="portrait"
+            />
         <activity
             android:name=".Join.Password.MainActivity"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppTheme"
+            android:screenOrientation="portrait"
+            />
         <activity
             android:name=".Join.Name.MainActivity"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppTheme"
+            android:screenOrientation="portrait"
+            />
         <activity
             android:name=".Join.Gender.MainActivity"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppTheme"
+            android:screenOrientation="portrait"
+            />
         <activity
             android:name=".Join.Birth.MainActivity"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppTheme"
+            android:screenOrientation="portrait"
+            />
         <activity android:name=".MyProfile.MainActivity"
             android:windowSoftInputMode="stateAlwaysHidden"
+            android:screenOrientation="portrait"
             />
 
-        <activity android:name=".MyProfile.CompleteList.MainActivity"/>
+        <activity android:name=".MyProfile.CompleteList.MainActivity"
+            android:screenOrientation="portrait"
+            />
 
 
-        <activity android:name=".TalentResister.MainActivity"/>
-        <activity android:name=".TalentResister.Level.MainActivity"/>
+        <activity android:name=".TalentResister.MainActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".TalentResister.Level.MainActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".TalentResister.Location.MainActivity"
             android:windowSoftInputMode="adjustNothing"
-            />
-        <activity android:name=".TalentResister.Point.MainActivity"/>
+            android:screenOrientation="portrait" />
+        <activity android:name=".TalentResister.Point.MainActivity"
+            android:screenOrientation="portrait" />
         <activity android:name=".TalentResister.Talent.MainActivity"
-            android:windowSoftInputMode="adjustNothing"/>
-
+            android:windowSoftInputMode="adjustNothing"
+            android:screenOrientation="portrait" />
         <activity android:name=".TalentCondition.MainActivity"
-            />
+            android:screenOrientation="portrait" />
         <activity android:name=".TalentSharing.MainActivity"
-            />
-
-        <activity android:name=".CustomerService.MainActivity"/>
-        <activity android:name=".CustomerService.Faq.MainActivity"/>
-        <activity android:name=".CustomerService.Introduction.MainActivity"/>
-        <activity android:name=".CustomerService.Version.MainActivity"/>
-        <activity android:name=".CustomerService.Notice.MainActivity"/>
+            android:screenOrientation="portrait" />
+        <activity android:name=".CustomerService.MainActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".CustomerService.Faq.MainActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".CustomerService.Introduction.MainActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".CustomerService.Version.MainActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".CustomerService.Notice.MainActivity"
+            android:screenOrientation="portrait"/>
         <activity android:name=".CustomerService.Question.MainActivity"
-            />
+            android:screenOrientation="portrait"/>
         <activity android:name=".CustomerService.Question.QuestionList.MainActivity"
             android:launchMode="singleTask"
+            android:screenOrientation="portrait"
             />
-        <activity android:name=".CustomerService.Update.MainActivity"/>
-        <activity android:name=".CustomerService.Manual.AnswerList.MainActivity"/>
-        <activity android:name=".CustomerService.Manual.MainActivity"/>
+        <activity android:name=".CustomerService.Update.MainActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".CustomerService.Manual.AnswerList.MainActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".CustomerService.Manual.MainActivity"
+            android:screenOrientation="portrait"/>
         <activity android:name=".CustomerService.Claim.ClaimList.MainActivity"
             android:launchMode="singleTask"
-            />
+            android:screenOrientation="portrait"/>
         <activity android:name=".CustomerService.Claim.MainActivity"
-            />
+            android:screenOrientation="portrait"/>
 
         <activity android:name=".SharingList.MainActivity"
             android:launchMode="singleTask"
-            />
+            android:screenOrientation="portrait" />
         <activity android:name=".TalentSearching.SearchingPage.MainActivity"
-            android:windowSoftInputMode="adjustNothing"/>
-        <activity android:name=".TalentSearching.MainActivity"/>
+            android:windowSoftInputMode="adjustNothing"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".TalentSearching.MainActivity"
+            android:screenOrientation="portrait"/>
 
         <activity
             android:name=".TalentSharing.Popup.MainActivity"
-            android:theme="@style/Theme.AppCompat.Dialog">
-        </activity>
+            android:theme="@style/Theme.AppCompat.Dialog"
+            android:screenOrientation="portrait"/>
 
         <activity
-            android:name=".System.MainActivity">
-        </activity>
+            android:name=".System.MainActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".System.PasswordChange.MainActivity"
+            android:screenOrientation="portrait"/>
 
         <activity
             android:name=".InterestingList.MainActivity"
             android:launchMode="singleTask"
-            >
-        </activity>
+            android:screenOrientation="portrait"/>
 
         <activity
             android:name=".InterestingList.Popup.MainActivity"
             android:theme="@style/Theme.AppCompat.Dialog"
-            >
-        </activity>
+            android:screenOrientation="portrait"/>
 
         <activity
             android:name=".Alarm.MainActivity"
-            >
-        </activity>
+            android:screenOrientation="portrait"/>
 
         <activity
-            android:name=".FriendList.MainActivity">
-        </activity>
+            android:name=".FriendList.MainActivity"
+            android:screenOrientation="portrait"/>
 
         <activity
             android:name=".Messanger.Chatting.MainActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
             />
 
         <activity
             android:name=".Messanger.List.MainActivity"
             android:launchMode="singleTask"
-            />
+            android:screenOrientation="portrait"/>
 
         <activity
             android:name=".pictureExpand"
-            />
+            android:screenOrientation="portrait"/>
         
         <!-- firebase service -->
         <!-- [START firebase_service] -->

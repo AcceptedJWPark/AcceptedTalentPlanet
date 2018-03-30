@@ -246,7 +246,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                 String formattedDate = dateFormat(unformatedDate);
 
                 int countMessage = 1;
-                ListItem listItem = new ListItem(R.drawable.testpicture, userName, "새로운 메세지 1건이 있습니다.", 1, formattedDate, 6, R.drawable.icon_delete, false);
+                ListItem listItem = new ListItem(R.drawable.picure_basic, userName, "새로운 메세지 1건이 있습니다.", 1, formattedDate, 6, R.drawable.icon_delete, false);
                 listItem.setUserId(userId);
                 listItem.setUserName(userName);
                 if(arrayList.size()>0) {

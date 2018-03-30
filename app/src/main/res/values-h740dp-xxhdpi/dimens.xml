@@ -73,7 +73,7 @@
     <dimen name="DialogTxtSize">4.5dp</dimen>
     <dimen name="Picture_Width">80dp</dimen>
     <dimen name="Picture_Height">80dp</dimen>
-    <dimen name="Margin_et">5dp</dimen>
+    <dimen name="Margin_et">7.5dp</dimen>
     <dimen name="Margin_btn">10dp</dimen>
     <dimen name="Margin_title">20dp</dimen>
     <dimen name="Margin_txtContainer">30dp</dimen>

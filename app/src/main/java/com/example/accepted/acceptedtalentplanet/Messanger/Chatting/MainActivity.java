@@ -40,6 +40,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.example.accepted.acceptedtalentplanet.SaveSharedPreference.checkDuplicatedLogin;
 
 /**
  * Created by Accepted on 2018-03-06.
@@ -221,7 +222,7 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
             if(arrayList.size() == 0){
                 isTimeChanged = true;
                 isDateChanged = true;
-                arrayList.add(new ListItem(R.drawable.testpicture, content, creationDate, messageType, isPicture, isTimeChanged, isDateChanged));
+                arrayList.add(new ListItem(R.drawable.picure_basic, content, creationDate, messageType, isPicture, isTimeChanged, isDateChanged));
             }else{
                 int prevPosition = arrayList.size() - 1;
                 ListItem temp = arrayList.get(prevPosition);
@@ -249,7 +250,7 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
                     isTimeChanged = true;
                 }
 
-                arrayList.add(new ListItem(R.drawable.testpicture, content, creationDate, messageType, isPicture, isTimeChanged, isDateChanged));
+                arrayList.add(new ListItem(R.drawable.picure_basic, content, creationDate, messageType, isPicture, isTimeChanged, isDateChanged));
 
             }
             cursor.moveToNext();
