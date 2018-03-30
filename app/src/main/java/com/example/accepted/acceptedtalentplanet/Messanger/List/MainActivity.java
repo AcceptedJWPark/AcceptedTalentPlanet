@@ -5,11 +5,11 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -22,7 +22,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-import static com.example.accepted.acceptedtalentplanet.SaveSharedPreference.checkDuplicatedLogin;
 
 public class MainActivity extends AppCompatActivity implements MyFirebaseMessagingService.MessageReceivedListener {
 
@@ -85,7 +84,6 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
     @Override
     public void onResume(){
         super.onResume();
-        checkDuplicatedLogin(mContext, this);
         MyFirebaseMessagingService.isNewMessageArrive = false;
         refreshChatLog();
         MyFirebaseMessagingService.setOnMessageReceivedListener(this);
@@ -102,7 +100,7 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
             e.printStackTrace();
         }
 
-        String selectBasicChat = "SELECT D01.ROOM_ID, D01.USER_NAME, D03.UNREADED_COUNT, D06.CONTENT, D06.CREATION_DATE, D01.USER_ID, D01.START_MESSAGE_ID\n" +
+        String selectBasicChat = "SELECT D01.ROOM_ID, D01.USER_NAME, D03.UNREADED_COUNT, D06.CONTENT, D06.CREATION_DATE, D01.USER_ID, D01.START_MESSAGE_ID, D01.FILE_PATH\n" +
                 "FROM   TB_CHAT_ROOM D01\n" +
                 "\t   LEFT OUTER JOIN (SELECT D02.ROOM_ID, COUNT(D02.ROOM_ID) AS UNREADED_COUNT\n" +
                 "        FROM   TB_CHAT_LOG D02\n" +
@@ -133,6 +131,7 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
             String lastMessage = (cursor.getString(3)==null) ? "NODATA" : cursor.getString(3);
             String lastDate = (cursor.getString(4) == null)? "NODATA" : cursor.getString(4);
             String userID = cursor.getString(5);
+            String filePath = cursor.getString(7);
 
             if(!lastDate.equals("NODATA")) {
                 String[] dateTemp = lastDate.split(",");
@@ -142,8 +141,9 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
                 lastDate = (lastDate.equals(nowDate))?dateTime : lastDate;
             }
 
-            Bitmap picture = SaveSharedPreference.getPictureFromDB(mContext, userID);
-            messanger_Arraylist.add(0,new ListItem(R.drawable.picure_basic, userName, userID, lastMessage ,lastDate, unreadedCount, false, roomID, picture));
+            Log.d("filePath Messanger = ", filePath);
+
+            messanger_Arraylist.add(0,new ListItem(R.drawable.picure_basic, userName, userID, lastMessage ,lastDate, unreadedCount, false, roomID, filePath));
             cursor.moveToNext();
         }
         cursor.close();

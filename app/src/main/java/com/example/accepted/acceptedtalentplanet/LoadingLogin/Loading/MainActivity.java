@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
         String sqlCreateTbl = "CREATE TABLE IF NOT EXISTS TB_CHAT_LOG (MESSAGE_ID INTEGER PRIMARY KEY, ROOM_ID INTEGER, MASTER_ID TEXT, USER_ID TEXT, CONTENT TEXT, CREATION_DATE TEXT, READED_FLAG TEXT)";
         sqliteDatabase.execSQL(sqlCreateTbl);
 
-        String sqlCreateTbl2 = "CREATE TABLE IF NOT EXISTS TB_CHAT_ROOM (ROOM_ID INTEGER, USER_ID TEXT, USER_NAME TEXT, MASTER_ID TEXT, START_MESSAGE_ID INTEGER, CREATION_DATE TEXT, LAST_UPDATE_DATE TEXT, ACTIVATE_FLAG TEXT, PICTURE BLOB, PRIMARY KEY(ROOM_ID, USER_ID, MASTER_ID))";
+        String sqlCreateTbl2 = "CREATE TABLE IF NOT EXISTS TB_CHAT_ROOM (ROOM_ID INTEGER, USER_ID TEXT, USER_NAME TEXT, MASTER_ID TEXT, START_MESSAGE_ID INTEGER, CREATION_DATE TEXT, LAST_UPDATE_DATE TEXT, ACTIVATE_FLAG TEXT, FILE_PATH TEXT, PRIMARY KEY(ROOM_ID, USER_ID, MASTER_ID))";
         sqliteDatabase.execSQL(sqlCreateTbl2);
 
         String sqlCreateTbl3 = "CREATE TABLE IF NOT EXISTS TB_FRIEND_LIST (MASTER_ID TEXT, FRIEND_ID TEXT, TALENT_TYPE TEXT, PRIMARY KEY(MASTER_ID, FRIEND_ID, TALENT_TYPE))";
@@ -63,9 +63,6 @@ public class MainActivity extends AppCompatActivity {
 
         String sqlCreateTbl4 = "CREATE TABLE IF NOT EXISTS TB_FCM_TOKEN (TOKEN TEXT)";
         sqliteDatabase.execSQL(sqlCreateTbl4);
-
-        String sqlCreateTbl5 = "CREATE TABLE IF NOT EXISTS TB_IMAGES (MASTER_ID TEXT, USER_ID TEXT, PICTURE BLOB, PRIMARY KEY(MASTER_ID, USER_ID))";
-        sqliteDatabase.execSQL(sqlCreateTbl5);
 
         String sqlCreateTbl6 = "CREATE TABLE IF NOT EXISTS TB_GRANT (USER_ID TEXT PRIMARY KEY, MESSAGE_GRANT INT, CONDITION_GRANT INT, ANSWER_GRANT INT)";
         sqliteDatabase.execSQL(sqlCreateTbl6);
@@ -159,7 +156,6 @@ public class MainActivity extends AppCompatActivity {
                     Date date = new Date();
                     SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd hh:mm:ss");
 
-                    Log.d("Image Downloading", "start : " + sdf.format(date));
                     getMyPicture();
 
                 }
@@ -189,12 +185,10 @@ public class MainActivity extends AppCompatActivity {
             public void onResponse(String response){
                 try {
                     if(response.length() != 0) {
-                        Date date = new Date();
-                        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd hh:mm:ss");
-                        Log.d("Image Downloading", "end : " + sdf.format(date) );
+
                         JSONObject obj = new JSONObject(response);
-                        if(!obj.getString("FILE_DATA").equals("Tk9EQVRB")){
-                            SaveSharedPreference.setMyPicture(obj.getString("FILE_DATA"));
+                        if(!obj.getString("S_FILE_PATH").equals("NODATA")){
+                            SaveSharedPreference.setMyPicturePath(obj.getString("S_FILE_PATH"), obj.getString("FILE_PATH"));
                         }
                     }
                     Log.d("getPicture", "completed");
@@ -209,9 +203,7 @@ public class MainActivity extends AppCompatActivity {
             protected Map<String, String> getParams(){
                 Map<String, String> params = new HashMap();
                 params.put("userID", SaveSharedPreference.getUserId(mContext));
-
-
-                return params;
+               return params;
             }
         };
 

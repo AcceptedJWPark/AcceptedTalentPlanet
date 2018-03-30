@@ -17,7 +17,9 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.accepted.acceptedtalentplanet.R;
+import com.example.accepted.acceptedtalentplanet.SaveSharedPreference;
 
 import java.util.ArrayList;
 
@@ -29,13 +31,13 @@ public class Adapter extends BaseAdapter {
 
     private ArrayList<ListItem> messanger_Chatting_Arraylist = new ArrayList<>();
     Context mContext;
-    Bitmap picture = null;
+    String filePath;
 
 
-    public Adapter(ArrayList<ListItem> messanger_Chatting_Arraylist, Context mContext, Bitmap picture) {
+    public Adapter(ArrayList<ListItem> messanger_Chatting_Arraylist, Context mContext, String filePath) {
         this.messanger_Chatting_Arraylist = messanger_Chatting_Arraylist;
         this.mContext = mContext;
-        this.picture = picture;
+        this.filePath = filePath;
     }
 
     public Adapter()
@@ -103,8 +105,8 @@ public class Adapter extends BaseAdapter {
 
         if(messanger_Chatting_Arraylist.get(position).getMessageType()==2)
         {
-            if(picture != null){
-                holder.Messanger_Chatting_Picture.setBackground(new BitmapDrawable(picture));
+            if(!filePath.equals("NODATA")){
+                Glide.with(mContext).load(SaveSharedPreference.getImageUri() + filePath).into(holder.Messanger_Chatting_Picture);
             }else{
                 holder.Messanger_Chatting_Picture.setBackgroundResource(messanger_Chatting_Arraylist.get(position).getPicture());
             }

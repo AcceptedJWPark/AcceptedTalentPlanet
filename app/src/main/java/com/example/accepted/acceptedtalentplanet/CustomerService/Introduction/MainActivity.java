@@ -14,7 +14,6 @@ import android.widget.TextView;
 
 import com.example.accepted.acceptedtalentplanet.R;
 
-import static com.example.accepted.acceptedtalentplanet.SaveSharedPreference.checkDuplicatedLogin;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -136,11 +135,5 @@ public class MainActivity extends AppCompatActivity {
         public int getCount() {
             return 3;
         }
-    }
-
-    @Override
-    public void onResume(){
-        super.onResume();
-        checkDuplicatedLogin(mContext, this);
     }
 }

@@ -17,7 +17,18 @@ import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.toolbox.StringRequest;
+import com.bumptech.glide.Glide;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.ByteArrayOutputStream;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by Accepted on 2018-03-19.
@@ -27,7 +38,7 @@ public class pictureExpand extends AppCompatActivity {
 
     LinearLayout ll_CloseContainer;
     Context mContext;
-
+    private String userID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +46,7 @@ public class pictureExpand extends AppCompatActivity {
 
         mContext = getApplicationContext();
         String type = getIntent().getStringExtra("Activity");
-        String UserID = getIntent().getStringExtra("userID");
+        userID = getIntent().getStringExtra("userID");
         setContentView(R.layout.pictureexpand_activity);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
@@ -46,19 +57,7 @@ public class pictureExpand extends AppCompatActivity {
             }
         });
 
-        if(type.equals("Profile")){
-            Bitmap bitmap = SaveSharedPreference.getMyPicture();
-            if(bitmap != null){
-                ((ImageView) findViewById(R.id.iv_Picture_pictureExpand)).setImageBitmap(bitmap);
-            }
-        }else {
-
-            Bitmap bitmap = SaveSharedPreference.getPictureFromDB(mContext, UserID);
-
-            if (bitmap != null) {
-                ((ImageView) findViewById(R.id.iv_Picture_pictureExpand)).setImageBitmap(bitmap);
-            }
-        }
+        getPicture();
 
         ll_CloseContainer = (LinearLayout) findViewById(R.id.ll_CloseContainer_pictureExpand);
         DisplayMetrics metrics = new DisplayMetrics();
@@ -85,5 +84,36 @@ public class pictureExpand extends AppCompatActivity {
             }
         }
         return statusBarHeight;
+    }
+
+    public void getPicture() {
+        RequestQueue postRequestQueue = VolleySingleton.getInstance(mContext).getRequestQueue();
+        StringRequest postJsonRequest = new StringRequest(Request.Method.POST, SaveSharedPreference.getServerIp() + "Login/getMyPicture.do", new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONObject obj = new JSONObject(response);
+                    Log.d("image path2", SaveSharedPreference.getImageUri() + obj.getString("FILE_PATH"));
+                    if(!obj.getString("FILE_PATH").equals("NODATA")){
+                        Log.d("image path", SaveSharedPreference.getImageUri() + obj.getString("FILE_PATH"));
+                        Glide.with(mContext).load(SaveSharedPreference.getImageUri() + obj.getString("FILE_PATH")).into((ImageView) findViewById(R.id.iv_Picture_pictureExpand));
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, SaveSharedPreference.getErrorListener()) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap();
+                params.put("userID", userID);
+
+                return params;
+            }
+        };
+
+
+        postRequestQueue.add(postJsonRequest);
+
     }
 }

@@ -18,9 +18,9 @@ public class ListItem {
     private int messanger_Count;
     private boolean messanger_DeleteBtn;
     private int roomID;
-    private Bitmap picture;
+    private String filePath;
 
-    public ListItem(int messsanger_Pic, String messanger_Name, String messanger_userID, String messanger_Content, String messanger_Date, int messanger_Count, boolean messanger_DeleteBtn, int roomID, Bitmap picture) {
+    public ListItem(int messsanger_Pic, String messanger_Name, String messanger_userID, String messanger_Content, String messanger_Date, int messanger_Count, boolean messanger_DeleteBtn, int roomID, String filePath) {
         this.messsanger_Pic = messsanger_Pic;
         this.messanger_Name = messanger_Name;
         this.messanger_userID = messanger_userID;
@@ -29,7 +29,7 @@ public class ListItem {
         this.messanger_Count = messanger_Count;
         this.messanger_DeleteBtn = messanger_DeleteBtn;
         this.roomID = roomID;
-        this.picture = picture;
+        this.filePath = filePath;
     }
 
     public int getMesssanger_Pic() {
@@ -92,12 +92,8 @@ public class ListItem {
         return roomID;
     }
 
-    public void setPicture(Bitmap picture){
-        this.picture = picture;
-    }
-
-    public Bitmap getPicture(){
-        return this.picture;
+    public String getFilePath(){
+        return this.filePath;
     }
 
 

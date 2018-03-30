@@ -24,7 +24,6 @@ import com.example.accepted.acceptedtalentplanet.SaveSharedPreference;
 
 import java.util.ArrayList;
 
-import static com.example.accepted.acceptedtalentplanet.SaveSharedPreference.checkDuplicatedLogin;
 import static com.example.accepted.acceptedtalentplanet.SaveSharedPreference.hideKeyboard;
 
 public class MainActivity extends AppCompatActivity implements TextWatcher{
@@ -218,9 +217,4 @@ public class MainActivity extends AppCompatActivity implements TextWatcher{
 
     }
 
-    @Override
-    public void onResume(){
-        super.onResume();
-        checkDuplicatedLogin(mContext, this);
-    }
 }

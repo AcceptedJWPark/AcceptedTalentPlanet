@@ -7,7 +7,6 @@ import android.database.Cursor;
 import android.database.CursorIndexOutOfBoundsException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
-import android.graphics.Bitmap;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.os.Handler;
@@ -18,7 +17,6 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
 import android.util.Log;
-import android.view.ContextThemeWrapper;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -30,6 +28,7 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.StringRequest;
+import com.bumptech.glide.Glide;
 import com.example.accepted.acceptedtalentplanet.MyFirebaseMessagingService;
 import com.example.accepted.acceptedtalentplanet.MyTalent;
 import com.example.accepted.acceptedtalentplanet.R;
@@ -46,7 +45,6 @@ import java.util.Map;
 import static android.view.View.GONE;
 import static com.example.accepted.acceptedtalentplanet.SaveSharedPreference.DrawerLayout_ClickEvent;
 import static com.example.accepted.acceptedtalentplanet.SaveSharedPreference.DrawerLayout_Open;
-import static com.example.accepted.acceptedtalentplanet.SaveSharedPreference.checkDuplicatedLogin;
 
 public class MainActivity extends AppCompatActivity implements MyFirebaseMessagingService.MessageReceivedListener{
 
@@ -83,7 +81,7 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
     private String givePartnerID, takePartnerID;
 
     private String flag, giveStatus, takeStatus;
-    private String giveTalentID, takeTalentID, targetGiveTalentID, targetTakeTalentID;
+    private String giveTalentID, takeTalentID, targetGiveTalentID, targetTakeTalentID, giveFilePath, takeFilePath;
 
     private boolean givePartnerCompFlag = false;
     private boolean takePartnerCompFlag = false;
@@ -104,8 +102,8 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
 
         drawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout_TalentCondition);
         view_drawerView = findViewById(R.id.view_drawerView_TalentCondition);
-        if(SaveSharedPreference.getMyPicture() != null)
-            ((ImageView) findViewById(R.id.DrawerPicture)).setImageBitmap(SaveSharedPreference.getMyPicture());
+        if(SaveSharedPreference.getMyThumbPicturePath() != null)
+            Glide.with(mContext).load(SaveSharedPreference.getImageUri() + SaveSharedPreference.getMyThumbPicturePath()).into((ImageView) findViewById(R.id.DrawerPicture));
 
 
         View.OnClickListener mClicklistener = new  View.OnClickListener()
@@ -291,10 +289,10 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
                     ll_TextContainer.setLayoutParams(params1);
                     btn_TalentRegist.setVisibility(GONE);
                     tv_Condition.setText("진행 중...");
-                    Bitmap bitmap = SaveSharedPreference.getPictureFromDB(mContext, givePartnerID);
-                    if(bitmap != null)
-                        ((ImageView)findViewById(R.id.TalentCondition_ProfilePicture)).setImageBitmap(bitmap);
-                    final AlertDialog.Builder AlarmDeleteDialog = new AlertDialog.Builder(new ContextThemeWrapper(MainActivity.this, R.style.myDialog));
+
+                    if(!giveFilePath.equals("NODATA"))
+                        Glide.with(mContext).load(SaveSharedPreference.getImageUri() + giveFilePath).into((ImageView)findViewById(R.id.TalentCondition_ProfilePicture));
+                    final AlertDialog.Builder AlarmDeleteDialog = new AlertDialog.Builder(MainActivity.this);
                     btn_Left.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
@@ -377,7 +375,7 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
                     params2.topMargin = 0;
                     ll_TextContainer.setLayoutParams(params1);
                     ll_BtnContainer.setLayoutParams(params2);
-                    final AlertDialog.Builder AlarmReregist = new AlertDialog.Builder(new ContextThemeWrapper(mContext, R.style.myDialog));
+                    final AlertDialog.Builder AlarmReregist = new AlertDialog.Builder(MainActivity.this);
                     btn_Left.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
@@ -496,10 +494,11 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
                 }
                 case 2: {
                     tv_Txt.setText("아래 회원과 재능을 공유하였다면 완료하기 버튼을 눌러주세요!");
-                    Bitmap bitmap = SaveSharedPreference.getPictureFromDB(mContext, takePartnerID);
-                    if(bitmap != null)
-                        ((ImageView)findViewById(R.id.TalentCondition_ProfilePicture)).setImageBitmap(bitmap);
-                    final AlertDialog.Builder AlarmDeleteDialog = new AlertDialog.Builder(new ContextThemeWrapper(mContext, R.style.myDialog));
+
+                    if(!takeFilePath.equals("NODATA"))
+                        Glide.with(mContext).load(SaveSharedPreference.getImageUri() + takeFilePath).into((ImageView)findViewById(R.id.TalentCondition_ProfilePicture));
+
+                    final AlertDialog.Builder AlarmDeleteDialog = new AlertDialog.Builder(MainActivity.this);
                     btn_Left.setText("완료 하기");
                     btn_Left.setBackgroundResource(R.drawable.bgr_bigbtn);
                     btn_Right.setText("진행 취소");
@@ -599,7 +598,7 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
                     params2.topMargin = 0;
                     ll_TextContainer.setLayoutParams(params1);
                     ll_BtnContainer.setLayoutParams(params2);
-                    final AlertDialog.Builder AlarmReregist = new AlertDialog.Builder(new ContextThemeWrapper(mContext, R.style.myDialog));
+                    final AlertDialog.Builder AlarmReregist = new AlertDialog.Builder(MainActivity.this);
                     btn_Left.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
@@ -647,7 +646,6 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
     @Override
     public void onResume(){
         super.onResume();
-        checkDuplicatedLogin(mContext, this);
         getMyTalent();
         MyFirebaseMessagingService.setOnMessageReceivedListener(this);
         drawerLayout.closeDrawers();
@@ -676,6 +674,7 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
                             giveTalentID = o.getString("seq");
                             givePartnerCompFlag = o.getString("TARGET_COMP_FLAG").equals("C");
                             giveInterestCount = o.getInt("INTEREST_COUNT");
+                            giveFilePath = o.getString("S_FILE_PATH");
 
                             switch (giveStatus){
                                 case "P":
@@ -702,6 +701,7 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
                             takeTalentID = o.getString("seq");
                             takePartnerCompFlag = o.getString("TARGET_COMP_FLAG").equals("C");
                             takeInterestCount = o.getInt("INTEREST_COUNT");
+                            takeFilePath = o.getString("S_FILE_PATH");
 
                             switch (takeStatus){
                                 case "P":

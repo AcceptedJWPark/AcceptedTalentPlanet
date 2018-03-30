@@ -22,7 +22,9 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.accepted.acceptedtalentplanet.R;
+import com.example.accepted.acceptedtalentplanet.SaveSharedPreference;
 
 import java.util.ArrayList;
 
@@ -269,12 +271,12 @@ public class Adapter extends BaseAdapter {
             holder.Messanger_List_DateLL.setVisibility(View.VISIBLE);
             holder.Messanger_List_DeleteList.setVisibility(View.GONE);
         }
-            if(messanger_Arraylist.get(position).getPicture() == null) {
+            if(messanger_Arraylist.get(position).getFilePath().equals("NODATA")) {
                 holder.messsanger_Pic.setBackgroundResource(messanger_Arraylist.get(position).getMesssanger_Pic());
             }
             else
             {
-                holder.messsanger_Pic.setBackground(new BitmapDrawable(messanger_Arraylist.get(position).getPicture()));
+                Glide.with(mContext).load(SaveSharedPreference.getImageUri() + messanger_Arraylist.get(position).getFilePath()).into(holder.messsanger_Pic);
             }
             holder.messanger_Name.setText(messanger_Arraylist.get(position).getMessanger_Name());
             holder.messanger_Content.setText(messanger_Arraylist.get(position).getMessanger_Content());

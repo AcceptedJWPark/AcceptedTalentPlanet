@@ -33,6 +33,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -66,6 +68,10 @@ public class MainActivity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.login_activity);
         mContext = getApplicationContext();
+
+        if(getIntent().hasExtra("dupFlag")){
+            Toast.makeText(mContext, "다른 기기에서 로그인되어 접속이 종료됩니다.", Toast.LENGTH_SHORT).show();
+        }
 
         ll_Title = (LinearLayout) findViewById(R.id.ll_title_Login);
         ll_Info = (LinearLayout) findViewById(R.id.ll_info_Login);
@@ -298,11 +304,13 @@ public class MainActivity extends AppCompatActivity {
             public void onResponse(String response){
                 try {
                     if(response.length() != 0) {
+
                         JSONObject obj = new JSONObject(response);
-                        if(!obj.getString("FILE_DATA").equals("Tk9EQVRB")){
-                            SaveSharedPreference.setMyPicture(obj.getString("FILE_DATA"));
+                        if(!obj.getString("S_FILE_PATH").equals("NODATA")){
+                            SaveSharedPreference.setMyPicturePath(obj.getString("S_FILE_PATH"), obj.getString("FILE_PATH"));
                         }
                     }
+
                 }
                 catch(JSONException e){
                     e.printStackTrace();
@@ -313,8 +321,6 @@ public class MainActivity extends AppCompatActivity {
             protected Map<String, String> getParams(){
                 Map<String, String> params = new HashMap();
                 params.put("userID", SaveSharedPreference.getUserId(mContext));
-
-
                 return params;
             }
         };

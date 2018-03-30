@@ -16,6 +16,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.accepted.acceptedtalentplanet.InterestingList.Popup.MainActivity;
 import com.example.accepted.acceptedtalentplanet.R;
 import com.example.accepted.acceptedtalentplanet.SaveSharedPreference;
@@ -30,8 +31,6 @@ public class Adapter extends BaseAdapter {
 
     private Context mContext;
     private ArrayList<ListItem> arrayList;
-    private String fileData;
-    private Bitmap bitmap;
     byte[] bytes;
     public Adapter(Context context, ArrayList<ListItem> arrayList) {
         this.mContext = context;
@@ -121,9 +120,6 @@ public class Adapter extends BaseAdapter {
             holder.trashView4.setLayoutParams(params8);
 
 
-
-            Bitmap bitmap = SaveSharedPreference.getPictureFromDB(mContext, arrayList.get(position).getUserID());
-
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -134,10 +130,10 @@ public class Adapter extends BaseAdapter {
                 }
             });
 
-            if (bitmap == null) {
+            if (arrayList.get(position).getFilePath().equals("NODATA")) {
                 holder.iv_picture.setBackgroundResource(arrayList.get(position).getPicture());
             } else {
-                holder.iv_picture.setImageBitmap(bitmap);
+                Glide.with(mContext).load(SaveSharedPreference.getImageUri() + arrayList.get(position).getFilePath()).into(holder.iv_picture);
             }
 
             holder.tv_Name.setText(arrayList.get(position).getName());
