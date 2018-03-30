@@ -18,6 +18,7 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.StringRequest;
+import com.bumptech.glide.Glide;
 import com.example.accepted.acceptedtalentplanet.R;
 import com.example.accepted.acceptedtalentplanet.SaveSharedPreference;
 import com.example.accepted.acceptedtalentplanet.VolleySingleton;
@@ -80,8 +81,8 @@ public class MainActivity extends AppCompatActivity {
         slidingMenuDL = (DrawerLayout) findViewById(R.id.TalentSearching_listboxDL);
         drawerView = (View) findViewById(R.id.TalentSearching_container);
         ((TextView) findViewById(R.id.tv_toolbarTitle)).setText("재능 검색");
-        if(SaveSharedPreference.getMyPicture() != null)
-            ((ImageView) findViewById(R.id.DrawerPicture)).setImageBitmap(SaveSharedPreference.getMyPicture());
+        if(SaveSharedPreference.getMyThumbPicturePath() != null)
+            Glide.with(mContext).load(SaveSharedPreference.getImageUri() + SaveSharedPreference.getMyThumbPicturePath()).into((ImageView) findViewById(R.id.DrawerPicture));
 
         View.OnClickListener mClicklistener = new  View.OnClickListener()
         {

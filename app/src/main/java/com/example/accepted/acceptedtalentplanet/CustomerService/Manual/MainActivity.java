@@ -13,7 +13,6 @@ import android.widget.TextView;
 
 import com.example.accepted.acceptedtalentplanet.R;
 
-import static com.example.accepted.acceptedtalentplanet.SaveSharedPreference.checkDuplicatedLogin;
 
 /**
  * Created by Accepted on 2017-10-31.
@@ -187,12 +186,6 @@ public class MainActivity extends AppCompatActivity {
     public void hideKeyboard(View view) {
         InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Activity.INPUT_METHOD_SERVICE);
         inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
-    }
-
-    @Override
-    public void onResume(){
-        super.onResume();
-        checkDuplicatedLogin(mContext, this);
     }
 
 

@@ -12,13 +12,13 @@ import android.widget.LinearLayout;
 import android.widget.Switch;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.accepted.acceptedtalentplanet.MyFirebaseMessagingService;
 import com.example.accepted.acceptedtalentplanet.R;
 import com.example.accepted.acceptedtalentplanet.SaveSharedPreference;
 
 import static com.example.accepted.acceptedtalentplanet.SaveSharedPreference.DrawerLayout_ClickEvent;
 import static com.example.accepted.acceptedtalentplanet.SaveSharedPreference.DrawerLayout_Open;
-import static com.example.accepted.acceptedtalentplanet.SaveSharedPreference.checkDuplicatedLogin;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -60,8 +60,8 @@ public class MainActivity extends AppCompatActivity {
         view_DrawerLayout = (View) findViewById(R.id.view_DrawerLayout_System);
         ((TextView) findViewById(R.id.tv_toolbarTitle)).setText("설정");
         ((TextView) findViewById(R.id.DrawerUserID)).setText(SaveSharedPreference.getUserId(mContext));
-        if(SaveSharedPreference.getMyPicture() != null)
-            ((ImageView) findViewById(R.id.DrawerPicture)).setImageBitmap(SaveSharedPreference.getMyPicture());
+        if(SaveSharedPreference.getMyThumbPicturePath() != null)
+            Glide.with(mContext).load(SaveSharedPreference.getImageUri() + SaveSharedPreference.getMyThumbPicturePath()).into((ImageView) findViewById(R.id.DrawerPicture));
 
         if(MyFirebaseMessagingService.isNewMessageArrive){
             findViewById(R.id.Icon_NewMessage).setVisibility(View.VISIBLE);
@@ -196,7 +196,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onResume(){
         super.onResume();
-        checkDuplicatedLogin(mContext, this);
         drawerLayout.closeDrawers();
         if(MyFirebaseMessagingService.isNewMessageArrive){
             findViewById(R.id.Icon_NewMessage).setVisibility(View.VISIBLE);

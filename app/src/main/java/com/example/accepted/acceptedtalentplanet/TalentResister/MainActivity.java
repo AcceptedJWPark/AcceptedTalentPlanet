@@ -19,6 +19,7 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.StringRequest;
+import com.bumptech.glide.Glide;
 import com.example.accepted.acceptedtalentplanet.MyFirebaseMessagingService;
 import com.example.accepted.acceptedtalentplanet.MyTalent;
 import com.example.accepted.acceptedtalentplanet.R;
@@ -34,7 +35,6 @@ import java.util.Map;
 
 import static com.example.accepted.acceptedtalentplanet.SaveSharedPreference.DrawerLayout_ClickEvent;
 import static com.example.accepted.acceptedtalentplanet.SaveSharedPreference.DrawerLayout_Open;
-import static com.example.accepted.acceptedtalentplanet.SaveSharedPreference.checkDuplicatedLogin;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -84,8 +84,8 @@ public class MainActivity extends AppCompatActivity {
 
         ((TextView) findViewById(R.id.tv_toolbarTitle)).setText("My Talent");
         ((TextView) findViewById(R.id.DrawerUserID)).setText(SaveSharedPreference.getUserId(mContext));
-        if(SaveSharedPreference.getMyPicture() != null)
-            ((ImageView) findViewById(R.id.DrawerPicture)).setImageBitmap(SaveSharedPreference.getMyPicture());
+        if(SaveSharedPreference.getMyThumbPicturePath() != null)
+            Glide.with(mContext).load(SaveSharedPreference.getImageUri() + SaveSharedPreference.getMyThumbPicturePath()).into((ImageView) findViewById(R.id.DrawerPicture));
 
 
         View.OnClickListener mClicklistener = new  View.OnClickListener()
@@ -318,7 +318,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onResume(){
         super.onResume();
-        checkDuplicatedLogin(mContext, this);
         drawerLayout.closeDrawers();
         if(MyFirebaseMessagingService.isNewMessageArrive){
             findViewById(R.id.Icon_NewMessage).setVisibility(View.VISIBLE);

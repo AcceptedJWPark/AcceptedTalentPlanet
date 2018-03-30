@@ -11,13 +11,13 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.accepted.acceptedtalentplanet.MyFirebaseMessagingService;
 import com.example.accepted.acceptedtalentplanet.R;
 import com.example.accepted.acceptedtalentplanet.SaveSharedPreference;
 
 import static com.example.accepted.acceptedtalentplanet.SaveSharedPreference.DrawerLayout_ClickEvent;
 import static com.example.accepted.acceptedtalentplanet.SaveSharedPreference.DrawerLayout_Open;
-import static com.example.accepted.acceptedtalentplanet.SaveSharedPreference.checkDuplicatedLogin;
 
 /**
  * Created by Accepted on 2017-10-31.
@@ -51,8 +51,8 @@ public class MainActivity extends AppCompatActivity {
 
         drawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout_CustomerService);
         v_drawerView = (View) findViewById(R.id.v_drawerView_CustomerService);
-        if(SaveSharedPreference.getMyPicture() != null)
-            ((ImageView) findViewById(R.id.DrawerPicture)).setImageBitmap(SaveSharedPreference.getMyPicture());
+        if(SaveSharedPreference.getMyThumbPicturePath() != null)
+            Glide.with(mContext).load(SaveSharedPreference.getImageUri() + SaveSharedPreference.getMyThumbPicturePath()).into((ImageView) findViewById(R.id.DrawerPicture));
 
         View.OnClickListener mClicklistener = new  View.OnClickListener()
         {
@@ -161,7 +161,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onResume(){
         super.onResume();
-        checkDuplicatedLogin(mContext, this);
         drawerLayout.closeDrawers();
         if(MyFirebaseMessagingService.isNewMessageArrive){
             findViewById(R.id.Icon_NewMessage).setVisibility(View.VISIBLE);

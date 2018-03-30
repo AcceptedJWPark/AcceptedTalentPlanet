@@ -4,6 +4,7 @@ package com.example.accepted.acceptedtalentplanet;
  * Created by kwonhong on 2018-03-09.
  */
 
+import android.app.Activity;
 import android.app.ActivityManager;
 import android.app.Notification;
 import android.app.NotificationChannel;
@@ -17,6 +18,7 @@ import android.os.Build;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationManagerCompat;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.example.accepted.acceptedtalentplanet.Alarm.ListItem;
 import com.google.firebase.messaging.FirebaseMessagingService;
@@ -52,6 +54,8 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     private boolean conditionPushGrant;
     private boolean answerPushGrant;
 
+    private Context mContext;
+
 
     private TimeZone time= TimeZone.getTimeZone("Asia/Seoul");
 
@@ -70,10 +74,10 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
 
-
-        messagePushGrant = SaveSharedPreference.getMessagePushGrant(getApplicationContext());
-        conditionPushGrant = SaveSharedPreference.getConditionPushGrant(getApplicationContext());
-        answerPushGrant = SaveSharedPreference.getAnswerPushGrant(getApplicationContext());
+        mContext = getApplicationContext();
+        messagePushGrant = SaveSharedPreference.getMessagePushGrant(mContext);
+        conditionPushGrant = SaveSharedPreference.getConditionPushGrant(mContext);
+        answerPushGrant = SaveSharedPreference.getAnswerPushGrant(mContext);
 
         ActivityManager am = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
         List<ActivityManager.RunningTaskInfo> info = am.getRunningTasks(1);
@@ -93,96 +97,103 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
         // TODO(developer): Handle FCM messages here.
         // Not getting messages here? See why this may be: https://goo.gl/39bRNJ
-        Log.d(TAG, "From: " + remoteMessage.getFrom());
-        Log.d(TAG, "Datas = " + remoteMessage.getData().get("datas"));
 
         // Check if message contains a data payload.
         if (remoteMessage.getData().size() > 0) {
-            //Log.d(TAG, "Message data payload: " + remoteMessage.getData());
+            Log.d(TAG, "Message data payload: " + remoteMessage.getData());
             //Log.d(TAG, "Message content: " + remoteMessage.getData().get("message"));
-
-            if (remoteMessage.getData().get("type").equals("Message")) {
-                getMessage(remoteMessage.getData().get("datas"));
-            }
-
-            datas = remoteMessage.getData().get("datas");
-
-            addNotificationList(remoteMessage.getData().get("type"));
-            addAlarmList(remoteMessage.getData().get("type"));
-
-            if (mMessageReceivedListener != null) {
-                update();
-            }
-
-            if (/* Check if data needs to be processed by long running job */ true) {
-                // For long-running tasks (10 seconds or more) use Firebase Job Dispatcher.
-                scheduleJob();
+            if (remoteMessage.getData().get("type").equals("dupLogin")) {
+                SaveSharedPreference.removePrefFcmToken(mContext);
+                SaveSharedPreference.clearUserInfo(mContext);
+                Intent i = new Intent(mContext, com.example.accepted.acceptedtalentplanet.LoadingLogin.Login.MainActivity.class);
+                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                i.putExtra("dupFlag", true);
+                mContext.startActivity(i);
             } else {
-                // Handle message within 10 seconds
-                handleNow();
-            }
-        }
-        if (messagePushGrant || conditionPushGrant || answerPushGrant) {
+                if (remoteMessage.getData().get("type").equals("Message")) {
+                    getMessage(remoteMessage.getData().get("datas"));
+                }
 
-            // Check if message contains a notification payload.
-            if (remoteMessage.getNotification() != null) {
-                //Log.d(TAG, "Message Notification Body: " + remoteMessage.getNotification().getBody());
-            }
+                datas = remoteMessage.getData().get("datas");
 
-            if (intent1 != null) {
+                addNotificationList(remoteMessage.getData().get("type"));
+                addAlarmList(remoteMessage.getData().get("type"));
 
-                PendingIntent contentIntent = PendingIntent.getActivity(this, 0, intent1, PendingIntent.FLAG_UPDATE_CURRENT);
-                NotificationCompat.Builder mBuilder;
-                NotificationManager notificationManager = (NotificationManager) getSystemService(NotificationManager.class);
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                    NotificationChannel channel = new NotificationChannel(MY_CHANNEL_ID,
-                            "Channel human readable title",
-                            NotificationManager.IMPORTANCE_DEFAULT);
-                    notificationManager.createNotificationChannel(channel);
-                        mBuilder = new NotificationCompat.Builder(this, channel.getId());
+                if (mMessageReceivedListener != null) {
+                    update();
+                }
 
-                    Log.d("this is ", channel.getId());
+                if (/* Check if data needs to be processed by long running job */ true) {
+                    // For long-running tasks (10 seconds or more) use Firebase Job Dispatcher.
+                    scheduleJob();
                 } else {
-                    mBuilder = new NotificationCompat.Builder(this, MY_CHANNEL_ID);
-
-                }
-                mBuilder.setSmallIcon(R.drawable.icon_friendadd_clicked)
-                        .setContentTitle(alarmTxt)
-                        .setAutoCancel(true)
-                        .setVibrate(new long[]{1, 1000})
-                        .setDefaults(Notification.DEFAULT_SOUND)
-                        .setWhen(System.currentTimeMillis())
-                        .setContentIntent(contentIntent);
-                     notificationManagerCompat = NotificationManagerCompat.from(this);
-                     Notification summaryNotification =
-                             new NotificationCompat.Builder(this, MY_CHANNEL_ID)
-                                     .setContentTitle("새로운 알람이 있습니다.")
-                                     .setSmallIcon(R.drawable.icon_friendadd_clicked)
-                                     .setStyle(new NotificationCompat.InboxStyle()
-                                             .setSummaryText("알람을 확인하세요!"))
-                                     //specify which group this notification belongs to
-                                     .setGroup(GROUP_KEY_ALARM)
-                                     //set this notification as the summary for the group
-                                     .setGroupSummary(true)
-                                     .setGroupAlertBehavior(Notification.GROUP_ALERT_CHILDREN)
-                                     .setAutoCancel(true)
-                                     .build();
-                     summaryNotification.defaults = 0;
-                     notificationManagerCompat.notify(SUMMARY_NOTIFICATION_ID, summaryNotification);
-
-
-                mBuilder.setGroup(GROUP_KEY_ALARM);
-
-                if(remoteMessage.getData().get("type").equals("Interest")){
-                    notificationManagerCompat.notify(INTERESTING_NOTIFICATION_ID, mBuilder.build());
-                }else if(remoteMessage.getData().get("type").equals("Message")){
-                    notificationManagerCompat.notify(MESSAGE_NOTIFICATION_ID, mBuilder.build());
-                }else if(remoteMessage.getData().get("type").contains("Interesting")){
-                    notificationManagerCompat.notify(CONDITION_NOTIFICATION_ID, mBuilder.build());
-                }else{
-                    notificationManagerCompat.notify(BOARD_NOTIFICATION_ID, mBuilder.build());
+                    // Handle message within 10 seconds
+                    handleNow();
                 }
 
+                if (messagePushGrant || conditionPushGrant || answerPushGrant) {
+
+                    // Check if message contains a notification payload.
+                    if (remoteMessage.getNotification() != null) {
+                        //Log.d(TAG, "Message Notification Body: " + remoteMessage.getNotification().getBody());
+                    }
+
+                    if (intent1 != null) {
+
+                        PendingIntent contentIntent = PendingIntent.getActivity(this, 0, intent1, PendingIntent.FLAG_UPDATE_CURRENT);
+                        NotificationCompat.Builder mBuilder;
+                        NotificationManager notificationManager = (NotificationManager) getSystemService(NotificationManager.class);
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                            NotificationChannel channel = new NotificationChannel(MY_CHANNEL_ID,
+                                    "Channel human readable title",
+                                    NotificationManager.IMPORTANCE_DEFAULT);
+                            notificationManager.createNotificationChannel(channel);
+                            mBuilder = new NotificationCompat.Builder(this, channel.getId());
+
+                            Log.d("this is ", channel.getId());
+                        } else {
+                            mBuilder = new NotificationCompat.Builder(this, MY_CHANNEL_ID);
+
+                        }
+                        mBuilder.setSmallIcon(R.drawable.icon_friendadd_clicked)
+                                .setContentTitle(alarmTxt)
+                                .setAutoCancel(true)
+                                .setVibrate(new long[]{1, 1000})
+                                .setDefaults(Notification.DEFAULT_SOUND)
+                                .setWhen(System.currentTimeMillis())
+                                .setContentIntent(contentIntent);
+                        notificationManagerCompat = NotificationManagerCompat.from(this);
+                        Notification summaryNotification =
+                                new NotificationCompat.Builder(this, MY_CHANNEL_ID)
+                                        .setContentTitle("새로운 알람이 있습니다.")
+                                        .setSmallIcon(R.drawable.icon_friendadd_clicked)
+                                        .setStyle(new NotificationCompat.InboxStyle()
+                                                .setSummaryText("알람을 확인하세요!"))
+                                        //specify which group this notification belongs to
+                                        .setGroup(GROUP_KEY_ALARM)
+                                        //set this notification as the summary for the group
+                                        .setGroupSummary(true)
+                                        .setGroupAlertBehavior(Notification.GROUP_ALERT_CHILDREN)
+                                        .setAutoCancel(true)
+                                        .build();
+                        summaryNotification.defaults = 0;
+                        notificationManagerCompat.notify(SUMMARY_NOTIFICATION_ID, summaryNotification);
+
+
+                        mBuilder.setGroup(GROUP_KEY_ALARM);
+
+                        if (remoteMessage.getData().get("type").equals("Interest")) {
+                            notificationManagerCompat.notify(INTERESTING_NOTIFICATION_ID, mBuilder.build());
+                        } else if (remoteMessage.getData().get("type").equals("Message")) {
+                            notificationManagerCompat.notify(MESSAGE_NOTIFICATION_ID, mBuilder.build());
+                        } else if (remoteMessage.getData().get("type").contains("Interesting")) {
+                            notificationManagerCompat.notify(CONDITION_NOTIFICATION_ID, mBuilder.build());
+                        } else {
+                            notificationManagerCompat.notify(BOARD_NOTIFICATION_ID, mBuilder.build());
+                        }
+
+                    }
+                }
             }
         }
     }
@@ -208,7 +219,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
 
     private void addAlarmList(String type){
-        ArrayList<ListItem> arrayList = SaveSharedPreference.getPrefAlarmArry(getApplicationContext());
+        ArrayList<ListItem> arrayList = SaveSharedPreference.getPrefAlarmArry(mContext);
         if (arrayList == null) {
             arrayList = new ArrayList<>();
         }
@@ -257,7 +268,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                 {
                     arrayList.add(0, listItem);
                 }
-                SaveSharedPreference.setPrefAlarmArray(getApplicationContext(), arrayList);
+                SaveSharedPreference.setPrefAlarmArray(mContext, arrayList);
                 break;
             }
             case "QNA": {
@@ -272,7 +283,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                 String formatedDate = dateFormat(unformatedDate);
                 alarmTxt = "Q&A 질문에 대한 답변이 완료되었습니다.";
                 arrayList.add(0, new ListItem(R.drawable.logo_fakefile, "Talent Planet", alarmTxt, formatedDate, 4, R.drawable.icon_delete, false));
-                SaveSharedPreference.setPrefAlarmArray(getApplicationContext(), arrayList);
+                SaveSharedPreference.setPrefAlarmArray(mContext, arrayList);
                 Log.d("lastDate = ", unformatedDate);
                 break;
             }
@@ -288,7 +299,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                 String formatedDate = dateFormat(unformatedDate);
                 alarmTxt = "신고하기에 대한 조치가 완료되었습니다.";
                 arrayList.add(0, new ListItem(R.drawable.logo_fakefile, "Talent Planet", alarmTxt, formatedDate, 5, R.drawable.icon_delete, false));
-                SaveSharedPreference.setPrefAlarmArray(getApplicationContext(), arrayList);
+                SaveSharedPreference.setPrefAlarmArray(mContext, arrayList);
                 break;
             }
             case "Interest": {
@@ -309,7 +320,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                 String formatedDate = dateFormat(unformatedDate);
                 Log.d(formatedDate,"formatedDate");
                 arrayList.add(0, new ListItem(R.drawable.logo_fakefile, userName, talentID, "Talent Planet", formatedDate, 1, talentType, R.drawable.icon_delete, false));
-                SaveSharedPreference.setPrefAlarmArray(getApplicationContext(), arrayList);
+                SaveSharedPreference.setPrefAlarmArray(mContext, arrayList);
                 break;
             }
             case "InterestingMatching":{
@@ -447,13 +458,13 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-                MyTalent mt = (talentType == 1)?SaveSharedPreference.getTakeTalentData(getApplicationContext()):SaveSharedPreference.getGiveTalentData(getApplicationContext());
+                MyTalent mt = (talentType == 1)?SaveSharedPreference.getTakeTalentData(mContext):SaveSharedPreference.getGiveTalentData(mContext);
 
                 mt.setStatus("M");
                 if(talentType == 2){
-                    SaveSharedPreference.setGiveTalentData(getApplicationContext(), mt);
+                    SaveSharedPreference.setGiveTalentData(mContext, mt);
                 }else{
-                    SaveSharedPreference.setTakeTalentData(getApplicationContext(), mt);
+                    SaveSharedPreference.setTakeTalentData(mContext, mt);
                 }
 
                 if(conditionPushGrant) {
@@ -479,13 +490,13 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
-                    MyTalent mt = (talentType == 1)?SaveSharedPreference.getTakeTalentData(getApplicationContext()):SaveSharedPreference.getGiveTalentData(getApplicationContext());
+                    MyTalent mt = (talentType == 1)?SaveSharedPreference.getTakeTalentData(mContext):SaveSharedPreference.getGiveTalentData(mContext);
 
                     mt.setStatus("P");
                     if(talentType == 2){
-                        SaveSharedPreference.setGiveTalentData(getApplicationContext(), mt);
+                        SaveSharedPreference.setGiveTalentData(mContext, mt);
                     }else{
-                        SaveSharedPreference.setTakeTalentData(getApplicationContext(), mt);
+                        SaveSharedPreference.setTakeTalentData(mContext, mt);
                     }
                     if(conditionPushGrant) {
 
@@ -508,13 +519,13 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
-                    MyTalent mt = (talentType == 1)?SaveSharedPreference.getTakeTalentData(getApplicationContext()):SaveSharedPreference.getGiveTalentData(getApplicationContext());
+                    MyTalent mt = (talentType == 1)?SaveSharedPreference.getTakeTalentData(mContext):SaveSharedPreference.getGiveTalentData(mContext);
 
                     mt.setStatus("C");
                     if(talentType == 2){
-                        SaveSharedPreference.setGiveTalentData(getApplicationContext(), mt);
+                        SaveSharedPreference.setGiveTalentData(mContext, mt);
                     }else{
-                        SaveSharedPreference.setTakeTalentData(getApplicationContext(), mt);
+                        SaveSharedPreference.setTakeTalentData(mContext, mt);
                     }
                     if (conditionPushGrant) {
 
@@ -545,8 +556,8 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
 
 
-            int roomID = SaveSharedPreference.makeChatRoom(getApplicationContext(), obj.getString("USER_ID"), obj.getString("USER_NAME"));
-            sqLiteDatabase.execSQL("INSERT OR REPLACE INTO TB_CHAT_LOG(MESSAGE_ID, ROOM_ID, MASTER_ID, USER_ID, CONTENT, CREATION_DATE, READED_FLAG) VALUES (" + obj.getString("MESSAGE_ID") + ", " + roomID + ",'" + SaveSharedPreference.getUserId(getApplicationContext()) + "' , '" + obj.getString("USER_ID") + "','" + obj.getString("CONTENT").replace("'", "''") + "','" + obj.getString("CREATION_DATE_STRING") + "', 'N')");
+            int roomID = SaveSharedPreference.makeChatRoom(mContext, obj.getString("USER_ID"), obj.getString("USER_NAME"));
+            sqLiteDatabase.execSQL("INSERT OR REPLACE INTO TB_CHAT_LOG(MESSAGE_ID, ROOM_ID, MASTER_ID, USER_ID, CONTENT, CREATION_DATE, READED_FLAG) VALUES (" + obj.getString("MESSAGE_ID") + ", " + roomID + ",'" + SaveSharedPreference.getUserId(mContext) + "' , '" + obj.getString("USER_ID") + "','" + obj.getString("CONTENT").replace("'", "''") + "','" + obj.getString("CREATION_DATE_STRING") + "', 'N')");
             sqLiteDatabase.close();
         }catch(Exception e){
             e.printStackTrace();

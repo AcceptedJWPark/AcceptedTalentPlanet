@@ -56,6 +56,8 @@ public class SaveSharedPreference{
     static final String PREF_USER_PW = "userpw";
     static final String SERVER_IP = "https://13.124.141.242/Accepted/";
     static final String SERVER_IP2 = "https://221.162.94.43:8443/Accepted/";
+    static final String IMAGE_URI = "http://13.124.141.242/Accepted/";
+    static final String IMAGE_URI2 = "http://221.162.94.43:8080/Accepted/";
     static final String PREF_GIVE_DATA = "giveData";
     static final String PREF_TAKE_DATA = "takeData";
     static final String PREF_GEO_POINT = "geoPoint";
@@ -66,7 +68,8 @@ public class SaveSharedPreference{
     static final String PREF_MESSAGE_PUSH_GRANT = "messagePushGrant";
     static final String PREF_CONDITION_PUSH_GRANT = "conditionPushGrant";
     static final String PREF_ANSWER_PUSH_GRANT = "answerPushGrant";
-    static Bitmap myPicture = null;
+    static String myPicturePath = null;
+    static String myThumbPicturePath = null;
 
     static DrawerLayout slidingMenuDL;
     static View drawerView;
@@ -171,7 +174,6 @@ public class SaveSharedPreference{
         SharedPreferences.Editor editor = getSharedPreferences(ctx).edit();
         editor.clear();
         editor.commit();
-        myPicture = null;
     }
 
     public static String getFcmToken(Context ctx){
@@ -279,7 +281,11 @@ public class SaveSharedPreference{
     }
 
     public static String getServerIp(){
-        return SERVER_IP;
+        return SERVER_IP2;
+    }
+
+    public static String getImageUri(){
+        return IMAGE_URI2;
     }
 
     public static String getLevel(String Level) {
@@ -612,16 +618,16 @@ public class SaveSharedPreference{
         return errorListener;
     }
 
-    public static void setMyPicture(String picture){
-        myPicture = StringToBitMap(picture);
+    public static void setMyPicturePath(String path, String thumbPath){
+        myPicturePath = path;
+        myThumbPicturePath = thumbPath;
     }
 
-    public static void setMyPicture(Bitmap bitmap){
-        myPicture = bitmap;
+    public static String getMyPicturePath(){
+        return myPicturePath;
     }
-
-    public static Bitmap getMyPicture(){
-        return myPicture;
+    public static String getMyThumbPicturePath(){
+        return myThumbPicturePath;
     }
 
     public static int makeChatRoom(Context ctx, String userID, String userName){
@@ -636,7 +642,7 @@ public class SaveSharedPreference{
             int roomID;
             int startMessageID;
             String creationDate;
-            String picture;
+            String filePath;
             sqliteDatabase = SQLiteDatabase.openOrCreateDatabase(ctx.getFilesDir() + dbName, null);
 
             String test = "SELECT IFNULL(MAX(A.START_MESSAGE_ID), 0) AS START_MESSAGE_ID FROM TB_CHAT_ROOM A WHERE A.USER_ID = '" + userID+ "'";
@@ -657,20 +663,23 @@ public class SaveSharedPreference{
             creationDate = cursort.getString(0);
             Log.d("creation_date", "" + creationDate );
 
-            test = "SELECT IFNULL(MAX(PICTURE), 'NODATA') FROM TB_CHAT_ROOM WHERE USER_ID = '" + userID + "'";
+            test = "SELECT IFNULL(FILE_PATH, 'NODATA'), MAX(CREATION_DATE) FROM TB_CHAT_ROOM WHERE USER_ID = '" + userID + "'";
             cursort = sqliteDatabase.rawQuery(test, null);
             cursort.moveToFirst();
             try {
-                picture = cursort.getString(0);
+                filePath = cursort.getString(0);
             }catch (CursorIndexOutOfBoundsException e){
                 e.printStackTrace();
-                picture = "NODATA";
+                filePath = "NODATA";
+
             }
+            Log.d("filePath = ", filePath);
 
 
-            String sqlUpsert = "INSERT OR REPLACE INTO TB_CHAT_ROOM(ROOM_ID, USER_ID, USER_NAME, MASTER_ID, START_MESSAGE_ID, CREATION_DATE, LAST_UPDATE_DATE, ACTIVATE_FLAG, PICTURE) VALUES ("+roomID+", '" + userID + "', '"+userName+"', '"+getUserId(ctx)+"', "+startMessageID+", '"+creationDate+"', '"+nowDateStr+"', 'Y', '"+ picture + "')";
+            String sqlUpsert = "INSERT OR REPLACE INTO TB_CHAT_ROOM(ROOM_ID, USER_ID, USER_NAME, MASTER_ID, START_MESSAGE_ID, CREATION_DATE, LAST_UPDATE_DATE, ACTIVATE_FLAG, FILE_PATH) VALUES ("+roomID+", '" + userID + "', '"+userName+"', '"+getUserId(ctx)+"', "+startMessageID+", '"+creationDate+"', '"+nowDateStr+"', 'Y', '"+ filePath + "')";
             sqliteDatabase.execSQL(sqlUpsert);
 
+            Log.d("Insert SQL = ", sqlUpsert);
             sqliteDatabase.close();
 
 
@@ -712,41 +721,41 @@ public class SaveSharedPreference{
         return null;
     }
 
-    public static void checkDuplicatedLogin(final Context ctx, final Activity activity){
-
-        RequestQueue postRequestQueue = VolleySingleton.getInstance(ctx).getRequestQueue();
-        StringRequest postJsonRequest = new StringRequest(Request.Method.POST, SaveSharedPreference.getServerIp() + "Login/checkDuplicatedLogin.do", new Response.Listener<String>(){
-            @Override
-            public void onResponse(String response){
-                try {
-                    JSONObject obj = new JSONObject(response);
-                    Log.d("checkDup", obj.toString());
-                    if(obj.getString("DUP_FLAG").equals("N")){
-                        removePrefFcmToken(ctx);
-                        Toast.makeText(ctx, "다른 기기에서 로그인되어 접속이 종료됩니다.", Toast.LENGTH_SHORT).show();
-                        clearUserInfo(ctx);
-                        Intent i = new Intent(ctx, com.example.accepted.acceptedtalentplanet.LoadingLogin.Login.MainActivity.class);
-                        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
-                        ctx.startActivity(i);
-                        activity.finish();
-                    }
-                }
-                catch(JSONException e){
-                    e.printStackTrace();
-                }
-            }
-        }, SaveSharedPreference.getErrorListener()) {
-            @Override
-            protected Map<String, String> getParams(){
-                Map<String, String> params = new HashMap();
-                params.put("userID", getUserId(ctx));
-                params.put("token", getFcmToken(ctx));
-                return params;
-            }
-        };
-
-        postRequestQueue.add(postJsonRequest);
-    }
+//    public static void checkDuplicatedLogin(final Context ctx, final Activity activity){
+//
+//        RequestQueue postRequestQueue = VolleySingleton.getInstance(ctx).getRequestQueue();
+//        StringRequest postJsonRequest = new StringRequest(Request.Method.POST, SaveSharedPreference.getServerIp() + "Login/checkDuplicatedLogin.do", new Response.Listener<String>(){
+//            @Override
+//            public void onResponse(String response){
+//                try {
+//                    JSONObject obj = new JSONObject(response);
+//                    Log.d("checkDup", obj.toString());
+//                    if(obj.getString("DUP_FLAG").equals("N")){
+//                        removePrefFcmToken(ctx);
+//                        Toast.makeText(ctx, "다른 기기에서 로그인되어 접속이 종료됩니다.", Toast.LENGTH_SHORT).show();
+//                        clearUserInfo(ctx);
+//                        Intent i = new Intent(ctx, com.example.accepted.acceptedtalentplanet.LoadingLogin.Login.MainActivity.class);
+//                        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
+//                        ctx.startActivity(i);
+//                        activity.finish();
+//                    }
+//                }
+//                catch(JSONException e){
+//                    e.printStackTrace();
+//                }
+//            }
+//        }, SaveSharedPreference.getErrorListener()) {
+//            @Override
+//            protected Map<String, String> getParams(){
+//                Map<String, String> params = new HashMap();
+//                params.put("userID", getUserId(ctx));
+//                params.put("token", getFcmToken(ctx));
+//                return params;
+//            }
+//        };
+//
+//        postRequestQueue.add(postJsonRequest);
+//    }
 
 
 }

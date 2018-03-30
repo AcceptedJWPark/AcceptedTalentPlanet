@@ -15,6 +15,7 @@ public class ListItem {
     private String date;
     private String talentID;
     private String userID;
+    private String filePath;
 
     private int giveTake_Code;
 
@@ -53,6 +54,8 @@ public class ListItem {
 
     public String getUserID() { return userID; }
 
+    public String getFilePath(){ return filePath; }
+
 
     public void setGiveTake_Code(int GiveTake_CODE) {
         this.giveTake_Code = GiveTake_CODE;
@@ -88,7 +91,7 @@ public class ListItem {
     public void setTalentID(String talentID) { this.talentID = talentID; }
 
 
-    public ListItem(int pictire, String name, String userID, String talent1, String talent2, String talent3, String talentType, String registDate, String talentID, int giveTake_Type)
+    public ListItem(int pictire, String name, String userID, String talent1, String talent2, String talent3, String talentType, String registDate, String talentID, int giveTake_Type, String filePath)
     {
         this.picture = pictire;
         this.name = name;
@@ -100,6 +103,7 @@ public class ListItem {
         this.date = registDate;
         this.talentID = talentID;
         this.giveTake_Code = giveTake_Type;
+        this.filePath = filePath;
     }
 
 }

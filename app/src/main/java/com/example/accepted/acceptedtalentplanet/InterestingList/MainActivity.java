@@ -28,7 +28,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.example.accepted.acceptedtalentplanet.SaveSharedPreference.checkDuplicatedLogin;
 
 /**
  * Created by Accepted on 2017-10-24.
@@ -97,7 +96,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
      public void onResume(){
         super.onResume();
-        checkDuplicatedLogin(mContext, this);
         arrayList = new ArrayList<>();
         getInterestList();
     }
@@ -142,7 +140,7 @@ public class MainActivity extends AppCompatActivity {
 
                         JSONObject o = obj.getJSONObject(index);
                         int type = Integer.parseInt(o.getString("TYPE_FLAG"));
-                        ListItem target = new ListItem(R.drawable.picure_basic, o.getString("USER_NAME"), o.getString("USER_ID"), o.getString("TALENT_KEYWORD1"), o.getString("TALENT_KEYWORD2"), o.getString("TALENT_KEYWORD3"), "["+str+"]", o.getString("CREATION_DATE") + " 등록", o.getString("TALENT_ID"),type);
+                        ListItem target = new ListItem(R.drawable.testpicture, o.getString("USER_NAME"), o.getString("USER_ID"), o.getString("TALENT_KEYWORD1"), o.getString("TALENT_KEYWORD2"), o.getString("TALENT_KEYWORD3"), "["+str+"]", o.getString("CREATION_DATE") + " 등록", o.getString("TALENT_ID"),type, o.getString("S_FILE_PATH"));
                         arrayList.add(0,target);
 
                         try {

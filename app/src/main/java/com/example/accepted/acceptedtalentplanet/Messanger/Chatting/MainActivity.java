@@ -123,7 +123,7 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
 
 
         arrayList = new ArrayList<>();
-        adapter = new Adapter(arrayList, MainActivity.this, picture);
+        adapter = new Adapter(arrayList, mContext, "NODATA");
 
         sv_Messanger_Chatting = (ScrollView) findViewById(R.id.sv_Messanger_Chatting);
 
@@ -326,20 +326,43 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
     @Override
     public void onResume(){
         super.onResume();
-        checkDuplicatedLogin(mContext, this);
         MyFirebaseMessagingService.setOnMessageReceivedListener(this);
     }
 
     public void getPicture(){
-        picture = SaveSharedPreference.getPictureFromDB(mContext, receiverID);
+        RequestQueue postRequestQueue = VolleySingleton.getInstance(mContext).getRequestQueue();
+        StringRequest postJsonRequest = new StringRequest(Request.Method.POST, SaveSharedPreference.getServerIp() + "Login/getMyPicture.do", new Response.Listener<String>(){
+            @Override
+            public void onResponse(String response){
+                try {
+                    Log.d("result = ", response);
+                    JSONObject obj = new JSONObject(response);
+                    if(!obj.getString("S_FILE_PATH").equals("NODATA")){
+                        sqliteDatabase.execSQL("UPDATE TB_CHAT_ROOM SET FILE_PATH = '" + obj.getString("S_FILE_PATH") + "' WHERE ROOM_ID = " + roomID);
+                        adapter = new Adapter(arrayList, mContext, obj.getString("S_FILE_PATH"));
+                        Log.d("getFilePath = ", obj.getString("S_FILE_PATH") + ", " + "UPDATE TB_CHAT_ROOM SET FILE_PATH = '" + obj.getString("S_FILE_PATH") + "' WHERE ROOM_ID = " + roomID);
+                    }
+                    if (refreshChatLog()) {
+                        listView.setAdapter(adapter);
+                        adapter.notifyDataSetChanged();
+                        listView.setSelection(adapter.getCount() - 1);
+                    }
+                }
+                catch(JSONException e){
+                    e.printStackTrace();
+                }
+            }
+        }, SaveSharedPreference.getErrorListener()) {
+            @Override
+            protected Map<String, String> getParams(){
+                Map<String, String> params = new HashMap();
+                params.put("userID", receiverID);
+                return params;
+            }
+        };
 
-        adapter = new Adapter(arrayList, MainActivity.this, picture);
+        postRequestQueue.add(postJsonRequest);
 
-        if (refreshChatLog()) {
-            listView.setAdapter(adapter);
-            adapter.notifyDataSetChanged();
-            listView.setSelection(adapter.getCount() - 1);
-        }
     }
 
     protected void onPause(){

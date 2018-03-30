@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.accepted.acceptedtalentplanet.R;
 import com.example.accepted.acceptedtalentplanet.SaveSharedPreference;
 import com.example.accepted.acceptedtalentplanet.TalentSharing.Popup.MainActivity;
@@ -121,10 +122,12 @@ public class Adapter extends BaseAdapter{
             });
 
 
-            if(bitmap == null)
+            if (arrayList.get(position).getFilePath().equals("NODATA")) {
                 holder.iv_Picture.setBackgroundResource(arrayList.get(position).getpicture());
-            else
-                holder.iv_Picture.setImageBitmap(bitmap);
+            } else {
+                Glide.with(mContext).load(SaveSharedPreference.getImageUri() + arrayList.get(position).getFilePath()).into(holder.iv_Picture);
+            }
+
             holder.tv_Name.setText(arrayList.get(position).getname());
             holder.tv_Talent1.setText(arrayList.get(position).getTalent1());
             holder.tv_Talent2.setText(arrayList.get(position).getTalent2());
