@@ -28,7 +28,6 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.StringRequest;
-import com.bumptech.glide.Glide;
 import com.example.accepted.acceptedtalentplanet.MyFirebaseMessagingService;
 import com.example.accepted.acceptedtalentplanet.MyTalent;
 import com.example.accepted.acceptedtalentplanet.R;
@@ -45,6 +44,7 @@ import java.util.Map;
 import static android.view.View.GONE;
 import static com.example.accepted.acceptedtalentplanet.SaveSharedPreference.DrawerLayout_ClickEvent;
 import static com.example.accepted.acceptedtalentplanet.SaveSharedPreference.DrawerLayout_Open;
+import static com.example.accepted.acceptedtalentplanet.SaveSharedPreference.checkDuplicatedLogin;
 
 public class MainActivity extends AppCompatActivity implements MyFirebaseMessagingService.MessageReceivedListener{
 
