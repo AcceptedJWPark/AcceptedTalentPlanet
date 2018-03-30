@@ -51,8 +51,11 @@ public class MyFirebaseInstanceIDService extends FirebaseInstanceIdService {
      */
     private void sendRegistrationToServer(String token) {
         // TODO: Implement this method to send token to your app server.
-        SaveSharedPreference.setPrefFcmToken(getApplicationContext(), token);
-        saveFcmToken(token);
+        if(SaveSharedPreference.getUserId(getBaseContext()) != null && !SaveSharedPreference.getUserId(getBaseContext()).isEmpty())
+        {
+            SaveSharedPreference.setPrefFcmToken(getApplicationContext(), token);
+            saveFcmToken(token);
+        }
     }
     public void saveFcmToken(final String token){
         RequestQueue postRequestQueue = VolleySingleton.getInstance(getApplicationContext()).getRequestQueue();

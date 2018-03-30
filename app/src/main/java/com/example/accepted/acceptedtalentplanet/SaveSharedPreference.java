@@ -69,6 +69,7 @@ public class SaveSharedPreference{
     static final String PREF_ANSWER_PUSH_GRANT = "answerPushGrant";
     static String myPicturePath = null;
     static String myThumbPicturePath = null;
+    static String fcmToken = null;
 
     static DrawerLayout slidingMenuDL;
     static View drawerView;
@@ -98,34 +99,36 @@ public class SaveSharedPreference{
     }
 
     public static void setPrefFcmToken(Context ctx, String token){
-        SQLiteDatabase sqliteDatabase;
-        String dbName = "/accepted.db";
-
-        try{
-            sqliteDatabase = SQLiteDatabase.openOrCreateDatabase(ctx.getFilesDir() + dbName, null);
-            String sqlUpsert = "INSERT OR REPLACE INTO TB_FCM_TOKEN(TOKEN) VALUES ('"+token+"')";
-            sqliteDatabase.execSQL(sqlUpsert);
-
-            Log.d("insert friend", sqlUpsert);
-            sqliteDatabase.close();
-        }catch (SQLiteException e){
-            e.printStackTrace();
-        }
+//        SQLiteDatabase sqliteDatabase;
+//        String dbName = "/accepted.db";
+//
+//        try{
+//            sqliteDatabase = SQLiteDatabase.openOrCreateDatabase(ctx.getFilesDir() + dbName, null);
+//            String sqlUpsert = "INSERT OR REPLACE INTO TB_FCM_TOKEN(TOKEN) VALUES ('"+token+"')";
+//            sqliteDatabase.execSQL(sqlUpsert);
+//
+//            Log.d("insert friend", sqlUpsert);
+//            sqliteDatabase.close();
+//        }catch (SQLiteException e){
+//            e.printStackTrace();
+//        }
+        fcmToken = token;
     }
 
     public static void removePrefFcmToken(Context ctx){
-        SQLiteDatabase sqliteDatabase;
-        String dbName = "/accepted.db";
-
-        try{
-            sqliteDatabase = SQLiteDatabase.openOrCreateDatabase(ctx.getFilesDir() + dbName, null);
-            String sqlUpsert = "DELETE FROM TB_FCM_TOKEN";
-            sqliteDatabase.execSQL(sqlUpsert);
-
-            sqliteDatabase.close();
-        }catch (SQLiteException e){
-            e.printStackTrace();
-        }
+//        SQLiteDatabase sqliteDatabase;
+//        String dbName = "/accepted.db";
+//
+//        try{
+//            sqliteDatabase = SQLiteDatabase.openOrCreateDatabase(ctx.getFilesDir() + dbName, null);
+//            String sqlUpsert = "DELETE FROM TB_FCM_TOKEN";
+//            sqliteDatabase.execSQL(sqlUpsert);
+//
+//            sqliteDatabase.close();
+//        }catch (SQLiteException e){
+//            e.printStackTrace();
+//        }
+        fcmToken = null;
     }
 
     public static void setPrefPushGrant(Context ctx, boolean messageGrant, boolean conditionGrant, boolean answerGrant){
@@ -164,29 +167,30 @@ public class SaveSharedPreference{
     }
 
     public static String getFcmToken(Context ctx){
-        SQLiteDatabase sqliteDatabase;
-        String dbName = "/accepted.db";
-        String token = null;
-        try{
-            sqliteDatabase = SQLiteDatabase.openOrCreateDatabase(ctx.getFilesDir() + dbName, null);
-            String sqlSelect = "SELECT * FROM TB_FCM_TOKEN";
-            Cursor cursor = sqliteDatabase.rawQuery(sqlSelect, null);
-            cursor.moveToFirst();
-
-            Log.d("select TOKEN", sqlSelect);
-
-            token = cursor.getString(0);
-
-            cursor.close();
-
-            sqliteDatabase.close();
-        }catch (SQLiteException e){
-            e.printStackTrace();
-        }catch (CursorIndexOutOfBoundsException e){
-            e.printStackTrace();
-        }
-
-        return token;
+//        SQLiteDatabase sqliteDatabase;
+//        String dbName = "/accepted.db";
+//        String token = null;
+//        try{
+//            sqliteDatabase = SQLiteDatabase.openOrCreateDatabase(ctx.getFilesDir() + dbName, null);
+//            String sqlSelect = "SELECT * FROM TB_FCM_TOKEN";
+//            Cursor cursor = sqliteDatabase.rawQuery(sqlSelect, null);
+//            cursor.moveToFirst();
+//
+//            Log.d("select TOKEN", sqlSelect);
+//
+//            token = cursor.getString(0);
+//
+//            cursor.close();
+//
+//            sqliteDatabase.close();
+//        }catch (SQLiteException e){
+//            e.printStackTrace();
+//        }catch (CursorIndexOutOfBoundsException e){
+//            e.printStackTrace();
+//        }
+//
+//        return token;
+        return fcmToken;
     }
 
     public static boolean getMessagePushGrant(Context ctx){
@@ -268,11 +272,11 @@ public class SaveSharedPreference{
     }
 
     public static String getServerIp(){
-        return SERVER_IP2;
+        return SERVER_IP;
     }
 
     public static String getImageUri(){
-        return IMAGE_URI2;
+        return IMAGE_URI;
     }
 
     public static String getLevel(String Level) {
