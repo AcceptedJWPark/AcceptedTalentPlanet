@@ -28,7 +28,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.example.accepted.acceptedtalentplanet.SaveSharedPreference.checkDuplicatedLogin;
 
 /**
  * Created by Accepted on 2017-09-29.
@@ -192,7 +191,7 @@ public class MainActivity extends AppCompatActivity {
                                 talentConditionCode = 1;
                         }
                         int talentCode = (o.getString("TALENT_FLAG").equals("Y"))?2 : 1;
-                        ListItem target = new ListItem(R.drawable.picure_basic, o.getString("USER_NAME"), o.getString("USER_ID"), o.getString("TALENT_KEYWORD1"), o.getString("TALENT_KEYWORD2"), o.getString("TALENT_KEYWORD3"), talentConditionCode, talentCode, o.getString("TALENT_ID"));
+                        ListItem target = new ListItem(R.drawable.picure_basic, o.getString("USER_NAME"), o.getString("USER_ID"), o.getString("TALENT_KEYWORD1"), o.getString("TALENT_KEYWORD2"), o.getString("TALENT_KEYWORD3"), talentConditionCode, talentCode, o.getString("TALENT_ID"), o.getString("S_FILE_PATH"));
                         arrayList_Original.add(target);
                         if(talentFlag) {
                             if (talentCode == 1) {
