@@ -180,7 +180,6 @@ public class MainActivity extends AppCompatActivity {
                     arrayList.clear();
                     for (int index = 0; index < obj.length(); index++) {
                         JSONObject o = obj.getJSONObject(index);
-                        Log.d("getTalentSharing", o.toString());
                         double distance = findMinDistanceBetween(o.getString("GP_LAT"), o.getString("GP_LNG"), o.getString("TALENT_FLAG").equals("Y"));
                         ListItem target = new ListItem(R.drawable.picure_basic, o.getString("USER_NAME"), o.getString("TALENT_KEYWORD1"), o.getString("TALENT_KEYWORD2"), o.getString("TALENT_KEYWORD3"), o.getString("seq"), o.getString("TALENT_FLAG"), o.getString("STATUS_FLAG"), (String.format("%.1f", distance) + "km"), "Profile 보기", o.getString("USER_ID"), distance, o.getString("S_FILE_PATH"));
 
@@ -351,8 +350,6 @@ public class MainActivity extends AppCompatActivity {
         GeoPoint gpPoint1 = mt.getArrGeoPoint();
         GeoPoint gpPoint2 = new GeoPoint(Double.valueOf(lat), Double.valueOf(lng));
 
-        Log.d("My GP", gpPoint1.getLat() + ", " + gpPoint1.getLng());
-        Log.d("Target GP", gpPoint2.getLat() + ", " + gpPoint2.getLng());
 
         double distance = 0;
 
@@ -366,7 +363,6 @@ public class MainActivity extends AppCompatActivity {
 
         distance = locationA.distanceTo(locationB);
 
-        Log.d("distance", distance + "");
 
         return distance / 1000;
     }
