@@ -80,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
 
             ArrayList<String> arrayList2 = new ArrayList<String>();
             arrayList_Parent.add("사진 등록");
-            arrayList2.add(" 사진 등록은 최대 5장 까지 가능하며 대표 사진으로 한 장을 설정 할 수 있습니다. 회원님 또는 회원님의 재능을 표현 할 수 있는 사진을 업로드하면 더 수월한 재능 공유가 될 것입니다.");
+            arrayList2.add(" 사진 등록은 1장 가능합니다. 회원님 또는 회원님의 재능을 표현 할 수 있는 사진을 업로드하면 더 수월한 재능 공유가 될 것입니다.");
             arrayList_Child.put(arrayList_Parent.get(1),arrayList2);
 
             ArrayList<String> arrayList3 = new ArrayList<String>();
@@ -105,14 +105,14 @@ public class MainActivity extends AppCompatActivity {
 
             ArrayList<String> arrayList7 = new ArrayList<String>();
             arrayList_Parent.add("재능 드림 / 관심 재능");
-            arrayList7.add(" 재능 드림, 관심 재능은 가입 이후 필수 입력 사항입니다. 재능 입력이 안된 상태에서 Talented 사용이 불가합니다.\n  \"My Profile\" → \"미등록\"을 클릭 또는 \"좌측 상단의 슬라이드 메뉴\" → \"My Talent\"에서 재능 등록을 꼭 해주세요.");
+            arrayList7.add(" 재능 드림, 관심 재능은 가입 이후 필수 입력 사항입니다. 재능 입력이 안된 상태에서 TalentPlanet 사용이 불가합니다.\n  \"My Profile\" → \"미등록\"을 클릭 또는 \"좌측 상단의 슬라이드 메뉴\" → \"My Talent\"에서 재능 등록을 꼭 해주세요.");
             arrayList_Child.put(arrayList_Parent.get(6),arrayList7);
         }
         else if (value.equals("MyTalent"))
         {
             ArrayList<String> arrayList1 = new ArrayList<String>();
             arrayList_Parent.add("My Talent");
-            arrayList1.add(" 회원님의 관심 재능 및 재능 드림을 등록할 수 있습니다. 재능 입력이 안된 상태에서는 Talented 사용이 불가하니 필히 입력해야 합니다.\n  \"My Profile\" → \"미등록\"을 클릭 또는 \"좌측 상단의 슬라이드 메뉴\" → \"My Talent\"에서 재능 등록을 꼭 해주세요.");
+            arrayList1.add(" 회원님의 관심 재능 및 재능 드림을 등록할 수 있습니다. 재능 입력이 안된 상태에서는 TalentPlanet 사용이 불가하니 필히 입력해야 합니다.\n  \"My Profile\" → \"미등록\"을 클릭 또는 \"좌측 상단의 슬라이드 메뉴\" → \"My Talent\"에서 재능 등록을 꼭 해주세요.");
             arrayList_Child.put(arrayList_Parent.get(0),arrayList1);
 
             ArrayList<String> arrayList2 = new ArrayList<String>();
@@ -122,7 +122,7 @@ public class MainActivity extends AppCompatActivity {
 
             ArrayList<String> arrayList3 = new ArrayList<String>();
             arrayList_Parent.add("장소 등록");
-            arrayList3.add(" 장소 등록은 최대 3개 입력이 가능합니다. 세 개의 장소는 겹치지 않게, 지번 주소로 입력해야 합니다.\n T.Sharing에서는 회원님이 입력한 장소와 상대방이 입력한 장소와의 3:3 조합에 의해 최단 거리가 계산됩니다. T.Sharing에서는 재능 키워드가 매칭되는 회원들이 나타나고 최단거리 순으로 정렬됩니다.");
+            arrayList3.add(" 장소 등록은 Google Map을 사용합니다. 회원님이 재능 공유하고 싶은 장소를 지도에서 선택하면 됩니다. T.Sharing에서는 재능 키워드가 매칭되는 회원들이 나타나고 최단거리 순으로 정렬됩니다.");
             arrayList_Child.put(arrayList_Parent.get(2),arrayList3);
 
             ArrayList<String> arrayList4 = new ArrayList<String>();
@@ -149,7 +149,7 @@ public class MainActivity extends AppCompatActivity {
 
             ArrayList<String> arrayList3 = new ArrayList<String>();
             arrayList_Parent.add("회원 리스트");
-            arrayList3.add(" T.Sharing에 나타나는 회원 리스트는 회원님이 재능 등록 시 입력한 세 개의 키워드와 이와 3:3 조합에 의해 매칭이 되는 회원들이 나열 됩니다. 이때 회원님과의 최단거리 순으로 나열되니 회원님과 재능 공유가 편한 상대에게 관심을 보내 재능 공유를 시작하세요.");
+            arrayList3.add(" T.Sharing에 나타나는 회원 리스트는 회원님이 재능 등록한 세 개의 키워드 중 하나 이상 공통 재능을 입력한 회원들이 나열 됩니다. 이때 회원님과의 최단거리 순으로 나열되니 회원님과 재능 공유가 편한 상대에게 관심을 보내 재능 공유를 시작하세요.");
             arrayList_Child.put(arrayList_Parent.get(2),arrayList3);
         }
         else if(value.equals("TCondition"))

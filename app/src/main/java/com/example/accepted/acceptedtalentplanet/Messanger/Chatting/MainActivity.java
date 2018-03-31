@@ -122,7 +122,7 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
 
 
         arrayList = new ArrayList<>();
-        adapter = new Adapter(arrayList, mContext, "NODATA");
+        adapter = new Adapter(arrayList, MainActivity.this, "NODATA");
 
         sv_Messanger_Chatting = (ScrollView) findViewById(R.id.sv_Messanger_Chatting);
 
@@ -338,7 +338,7 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
                     JSONObject obj = new JSONObject(response);
                     if(!obj.getString("S_FILE_PATH").equals("NODATA")){
                         sqliteDatabase.execSQL("UPDATE TB_CHAT_ROOM SET FILE_PATH = '" + obj.getString("S_FILE_PATH") + "' WHERE ROOM_ID = " + roomID);
-                        adapter = new Adapter(arrayList, mContext, obj.getString("S_FILE_PATH"));
+                        adapter = new Adapter(arrayList, MainActivity.this, obj.getString("S_FILE_PATH"));
                         Log.d("getFilePath = ", obj.getString("S_FILE_PATH") + ", " + "UPDATE TB_CHAT_ROOM SET FILE_PATH = '" + obj.getString("S_FILE_PATH") + "' WHERE ROOM_ID = " + roomID);
                     }
                     if (refreshChatLog()) {
