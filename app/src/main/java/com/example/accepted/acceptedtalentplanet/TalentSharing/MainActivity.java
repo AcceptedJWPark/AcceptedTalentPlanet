@@ -99,7 +99,7 @@ public class MainActivity extends AppCompatActivity {
 
         mContext = getApplicationContext();
 
-        if(SaveSharedPreference.getFcmToken(mContext) == null){
+        if(SaveSharedPreference.getFcmToken(mContext) == null || SaveSharedPreference.getFcmToken(mContext).isEmpty()){
             SaveSharedPreference.setPrefFcmToken(mContext,FirebaseInstanceId.getInstance().getToken());
             saveFcmToken();
         }
@@ -234,12 +234,15 @@ public class MainActivity extends AppCompatActivity {
                     startActivity(i);
                     finish();
                 } else if (mt.getStatus() == null || mt.getStatus().equals("C")) {
-                    Toast.makeText(mContext, "재능 드림 재등록을 먼저 진행해주세요.", Toast.LENGTH_SHORT).show();
-                    Intent i = new Intent(mContext, com.example.accepted.acceptedtalentplanet.TalentCondition.MainActivity.class);
-                    i.putExtra("GiveFlag", true);
-                    i.putExtra("TalentCondition_TalentFlag", "Give");
-                    startActivity(i);
-                    finish();
+//                    Toast.makeText(mContext, "재능 드림 재등록을 먼저 진행해주세요.", Toast.LENGTH_SHORT).show();
+//                    Intent i = new Intent(mContext, com.example.accepted.acceptedtalentplanet.TalentCondition.MainActivity.class);
+//                    i.putExtra("GiveFlag", true);
+//                    i.putExtra("TalentCondition_TalentFlag", "Give");
+//                    startActivity(i);
+//                    finish();
+                    arrayList.clear();
+                    listView.setAdapter(adapter);
+                    tv_Txt.setText("재능 드림 재등록을 먼저 진행해주세요.");
                 } else if(mt.getStatus().equals("M"))
                 {
                     tv_Txt.setText("회원님의 재능 드림이 진행 중입니다.");
@@ -281,12 +284,15 @@ public class MainActivity extends AppCompatActivity {
                     startActivity(i);
                     finish();
                 } else if (mt.getStatus() == null || mt.getStatus().equals("C")) {
-                    Toast.makeText(mContext, "관심 재능 재등록을 먼저 진행해주세요.", Toast.LENGTH_SHORT).show();
-                    Intent i = new Intent(mContext, com.example.accepted.acceptedtalentplanet.TalentCondition.MainActivity.class);
-                    i.putExtra("GiveFlag", false);
-                    i.putExtra("TalentCondition_TalentFlag", "Take");
-                    startActivity(i);
-                    finish();
+//                    Toast.makeText(mContext, "관심 재능 재등록을 먼저 진행해주세요.", Toast.LENGTH_SHORT).show();
+//                    Intent i = new Intent(mContext, com.example.accepted.acceptedtalentplanet.TalentCondition.MainActivity.class);
+//                    i.putExtra("GiveFlag", false);
+//                    i.putExtra("TalentCondition_TalentFlag", "Take");
+//                    startActivity(i);
+//                    finish();
+                    arrayList.clear();
+                    listView.setAdapter(adapter);
+                    tv_Txt.setText("관심 재능 재등록을 먼저 진행해주세요.");
                 }
                 else if(mt.getStatus().equals("M"))
                 {

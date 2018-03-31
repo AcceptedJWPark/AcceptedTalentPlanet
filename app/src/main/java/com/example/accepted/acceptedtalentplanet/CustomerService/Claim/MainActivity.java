@@ -78,13 +78,13 @@ public class MainActivity extends AppCompatActivity {
     private int status;
     private final int GALLERY_CODE = 1112;
     private final int CLAIM_CODE = 1113;
-
+    private boolean isSelect;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.customerservice_claimactivity);
 
-        final boolean isSelect = getIntent().getBooleanExtra("isSelected", false);
+        isSelect = getIntent().getBooleanExtra("isSelected", false);
         if (isSelect) {
             name = getIntent().getStringExtra("name");
             keyword1 = getIntent().getStringExtra("keyword1");
@@ -367,6 +367,7 @@ public class MainActivity extends AppCompatActivity {
                     tarTalentID = data.getStringExtra("tarTalentID");
                     talentFlag = data.getStringExtra("talentFlag");
                     status = data.getIntExtra("status", 0);
+                    isSelect = true;
 
 
                     String strStatus = null;
