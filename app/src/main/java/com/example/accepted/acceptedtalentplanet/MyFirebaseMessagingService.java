@@ -4,7 +4,6 @@ package com.example.accepted.acceptedtalentplanet;
  * Created by kwonhong on 2018-03-09.
  */
 
-import android.app.Activity;
 import android.app.ActivityManager;
 import android.app.Notification;
 import android.app.NotificationChannel;
@@ -18,16 +17,13 @@ import android.os.Build;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationManagerCompat;
 import android.util.Log;
-import android.widget.Toast;
 
-import com.example.accepted.acceptedtalentplanet.Alarm.ListItem;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
 import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.TimeZone;
@@ -117,7 +113,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                 datas = remoteMessage.getData().get("datas");
 
                 addNotificationList(remoteMessage.getData().get("type"));
-                addAlarmList(remoteMessage.getData().get("type"));
+//                addAlarmList(remoteMessage.getData().get("type"));
 
                 if (mMessageReceivedListener != null) {
                     update();
@@ -155,7 +151,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                             mBuilder = new NotificationCompat.Builder(this, MY_CHANNEL_ID);
 
                         }
-                        mBuilder.setSmallIcon(R.drawable.icon_friendadd_clicked)
+                        mBuilder.setSmallIcon(R.drawable.icon_logo2)
                                 .setContentTitle(alarmTxt)
                                 .setAutoCancel(true)
                                 .setVibrate(new long[]{1, 1000})
@@ -166,7 +162,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                         Notification summaryNotification =
                                 new NotificationCompat.Builder(this, MY_CHANNEL_ID)
                                         .setContentTitle("새로운 알람이 있습니다.")
-                                        .setSmallIcon(R.drawable.icon_friendadd_clicked)
+                                        .setSmallIcon(R.drawable.icon_logo2)
                                         .setStyle(new NotificationCompat.InboxStyle()
                                                 .setSummaryText("알람을 확인하세요!"))
                                         //specify which group this notification belongs to
@@ -218,167 +214,167 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     }
 
 
-    private void addAlarmList(String type){
-        ArrayList<ListItem> arrayList = SaveSharedPreference.getPrefAlarmArry(mContext);
-        if (arrayList == null) {
-            arrayList = new ArrayList<>();
-        }
-
-        String userName = null;
-        String userId = null;
-        String unformatedDate = null;
-        int talentID = -1;
-        int talentType = -1;
-        int roomId = -1;
-
-        switch (type){
-            case "Message": {
-                try {
-                    JSONObject obj = new JSONObject(datas);
-                    userName = obj.getString("USER_NAME");
-                    userId = obj.getString("USER_ID");
-                    unformatedDate = obj.getString("CREATION_DATE_STRING");
-
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-
-                String formattedDate = dateFormat(unformatedDate);
-
-                int countMessage = 1;
-                ListItem listItem = new ListItem(R.drawable.picure_basic, userName, "새로운 메세지 1건이 있습니다.", 1, formattedDate, 6, R.drawable.icon_delete, false);
-                listItem.setUserId(userId);
-                listItem.setUserName(userName);
-                if(arrayList.size()>0) {
-                    arrayList.add(0, listItem);
-                    for (int i = 1; i < arrayList.size(); i++) {
-                        if(arrayList.get(i).getactivityChange_CODE() == 6) {
-                            if (arrayList.get(0).getUserId().equals(arrayList.get(i).getUserId())) {
-                                countMessage = arrayList.get(i).getCountMessage() + 1;
-                                arrayList.remove(i);
-                                arrayList.remove(0);
-                                listItem.settxt("새로운 메세지 " + countMessage + "건이 있습니다.");
-                                listItem.setCountMessage(countMessage);
-                                arrayList.add(0, listItem);
-                            }
-                        }
-                    }
-                }
-                else
-                {
-                    arrayList.add(0, listItem);
-                }
-                SaveSharedPreference.setPrefAlarmArray(mContext, arrayList);
-                break;
-            }
-            case "QNA": {
-
-                try {
-                    JSONObject obj = new JSONObject(datas);
-                    unformatedDate = obj.getString("CREATION_DATE_STRING");
-
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-                String formatedDate = dateFormat(unformatedDate);
-                alarmTxt = "Q&A 질문에 대한 답변이 완료되었습니다.";
-                arrayList.add(0, new ListItem(R.drawable.logo_fakefile, "Talent Planet", alarmTxt, formatedDate, 4, R.drawable.icon_delete, false));
-                SaveSharedPreference.setPrefAlarmArray(mContext, arrayList);
-                Log.d("lastDate = ", unformatedDate);
-                break;
-            }
-            case "Claim": {
-
-                try {
-                    JSONObject obj = new JSONObject(datas);
-                    unformatedDate = obj.getString("CREATION_DATE_STRING");
-
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-                String formatedDate = dateFormat(unformatedDate);
-                alarmTxt = "신고하기에 대한 조치가 완료되었습니다.";
-                arrayList.add(0, new ListItem(R.drawable.logo_fakefile, "Talent Planet", alarmTxt, formatedDate, 5, R.drawable.icon_delete, false));
-                SaveSharedPreference.setPrefAlarmArray(mContext, arrayList);
-                break;
-            }
-            case "Interest": {
-                try {
-                    JSONObject obj = new JSONObject(datas);
-                    Log.d("long time = ", obj.getLong("CREATION_DATE") + "");
-                    Date tempDate = new Date(obj.getLong("CREATION_DATE"));
-                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd,a hh:mm:ss");
-                    sdf.setTimeZone(time);
-                    unformatedDate = sdf.format(tempDate);
-                    Log.d("unformatedDate", unformatedDate);
-                    userName = obj.getString("USER_NAME");
-                    talentID = obj.getInt("TALENT_ID");
-                    talentType = (obj.getString("TALENT_FLAG").equals("Y"))? 2 : 1;
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-                String formatedDate = dateFormat(unformatedDate);
-                Log.d(formatedDate,"formatedDate");
-                arrayList.add(0, new ListItem(R.drawable.logo_fakefile, userName, talentID, "Talent Planet", formatedDate, 1, talentType, R.drawable.icon_delete, false));
-                SaveSharedPreference.setPrefAlarmArray(mContext, arrayList);
-                break;
-            }
-            case "InterestingMatching":{
-                try {
-                    JSONObject obj = new JSONObject(datas);
-                    Date tempDate = new Date(obj.getLong("LAST_UPDATE_DATE"));
-                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd,a hh:mm:ss");
-                    sdf.setTimeZone(time);
-                    unformatedDate = sdf.format(tempDate);
-                    userName = obj.getString("USER_NAME");
-                    talentID = obj.getInt("TALENT_ID");
-                    talentType = (obj.getString("TALENT_FLAG").equals("Y"))? 2 : 1;
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-
-                String formatedDate = dateFormat(unformatedDate);
-                arrayList.add(0, new ListItem(R.drawable.logo_fakefile, userName, talentID, "Talent Planet", formatedDate, 1, talentType, R.drawable.icon_delete, false));
-                break;
-            }
-            case "InterestingCancel":{
-                try {
-                    JSONObject obj = new JSONObject(datas);
-                    Date tempDate = new Date(obj.getLong("LAST_UPDATE_DATE"));
-                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd,a hh:mm:ss");
-                    sdf.setTimeZone(time);
-                    unformatedDate = sdf.format(tempDate);
-                    userName = obj.getString("USER_NAME");
-                    talentID = obj.getInt("TALENT_ID");
-                    talentType = (obj.getString("TALENT_FLAG").equals("Y"))? 2 : 1;
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-
-                String formatedDate = dateFormat(unformatedDate);
-                arrayList.add(0, new ListItem(R.drawable.logo_fakefile, userName, talentID, "Talent Planet", formatedDate, 1, talentType, R.drawable.icon_delete, false));
-                break;
-            }
-            case "InterestingComplete":{
-                try {
-                    JSONObject obj = new JSONObject(datas);
-                    Date tempDate = new Date(obj.getLong("LAST_UPDATE_DATE"));
-                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd,a hh:mm:ss");
-                    sdf.setTimeZone(time);
-                    unformatedDate = sdf.format(tempDate);
-                    userName = obj.getString("USER_NAME");
-                    talentID = obj.getInt("TALENT_ID");
-                    talentType = (obj.getString("TALENT_FLAG").equals("Y"))? 2 : 1;
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-
-                String formatedDate = dateFormat(unformatedDate);
-                arrayList.add(0, new ListItem(R.drawable.logo_fakefile, userName, talentID, "Talent Planet", formatedDate, 1, talentType, R.drawable.icon_delete, false));
-                break;
-            }
-        }
-    }
+//    private void addAlarmList(String type){
+//        ArrayList<ListItem> arrayList = SaveSharedPreference.getPrefAlarmArry(mContext);
+//        if (arrayList == null) {
+//            arrayList = new ArrayList<>();
+//        }
+//
+//        String userName = null;
+//        String userId = null;
+//        String unformatedDate = null;
+//        int talentID = -1;
+//        int talentType = -1;
+//        int roomId = -1;
+//
+//        switch (type){
+//            case "Message": {
+//                try {
+//                    JSONObject obj = new JSONObject(datas);
+//                    userName = obj.getString("USER_NAME");
+//                    userId = obj.getString("USER_ID");
+//                    unformatedDate = obj.getString("CREATION_DATE_STRING");
+//
+//                } catch (Exception e) {
+//                    e.printStackTrace();
+//                }
+//
+//                String formattedDate = dateFormat(unformatedDate);
+//
+//                int countMessage = 1;
+//                ListItem listItem = new ListItem(R.drawable.picure_basic, userName, "새로운 메세지 1건이 있습니다.", 1, formattedDate, 6, R.drawable.icon_delete, false);
+//                listItem.setUserId(userId);
+//                listItem.setUserName(userName);
+//                if(arrayList.size()>0) {
+//                    arrayList.add(0, listItem);
+//                    for (int i = 1; i < arrayList.size(); i++) {
+//                        if(arrayList.get(i).getactivityChange_CODE() == 6) {
+//                            if (arrayList.get(0).getUserId().equals(arrayList.get(i).getUserId())) {
+//                                countMessage = arrayList.get(i).getCountMessage() + 1;
+//                                arrayList.remove(i);
+//                                arrayList.remove(0);
+//                                listItem.settxt("새로운 메세지 " + countMessage + "건이 있습니다.");
+//                                listItem.setCountMessage(countMessage);
+//                                arrayList.add(0, listItem);
+//                            }
+//                        }
+//                    }
+//                }
+//                else
+//                {
+//                    arrayList.add(0, listItem);
+//                }
+//                SaveSharedPreference.setPrefAlarmArray(mContext, arrayList);
+//                break;
+//            }
+//            case "QNA": {
+//
+//                try {
+//                    JSONObject obj = new JSONObject(datas);
+//                    unformatedDate = obj.getString("CREATION_DATE_STRING");
+//
+//                } catch (Exception e) {
+//                    e.printStackTrace();
+//                }
+//                String formatedDate = dateFormat(unformatedDate);
+//                alarmTxt = "Q&A 질문에 대한 답변이 완료되었습니다.";
+//                arrayList.add(0, new ListItem(R.drawable.logo_fakefile, "Talent Planet", alarmTxt, formatedDate, 4, R.drawable.icon_delete, false));
+//                SaveSharedPreference.setPrefAlarmArray(mContext, arrayList);
+//                Log.d("lastDate = ", unformatedDate);
+//                break;
+//            }
+//            case "Claim": {
+//
+//                try {
+//                    JSONObject obj = new JSONObject(datas);
+//                    unformatedDate = obj.getString("CREATION_DATE_STRING");
+//
+//                } catch (Exception e) {
+//                    e.printStackTrace();
+//                }
+//                String formatedDate = dateFormat(unformatedDate);
+//                alarmTxt = "신고하기에 대한 조치가 완료되었습니다.";
+//                arrayList.add(0, new ListItem(R.drawable.logo_fakefile, "Talent Planet", alarmTxt, formatedDate, 5, R.drawable.icon_delete, false));
+//                SaveSharedPreference.setPrefAlarmArray(mContext, arrayList);
+//                break;
+//            }
+//            case "Interest": {
+//                try {
+//                    JSONObject obj = new JSONObject(datas);
+//                    Log.d("long time = ", obj.getLong("CREATION_DATE") + "");
+//                    Date tempDate = new Date(obj.getLong("CREATION_DATE"));
+//                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd,a hh:mm:ss");
+//                    sdf.setTimeZone(time);
+//                    unformatedDate = sdf.format(tempDate);
+//                    Log.d("unformatedDate", unformatedDate);
+//                    userName = obj.getString("USER_NAME");
+//                    talentID = obj.getInt("TALENT_ID");
+//                    talentType = (obj.getString("TALENT_FLAG").equals("Y"))? 2 : 1;
+//                } catch (Exception e) {
+//                    e.printStackTrace();
+//                }
+//                String formatedDate = dateFormat(unformatedDate);
+//                Log.d(formatedDate,"formatedDate");
+//                arrayList.add(0, new ListItem(R.drawable.logo_fakefile, userName, talentID, "Talent Planet", formatedDate, 1, talentType, R.drawable.icon_delete, false));
+//                SaveSharedPreference.setPrefAlarmArray(mContext, arrayList);
+//                break;
+//            }
+//            case "InterestingMatching":{
+//                try {
+//                    JSONObject obj = new JSONObject(datas);
+//                    Date tempDate = new Date(obj.getLong("LAST_UPDATE_DATE"));
+//                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd,a hh:mm:ss");
+//                    sdf.setTimeZone(time);
+//                    unformatedDate = sdf.format(tempDate);
+//                    userName = obj.getString("USER_NAME");
+//                    talentID = obj.getInt("TALENT_ID");
+//                    talentType = (obj.getString("TALENT_FLAG").equals("Y"))? 2 : 1;
+//                } catch (Exception e) {
+//                    e.printStackTrace();
+//                }
+//
+//                String formatedDate = dateFormat(unformatedDate);
+//                arrayList.add(0, new ListItem(R.drawable.logo_fakefile, userName, talentID, "Talent Planet", formatedDate, 1, talentType, R.drawable.icon_delete, false));
+//                break;
+//            }
+//            case "InterestingCancel":{
+//                try {
+//                    JSONObject obj = new JSONObject(datas);
+//                    Date tempDate = new Date(obj.getLong("LAST_UPDATE_DATE"));
+//                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd,a hh:mm:ss");
+//                    sdf.setTimeZone(time);
+//                    unformatedDate = sdf.format(tempDate);
+//                    userName = obj.getString("USER_NAME");
+//                    talentID = obj.getInt("TALENT_ID");
+//                    talentType = (obj.getString("TALENT_FLAG").equals("Y"))? 2 : 1;
+//                } catch (Exception e) {
+//                    e.printStackTrace();
+//                }
+//
+//                String formatedDate = dateFormat(unformatedDate);
+//                arrayList.add(0, new ListItem(R.drawable.logo_fakefile, userName, talentID, "Talent Planet", formatedDate, 1, talentType, R.drawable.icon_delete, false));
+//                break;
+//            }
+//            case "InterestingComplete":{
+//                try {
+//                    JSONObject obj = new JSONObject(datas);
+//                    Date tempDate = new Date(obj.getLong("LAST_UPDATE_DATE"));
+//                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd,a hh:mm:ss");
+//                    sdf.setTimeZone(time);
+//                    unformatedDate = sdf.format(tempDate);
+//                    userName = obj.getString("USER_NAME");
+//                    talentID = obj.getInt("TALENT_ID");
+//                    talentType = (obj.getString("TALENT_FLAG").equals("Y"))? 2 : 1;
+//                } catch (Exception e) {
+//                    e.printStackTrace();
+//                }
+//
+//                String formatedDate = dateFormat(unformatedDate);
+//                arrayList.add(0, new ListItem(R.drawable.logo_fakefile, userName, talentID, "Talent Planet", formatedDate, 1, talentType, R.drawable.icon_delete, false));
+//                break;
+//            }
+//        }
+//    }
 
     private void addNotificationList(String type){
         intent1 = null;

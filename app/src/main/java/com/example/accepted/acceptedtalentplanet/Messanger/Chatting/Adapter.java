@@ -2,6 +2,7 @@ package com.example.accepted.acceptedtalentplanet.Messanger.Chatting;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.support.v7.app.AlertDialog;
@@ -17,11 +18,21 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.toolbox.StringRequest;
 import com.bumptech.glide.Glide;
 import com.example.accepted.acceptedtalentplanet.R;
 import com.example.accepted.acceptedtalentplanet.SaveSharedPreference;
+import com.example.accepted.acceptedtalentplanet.VolleySingleton;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by Accepted on 2018-03-05.
@@ -32,12 +43,14 @@ public class Adapter extends BaseAdapter {
     private ArrayList<ListItem> messanger_Chatting_Arraylist = new ArrayList<>();
     Context mContext;
     String filePath;
+    String receiverID;
 
 
-    public Adapter(ArrayList<ListItem> messanger_Chatting_Arraylist, Context mContext, String filePath) {
+    public Adapter(ArrayList<ListItem> messanger_Chatting_Arraylist, Context mContext, String filePath, String receiverID) {
         this.messanger_Chatting_Arraylist = messanger_Chatting_Arraylist;
         this.mContext = mContext;
         this.filePath = filePath;
+        this.receiverID = receiverID;
     }
 
     public Adapter()
@@ -130,33 +143,7 @@ public class Adapter extends BaseAdapter {
 
                     final AlertDialog.Builder AlarmDeleteDialog = new AlertDialog.Builder(new ContextThemeWrapper(mContext, R.style.myDialog));
 
-                            AlarmDeleteDialog.setMessage("상대방 프로필 보기")
-                                    .setPositiveButton("관심 재능", new DialogInterface.OnClickListener() {
-                                        @Override
-                                        public void onClick(DialogInterface dialog, int which) {
-                                            Toast.makeText(mContext,"관심 재능 클릭",Toast.LENGTH_SHORT).show();
-                                            dialog.cancel();
-                                        }
-                                    })
-                                    .setNegativeButton("재능 드림", new DialogInterface.OnClickListener() {
-                                        @Override
-                                        public void onClick(DialogInterface dialog, int which) {
-                                            Toast.makeText(mContext,"재능 드림 클릭",Toast.LENGTH_SHORT).show();
-                                            dialog.cancel();
-                                        }
-                                    })
-                            .setNeutralButton("닫기", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    dialog.cancel();
-                                }
-                            });
-
-                            AlertDialog alertDialog = AlarmDeleteDialog.create();
-                            alertDialog.show();
-                    alertDialog.getButton((DialogInterface.BUTTON_POSITIVE)).setTextColor(finalView.getResources().getColor(R.color.loginPasswordLost));
-                    alertDialog.getButton((DialogInterface.BUTTON_NEGATIVE)).setTextColor(finalView.getResources().getColor(R.color.loginPasswordLost));
-                    alertDialog.getButton((DialogInterface.BUTTON_NEUTRAL)).setTextColor(finalView.getResources().getColor(R.color.loginPasswordLost));
+                            getTalentID(receiverID, finalView);
 
                         }
                     });
@@ -206,5 +193,78 @@ public class Adapter extends BaseAdapter {
         this.messanger_Chatting_Arraylist.clear();
         this.messanger_Chatting_Arraylist.addAll(items);
         notifyDataSetChanged();
+    }
+
+    public void getTalentID(final String userID, final View finalView) {
+        RequestQueue postRequestQueue = VolleySingleton.getInstance(mContext).getRequestQueue();
+        StringRequest postJsonRequest = new StringRequest(Request.Method.POST, SaveSharedPreference.getServerIp() + "Chat/getTalentID.do", new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONObject obj = new JSONObject(response);
+                    final int giveTalentID = obj.getInt("GIVE_TALENT_ID");
+                    final int takeTalentID = obj.getInt("TAKE_TALENT_ID");
+
+                    final AlertDialog.Builder AlarmDeleteDialog = new AlertDialog.Builder(new ContextThemeWrapper(mContext, R.style.myDialog));
+
+                    AlarmDeleteDialog.setMessage("상대방 프로필 보기")
+                            .setPositiveButton("관심 재능", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    if(takeTalentID == -1){
+                                        Toast.makeText(mContext,"상대방의 관심 재능이 등록되지 않았습니다.",Toast.LENGTH_SHORT).show();
+                                    }else{
+                                        Intent intent = new Intent(mContext, com.example.accepted.acceptedtalentplanet.TalentSharing.Popup.MainActivity.class);
+                                        intent.putExtra("TalentID", String.valueOf(takeTalentID));
+                                        intent.putExtra("TalentFlag", "Take");
+                                        mContext.startActivity(intent);
+                                    }
+                                    dialog.cancel();
+                                }
+                            })
+                            .setNegativeButton("재능 드림", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    if(giveTalentID == -1){
+                                        Toast.makeText(mContext,"상대방의 재능 드림이 등록되지 않았습니다.",Toast.LENGTH_SHORT).show();
+                                    }else{
+                                        Intent intent = new Intent(mContext, com.example.accepted.acceptedtalentplanet.TalentSharing.Popup.MainActivity.class);
+                                        intent.putExtra("TalentID", String.valueOf(giveTalentID));
+                                        intent.putExtra("TalentFlag", "Give");
+                                        mContext.startActivity(intent);
+                                    }
+                                    dialog.cancel();
+                                }
+                            })
+                            .setNeutralButton("닫기", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.cancel();
+                                }
+                            });
+
+                    AlertDialog alertDialog = AlarmDeleteDialog.create();
+                    alertDialog.show();
+                    alertDialog.getButton((DialogInterface.BUTTON_POSITIVE)).setTextColor(finalView.getResources().getColor(R.color.loginPasswordLost));
+                    alertDialog.getButton((DialogInterface.BUTTON_NEGATIVE)).setTextColor(finalView.getResources().getColor(R.color.loginPasswordLost));
+                    alertDialog.getButton((DialogInterface.BUTTON_NEUTRAL)).setTextColor(finalView.getResources().getColor(R.color.loginPasswordLost));
+
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, SaveSharedPreference.getErrorListener()) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap();
+                params.put("userID", userID);
+                return params;
+            }
+        };
+
+
+        postRequestQueue.add(postJsonRequest);
+
     }
 }

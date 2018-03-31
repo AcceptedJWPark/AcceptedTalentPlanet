@@ -160,7 +160,7 @@ public class MainActivity extends AppCompatActivity {
                 params.put("talent3", talent3);
                 params.put("loc", location);
                 params.put("level", String.valueOf(level));
-                params.put("point", point);
+                params.put("icon_point", point);
                 params.put("talentFlag", talentFlag);
                 params.put("gpLat", String.valueOf(geoPoint.getLat()));
                 params.put("gpLng", String.valueOf(geoPoint.getLng()));
