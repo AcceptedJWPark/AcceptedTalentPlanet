@@ -284,11 +284,11 @@ public class SaveSharedPreference{
     }
 
     public static String getServerIp(){
-        return SERVER_IP;
+        return SERVER_IP2;
     }
 
     public static String getImageUri(){
-        return IMAGE_URI;
+        return IMAGE_URI2;
     }
 
     public static String getLevel(String Level) {

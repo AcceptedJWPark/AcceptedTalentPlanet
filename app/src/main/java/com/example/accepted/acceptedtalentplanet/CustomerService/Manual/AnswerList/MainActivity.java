@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ExpandableListView;
 
 import com.example.accepted.acceptedtalentplanet.R;
@@ -27,7 +26,6 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<String> arrayList_Parent = new ArrayList<String>();
     private HashMap<String, ArrayList<String>> arrayList_Child = new HashMap<String, ArrayList<String>>();
 
-    private Button btn_Pre;
 
     private Context mContext;
 
@@ -46,13 +44,6 @@ public class MainActivity extends AppCompatActivity {
         expandableListView = (ExpandableListView) this.findViewById(R.id.expandableListView_Manual);
         expandableListView.setAdapter(new ELVAdapter(this, arrayList_Parent, arrayList_Child));
         setArrayData(valueTypes);
-        btn_Pre = (Button) findViewById(R.id.btn_Pre_Manual);
-        btn_Pre.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
 
         expandableListView.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
             int lastClickedPosition = 0;
@@ -75,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
         {
             ArrayList<String> arrayList1 = new ArrayList<String>();
             arrayList_Parent.add("My Profile");
-            arrayList1.add(" 회원님이 회원 가입 시 입력한 계정 정보를 확인할 수 있습니다. 성별, 생년월일, 직업 수정 및 비공개 처리가 가능합니다.");
+            arrayList1.add(" 회원님이 회원 가입 시 입력한 계정 정보를 확인할 수 있습니다. 성별, 생년월일, 직업은 수정 및 비공개 처리가 가능합니다.");
             arrayList_Child.put(arrayList_Parent.get(0),arrayList1);
 
             ArrayList<String> arrayList2 = new ArrayList<String>();
@@ -105,14 +96,14 @@ public class MainActivity extends AppCompatActivity {
 
             ArrayList<String> arrayList7 = new ArrayList<String>();
             arrayList_Parent.add("재능 드림 / 관심 재능");
-            arrayList7.add(" 재능 드림, 관심 재능은 가입 이후 필수 입력 사항입니다. 재능 입력이 안된 상태에서 TalentPlanet 사용이 불가합니다.\n  \"My Profile\" → \"미등록\"을 클릭 또는 \"좌측 상단의 슬라이드 메뉴\" → \"My Talent\"에서 재능 등록을 꼭 해주세요.");
+            arrayList7.add(" 재능 드림, 관심 재능은 가입 이후 필수 입력 사항입니다. 재능 입력이 안된 상태에서 TalentPlanet 사용이 불가합니다.\n  \"My Profile\" → \"미등록\"을 클릭 또는 좌측 상단의 슬라이드 메뉴 → \"My Talent\"에서 재능 등록을 꼭 해주세요.");
             arrayList_Child.put(arrayList_Parent.get(6),arrayList7);
         }
         else if (value.equals("MyTalent"))
         {
             ArrayList<String> arrayList1 = new ArrayList<String>();
             arrayList_Parent.add("My Talent");
-            arrayList1.add(" 회원님의 관심 재능 및 재능 드림을 등록할 수 있습니다. 재능 입력이 안된 상태에서는 TalentPlanet 사용이 불가하니 필히 입력해야 합니다.\n  \"My Profile\" → \"미등록\"을 클릭 또는 \"좌측 상단의 슬라이드 메뉴\" → \"My Talent\"에서 재능 등록을 꼭 해주세요.");
+            arrayList1.add(" 회원님의 관심 재능 및 재능 드림을 등록할 수 있습니다. 재능 입력이 안된 상태에서는 TalentPlanet 사용이 불가하니 필히 입력해야 합니다.\n  \"My Profile\" → \"미등록\"을 클릭 또는 좌측 상단의 슬라이드 메뉴 → \"My Talent\"에서 재능 등록을 꼭 해주세요.");
             arrayList_Child.put(arrayList_Parent.get(0),arrayList1);
 
             ArrayList<String> arrayList2 = new ArrayList<String>();
@@ -144,12 +135,12 @@ public class MainActivity extends AppCompatActivity {
 
             ArrayList<String> arrayList2 = new ArrayList<String>();
             arrayList_Parent.add("재능 드림 / 관심 재능");
-            arrayList2.add(" Talented에는 재능 드림과 관심 재능 두 가지 재능이 있습니다. \n 1) 재능 드림 : 가르쳐 줄 수 있는, 공유 할 수 있는 재능 \n 2) 관심 재능 : 배우고 싶은, 관심을 가지고 있는 재능");
+            arrayList2.add(" TalentPlanet에는 재능 드림과 관심 재능 두 가지 재능이 있습니다. \n 1) 재능 드림 : 가르쳐 줄 수 있는, 공유 할 수 있는 재능 \n 2) 관심 재능 : 배우고 싶은, 관심을 가지고 있는 재능");
             arrayList_Child.put(arrayList_Parent.get(1),arrayList2);
 
             ArrayList<String> arrayList3 = new ArrayList<String>();
             arrayList_Parent.add("회원 리스트");
-            arrayList3.add(" T.Sharing에 나타나는 회원 리스트는 회원님이 재능 등록한 세 개의 키워드 중 하나 이상 공통 재능을 입력한 회원들이 나열 됩니다. 이때 회원님과의 최단거리 순으로 나열되니 회원님과 재능 공유가 편한 상대에게 관심을 보내 재능 공유를 시작하세요.");
+            arrayList3.add(" T.Sharing에 나타나는 회원 리스트는 회원님이 재능 등록한 세 개의 키워드 중 하나 이상 공통 재능을 입력한 회원들이 나열 됩니다. 이때 회원님과의 최단거리 순으로 나열되니 회원님과 재능 공유가 편한 상대에게 \"Shall we\"를 전달하여 재능 공유를 시작하세요.");
             arrayList_Child.put(arrayList_Parent.get(2),arrayList3);
         }
         else if(value.equals("TCondition"))
@@ -161,7 +152,7 @@ public class MainActivity extends AppCompatActivity {
 
             this.arrayList_Parent.add("대기 중");
             ArrayList<String> arrayList1 = new ArrayList<String>();
-            arrayList1.add(" 회원님이 원하는 다른 회원들과 관심을 주고 받을 수 있는 상태입니다. 회원님이 관심을 보낸 상대방이 진행하기를 누르면 진행하기 상태로 변합니다. 반대로 다른 회원들이 회원님께 관심을 보내 회원님이 진행하기를 누를 수도 있습니다. 관심을 주고 받은 상대가 없다면 T.Sharing을 통해 회원님과 재능 공유를 할 대상에게 관심을 보내보세요.\n \"대기 중\" → \"진행 중\"으로 상태가 변할 때에는 주고 받은 관심들은 전부 취소 상태가 됩니다. 재능 공유에 가능성이 있는 회원들은 친구 추가를 할 수 있습니다.");
+            arrayList1.add(" 회원님이 원하는 다른 회원들과 \"Shall we\"를 주고 받을 수 있는 상태입니다. 회원님이 \"Shall we\"를 전달한 상대방이 진행하기를 누르면 진행하기 상태로 변합니다. 반대로 다른 회원들이 회원님께 \"Shall we\"를 전달하여 회원님이 진행하기를 누를 수도 있습니다. \"Shall we\"를 주고 받은 상대가 없다면 T.Sharing을 통해 회원님과 재능 공유를 할 대상에게 관심을 보내보세요.\n \"대기 중\" → \"진행 중\"으로 상태가 변할 때에는 주고 받은 Shll we List들은 전부 삭제 됩니다. 재능 공유에 가능성이 있는 회원들은 친구 추가를 할 수 있습니다.");
             arrayList_Child.put(this.arrayList_Parent.get(1),arrayList1);
 
             this.arrayList_Parent.add("진행 중");
@@ -174,43 +165,16 @@ public class MainActivity extends AppCompatActivity {
             arrayList3.add(" 완료 상태에서는 회원님의 재능은 미등록 상태 입니다. 완료 후 재능 재등록 또는 재능 수정하기를 해야 회원님의 재능이 다시 활성화가 됩니다. 이 점 꼭 유의하시기 바랍니다.");
             arrayList_Child.put(this.arrayList_Parent.get(3),arrayList3);
         }
-        else if(value.equals("TSearching"))
-        {
-            ArrayList<String> arrayList1 = new ArrayList<String>();
-            arrayList_Parent.add("재능 검색");
-            arrayList1.add(" T.Sharing에서 재능 공유 대상을 찾을 수 없다면 재능 검색을 활용해 볼 수 있습니다. 검색조건 변경을 통해 회원님이 원하는 재능을 검색 할 수 있습니다.");
-            arrayList_Child.put(arrayList_Parent.get(0),arrayList1);
-
-            ArrayList<String> arrayList2 = new ArrayList<String>();
-            arrayList_Parent.add("키워드");
-            arrayList2.add(" 키워드는 최대 세 개 입력 할 수 있으며 T.Sharing과 마찬가지로 입력한 키워드를 공통으로 등록한 회원들의 리스트가 나열됩니다.");
-            arrayList_Child.put(arrayList_Parent.get(1),arrayList2);
-
-            ArrayList<String> arrayList3 = new ArrayList<String>();
-            arrayList_Parent.add("장소");
-            arrayList3.add(" 장소는 전체로 검색 할 수 있고 특정 지역의 재능 리스트를 검색 할 수 있습니다.");
-            arrayList_Child.put(arrayList_Parent.get(2),arrayList3);
-
-            ArrayList<String> arrayList4 = new ArrayList<String>();
-            arrayList_Parent.add("수준");
-            arrayList4.add(" 수준에 따른 재능 검색이 가능합니다. 전체를 검색하려면 \"시작 단계\" ~ \"전문가 이하\"로 검색 가능합니다.");
-            arrayList_Child.put(arrayList_Parent.get(3),arrayList4);
-
-            ArrayList<String> arrayList5 = new ArrayList<String>();
-            arrayList_Parent.add("포인트");
-            arrayList5.add(" 포인트에 따른 재능 검색이 가능합니다. \"공란\"으로 비워 놓으면 포인트 전체 검색이 가능합니다.");
-            arrayList_Child.put(arrayList_Parent.get(4),arrayList5);
-        }
         else if(value.equals("CustomerService"))
         {
             ArrayList<String> arrayList1 = new ArrayList<String>();
             arrayList_Parent.add("고객센터");
-            arrayList1.add(" Talented App 버전, 업데이트 내역과 회원님이 사용 시 문제점, 궁금한 점을 확인하고 문의할 수 있습니다. 또한 개선할 점, 오류 등을 건의할 수 있습니다.");
+            arrayList1.add(" TalnetPlanet App 버전, 업데이트 내역과 회원님이 사용 시 문제점, 궁금한 점을 확인하고 문의할 수 있습니다. 또한 개선할 점, 오류 등을 건의할 수 있습니다.");
             arrayList_Child.put(arrayList_Parent.get(0),arrayList1);
 
             ArrayList<String> arrayList2 = new ArrayList<String>();
-            arrayList_Parent.add("Talented 소개");
-            arrayList2.add(" Talented에 대한 간략한 App 소개를 확인할 수 있습니다. 시작 전 읽어 보시는 것을 권유 드립니다.");
+            arrayList_Parent.add("TalnetPlanet 소개");
+            arrayList2.add(" TalnetPlanet 대한 간략한 App 소개를 확인할 수 있습니다. 시작 전 읽어 보시는 것을 권유 드립니다.");
             arrayList_Child.put(arrayList_Parent.get(1),arrayList2);
 
             ArrayList<String> arrayList3 = new ArrayList<String>();
@@ -229,8 +193,8 @@ public class MainActivity extends AppCompatActivity {
             arrayList_Child.put(arrayList_Parent.get(4),arrayList5);
 
             ArrayList<String> arrayList6 = new ArrayList<String>();
-            arrayList_Parent.add("Talented 사용하기");
-            arrayList6.add(" Talented App에 대한 Manual을 제공합니다. 사용 중 문제가 발생하거나 궁금하신 부분이 있을 때 사용할 수 있습니다. 원하는 내용이 없을 시 1:1 문의하기를 이용하시면 빠른 시일내에 답변을 받을 수 있습니다.");
+            arrayList_Parent.add("TalnetPlanet 사용하기");
+            arrayList6.add(" TalnetPlanet App에 대한 Manual을 제공합니다. 사용 중 문제가 발생하거나 궁금하신 부분이 있을 때 사용할 수 있습니다. 원하는 내용이 없을 시 1:1 문의하기를 이용하시면 빠른 시일내에 답변을 받을 수 있습니다.");
             arrayList_Child.put(arrayList_Parent.get(5),arrayList6);
 
             ArrayList<String> arrayList7 = new ArrayList<String>();
@@ -245,7 +209,7 @@ public class MainActivity extends AppCompatActivity {
 
             ArrayList<String> arrayList9 = new ArrayList<String>();
             arrayList_Parent.add("상대방 신고하기 / 신고내역");
-            arrayList9.add(" Talented 사용 중 비합리적인 행위를 한 회원을 신고할 수 있습니다. 공유 내역을 선택, 신고 유형을 선택하여 신고가 가능합니다. 신고 내용은 1,000자로 제한됩니다. 신고에 대한 증거로서 사진을 첨부할 수 있으며 증거 사진이 있을 경우 빠른 조치가 가능합니다. 공유 내역과 첨부 사진이 없는 경우 조치가 어려울 수 있습니다.\n 회원님의 신고 내용에 대한 조치 사항은 신고내역에서 확인할 수 있습니다.");
+            arrayList9.add(" TalnetPlanet 사용 중 비합리적인 행위를 한 회원을 신고할 수 있습니다. 공유 내역, 신고 유형을 선택하여 신고가 가능합니다. 신고 내용은 1,000자로 제한되며 공유 내역이 없는 경우 조치가 불가능합니다.\n 회원님의 신고 내용에 대한 조치 사항은 신고내역에서 확인할 수 있습니다.");
             arrayList_Child.put(arrayList_Parent.get(8),arrayList9);
         }
         else if(value.equals("System"))
@@ -272,57 +236,15 @@ public class MainActivity extends AppCompatActivity {
 
             ArrayList<String> arrayList5 = new ArrayList<String>();
             arrayList_Parent.add("비밀번호 변경");
-            arrayList5.add(" 비밀번호 변경을 할 수 있습니다. 비밀번호 변경은 등록하신 계정(E-mail)에 보낸 인증 코드를 입력하여 변경이 가능합니다.");
+            arrayList5.add(" 비밀번호 변경을 할 수 있습니다. 비밀번호 변경은 기존 비밀번호 및 새로운 비밀번호를 입력하여 변경이 가능합니다.");
             arrayList_Child.put(arrayList_Parent.get(4),arrayList5);
-
-            ArrayList<String> arrayList6 = new ArrayList<String>();
-            arrayList_Parent.add("휴면 계정 설정");
-            arrayList6.add(" 휴면 계정으로 설정이 가능합니다. 휴면 계정으로 설정 시 회원님이 등록하신 재능은 미등록 상태가 되고 모든 알람은 중지 됩니다. 휴면 계정을 다시 활성화 시키려면 \"휴면 계정 설정\" → \"계정 활성화\"로 가능합니다.");
-            arrayList_Child.put(arrayList_Parent.get(5),arrayList6);
-        }
-        else if(value.equals("Alarm"))
-        {
-            ArrayList<String> arrayList1 = new ArrayList<String>();
-            arrayList_Parent.add("알림");
-            arrayList1.add(" 회원님 재능의 관심, 재능 상태, 메시지, 답변 여부 등을 확인할 수 있습니다. \"우측 상단 종\" 모양의 이미지를 클릭하여 확인 할 수 있습니다. \n 알람에 대한 설정은 \"좌측 상단의 슬라이드 메뉴\" → \"설정\" → \"알람 설정\"에서 변경이 가능합니다.");
-            arrayList_Child.put(arrayList_Parent.get(0),arrayList1);
-
-            ArrayList<String> arrayList2 = new ArrayList<String>();
-            arrayList_Parent.add("관심 알림");
-            arrayList2.add(" 누군가 회원님의 재능에 관심을 보냈을 때 Talented에서 푸시 메시지를 보냅니다. 관심에 대한 푸시 메시지를 클릭하면 관심 목록 화면으로 이동합니다.");
-            arrayList_Child.put(arrayList_Parent.get(1),arrayList2);
-
-            ArrayList<String> arrayList3 = new ArrayList<String>();
-            arrayList_Parent.add("재능 상태 알림");
-            arrayList3.add(" 회원님의 재능 상태가 변할 때 Talented에서 푸시 메시지를 보냅니다. 재능 상태에 대한 푸시 메시지를 클릭하면 나의 재능 현황 화면으로 이동합니다.");
-            arrayList_Child.put(arrayList_Parent.get(2),arrayList3);
-
-            ArrayList<String> arrayList4 = new ArrayList<String>();
-            arrayList_Parent.add("관심 취소 / 진행 취소 알림");
-            arrayList4.add(" 회원님이 주고 받은 관심 취소 또는 진행 중이던 재능이 취소 되었을 때 Talented에서 푸시 메시지를 보냅니다. 취소에 대한 푸시 메시지를 클릭하면 해당 회원의 프로필이 팝업 됩니다.");
-            arrayList_Child.put(arrayList_Parent.get(3),arrayList4);
-
-            ArrayList<String> arrayList5 = new ArrayList<String>();
-            arrayList_Parent.add("1:1 문의하기 답변 완료 알림");
-            arrayList5.add(" 회원님이 1:1 문의하신 내용에 대한 답변이 완료 되면 Talented에서 푸시 메시지를 보냅니다. 답변 완료에 대한 푸시 메시지를 클릭하면 문의내역 화면으로 이동합니다.");
-            arrayList_Child.put(arrayList_Parent.get(4),arrayList5);
-
-            ArrayList<String> arrayList6 = new ArrayList<String>();
-            arrayList_Parent.add("신고하기 답변 완료 알림");
-            arrayList6.add(" 회원님이 신고하신 내역에 대한 조치가 완료되면 Talented에서 푸시 메시지를 보냅니다. 조치 완료에 대한 푸시 메시지를 클릭하면 신고내역 화면으로 이동합니다.");
-            arrayList_Child.put(arrayList_Parent.get(5),arrayList6);
-
-            ArrayList<String> arrayList7 = new ArrayList<String>();
-            arrayList_Parent.add("메시지 알림");
-            arrayList7.add(" 누군가 회원님에게 메시지를 보냈을 때 푸시 메시지가 전송 됩니다. 메시지에 대한 푸시 메시지를 클릭하면 해당 회원과의 Message Box 화면으로 이동합니다.");
-            arrayList_Child.put(arrayList_Parent.get(6),arrayList7);
         }
 
-        else if(value.equals("Message"))
+        else if(value.equals("Messaganger"))
         {
-            arrayList_Parent.add("Message");
+            arrayList_Parent.add("Messaganger");
             ArrayList<String> arrayList = new ArrayList<String>();
-            arrayList.add("Message TextView");
+            arrayList.add("상대방에게 궁금한 내용을 Messanger를 통해 물어볼 수 있습니다. 상대방의 사진을 클릭하면 상대방의 재능 프로필을 볼 수 있습니다.");
             arrayList_Child.put(this.arrayList_Parent.get(0),arrayList);
         }
 
@@ -335,7 +257,7 @@ public class MainActivity extends AppCompatActivity {
 
             this.arrayList_Parent.add("친구 등록 / 삭제");
             ArrayList<String> arrayList1 = new ArrayList<String>();
-            arrayList1.add(" 친구 등록은 회원들의 \"프로필 좌측 상단의 별\"을 활성화 시켜 가능합니다. 친구를 삭제하려면 프로필에서 활성화된 별을 눌러 비활성화 시키면 됩니다.\n 친구는 재능 드림, 관심 재능 친구로 나뉘며 친구 목록에서는 친구로 등록한 대상의 현재 재능 상태를 확인 할 수 있습니다.\n 회원님의 재능 상태가 \"대기 중\" → \"진행 중\"으로 변할 때 주고 받았던 관심들은 모두 관심 취소 처리가 되니, 재능 공유 가능성이 있는 회원들을 친구로 등록 하면 유용합니다.");
+            arrayList1.add(" 친구 등록은 회원들의 프로필 좌측 상단의 별을 활성화 시켜 가능합니다. 친구를 삭제하려면 프로필에서 활성화된 별을 눌러 비활성화 시키면 됩니다.\n 친구는 재능 드림, 관심 재능 친구로 나뉘며 친구 목록에서는 친구로 등록한 대상의 현재 재능 상태를 확인 할 수 있습니다.\n 회원님의 재능 상태가 \"대기 중\" → \"진행 중\"으로 변할 때 주고 받았던 Shall we List는 모두 삭제가 되니, 재능 공유 가능성이 있는 회원들을 친구로 등록 하면 유용합니다.");
             arrayList_Child.put(this.arrayList_Parent.get(1),arrayList1);
         }
 
@@ -343,41 +265,36 @@ public class MainActivity extends AppCompatActivity {
         {
             ArrayList<String> arrayList1 = new ArrayList<String>();
             arrayList_Parent.add("재능공유·관심 내역");
-            arrayList1.add(" 회원님이 진행했던 재능 공유 내역을 확인 할 수 있습니다. 진행 중인 재능, 진행 취소, 공유 완료된 내역을 확인할 수 있습니다.");
+            arrayList1.add(" 회원님이 진행했던 재능 공유 내역을 확인 할 수 있습니다. 진행 중인 재능, 진행 취소, 공유 완료된 내역을 확인할 수 있습니다. ");
             arrayList_Child.put(arrayList_Parent.get(0),arrayList1);
 
             ArrayList<String> arrayList2 = new ArrayList<String>();
             arrayList_Parent.add("Profile 보기");
-            arrayList2.add(" 과거에 재능 공유를 진행했던 상대, 완료했던 상대의 프로필을 확인하여 관심을 보내고 메시지를 보낼 수 있습니다.");
+            arrayList2.add(" 과거에 재능 공유를 진행했던 상대, 완료했던 상대의 프로필을 확인하고 메시지를 보낼 수 있습니다. 재능 공유내역에서는 \"Shall we\"전달이 불가능하오니 친구 등록을 하여 \"Shall we\"전달을 할 수 있습니다.");
             arrayList_Child.put(arrayList_Parent.get(1),arrayList2);
 
             ArrayList<String> arrayList3 = new ArrayList<String>();
             arrayList_Parent.add("신고 하기");
-            arrayList3.add(" 공유 내역을 통해 회원님께 비합리적인 행동을 한 상대를 신고할 수 있습니다. 신고하기에 대한 자세한 사항은 \"Talented 사용하기\" → \"고객센터\" → \"신고하기\"에서 확인할 수 있습니다.");
+            arrayList3.add(" 공유 내역을 통해 회원님께 비합리적인 행동을 한 상대를 신고할 수 있습니다. 신고하기에 대한 자세한 사항은 \"TalentPlanet 사용하기\" → \"고객센터\" → \"신고하기\"에서 확인할 수 있습니다.");
             arrayList_Child.put(arrayList_Parent.get(2),arrayList3);
-
-            ArrayList<String> arrayList4 = new ArrayList<String>();
-            arrayList_Parent.add("내역 삭제");
-            arrayList4.add(" 지난 공유 내역은 삭제할 수 있습니다. 지난 공유 내역은 차후 사용 될 가능성(신고 하기, 재능 공유 등)이 있기 때문에 내역 삭제는 하지 않는 것을 권유합니다.");
-            arrayList_Child.put(arrayList_Parent.get(3),arrayList4);
 
         }
 
         else if(value.equals("InterestingList"))
         {
-            arrayList_Parent.add("관심 목록");
+            arrayList_Parent.add("Shall we List");
             ArrayList<String> arrayList = new ArrayList<String>();
-            arrayList.add(" 회원님이 주고 받은 관심을 확인할 수 있습니다. 재능 공유의 첫 번째 단계입니다.");
+            arrayList.add(" 회원님이 주고 받은 Shall we List를 확인할 수 있습니다. 재능 공유의 첫 번째 단계입니다.");
             arrayList_Child.put(this.arrayList_Parent.get(0),arrayList);
 
             this.arrayList_Parent.add("관심 목록 보기");
             ArrayList<String> arrayList1 = new ArrayList<String>();
-            arrayList1.add(" 재능 상태가 대기 중인 경우에 \"좌측 상단의 슬라이드 메뉴\" → \"나의 재능 현황\" → \"관심 목록 보기\"에서 확인 할 수 있습니다. 회원님의 재능 상태가 \"대기 중\" → \"진행 중\"으로 변할 때 주고 받았던 관심들은 모두 관심 취소가 되니, 재능 공유 가능성이 있는 회원들을 친구로 등록하세요.");
+            arrayList1.add(" 재능 상태가 대기 중인 경우에 좌측 상단의 슬라이드 메뉴 → \"나의 재능 현황\" → \"Shall we List\"에서 확인 할 수 있습니다. 회원님의 재능 상태가 \"대기 중\" → \"진행 중\"으로 변할 때 주고 받았던 Shall we List들은 모두 삭제가 되니, 재능 공유 가능성이 있는 회원들을 친구로 등록하세요.");
             arrayList_Child.put(this.arrayList_Parent.get(1),arrayList1);
 
             this.arrayList_Parent.add("Profile 보기");
             ArrayList<String> arrayList2 = new ArrayList<String>();
-            arrayList2.add(" 관심을 주고 받은 상대의 리스트를 클릭하면 상대의 프로필이 팝업됩니다. 재능 공유를 진행하기 위해서는 관심 목록에서 \"진행 또는 취소\" → \"진행 하기\"를 통해 재능 공유가 진행 될 수 있습니다. 반대로 회원님께 관심을 보낸 대상이 마음에 들지 않는다면 \"진행 또는 취소\" → \"취소 하기\"를 통해 관심 취소가 가능합니다.");
+            arrayList2.add(" Shall we를 주고 받은 상대의 리스트를 클릭하면 상대의 프로필이 팝업됩니다. 재능 공유를 진행하기 위해서는 관심 목록에서 \"진행 하기\"를 통해 재능 공유가 진행 될 수 있습니다.");
             arrayList_Child.put(this.arrayList_Parent.get(2),arrayList2);
         }
     }

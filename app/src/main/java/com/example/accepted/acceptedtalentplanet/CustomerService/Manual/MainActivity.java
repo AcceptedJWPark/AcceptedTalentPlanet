@@ -50,11 +50,9 @@ public class MainActivity extends AppCompatActivity {
         tv_MyTalent = (TextView) findViewById(R.id.tv_MyTalent_Manual);
         tv_TSharing = (TextView) findViewById(R.id.tv_TSharing_Manual);
         tv_TCondition = (TextView) findViewById(R.id.tv_TCondition_Manual);
-        tv_TSearching = (TextView) findViewById(R.id.tv_TSearching_Manual);
         tv_CustomerService = (TextView) findViewById(R.id.tv_CustomerService_Manual);
         tv_System = (TextView) findViewById(R.id.tv_System_Manual);
         tv_Message = (TextView) findViewById(R.id.tv_Message_Manual);
-        tv_Alarm = (TextView) findViewById(R.id.tv_Alarm_Manual);
         tv_Friend = (TextView) findViewById(R.id.tv_Friend_Manual);
         tv_SharingList = (TextView) findViewById(R.id.tv_SharingList_Manual);
         tv_Interesting = (TextView) findViewById(R.id.tv_Interesting_Manual);
@@ -109,14 +107,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        tv_TSearching.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), com.example.accepted.acceptedtalentplanet.CustomerService.Manual.AnswerList.MainActivity.class);
-                intent.putExtra("Value","TSearching");
-                startActivity(intent);
-            }
-        });
         tv_CustomerService.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -142,14 +132,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        tv_Alarm.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), com.example.accepted.acceptedtalentplanet.CustomerService.Manual.AnswerList.MainActivity.class);
-                intent.putExtra("Value","Alarm");
-                startActivity(intent);
-            }
-        });
 
         tv_Friend.setOnClickListener(new View.OnClickListener() {
             @Override
