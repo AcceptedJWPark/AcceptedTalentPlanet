@@ -65,7 +65,6 @@ public class Adapter extends BaseAdapter{
             view = LayoutInflater.from(mContext).inflate(R.layout.friendlist_listviewbg, viewGroup, false);
 
             holder = new ViewHolder();
-            Bitmap bitmap = SaveSharedPreference.getPictureFromDB(mContext, arrayList.get(position).getUserID());
 
             holder.iv_Picture = view.findViewById(R.id.im_Picture_FriendList);
             holder.tv_Name = view.findViewById(R.id.tv_Name_FriendList);
