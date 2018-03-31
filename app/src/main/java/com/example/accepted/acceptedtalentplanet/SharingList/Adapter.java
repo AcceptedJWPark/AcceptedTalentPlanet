@@ -182,7 +182,7 @@ public class Adapter extends BaseAdapter{
         holder.tv_Talent1.setText(arrayList.get(position).getKeyword1());
         holder.tv_Talent2.setText(arrayList.get(position).getKeyword2());
         holder.tv_Talent3.setText(arrayList.get(position).getKeyword3());
-
+        Log.d("conditionType = ", arrayList.get(position).getConditionType() + "");
             switch (arrayList.get(position).getConditionType()) {
 
                 case 3: {

@@ -175,6 +175,7 @@ public class MainActivity extends AppCompatActivity {
                     JSONArray obj = new JSONArray(response);
                     for(int i = 0; i < obj.length(); i++){
                         JSONObject o = obj.getJSONObject(i);
+                        Log.d("friend = ", o.toString());
                         String statusFlag = o.getString("STATUS_FLAG");
                         int talentConditionCode;
                         switch(statusFlag){
