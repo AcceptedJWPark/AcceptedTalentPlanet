@@ -25,7 +25,7 @@ public class ViewPager1 extends Fragment {
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
-        LinearLayout ll_Intro1Container = (LinearLayout) inflater.inflate(R.layout.customerservice_introduction1, container, false);
+        LinearLayout ll_Intro1Container = (LinearLayout) inflater.inflate(R.layout.loading_start, container, false);
         return ll_Intro1Container;
     }
 }
