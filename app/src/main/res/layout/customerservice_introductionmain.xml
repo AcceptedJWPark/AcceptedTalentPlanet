@@ -17,6 +17,20 @@
     </android.support.v4.view.ViewPager>
 
 
+    <Button
+        android:id="@+id/btn_intro"
+        android:layout_width="@dimen/Login_btn"
+        android:layout_height="30dp"
+        android:background="@drawable/bgr_bigbtn2"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/Margin_title"
+        android:text="시작 하기"
+        android:textColor="@color/textcolor_bigbtn"
+        android:textSize="@dimen/BigBtn"
+        android:visibility="gone"
+        />
+
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

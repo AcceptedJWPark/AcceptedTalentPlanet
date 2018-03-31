@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.accepted.acceptedtalentplanet.R;
@@ -19,6 +20,8 @@ public class MainActivity extends AppCompatActivity {
 
     private ViewPager vp_Intro1;
     private TextView text_Intro;
+
+    private Button btn_intro;
 
     private Context mContext;
 
@@ -31,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
         mContext = getApplicationContext();
 
         text_Intro = findViewById(R.id.text_Intro);
+        btn_intro = findViewById(R.id.btn_intro);
         vp_Intro1 = (ViewPager) findViewById(R.id.vp_Intro1_Introduction);
         vp_Intro1.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
@@ -43,15 +47,24 @@ public class MainActivity extends AppCompatActivity {
                 if(position == 0) {
                     text_Intro.setText("1");
                     Log.d(String.valueOf(position),"position");
+                    btn_intro.setVisibility(View.GONE);
                 }
 
                 else if(position == 1){
                     text_Intro.setText("2");
                     Log.d(String.valueOf(position),"position");
+                    btn_intro.setVisibility(View.GONE);
                 }
                 else{
                     Log.d(String.valueOf(position),"position");
                     text_Intro.setText("3");
+                    btn_intro.setVisibility(View.VISIBLE);
+                    btn_intro.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            finish();
+                        }
+                    });
                 }
             }
 
@@ -101,14 +114,14 @@ public class MainActivity extends AppCompatActivity {
         {
             View view = null;
             if(position == 0) {
-                    view = mInflate.inflate(R.layout.customerservice_introduction1, null);
+                    view = mInflate.inflate(R.layout.loading_start, null);
                 }
 
             else if(position == 1){
-                    view = mInflate.inflate(R.layout.customerservice_introduction2, null);
+                    view = mInflate.inflate(R.layout.loading_second, null);
                 }
                 else{
-                view = mInflate.inflate(R.layout.customerservice_introduction3, null);
+                view = mInflate.inflate(R.layout.loading_third, null);
             }
 
 

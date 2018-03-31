@@ -828,14 +828,12 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
                         Toast.makeText(mContext, "재능공유에 성공하였습니다.", Toast.LENGTH_SHORT).show();
                         int point = Integer.parseInt(obj.getString("point"));
                         boolean talentFlag = ((String) tv_TalentType.getText()).equals("관심재능 : ") ? true : false;
-                        MyTalent mt = (talentFlag)?SaveSharedPreference.getTakeTalentData(mContext):SaveSharedPreference.getGiveTalentData(mContext);
-
-                        mt.setStatus("C");
-                        if(!talentFlag){
-                            SaveSharedPreference.setGiveTalentData(mContext, mt);
-                        }else{
+                        if(talentFlag) {
+                            MyTalent mt = SaveSharedPreference.getTakeTalentData(mContext);
+                            mt.setStatus("C");
                             SaveSharedPreference.setTakeTalentData(mContext, mt);
                         }
+
                         SaveSharedPreference.setPrefTalentPoint(mContext, point);
                     }else{
 
