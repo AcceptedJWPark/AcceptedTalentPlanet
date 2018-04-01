@@ -27,6 +27,7 @@ import com.android.volley.Response;
 import com.android.volley.toolbox.StringRequest;
 import com.bumptech.glide.Glide;
 import com.example.accepted.acceptedtalentplanet.Friend;
+import com.example.accepted.acceptedtalentplanet.MyTalent;
 import com.example.accepted.acceptedtalentplanet.R;
 import com.example.accepted.acceptedtalentplanet.SaveSharedPreference;
 import com.example.accepted.acceptedtalentplanet.VolleySingleton;
@@ -218,7 +219,8 @@ public class MainActivity extends FragmentActivity{
                     hasFlag = (obj.getString("HAS_FLAG").equals("N"))? false : true;
                     Log.d("hasFlag", String.valueOf(hasFlag));
                     btn_SendInterest = (Button)findViewById(R.id.btn_SendInterest_TalentSharing);
-                    if(!hasFlag && statusFlag.equals("P")){
+                    MyTalent mt = (talentFlag.equals("Y")) ? SaveSharedPreference.getTakeTalentData(mContext):SaveSharedPreference.getGiveTalentData(mContext);
+                    if(!hasFlag && statusFlag.equals("P") && mt.getStatus().equals("P")){
                         btn_SendInterest.setBackgroundResource(R.drawable.bgr_bigbtn);
                         final AlertDialog.Builder shallWeAlert = new AlertDialog.Builder(new ContextThemeWrapper(MainActivity.this, R.style.myDialog));
                         btn_SendInterest.setOnClickListener(new View.OnClickListener() {
