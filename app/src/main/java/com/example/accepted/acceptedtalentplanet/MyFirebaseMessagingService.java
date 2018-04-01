@@ -151,7 +151,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                             mBuilder = new NotificationCompat.Builder(this, MY_CHANNEL_ID);
 
                         }
-                        mBuilder.setSmallIcon(R.drawable.icon_logo2)
+                        mBuilder.setSmallIcon(R.drawable.ic_logo_notification)
                                 .setContentTitle(alarmTxt)
                                 .setAutoCancel(true)
                                 .setVibrate(new long[]{1, 1000})
