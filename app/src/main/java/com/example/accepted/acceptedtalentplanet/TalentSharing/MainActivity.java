@@ -243,6 +243,16 @@ public class MainActivity extends AppCompatActivity {
                     arrayList.clear();
                     listView.setAdapter(adapter);
                     tv_Txt.setText("재능 드림 재등록을 먼저 진행해주세요.");
+                    ((TextView) findViewById(R.id.clickToCondition_TalentSharing)).setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent i = new Intent(mContext, com.example.accepted.acceptedtalentplanet.TalentCondition.MainActivity.class);
+                            i.putExtra("GiveFlag", true);
+                            i.putExtra("TalentCondition_TalentFlag", "Give");
+                            startActivity(i);
+                        }
+                    });
+
                 } else if(mt.getStatus().equals("M"))
                 {
                     tv_Txt.setText("회원님의 재능 드림이 진행 중입니다.");
@@ -293,6 +303,17 @@ public class MainActivity extends AppCompatActivity {
                     arrayList.clear();
                     listView.setAdapter(adapter);
                     tv_Txt.setText("관심 재능 재등록을 먼저 진행해주세요.");
+                    ((TextView) findViewById(R.id.clickToCondition_TalentSharing)).setVisibility(View.VISIBLE);
+                    ((TextView) findViewById(R.id.clickToCondition_TalentSharing)).setText("나의 재능 현황");
+                    ((TextView) findViewById(R.id.clickToCondition_TalentSharing)).setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent i = new Intent(mContext, com.example.accepted.acceptedtalentplanet.TalentCondition.MainActivity.class);
+                            i.putExtra("GiveFlag", false);
+                            i.putExtra("TalentCondition_TalentFlag", "Take");
+                            startActivity(i);
+                        }
+                    });
                 }
                 else if(mt.getStatus().equals("M"))
                 {
