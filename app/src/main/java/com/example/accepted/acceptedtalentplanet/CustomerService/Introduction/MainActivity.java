@@ -1,6 +1,7 @@
 package com.example.accepted.acceptedtalentplanet.CustomerService.Introduction;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.v4.view.PagerAdapter;
@@ -13,13 +14,14 @@ import android.view.WindowManager;
 import android.widget.TextView;
 
 import com.example.accepted.acceptedtalentplanet.R;
+import com.example.accepted.acceptedtalentplanet.SaveSharedPreference;
 
 
 public class MainActivity extends AppCompatActivity {
 
     private ViewPager vp_Intro1;
     private TextView text_Intro;
-
+    private boolean isFirstLoading = false;
     private TextView btn_intro;
 
     private Context mContext;
@@ -31,6 +33,8 @@ public class MainActivity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         mContext = getApplicationContext();
+
+        isFirstLoading = getIntent().getBooleanExtra("FirstLoading", false);
 
         text_Intro = findViewById(R.id.text_Intro);
         btn_intro = findViewById(R.id.btn_intro);
@@ -61,6 +65,11 @@ public class MainActivity extends AppCompatActivity {
                     btn_intro.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
+                            if(isFirstLoading){
+                                SaveSharedPreference.setFirstLoadingFlag(mContext, false);
+                                Intent intent = new Intent(mContext, com.example.accepted.acceptedtalentplanet.LoadingLogin.Login.MainActivity.class);
+                                startActivity(intent);
+                            }
                             finish();
                         }
                     });

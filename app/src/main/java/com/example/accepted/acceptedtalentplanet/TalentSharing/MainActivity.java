@@ -205,7 +205,6 @@ public class MainActivity extends AppCompatActivity {
                 adapter = new Adapter(mContext, arrayList);
                 listView.setAdapter(adapter);
                 progressBarContainer.setVisibility(View.GONE);
-
                 if(mt != null && (mt.getStatus().equals("C") || mt.getStatus().equals("M"))){
                     listView.setVisibility(View.GONE);
                 }else{
