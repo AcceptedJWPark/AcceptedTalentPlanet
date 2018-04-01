@@ -17,27 +17,30 @@
     </android.support.v4.view.ViewPager>
 
 
-    <Button
+    <TextView
         android:id="@+id/btn_intro"
-        android:layout_width="@dimen/Login_btn"
+        android:layout_width="match_parent"
         android:layout_height="30dp"
-        android:background="@drawable/bgr_bigbtn2"
+        android:gravity="center"
+        android:src="@drawable/icon_logo"
+        android:layout_above="@+id/ll_textContainer_Intro"
+        android:layout_marginBottom="10dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="@dimen/Margin_title"
-        android:text="시작 하기"
-        android:textColor="@color/textcolor_bigbtn"
-        android:textSize="@dimen/BigBtn"
+        android:text="시작하기"
+        android:textSize="@dimen/TalentCondition_Title"
+        android:textColor="#ffffff"
         android:visibility="gone"
         />
 
 
     <LinearLayout
+        android:id="@+id/ll_textContainer_Intro"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:orientation="horizontal"
         android:gravity="center"
-        android:layout_marginBottom="@dimen/Margin_title"
+        android:layout_marginBottom="50dp"
         >
 
         <TextView

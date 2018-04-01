@@ -10,7 +10,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.accepted.acceptedtalentplanet.R;
@@ -21,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
     private ViewPager vp_Intro1;
     private TextView text_Intro;
 
-    private Button btn_intro;
+    private TextView btn_intro;
 
     private Context mContext;
 

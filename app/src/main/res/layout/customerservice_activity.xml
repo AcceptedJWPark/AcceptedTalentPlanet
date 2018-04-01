@@ -71,7 +71,7 @@
             android:paddingBottom="2dp"
             android:paddingLeft="20dp"
             android:paddingTop="2dp"
-            android:text="Talented 소개"
+            android:text="TalentPlanet 소개"
             android:textColor="@color/textColor_object"
             android:textSize="@dimen/DrawerLL_Title"
             android:textStyle="bold"
