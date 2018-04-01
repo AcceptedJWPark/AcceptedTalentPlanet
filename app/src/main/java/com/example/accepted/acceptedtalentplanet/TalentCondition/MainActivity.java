@@ -826,7 +826,7 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
                     JSONObject obj = new JSONObject(response);
                     if(obj.getString("result").equals("success")){
                         Toast.makeText(mContext, "재능공유에 성공하였습니다.", Toast.LENGTH_SHORT).show();
-                        int point = Integer.parseInt(obj.getString("point"));
+                        int point = Integer.parseInt(obj.getString("icon_point"));
                         boolean talentFlag = ((String) tv_TalentType.getText()).equals("관심재능 : ") ? true : false;
                         if(talentFlag) {
                             MyTalent mt = SaveSharedPreference.getTakeTalentData(mContext);

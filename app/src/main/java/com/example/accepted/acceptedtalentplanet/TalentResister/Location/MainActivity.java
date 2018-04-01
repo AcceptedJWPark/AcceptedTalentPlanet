@@ -304,7 +304,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             @Override
             public void onInfoWindowClick(Marker marker) {
                 final AlertDialog.Builder ProgressorCancelPopup = new AlertDialog.Builder(MainActivity.this);
-                Log.d("geo point", mCurrentLocation.getLatitude() +", "+ mCurrentLocation.getLongitude());
+                Log.d("geo icon_point", mCurrentLocation.getLatitude() +", "+ mCurrentLocation.getLongitude());
 
                 ProgressorCancelPopup.setMessage("선택한 위치가 \"" + marker.getSnippet() + "\"가 맞습니까?")
                         .setPositiveButton("확인", new DialogInterface.OnClickListener() {
