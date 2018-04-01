@@ -198,11 +198,20 @@ public class MainActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
 
+                MyTalent mt = (isGiveTalent)?SaveSharedPreference.getGiveTalentData(mContext) : SaveSharedPreference.getTakeTalentData(mContext);
+
+
                 Collections.sort(arrayList);
                 adapter = new Adapter(mContext, arrayList);
                 listView.setAdapter(adapter);
                 progressBarContainer.setVisibility(View.GONE);
-                listView.setVisibility(View.VISIBLE);
+
+                if(mt != null && (mt.getStatus().equals("C") || mt.getStatus().equals("M"))){
+                    listView.setVisibility(View.GONE);
+                }else{
+                    listView.setVisibility(View.VISIBLE);
+                }
+
             }
         }, SaveSharedPreference.getErrorListener()) {
             @Override

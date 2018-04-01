@@ -631,7 +631,7 @@ public class MainActivity extends AppCompatActivity {
             public void onResponse(NetworkResponse response) {
                 try {
                     JSONObject obj = new JSONObject(new String(response.data));
-                    SaveSharedPreference.setMyPicturePath(obj.getString("FILE_PATH"), obj.getString("S_FILE_PATH"));
+                    SaveSharedPreference.setMyPicturePath(obj.getString("FILE_PATH"), obj.getString("FILE_PATH"));
 
                     Glide.with(mContext).load(SaveSharedPreference.getImageUri() + SaveSharedPreference.getMyThumbPicturePath()).into((ImageView) findViewById(R.id.DrawerPicture));
                     Glide.with(mContext).load(SaveSharedPreference.getImageUri() + SaveSharedPreference.getMyThumbPicturePath()).into((ImageView) findViewById(R.id.iv_Picture_MyProfile));
