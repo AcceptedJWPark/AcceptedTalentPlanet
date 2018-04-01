@@ -162,7 +162,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                         Notification summaryNotification =
                                 new NotificationCompat.Builder(this, MY_CHANNEL_ID)
                                         .setContentTitle("새로운 알람이 있습니다.")
-                                        .setSmallIcon(R.drawable.icon_logo2)
+                                        .setSmallIcon(R.drawable.ic_logo_notification)
                                         .setStyle(new NotificationCompat.InboxStyle()
                                                 .setSummaryText("알람을 확인하세요!"))
                                         //specify which group this notification belongs to
