@@ -2,6 +2,7 @@
 
 
 <resources>
+
     <dimen name="ToolbarTxt">22.5dp</dimen>
     <dimen name="Toolbar_Pre_Txt">18.75dp</dimen>
     <dimen name="Toolbar_Pre_Img">30dp</dimen>
@@ -9,6 +10,7 @@
     <dimen name="Popup_Icon">45dp</dimen>
     <dimen name="List_Title">18dp</dimen>
     <dimen name="DrawerLL_Title">16.5dp</dimen>
+    <dimen name="DrawerLL_New">15dp</dimen>
     <dimen name="List_SubTitle">17.25dp</dimen>
     <dimen name="Divider">17.25dp</dimen>
     <dimen name="GiveorTakeBtn">18dp</dimen>
@@ -68,7 +70,7 @@
     <dimen name="Question_Edit_Layout">225dp</dimen>
     <dimen name="TalentSharing_BtnLayout">45dp</dimen>
     <dimen name="TalentSharing_ListLayout2">75dp</dimen>
-    <dimen name="Login_btn_margin">180dp</dimen>
+    <dimen name="Login_btn">270dp</dimen>
     <dimen name="DialogTxtSize">6.75dp</dimen>
     <dimen name="Picture_Width">120dp</dimen>
     <dimen name="Picture_Height">120dp</dimen>

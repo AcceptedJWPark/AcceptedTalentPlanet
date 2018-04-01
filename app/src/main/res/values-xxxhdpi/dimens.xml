@@ -10,6 +10,7 @@
     <dimen name="Popup_Icon">33dp</dimen>
     <dimen name="List_Title">13.2dp</dimen>
     <dimen name="DrawerLL_Title">12.1dp</dimen>
+    <dimen name="DrawerLL_New">11dp</dimen>
     <dimen name="List_SubTitle">12.65dp</dimen>
     <dimen name="Divider">12.65dp</dimen>
     <dimen name="GiveorTakeBtn">13.2dp</dimen>
@@ -69,11 +70,10 @@
     <dimen name="Question_Edit_Layout">165dp</dimen>
     <dimen name="TalentSharing_BtnLayout">33dp</dimen>
     <dimen name="TalentSharing_ListLayout2">55dp</dimen>
-    <dimen name="Login_btn_margin">10dp</dimen>
+    <dimen name="Login_btn">198dp</dimen>
     <dimen name="DialogTxtSize">4.95dp</dimen>
     <dimen name="Picture_Width">88dp</dimen>
     <dimen name="Picture_Height">88dp</dimen>
-
     <dimen name="Margin_et">5.5dp</dimen>
     <dimen name="Margin_btn">11dp</dimen>
     <dimen name="Margin_title">22dp</dimen>

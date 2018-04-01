@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity implements TextWatcher{
 
     private Button btn_Next;
 
-    private String registed_Talent[] = {"디자인","헬스","헬스1","헬스2","헬스3","헬스4","코딩","컴퓨터","자바","다이어트"};
+    private String registed_Talent[] = {};
 
 
 

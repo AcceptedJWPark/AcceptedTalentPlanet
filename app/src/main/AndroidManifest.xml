@@ -28,6 +28,7 @@
         <meta-data android:name="android.max_aspect" android:value="2.1" />
         <activity android:name=".LoadingLogin.Loading.MainActivity"
             android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustNothing|stateAlwaysHidden"
             >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
