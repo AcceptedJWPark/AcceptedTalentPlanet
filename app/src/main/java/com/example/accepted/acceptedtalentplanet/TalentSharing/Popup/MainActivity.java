@@ -68,6 +68,7 @@ public class MainActivity extends FragmentActivity{
     boolean addedFriend = false;
     boolean firstFriendFlag;
     boolean sendFlag = true;
+    private String filePath;
     String talentID;
 
     @Override
@@ -137,7 +138,7 @@ public class MainActivity extends FragmentActivity{
         sendMessageBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int roomID = SaveSharedPreference.makeChatRoom(mContext, UserID, UserName);
+                int roomID = SaveSharedPreference.makeChatRoom(mContext, UserID, UserName, filePath);
                 if(roomID < 0){
                     return;
                 }
@@ -190,7 +191,7 @@ public class MainActivity extends FragmentActivity{
 
                     UserID = obj.getString("USER_ID");
 
-
+                    filePath = obj.getString("S_FILE_PATH");
 
                     if(!obj.getString("S_FILE_PATH").equals("NODATA")){
                         Glide.with(mContext).load(SaveSharedPreference.getImageUri() + obj.getString("S_FILE_PATH")).into((ImageView)findViewById(R.id.TalentSharing_popup_picture));

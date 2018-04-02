@@ -70,6 +70,7 @@ public class MainActivity extends FragmentActivity {
     boolean genderPBS, birthPBS, jobPBS;
 
     private int targetPoint = 0;
+    private String filePath;
 
 
     @Override
@@ -145,7 +146,7 @@ public class MainActivity extends FragmentActivity {
         btn_Message.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int roomID = SaveSharedPreference.makeChatRoom(mContext, profileUserID, userName);
+                int roomID = SaveSharedPreference.makeChatRoom(mContext, profileUserID, userName, filePath);
                 if(roomID < 0){
                     return;
                 }
@@ -289,7 +290,7 @@ public class MainActivity extends FragmentActivity {
                         iv_AddFriendOff.setVisibility(View.VISIBLE);
                     }
 
-
+                    filePath = obj.getString("S_FILE_PATH");
 
                     if(!obj.getString("S_FILE_PATH").equals("NODATA")) {
                         Glide.with(mContext).load(SaveSharedPreference.getImageUri() + obj.getString("S_FILE_PATH")).into((ImageView) findViewById(R.id.Interesting_popup_picture));

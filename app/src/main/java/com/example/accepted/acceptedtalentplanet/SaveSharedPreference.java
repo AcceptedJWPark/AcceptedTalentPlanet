@@ -184,6 +184,8 @@ public class SaveSharedPreference{
     }
 
     public static void clearUserInfo(Context ctx){
+        myThumbPicturePath = null;
+        myPicturePath = null;
         SharedPreferences.Editor editor = getSharedPreferences(ctx).edit();
         editor.clear();
         editor.commit();
@@ -296,11 +298,11 @@ public class SaveSharedPreference{
     }
 
     public static String getServerIp(){
-        return SERVER_IP2;
+        return SERVER_IP;
     }
 
     public static String getImageUri(){
-        return IMAGE_URI2;
+        return IMAGE_URI;
     }
 
     public static String getLevel(String Level) {
@@ -645,7 +647,7 @@ public class SaveSharedPreference{
         return myThumbPicturePath;
     }
 
-    public static int makeChatRoom(Context ctx, String userID, String userName){
+    public static int makeChatRoom(Context ctx, String userID, String userName, String filePath){
         SQLiteDatabase sqliteDatabase;
         String dbName = "/accepted.db";
 
@@ -657,7 +659,6 @@ public class SaveSharedPreference{
             int roomID;
             int startMessageID;
             String creationDate;
-            String filePath;
             sqliteDatabase = SQLiteDatabase.openOrCreateDatabase(ctx.getFilesDir() + dbName, null);
 
             String test = "SELECT IFNULL(MAX(A.START_MESSAGE_ID), 0) AS START_MESSAGE_ID FROM TB_CHAT_ROOM A WHERE A.USER_ID = '" + userID+ "'";
@@ -677,19 +678,6 @@ public class SaveSharedPreference{
             cursort.moveToFirst();
             creationDate = cursort.getString(0);
             Log.d("creation_date", "" + creationDate );
-
-            test = "SELECT IFNULL(FILE_PATH, 'NODATA'), MAX(CREATION_DATE) FROM TB_CHAT_ROOM WHERE USER_ID = '" + userID + "'";
-            cursort = sqliteDatabase.rawQuery(test, null);
-            cursort.moveToFirst();
-            try {
-                filePath = cursort.getString(0);
-            }catch (CursorIndexOutOfBoundsException e){
-                e.printStackTrace();
-                filePath = "NODATA";
-
-            }
-            Log.d("filePath = ", filePath);
-
 
             String sqlUpsert = "INSERT OR REPLACE INTO TB_CHAT_ROOM(ROOM_ID, USER_ID, USER_NAME, MASTER_ID, START_MESSAGE_ID, CREATION_DATE, LAST_UPDATE_DATE, ACTIVATE_FLAG, FILE_PATH) VALUES ("+roomID+", '" + userID + "', '"+userName+"', '"+getUserId(ctx)+"', "+startMessageID+", '"+creationDate+"', '"+nowDateStr+"', 'Y', '"+ filePath + "')";
             sqliteDatabase.execSQL(sqlUpsert);
