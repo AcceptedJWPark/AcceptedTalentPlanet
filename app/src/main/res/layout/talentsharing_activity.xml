@@ -24,7 +24,7 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1.32"
+        android:layout_weight="1.5"
         android:contentInsetStart="0dp"
         android:contentInsetLeft="0dp"
         app:contentInsetLeft="0dp"
@@ -159,7 +159,7 @@
         android:id="@+id/progressBarContainer_TalentSharing"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="20.68"
+        android:layout_weight="20.5"
         android:gravity="center"
         android:orientation="vertical"
         android:visibility="gone"
@@ -184,7 +184,7 @@
                     android:id="@+id/listView_TalentSharing"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="20.68"
+                    android:layout_weight="20.5"
                     android:visibility="visible"
                     >
                 </ListView>

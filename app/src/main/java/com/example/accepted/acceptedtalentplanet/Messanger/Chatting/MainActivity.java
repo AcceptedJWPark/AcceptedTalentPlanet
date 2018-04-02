@@ -39,6 +39,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.TimeZone;
 
 
 /**
@@ -77,7 +78,7 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
 
     public String lastMessageID = "0";
     private Bitmap picture = null;
-
+    private TimeZone time= TimeZone.getTimeZone("Asia/Seoul");
     Activity activity;
 
     @Override
@@ -196,10 +197,8 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
         String selectBasicChat = "SELECT * FROM TB_CHAT_LOG WHERE ROOM_ID = " + roomID +" AND MASTER_ID = '"+ SaveSharedPreference.getUserId(mContext) +"' AND MESSAGE_ID > "+lastMessageID+"";
         Cursor cursor = sqliteDatabase.rawQuery(selectBasicChat, null);
         cursor.moveToFirst();
-        Log.d("asdf", roomID + ",tq1," + lastMessageID);
         boolean isRunning = false;
         while(!cursor.isAfterLast()){
-            Log.d("asdf", "tq1");
             isRunning = true;
 
             String sender = cursor.getString(3);
@@ -276,6 +275,7 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
 
         final Date date = new Date();
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd,a hh:mm:ss");
+        simpleDateFormat.setTimeZone(time);
         final String nowDateStr = simpleDateFormat.format(date);
         String[] nowDateTemp = nowDateStr.split(",");
         final String nowDate = nowDateTemp[0];
@@ -289,13 +289,13 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
                     Log.d("result = ", response);
                     JSONObject obj = new JSONObject(response);
                     SimpleDateFormat sdf = new SimpleDateFormat("a hh:mm");
+                    sdf.setTimeZone(time);
                     String dateStr = sdf.format(date);
                     if(obj.getString("MESSAGE_ID") != null && !obj.getString("MESSAGE_ID").isEmpty()){
                         sqliteDatabase.execSQL("INSERT INTO TB_CHAT_LOG(MESSAGE_ID, ROOM_ID, MASTER_ID, USER_ID, CONTENT, CREATION_DATE) VALUES (" + obj.getString("MESSAGE_ID") + ","+roomID+" ,'" + SaveSharedPreference.getUserId(mContext) + "', '"+SaveSharedPreference.getUserId(mContext)+"','"+content+"','"+nowDateStr+"')");
                     }else{
                         Toast.makeText(mContext, "메세지 전송 실패.", Toast.LENGTH_SHORT).show();
                     }
-                    Log.d("asdf", "tq," + roomID);
                     if(refreshChatLog()){
                         listView.setAdapter(adapter);
                         adapter.notifyDataSetChanged();
@@ -314,7 +314,6 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
                 params.put("receiverID", receiverID);
                 params.put("content", content);
                 params.put("sendDate", nowDateStr);
-                Log.d("params", "params: " + SaveSharedPreference.getUserId(mContext) + receiverID + content + nowDateStr);
                 return params;
             }
         };
