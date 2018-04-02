@@ -17,6 +17,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -168,6 +169,7 @@ public class MainActivity extends AppCompatActivity {
             final StringRequest sendMailRequest = new StringRequest(Request.Method.POST, SaveSharedPreference.getServerIp() + "Regist/sendFindPWMail.do", new Response.Listener<String>() {
                 @Override
                 public void onResponse(String response) {
+                    Log.d("mailrequest", "true");
                 }
             }, SaveSharedPreference.getErrorListener()
             ) {
@@ -181,6 +183,8 @@ public class MainActivity extends AppCompatActivity {
                     return params;
                 }
             };
+
+            sendMailRequest.setRetryPolicy(new DefaultRetryPolicy(DefaultRetryPolicy.DEFAULT_TIMEOUT_MS * 2, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
 
             final StringRequest emailCheckReq = new StringRequest(Request.Method.POST, SaveSharedPreference.getServerIp() + "Regist/checkMail.do", new Response.Listener<String>() {
                 @Override
