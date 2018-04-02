@@ -187,6 +187,7 @@ public class SaveSharedPreference{
         SharedPreferences.Editor editor = getSharedPreferences(ctx).edit();
         editor.clear();
         editor.commit();
+        setFirstLoadingFlag(ctx, false);
     }
 
     public static String getFcmToken(Context ctx){

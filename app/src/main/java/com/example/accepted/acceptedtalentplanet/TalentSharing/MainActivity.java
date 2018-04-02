@@ -569,6 +569,13 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
         public void handleMessage(Message msg){
             Log.d("get Message", "true");
             getTalentSharing();
+            if(isGiveTalent){
+                btn_giveSelect.setFocusableInTouchMode(true);
+                btn_giveSelect.performClick();
+            }else{
+                btn_takeSelect.setFocusableInTouchMode(true);
+                btn_takeSelect.performClick();
+            }
         }
     };
 
