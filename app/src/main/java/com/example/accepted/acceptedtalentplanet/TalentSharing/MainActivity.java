@@ -8,6 +8,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Paint;
 import android.location.Location;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -55,7 +57,7 @@ import static com.example.accepted.acceptedtalentplanet.SaveSharedPreference.Dra
  * Created by Accepted on 2017-10-24.
  */
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements MyFirebaseMessagingService.MessageReceivedListener{
     private static ArrayList<ListItem> arrayList_Original;
     private static ArrayList<ListItem> arrayList;
     private Adapter adapter;
@@ -540,6 +542,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onResume(){
         super.onResume();
+        MyFirebaseMessagingService.setOnMessageReceivedListener(this);
         drawerLayout.closeDrawers();
         if(MyFirebaseMessagingService.isNewMessageArrive){
             findViewById(R.id.Icon_NewMessage).setVisibility(View.VISIBLE);
@@ -547,6 +550,25 @@ public class MainActivity extends AppCompatActivity {
             findViewById(R.id.Icon_NewMessage).setVisibility(View.GONE);
         }
     }
+
+    @Override
+    public void onMessageRecieved(){
+        Message msg = handler.obtainMessage();
+        handler.sendMessage(msg);
+    }
+
+    @Override
+    public void onPause(){
+        super.onPause();
+        MyFirebaseMessagingService.setOnMessageReceivedListener(null);
+    }
+
+    Handler handler = new Handler(){
+        public void handleMessage(Message msg){
+            Log.d("get Message", "true");
+            getTalentSharing();
+        }
+    };
 
 
 }
