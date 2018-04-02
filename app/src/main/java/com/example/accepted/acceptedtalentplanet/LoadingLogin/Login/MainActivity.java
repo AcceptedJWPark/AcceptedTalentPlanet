@@ -150,7 +150,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void loginClicked(View v){
 
-        imm.hideSoftInputFromWindow(et_Password.getWindowToken(), 0);
+//        imm.hideSoftInputFromWindow(et_Password.getWindowToken(), 0);
         final String userID = et_Email.getText().toString();
         final String userPW = et_Password.getText().toString();
 
