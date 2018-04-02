@@ -2,10 +2,6 @@ package com.example.accepted.acceptedtalentplanet.InterestingList;
 
 import android.content.Context;
 import android.content.Intent;
-import android.database.Cursor;
-import android.database.CursorIndexOutOfBoundsException;
-import android.database.sqlite.SQLiteDatabase;
-import android.graphics.Bitmap;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -142,10 +138,10 @@ public class Adapter extends BaseAdapter {
             holder.tv_talent3.setText(arrayList.get(position).getTalent3());
 
             if (arrayList.get(position).getGiveTake_Code() == 2) {
-                holder.tv_GiveTakeTxt.setText("보낸 관심");
+                holder.tv_GiveTakeTxt.setText("보 냄");
                 holder.iv_GiveTakeIcon.setImageResource(R.drawable.icon_inter_give);
             } else {
-                holder.tv_GiveTakeTxt.setText("받은 관심");
+                holder.tv_GiveTakeTxt.setText("받 음");
                 holder.iv_GiveTakeIcon.setImageResource(R.drawable.icon_inter_take);
             }
         }

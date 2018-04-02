@@ -27,8 +27,7 @@
             android:layout_height="0dp"
             android:layout_weight="1"
             android:padding="7dp"
-            android:tint="#0851ad"
-            android:src="@android:drawable/ic_notification_overlay"
+            android:src="@drawable/icon_list_progress"
             />
 
     <TextView

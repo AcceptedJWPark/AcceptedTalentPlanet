@@ -162,7 +162,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:text="보낸 관심"
+            android:text="보 냄"
             android:gravity="center"
             android:textColor="@color/textColor_subject"
             android:textSize="@dimen/List_Title"
