@@ -70,6 +70,7 @@ public class SaveSharedPreference{
     static String myPicturePath = null;
     static String myThumbPicturePath = null;
     static String fcmToken = null;
+    static final String PREF_FIRST_LOADING = "firstLoading";
 
     static DrawerLayout slidingMenuDL;
     static View drawerView;
@@ -102,6 +103,12 @@ public class SaveSharedPreference{
     public static void setPrefTalentPoint(Context ctx, int point){
         SharedPreferences.Editor editor = getSharedPreferences(ctx).edit();
         editor.putInt(PREF_TALENT_POINT, point);
+        editor.commit();
+    }
+
+    public static void setFirstLoadingFlag(Context ctx, boolean flag){
+        SharedPreferences.Editor editor = getSharedPreferences(ctx).edit();
+        editor.putBoolean(PREF_FIRST_LOADING, flag);
         editor.commit();
     }
 
@@ -157,6 +164,10 @@ public class SaveSharedPreference{
 
     public static int getTalentPoint(Context ctx){
         return getSharedPreferences(ctx).getInt(PREF_TALENT_POINT, 0);
+    }
+
+    public static boolean getFirstLoadingFlag(Context ctx){
+        return getSharedPreferences(ctx).getBoolean(PREF_FIRST_LOADING, true);
     }
 
     public static String getPrefUserPw(Context ctx)

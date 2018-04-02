@@ -70,8 +70,14 @@ public class MainActivity extends AppCompatActivity {
         String sqlCreateTbl7 = "CREATE TABLE IF NOT EXISTS TB_READED_INTEREST (USER_ID TEXT, TALENT_ID INT, PRIMARY KEY(USER_ID, TALENT_ID))";
         sqliteDatabase.execSQL(sqlCreateTbl7);
 
-        startLoading();
-
+        if(SaveSharedPreference.getFirstLoadingFlag(mContext)){
+            Intent intent = new Intent(getBaseContext(), com.example.accepted.acceptedtalentplanet.CustomerService.Introduction.MainActivity.class);
+            intent.putExtra("FirstLoading", true);
+            startActivity(intent);
+            finish();
+        }else {
+            startLoading();
+        }
     }
 
     private void startLoading()
@@ -82,15 +88,16 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void run() {
                 Intent intent;
-                if(SaveSharedPreference.getUserId(MainActivity.this).length() == 0) {
+
+                if (SaveSharedPreference.getUserId(MainActivity.this).length() == 0) {
                     intent = new Intent(getBaseContext(), com.example.accepted.acceptedtalentplanet.LoadingLogin.Login.MainActivity.class);
-                }else{
+                } else {
                     intent = new Intent(getBaseContext(), com.example.accepted.acceptedtalentplanet.TalentSharing.MainActivity.class);
                     intent.putExtra("Activity", true);
                 }
-                    startActivity(intent);
-                    finish();
 
+                startActivity(intent);
+                finish();
             }
         },3000);
     }

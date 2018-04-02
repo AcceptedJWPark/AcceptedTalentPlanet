@@ -143,14 +143,14 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-        imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY);
+//        imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+//        imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY);
 
     }
 
     public void loginClicked(View v){
 
-        imm.hideSoftInputFromWindow(et_Password.getWindowToken(), 0);
+//        imm.hideSoftInputFromWindow(et_Password.getWindowToken(), 0);
         final String userID = et_Email.getText().toString();
         final String userPW = et_Password.getText().toString();
 
