@@ -20,11 +20,11 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
+import com.accepted.acceptedtalentplanet.MyTalent;
 import com.accepted.acceptedtalentplanet.GeoPoint;
 import com.accepted.acceptedtalentplanet.PermissionUtil;
-import com.accepted.acceptedtalentplanet.SaveSharedPreference;
-import com.accepted.acceptedtalentplanet.MyTalent;
 import com.accepted.acceptedtalentplanet.R;
+import com.accepted.acceptedtalentplanet.SaveSharedPreference;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.Status;

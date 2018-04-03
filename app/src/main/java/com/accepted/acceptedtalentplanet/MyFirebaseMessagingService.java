@@ -18,7 +18,6 @@ import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationManagerCompat;
 import android.util.Log;
 
-import com.accepted.acceptedtalentplanet.R;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
@@ -28,6 +27,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.TimeZone;
+
+import static com.accepted.acceptedtalentplanet.Messanger.Chatting.MainActivity.receiverID;
 
 public class MyFirebaseMessagingService extends FirebaseMessagingService {
     private static final String TAG = "MyFirebaseMsgService";
@@ -393,7 +394,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                 if (messagePushGrant) {
                     if (topActivityName.equals("MainActivity")) {
                         return;
-                    } else if (topActivityName.equals("MainActivity") && userId.equals(com.accepted.acceptedtalentplanet.Messanger.Chatting.MainActivity.receiverID)) {
+                    } else if (topActivityName.equals("MainActivity") && userId.equals(receiverID)) {
                         return;
                     } else {
                         alarmType = "Message";

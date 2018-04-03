@@ -9,8 +9,8 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Spinner;
 
-import com.accepted.acceptedtalentplanet.R;
 import com.accepted.acceptedtalentplanet.TalentSearching.Keyword_Adapter;
+import com.accepted.acceptedtalentplanet.R;
 
 import java.util.ArrayList;
 

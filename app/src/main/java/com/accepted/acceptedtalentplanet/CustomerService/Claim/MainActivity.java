@@ -30,13 +30,13 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.accepted.acceptedtalentplanet.SaveSharedPreference;
-import com.accepted.acceptedtalentplanet.VolleyMultipartRequest;
-import com.accepted.acceptedtalentplanet.VolleySingleton;
 import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.accepted.acceptedtalentplanet.R;
+import com.accepted.acceptedtalentplanet.SaveSharedPreference;
+import com.accepted.acceptedtalentplanet.VolleyMultipartRequest;
+import com.accepted.acceptedtalentplanet.VolleySingleton;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -45,6 +45,8 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+
+import static com.accepted.acceptedtalentplanet.SaveSharedPreference.hideKeyboard;
 
 /**
  * Created by Accepted on 2017-10-31.
@@ -133,7 +135,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if (!hasFocus) {
-                    SaveSharedPreference.hideKeyboard(v, mContext);
+                    hideKeyboard(v, mContext);
                 }
 
             }

@@ -22,17 +22,17 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.accepted.acceptedtalentplanet.Friend;
+import com.accepted.acceptedtalentplanet.MyTalent;
+import com.accepted.acceptedtalentplanet.SaveSharedPreference;
+import com.accepted.acceptedtalentplanet.VolleySingleton;
+import com.accepted.acceptedtalentplanet.pictureExpand;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.StringRequest;
 import com.bumptech.glide.Glide;
-import com.accepted.acceptedtalentplanet.Friend;
-import com.accepted.acceptedtalentplanet.MyTalent;
 import com.accepted.acceptedtalentplanet.R;
-import com.accepted.acceptedtalentplanet.SaveSharedPreference;
-import com.accepted.acceptedtalentplanet.VolleySingleton;
-import com.accepted.acceptedtalentplanet.pictureExpand;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -206,7 +206,7 @@ public class MainActivity extends FragmentActivity {
                 @Override
                 public void onClick(View v) {
                     float textSize = getResources().getDimension(R.dimen.DialogTxtSize);
-                    ProgressorCancelPopup.setMessage("상대방의 포인트" + targetPoint + "P 로 진행됩니다.")
+                    ProgressorCancelPopup.setMessage("내가 등록한 포인트로 진행합니다.")
                             .setPositiveButton("진행하기", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {

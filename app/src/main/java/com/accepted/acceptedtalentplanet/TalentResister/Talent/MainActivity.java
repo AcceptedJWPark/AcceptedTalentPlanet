@@ -19,10 +19,12 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.accepted.acceptedtalentplanet.MyTalent;
-import com.accepted.acceptedtalentplanet.SaveSharedPreference;
 import com.accepted.acceptedtalentplanet.R;
+import com.accepted.acceptedtalentplanet.SaveSharedPreference;
 
 import java.util.ArrayList;
+
+import static com.accepted.acceptedtalentplanet.SaveSharedPreference.hideKeyboard;
 
 public class MainActivity extends AppCompatActivity implements TextWatcher{
     private String talent1, talent2, talent3;
@@ -165,7 +167,7 @@ public class MainActivity extends AppCompatActivity implements TextWatcher{
             public void onFocusChange(View v, boolean hasFocus) {
                 if(!hasFocus)
                 {
-                    SaveSharedPreference.hideKeyboard(v, mContext);
+                    hideKeyboard(v, mContext);
                 }
 
             }

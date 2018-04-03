@@ -18,8 +18,9 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
-import com.accepted.acceptedtalentplanet.SaveSharedPreference;
 import com.accepted.acceptedtalentplanet.R;
+
+import static com.accepted.acceptedtalentplanet.SaveSharedPreference.hideKeyboard;
 
 public class MainActivity extends  AppCompatActivity {
 
@@ -99,7 +100,7 @@ public class MainActivity extends  AppCompatActivity {
             public void onFocusChange(View v, boolean hasFocus) {
                 if(!hasFocus)
                 {
-                    SaveSharedPreference.hideKeyboard(v,mContext);
+                    hideKeyboard(v,mContext);
                 }
 
             }

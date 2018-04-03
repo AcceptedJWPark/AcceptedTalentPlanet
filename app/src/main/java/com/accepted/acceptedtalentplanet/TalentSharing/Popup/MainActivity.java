@@ -20,17 +20,17 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.accepted.acceptedtalentplanet.MyTalent;
 import com.accepted.acceptedtalentplanet.SaveSharedPreference;
+import com.accepted.acceptedtalentplanet.VolleySingleton;
+import com.accepted.acceptedtalentplanet.pictureExpand;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.StringRequest;
 import com.bumptech.glide.Glide;
 import com.accepted.acceptedtalentplanet.Friend;
-import com.accepted.acceptedtalentplanet.MyTalent;
 import com.accepted.acceptedtalentplanet.R;
-import com.accepted.acceptedtalentplanet.VolleySingleton;
-import com.accepted.acceptedtalentplanet.pictureExpand;
 
 import org.json.JSONException;
 import org.json.JSONObject;
