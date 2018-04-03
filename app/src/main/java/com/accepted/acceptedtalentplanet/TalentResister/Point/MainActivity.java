@@ -15,19 +15,21 @@ import android.widget.Toast;
 
 import com.accepted.acceptedtalentplanet.GeoPoint;
 import com.accepted.acceptedtalentplanet.MyTalent;
-import com.accepted.acceptedtalentplanet.SaveSharedPreference;
 import com.accepted.acceptedtalentplanet.VolleySingleton;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.StringRequest;
 import com.accepted.acceptedtalentplanet.R;
+import com.accepted.acceptedtalentplanet.SaveSharedPreference;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import static com.accepted.acceptedtalentplanet.SaveSharedPreference.hideKeyboard;
 
 public class MainActivity extends AppCompatActivity {
     private Context mContext;
@@ -64,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
         et_Point.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-                SaveSharedPreference.hideKeyboard(v, mContext);
+                hideKeyboard(v, mContext);
             }
         });
 

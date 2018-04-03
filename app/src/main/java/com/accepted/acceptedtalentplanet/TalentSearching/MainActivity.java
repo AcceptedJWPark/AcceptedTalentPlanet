@@ -14,13 +14,13 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.accepted.acceptedtalentplanet.SaveSharedPreference;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.StringRequest;
 import com.bumptech.glide.Glide;
 import com.accepted.acceptedtalentplanet.R;
+import com.accepted.acceptedtalentplanet.SaveSharedPreference;
 import com.accepted.acceptedtalentplanet.VolleySingleton;
 
 import org.json.JSONArray;
@@ -30,6 +30,9 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+
+import static com.accepted.acceptedtalentplanet.SaveSharedPreference.DrawerLayout_ClickEvent;
+import static com.accepted.acceptedtalentplanet.SaveSharedPreference.DrawerLayout_Open;
 
 /**
  * Created by Accepted on 2017-11-24.
@@ -85,10 +88,10 @@ public class MainActivity extends AppCompatActivity {
         {
             @Override
             public void onClick(View v) {
-                SaveSharedPreference.DrawerLayout_Open(v,MainActivity.this,slidingMenuDL,drawerView);
+                DrawerLayout_Open(v,MainActivity.this,slidingMenuDL,drawerView);
             }
         };
-        SaveSharedPreference.DrawerLayout_ClickEvent(MainActivity.this,mClicklistener);
+        DrawerLayout_ClickEvent(MainActivity.this,mClicklistener);
 
                 final Button giveButton = (Button)findViewById(R.id.TalentSearching_ShowGive);
                 final Button takeButton = (Button)findViewById(R.id.TalentSearching_ShowTake);

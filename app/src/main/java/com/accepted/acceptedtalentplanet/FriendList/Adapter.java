@@ -12,9 +12,9 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.accepted.acceptedtalentplanet.SaveSharedPreference;
 import com.bumptech.glide.Glide;
 import com.accepted.acceptedtalentplanet.R;
+import com.accepted.acceptedtalentplanet.SaveSharedPreference;
 import com.accepted.acceptedtalentplanet.TalentSharing.Popup.MainActivity;
 
 import java.util.ArrayList;

@@ -9,15 +9,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.WindowManager;
 
+import com.accepted.acceptedtalentplanet.GeoPoint;
+import com.accepted.acceptedtalentplanet.MyTalent;
+import com.accepted.acceptedtalentplanet.SaveSharedPreference;
+import com.accepted.acceptedtalentplanet.VolleySingleton;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.StringRequest;
-import com.accepted.acceptedtalentplanet.GeoPoint;
-import com.accepted.acceptedtalentplanet.MyTalent;
 import com.accepted.acceptedtalentplanet.R;
-import com.accepted.acceptedtalentplanet.SaveSharedPreference;
-import com.accepted.acceptedtalentplanet.VolleySingleton;
 
 import org.json.JSONArray;
 import org.json.JSONException;

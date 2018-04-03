@@ -12,9 +12,10 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.accepted.acceptedtalentplanet.SaveSharedPreference;
 import com.bumptech.glide.Glide;
+import com.accepted.acceptedtalentplanet.InterestingList.Popup.MainActivity;
 import com.accepted.acceptedtalentplanet.R;
+import com.accepted.acceptedtalentplanet.SaveSharedPreference;
 
 import java.util.ArrayList;
 
@@ -118,7 +119,7 @@ public class Adapter extends BaseAdapter {
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(mContext, com.accepted.acceptedtalentplanet.InterestingList.Popup.MainActivity.class);
+                    Intent intent = new Intent(mContext, MainActivity.class);
                     intent.putExtra("TalentID", ((ListItem) getItem(index)).getTalentID());
                     intent.putExtra("codeGiveTake", arrayList.get(index).getGiveTake_Code());
                     mContext.startActivity(intent);

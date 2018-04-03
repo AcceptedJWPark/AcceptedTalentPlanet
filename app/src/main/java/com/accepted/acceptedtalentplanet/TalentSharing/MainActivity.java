@@ -25,6 +25,7 @@ import android.widget.Toast;
 
 import com.accepted.acceptedtalentplanet.GeoPoint;
 import com.accepted.acceptedtalentplanet.MyFirebaseMessagingService;
+import com.accepted.acceptedtalentplanet.MyTalent;
 import com.accepted.acceptedtalentplanet.SaveSharedPreference;
 import com.accepted.acceptedtalentplanet.VolleySingleton;
 import com.android.volley.NetworkResponse;
@@ -36,7 +37,6 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.StringRequest;
 import com.bumptech.glide.Glide;
-import com.accepted.acceptedtalentplanet.MyTalent;
 import com.accepted.acceptedtalentplanet.R;
 import com.google.firebase.iid.FirebaseInstanceId;
 

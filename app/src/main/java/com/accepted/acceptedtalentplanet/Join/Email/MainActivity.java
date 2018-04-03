@@ -24,8 +24,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.accepted.acceptedtalentplanet.SaveSharedPreference;
-import com.accepted.acceptedtalentplanet.VolleySingleton;
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -33,12 +31,16 @@ import com.android.volley.Response;
 import com.android.volley.toolbox.RequestFuture;
 import com.android.volley.toolbox.StringRequest;
 import com.accepted.acceptedtalentplanet.R;
+import com.accepted.acceptedtalentplanet.SaveSharedPreference;
+import com.accepted.acceptedtalentplanet.VolleySingleton;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import static com.accepted.acceptedtalentplanet.SaveSharedPreference.hideKeyboard;
 
 public class MainActivity extends  AppCompatActivity {
 
@@ -144,7 +146,7 @@ public class MainActivity extends  AppCompatActivity {
             public void onFocusChange(View v, boolean hasFocus) {
                 if(!hasFocus)
                 {
-                    SaveSharedPreference.hideKeyboard(v, mContext);
+                    hideKeyboard(v, mContext);
                 }
 
             }
@@ -154,7 +156,7 @@ public class MainActivity extends  AppCompatActivity {
             public void onFocusChange(View v, boolean hasFocus) {
                 if(!hasFocus)
                 {
-                    SaveSharedPreference.hideKeyboard(v, mContext);
+                    hideKeyboard(v, mContext);
                 }
 
             }
