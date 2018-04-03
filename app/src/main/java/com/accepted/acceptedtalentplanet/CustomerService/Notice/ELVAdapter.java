@@ -74,7 +74,6 @@ public class ELVAdapter extends BaseExpandableListAdapter {
         View v = convertView;
 
         String Title = arrayList_Parent.get(groupPosition).getTitle();
-        String Summary = arrayList_Parent.get(groupPosition).getSummary();
         String Date = arrayList_Parent.get(groupPosition).getDate();
 
         if(v==null) {
@@ -91,10 +90,8 @@ public class ELVAdapter extends BaseExpandableListAdapter {
 
         }
         TextView tv_ParentTitle = (TextView) v.findViewById(R.id.tv_parentTitle_Notice);
-        TextView tv_parentSummary = (TextView) v.findViewById(R.id.tv_parentSummary_Notice);
         TextView tv_parentDate = (TextView) v.findViewById(R.id.tv_parentDate_Notice);
         tv_ParentTitle.setText(Title);
-        tv_parentSummary.setText(Summary);
         tv_parentDate.setText(Date);
         return v;
     }

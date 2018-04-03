@@ -92,10 +92,8 @@ public class ELVAdapter extends BaseExpandableListAdapter{
 
         }
         TextView tv_ParentTitle = (TextView) v.findViewById(R.id.tv_ParentTitle_Update);
-        TextView tv_ParentSummary = (TextView) v.findViewById(R.id.tv_ParentSummary_Update);
         TextView tv_ParentDate = (TextView) v.findViewById(R.id.tv_ParentDate_Update);
         tv_ParentTitle.setText(title);
-        tv_ParentSummary.setText(summary);
         tv_ParentDate.setText(date);
         return v;
     }

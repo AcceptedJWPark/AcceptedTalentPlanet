@@ -37,17 +37,6 @@
                 android:textSize="@dimen/List_Title"
                 />
 
-            <TextView
-                android:id="@+id/tv_ParentSummary_Update"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:singleLine="true"
-                android:textColor="@color/textColor_object"
-                android:textSize="@dimen/ListView_SecondLine"
-                android:gravity="center_vertical"
-                android:text="Talent Planet 어플리케이션 서비스가 2018.3월 부로 Open 하였습니다."
-                />
 
         </LinearLayout>
 

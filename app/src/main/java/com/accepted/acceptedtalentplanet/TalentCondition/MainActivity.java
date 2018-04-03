@@ -293,75 +293,89 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
                     if(!giveFilePath.equals("NODATA"))
                         Glide.with(mContext).load(SaveSharedPreference.getImageUri() + giveFilePath).into((ImageView)findViewById(R.id.TalentCondition_ProfilePicture));
                     final AlertDialog.Builder AlarmDeleteDialog = new AlertDialog.Builder(MainActivity.this);
-                    btn_Left.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            if(giveStatus.equals("C")){
-                                Toast.makeText(mContext, "상대방이 완료를 누르지 않았습니다.", Toast.LENGTH_SHORT).show();
-                                return;
-                            }
-
-                            AlarmDeleteDialog.setMessage("재능공유 완료 시 포인트 공유가 이루어집니다.")
-                                    .setPositiveButton("공유 완료", new DialogInterface.OnClickListener() {
-                                        @Override
-                                        public void onClick(DialogInterface dialog, int which) {
-                                            tv_Txt.setText("상대방의 \"완료 하기\"를 대기중입니다.");
-                                            btn_Left.setBackgroundResource(R.drawable.bgr_preinterested);
-                                            btn_Left.setOnClickListener(null);
-                                            completeSharingTalent();
-                                            dialog.cancel();
-                                        }
-                                    })
-                                    .setNegativeButton("닫기", new DialogInterface.OnClickListener() {
-                                        @Override
-                                        public void onClick(DialogInterface dialog, int which) {
-                                            dialog.cancel();
-                                        }
-                                    });
-                            AlertDialog alertDialog = AlarmDeleteDialog.create();
-                            alertDialog.show();
-                            alertDialog.getButton((DialogInterface.BUTTON_NEGATIVE)).setTextColor(getResources().getColor(R.color.loginPasswordLost));
-                            alertDialog.getButton((DialogInterface.BUTTON_POSITIVE)).setTextColor(getResources().getColor(R.color.loginPasswordLost));
-                            btn_Right.setText("신고 하기");
-                            btn_Right.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                    Intent i = new Intent(mContext, com.accepted.acceptedtalentplanet.CustomerService.Claim.MainActivity.class);
-                                    startActivity(i);
+                    if(!giveStatus.equals("C")) {
+                        btn_Left.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                if (giveStatus.equals("C")) {
+                                    Toast.makeText(mContext, "상대방이 완료를 누르지 않았습니다.", Toast.LENGTH_SHORT).show();
+                                    return;
                                 }
-                            });
-                        }
-                    });
-                    btn_Right.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            if(giveStatus.equals("C")){
-                                return;
+
+                                AlarmDeleteDialog.setMessage("재능공유 완료 시 포인트 공유가 이루어집니다.")
+                                        .setPositiveButton("공유 완료", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int which) {
+                                                tv_Txt.setText("상대방의 \"완료 하기\"를 대기중입니다.");
+                                                btn_Left.setBackgroundResource(R.drawable.bgr_preinterested);
+                                                btn_Left.setOnClickListener(null);
+                                                completeSharingTalent();
+                                                dialog.cancel();
+                                            }
+                                        })
+                                        .setNegativeButton("닫기", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int which) {
+                                                dialog.cancel();
+                                            }
+                                        });
+                                AlertDialog alertDialog = AlarmDeleteDialog.create();
+                                alertDialog.show();
+                                alertDialog.getButton((DialogInterface.BUTTON_NEGATIVE)).setTextColor(getResources().getColor(R.color.loginPasswordLost));
+                                alertDialog.getButton((DialogInterface.BUTTON_POSITIVE)).setTextColor(getResources().getColor(R.color.loginPasswordLost));
+                                btn_Right.setText("신고 하기");
+                                btn_Right.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        Intent i = new Intent(mContext, com.accepted.acceptedtalentplanet.CustomerService.Claim.MainActivity.class);
+                                        startActivity(i);
+                                    }
+                                });
                             }
-                            AlarmDeleteDialog.setMessage("진행 취소 하시겠습니까?")
-                                    .setPositiveButton("진행 취소", new DialogInterface.OnClickListener() {
-                                        @Override
-                                        public void onClick(DialogInterface dialog, int which) {
-                                            cancelSharingTalent();
-                                            dialog.cancel();
-                                            Intent i = new Intent(MainActivity.this, MainActivity.class);
-                                            i.putExtra("TalentCondition_TalentFlag","Give");
-                                            startActivity(i);
-                                            finish();
-                                        }
-                                    })
-                                    .setNegativeButton("닫기", new DialogInterface.OnClickListener() {
-                                        @Override
-                                        public void onClick(DialogInterface dialog, int which) {
-                                            dialog.cancel();
-                                        }
-                                    });
-                            AlertDialog alertDialog = AlarmDeleteDialog.create();
-                            alertDialog.show();
-                            alertDialog.getButton((DialogInterface.BUTTON_NEGATIVE)).setTextColor(getResources().getColor(R.color.loginPasswordLost));
-                            alertDialog.getButton((DialogInterface.BUTTON_POSITIVE)).setTextColor(getResources().getColor(R.color.loginPasswordLost));
-                        }
-                    });
+                        });
+                        btn_Right.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                if (giveStatus.equals("C")) {
+                                    return;
+                                }
+                                AlarmDeleteDialog.setMessage("진행 취소 하시겠습니까?")
+                                        .setPositiveButton("진행 취소", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int which) {
+                                                cancelSharingTalent();
+                                                dialog.cancel();
+                                                Intent i = new Intent(MainActivity.this, MainActivity.class);
+                                                i.putExtra("TalentCondition_TalentFlag", "Give");
+                                                startActivity(i);
+                                                finish();
+                                            }
+                                        })
+                                        .setNegativeButton("닫기", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int which) {
+                                                dialog.cancel();
+                                            }
+                                        });
+                                AlertDialog alertDialog = AlarmDeleteDialog.create();
+                                alertDialog.show();
+                                alertDialog.getButton((DialogInterface.BUTTON_NEGATIVE)).setTextColor(getResources().getColor(R.color.loginPasswordLost));
+                                alertDialog.getButton((DialogInterface.BUTTON_POSITIVE)).setTextColor(getResources().getColor(R.color.loginPasswordLost));
+                            }
+                        });
+                    }else{
+                        tv_Txt.setText("상대방의 \"완료 하기\"를 대기중입니다.");
+                        btn_Left.setBackgroundResource(R.drawable.bgr_preinterested);
+                        btn_Left.setOnClickListener(null);
+                        btn_Right.setText("신고 하기");
+                        btn_Right.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Intent i = new Intent(mContext, com.accepted.acceptedtalentplanet.CustomerService.Claim.MainActivity.class);
+                                startActivity(i);
+                            }
+                        });
+                    }
                     break;
                 }
 
