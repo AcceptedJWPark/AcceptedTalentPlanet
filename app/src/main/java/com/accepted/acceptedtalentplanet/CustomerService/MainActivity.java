@@ -1,19 +1,23 @@
 package com.accepted.acceptedtalentplanet.CustomerService;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.view.ContextThemeWrapper;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
 import com.accepted.acceptedtalentplanet.MyFirebaseMessagingService;
 import com.accepted.acceptedtalentplanet.R;
 import com.accepted.acceptedtalentplanet.SaveSharedPreference;
+import com.bumptech.glide.Glide;
 
 import static com.accepted.acceptedtalentplanet.SaveSharedPreference.DrawerLayout_ClickEvent;
 import static com.accepted.acceptedtalentplanet.SaveSharedPreference.DrawerLayout_Open;
@@ -35,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
     private LinearLayout ll_Claim;
     private LinearLayout ll_ClaimList;
     private LinearLayout ll_Manual;
+    private LinearLayout ll_Private;
 
     private DrawerLayout drawerLayout;
     private View v_drawerView;
@@ -152,6 +157,35 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), com.accepted.acceptedtalentplanet.CustomerService.Manual.MainActivity.class);
                 startActivity(intent);
+            }
+        });
+
+        ll_Private = findViewById(R.id.ll_Private_CustomerService);
+        ll_Private.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                AlertDialog.Builder AlarmDeleteDialog = new AlertDialog.Builder(new ContextThemeWrapper(MainActivity.this, R.style.myDialog));
+                AlarmDeleteDialog.setMessage("개인정보 처리방침 Website로 이동합니다.")
+                        .setPositiveButton("이동하기", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                Uri uri = Uri.parse("http://13.124.141.242/Accepted/Privacy");
+                                Intent it  = new Intent(Intent.ACTION_VIEW,uri);
+                                startActivity(it);
+                                dialog.cancel();
+                            }
+                        })
+                        .setNegativeButton("닫기", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.cancel();
+                            }
+                        });
+                AlertDialog alertDialog = AlarmDeleteDialog.create();
+                alertDialog.show();
+                alertDialog.getButton((DialogInterface.BUTTON_NEGATIVE)).setTextColor(getResources().getColor(R.color.loginPasswordLost));
+                alertDialog.getButton((DialogInterface.BUTTON_POSITIVE)).setTextColor(getResources().getColor(R.color.loginPasswordLost));
             }
         });
 
