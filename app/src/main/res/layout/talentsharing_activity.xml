@@ -18,7 +18,7 @@
     android:focusable="true"
     android:focusableInTouchMode="true"
     android:weightSum="24"
-    tools:mContext="com.example.accepted.acceptedtalentplanet.TalentSharing.MainActivity">
+    tools:mContext="com.accepted.acceptedtalentplanet.TalentSharing.MainActivity">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
