@@ -120,6 +120,7 @@ public class Adapter extends BaseAdapter {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(mContext, MainActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     intent.putExtra("TalentID", ((ListItem) getItem(index)).getTalentID());
                     intent.putExtra("codeGiveTake", arrayList.get(index).getGiveTake_Code());
                     mContext.startActivity(intent);

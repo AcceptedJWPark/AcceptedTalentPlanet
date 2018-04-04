@@ -197,6 +197,7 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(mContext, com.accepted.acceptedtalentplanet.TalentSharing.Popup.MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 Log.d("FLAG = ", flag + ", " +targetGiveTalentID + targetTakeTalentID);
                 if(flag.equals("Give")){
                     intent.putExtra("TalentID", targetGiveTalentID);
