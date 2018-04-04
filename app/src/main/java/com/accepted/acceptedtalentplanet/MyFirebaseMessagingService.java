@@ -138,8 +138,8 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
                         PendingIntent contentIntent = PendingIntent.getActivity(this, 0, intent1, PendingIntent.FLAG_UPDATE_CURRENT);
                         NotificationCompat.Builder mBuilder;
-                        NotificationManager notificationManager = (NotificationManager) getSystemService(NotificationManager.class);
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                            NotificationManager notificationManager = (NotificationManager) getSystemService(NotificationManager.class);
                             NotificationChannel channel = new NotificationChannel(MY_CHANNEL_ID,
                                     "Channel human readable title",
                                     NotificationManager.IMPORTANCE_DEFAULT);
@@ -159,22 +159,23 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                                 .setWhen(System.currentTimeMillis())
                                 .setContentIntent(contentIntent);
                         notificationManagerCompat = NotificationManagerCompat.from(this);
-                        Notification summaryNotification =
-                                new NotificationCompat.Builder(this, MY_CHANNEL_ID)
-                                        .setContentTitle("새로운 알람이 있습니다.")
-                                        .setSmallIcon(R.drawable.ic_logo_notification)
-                                        .setStyle(new NotificationCompat.InboxStyle()
-                                                .setSummaryText("알람을 확인하세요!"))
-                                        //specify which group this notification belongs to
-                                        .setGroup(GROUP_KEY_ALARM)
-                                        //set this notification as the summary for the group
-                                        .setGroupSummary(true)
-                                        .setGroupAlertBehavior(Notification.GROUP_ALERT_CHILDREN)
-                                        .setAutoCancel(true)
-                                        .build();
-                        summaryNotification.defaults = 0;
-                        notificationManagerCompat.notify(SUMMARY_NOTIFICATION_ID, summaryNotification);
-
+                        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                            Notification summaryNotification =
+                                    new NotificationCompat.Builder(this, MY_CHANNEL_ID)
+                                            .setContentTitle("새로운 알람이 있습니다.")
+                                            .setSmallIcon(R.drawable.ic_logo_notification)
+                                            .setStyle(new NotificationCompat.InboxStyle()
+                                                    .setSummaryText("알람을 확인하세요!"))
+                                            //specify which group this notification belongs to
+                                            .setGroup(GROUP_KEY_ALARM)
+                                            //set this notification as the summary for the group
+                                            .setGroupSummary(true)
+                                            .setGroupAlertBehavior(Notification.GROUP_ALERT_CHILDREN)
+                                            .setAutoCancel(true)
+                                            .build();
+                            summaryNotification.defaults = 0;
+                            notificationManagerCompat.notify(SUMMARY_NOTIFICATION_ID, summaryNotification);
+                        }
 
                         mBuilder.setGroup(GROUP_KEY_ALARM);
 
