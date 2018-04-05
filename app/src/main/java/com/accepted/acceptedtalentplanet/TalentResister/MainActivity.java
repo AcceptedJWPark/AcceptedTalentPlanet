@@ -3,6 +3,7 @@ package com.accepted.acceptedtalentplanet.TalentResister;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Paint;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -176,10 +177,15 @@ public class MainActivity extends AppCompatActivity {
         if (is_GiveTalentResistered == false) {
             ll_TxtContainer.setVisibility(View.GONE);
             tv_NoTalent.setVisibility(View.VISIBLE);
-            btn_ShowGive.setBackground(ContextCompat.getDrawable(mContext, R.drawable.bgr_giveortake_clicked));
+            if(Build.VERSION.SDK_INT >= 16) {
+                btn_ShowGive.setBackground(ContextCompat.getDrawable(mContext, R.drawable.bgr_giveortake_clicked));
+                btn_ShowTake.setBackground(ContextCompat.getDrawable(mContext, R.drawable.bgr_giveortake_unclicked));
+            }else{
+                btn_ShowGive.setBackgroundDrawable(ContextCompat.getDrawable(mContext, R.drawable.bgr_giveortake_clicked));
+                btn_ShowTake.setBackgroundDrawable(ContextCompat.getDrawable(mContext, R.drawable.bgr_giveortake_unclicked));
+            }
             btn_ShowGive.setPaintFlags(btn_ShowGive.getPaintFlags() | Paint.FAKE_BOLD_TEXT_FLAG);
             btn_ShowGive.setTextColor(getResources().getColor(R.color.textcolor_giveortake_clicked));
-            btn_ShowTake.setBackground(ContextCompat.getDrawable(mContext, R.drawable.bgr_giveortake_unclicked));
             btn_ShowTake.setTextColor(getResources().getColor(R.color.textcolor_giveortake_unclicked));
             btn_ShowTake.setPaintFlags(btn_ShowTake.getPaintFlags() &~ Paint.FAKE_BOLD_TEXT_FLAG);
             tv_NoTalent.setText("\"재능드림이 등록되지 않았습니다.\n\n 재능드림을 등록하여 회원님의 재능을 공유해주세요!\"");
@@ -190,10 +196,15 @@ public class MainActivity extends AppCompatActivity {
         else {
             ll_TxtContainer.setVisibility(View.VISIBLE);
             tv_NoTalent.setVisibility(View.GONE);
-            btn_ShowGive.setBackground(ContextCompat.getDrawable(mContext, R.drawable.bgr_giveortake_clicked));
+            if(Build.VERSION.SDK_INT >= 16) {
+                btn_ShowGive.setBackground(ContextCompat.getDrawable(mContext, R.drawable.bgr_giveortake_clicked));
+                btn_ShowTake.setBackground(ContextCompat.getDrawable(mContext, R.drawable.bgr_giveortake_unclicked));
+            }else{
+                btn_ShowGive.setBackgroundDrawable(ContextCompat.getDrawable(mContext, R.drawable.bgr_giveortake_clicked));
+                btn_ShowTake.setBackgroundDrawable(ContextCompat.getDrawable(mContext, R.drawable.bgr_giveortake_unclicked));
+            }
             btn_ShowGive.setPaintFlags(btn_ShowGive.getPaintFlags() | Paint.FAKE_BOLD_TEXT_FLAG);
             btn_ShowGive.setTextColor(getResources().getColor(R.color.textcolor_giveortake_clicked));
-            btn_ShowTake.setBackground(ContextCompat.getDrawable(mContext, R.drawable.bgr_giveortake_unclicked));
             btn_ShowTake.setTextColor(getResources().getColor(R.color.textcolor_giveortake_unclicked));
             btn_ShowTake.setPaintFlags(btn_ShowTake.getPaintFlags() &~ Paint.FAKE_BOLD_TEXT_FLAG);
             btn_ModifyGive.setVisibility(View.VISIBLE);
@@ -213,10 +224,15 @@ public class MainActivity extends AppCompatActivity {
         if (is_TakeTalentResistered == false) {
             ll_TxtContainer.setVisibility(View.GONE);
             tv_NoTalent.setVisibility(View.VISIBLE);
-            btn_ShowTake.setBackground(ContextCompat.getDrawable(mContext, R.drawable.bgr_giveortake_clicked));
+            if(Build.VERSION.SDK_INT >= 16) {
+                btn_ShowTake.setBackground(ContextCompat.getDrawable(mContext, R.drawable.bgr_giveortake_clicked));
+                btn_ShowGive.setBackground(ContextCompat.getDrawable(mContext, R.drawable.bgr_giveortake_unclicked));
+            }else{
+                btn_ShowTake.setBackgroundDrawable(ContextCompat.getDrawable(mContext, R.drawable.bgr_giveortake_clicked));
+                btn_ShowGive.setBackgroundDrawable(ContextCompat.getDrawable(mContext, R.drawable.bgr_giveortake_unclicked));
+            }
             btn_ShowTake.setPaintFlags(btn_ShowGive.getPaintFlags() | Paint.FAKE_BOLD_TEXT_FLAG);
             btn_ShowTake.setTextColor(getResources().getColor(R.color.textcolor_giveortake_clicked));
-            btn_ShowGive.setBackground(ContextCompat.getDrawable(mContext, R.drawable.bgr_giveortake_unclicked));
             btn_ShowGive.setTextColor(getResources().getColor(R.color.textcolor_giveortake_unclicked));
             btn_ShowGive.setPaintFlags(btn_ShowTake.getPaintFlags() &~ Paint.FAKE_BOLD_TEXT_FLAG);
 
@@ -228,10 +244,15 @@ public class MainActivity extends AppCompatActivity {
         else {
             ll_TxtContainer.setVisibility(View.VISIBLE);
             tv_NoTalent.setVisibility(View.GONE);
-            btn_ShowTake.setBackground(ContextCompat.getDrawable(mContext, R.drawable.bgr_giveortake_clicked));
+            if(Build.VERSION.SDK_INT >= 16) {
+                btn_ShowTake.setBackground(ContextCompat.getDrawable(mContext, R.drawable.bgr_giveortake_clicked));
+                btn_ShowGive.setBackground(ContextCompat.getDrawable(mContext, R.drawable.bgr_giveortake_unclicked));
+            }else{
+                btn_ShowTake.setBackgroundDrawable(ContextCompat.getDrawable(mContext, R.drawable.bgr_giveortake_clicked));
+                btn_ShowGive.setBackgroundDrawable(ContextCompat.getDrawable(mContext, R.drawable.bgr_giveortake_unclicked));
+            }
             btn_ShowTake.setPaintFlags(btn_ShowGive.getPaintFlags() | Paint.FAKE_BOLD_TEXT_FLAG);
             btn_ShowTake.setTextColor(getResources().getColor(R.color.textcolor_giveortake_clicked));
-            btn_ShowGive.setBackground(ContextCompat.getDrawable(mContext, R.drawable.bgr_giveortake_unclicked));
             btn_ShowGive.setTextColor(getResources().getColor(R.color.textcolor_giveortake_unclicked));
             btn_ShowGive.setPaintFlags(btn_ShowTake.getPaintFlags() &~ Paint.FAKE_BOLD_TEXT_FLAG);
             btn_ModifyTake.setVisibility(View.VISIBLE);

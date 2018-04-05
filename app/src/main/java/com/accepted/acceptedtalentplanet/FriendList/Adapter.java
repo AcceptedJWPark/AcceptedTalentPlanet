@@ -112,6 +112,7 @@ public class Adapter extends BaseAdapter{
                 @Override
                 public void onClick(View view) {
                     Intent intent = new Intent(mContext, MainActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     intent.putExtra("TalentID", ((ListItem) getItem(index)).getTalentID());
                     String talentFlag = (((ListItem) getItem(index)).getTalentType() == 1) ? "Give" : "Take";
                     intent.putExtra("TalentFlag", talentFlag);
