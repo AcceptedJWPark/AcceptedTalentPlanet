@@ -2,6 +2,7 @@ package com.accepted.acceptedtalentplanet.FriendList;
 
 import android.content.Context;
 import android.graphics.Paint;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -76,10 +77,15 @@ public class MainActivity extends AppCompatActivity {
         btn_SelectGive.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                btn_SelectGive.setBackground(ContextCompat.getDrawable(mContext, R.drawable.bgr_giveortake_clicked));
+                if(Build.VERSION.SDK_INT >= 16) {
+                    btn_SelectGive.setBackground(ContextCompat.getDrawable(mContext, R.drawable.bgr_giveortake_clicked));
+                    btn_SelectTake.setBackground(ContextCompat.getDrawable(mContext, R.drawable.bgr_giveortake_unclicked));
+                }else{
+                    btn_SelectGive.setBackgroundDrawable(ContextCompat.getDrawable(mContext, R.drawable.bgr_giveortake_clicked));
+                    btn_SelectTake.setBackgroundDrawable(ContextCompat.getDrawable(mContext, R.drawable.bgr_giveortake_unclicked));
+                }
                 btn_SelectGive.setPaintFlags(btn_SelectGive.getPaintFlags() | Paint.FAKE_BOLD_TEXT_FLAG);
                 btn_SelectGive.setTextColor(getResources().getColor(R.color.textcolor_giveortake_clicked));
-                btn_SelectTake.setBackground(ContextCompat.getDrawable(mContext, R.drawable.bgr_giveortake_unclicked));
                 btn_SelectTake.setTextColor(getResources().getColor(R.color.textcolor_giveortake_unclicked));
                 btn_SelectTake.setPaintFlags(btn_SelectGive.getPaintFlags() &~ Paint.FAKE_BOLD_TEXT_FLAG);
                 listView_Give.setVisibility(View.VISIBLE);
@@ -107,10 +113,15 @@ public class MainActivity extends AppCompatActivity {
         btn_SelectTake.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                btn_SelectTake.setBackground(ContextCompat.getDrawable(mContext, R.drawable.bgr_giveortake_clicked));
+                if(Build.VERSION.SDK_INT >= 16) {
+                    btn_SelectTake.setBackground(ContextCompat.getDrawable(mContext, R.drawable.bgr_giveortake_clicked));
+                    btn_SelectGive.setBackground(ContextCompat.getDrawable(mContext, R.drawable.bgr_giveortake_unclicked));
+                }else {
+                    btn_SelectTake.setBackgroundDrawable(ContextCompat.getDrawable(mContext, R.drawable.bgr_giveortake_clicked));
+                    btn_SelectGive.setBackgroundDrawable(ContextCompat.getDrawable(mContext, R.drawable.bgr_giveortake_unclicked));
+                }
                 btn_SelectTake.setPaintFlags(btn_SelectGive.getPaintFlags() | Paint.FAKE_BOLD_TEXT_FLAG);
                 btn_SelectTake.setTextColor(getResources().getColor(R.color.textcolor_giveortake_clicked));
-                btn_SelectGive.setBackground(ContextCompat.getDrawable(mContext, R.drawable.bgr_giveortake_unclicked));
                 btn_SelectGive.setTextColor(getResources().getColor(R.color.textcolor_giveortake_unclicked));
                 btn_SelectGive.setPaintFlags(btn_SelectGive.getPaintFlags() &~ Paint.FAKE_BOLD_TEXT_FLAG);
                 listView_Take.setVisibility(View.VISIBLE);

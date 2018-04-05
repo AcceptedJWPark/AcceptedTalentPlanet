@@ -187,6 +187,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             if(hasFineLocationPermission == PackageManager.PERMISSION_DENIED){
                 ActivityCompat.requestPermissions(mActivity, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 2002);
             }
+        }else{
 
             mLocationPermissionGranted = true;
         }

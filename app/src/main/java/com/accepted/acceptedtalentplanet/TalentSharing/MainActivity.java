@@ -7,6 +7,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Paint;
 import android.location.Location;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -288,13 +289,18 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
                     listView.setVisibility(View.VISIBLE);
                 }
 
-                btn_giveSelect.setBackground(ContextCompat.getDrawable(mContext, R.drawable.bgr_giveortake_clicked));
                 btn_giveSelect.setPaintFlags(btn_giveSelect.getPaintFlags() | Paint.FAKE_BOLD_TEXT_FLAG);
                 btn_giveSelect.setTextColor(getResources().getColor(R.color.textcolor_giveortake_clicked));
-                btn_takeSelect.setBackground(ContextCompat.getDrawable(mContext, R.drawable.bgr_giveortake_unclicked));
                 btn_takeSelect.setTextColor(getResources().getColor(R.color.textcolor_giveortake_unclicked));
                 btn_takeSelect.setPaintFlags(btn_takeSelect.getPaintFlags() & ~Paint.FAKE_BOLD_TEXT_FLAG);
 
+                if(Build.VERSION.SDK_INT >= 16) {
+                    btn_giveSelect.setBackground(ContextCompat.getDrawable(mContext, R.drawable.bgr_giveortake_clicked));
+                    btn_takeSelect.setBackground(ContextCompat.getDrawable(mContext, R.drawable.bgr_giveortake_unclicked));
+                }else{
+                    btn_giveSelect.setBackgroundDrawable(ContextCompat.getDrawable(mContext, R.drawable.bgr_giveortake_clicked));
+                    btn_takeSelect.setBackgroundDrawable(ContextCompat.getDrawable(mContext, R.drawable.bgr_giveortake_unclicked));
+                }
 
             } else {
                 MyTalent mt = SaveSharedPreference.getTakeTalentData(mContext);
@@ -353,13 +359,17 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
                     ((TextView) findViewById(R.id.clickToCondition_TalentSharing)).setVisibility(View.GONE);
                     listView.setVisibility(View.VISIBLE);
                 }
-
-                btn_takeSelect.setBackground(ContextCompat.getDrawable(mContext, R.drawable.bgr_giveortake_clicked));
                 btn_takeSelect.setPaintFlags(btn_takeSelect.getPaintFlags() | Paint.FAKE_BOLD_TEXT_FLAG);
                 btn_takeSelect.setTextColor(getResources().getColor(R.color.textcolor_giveortake_clicked));
-                btn_giveSelect.setBackground(ContextCompat.getDrawable(mContext, R.drawable.bgr_giveortake_unclicked));
                 btn_giveSelect.setTextColor(getResources().getColor(R.color.textcolor_giveortake_unclicked));
                 btn_giveSelect.setPaintFlags(btn_giveSelect.getPaintFlags() & ~Paint.FAKE_BOLD_TEXT_FLAG);
+                if(Build.VERSION.SDK_INT >= 16) {
+                    btn_takeSelect.setBackground(ContextCompat.getDrawable(mContext, R.drawable.bgr_giveortake_clicked));
+                    btn_giveSelect.setBackground(ContextCompat.getDrawable(mContext, R.drawable.bgr_giveortake_unclicked));
+                }else{
+                    btn_takeSelect.setBackgroundDrawable(ContextCompat.getDrawable(mContext, R.drawable.bgr_giveortake_clicked));
+                    btn_giveSelect.setBackgroundDrawable(ContextCompat.getDrawable(mContext, R.drawable.bgr_giveortake_unclicked));
+                }
             }
 
             arrayList.clear();

@@ -3,6 +3,7 @@ package com.accepted.acceptedtalentplanet.TalentSearching;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Paint;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -99,10 +100,15 @@ public class MainActivity extends AppCompatActivity {
                 giveButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        giveButton.setBackground(ContextCompat.getDrawable(mContext, R.drawable.bgr_giveortake_clicked));
+                        if(Build.VERSION.SDK_INT >= 16) {
+                            giveButton.setBackground(ContextCompat.getDrawable(mContext, R.drawable.bgr_giveortake_clicked));
+                            takeButton.setBackground(ContextCompat.getDrawable(mContext, R.drawable.bgr_giveortake_unclicked));
+                        }else {
+                            giveButton.setBackgroundDrawable(ContextCompat.getDrawable(mContext, R.drawable.bgr_giveortake_clicked));
+                            takeButton.setBackgroundDrawable(ContextCompat.getDrawable(mContext, R.drawable.bgr_giveortake_unclicked));
+                        }
                         giveButton.setPaintFlags(giveButton.getPaintFlags() | Paint.FAKE_BOLD_TEXT_FLAG);
                         giveButton.setTextColor(getResources().getColor(R.color.textcolor_giveortake_clicked));
-                        takeButton.setBackground(ContextCompat.getDrawable(mContext, R.drawable.bgr_giveortake_unclicked));
                         takeButton.setTextColor(getResources().getColor(R.color.textcolor_giveortake_unclicked));
                         takeButton.setPaintFlags(takeButton.getPaintFlags() &~ Paint.FAKE_BOLD_TEXT_FLAG);
                     }
@@ -111,10 +117,15 @@ public class MainActivity extends AppCompatActivity {
                 takeButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        takeButton.setBackground(ContextCompat.getDrawable(mContext, R.drawable.bgr_giveortake_clicked));
+                        if(Build.VERSION.SDK_INT >= 16) {
+                            takeButton.setBackground(ContextCompat.getDrawable(mContext, R.drawable.bgr_giveortake_clicked));
+                            giveButton.setBackground(ContextCompat.getDrawable(mContext, R.drawable.bgr_giveortake_unclicked));
+                        }else{
+                            takeButton.setBackgroundDrawable(ContextCompat.getDrawable(mContext, R.drawable.bgr_giveortake_clicked));
+                            giveButton.setBackgroundDrawable(ContextCompat.getDrawable(mContext, R.drawable.bgr_giveortake_unclicked));
+                        }
                         takeButton.setPaintFlags(giveButton.getPaintFlags() | Paint.FAKE_BOLD_TEXT_FLAG);
                         takeButton.setTextColor(getResources().getColor(R.color.textcolor_giveortake_clicked));
-                        giveButton.setBackground(ContextCompat.getDrawable(mContext, R.drawable.bgr_giveortake_unclicked));
                         giveButton.setTextColor(getResources().getColor(R.color.textcolor_giveortake_unclicked));
                         giveButton.setPaintFlags(takeButton.getPaintFlags() &~ Paint.FAKE_BOLD_TEXT_FLAG);
                     }

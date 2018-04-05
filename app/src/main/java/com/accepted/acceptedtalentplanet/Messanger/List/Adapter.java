@@ -318,6 +318,7 @@ public class Adapter extends BaseAdapter {
                                         Toast.makeText(mContext,"상대방의 관심 재능이 등록되지 않았습니다.",Toast.LENGTH_SHORT).show();
                                     }else{
                                         Intent intent = new Intent(mContext, com.accepted.acceptedtalentplanet.TalentSharing.Popup.MainActivity.class);
+                                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                                         intent.putExtra("TalentID", String.valueOf(takeTalentID));
                                         intent.putExtra("TalentFlag", "Take");
                                         mContext.startActivity(intent);
@@ -332,6 +333,7 @@ public class Adapter extends BaseAdapter {
                                         Toast.makeText(mContext,"상대방의 재능 드림이 등록되지 않았습니다.",Toast.LENGTH_SHORT).show();
                                     }else{
                                         Intent intent = new Intent(mContext, MainActivity.class);
+                                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                                         intent.putExtra("TalentID", String.valueOf(giveTalentID));
                                         intent.putExtra("TalentFlag", "Give");
                                         mContext.startActivity(intent);

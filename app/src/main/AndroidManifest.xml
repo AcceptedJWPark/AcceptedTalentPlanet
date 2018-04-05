@@ -23,6 +23,7 @@
         android:supportsRtl="true"
         android:largeHeap="true"
         android:theme="@style/AppTheme.NoActionBar"
+        android:name="android.support.multidex.MultiDexApplication"
 
         >
         <meta-data android:name="android.max_aspect" android:value="2.1" />

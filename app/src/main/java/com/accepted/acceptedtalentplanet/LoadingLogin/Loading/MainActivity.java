@@ -70,6 +70,8 @@ public class MainActivity extends AppCompatActivity {
         String sqlCreateTbl7 = "CREATE TABLE IF NOT EXISTS TB_READED_INTEREST (USER_ID TEXT, TALENT_ID INT, PRIMARY KEY(USER_ID, TALENT_ID))";
         sqliteDatabase.execSQL(sqlCreateTbl7);
 
+        sqliteDatabase.close();
+
         if(SaveSharedPreference.getFirstLoadingFlag(mContext)){
             Intent intent = new Intent(getBaseContext(), com.accepted.acceptedtalentplanet.CustomerService.Introduction.MainActivity.class);
             intent.putExtra("FirstLoading", true);

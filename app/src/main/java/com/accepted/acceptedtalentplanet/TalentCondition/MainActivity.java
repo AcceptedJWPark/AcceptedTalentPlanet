@@ -8,6 +8,7 @@ import android.database.CursorIndexOutOfBoundsException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.graphics.Paint;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -135,10 +136,15 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
             @Override
             public void onClick(View v) {
                 tv_TalentType.setText("재능드림 : ");
-                btn_SelectGive.setBackground(ContextCompat.getDrawable(mContext, R.drawable.bgr_giveortake_clicked));
+                if(Build.VERSION.SDK_INT >= 16) {
+                    btn_SelectGive.setBackground(ContextCompat.getDrawable(mContext, R.drawable.bgr_giveortake_clicked));
+                    btn_SelectTake.setBackground(ContextCompat.getDrawable(mContext, R.drawable.bgr_giveortake_unclicked));
+                }else{
+                    btn_SelectGive.setBackgroundDrawable(ContextCompat.getDrawable(mContext, R.drawable.bgr_giveortake_clicked));
+                    btn_SelectTake.setBackgroundDrawable(ContextCompat.getDrawable(mContext, R.drawable.bgr_giveortake_unclicked));
+                }
                 btn_SelectGive.setPaintFlags(btn_SelectGive.getPaintFlags() | Paint.FAKE_BOLD_TEXT_FLAG);
                 btn_SelectGive.setTextColor(getResources().getColor(R.color.textcolor_giveortake_clicked));
-                btn_SelectTake.setBackground(ContextCompat.getDrawable(mContext, R.drawable.bgr_giveortake_unclicked));
                 btn_SelectTake.setTextColor(getResources().getColor(R.color.textcolor_giveortake_unclicked));
                 btn_SelectTake.setPaintFlags(btn_SelectTake.getPaintFlags() &~ Paint.FAKE_BOLD_TEXT_FLAG);
 
@@ -151,10 +157,15 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
             @Override
             public void onClick(View v) {
                 tv_TalentType.setText("관심재능 : ");
-                btn_SelectTake.setBackground(ContextCompat.getDrawable(mContext, R.drawable.bgr_giveortake_clicked));
+                if(Build.VERSION.SDK_INT >= 16) {
+                    btn_SelectTake.setBackground(ContextCompat.getDrawable(mContext, R.drawable.bgr_giveortake_clicked));
+                    btn_SelectGive.setBackground(ContextCompat.getDrawable(mContext, R.drawable.bgr_giveortake_unclicked));
+                }else{
+                    btn_SelectTake.setBackgroundDrawable(ContextCompat.getDrawable(mContext, R.drawable.bgr_giveortake_clicked));
+                    btn_SelectGive.setBackgroundDrawable(ContextCompat.getDrawable(mContext, R.drawable.bgr_giveortake_unclicked));
+                }
                 btn_SelectTake.setPaintFlags(btn_SelectGive.getPaintFlags() | Paint.FAKE_BOLD_TEXT_FLAG);
                 btn_SelectTake.setTextColor(getResources().getColor(R.color.textcolor_giveortake_clicked));
-                btn_SelectGive.setBackground(ContextCompat.getDrawable(mContext, R.drawable.bgr_giveortake_unclicked));
                 btn_SelectGive.setTextColor(getResources().getColor(R.color.textcolor_giveortake_unclicked));
                 btn_SelectGive.setPaintFlags(btn_SelectTake.getPaintFlags() &~ Paint.FAKE_BOLD_TEXT_FLAG);
                 TalentCondition_Take_Registed(isTakeRegisted, takeTalentCode);
@@ -186,6 +197,7 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(mContext, com.accepted.acceptedtalentplanet.TalentSharing.Popup.MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 Log.d("FLAG = ", flag + ", " +targetGiveTalentID + targetTakeTalentID);
                 if(flag.equals("Give")){
                     intent.putExtra("TalentID", targetGiveTalentID);
