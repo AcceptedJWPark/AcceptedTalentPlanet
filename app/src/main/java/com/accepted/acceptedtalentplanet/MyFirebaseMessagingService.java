@@ -179,14 +179,27 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
                         mBuilder.setGroup(GROUP_KEY_ALARM);
 
-                        if (remoteMessage.getData().get("type").equals("Interest")) {
-                            notificationManagerCompat.notify(INTERESTING_NOTIFICATION_ID, mBuilder.build());
-                        } else if (remoteMessage.getData().get("type").equals("Message")) {
-                            notificationManagerCompat.notify(MESSAGE_NOTIFICATION_ID, mBuilder.build());
-                        } else if (remoteMessage.getData().get("type").contains("Interesting")) {
-                            notificationManagerCompat.notify(CONDITION_NOTIFICATION_ID, mBuilder.build());
-                        } else {
-                            notificationManagerCompat.notify(BOARD_NOTIFICATION_ID, mBuilder.build());
+                        if(Build.VERSION.SDK_INT <= 18){
+                            NotificationManager nm = (NotificationManager) getSystemService(mContext.NOTIFICATION_SERVICE);
+                            if (remoteMessage.getData().get("type").equals("Interest")) {
+                                nm.notify(INTERESTING_NOTIFICATION_ID, mBuilder.build());
+                            } else if (remoteMessage.getData().get("type").equals("Message")) {
+                                nm.notify(MESSAGE_NOTIFICATION_ID, mBuilder.build());
+                            } else if (remoteMessage.getData().get("type").contains("Interesting")) {
+                                nm.notify(CONDITION_NOTIFICATION_ID, mBuilder.build());
+                            } else {
+                                nm.notify(BOARD_NOTIFICATION_ID, mBuilder.build());
+                            }
+                        }else {
+                            if (remoteMessage.getData().get("type").equals("Interest")) {
+                                notificationManagerCompat.notify(INTERESTING_NOTIFICATION_ID, mBuilder.build());
+                            } else if (remoteMessage.getData().get("type").equals("Message")) {
+                                notificationManagerCompat.notify(MESSAGE_NOTIFICATION_ID, mBuilder.build());
+                            } else if (remoteMessage.getData().get("type").contains("Interesting")) {
+                                notificationManagerCompat.notify(CONDITION_NOTIFICATION_ID, mBuilder.build());
+                            } else {
+                                notificationManagerCompat.notify(BOARD_NOTIFICATION_ID, mBuilder.build());
+                            }
                         }
 
                     }
