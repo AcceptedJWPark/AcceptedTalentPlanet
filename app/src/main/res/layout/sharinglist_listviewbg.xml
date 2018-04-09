@@ -39,6 +39,7 @@
         android:gravity="center"
         android:layout_gravity="center_vertical"
         android:textColor="#000000"
+        android:includeFontPadding="false"
         android:textStyle="bold"
         android:textSize="@dimen/List_SubTitle"
         />

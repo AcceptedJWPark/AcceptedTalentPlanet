@@ -78,6 +78,7 @@
     <dimen name="Margin_btn">17dp</dimen>
     <dimen name="Margin_title">34dp</dimen>
     <dimen name="Margin_txtContainer">51dp</dimen>
+    <dimen name="Login_Logo">85dp</dimen>
 
 
 </resources>
