@@ -444,8 +444,6 @@ public class SaveSharedPreference{
 
     public static void DrawerLayout_ClickEvent(Context context, View.OnClickListener listener){
 
-
-
         ((LinearLayout) ((Activity)context).findViewById(R.id.DrawerLayout_OpenIcon)).setOnClickListener(listener);
         ((ImageView) ((Activity)context).findViewById(R.id.DrawerCloseImg)).setOnClickListener(listener);
         ((LinearLayout) ((Activity)context).findViewById(R.id.DrawerLayout_AlarmIcon)).setOnClickListener(listener);
