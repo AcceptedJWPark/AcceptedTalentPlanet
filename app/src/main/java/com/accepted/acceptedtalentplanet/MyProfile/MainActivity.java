@@ -115,231 +115,242 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String AUTHORITY = BuildConfig.APPLICATION_ID + ".fileprovider";
 
+    private String networkState;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.myprofile_activity);
+
         mContext = getApplicationContext();
-
-        myProfileData = new MyProfileData();
-
-        drawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout_MyProfile);
-        view_DrawerLayout = (View) findViewById(R.id.view_DrawerLayout_MyProfile);
-
-        et_Job = (EditText) findViewById(R.id.et_Job_MyProfile);
-        et_Job.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                iv_DrawerLayoutIcon = (LinearLayout) findViewById(R.id.DrawerLayout_OpenIcon);
-                iv_AlarmIcon = (LinearLayout) findViewById(R.id.DrawerLayout_AlarmIcon);
-                if (!hasFocus) {
-                    hideKeyboard(v, mContext);
-                    iv_DrawerLayoutIcon.setFocusable(false);
-                    iv_DrawerLayoutIcon.setFocusableInTouchMode(false);
-                    iv_AlarmIcon.setFocusable(false);
-                    iv_AlarmIcon.setFocusableInTouchMode(false);
-                } else {
-                    iv_DrawerLayoutIcon.setFocusable(true);
-                    iv_DrawerLayoutIcon.setFocusableInTouchMode(true);
-                    iv_AlarmIcon.setFocusable(true);
-                    iv_AlarmIcon.setFocusableInTouchMode(true);
-                }
-            }
-        });
-
-        ((TextView) findViewById(R.id.tv_toolbarTitle)).setText("My Profile");
-        ((TextView) findViewById(R.id.DrawerUserID)).setText(SaveSharedPreference.getUserId(mContext));
-        if(SaveSharedPreference.getMyThumbPicturePath() != null) {
-            Glide.with(mContext).load(SaveSharedPreference.getImageUri() + SaveSharedPreference.getMyThumbPicturePath()).into((ImageView) findViewById(R.id.DrawerPicture));
-            Glide.with(mContext).load(SaveSharedPreference.getImageUri() + SaveSharedPreference.getMyThumbPicturePath()).into((ImageView) findViewById(R.id.iv_Picture_MyProfile));
-        }
-
-        View.OnClickListener mClicklistener = new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                DrawerLayout_Open(v, MainActivity.this, drawerLayout, view_DrawerLayout);
-            }
-        };
-        DrawerLayout_ClickEvent(MainActivity.this, mClicklistener);
-        getMyProfile();
-
-        ll_Toolbar = (android.support.v7.widget.Toolbar) findViewById(R.id.ll_Toolbar_MyProfile);
-        rl_Container = (RelativeLayout) findViewById(R.id.rl_Container_MyProfile);
-        btn_Save = (Button) findViewById(R.id.btn_Save_MyProfile);
-        tv_Divider1 = (TextView) findViewById(R.id.tv_Divider1_MyProfile);
-        tv_Divider2 = (TextView) findViewById(R.id.tv_Divider2_MyProfile);
-        ll_Container1 = (LinearLayout) findViewById(R.id.ll_Container1_MyProfile);
-        ll_Container2 = (LinearLayout) findViewById(R.id.ll_Container2_MyProfile);
-        ll_Container3 = (LinearLayout) findViewById(R.id.ll_Container3_MyProfile);
-        ll_Container4 = (LinearLayout) findViewById(R.id.ll_Container4_MyProfile);
-        ll_Container5 = (LinearLayout) findViewById(R.id.ll_Container5_MyProfile);
-        ll_Container6 = (LinearLayout) findViewById(R.id.ll_Container6_MyProfile);
-        ll_Container7 = (LinearLayout) findViewById(R.id.ll_Container7_MyProfile);
-        ll_Container8 = (LinearLayout) findViewById(R.id.ll_Container8_MyProfile);
-        rl_PictureContainer = (RelativeLayout) findViewById(R.id.rl_PictureContainer_MyProfile);
-
-
-        cb_isShowGender = (CheckBox) findViewById(R.id.cb_isShowGender_MyProfile);
-        cb_isShowBirth = (CheckBox) findViewById(R.id.cb_isShowBirth_MyProfile);
-        cb_isShowJob = (CheckBox) findViewById(R.id.cb_isShowJob_MyProfile);
-
-
-
-
-        DisplayMetrics metrics = new DisplayMetrics();
-        WindowManager windowManager = (WindowManager) getApplicationContext().getSystemService(Context.WINDOW_SERVICE);
-        windowManager.getDefaultDisplay().getMetrics(metrics);
-
-        int statusBarHeight = getStatusBarHeight();
-
-        int toolbar_height = (int) (metrics.heightPixels * 0.055);
-        int picture_LL_height = (int) (metrics.heightPixels * 0.188);
-        int btn_height = (int) (metrics.heightPixels * 0.04);
-        int Devider_height = (int) (metrics.heightPixels * 0.045);
-        int List_height = (int) (metrics.heightPixels * 0.072);
-
-        int TalentResister_Picture_width = (int) (picture_LL_height * 0.7);
-        int TalentResister_Picture_height = (int) (picture_LL_height * 0.7);
-
-
-        ViewGroup.LayoutParams params1 = ll_Toolbar.getLayoutParams();
-        ViewGroup.LayoutParams params2 = rl_Container.getLayoutParams();
-        ViewGroup.LayoutParams params3 = btn_Save.getLayoutParams();
-        ViewGroup.LayoutParams params4 = tv_Divider1.getLayoutParams();
-        ViewGroup.LayoutParams params5 = tv_Divider2.getLayoutParams();
-        ViewGroup.LayoutParams params6 = ll_Container1.getLayoutParams();
-        ViewGroup.LayoutParams params7 = ll_Container2.getLayoutParams();
-        ViewGroup.LayoutParams params8 = ll_Container3.getLayoutParams();
-        ViewGroup.LayoutParams params9 = ll_Container4.getLayoutParams();
-        ViewGroup.LayoutParams params10 = ll_Container5.getLayoutParams();
-        ViewGroup.LayoutParams params11 = ll_Container6.getLayoutParams();
-        ViewGroup.LayoutParams params12 = ll_Container7.getLayoutParams();
-        ViewGroup.LayoutParams params13 = ll_Container8.getLayoutParams();
-
-        ViewGroup.LayoutParams params14 = rl_PictureContainer.getLayoutParams();
-
-        params1.height = toolbar_height;
-        params2.height = picture_LL_height;
-        params3.height = btn_height;
-        params4.height = Devider_height;
-        params5.height = Devider_height;
-        params6.height = List_height;
-        params7.height = List_height;
-        params8.height = List_height;
-        params9.height = List_height;
-        params10.height = List_height;
-        params11.height = List_height;
-        params12.height = List_height;
-        params13.height = List_height;
-
-        params14.width = TalentResister_Picture_width;
-        params14.height = TalentResister_Picture_height;
-
-
-        ll_Toolbar.setLayoutParams(params1);
-        rl_Container.setLayoutParams(params2);
-        btn_Save.setLayoutParams(params3);
-        tv_Divider1.setLayoutParams(params4);
-        tv_Divider2.setLayoutParams(params5);
-        ll_Container1.setLayoutParams(params6);
-        ll_Container2.setLayoutParams(params7);
-        ll_Container3.setLayoutParams(params8);
-        ll_Container4.setLayoutParams(params9);
-        ll_Container5.setLayoutParams(params10);
-        ll_Container6.setLayoutParams(params11);
-        ll_Container7.setLayoutParams(params12);
-        ll_Container8.setLayoutParams(params13);
-
-        rl_PictureContainer.setLayoutParams(params14);
-
-
-        iv_CompleteListIcon = (ImageView) findViewById(R.id.iv_CompleteListIcon_MyProfile);
-        iv_CompleteListIcon.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(mContext, com.accepted.acceptedtalentplanet.MyProfile.CompleteList.MainActivity.class);
-                startActivity(i);
-            }
-        });
-
-
-        btn_Save.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                saveMyProfile();
-            }
-        });
-
-        final AlertDialog.Builder AlarmDeleteDialog = new AlertDialog.Builder(MainActivity.this);
-        iv_Picture = (ImageView) findViewById(R.id.iv_Picture_MyProfile);
-
-        if (SaveSharedPreference.getMyThumbPicturePath() != null) {
-            iv_Picture.setOnClickListener(new View.OnClickListener() {
+        networkState = SaveSharedPreference.getWhatKindOfNetwork(mContext);
+        if(networkState.equals(SaveSharedPreference.NONE_STATE) || (networkState.equals(SaveSharedPreference.WIFI_STATE) && !SaveSharedPreference.isOnline())){
+            setContentView(R.layout.error_page);
+            ((Button)findViewById(R.id.btn_RefreshErrorPage)).setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(mContext, pictureExpand.class);
-                    intent.putExtra("Activity", "Profile");
-                    intent.putExtra("userID", SaveSharedPreference.getUserId(mContext));
-                    startActivity(intent);
+                public void onClick(View view) {
+                    recreate();
                 }
             });
-        }
+        }else {
+            setContentView(R.layout.myprofile_activity);
 
+            myProfileData = new MyProfileData();
 
-        iv_PictureIcon = (ImageView) findViewById(R.id.iv_PictureIcon_MyProfile);
-        iv_PictureIcon.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (Build.VERSION.SDK_INT > 22) {
-                    requestPermissions(new String[]{android.Manifest.permission.READ_EXTERNAL_STORAGE, android.Manifest.permission.WRITE_EXTERNAL_STORAGE, android.Manifest.permission.CAMERA}, 1);
+            drawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout_MyProfile);
+            view_DrawerLayout = (View) findViewById(R.id.view_DrawerLayout_MyProfile);
+
+            et_Job = (EditText) findViewById(R.id.et_Job_MyProfile);
+            et_Job.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+                @Override
+                public void onFocusChange(View v, boolean hasFocus) {
+                    iv_DrawerLayoutIcon = (LinearLayout) findViewById(R.id.DrawerLayout_OpenIcon);
+                    iv_AlarmIcon = (LinearLayout) findViewById(R.id.DrawerLayout_AlarmIcon);
+                    if (!hasFocus) {
+                        hideKeyboard(v, mContext);
+                        iv_DrawerLayoutIcon.setFocusable(false);
+                        iv_DrawerLayoutIcon.setFocusableInTouchMode(false);
+                        iv_AlarmIcon.setFocusable(false);
+                        iv_AlarmIcon.setFocusableInTouchMode(false);
+                    } else {
+                        iv_DrawerLayoutIcon.setFocusable(true);
+                        iv_DrawerLayoutIcon.setFocusableInTouchMode(true);
+                        iv_AlarmIcon.setFocusable(true);
+                        iv_AlarmIcon.setFocusableInTouchMode(true);
+                    }
                 }
-                AlarmDeleteDialog.setMessage("사진을 가져올 곳을 선택해주세요.")
-                        .setPositiveButton("카메라", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                selectPhoto();
-                                dialog.cancel();
-                            }
-                        })
-                        .setNegativeButton("앨범", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                selectGallery();
-                                dialog.cancel();
-                            }
-                        });
-                AlertDialog alertDialog = AlarmDeleteDialog.create();
-                alertDialog.show();
+            });
+
+            ((TextView) findViewById(R.id.tv_toolbarTitle)).setText("My Profile");
+            ((TextView) findViewById(R.id.DrawerUserID)).setText(SaveSharedPreference.getUserId(mContext));
+            if (SaveSharedPreference.getMyThumbPicturePath() != null) {
+                Glide.with(mContext).load(SaveSharedPreference.getImageUri() + SaveSharedPreference.getMyThumbPicturePath()).into((ImageView) findViewById(R.id.DrawerPicture));
+                Glide.with(mContext).load(SaveSharedPreference.getImageUri() + SaveSharedPreference.getMyThumbPicturePath()).into((ImageView) findViewById(R.id.iv_Picture_MyProfile));
             }
-        });
+
+            View.OnClickListener mClicklistener = new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    DrawerLayout_Open(v, MainActivity.this, drawerLayout, view_DrawerLayout);
+                }
+            };
+            DrawerLayout_ClickEvent(MainActivity.this, mClicklistener);
+            getMyProfile();
+
+            ll_Toolbar = (android.support.v7.widget.Toolbar) findViewById(R.id.ll_Toolbar_MyProfile);
+            rl_Container = (RelativeLayout) findViewById(R.id.rl_Container_MyProfile);
+            btn_Save = (Button) findViewById(R.id.btn_Save_MyProfile);
+            tv_Divider1 = (TextView) findViewById(R.id.tv_Divider1_MyProfile);
+            tv_Divider2 = (TextView) findViewById(R.id.tv_Divider2_MyProfile);
+            ll_Container1 = (LinearLayout) findViewById(R.id.ll_Container1_MyProfile);
+            ll_Container2 = (LinearLayout) findViewById(R.id.ll_Container2_MyProfile);
+            ll_Container3 = (LinearLayout) findViewById(R.id.ll_Container3_MyProfile);
+            ll_Container4 = (LinearLayout) findViewById(R.id.ll_Container4_MyProfile);
+            ll_Container5 = (LinearLayout) findViewById(R.id.ll_Container5_MyProfile);
+            ll_Container6 = (LinearLayout) findViewById(R.id.ll_Container6_MyProfile);
+            ll_Container7 = (LinearLayout) findViewById(R.id.ll_Container7_MyProfile);
+            ll_Container8 = (LinearLayout) findViewById(R.id.ll_Container8_MyProfile);
+            rl_PictureContainer = (RelativeLayout) findViewById(R.id.rl_PictureContainer_MyProfile);
 
 
-        View.OnClickListener listener_give = new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(mContext, com.accepted.acceptedtalentplanet.TalentResister.MainActivity.class);
-                i.putExtra("GiveFlag", true);
-                startActivity(i);
+            cb_isShowGender = (CheckBox) findViewById(R.id.cb_isShowGender_MyProfile);
+            cb_isShowBirth = (CheckBox) findViewById(R.id.cb_isShowBirth_MyProfile);
+            cb_isShowJob = (CheckBox) findViewById(R.id.cb_isShowJob_MyProfile);
+
+
+            DisplayMetrics metrics = new DisplayMetrics();
+            WindowManager windowManager = (WindowManager) getApplicationContext().getSystemService(Context.WINDOW_SERVICE);
+            windowManager.getDefaultDisplay().getMetrics(metrics);
+
+            int statusBarHeight = getStatusBarHeight();
+
+            int toolbar_height = (int) (metrics.heightPixels * 0.055);
+            int picture_LL_height = (int) (metrics.heightPixels * 0.188);
+            int btn_height = (int) (metrics.heightPixels * 0.04);
+            int Devider_height = (int) (metrics.heightPixels * 0.045);
+            int List_height = (int) (metrics.heightPixels * 0.072);
+
+            int TalentResister_Picture_width = (int) (picture_LL_height * 0.7);
+            int TalentResister_Picture_height = (int) (picture_LL_height * 0.7);
+
+
+            ViewGroup.LayoutParams params1 = ll_Toolbar.getLayoutParams();
+            ViewGroup.LayoutParams params2 = rl_Container.getLayoutParams();
+            ViewGroup.LayoutParams params3 = btn_Save.getLayoutParams();
+            ViewGroup.LayoutParams params4 = tv_Divider1.getLayoutParams();
+            ViewGroup.LayoutParams params5 = tv_Divider2.getLayoutParams();
+            ViewGroup.LayoutParams params6 = ll_Container1.getLayoutParams();
+            ViewGroup.LayoutParams params7 = ll_Container2.getLayoutParams();
+            ViewGroup.LayoutParams params8 = ll_Container3.getLayoutParams();
+            ViewGroup.LayoutParams params9 = ll_Container4.getLayoutParams();
+            ViewGroup.LayoutParams params10 = ll_Container5.getLayoutParams();
+            ViewGroup.LayoutParams params11 = ll_Container6.getLayoutParams();
+            ViewGroup.LayoutParams params12 = ll_Container7.getLayoutParams();
+            ViewGroup.LayoutParams params13 = ll_Container8.getLayoutParams();
+
+            ViewGroup.LayoutParams params14 = rl_PictureContainer.getLayoutParams();
+
+            params1.height = toolbar_height;
+            params2.height = picture_LL_height;
+            params3.height = btn_height;
+            params4.height = Devider_height;
+            params5.height = Devider_height;
+            params6.height = List_height;
+            params7.height = List_height;
+            params8.height = List_height;
+            params9.height = List_height;
+            params10.height = List_height;
+            params11.height = List_height;
+            params12.height = List_height;
+            params13.height = List_height;
+
+            params14.width = TalentResister_Picture_width;
+            params14.height = TalentResister_Picture_height;
+
+
+            ll_Toolbar.setLayoutParams(params1);
+            rl_Container.setLayoutParams(params2);
+            btn_Save.setLayoutParams(params3);
+            tv_Divider1.setLayoutParams(params4);
+            tv_Divider2.setLayoutParams(params5);
+            ll_Container1.setLayoutParams(params6);
+            ll_Container2.setLayoutParams(params7);
+            ll_Container3.setLayoutParams(params8);
+            ll_Container4.setLayoutParams(params9);
+            ll_Container5.setLayoutParams(params10);
+            ll_Container6.setLayoutParams(params11);
+            ll_Container7.setLayoutParams(params12);
+            ll_Container8.setLayoutParams(params13);
+
+            rl_PictureContainer.setLayoutParams(params14);
+
+
+            iv_CompleteListIcon = (ImageView) findViewById(R.id.iv_CompleteListIcon_MyProfile);
+            iv_CompleteListIcon.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent i = new Intent(mContext, com.accepted.acceptedtalentplanet.MyProfile.CompleteList.MainActivity.class);
+                    startActivity(i);
+                }
+            });
+
+
+            btn_Save.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    saveMyProfile();
+                }
+            });
+
+            final AlertDialog.Builder AlarmDeleteDialog = new AlertDialog.Builder(MainActivity.this);
+            iv_Picture = (ImageView) findViewById(R.id.iv_Picture_MyProfile);
+
+            if (SaveSharedPreference.getMyThumbPicturePath() != null) {
+                iv_Picture.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(mContext, pictureExpand.class);
+                        intent.putExtra("Activity", "Profile");
+                        intent.putExtra("userID", SaveSharedPreference.getUserId(mContext));
+                        startActivity(intent);
+                    }
+                });
             }
-        };
 
-        View.OnClickListener listener_take = new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(mContext, com.accepted.acceptedtalentplanet.TalentResister.MainActivity.class);
-                i.putExtra("GiveFlag", false);
-                startActivity(i);
-            }
-        };
 
-        ((TextView) findViewById(R.id.tv_GiveTalent1_MyProfile)).setOnClickListener(listener_give);
-        ((TextView) findViewById(R.id.tv_GiveTalent2_MyProfile)).setOnClickListener(listener_give);
-        ((TextView) findViewById(R.id.tv_GiveTalent3_MyProfile)).setOnClickListener(listener_give);
-        ((TextView) findViewById(R.id.tv_TakeTalent1_MyProfile)).setOnClickListener(listener_take);
-        ((TextView) findViewById(R.id.tv_TakeTalent2_MyProfile)).setOnClickListener(listener_take);
-        ((TextView) findViewById(R.id.tv_TakeTalent3_MyProfile)).setOnClickListener(listener_take);
+            iv_PictureIcon = (ImageView) findViewById(R.id.iv_PictureIcon_MyProfile);
+            iv_PictureIcon.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (Build.VERSION.SDK_INT > 22) {
+                        requestPermissions(new String[]{android.Manifest.permission.READ_EXTERNAL_STORAGE, android.Manifest.permission.WRITE_EXTERNAL_STORAGE, android.Manifest.permission.CAMERA}, 1);
+                    }
+                    AlarmDeleteDialog.setMessage("사진을 가져올 곳을 선택해주세요.")
+                            .setPositiveButton("카메라", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    selectPhoto();
+                                    dialog.cancel();
+                                }
+                            })
+                            .setNegativeButton("앨범", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    selectGallery();
+                                    dialog.cancel();
+                                }
+                            });
+                    AlertDialog alertDialog = AlarmDeleteDialog.create();
+                    alertDialog.show();
+                }
+            });
+
+
+            View.OnClickListener listener_give = new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent i = new Intent(mContext, com.accepted.acceptedtalentplanet.TalentResister.MainActivity.class);
+                    i.putExtra("GiveFlag", true);
+                    startActivity(i);
+                }
+            };
+
+            View.OnClickListener listener_take = new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent i = new Intent(mContext, com.accepted.acceptedtalentplanet.TalentResister.MainActivity.class);
+                    i.putExtra("GiveFlag", false);
+                    startActivity(i);
+                }
+            };
+
+            ((TextView) findViewById(R.id.tv_GiveTalent1_MyProfile)).setOnClickListener(listener_give);
+            ((TextView) findViewById(R.id.tv_GiveTalent2_MyProfile)).setOnClickListener(listener_give);
+            ((TextView) findViewById(R.id.tv_GiveTalent3_MyProfile)).setOnClickListener(listener_give);
+            ((TextView) findViewById(R.id.tv_TakeTalent1_MyProfile)).setOnClickListener(listener_take);
+            ((TextView) findViewById(R.id.tv_TakeTalent2_MyProfile)).setOnClickListener(listener_take);
+            ((TextView) findViewById(R.id.tv_TakeTalent3_MyProfile)).setOnClickListener(listener_take);
+        }
     }
 
 
@@ -381,7 +392,7 @@ public class MainActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
             }
-        }, SaveSharedPreference.getErrorListener()) {
+        }, SaveSharedPreference.getErrorListener(mContext)) {
             @Override
             protected Map<String, String> getParams(){
                 Map<String, String> params = new HashMap();
@@ -411,7 +422,7 @@ public class MainActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
             }
-        }, SaveSharedPreference.getErrorListener()) {
+        }, SaveSharedPreference.getErrorListener(mContext)) {
             @Override
             protected Map<String, String> getParams(){
                 Map<String, String> params = new HashMap();
@@ -708,11 +719,22 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onResume(){
         super.onResume();
-        drawerLayout.closeDrawers();
-        if(MyFirebaseMessagingService.isNewMessageArrive){
-            findViewById(R.id.Icon_NewMessage).setVisibility(View.VISIBLE);
-        }else{
-            findViewById(R.id.Icon_NewMessage).setVisibility(View.GONE);
+        networkState = SaveSharedPreference.getWhatKindOfNetwork(mContext);
+        if(networkState.equals(SaveSharedPreference.NONE_STATE) || (networkState.equals(SaveSharedPreference.WIFI_STATE) && !SaveSharedPreference.isOnline())){
+            setContentView(R.layout.error_page);
+            ((Button)findViewById(R.id.btn_RefreshErrorPage)).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    recreate();
+                }
+            });
+        }else {
+            drawerLayout.closeDrawers();
+            if (MyFirebaseMessagingService.isNewMessageArrive) {
+                findViewById(R.id.Icon_NewMessage).setVisibility(View.VISIBLE);
+            } else {
+                findViewById(R.id.Icon_NewMessage).setVisibility(View.GONE);
+            }
         }
     }
 

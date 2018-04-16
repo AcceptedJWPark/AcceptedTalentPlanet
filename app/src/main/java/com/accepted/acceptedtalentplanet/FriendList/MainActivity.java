@@ -51,127 +51,147 @@ public class MainActivity extends AppCompatActivity {
 
     private boolean talentFlag;
 
+    private String networkState;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.friendlist_activity);
 
         mContext = getApplicationContext();
-
-        talentFlag = true;  //getIntent().getStringExtra("talentFlag").equals("Y")
-
-        arrayList_Friend = SaveSharedPreference.getFriendList(mContext);
-
-        if(arrayList_Friend.size() > 0)
-            getFriendInfo();
-
-        listView_Give = (ListView) findViewById(R.id.listView_Give_FriendList);
-        listView_Take = (ListView) findViewById(R.id.listView_Take_FriendList);
-
-
-
-
-
-
-        btn_SelectGive = (Button) findViewById(R.id.btn_SelectGive_FriendList);
-        btn_SelectGive.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(Build.VERSION.SDK_INT >= 16) {
-                    btn_SelectGive.setBackground(ContextCompat.getDrawable(mContext, R.drawable.bgr_giveortake_clicked));
-                    btn_SelectTake.setBackground(ContextCompat.getDrawable(mContext, R.drawable.bgr_giveortake_unclicked));
-                }else{
-                    btn_SelectGive.setBackgroundDrawable(ContextCompat.getDrawable(mContext, R.drawable.bgr_giveortake_clicked));
-                    btn_SelectTake.setBackgroundDrawable(ContextCompat.getDrawable(mContext, R.drawable.bgr_giveortake_unclicked));
+        networkState = SaveSharedPreference.getWhatKindOfNetwork(mContext);
+        if(networkState.equals(SaveSharedPreference.NONE_STATE) || (networkState.equals(SaveSharedPreference.WIFI_STATE) && !SaveSharedPreference.isOnline())){
+            setContentView(R.layout.error_page);
+            ((Button)findViewById(R.id.btn_RefreshErrorPage)).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    recreate();
                 }
-                btn_SelectGive.setPaintFlags(btn_SelectGive.getPaintFlags() | Paint.FAKE_BOLD_TEXT_FLAG);
-                btn_SelectGive.setTextColor(getResources().getColor(R.color.textcolor_giveortake_clicked));
-                btn_SelectTake.setTextColor(getResources().getColor(R.color.textcolor_giveortake_unclicked));
-                btn_SelectTake.setPaintFlags(btn_SelectGive.getPaintFlags() &~ Paint.FAKE_BOLD_TEXT_FLAG);
-                listView_Give.setVisibility(View.VISIBLE);
-                listView_Take.setVisibility(View.GONE);
+            });
+        }else {
+            setContentView(R.layout.friendlist_activity);
 
-                if(arrayList_Friend.size() > 0) {
+            talentFlag = true;  //getIntent().getStringExtra("talentFlag").equals("Y")
 
-                    arrayList.clear();
+            arrayList_Friend = SaveSharedPreference.getFriendList(mContext);
 
-                    for (ListItem item : arrayList_Original) {
-                        Log.d("TaletTypeCode", String.valueOf(item.getTalentType()));
-                        if (item.getTalentType() == 1)
-                            arrayList.add(item);
+            if (arrayList_Friend.size() > 0)
+                getFriendInfo();
+
+            listView_Give = (ListView) findViewById(R.id.listView_Give_FriendList);
+            listView_Take = (ListView) findViewById(R.id.listView_Take_FriendList);
+
+
+            btn_SelectGive = (Button) findViewById(R.id.btn_SelectGive_FriendList);
+            btn_SelectGive.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (Build.VERSION.SDK_INT >= 16) {
+                        btn_SelectGive.setBackground(ContextCompat.getDrawable(mContext, R.drawable.bgr_giveortake_clicked));
+                        btn_SelectTake.setBackground(ContextCompat.getDrawable(mContext, R.drawable.bgr_giveortake_unclicked));
+                    } else {
+                        btn_SelectGive.setBackgroundDrawable(ContextCompat.getDrawable(mContext, R.drawable.bgr_giveortake_clicked));
+                        btn_SelectTake.setBackgroundDrawable(ContextCompat.getDrawable(mContext, R.drawable.bgr_giveortake_unclicked));
                     }
+                    btn_SelectGive.setPaintFlags(btn_SelectGive.getPaintFlags() | Paint.FAKE_BOLD_TEXT_FLAG);
+                    btn_SelectGive.setTextColor(getResources().getColor(R.color.textcolor_giveortake_clicked));
+                    btn_SelectTake.setTextColor(getResources().getColor(R.color.textcolor_giveortake_unclicked));
+                    btn_SelectTake.setPaintFlags(btn_SelectGive.getPaintFlags() & ~Paint.FAKE_BOLD_TEXT_FLAG);
+                    listView_Give.setVisibility(View.VISIBLE);
+                    listView_Take.setVisibility(View.GONE);
+
+                    if (arrayList_Friend.size() > 0) {
+
+                        arrayList.clear();
+
+                        for (ListItem item : arrayList_Original) {
+                            Log.d("TaletTypeCode", String.valueOf(item.getTalentType()));
+                            if (item.getTalentType() == 1)
+                                arrayList.add(item);
+                        }
 
 
-                }
-                adapter = new Adapter(mContext, arrayList);
-                listView_Give.setAdapter(adapter);
-                talentFlag = true;
-
-            }
-        });
-        btn_SelectTake = (Button) findViewById(R.id.btn_SelectTake_FriendList);
-        btn_SelectTake.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(Build.VERSION.SDK_INT >= 16) {
-                    btn_SelectTake.setBackground(ContextCompat.getDrawable(mContext, R.drawable.bgr_giveortake_clicked));
-                    btn_SelectGive.setBackground(ContextCompat.getDrawable(mContext, R.drawable.bgr_giveortake_unclicked));
-                }else {
-                    btn_SelectTake.setBackgroundDrawable(ContextCompat.getDrawable(mContext, R.drawable.bgr_giveortake_clicked));
-                    btn_SelectGive.setBackgroundDrawable(ContextCompat.getDrawable(mContext, R.drawable.bgr_giveortake_unclicked));
-                }
-                btn_SelectTake.setPaintFlags(btn_SelectGive.getPaintFlags() | Paint.FAKE_BOLD_TEXT_FLAG);
-                btn_SelectTake.setTextColor(getResources().getColor(R.color.textcolor_giveortake_clicked));
-                btn_SelectGive.setTextColor(getResources().getColor(R.color.textcolor_giveortake_unclicked));
-                btn_SelectGive.setPaintFlags(btn_SelectGive.getPaintFlags() &~ Paint.FAKE_BOLD_TEXT_FLAG);
-                listView_Take.setVisibility(View.VISIBLE);
-                listView_Give.setVisibility(View.GONE);
-                if(arrayList_Friend.size() > 0) {
-                    arrayList.clear();
-
-                    for (ListItem item : arrayList_Original) {
-                        Log.d("TaletTypeCode", String.valueOf(item.getTalentType()));
-                        if (item.getTalentType() == 2)
-                            arrayList.add(item);
                     }
+                    adapter = new Adapter(mContext, arrayList);
+                    listView_Give.setAdapter(adapter);
+                    talentFlag = true;
 
                 }
-                adapter = new Adapter(mContext, arrayList);
-                listView_Take.setAdapter(adapter);
-                talentFlag = false;
-            }
-        });
+            });
+            btn_SelectTake = (Button) findViewById(R.id.btn_SelectTake_FriendList);
+            btn_SelectTake.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (Build.VERSION.SDK_INT >= 16) {
+                        btn_SelectTake.setBackground(ContextCompat.getDrawable(mContext, R.drawable.bgr_giveortake_clicked));
+                        btn_SelectGive.setBackground(ContextCompat.getDrawable(mContext, R.drawable.bgr_giveortake_unclicked));
+                    } else {
+                        btn_SelectTake.setBackgroundDrawable(ContextCompat.getDrawable(mContext, R.drawable.bgr_giveortake_clicked));
+                        btn_SelectGive.setBackgroundDrawable(ContextCompat.getDrawable(mContext, R.drawable.bgr_giveortake_unclicked));
+                    }
+                    btn_SelectTake.setPaintFlags(btn_SelectGive.getPaintFlags() | Paint.FAKE_BOLD_TEXT_FLAG);
+                    btn_SelectTake.setTextColor(getResources().getColor(R.color.textcolor_giveortake_clicked));
+                    btn_SelectGive.setTextColor(getResources().getColor(R.color.textcolor_giveortake_unclicked));
+                    btn_SelectGive.setPaintFlags(btn_SelectGive.getPaintFlags() & ~Paint.FAKE_BOLD_TEXT_FLAG);
+                    listView_Take.setVisibility(View.VISIBLE);
+                    listView_Give.setVisibility(View.GONE);
+                    if (arrayList_Friend.size() > 0) {
+                        arrayList.clear();
 
-        ll_PreContainer = (LinearLayout) findViewById(R.id.ll_PreContainer_FriendList);
-        ll_PreContainer.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+                        for (ListItem item : arrayList_Original) {
+                            Log.d("TaletTypeCode", String.valueOf(item.getTalentType()));
+                            if (item.getTalentType() == 2)
+                                arrayList.add(item);
+                        }
+
+                    }
+                    adapter = new Adapter(mContext, arrayList);
+                    listView_Take.setAdapter(adapter);
+                    talentFlag = false;
+                }
+            });
+
+            ll_PreContainer = (LinearLayout) findViewById(R.id.ll_PreContainer_FriendList);
+            ll_PreContainer.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    finish();
+                }
+            });
+
+        }
     }
 
     @Override
     public void onResume(){
         super.onResume();
-        arrayList_Friend = SaveSharedPreference.getFriendList(mContext);
 
-        if(arrayList_Friend.size() > 0)
-            getFriendInfo();
-        else {
-            arrayList = new ArrayList<>();
-            arrayList_Original = new ArrayList<>();
-            adapter = new Adapter(mContext, arrayList);
-            if(listView_Give.getVisibility() == View.VISIBLE) {
-                Log.d("list View Friend", "C");
-                listView_Give.setAdapter(adapter);
-            }else{
-                Log.d("list View Friend", "D");
-                listView_Take.setAdapter(adapter);
+        networkState = SaveSharedPreference.getWhatKindOfNetwork(mContext);
+        if(networkState.equals(SaveSharedPreference.NONE_STATE) || (networkState.equals(SaveSharedPreference.WIFI_STATE) && !SaveSharedPreference.isOnline())){
+            setContentView(R.layout.error_page);
+            ((Button)findViewById(R.id.btn_RefreshErrorPage)).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    recreate();
+                }
+            });
+        }else {
+            arrayList_Friend = SaveSharedPreference.getFriendList(mContext);
+
+            if (arrayList_Friend.size() > 0)
+                getFriendInfo();
+            else {
+                arrayList = new ArrayList<>();
+                arrayList_Original = new ArrayList<>();
+                adapter = new Adapter(mContext, arrayList);
+                if (listView_Give.getVisibility() == View.VISIBLE) {
+                    Log.d("list View Friend", "C");
+                    listView_Give.setAdapter(adapter);
+                } else {
+                    Log.d("list View Friend", "D");
+                    listView_Take.setAdapter(adapter);
+                }
             }
         }
-
-
     }
 
     public void getFriendInfo() {
@@ -230,7 +250,7 @@ public class MainActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
             }
-        }, SaveSharedPreference.getErrorListener()) {
+        }, SaveSharedPreference.getErrorListener(mContext)) {
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap();

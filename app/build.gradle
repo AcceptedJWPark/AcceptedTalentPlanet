@@ -9,10 +9,10 @@ android {
     useLibrary 'org.apache.http.legacy'
     defaultConfig {
         applicationId 'com.accepted.acceptedtalentplanet'
-        minSdkVersion 14
+        minSdkVersion 18
         targetSdkVersion 26
-        versionCode 3
-        versionName "1.2"
+        versionCode 5
+        versionName "1.4"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
     }

@@ -21,6 +21,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.accepted.acceptedtalentplanet.Alarm.ListItem;
 import com.android.volley.NetworkResponse;
@@ -576,7 +577,7 @@ public class SaveSharedPreference{
                             e.printStackTrace();
                         }
                     }
-                }, SaveSharedPreference.getErrorListener()) {
+                }, SaveSharedPreference.getErrorListener(mContext)) {
                     @Override
                     protected Map<String, String> getParams(){
                         Map<String, String> params = new HashMap();
@@ -616,7 +617,7 @@ public class SaveSharedPreference{
         }
     }
 
-    public static Response.ErrorListener getErrorListener(){
+    public static Response.ErrorListener getErrorListener(final Context context){
         Response.ErrorListener errorListener = new Response.ErrorListener(){
             @Override
             public void onErrorResponse(VolleyError error){
@@ -627,6 +628,7 @@ public class SaveSharedPreference{
                                 HttpHeaderParser.parseCharset(response.headers, "utf-8"));
                         // Now you can use any deserializer to make sense of data
                         Log.d("res", res);
+                        Toast.makeText(context, "네트워크 상태를 확인해주세요.", Toast.LENGTH_SHORT).show();
 
                         JSONObject obj = new JSONObject(res);
                     } catch (UnsupportedEncodingException e1) {
