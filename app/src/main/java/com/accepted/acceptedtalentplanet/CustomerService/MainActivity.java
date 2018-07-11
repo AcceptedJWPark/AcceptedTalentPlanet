@@ -170,7 +170,7 @@ public class MainActivity extends AppCompatActivity {
                         .setPositiveButton("이동하기", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                Uri uri = Uri.parse("http://13.124.141.242/Accepted/Privacy");
+                                Uri uri = Uri.parse("http://13.209.191.97/Accepted/Privacy");
                                 Intent it  = new Intent(Intent.ACTION_VIEW,uri);
                                 startActivity(it);
                                 dialog.cancel();

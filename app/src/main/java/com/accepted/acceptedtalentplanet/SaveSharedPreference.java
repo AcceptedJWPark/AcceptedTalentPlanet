@@ -57,9 +57,9 @@ public class SaveSharedPreference{
     static final String PREF_USER_NAME = "username";
     static final String PREF_USER_ID = "userid";
     static final String PREF_USER_PW = "userpw";
-    static final String SERVER_IP = "https://13.124.141.242/Accepted/";
+    static final String SERVER_IP = "https://13.209.191.97/Accepted/";
     static final String SERVER_IP2 = "https://221.162.94.43:8443/Accepted/";
-    static final String IMAGE_URI = "http://13.124.141.242/Accepted/";
+    static final String IMAGE_URI = "http://13.209.191.97/Accepted/";
     static final String IMAGE_URI2 = "http://221.162.94.43:8080/Accepted/";
     static final String PREF_GIVE_DATA = "giveData";
     static final String PREF_TAKE_DATA = "takeData";
@@ -100,7 +100,7 @@ public class SaveSharedPreference{
         SharedPreferences.Editor editor = getSharedPreferences(ctx).edit();
         editor.putString(PREF_USER_PW, usePw);
         editor.commit();
-}
+    }
 
     public static void setPrefUsrId(Context ctx, String useId){
         Log.d("perf userid", useId);
