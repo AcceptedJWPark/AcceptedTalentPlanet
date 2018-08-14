@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 
@@ -37,24 +38,36 @@ public class MainActivity extends AppCompatActivity {
     private Adapter adapter;
     private LinearLayout ll_PreContainer;
 
+    private String networkState;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.myprofile_completelist_activity);
-
         mContext = getApplicationContext();
+        networkState = SaveSharedPreference.getWhatKindOfNetwork(mContext);
+        if(networkState.equals(SaveSharedPreference.NONE_STATE) || (networkState.equals(SaveSharedPreference.WIFI_STATE) && !SaveSharedPreference.isOnline())){
+            setContentView(R.layout.error_page);
+            ((Button)findViewById(R.id.btn_RefreshErrorPage)).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    recreate();
+                }
+            });
+        }else {
+            setContentView(R.layout.myprofile_completelist_activity);
 
-        listView = (ListView) findViewById(R.id.listView_CompleteList_MyProfile);
 
-        getPointHistory();
-        ll_PreContainer = (LinearLayout) findViewById(R.id.ll_PreContainer_CompleteList_MyProfile);
-        ll_PreContainer.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+            listView = (ListView) findViewById(R.id.listView_CompleteList_MyProfile);
+
+            getPointHistory();
+            ll_PreContainer = (LinearLayout) findViewById(R.id.ll_PreContainer_CompleteList_MyProfile);
+            ll_PreContainer.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    finish();
+                }
+            });
+        }
 
     }
 
@@ -95,7 +108,7 @@ public class MainActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
             }
-        }, SaveSharedPreference.getErrorListener()) {
+        }, SaveSharedPreference.getErrorListener(mContext)) {
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap();
@@ -107,6 +120,21 @@ public class MainActivity extends AppCompatActivity {
 
         postRequestQueue.add(postJsonRequest);
 
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+        networkState = SaveSharedPreference.getWhatKindOfNetwork(mContext);
+        if(networkState.equals(SaveSharedPreference.NONE_STATE) || (networkState.equals(SaveSharedPreference.WIFI_STATE) && !SaveSharedPreference.isOnline())){
+            setContentView(R.layout.error_page);
+            ((Button)findViewById(R.id.btn_RefreshErrorPage)).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    recreate();
+                }
+            });
+        }
     }
 
 }

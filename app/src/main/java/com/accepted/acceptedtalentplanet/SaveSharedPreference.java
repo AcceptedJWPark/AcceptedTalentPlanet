@@ -10,6 +10,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.preference.PreferenceManager;
 import android.support.v4.widget.DrawerLayout;
 import android.util.Base64;
@@ -19,6 +21,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.accepted.acceptedtalentplanet.Alarm.ListItem;
 import com.android.volley.NetworkResponse;
@@ -36,6 +39,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -52,9 +57,9 @@ public class SaveSharedPreference{
     static final String PREF_USER_NAME = "username";
     static final String PREF_USER_ID = "userid";
     static final String PREF_USER_PW = "userpw";
-    static final String SERVER_IP = "https://13.124.141.242/Accepted/";
+    static final String SERVER_IP = "https://13.209.191.97/Accepted/";
     static final String SERVER_IP2 = "https://221.162.94.43:8443/Accepted/";
-    static final String IMAGE_URI = "http://13.124.141.242/Accepted/";
+    static final String IMAGE_URI = "http://13.209.191.97/Accepted/";
     static final String IMAGE_URI2 = "http://221.162.94.43:8080/Accepted/";
     static final String PREF_GIVE_DATA = "giveData";
     static final String PREF_TAKE_DATA = "takeData";
@@ -70,6 +75,11 @@ public class SaveSharedPreference{
     static String myThumbPicturePath = null;
     static String fcmToken = null;
     static final String PREF_FIRST_LOADING = "firstLoading";
+    public static final String WIFI_STATE = "WIFI";
+    public static final String MOBILE_STATE = "MOBILE";
+    public static final String NONE_STATE = "NONE";
+
+    public static final String CONNECTION_CONFIRM_CLIENT_URL = "http://clients3.google.com/generate_204";
 
     static DrawerLayout slidingMenuDL;
     static View drawerView;
@@ -90,7 +100,7 @@ public class SaveSharedPreference{
         SharedPreferences.Editor editor = getSharedPreferences(ctx).edit();
         editor.putString(PREF_USER_PW, usePw);
         editor.commit();
-}
+    }
 
     public static void setPrefUsrId(Context ctx, String useId){
         Log.d("perf userid", useId);
@@ -565,7 +575,7 @@ public class SaveSharedPreference{
                             e.printStackTrace();
                         }
                     }
-                }, SaveSharedPreference.getErrorListener()) {
+                }, SaveSharedPreference.getErrorListener(mContext)) {
                     @Override
                     protected Map<String, String> getParams(){
                         Map<String, String> params = new HashMap();
@@ -605,7 +615,7 @@ public class SaveSharedPreference{
         }
     }
 
-    public static Response.ErrorListener getErrorListener(){
+    public static Response.ErrorListener getErrorListener(final Context context){
         Response.ErrorListener errorListener = new Response.ErrorListener(){
             @Override
             public void onErrorResponse(VolleyError error){
@@ -616,6 +626,7 @@ public class SaveSharedPreference{
                                 HttpHeaderParser.parseCharset(response.headers, "utf-8"));
                         // Now you can use any deserializer to make sense of data
                         Log.d("res", res);
+                        Toast.makeText(context, "네트워크 상태를 확인해주세요.", Toast.LENGTH_SHORT).show();
 
                         JSONObject obj = new JSONObject(res);
                     } catch (UnsupportedEncodingException e1) {
@@ -757,5 +768,65 @@ public class SaveSharedPreference{
 //        postRequestQueue.add(postJsonRequest);
 //    }
 
+    public static String getWhatKindOfNetwork(Context context){
+        ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+
+        if(activeNetwork != null){
+            if(activeNetwork.getType() == ConnectivityManager.TYPE_WIFI){
+                return WIFI_STATE;
+            }else if(activeNetwork.getType() == ConnectivityManager.TYPE_MOBILE){
+                return MOBILE_STATE;
+            }
+        }
+        return NONE_STATE;
+    }
+
+    private static class CheckConnect extends Thread{
+        private boolean success;
+        private String host;
+
+        public CheckConnect(String host){
+            this.host = host;
+        }
+
+        @Override
+        public void run() {
+
+            HttpURLConnection conn = null;
+            try {
+                conn = (HttpURLConnection)new URL(host).openConnection();
+                conn.setRequestProperty("User-Agent","Android");
+                conn.setConnectTimeout(1000);
+                conn.connect();
+                int responseCode = conn.getResponseCode();
+                if(responseCode == 204) success = true;
+                else success = false;
+            }
+            catch (Exception e) {
+                e.printStackTrace();
+                success = false;
+            }
+            if(conn != null){
+                conn.disconnect();
+            }
+        }
+
+        public boolean isSuccess(){
+            return success;
+        }
+    }
+
+    public static boolean isOnline() {
+        CheckConnect cc = new CheckConnect(CONNECTION_CONFIRM_CLIENT_URL);
+        cc.start();
+        try{
+            cc.join();
+            return cc.isSuccess();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return false;
+    }
 
 }

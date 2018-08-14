@@ -306,7 +306,7 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
                     e.printStackTrace();
                 }
             }
-        }, SaveSharedPreference.getErrorListener()) {
+        }, SaveSharedPreference.getErrorListener(mContext)) {
             @Override
             protected Map<String, String> getParams(){
                 Map<String, String> params = new HashMap();
@@ -345,12 +345,13 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
                         adapter.notifyDataSetChanged();
                         listView.setSelection(adapter.getCount() - 1);
                     }
+
                 }
                 catch(JSONException e){
                     e.printStackTrace();
                 }
             }
-        }, SaveSharedPreference.getErrorListener()) {
+        }, SaveSharedPreference.getErrorListener(mContext)) {
             @Override
             protected Map<String, String> getParams(){
                 Map<String, String> params = new HashMap();

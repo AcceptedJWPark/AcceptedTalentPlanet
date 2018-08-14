@@ -50,55 +50,74 @@ public class MainActivity extends AppCompatActivity {
 
     private String userID;
 
+    private String networkState;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.interestinglist_activity);
 
         mContext = getApplicationContext();
+        networkState = SaveSharedPreference.getWhatKindOfNetwork(mContext);
+        if(networkState.equals(SaveSharedPreference.NONE_STATE) || (networkState.equals(SaveSharedPreference.WIFI_STATE) && !SaveSharedPreference.isOnline())){
+            setContentView(R.layout.error_page);
+            ((Button)findViewById(R.id.btn_RefreshErrorPage)).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    recreate();
+                }
+            });
+        }else {
+            setContentView(R.layout.interestinglist_activity);
 
-        listView = (ListView) findViewById(R.id.lv_InterestingList);
-        arrayList = new ArrayList<>();
 
-        userID = SaveSharedPreference.getUserId(mContext);
+            listView = (ListView) findViewById(R.id.lv_InterestingList);
+            arrayList = new ArrayList<>();
 
-        ll_PreContainer = (LinearLayout) findViewById(R.id.ll_PreContainer_InterestingList);
-        ll_PreContainer.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
+            userID = SaveSharedPreference.getUserId(mContext);
+
+            ll_PreContainer = (LinearLayout) findViewById(R.id.ll_PreContainer_InterestingList);
+            ll_PreContainer.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    finish();
+                }
+            });
+
+            btn_SelectGive = (Button) findViewById(R.id.btn_SelectGive_InterestingList);
+            btn_SelectTake = (Button) findViewById(R.id.btn_SelectTake_InterestingList);
+
+            btn_SelectGive.setOnClickListener(changeTalentFlag);
+            btn_SelectTake.setOnClickListener(changeTalentFlag);
+
+            giveTalentFlag = getIntent().getStringExtra("TalentFlag").equals("Give");
+            if (giveTalentFlag) {
+                btn_SelectGive.setFocusableInTouchMode(true);
+                btn_SelectGive.performClick();
+            } else {
+                btn_SelectTake.setFocusableInTouchMode(true);
+                btn_SelectTake.performClick();
             }
-        });
 
-        btn_SelectGive = (Button) findViewById(R.id.btn_SelectGive_InterestingList);
-        btn_SelectTake = (Button) findViewById(R.id.btn_SelectTake_InterestingList);
-
-        btn_SelectGive.setOnClickListener(changeTalentFlag);
-        btn_SelectTake.setOnClickListener(changeTalentFlag);
-
-        giveTalentFlag = getIntent().getStringExtra("TalentFlag").equals("Give");
-        if (giveTalentFlag)
-        {
-            btn_SelectGive.setFocusableInTouchMode(true);
-            btn_SelectGive.performClick();
         }
-        else
-        {
-            btn_SelectTake.setFocusableInTouchMode(true);
-            btn_SelectTake.performClick();
-        }
-
-        Log.d(getIntent().getStringExtra("TalentFlag"),"Talent Flag");
-
-
 
     }
 
     @Override
      public void onResume(){
         super.onResume();
-        arrayList = new ArrayList<>();
-        getInterestList();
+        networkState = SaveSharedPreference.getWhatKindOfNetwork(mContext);
+        if(networkState.equals(SaveSharedPreference.NONE_STATE) || (networkState.equals(SaveSharedPreference.WIFI_STATE) && !SaveSharedPreference.isOnline())){
+            setContentView(R.layout.error_page);
+            ((Button)findViewById(R.id.btn_RefreshErrorPage)).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    recreate();
+                }
+            });
+        }else {
+            arrayList = new ArrayList<>();
+            getInterestList();
+        }
     }
 
     Button.OnClickListener changeTalentFlag = new View.OnClickListener(){
@@ -173,7 +192,7 @@ public class MainActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
             }
-        }, SaveSharedPreference.getErrorListener()) {
+        }, SaveSharedPreference.getErrorListener(mContext)) {
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap();

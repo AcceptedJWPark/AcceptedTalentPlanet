@@ -169,7 +169,7 @@ public class MainActivity extends AppCompatActivity {
                 public void onResponse(String response) {
                     Log.d("mailrequest", "true");
                 }
-            }, SaveSharedPreference.getErrorListener()
+            }, SaveSharedPreference.getErrorListener(mContext)
             ) {
                 @Override
                 protected Map<String, String> getParams() {
@@ -206,7 +206,7 @@ public class MainActivity extends AppCompatActivity {
                         e.printStackTrace();
                     }
                 }
-            }, SaveSharedPreference.getErrorListener()
+            }, SaveSharedPreference.getErrorListener(mContext)
             ) {
                 @Override
                 protected Map<String, String> getParams() {
@@ -234,7 +234,7 @@ public class MainActivity extends AppCompatActivity {
                         e.printStackTrace();
                     }
                 }
-            }, SaveSharedPreference.getErrorListener()
+            }, SaveSharedPreference.getErrorListener(mContext)
             ) {
                 @Override
                 protected Map<String, String> getParams() {
