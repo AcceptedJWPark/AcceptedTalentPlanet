@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ExpandableListView;
 import android.widget.LinearLayout;
 
@@ -48,39 +49,50 @@ public class MainActivity extends AppCompatActivity {
 
     private LinearLayout ll_PreContainer;
 
+    private String networkState;
+
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.customerservice_questionlistactivity);
 
+        mContext = getApplicationContext();
+        networkState = SaveSharedPreference.getWhatKindOfNetwork(mContext);
+        if(networkState.equals(SaveSharedPreference.NONE_STATE) || (networkState.equals(SaveSharedPreference.WIFI_STATE) && !SaveSharedPreference.isOnline())){
+            setContentView(R.layout.error_page);
+            ((Button)findViewById(R.id.btn_RefreshErrorPage)).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    recreate();
+                }
+            });
+        }else {
+            setContentView(R.layout.customerservice_questionlistactivity);
 
-        mContext = getBaseContext();
+            expandableListView = (ExpandableListView) this.findViewById(R.id.expandableListView_QuestionList);
+            getQuestionList();
+            ll_PreContainer = (LinearLayout) findViewById(R.id.ll_PreContainer_QuestionList);
+            ll_PreContainer.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    finish();
+                }
+            });
 
-        expandableListView = (ExpandableListView) this.findViewById(R.id.expandableListView_QuestionList);
-        getQuestionList();
-        ll_PreContainer = (LinearLayout) findViewById(R.id.ll_PreContainer_QuestionList);
-        ll_PreContainer.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+            expandableListView.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
+                int lastClickedPosition = 0;
 
-        expandableListView.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
-            int lastClickedPosition = 0;
-            @Override
-            public boolean onGroupClick(ExpandableListView parent, View v, int groupPosition, long id) {
-                boolean isExpand = (!expandableListView.isGroupExpanded(groupPosition));
-                expandableListView.collapseGroup(lastClickedPosition);
-                if(isExpand)
-                {
-                    expandableListView.expandGroup(groupPosition);
-                }lastClickedPosition = groupPosition;
-                return true;
-            }
-        });
-
-
+                @Override
+                public boolean onGroupClick(ExpandableListView parent, View v, int groupPosition, long id) {
+                    boolean isExpand = (!expandableListView.isGroupExpanded(groupPosition));
+                    expandableListView.collapseGroup(lastClickedPosition);
+                    if (isExpand) {
+                        expandableListView.expandGroup(groupPosition);
+                    }
+                    lastClickedPosition = groupPosition;
+                    return true;
+                }
+            });
+        }
     }
 
     private void setArrayData()
@@ -182,6 +194,17 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onResume(){
         super.onResume();
+
+        networkState = SaveSharedPreference.getWhatKindOfNetwork(mContext);
+        if(networkState.equals(SaveSharedPreference.NONE_STATE) || (networkState.equals(SaveSharedPreference.WIFI_STATE) && !SaveSharedPreference.isOnline())){
+            setContentView(R.layout.error_page);
+            ((Button)findViewById(R.id.btn_RefreshErrorPage)).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    recreate();
+                }
+            });
+        }
     }
 
 }

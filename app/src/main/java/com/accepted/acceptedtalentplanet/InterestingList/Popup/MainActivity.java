@@ -71,104 +71,114 @@ public class MainActivity extends FragmentActivity {
     private int targetPoint = 0;
     private String filePath;
 
+    private String networkState;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-        setContentView(R.layout.interestinglist_popup);
         mContext = getApplicationContext();
-
-        Display display = ((WindowManager) getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();
-        mContext = getApplicationContext();
-        int width = (int) (display.getWidth() * 1);
-        int height = (int) (display.getHeight() * 0.9);
-        getWindow().getAttributes().width = width;
-        getWindow().getAttributes().height = height;
-
-
-        rl_FriendIconContainer = findViewById(R.id.Interesting_popup_container);
-        DisplayMetrics metrics = new DisplayMetrics();
-        WindowManager windowManager = (WindowManager) getApplicationContext().getSystemService(Context.WINDOW_SERVICE);
-        windowManager.getDefaultDisplay().getMetrics(metrics);
-
-        int picturewidth = (int) (metrics.heightPixels*0.164*0.8*0.85);
-        ViewGroup.LayoutParams params = rl_FriendIconContainer.getLayoutParams();
-        params.width = (int) picturewidth;
-        params.height = (int) picturewidth;
-        rl_FriendIconContainer.setLayoutParams(params);
-
-
-
-        talentID = getIntent().getStringExtra("TalentID");
-        sendFlag = (getIntent().getIntExtra("codeGiveTake", 1) == 2) ? true : false;
-
-
-
-
-        iv_CloseIcon = (ImageView) findViewById(R.id.iv_CloseIcon_InterestingPopup);
-        iv_CloseIcon.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                MainActivity.this.finish();
-            }
-        });
-
-        iv_AddFriendOn = findViewById(R.id.iv_AddFriendOn_InterestingPopup);
-        iv_AddFriendOff = findViewById(R.id.iv_AddFriendOff_InterestingPopup);
-
-        iv_AddFriendOn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                iv_AddFriendOn.setVisibility(View.GONE);
-                iv_AddFriendOff.setVisibility(View.VISIBLE);
-                Toast.makeText(mContext, "친구 목록에서 삭제되었습니다.", Toast.LENGTH_SHORT).show();
-                Friend friend = new Friend(profileUserID, (talentFlag)?"Y":"N");
-                SaveSharedPreference.removeFriend(mContext, friend);
-                addedFriend = false;
-            }
-        });
-        iv_AddFriendOff.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                iv_AddFriendOff.setVisibility(View.GONE);
-                iv_AddFriendOn.setVisibility(View.VISIBLE);
-                Toast.makeText(mContext,"친구 목록에 추가되었습니다.",Toast.LENGTH_SHORT).show();
-                Friend friend = new Friend(profileUserID, (talentFlag)?"Y":"N");
-                SaveSharedPreference.putFriend(mContext, friend);
-                addedFriend = true;
-            }
-        });
-
-        btn_Message = (Button)findViewById(R.id.Popup_Message);
-        btn_Message.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                int roomID = SaveSharedPreference.makeChatRoom(mContext, profileUserID, userName, filePath);
-                if(roomID < 0){
-                    return;
+        networkState = SaveSharedPreference.getWhatKindOfNetwork(mContext);
+        if(networkState.equals(SaveSharedPreference.NONE_STATE) || (networkState.equals(SaveSharedPreference.WIFI_STATE) && !SaveSharedPreference.isOnline())){
+            setContentView(R.layout.error_page);
+            ((Button)findViewById(R.id.btn_RefreshErrorPage)).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    recreate();
                 }
-                Intent i = new Intent(mContext, com.accepted.acceptedtalentplanet.Messanger.Chatting.MainActivity.class);
-                i.putExtra("userID", profileUserID);
-                i.putExtra("roomID", roomID);
-                i.putExtra("userName", userName);
-                startActivity(i);
+            });
+        }else {
 
-                finish();
-            }
-        });
+            requestWindowFeature(Window.FEATURE_NO_TITLE);
+            setContentView(R.layout.interestinglist_popup);
+
+            Display display = ((WindowManager) getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();
+            mContext = getApplicationContext();
+            int width = (int) (display.getWidth() * 1);
+            int height = (int) (display.getHeight() * 0.9);
+            getWindow().getAttributes().width = width;
+            getWindow().getAttributes().height = height;
 
 
-        btn_Progress = findViewById(R.id.btn_Progress_InterestingPopup);
-        final AlertDialog.Builder ProgressorCancelPopup = new AlertDialog.Builder(new ContextThemeWrapper(MainActivity.this, R.style.myDialog));
+            rl_FriendIconContainer = findViewById(R.id.Interesting_popup_container);
+            DisplayMetrics metrics = new DisplayMetrics();
+            WindowManager windowManager = (WindowManager) getApplicationContext().getSystemService(Context.WINDOW_SERVICE);
+            windowManager.getDefaultDisplay().getMetrics(metrics);
 
-        if (sendFlag) {
-            btn_Progress.setText("진행하기");
-            btn_Progress.setBackgroundResource(R.drawable.bgr_preinterested);
-            btn_Progress.setOnClickListener(null);
+            int picturewidth = (int) (metrics.heightPixels * 0.164 * 0.8 * 0.85);
+            ViewGroup.LayoutParams params = rl_FriendIconContainer.getLayoutParams();
+            params.width = (int) picturewidth;
+            params.height = (int) picturewidth;
+            rl_FriendIconContainer.setLayoutParams(params);
 
-            //btn_Progress.setTextColor(Color.parseColor("#d2d2d2"));
+
+            talentID = getIntent().getStringExtra("TalentID");
+            sendFlag = (getIntent().getIntExtra("codeGiveTake", 1) == 2) ? true : false;
+
+
+            iv_CloseIcon = (ImageView) findViewById(R.id.iv_CloseIcon_InterestingPopup);
+            iv_CloseIcon.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    MainActivity.this.finish();
+                }
+            });
+
+            iv_AddFriendOn = findViewById(R.id.iv_AddFriendOn_InterestingPopup);
+            iv_AddFriendOff = findViewById(R.id.iv_AddFriendOff_InterestingPopup);
+
+            iv_AddFriendOn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    iv_AddFriendOn.setVisibility(View.GONE);
+                    iv_AddFriendOff.setVisibility(View.VISIBLE);
+                    Toast.makeText(mContext, "친구 목록에서 삭제되었습니다.", Toast.LENGTH_SHORT).show();
+                    Friend friend = new Friend(profileUserID, (talentFlag) ? "Y" : "N");
+                    SaveSharedPreference.removeFriend(mContext, friend);
+                    addedFriend = false;
+                }
+            });
+            iv_AddFriendOff.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    iv_AddFriendOff.setVisibility(View.GONE);
+                    iv_AddFriendOn.setVisibility(View.VISIBLE);
+                    Toast.makeText(mContext, "친구 목록에 추가되었습니다.", Toast.LENGTH_SHORT).show();
+                    Friend friend = new Friend(profileUserID, (talentFlag) ? "Y" : "N");
+                    SaveSharedPreference.putFriend(mContext, friend);
+                    addedFriend = true;
+                }
+            });
+
+            btn_Message = (Button) findViewById(R.id.Popup_Message);
+            btn_Message.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    int roomID = SaveSharedPreference.makeChatRoom(mContext, profileUserID, userName, filePath);
+                    if (roomID < 0) {
+                        return;
+                    }
+                    Intent i = new Intent(mContext, com.accepted.acceptedtalentplanet.Messanger.Chatting.MainActivity.class);
+                    i.putExtra("userID", profileUserID);
+                    i.putExtra("roomID", roomID);
+                    i.putExtra("userName", userName);
+                    startActivity(i);
+
+                    finish();
+                }
+            });
+
+
+            btn_Progress = findViewById(R.id.btn_Progress_InterestingPopup);
+            final AlertDialog.Builder ProgressorCancelPopup = new AlertDialog.Builder(new ContextThemeWrapper(MainActivity.this, R.style.myDialog));
+
+            if (sendFlag) {
+                btn_Progress.setText("진행하기");
+                btn_Progress.setBackgroundResource(R.drawable.bgr_preinterested);
+                btn_Progress.setOnClickListener(null);
+
+                //btn_Progress.setTextColor(Color.parseColor("#d2d2d2"));
 //            btn_Progress.setOnClickListener(new View.OnClickListener() {
 //                @Override
 //                public void onClick(View v) {
@@ -199,46 +209,45 @@ public class MainActivity extends FragmentActivity {
 //                }
 //            });
 
-        } else
-            {
+            } else {
 
-            btn_Progress.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    float textSize = getResources().getDimension(R.dimen.DialogTxtSize);
-                    ProgressorCancelPopup.setMessage("내가 등록한 포인트로 진행합니다.")
-                            .setPositiveButton("진행하기", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    doSharingTalent(talentID);
-                                    dialog.cancel();
-                                    Intent i = new Intent(getBaseContext(), com.accepted.acceptedtalentplanet.TalentCondition.MainActivity.class);
-                                    i.putExtra("TalentCondition_TalentFlag",(talentFlag)?"Take":"Give");
-                                    startActivity(i);
-                                    finish();
-                                }
-                            })
-                            .setNegativeButton("닫기", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    dialog.cancel();
-                                }
-                            });
-
+                btn_Progress.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        float textSize = getResources().getDimension(R.dimen.DialogTxtSize);
+                        ProgressorCancelPopup.setMessage("내가 등록한 포인트로 진행합니다.")
+                                .setPositiveButton("진행하기", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        doSharingTalent(talentID);
+                                        dialog.cancel();
+                                        Intent i = new Intent(getBaseContext(), com.accepted.acceptedtalentplanet.TalentCondition.MainActivity.class);
+                                        i.putExtra("TalentCondition_TalentFlag", (talentFlag) ? "Take" : "Give");
+                                        startActivity(i);
+                                        finish();
+                                    }
+                                })
+                                .setNegativeButton("닫기", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        dialog.cancel();
+                                    }
+                                });
 
 
-                    AlertDialog alertDialog = ProgressorCancelPopup.create();
-                    alertDialog.show();
-                    alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.WHITE));
-                    alertDialog.getButton((DialogInterface.BUTTON_NEGATIVE)).setTextColor(getResources().getColor(R.color.loginPasswordLost));
-                    alertDialog.getButton((DialogInterface.BUTTON_POSITIVE)).setTextColor(getResources().getColor(R.color.loginPasswordLost));
+                        AlertDialog alertDialog = ProgressorCancelPopup.create();
+                        alertDialog.show();
+                        alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.WHITE));
+                        alertDialog.getButton((DialogInterface.BUTTON_NEGATIVE)).setTextColor(getResources().getColor(R.color.loginPasswordLost));
+                        alertDialog.getButton((DialogInterface.BUTTON_POSITIVE)).setTextColor(getResources().getColor(R.color.loginPasswordLost));
 
-                    TextView msgView = (TextView) alertDialog.findViewById(android.R.id.message);
-                    msgView.setTextSize(textSize);
-                }
-            });
+                        TextView msgView = (TextView) alertDialog.findViewById(android.R.id.message);
+                        msgView.setTextSize(textSize);
+                    }
+                });
+            }
+            getProfileInfo(talentID);
         }
-        getProfileInfo(talentID);
     }
 
 
@@ -307,7 +316,7 @@ public class MainActivity extends FragmentActivity {
                     e.printStackTrace();
                 }
             }
-        }, SaveSharedPreference.getErrorListener()) {
+        }, SaveSharedPreference.getErrorListener(mContext)) {
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap();
@@ -342,7 +351,7 @@ public class MainActivity extends FragmentActivity {
                     e.printStackTrace();
                 }
             }
-        }, SaveSharedPreference.getErrorListener()) {
+        }, SaveSharedPreference.getErrorListener(mContext)) {
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap();
@@ -398,7 +407,7 @@ public class MainActivity extends FragmentActivity {
                     e.printStackTrace();
                 }
             }
-        }, SaveSharedPreference.getErrorListener()) {
+        }, SaveSharedPreference.getErrorListener(mContext)) {
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap();
@@ -455,7 +464,7 @@ public class MainActivity extends FragmentActivity {
                     e.printStackTrace();
                 }
             }
-        }, SaveSharedPreference.getErrorListener()) {
+        }, SaveSharedPreference.getErrorListener(mContext)) {
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap();
@@ -470,6 +479,21 @@ public class MainActivity extends FragmentActivity {
 
         postRequestQueue.add(postJsonRequest);
 
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+        networkState = SaveSharedPreference.getWhatKindOfNetwork(mContext);
+        if(networkState.equals(SaveSharedPreference.NONE_STATE) || (networkState.equals(SaveSharedPreference.WIFI_STATE) && !SaveSharedPreference.isOnline())){
+            setContentView(R.layout.error_page);
+            ((Button)findViewById(R.id.btn_RefreshErrorPage)).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    recreate();
+                }
+            });
+        }
     }
 
 

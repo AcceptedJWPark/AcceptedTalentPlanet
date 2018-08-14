@@ -62,8 +62,6 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
     private Context mContext;
     private ListView listView;
 
-    Activity activity;
-
     private DrawerLayout drawerLayout;
     private View view_DarawerLayout;
 
@@ -79,93 +77,97 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
     // 검색조건 관련 변수
     private boolean isGiveTalent = true;
 
-    private int interval = 100;
-    private final int maxInterval = 30000;
-    private int count = 0;
-
-    static Thread thread1;
-    boolean running = false;
-
-    SQLiteDatabase sqliteDatabase;
-    private ProgressBar progressBar;
     private LinearLayout progressBarContainer;
-    int progressRate = 0;
 
+    private String networkState;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.talentsharing_activity);
-
         mContext = getApplicationContext();
 
-        if(SaveSharedPreference.getFcmToken(mContext) == null || SaveSharedPreference.getFcmToken(mContext).isEmpty()){
-            SaveSharedPreference.setPrefFcmToken(mContext,FirebaseInstanceId.getInstance().getToken());
-            saveFcmToken();
-        }
+        networkState = SaveSharedPreference.getWhatKindOfNetwork(mContext);
+        if(networkState.equals(SaveSharedPreference.NONE_STATE) || (networkState.equals(SaveSharedPreference.WIFI_STATE) && !SaveSharedPreference.isOnline())){
+            setContentView(R.layout.error_page);
+            ((Button)findViewById(R.id.btn_RefreshErrorPage)).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    recreate();
+                }
+            });
+        }else {
 
-        ((TextView) findViewById(R.id.tv_toolbarTitle)).setText("T.Sharing");
-        ((TextView) findViewById(R.id.DrawerUserID)).setText(SaveSharedPreference.getUserId(mContext));
 
-        if(MyFirebaseMessagingService.isNewMessageArrive){
-            findViewById(R.id.Icon_NewMessage).setVisibility(View.VISIBLE);
-        }else{
-            findViewById(R.id.Icon_NewMessage).setVisibility(View.GONE);
-        }
+            setContentView(R.layout.talentsharing_activity);
 
-        if(SaveSharedPreference.getMyThumbPicturePath() != null)
-            Glide.with(mContext).load(SaveSharedPreference.getImageUri() + SaveSharedPreference.getMyThumbPicturePath()).into((ImageView) findViewById(R.id.DrawerPicture));
 
-        View.OnClickListener mClicklistener = new  View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v) {
-                SaveSharedPreference.DrawerLayout_Open(v,MainActivity.this, drawerLayout, view_DarawerLayout);
+            if (SaveSharedPreference.getFcmToken(mContext) == null || SaveSharedPreference.getFcmToken(mContext).isEmpty()) {
+                SaveSharedPreference.setPrefFcmToken(mContext, FirebaseInstanceId.getInstance().getToken());
+                saveFcmToken();
             }
-        };
-        SaveSharedPreference.DrawerLayout_ClickEvent(MainActivity.this,mClicklistener);
 
-        drawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout_TalentSharing);
+            ((TextView) findViewById(R.id.tv_toolbarTitle)).setText("T.Sharing");
+            ((TextView) findViewById(R.id.DrawerUserID)).setText(SaveSharedPreference.getUserId(mContext));
 
-        view_DarawerLayout = (View) findViewById(R.id.view_DarawerLayout_TalentSharing);
-
-
-        btn_giveSelect = (Button) findViewById(R.id.btn_giveSelect_TalentSharing);
-        btn_takeSelect = (Button) findViewById(R.id.btn_takeSelect_TalentSharing);
-
-        listView = (ListView) findViewById(R.id.listView_TalentSharing);
-
-        retrieveMessage();
-        getTalentSharing();
-
-        btn_giveSelect.setOnClickListener(changeTalentFlag);
-        btn_takeSelect.setOnClickListener(changeTalentFlag);
-
-
-        Intent i = getIntent();
-        String flag = i.getStringExtra("TalentSharing_TalentFlag");
-        if (flag == null) flag = "Give";
-        if (flag.equals("Give")) {
-            btn_giveSelect.setFocusableInTouchMode(true);
-            btn_giveSelect.performClick();
-        } else if (flag.equals("Take")) {
-            btn_takeSelect.setFocusableInTouchMode(true);
-            btn_takeSelect.performClick();
-        }
-
-        ((ImageView) findViewById(R.id.iv_renew_TalentSharing)).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getTalentSharing();
+            if (MyFirebaseMessagingService.isNewMessageArrive) {
+                findViewById(R.id.Icon_NewMessage).setVisibility(View.VISIBLE);
+            } else {
+                findViewById(R.id.Icon_NewMessage).setVisibility(View.GONE);
             }
-        });
+
+            if (SaveSharedPreference.getMyThumbPicturePath() != null)
+                Glide.with(mContext).load(SaveSharedPreference.getImageUri() + SaveSharedPreference.getMyThumbPicturePath()).into((ImageView) findViewById(R.id.DrawerPicture));
+
+            View.OnClickListener mClicklistener = new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    SaveSharedPreference.DrawerLayout_Open(v, MainActivity.this, drawerLayout, view_DarawerLayout);
+                }
+            };
+            SaveSharedPreference.DrawerLayout_ClickEvent(MainActivity.this, mClicklistener);
+
+            drawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout_TalentSharing);
+
+            view_DarawerLayout = (View) findViewById(R.id.view_DarawerLayout_TalentSharing);
+
+
+            btn_giveSelect = (Button) findViewById(R.id.btn_giveSelect_TalentSharing);
+            btn_takeSelect = (Button) findViewById(R.id.btn_takeSelect_TalentSharing);
+
+            listView = (ListView) findViewById(R.id.listView_TalentSharing);
+
+            retrieveMessage();
+            getTalentSharing();
+
+            btn_giveSelect.setOnClickListener(changeTalentFlag);
+            btn_takeSelect.setOnClickListener(changeTalentFlag);
+
+
+            Intent i = getIntent();
+            String flag = i.getStringExtra("TalentSharing_TalentFlag");
+            if (flag == null) flag = "Give";
+            if (flag.equals("Give")) {
+                btn_giveSelect.setFocusableInTouchMode(true);
+                btn_giveSelect.performClick();
+            } else if (flag.equals("Take")) {
+                btn_takeSelect.setFocusableInTouchMode(true);
+                btn_takeSelect.performClick();
+            }
+
+            ((ImageView) findViewById(R.id.iv_renew_TalentSharing)).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    getTalentSharing();
+                }
+            });
+        }
 
     }
 
     public void getTalentSharing() {
         arrayList = new ArrayList<>();
         arrayList_Original = new ArrayList<>();
-        progressBar = (ProgressBar) findViewById(R.id.progressBar);
+
         progressBarContainer = (LinearLayout) findViewById(R.id.progressBarContainer_TalentSharing);
         progressBarContainer.setVisibility(View.VISIBLE);
         listView.setVisibility(View.GONE);
@@ -212,7 +214,7 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
                 }
 
             }
-        }, SaveSharedPreference.getErrorListener()) {
+        }, SaveSharedPreference.getErrorListener(mContext)) {
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap();
@@ -438,7 +440,7 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
                     e.printStackTrace();
                 }
             }
-        }, SaveSharedPreference.getErrorListener()) {
+        }, SaveSharedPreference.getErrorListener(mContext)) {
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap();
@@ -487,10 +489,6 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
             public void onResponse(String response) {
                 try {
                     JSONObject obj = new JSONObject(response);
-                    if (obj.getString("result").equals("success")) {
-                        interval = 100;
-                        count = 0;
-                    }
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -551,12 +549,23 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
     @Override
     public void onResume(){
         super.onResume();
-        MyFirebaseMessagingService.setOnMessageReceivedListener(this);
-        drawerLayout.closeDrawers();
-        if(MyFirebaseMessagingService.isNewMessageArrive){
-            findViewById(R.id.Icon_NewMessage).setVisibility(View.VISIBLE);
-        }else{
-            findViewById(R.id.Icon_NewMessage).setVisibility(View.GONE);
+        networkState = SaveSharedPreference.getWhatKindOfNetwork(mContext);
+        if(networkState.equals(SaveSharedPreference.NONE_STATE) || (networkState.equals(SaveSharedPreference.WIFI_STATE) && !SaveSharedPreference.isOnline())){
+            setContentView(R.layout.error_page);
+            ((Button)findViewById(R.id.btn_RefreshErrorPage)).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    recreate();
+                }
+            });
+        }else {
+            MyFirebaseMessagingService.setOnMessageReceivedListener(this);
+            drawerLayout.closeDrawers();
+            if (MyFirebaseMessagingService.isNewMessageArrive) {
+                findViewById(R.id.Icon_NewMessage).setVisibility(View.VISIBLE);
+            } else {
+                findViewById(R.id.Icon_NewMessage).setVisibility(View.GONE);
+            }
         }
     }
 

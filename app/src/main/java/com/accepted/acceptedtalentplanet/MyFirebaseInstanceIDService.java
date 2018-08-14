@@ -74,7 +74,7 @@ public class MyFirebaseInstanceIDService extends FirebaseInstanceIdService {
                     e.printStackTrace();
                 }
             }
-        }, SaveSharedPreference.getErrorListener()) {
+        }, SaveSharedPreference.getErrorListener(getBaseContext())) {
             @Override
             protected Map<String, String> getParams(){
                 Map<String, String> params = new HashMap();

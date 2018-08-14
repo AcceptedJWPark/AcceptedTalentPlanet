@@ -90,127 +90,135 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
     private boolean unread_Shallwe_Give = true;
     private boolean unread_Shallwe_Take = false;
 
+    private String networkState;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.talentcondition_activity);
 
         mContext = getApplicationContext();
 
-        ((TextView) findViewById(R.id.tv_toolbarTitle)).setText("나의 재능 현황");
-        ((TextView) findViewById(R.id.DrawerUserID)).setText(SaveSharedPreference.getUserId(mContext));
-
-        drawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout_TalentCondition);
-        view_drawerView = findViewById(R.id.view_drawerView_TalentCondition);
-        if(SaveSharedPreference.getMyThumbPicturePath() != null)
-            Glide.with(mContext).load(SaveSharedPreference.getImageUri() + SaveSharedPreference.getMyThumbPicturePath()).into((ImageView) findViewById(R.id.DrawerPicture));
-
-
-        View.OnClickListener mClicklistener = new  View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v) {
-                DrawerLayout_Open(v, MainActivity.this, drawerLayout, view_drawerView);
-            }
-        };
-        DrawerLayout_ClickEvent(MainActivity.this,mClicklistener);
-
-        getMyTalent();
-
-        tv_Condition = (TextView) findViewById(R.id.tv_Condition_TalentCondition);
-        tv_TalentType = (TextView)findViewById(R.id.tv_TalentType_TalentCondition);
-        tv_Txt = (TextView) findViewById(R.id.tv_Txt_TalentCondition);
-
-        btn_Left = (TextView) findViewById(R.id.btn_Left_TalentCondition);
-        btn_Right = (Button) findViewById(R.id.btn_Right_TalentCondition);
-        btn_TalentRegist = (Button) findViewById(R.id.btn_TalentRegist_TalentCondition);
-        ll_PictureContainer = (LinearLayout) findViewById(R.id.ll_PictureContainer_TalentCondition);
-
-
-        TalentCondition_Give_Registed(isGiveRegisted, giveTalentCode);
-        TalentCondition_Take_Registed(isTakeRegisted, takeTalentCode);
-
-        btn_SelectGive = (Button) findViewById(R.id.btn_SelectGive_TalentCondition);
-        btn_SelectGive.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                tv_TalentType.setText("재능드림 : ");
-                if(Build.VERSION.SDK_INT >= 16) {
-                    btn_SelectGive.setBackground(ContextCompat.getDrawable(mContext, R.drawable.bgr_giveortake_clicked));
-                    btn_SelectTake.setBackground(ContextCompat.getDrawable(mContext, R.drawable.bgr_giveortake_unclicked));
-                }else{
-                    btn_SelectGive.setBackgroundDrawable(ContextCompat.getDrawable(mContext, R.drawable.bgr_giveortake_clicked));
-                    btn_SelectTake.setBackgroundDrawable(ContextCompat.getDrawable(mContext, R.drawable.bgr_giveortake_unclicked));
+        networkState = SaveSharedPreference.getWhatKindOfNetwork(mContext);
+        if(networkState.equals(SaveSharedPreference.NONE_STATE) || (networkState.equals(SaveSharedPreference.WIFI_STATE) && !SaveSharedPreference.isOnline())){
+            setContentView(R.layout.error_page);
+            ((Button)findViewById(R.id.btn_RefreshErrorPage)).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    recreate();
                 }
-                btn_SelectGive.setPaintFlags(btn_SelectGive.getPaintFlags() | Paint.FAKE_BOLD_TEXT_FLAG);
-                btn_SelectGive.setTextColor(getResources().getColor(R.color.textcolor_giveortake_clicked));
-                btn_SelectTake.setTextColor(getResources().getColor(R.color.textcolor_giveortake_unclicked));
-                btn_SelectTake.setPaintFlags(btn_SelectTake.getPaintFlags() &~ Paint.FAKE_BOLD_TEXT_FLAG);
+            });
+        }else {
+            setContentView(R.layout.talentcondition_activity);
 
-                TalentCondition_Give_Registed(isGiveRegisted, giveTalentCode);
-            }
-        });
+            ((TextView) findViewById(R.id.tv_toolbarTitle)).setText("나의 재능 현황");
+            ((TextView) findViewById(R.id.DrawerUserID)).setText(SaveSharedPreference.getUserId(mContext));
 
-        btn_SelectTake = (Button) findViewById(R.id.btn_SelectTake_TalentCondition);
-        btn_SelectTake.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                tv_TalentType.setText("관심재능 : ");
-                if(Build.VERSION.SDK_INT >= 16) {
-                    btn_SelectTake.setBackground(ContextCompat.getDrawable(mContext, R.drawable.bgr_giveortake_clicked));
-                    btn_SelectGive.setBackground(ContextCompat.getDrawable(mContext, R.drawable.bgr_giveortake_unclicked));
-                }else{
-                    btn_SelectTake.setBackgroundDrawable(ContextCompat.getDrawable(mContext, R.drawable.bgr_giveortake_clicked));
-                    btn_SelectGive.setBackgroundDrawable(ContextCompat.getDrawable(mContext, R.drawable.bgr_giveortake_unclicked));
+            drawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout_TalentCondition);
+            view_drawerView = findViewById(R.id.view_drawerView_TalentCondition);
+            if (SaveSharedPreference.getMyThumbPicturePath() != null)
+                Glide.with(mContext).load(SaveSharedPreference.getImageUri() + SaveSharedPreference.getMyThumbPicturePath()).into((ImageView) findViewById(R.id.DrawerPicture));
+
+
+            View.OnClickListener mClicklistener = new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    DrawerLayout_Open(v, MainActivity.this, drawerLayout, view_drawerView);
                 }
-                btn_SelectTake.setPaintFlags(btn_SelectGive.getPaintFlags() | Paint.FAKE_BOLD_TEXT_FLAG);
-                btn_SelectTake.setTextColor(getResources().getColor(R.color.textcolor_giveortake_clicked));
-                btn_SelectGive.setTextColor(getResources().getColor(R.color.textcolor_giveortake_unclicked));
-                btn_SelectGive.setPaintFlags(btn_SelectTake.getPaintFlags() &~ Paint.FAKE_BOLD_TEXT_FLAG);
-                TalentCondition_Take_Registed(isTakeRegisted, takeTalentCode);
+            };
+            DrawerLayout_ClickEvent(MainActivity.this, mClicklistener);
+
+            getMyTalent();
+
+            tv_Condition = (TextView) findViewById(R.id.tv_Condition_TalentCondition);
+            tv_TalentType = (TextView) findViewById(R.id.tv_TalentType_TalentCondition);
+            tv_Txt = (TextView) findViewById(R.id.tv_Txt_TalentCondition);
+
+            btn_Left = (TextView) findViewById(R.id.btn_Left_TalentCondition);
+            btn_Right = (Button) findViewById(R.id.btn_Right_TalentCondition);
+            btn_TalentRegist = (Button) findViewById(R.id.btn_TalentRegist_TalentCondition);
+            ll_PictureContainer = (LinearLayout) findViewById(R.id.ll_PictureContainer_TalentCondition);
+
+
+            TalentCondition_Give_Registed(isGiveRegisted, giveTalentCode);
+            TalentCondition_Take_Registed(isTakeRegisted, takeTalentCode);
+
+            btn_SelectGive = (Button) findViewById(R.id.btn_SelectGive_TalentCondition);
+            btn_SelectGive.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    tv_TalentType.setText("재능드림 : ");
+                    if (Build.VERSION.SDK_INT >= 16) {
+                        btn_SelectGive.setBackground(ContextCompat.getDrawable(mContext, R.drawable.bgr_giveortake_clicked));
+                        btn_SelectTake.setBackground(ContextCompat.getDrawable(mContext, R.drawable.bgr_giveortake_unclicked));
+                    } else {
+                        btn_SelectGive.setBackgroundDrawable(ContextCompat.getDrawable(mContext, R.drawable.bgr_giveortake_clicked));
+                        btn_SelectTake.setBackgroundDrawable(ContextCompat.getDrawable(mContext, R.drawable.bgr_giveortake_unclicked));
+                    }
+                    btn_SelectGive.setPaintFlags(btn_SelectGive.getPaintFlags() | Paint.FAKE_BOLD_TEXT_FLAG);
+                    btn_SelectGive.setTextColor(getResources().getColor(R.color.textcolor_giveortake_clicked));
+                    btn_SelectTake.setTextColor(getResources().getColor(R.color.textcolor_giveortake_unclicked));
+                    btn_SelectTake.setPaintFlags(btn_SelectTake.getPaintFlags() & ~Paint.FAKE_BOLD_TEXT_FLAG);
+
+                    TalentCondition_Give_Registed(isGiveRegisted, giveTalentCode);
+                }
+            });
+
+            btn_SelectTake = (Button) findViewById(R.id.btn_SelectTake_TalentCondition);
+            btn_SelectTake.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    tv_TalentType.setText("관심재능 : ");
+                    if (Build.VERSION.SDK_INT >= 16) {
+                        btn_SelectTake.setBackground(ContextCompat.getDrawable(mContext, R.drawable.bgr_giveortake_clicked));
+                        btn_SelectGive.setBackground(ContextCompat.getDrawable(mContext, R.drawable.bgr_giveortake_unclicked));
+                    } else {
+                        btn_SelectTake.setBackgroundDrawable(ContextCompat.getDrawable(mContext, R.drawable.bgr_giveortake_clicked));
+                        btn_SelectGive.setBackgroundDrawable(ContextCompat.getDrawable(mContext, R.drawable.bgr_giveortake_unclicked));
+                    }
+                    btn_SelectTake.setPaintFlags(btn_SelectGive.getPaintFlags() | Paint.FAKE_BOLD_TEXT_FLAG);
+                    btn_SelectTake.setTextColor(getResources().getColor(R.color.textcolor_giveortake_clicked));
+                    btn_SelectGive.setTextColor(getResources().getColor(R.color.textcolor_giveortake_unclicked));
+                    btn_SelectGive.setPaintFlags(btn_SelectTake.getPaintFlags() & ~Paint.FAKE_BOLD_TEXT_FLAG);
+                    TalentCondition_Take_Registed(isTakeRegisted, takeTalentCode);
+                }
+            });
+
+
+            drawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout_TalentCondition);
+            view_drawerView = (View) findViewById(R.id.view_drawerView_TalentCondition);
+
+            Intent i = getIntent();
+            flag = i.getStringExtra("TalentCondition_TalentFlag");
+
+            if (flag == null) flag = "Give";
+
+            else if (flag.equals("Give")) {
+                btn_SelectGive.setFocusableInTouchMode(true);
+                btn_SelectGive.performClick();
+            } else if (flag.equals("Take")) {
+                btn_SelectTake.setFocusableInTouchMode(true);
+                btn_SelectTake.performClick();
             }
-        });
 
 
-        drawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout_TalentCondition);
-        view_drawerView = (View) findViewById(R.id.view_drawerView_TalentCondition);
+            ll_PictureContainer.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(mContext, com.accepted.acceptedtalentplanet.TalentSharing.Popup.MainActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    Log.d("FLAG = ", flag + ", " + targetGiveTalentID + targetTakeTalentID);
+                    if (flag.equals("Give")) {
+                        intent.putExtra("TalentID", targetGiveTalentID);
+                        intent.putExtra("TalentFlag", "Give");
+                    } else {
+                        intent.putExtra("TalentID", targetTakeTalentID);
+                        intent.putExtra("TalentFlag", "Take");
+                    }
+                    startActivity(intent);
+                }
+            });
 
-        Intent i = getIntent();
-        flag = i.getStringExtra("TalentCondition_TalentFlag");
-
-        if(flag == null) flag = "Give";
-
-        else if(flag.equals("Give"))
-        {
-            btn_SelectGive.setFocusableInTouchMode(true);
-            btn_SelectGive.performClick();
         }
-        else if(flag.equals("Take"))
-        {
-            btn_SelectTake.setFocusableInTouchMode(true);
-            btn_SelectTake.performClick();
-        }
-
-
-        ll_PictureContainer.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(mContext, com.accepted.acceptedtalentplanet.TalentSharing.Popup.MainActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                Log.d("FLAG = ", flag + ", " +targetGiveTalentID + targetTakeTalentID);
-                if(flag.equals("Give")){
-                    intent.putExtra("TalentID", targetGiveTalentID);
-                    intent.putExtra("TalentFlag", "Give");
-                }else{
-                    intent.putExtra("TalentID", targetTakeTalentID);
-                    intent.putExtra("TalentFlag", "Take");
-                }
-                startActivity(intent);
-            }
-        });
-
-
 
     }
 
@@ -672,13 +680,24 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
     @Override
     public void onResume(){
         super.onResume();
-        getMyTalent();
-        MyFirebaseMessagingService.setOnMessageReceivedListener(this);
-        drawerLayout.closeDrawers();
-        if(MyFirebaseMessagingService.isNewMessageArrive){
-            findViewById(R.id.Icon_NewMessage).setVisibility(View.VISIBLE);
-        }else{
-            findViewById(R.id.Icon_NewMessage).setVisibility(View.GONE);
+        networkState = SaveSharedPreference.getWhatKindOfNetwork(mContext);
+        if(networkState.equals(SaveSharedPreference.NONE_STATE) || (networkState.equals(SaveSharedPreference.WIFI_STATE) && !SaveSharedPreference.isOnline())){
+            setContentView(R.layout.error_page);
+            ((Button)findViewById(R.id.btn_RefreshErrorPage)).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    recreate();
+                }
+            });
+        }else {
+            getMyTalent();
+            MyFirebaseMessagingService.setOnMessageReceivedListener(this);
+            drawerLayout.closeDrawers();
+            if (MyFirebaseMessagingService.isNewMessageArrive) {
+                findViewById(R.id.Icon_NewMessage).setVisibility(View.VISIBLE);
+            } else {
+                findViewById(R.id.Icon_NewMessage).setVisibility(View.GONE);
+            }
         }
     }
 
@@ -760,7 +779,7 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
                     e.printStackTrace();
                 }
             }
-        }, SaveSharedPreference.getErrorListener()) {
+        }, SaveSharedPreference.getErrorListener(mContext)) {
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap();
@@ -827,7 +846,7 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
                     e.printStackTrace();
                 }
             }
-        }, SaveSharedPreference.getErrorListener()) {
+        }, SaveSharedPreference.getErrorListener(mContext)) {
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap();
@@ -870,7 +889,7 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
                     e.printStackTrace();
                 }
             }
-        }, SaveSharedPreference.getErrorListener()) {
+        }, SaveSharedPreference.getErrorListener(mContext)) {
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap();
@@ -939,7 +958,7 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
                     e.printStackTrace();
                 }
             }
-        }, SaveSharedPreference.getErrorListener()) {
+        }, SaveSharedPreference.getErrorListener(mContext)) {
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap();

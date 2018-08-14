@@ -70,89 +70,118 @@ public class MainActivity extends FragmentActivity{
     private String filePath;
     String talentID;
 
+    private String networkState;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        talentID = getIntent().getStringExtra("TalentID");
-        sendFlag = (getIntent().getStringExtra("TalentFlag").equals("Give"))?true:false;
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-        setContentView(R.layout.talentsharing_popup);
-        Display display = ((WindowManager) getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();
         mContext = getApplicationContext();
-        int width = (int) (display.getWidth() * 1);
-        int height = (int) (display.getHeight() * 0.9);
-        getWindow().getAttributes().width = width;
-        getWindow().getAttributes().height = height;
+        networkState = SaveSharedPreference.getWhatKindOfNetwork(mContext);
 
-        TalentSharing_popup_container = findViewById(R.id.TalentSharing_popup_container);
-        DisplayMetrics metrics = new DisplayMetrics();
-        WindowManager windowManager = (WindowManager) getApplicationContext().getSystemService(Context.WINDOW_SERVICE);
-        windowManager.getDefaultDisplay().getMetrics(metrics);
-
-        int picturewidth = (int) (metrics.heightPixels*0.164*0.8*0.85);
-        ViewGroup.LayoutParams params = TalentSharing_popup_container.getLayoutParams();
-        params.width = (int) picturewidth;
-        params.height = (int) picturewidth;
-        TalentSharing_popup_container.setLayoutParams(params);
-
-        iv_ClosePopupIcon = (ImageView) findViewById(R.id.iv_CloseIcon_InterestingPopup);
-        iv_ClosePopupIcon.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View view) {
-                MainActivity.this.finish();
-            }
-        });
-
-        iv_addfriendOn = findViewById(R.id.TalentSharingPopup_addfriendList_on);
-        iv_addfriendOff = findViewById(R.id.TalentSharingPopup_addfriendList_off);
-
-
-        iv_addfriendOn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                iv_addfriendOn.setVisibility(View.GONE);
-                iv_addfriendOff.setVisibility(View.VISIBLE);
-                Toast.makeText(mContext,"친구 목록에서 삭제되었습니다.",Toast.LENGTH_SHORT).show();
-                Friend friend = new Friend(UserID, talentFlag);
-                SaveSharedPreference.removeFriend(mContext, friend);
-                addedFriend = false;
+        if(networkState.equals(SaveSharedPreference.NONE_STATE) || (networkState.equals(SaveSharedPreference.WIFI_STATE) && !SaveSharedPreference.isOnline())){
+            setContentView(R.layout.error_page);
+            ((Button)findViewById(R.id.btn_RefreshErrorPage)).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    recreate();
                 }
-        });
+            });
+        }else {
 
-        iv_addfriendOff.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                iv_addfriendOff.setVisibility(View.GONE);
-                iv_addfriendOn.setVisibility(View.VISIBLE);
-                Toast.makeText(mContext,"친구 목록에 추가되었습니다.",Toast.LENGTH_SHORT).show();
-                Friend friend = new Friend(UserID, talentFlag);
-                SaveSharedPreference.putFriend(mContext, friend);
-                addedFriend = true;
-            }
-        });
+            talentID = getIntent().getStringExtra("TalentID");
+            sendFlag = (getIntent().getStringExtra("TalentFlag").equals("Give")) ? true : false;
+            requestWindowFeature(Window.FEATURE_NO_TITLE);
+            setContentView(R.layout.talentsharing_popup);
+            Display display = ((WindowManager) getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();
 
-        sendMessageBtn = (Button)findViewById(R.id.TalentSharing_Send_Message_Button);
-        sendMessageBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                int roomID = SaveSharedPreference.makeChatRoom(mContext, UserID, UserName, filePath);
-                if(roomID < 0){
-                    return;
+            int width = (int) (display.getWidth() * 1);
+            int height = (int) (display.getHeight() * 0.9);
+            getWindow().getAttributes().width = width;
+            getWindow().getAttributes().height = height;
+
+            TalentSharing_popup_container = findViewById(R.id.TalentSharing_popup_container);
+            DisplayMetrics metrics = new DisplayMetrics();
+            WindowManager windowManager = (WindowManager) getApplicationContext().getSystemService(Context.WINDOW_SERVICE);
+            windowManager.getDefaultDisplay().getMetrics(metrics);
+
+            int picturewidth = (int) (metrics.heightPixels * 0.164 * 0.8 * 0.85);
+            ViewGroup.LayoutParams params = TalentSharing_popup_container.getLayoutParams();
+            params.width = (int) picturewidth;
+            params.height = (int) picturewidth;
+            TalentSharing_popup_container.setLayoutParams(params);
+
+            iv_ClosePopupIcon = (ImageView) findViewById(R.id.iv_CloseIcon_InterestingPopup);
+            iv_ClosePopupIcon.setOnClickListener(new View.OnClickListener() {
+
+                @Override
+                public void onClick(View view) {
+                    MainActivity.this.finish();
                 }
-                Intent i = new Intent(mContext, com.accepted.acceptedtalentplanet.Messanger.Chatting.MainActivity.class);
-                i.putExtra("userID", UserID);
-                i.putExtra("roomID", roomID);
-                i.putExtra("userName", UserName);
-                startActivity(i);
+            });
 
-                finish();
-            }
-        });
+            iv_addfriendOn = findViewById(R.id.TalentSharingPopup_addfriendList_on);
+            iv_addfriendOff = findViewById(R.id.TalentSharingPopup_addfriendList_off);
 
-        getProfileInfo(talentID);
 
+            iv_addfriendOn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    iv_addfriendOn.setVisibility(View.GONE);
+                    iv_addfriendOff.setVisibility(View.VISIBLE);
+                    Toast.makeText(mContext, "친구 목록에서 삭제되었습니다.", Toast.LENGTH_SHORT).show();
+                    Friend friend = new Friend(UserID, talentFlag);
+                    SaveSharedPreference.removeFriend(mContext, friend);
+                    addedFriend = false;
+                }
+            });
+
+            iv_addfriendOff.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    iv_addfriendOff.setVisibility(View.GONE);
+                    iv_addfriendOn.setVisibility(View.VISIBLE);
+                    Toast.makeText(mContext, "친구 목록에 추가되었습니다.", Toast.LENGTH_SHORT).show();
+                    Friend friend = new Friend(UserID, talentFlag);
+                    SaveSharedPreference.putFriend(mContext, friend);
+                    addedFriend = true;
+                }
+            });
+
+            sendMessageBtn = (Button) findViewById(R.id.TalentSharing_Send_Message_Button);
+            sendMessageBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    int roomID = SaveSharedPreference.makeChatRoom(mContext, UserID, UserName, filePath);
+                    if (roomID < 0) {
+                        return;
+                    }
+                    Intent i = new Intent(mContext, com.accepted.acceptedtalentplanet.Messanger.Chatting.MainActivity.class);
+                    i.putExtra("userID", UserID);
+                    i.putExtra("roomID", roomID);
+                    i.putExtra("userName", UserName);
+                    startActivity(i);
+
+                    finish();
+                }
+            });
+
+            getProfileInfo(talentID);
+        }
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+        networkState = SaveSharedPreference.getWhatKindOfNetwork(mContext);
+        if(networkState.equals(SaveSharedPreference.NONE_STATE) || (networkState.equals(SaveSharedPreference.WIFI_STATE) && !SaveSharedPreference.isOnline())){
+            setContentView(R.layout.error_page);
+            ((Button)findViewById(R.id.btn_RefreshErrorPage)).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    recreate();
+                }
+            });
+        }
     }
 
     public void getProfileInfo(final String talentID) {
@@ -308,7 +337,7 @@ public class MainActivity extends FragmentActivity{
                     e.printStackTrace();
                 }
             }
-        }, SaveSharedPreference.getErrorListener()) {
+        }, SaveSharedPreference.getErrorListener(mContext)) {
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap();
@@ -360,7 +389,7 @@ public class MainActivity extends FragmentActivity{
                     e.printStackTrace();
                 }
             }
-        }, SaveSharedPreference.getErrorListener()) {
+        }, SaveSharedPreference.getErrorListener(mContext)) {
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap();
@@ -389,7 +418,7 @@ public class MainActivity extends FragmentActivity{
                     e.printStackTrace();
                 }
             }
-        }, SaveSharedPreference.getErrorListener()) {
+        }, SaveSharedPreference.getErrorListener(mContext)) {
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap();
@@ -435,7 +464,7 @@ public class MainActivity extends FragmentActivity{
                     e.printStackTrace();
                 }
             }
-        }, SaveSharedPreference.getErrorListener()) {
+        }, SaveSharedPreference.getErrorListener(mContext)) {
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap();
