@@ -32,8 +32,12 @@ import com.accepted.acceptedtalentplanet.SaveSharedPreference;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import static com.accepted.acceptedtalentplanet.SaveSharedPreference.hideKeyboard;
 
@@ -154,6 +158,26 @@ public class MainActivity extends  AppCompatActivity {
         String birthMonthTxt = et_Month.getText().toString();
         String birthDayTxt = et_Day.getText().toString();
 
+        if(birthYearTxt == null || birthYearTxt.isEmpty() || birthMonthTxt == null || birthMonthTxt.isEmpty() || birthDayTxt == null || birthDayTxt.isEmpty()){
+            Toast.makeText(mContext, "생년월일을 입력해주세요.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        Pattern pattern = Pattern.compile("^((19|20)[0-9]{2})");
+        Matcher matcher = pattern.matcher(birthYearTxt);
+        if(!matcher.find()){
+            Toast.makeText(mContext, "년도 형식을 확인해주세요.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        try{
+            DateFormat df = new SimpleDateFormat("yyyyMMdd");
+            df.setLenient(false);
+            df.parse(birthYearTxt + birthMonthTxt + birthDayTxt);
+        }catch (Exception e){
+            Toast.makeText(mContext, "생년월일을 확인해주세요.", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
         if(Integer.parseInt(birthMonthTxt) < 10)
             birthMonthTxt = "0"+birthMonthTxt.substring(birthMonthTxt.length() - 1);
