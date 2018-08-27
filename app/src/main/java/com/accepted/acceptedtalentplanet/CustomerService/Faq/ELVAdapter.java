@@ -1,11 +1,9 @@
 package com.accepted.acceptedtalentplanet.CustomerService.Faq;
 
 import android.content.Context;
-import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -78,13 +76,7 @@ public class ELVAdapter extends BaseExpandableListAdapter{
             if(v==null) {
                 LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 v=(LinearLayout) inflater.inflate(R.layout.customerservice_faq_parentbg, parent,false);
-                DisplayMetrics metrics = new DisplayMetrics();
-                WindowManager windowManager = (WindowManager) mContext.getSystemService(Context.WINDOW_SERVICE);
-                windowManager.getDefaultDisplay().getMetrics(metrics);
-                int Interesting_ListView_height = (int) (metrics.heightPixels*0.08);
-                ViewGroup.LayoutParams params1 = v.getLayoutParams();
-                params1.height = Interesting_ListView_height;
-                v.setLayoutParams(params1);
+
             }
             TextView tv_Parent = (TextView) v.findViewById(R.id.tv_Parent_Faq);
             tv_Parent.setText(groupName);

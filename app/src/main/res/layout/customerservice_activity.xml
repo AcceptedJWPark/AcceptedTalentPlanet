@@ -22,8 +22,7 @@
     <android.support.v7.widget.Toolbar
         android:id="@+id/customerservice_toolbar"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1.8"
+        android:layout_height="40dp"
         android:contentInsetStart="0dp"
         android:contentInsetLeft="0dp"
         app:contentInsetLeft="0dp"
@@ -37,11 +36,16 @@
             layout="@layout/toolbarlayout"/>
     </android.support.v7.widget.Toolbar>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1.08"
+        android:layout_weight="1"
         android:background="@drawable/brg_divider"
         android:gravity="center_vertical">
 
@@ -57,11 +61,18 @@
 
     </LinearLayout>
 
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#eeeeee" />
+
+
     <LinearLayout
         android:id="@+id/ll_Introduction_CustomerService"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="2.02"
+        android:layout_weight="2"
         android:background="#ffffff"
         android:gravity="center_vertical"
         android:orientation="vertical">
@@ -80,18 +91,17 @@
 
     </LinearLayout>
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.05"
-        android:background="#eeeeee" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#eeeeee" />
 
 
     <LinearLayout
         android:id="@+id/ll_Version_CustomerService"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="2.02"
+        android:layout_weight="2"
         android:background="#ffffff"
         >
 
@@ -120,17 +130,16 @@
 
     </LinearLayout>
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.05"
-        android:background="#eeeeee" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#eeeeee" />
 
     <LinearLayout
         android:id="@+id/ll_Private_CustomerService"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="2.02"
+        android:layout_weight="2"
         android:background="#ffffff"
         >
 
@@ -150,17 +159,18 @@
 
     </LinearLayout>
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.05"
-        android:background="#eeeeee" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#eeeeee" />
+
+
 
     <LinearLayout
         android:id="@+id/ll_Update_CustomerService"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="2.02"
+        android:layout_weight="2"
         android:background="#ffffff">
 
         <TextView
@@ -189,16 +199,17 @@
 
     </LinearLayout>
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.05"
-        android:background="#eeeeee" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#eeeeee" />
+
+
     <LinearLayout
         android:id="@+id/ll_Notice_CustomerService"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="2.02"
+        android:layout_weight="2"
         android:background="#ffffff">
 
         <TextView
@@ -226,7 +237,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1.08"
+        android:layout_weight="1"
         android:background="@drawable/brg_divider"
         android:gravity="center_vertical"
         >
@@ -240,11 +251,16 @@
             android:text="도움말" />
     </LinearLayout>
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#eeeeee" />
+
     <LinearLayout
         android:id="@+id/ll_Manual_CustomerService"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="2.02"
+        android:layout_weight="2"
         android:background="#ffffff"
         android:gravity="center_vertical"
         android:orientation="vertical">
@@ -263,17 +279,16 @@
 
     </LinearLayout>
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.05"
-        android:background="#eeeeee" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#eeeeee" />
 
     <LinearLayout
         android:id="@+id/ll_Faq_CustomerService"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="2.02"
+        android:layout_weight="2"
         android:background="#ffffff"
         android:gravity="center_vertical"
         android:orientation="vertical">
@@ -292,18 +307,17 @@
 
     </LinearLayout>
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.05"
-        android:background="#eeeeee" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#eeeeee" />
 
 
     <LinearLayout
         android:id="@+id/ll_Question_CustomerService"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="2.02"
+        android:layout_weight="2"
         android:background="#ffffff"
         android:gravity="center_vertical"
         android:orientation="vertical">
@@ -322,17 +336,16 @@
 
     </LinearLayout>
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.05"
-        android:background="#eeeeee" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#eeeeee" />
 
     <LinearLayout
         android:id="@+id/ll_QuestionList_CustomerService"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="2.02"
+        android:layout_weight="2"
         android:background="#ffffff"
         android:gravity="center_vertical"
         android:orientation="vertical">
@@ -361,7 +374,7 @@
 
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1.08"
+        android:layout_weight="1"
         android:background="@drawable/brg_divider"
         android:gravity="center_vertical"
         >
@@ -375,11 +388,18 @@
             android:text="신고하기" />
     </LinearLayout>
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#eeeeee" />
+
+
+
     <LinearLayout
         android:id="@+id/ll_Claim_CustomerService"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="2.02"
+        android:layout_weight="2"
         android:background="#ffffff"
         android:gravity="center_vertical"
         android:orientation="vertical">
@@ -401,15 +421,14 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.05"
+        android:layout_height="1dp"
         android:background="#eeeeee" />
 
     <LinearLayout
         android:id="@+id/ll_ClaimList_CustomerService"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="2.02"
+        android:layout_weight="2"
         android:background="#ffffff"
         android:gravity="center_vertical"
         android:orientation="vertical">
@@ -428,12 +447,8 @@
 
     </LinearLayout>
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.05"
-        android:background="#eeeeee" />
 
+</LinearLayout>
 
 </LinearLayout>
 

@@ -5,15 +5,17 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ExpandableListView;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
+import com.accepted.acceptedtalentplanet.R;
 import com.accepted.acceptedtalentplanet.SaveSharedPreference;
 import com.accepted.acceptedtalentplanet.VolleySingleton;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.StringRequest;
-import com.accepted.acceptedtalentplanet.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -48,6 +50,19 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.customerservice_updateactivity);
 
         mContext = getBaseContext();
+
+
+        ((ImageView)findViewById(R.id.iv_leftBtn_Toolbar)).setImageResource(R.drawable.icon_backbtn);
+        ((ImageView)findViewById(R.id.iv_leftBtn_Toolbar)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+        ((ImageView)findViewById(R.id.iv_RightBtn_Toolbar)).setVisibility(View.GONE);
+        ((TextView) findViewById(R.id.tv_toolbarTitle)).setText("업데이트 내역");
+
+
 
         expandableListView = (ExpandableListView) this.findViewById(R.id.expandableListView_Update);
         getUpdateList();

@@ -11,18 +11,13 @@
         >
 
 
-        <View
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_weight="1"/>
-
-
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="8"
             android:layout_marginRight="5dp"
             android:orientation="vertical"
+            android:layout_marginLeft="30dp"
             >
 
             <TextView
@@ -34,7 +29,7 @@
                 android:textColor="@color/textColor_object"
                 android:gravity="center_vertical"
                android:singleLine="true"
-                android:textSize="@dimen/List_Title"
+                android:textSize="@dimen/SubTxt"
                 />
 
 
@@ -46,7 +41,7 @@
             android:layout_height="match_parent"
             android:layout_weight="2"
             android:text="Mar.2018"
-            android:textSize="@dimen/List_SubTitle"
+            android:textSize="@dimen/AdditionTxt"
             android:textColor="@color/textColor_object"
             android:gravity="center"
             />

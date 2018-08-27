@@ -12,10 +12,11 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.accepted.acceptedtalentplanet.MyFirebaseMessagingService;
-import com.accepted.acceptedtalentplanet.SaveSharedPreference;
 import com.accepted.acceptedtalentplanet.R;
+import com.accepted.acceptedtalentplanet.SaveSharedPreference;
 
 import java.util.ArrayList;
 
@@ -28,25 +29,11 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
     private Adapter adapter;
     private ListView listView;
 
-    private ImageView lv_PreContainer;
-    private ImageView iv_DeleteIcon;
-
     private boolean idDeleteClicked;
 
 
 
 
-    // 관심 보냄 - 재능 드림 : 1 - 1
-    // 공유 진행 - 재능 드림 : 2 - 1
-    // 공유 진행 - 관심 재능 : 2 - 2
-    // 공유 완료 - 재능 드림 :  2 - 3
-    // 공유 완료 - 관심 재능 : 2 - 4
-    // 관심 취소 : 3 - 1
-    // 진행 취소 - 재능 드림 : 3 - 2
-    // 진행 취소 - 관심 재능 : 3 - 3
-    // 1:1 문의 답변완료 : 4
-    // 신고하기 답변완료 : 5
-   // 메세지 : 6
 
 
     @Override
@@ -58,36 +45,19 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
         if(notificationManager != null)
         {notificationManager.cancel(0);}
 
-
-        mContext = getApplicationContext();
-        arrayList = SaveSharedPreference.getPrefAlarmArry(mContext);
-
-        Log.d("Alarm", "AlarmArray is null: " + (arrayList == null));
-
-
-
-
-        if(arrayList == null){
-            arrayList = new ArrayList<>();
-        }
-
-        //TODO:알람 Case에 맞게 데이터 받기.
-
-        listView = (ListView) findViewById(R.id.listView_Alarm);
-        listView.setOnItemClickListener(mItemClickListener);
-
-        lv_PreContainer = (ImageView) findViewById(R.id.iv_PreContainer_Alarm);
-        lv_PreContainer.setOnClickListener(new View.OnClickListener() {
+        ((TextView) findViewById(R.id.tv_toolbarTitle)).setText("알람");
+        ((ImageView)findViewById(R.id.iv_leftBtn_Toolbar)).setImageResource(R.drawable.icon_backbtn);
+        ((ImageView)findViewById(R.id.iv_leftBtn_Toolbar)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
             }
         });
 
-        iv_DeleteIcon = (ImageView) findViewById(R.id.iv_DeleteIcon_Alarm);
         idDeleteClicked = false;
 
-        iv_DeleteIcon.setOnClickListener(new View.OnClickListener() {
+        ((ImageView)findViewById(R.id.iv_RightBtn_Toolbar)).setImageResource(R.drawable.icon_delete);
+        ((ImageView)findViewById(R.id.iv_RightBtn_Toolbar)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (!idDeleteClicked) {
@@ -105,10 +75,25 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
                     adapter.switchingFlag(idDeleteClicked);
                     adapter.notifyDataSetChanged();
                 }
-                }
-
+            }
         });
 
+        mContext = getApplicationContext();
+        arrayList = SaveSharedPreference.getPrefAlarmArry(mContext);
+
+        Log.d("Alarm", "AlarmArray is null: " + (arrayList == null));
+
+
+
+
+        if(arrayList == null){
+            arrayList = new ArrayList<>();
+        }
+
+        //TODO:알람 Case에 맞게 데이터 받기.
+
+        listView = (ListView) findViewById(R.id.listView_Alarm);
+        listView.setOnItemClickListener(mItemClickListener);
 
 
         initView();

@@ -3,10 +3,8 @@
 
 <resources>
 
-    <dimen name="ToolbarTxt">12.75dp</dimen>
     <dimen name="Toolbar_Pre_Txt">10.625dp</dimen>
     <dimen name="Toolbar_Pre_Img">17dp</dimen>
-    <dimen name="Toolbar_Img">17dp</dimen>
     <dimen name="Popup_Icon">25.5dp</dimen>
     <dimen name="List_Title">10.2dp</dimen>
     <dimen name="DrawerLL_Title">9.35dp</dimen>
@@ -79,6 +77,36 @@
     <dimen name="Margin_title">17dp</dimen>
     <dimen name="Margin_txtContainer">25.5dp</dimen>
     <dimen name="Login_Logo">50dp</dimen>
+
+
+
+
+
+    <dimen name="Height50dp">50dp</dimen>
+    <dimen name="Height60dp">60dp</dimen>
+    <dimen name="Height70dp">70dp</dimen>
+    <dimen name="Height100dp">100dp</dimen>
+    <dimen name="Height130dp">130dp</dimen>
+
+
+    <dimen name="Toolbar_Img">15dp</dimen>
+    <dimen name="ToolbarTxt">15dp</dimen>
+    <dimen name="MainTxt">12dp</dimen>
+    <dimen name="SubTxt">10.5dp</dimen>
+    <dimen name="AdditionTxt">9.5dp</dimen>
+
+    <dimen name="BigImg">30dp</dimen>
+    <dimen name="MediumImg">20dp</dimen>
+    <dimen name="SmallImg">15dp</dimen>
+    <dimen name="TinyImg">10dp</dimen>
+
+
+    <dimen name="BigPicture">80dp</dimen>
+    <dimen name="ProfilePicture">50dp</dimen>
+
+
+
+
 
 
 

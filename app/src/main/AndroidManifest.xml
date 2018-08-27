@@ -25,7 +25,6 @@
         android:largeHeap="true"
         android:theme="@style/AppTheme.NoActionBar"
         android:name="android.support.multidex.MultiDexApplication"
-
         >
         <meta-data android:name="android.max_aspect" android:value="2.1" />
         <activity android:name="com.accepted.acceptedtalentplanet.LoadingLogin.Loading.MainActivity"
@@ -58,6 +57,13 @@
 
         <activity
             android:name="com.accepted.acceptedtalentplanet.LoadingLogin.Login.MainActivity"
+            android:windowSoftInputMode="adjustNothing|stateAlwaysHidden"
+            android:screenOrientation="portrait"
+            />
+
+
+        <activity
+            android:name="com.accepted.acceptedtalentplanet.Join.Phone.MainActivity"
             android:windowSoftInputMode="adjustNothing|stateAlwaysHidden"
             android:screenOrientation="portrait"
             />

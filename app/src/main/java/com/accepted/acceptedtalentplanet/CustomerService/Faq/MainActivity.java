@@ -5,7 +5,9 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ExpandableListView;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.accepted.acceptedtalentplanet.R;
 
@@ -33,20 +35,22 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.customerservice_faqactivity);
 
+        ((ImageView)findViewById(R.id.iv_leftBtn_Toolbar)).setImageResource(R.drawable.icon_backbtn);
+        ((ImageView)findViewById(R.id.iv_leftBtn_Toolbar)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+        ((ImageView)findViewById(R.id.iv_RightBtn_Toolbar)).setVisibility(View.GONE);
+        ((TextView) findViewById(R.id.tv_toolbarTitle)).setText("자주하는 질문");
+
         mContext = getApplicationContext();
 
         expandableListView = (ExpandableListView) this.findViewById(R.id.elv_Faq);
         setArrayData();
         expandableListView.setAdapter(new ELVAdapter(this, arrayList_Parent, arrayList_Child));
 
-
-        ll_PreContainer = (LinearLayout) findViewById(R.id.ll_PreContainer_Faq);
-        ll_PreContainer.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
 
         expandableListView.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
             int lastClickedPosition = 0;

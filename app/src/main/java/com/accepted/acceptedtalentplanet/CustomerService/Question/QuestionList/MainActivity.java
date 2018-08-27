@@ -7,8 +7,12 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ExpandableListView;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
+import com.accepted.acceptedtalentplanet.R;
+import com.accepted.acceptedtalentplanet.SaveSharedPreference;
 import com.accepted.acceptedtalentplanet.VolleySingleton;
 import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
@@ -18,8 +22,6 @@ import com.android.volley.ServerError;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.StringRequest;
-import com.accepted.acceptedtalentplanet.R;
-import com.accepted.acceptedtalentplanet.SaveSharedPreference;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -67,6 +69,27 @@ public class MainActivity extends AppCompatActivity {
             });
         }else {
             setContentView(R.layout.customerservice_questionlistactivity);
+
+            ((ImageView)findViewById(R.id.iv_leftBtn_Toolbar)).setImageResource(R.drawable.icon_backbtn);
+            ((ImageView)findViewById(R.id.iv_leftBtn_Toolbar)).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    finish();
+                }
+            });
+            ((ImageView)findViewById(R.id.iv_RightBtn_Toolbar)).setVisibility(View.GONE);
+            ((TextView) findViewById(R.id.tv_toolbarTitle)).setText("나의 문의내역");
+
+
+            ll_PreContainer = (LinearLayout) findViewById(R.id.ll_PreContainer_Question);
+            ll_PreContainer.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    finish();
+                }
+            });
+
+
 
             expandableListView = (ExpandableListView) this.findViewById(R.id.expandableListView_QuestionList);
             getQuestionList();

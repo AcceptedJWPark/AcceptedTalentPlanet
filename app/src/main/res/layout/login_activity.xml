@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
@@ -22,7 +22,6 @@
         >
 
             <ImageView
-                android:id="@+id/login_logoimg"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/Login_Logo"
                 android:layout_centerInParent="true"
@@ -37,7 +36,7 @@
         android:id="@+id/ll_info_Login"
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="40dp"
         android:layout_marginRight="40dp"
         android:layout_below="@+id/ll_title_Login"
@@ -46,8 +45,7 @@
         <EditText
             android:id="@+id/Login_ID"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="3"
+            android:layout_height="40dp"
             android:hint="E-mail"
             android:paddingLeft="10dp"
             android:layout_marginTop="10dp"
@@ -61,12 +59,10 @@
         <EditText
             android:id="@+id/Login_Password"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="3"
+            android:layout_height="40dp"
             android:hint="Password"
             android:paddingLeft="10dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
             android:background="@drawable/bgr_edittxt_box_login"
             android:inputType="textWebPassword"
             android:textSize="@dimen/LogIn_Edit_Hint"
@@ -83,6 +79,7 @@
         android:layout_height="60dp"
         android:layout_marginLeft="40dp"
         android:layout_marginRight="40dp"
+        android:layout_marginTop="10dp"
         android:orientation="vertical"
         android:layout_below="@+id/ll_info_Login"
         >
@@ -150,22 +147,17 @@
 
     </LinearLayout>
 
-    <View
-        android:id="@+id/trashView_Login"
-        android:layout_width="match_parent"
-        android:layout_height="10dp"
-        android:layout_below="@+id/ll_ClickHere_Login"
-        />
 
     <Button
         android:id="@+id/btn_Login_Login"
         android:textAllCaps="false"
         android:layout_width="@dimen/Login_btn"
         android:layout_height="30dp"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center_horizontal"
         android:background="@drawable/bgr_bigbtn2"
         android:textColor="@color/textcolor_bigbtn"
         android:textSize="@dimen/BigBtn"
-        android:layout_below="@+id/trashView_Login"
         android:layout_centerHorizontal="true"
         android:onClick="loginClicked"
         android:text="로그인"
@@ -183,4 +175,4 @@
         android:paddingBottom="10dp"
     />
 
-</RelativeLayout>
+</LinearLayout>

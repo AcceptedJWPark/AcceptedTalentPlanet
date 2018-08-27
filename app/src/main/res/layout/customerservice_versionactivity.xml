@@ -1,67 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#ffffff"
-    android:weightSum="24"
     >
-    <LinearLayout
-        android:id="@+id/ll_Toolbar_Question"
+
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/customerservice_toolbar"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1.5"
-        android:gravity="center"
-        android:background="@color/toolbarcolor_background"
+        android:layout_height="@dimen/Height50dp"
+        android:contentInsetStart="0dp"
+        android:contentInsetLeft="0dp"
+        app:contentInsetLeft="0dp"
+        app:contentInsetStart="0dp"
+        android:padding="0dp"
+        android:fitsSystemWindows="true"
         >
-
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            >
-
-            <LinearLayout
-                android:id="@+id/ll_preContainer_Version"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                >
-
-                <ImageView
-                    android:layout_width="@dimen/Toolbar_Pre_Img"
-                    android:layout_height="@dimen/Toolbar_Pre_Img"
-                    android:src="@drawable/icon_backbtn"
-                    />
-
-
-            </LinearLayout>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="최신 버전"
-                android:tint="@color/toolbarcolor_txtandimage"
-                android:textSize="@dimen/ToolbarTxt"
-                android:textColor="@color/toolbarcolor_txtandimage"
-                android:gravity="center"
-                />
-
-
-
-        </RelativeLayout>
-
-
-    </LinearLayout>
+        <include
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            layout="@layout/toolbarlayout"/>
+    </android.support.v7.widget.Toolbar>
 
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="2.4"
+        android:layout_height="40dp"
         android:background="#ffffff"
         android:gravity="center_vertical"
         android:orientation="horizontal">
@@ -74,7 +41,7 @@
             android:paddingTop="2dp"
             android:text="현재 버전"
             android:textColor="@color/textColor_txtpage"
-            android:textSize="@dimen/List_Title"
+            android:textSize="@dimen/SubTxt"
             />
 
         <TextView
@@ -86,7 +53,7 @@
             android:text="1.01"
             android:layout_alignParentRight="true"
             android:textColor="@color/textColor_txtpage"
-            android:textSize="@dimen/ListView_SubTitle"
+            android:textSize="@dimen/AdditionTxt"
             />
 
 
@@ -99,8 +66,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="2.4"
+        android:layout_height="40dp"
         android:background="#ffffff"
         android:gravity="center_vertical"
         android:orientation="horizontal">
@@ -113,7 +79,7 @@
             android:paddingTop="2dp"
             android:text="최신 버전"
             android:textColor="@color/textColor_txtpage"
-            android:textSize="@dimen/List_Title"
+            android:textSize="@dimen/SubTxt"
             />
 
         <TextView
@@ -125,7 +91,7 @@
             android:text="1.01"
             android:layout_alignParentRight="true"
             android:textColor="@color/textColor_txtpage"
-            android:textSize="@dimen/ListView_SubTitle"
+            android:textSize="@dimen/AdditionTxt"
             />
 
 
@@ -133,8 +99,7 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.2"
+        android:layout_height="1dp"
         android:background="#eeeeee"
         />
 
@@ -142,14 +107,13 @@
     <Button
         android:id="@+id/button2"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_height="30dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:layout_marginTop="@dimen/BigBtn_Topspace"
+        android:layout_marginTop="20dp"
         android:background="@drawable/bgr_bigbtn"
         android:text="업데이트 하기"
-        android:textSize="@dimen/BigBtn"
+        android:textSize="@dimen/MainTxt"
         android:textColor="@color/textcolor_bigbtn"
         />
 

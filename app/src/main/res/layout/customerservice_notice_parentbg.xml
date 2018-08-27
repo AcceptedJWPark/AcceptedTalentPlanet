@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:layout_height="60dp">
+    android:layout_height="@dimen/Height60dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -11,17 +11,13 @@
         android:gravity="center_vertical"
         >
 
-        <View
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_weight="1"/>
-
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="8"
             android:layout_marginRight="5dp"
             android:orientation="vertical"
+            android:layout_marginLeft="30dp"
             >
 
             <TextView
@@ -34,7 +30,7 @@
                 android:ellipsize="end"
                 android:lines="1"
                 android:textColor="@color/textColor_object"
-                android:textSize="@dimen/List_Title"
+                android:textSize="@dimen/SubTxt"
                 />
 
 
@@ -46,7 +42,7 @@
             android:layout_height="match_parent"
             android:layout_weight="2"
             android:text="Mar.2018"
-            android:textSize="@dimen/List_SubTitle"
+            android:textSize="@dimen/AdditionTxt"
             android:textColor="@color/textColor_object"
             android:gravity="center"
             />

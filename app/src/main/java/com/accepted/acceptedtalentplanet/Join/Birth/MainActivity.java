@@ -8,36 +8,34 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
+import com.accepted.acceptedtalentplanet.R;
+import com.accepted.acceptedtalentplanet.SaveSharedPreference;
 import com.accepted.acceptedtalentplanet.VolleySingleton;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.StringRequest;
-import com.accepted.acceptedtalentplanet.R;
-import com.accepted.acceptedtalentplanet.SaveSharedPreference;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import static com.accepted.acceptedtalentplanet.SaveSharedPreference.hideKeyboard;
 
-public class MainActivity extends  AppCompatActivity {
+public class MainActivity extends AppCompatActivity {
 
     public String email;
     public String pw;
@@ -52,12 +50,6 @@ public class MainActivity extends  AppCompatActivity {
     private EditText et_Day;
 
     private Context mContext;
-
-    private RelativeLayout rl_preContainer;
-    private TextView tv_TitleContainer;
-    private LinearLayout ll_birthContainer;
-    private View trashView;
-    private Button btn_Accept;
 
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,43 +73,6 @@ public class MainActivity extends  AppCompatActivity {
                 finish();
             }
         });
-
-        rl_preContainer = (RelativeLayout) findViewById(R.id.rl_preContainer_join_birth);
-        tv_TitleContainer = (TextView) findViewById(R.id.tv_TitleContainer_join_birth);
-        ll_birthContainer = (LinearLayout) findViewById(R.id.ll_birthContainer_join_birth);
-        trashView = findViewById(R.id.trashView_join_birth);
-        btn_Accept = (Button) findViewById(R.id.btn_Accept_birth_join);
-
-        DisplayMetrics metrics = new DisplayMetrics();
-        WindowManager windowManager = (WindowManager) getApplicationContext().getSystemService(Context.WINDOW_SERVICE);
-        windowManager.getDefaultDisplay().getMetrics(metrics);
-
-        int preContainer_height = (int) (metrics.heightPixels*0.06);
-        int titleContainer_height = (int) (metrics.heightPixels*0.1);
-        int birthContainer_height= (int) (metrics.heightPixels*0.05);
-        int trashView_height= (int) (metrics.heightPixels*0.02);
-        int btn_Accept_height= (int) (metrics.heightPixels*0.04);
-
-        ViewGroup.LayoutParams params1 = rl_preContainer.getLayoutParams();
-        ViewGroup.LayoutParams params2 = tv_TitleContainer.getLayoutParams();
-        ViewGroup.LayoutParams params3 = ll_birthContainer.getLayoutParams();
-        ViewGroup.LayoutParams params4 = trashView.getLayoutParams();
-        ViewGroup.LayoutParams params5 = btn_Accept.getLayoutParams();
-
-        params1.height = preContainer_height;
-        params2.height = titleContainer_height;
-        params3.height = birthContainer_height;
-        params4.height = trashView_height;
-        params5.height = btn_Accept_height;
-
-        rl_preContainer.setLayoutParams(params1);
-        tv_TitleContainer.setLayoutParams(params2);
-        ll_birthContainer.setLayoutParams(params3);
-        trashView.setLayoutParams(params4);
-        btn_Accept.setLayoutParams(params5);
-
-
-
         et_Year = (EditText)findViewById(R.id.et_Yeat_birth_Join);
         et_Month = (EditText)findViewById(R.id.et_Month_birth_Join);
         et_Day = (EditText)findViewById(R.id.et_Day_birth_Join);
@@ -154,6 +109,26 @@ public class MainActivity extends  AppCompatActivity {
         String birthMonthTxt = et_Month.getText().toString();
         String birthDayTxt = et_Day.getText().toString();
 
+        if(birthYearTxt == null || birthYearTxt.isEmpty() || birthMonthTxt == null || birthMonthTxt.isEmpty() || birthDayTxt == null || birthDayTxt.isEmpty()){
+            Toast.makeText(mContext, "생년월일을 입력해주세요.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        Pattern pattern = Pattern.compile("^((19|20)[0-9]{2})");
+        Matcher matcher = pattern.matcher(birthYearTxt);
+        if(!matcher.find()){
+            Toast.makeText(mContext, "년도 형식을 확인해주세요.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        try{
+            DateFormat df = new SimpleDateFormat("yyyyMMdd");
+            df.setLenient(false);
+            df.parse(birthYearTxt + birthMonthTxt + birthDayTxt);
+        }catch (Exception e){
+            Toast.makeText(mContext, "생년월일을 확인해주세요.", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
         if(Integer.parseInt(birthMonthTxt) < 10)
             birthMonthTxt = "0"+birthMonthTxt.substring(birthMonthTxt.length() - 1);

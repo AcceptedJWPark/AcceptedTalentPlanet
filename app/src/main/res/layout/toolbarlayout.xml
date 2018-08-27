@@ -2,7 +2,7 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="40dp"
+    android:layout_height="@dimen/Height50dp"
     android:background="#002c62"
     android:orientation="horizontal"
     android:clickable="true"
@@ -22,16 +22,17 @@
         >
 
     <ImageView
+        android:id="@+id/iv_leftBtn_Toolbar"
         android:layout_width="@dimen/Toolbar_Img"
         android:layout_height="@dimen/Toolbar_Img"
         android:layout_centerVertical="true"
-        android:paddingRight="5dp"
         android:src="@drawable/icon_menu"
         android:layout_alignParentLeft="true"
         android:layout_marginLeft="15dp"
         />
 
     </LinearLayout>
+
     <TextView
         android:id="@+id/tv_toolbarTitle"
         android:layout_width="0dp"
@@ -41,7 +42,7 @@
         android:gravity="center"
         android:textColor="#ffffff"
         android:layout_centerInParent="true"
-        android:textSize="@dimen/ToolbarTxt"
+        android:textSize="15dp"
         />
 
 
@@ -54,19 +55,17 @@
         android:clickable="false"
         android:focusable="false"
         android:focusableInTouchMode="false"
-        android:visibility="invisible"
         >
 
     <ImageView
+        android:id="@+id/iv_RightBtn_Toolbar"
         android:layout_width="@dimen/Toolbar_Img"
         android:layout_height="@dimen/Toolbar_Img"
         android:layout_centerVertical="true"
         android:tint="#ffffff"
-        android:paddingLeft="5dp"
         android:layout_marginRight="15dp"
         android:src="@android:drawable/ic_popup_reminder"
         android:layout_alignParentRight="true"
-        android:visibility="gone"
         />
     </LinearLayout>
 

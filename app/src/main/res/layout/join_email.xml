@@ -11,7 +11,6 @@
     >
 
     <RelativeLayout
-        android:id="@+id/rl_preContainer_join_email"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_width="match_parent"
@@ -39,7 +38,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@+id/preImg"
-                android:text="로그인"
+                android:text="휴대폰 인증"
                 android:textSize="@dimen/Toolbar_Pre_Txt"
                 android:textColor="@color/textColor_normal"
                 android:id="@+id/textView" />
@@ -48,7 +47,6 @@
         </RelativeLayout>
 
         <TextView
-            android:id="@+id/tv_TitleContainer_join_email"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_gravity="center"
@@ -58,10 +56,7 @@
             android:text="&quot;ID로 사용 될 E-mail을 입력해주세요!&quot;"
             />
 
-
-
     <LinearLayout
-        android:id="@+id/ll_birthContainer_join_email"
         android:layout_width="match_parent"
         android:layout_height="45dp"
         android:layout_marginLeft="50dp"
@@ -95,7 +90,7 @@
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:background="@drawable/bgr_bigbtn"
-                android:text="E-mail 인증"
+                android:text="중복 확인"
                 android:textAllCaps="false"
                 android:textColor="@color/textcolor_bigbtn"
                 android:textSize="@dimen/ListView_Btn"
@@ -110,85 +105,13 @@
 
     </LinearLayout>
 
-    <View
-        android:id="@+id/trashView1_join_email"
-        android:layout_width="match_parent"
-        android:layout_height="10dp"/>
-
-    <LinearLayout
-        android:id="@+id/ll_AcceptEmailContainer_Join_email"
-        android:layout_width="match_parent"
-        android:layout_height="45dp"
-        android:orientation="vertical"
-        android:visibility="visible"
-        >
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="50dp"
-            android:layout_marginRight="50dp"
-            android:orientation="horizontal">
-
-            <EditText
-                android:id="@+id/et_EmailCode_Email_Join"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:background="@drawable/bgr_inputbox"
-                android:layout_weight="9"
-                android:paddingLeft="10dp"
-                android:hint="인증번호 입력"
-                android:textSize="@dimen/Edit_Hint"
-                android:inputType="number"
-                />
-
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="3"
-                android:layout_marginLeft="10dp"
-                android:orientation="vertical"
-                android:paddingTop="5dp"
-                android:paddingBottom="5dp"
-                >
-
-
-            <Button
-                android:id="@+id/btn_ConfirmEmail"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:background="@drawable/bgr_bigbtn"
-                android:text="인증 완료"
-                android:textColor="@color/textcolor_bigbtn"
-                android:textAllCaps="false"
-                android:textSize="@dimen/ListView_Btn"
-                android:onClick="acceptEmail"
-                android:includeFontPadding="false"
-                />
-
-
-         </LinearLayout>
-
-        </LinearLayout>
-
-
-
-    </LinearLayout>
-
-    <View
-        android:id="@+id/trashView2_join_email"
-        android:layout_width="match_parent"
-        android:layout_height="10dp"/>
-
 
     <Button
         android:id="@+id/btn_Accept_join_email"
         android:layout_width="match_parent"
         android:layout_height="30dp"
         android:layout_marginLeft="50dp"
+        android:layout_marginTop="20dp"
         android:layout_marginRight="50dp"
         android:background="@drawable/bgr_bigbtn"
         android:onClick="goNext"

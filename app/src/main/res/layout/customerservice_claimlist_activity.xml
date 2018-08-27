@@ -1,66 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#ffffff"
-    android:weightSum="24"
-    >
+    android:weightSum="24">
 
-    <LinearLayout
-    android:id="@+id/ll_Toolbar_Question"
-    android:layout_width="match_parent"
-    android:layout_height="0dp"
-    android:layout_weight="1.5"
-    android:gravity="center"
-    android:background="@color/toolbarcolor_background"
-    >
-
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/customerservice_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/Height50dp"
+        android:contentInsetStart="0dp"
+        android:contentInsetLeft="0dp"
+        app:contentInsetLeft="0dp"
+        app:contentInsetStart="0dp"
+        android:padding="0dp"
+        android:fitsSystemWindows="true"
         >
-
-        <LinearLayout
-            android:id="@+id/ll_PreContainer_ClaimList"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            >
-
-            <ImageView
-                android:layout_width="@dimen/Toolbar_Pre_Img"
-                android:layout_height="@dimen/Toolbar_Pre_Img"
-                android:src="@drawable/icon_backbtn"
-                />
-
-        </LinearLayout>
-
-        <TextView
+        <include
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="신고 내역"
-            android:textSize="@dimen/ToolbarTxt"
-            android:gravity="center"
-            android:layout_centerInParent="true"
-            android:textColor="@color/toolbarcolor_txtandimage"
-            />
+            android:layout_height="match_parent"
+            layout="@layout/toolbarlayout"/>
+    </android.support.v7.widget.Toolbar>
 
-    </RelativeLayout>
-
-
-</LinearLayout>
 
 
     <ExpandableListView
         android:id="@+id/expandableListView_ClaimList"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="22.5"
-
+        android:layout_height="match_parent"
+        android:groupIndicator="@null"
         >
 
     </ExpandableListView>

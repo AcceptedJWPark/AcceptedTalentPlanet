@@ -11,18 +11,19 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.accepted.acceptedtalentplanet.R;
+import com.accepted.acceptedtalentplanet.SaveSharedPreference;
+import com.accepted.acceptedtalentplanet.VolleySingleton;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.StringRequest;
-import com.accepted.acceptedtalentplanet.R;
-import com.accepted.acceptedtalentplanet.SaveSharedPreference;
-import com.accepted.acceptedtalentplanet.VolleySingleton;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -49,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
     private RelativeLayout rl_QuestionContainer;
 
 
+
     private Context mContext;
 
     protected void onCreate(Bundle savedInstanceState)
@@ -57,6 +59,18 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.customerservice_questionactivity);
 
         mContext = getBaseContext();
+
+
+        ((ImageView)findViewById(R.id.iv_leftBtn_Toolbar)).setImageResource(R.drawable.icon_backbtn);
+        ((ImageView)findViewById(R.id.iv_leftBtn_Toolbar)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+        ((ImageView)findViewById(R.id.iv_RightBtn_Toolbar)).setVisibility(View.GONE);
+        ((TextView) findViewById(R.id.tv_toolbarTitle)).setText("1:1 문의하기");
+
 
         ll_PreContainer = (LinearLayout) findViewById(R.id.ll_PreContainer_Question);
         ll_PreContainer.setOnClickListener(new View.OnClickListener() {

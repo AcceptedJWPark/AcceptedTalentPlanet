@@ -1,71 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:background="#ffffff"
     android:focusable="true"
     android:clickable="true"
-    android:focusableInTouchMode="true"
-    >
+    android:focusableInTouchMode="true">
 
-    <LinearLayout
-        android:id="@+id/ll_Toolbar_Question"
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/customerservice_toolbar"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/MyProfile_Toolbar"
-        android:gravity="center"
-        android:background="@color/toolbarcolor_background"
+        android:layout_height="@dimen/Height50dp"
+        android:contentInsetStart="0dp"
+        android:contentInsetLeft="0dp"
+        app:contentInsetLeft="0dp"
+        app:contentInsetStart="0dp"
+        android:padding="0dp"
+        android:fitsSystemWindows="true"
         >
-
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            >
-
-            <LinearLayout
-                android:id="@+id/ll_PreContainer_Question"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                >
-
-                <ImageView
-                    android:layout_width="@dimen/Toolbar_Pre_Img"
-                    android:layout_height="@dimen/Toolbar_Pre_Img"
-                    android:src="@drawable/icon_backbtn"
-                    />
-
-
-
-            </LinearLayout>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="1:1 문의하기"
-                android:textSize="@dimen/ToolbarTxt"
-                android:gravity="center"
-                android:textColor="@color/toolbarcolor_txtandimage"
-                android:layout_centerInParent="true"
-                />
-
-        </RelativeLayout>
-
-
-    </LinearLayout>
-
+        <include
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            layout="@layout/toolbarlayout"/>
+    </android.support.v7.widget.Toolbar>
 
     <TextView
         android:id="@+id/tv_Title_Question"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="@dimen/Height50dp"
         android:gravity="center"
         android:textColor="@color/textColor_txtpage"
-        android:textSize="@dimen/Page_Txt"
+        android:textSize="@dimen/SubTxt"
         android:text="답변 내용은 &quot;나의 문의내역&quot;에서 확인 할 수 있습니다."
         />
 
@@ -74,7 +41,7 @@
     <RelativeLayout
         android:id="@+id/rl_QuestionContainer_Question"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/Question_Edit_Layout"
+        android:layout_height="@dimen/Height130dp"
         android:layout_marginRight="40dp"
         android:layout_marginLeft="40dp"
         android:background="@drawable/bgr_edittxt_box"
@@ -98,7 +65,7 @@
             android:layout_height="match_parent"
             android:gravity="top"
             android:hint="내용을 입력해주세요. 1000자로 제한됩니다."
-            android:textSize="@dimen/Edit_Hint"
+            android:textSize="@dimen/AdditionTxt"
             android:background="#ffffff"
             android:maxLength="1000"
             />
@@ -159,11 +126,11 @@
         android:layout_width="match_parent"
         android:layout_height="30dp"
         android:background="@drawable/bgr_bigbtn"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
         android:layout_marginRight="40dp"
         android:layout_marginLeft="40dp"
         android:text="문의하기"
-        android:textSize="@dimen/BigBtn"
+        android:textSize="@dimen/MainTxt"
         android:textColor="@color/textcolor_bigbtn"
         />
 

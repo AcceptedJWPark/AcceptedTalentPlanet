@@ -1,13 +1,13 @@
 package com.accepted.acceptedtalentplanet.CustomerService.Manual;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -24,16 +24,13 @@ public class MainActivity extends AppCompatActivity {
     private TextView tv_MyTalent;
     private TextView tv_TSharing;
     private TextView tv_TCondition;
-    private TextView tv_TSearching;
     private TextView tv_Message;
     private TextView tv_CustomerService;
     private TextView tv_System;
-    private TextView tv_Alarm;
     private TextView tv_Friend;
     private TextView tv_SharingList;
     private TextView tv_Interesting;
 
-    private Context mContext;
 
     private LinearLayout ll_PreContainer;
     private Button btn_NextToQuestion;
@@ -44,7 +41,18 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.customerservice_manual_activity);
 
-        mContext = getApplicationContext();
+        ((ImageView)findViewById(R.id.iv_leftBtn_Toolbar)).setImageResource(R.drawable.icon_backbtn);
+        ((ImageView)findViewById(R.id.iv_leftBtn_Toolbar)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+        ((ImageView)findViewById(R.id.iv_RightBtn_Toolbar)).setVisibility(View.GONE);
+        ((TextView) findViewById(R.id.tv_toolbarTitle)).setText("Talent Planet 사용하기");
+
+
+
 
         tv_MyProfile = (TextView) findViewById(R.id.tv_MyProfile_Manual);
         tv_MyTalent = (TextView) findViewById(R.id.tv_MyTalent_Manual);

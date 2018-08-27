@@ -11,8 +11,6 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.accepted.acceptedtalentplanet.R;
@@ -95,51 +93,10 @@ public class Adapter extends BaseAdapter {
             holder.tv_Txt = view.findViewById(R.id.tv_Txt_Alarm);
             holder.tv_Date = view.findViewById(R.id.tv_date_Alarm);
             holder.iv_DeleteIcon = view.findViewById(R.id.iv_DeleteIcon_Alarm);
-            holder.ll_deleteContainer = view.findViewById(R.id.ll_deleteContainer_Alarm);
-
-            holder.ll_picContainer = view.findViewById(R.id.ll_picContainer_Alarm);
-            holder.ll_txtContainer = view.findViewById(R.id.ll_txtContainer_Alarm);
-            holder.rl_dateContainer = view.findViewById(R.id.rl_deleteContainer_Alarm);
-
-            holder.trashView1 = view.findViewById(R.id.trashView1_AlarmList);
-            holder.trashView2 = view.findViewById(R.id.trashView2_AlarmList);
-            holder.trashView3 = view.findViewById(R.id.trashView3_AlarmList);
-            holder.trashView4 = view.findViewById(R.id.trashView4_AlarmList);
 
             DisplayMetrics metrics = new DisplayMetrics();
             WindowManager windowManager = (WindowManager) mContext.getSystemService(Context.WINDOW_SERVICE);
             windowManager.getDefaultDisplay().getMetrics(metrics);
-
-            int Alarm_ListView_height = (int) (metrics.heightPixels*0.1);
-            int Alarm_ListView_width = metrics.widthPixels;
-
-            ViewGroup.LayoutParams params1 = view.getLayoutParams();
-            ViewGroup.LayoutParams params2 = holder.ll_picContainer.getLayoutParams();
-            ViewGroup.LayoutParams params3 = holder.ll_txtContainer.getLayoutParams();
-            ViewGroup.LayoutParams params4 = holder.rl_dateContainer.getLayoutParams();
-            ViewGroup.LayoutParams params5 = holder.trashView1.getLayoutParams();
-            ViewGroup.LayoutParams params6 = holder.trashView2.getLayoutParams();
-            ViewGroup.LayoutParams params7 = holder.trashView3.getLayoutParams();
-            ViewGroup.LayoutParams params8 = holder.trashView4.getLayoutParams();
-
-            params1.height = Alarm_ListView_height;
-            params2.width = (int) (Alarm_ListView_width * 0.13);
-            params2.height = (int) (Alarm_ListView_width * 0.13);
-            params3.width = (int) (Alarm_ListView_width * 0.62);
-            params4.width = (int) (Alarm_ListView_width * 0.13);
-            params5.width = (int) (Alarm_ListView_width * 0.04);
-            params6.width = (int) (Alarm_ListView_width * 0.04);
-            params7.width = (int) (Alarm_ListView_width * 0.04);
-            params8.width = (int) (Alarm_ListView_width * 0.04);
-
-            view.setLayoutParams(params1);
-            holder.ll_picContainer.setLayoutParams(params2);
-            holder.ll_txtContainer.setLayoutParams(params3);
-            holder.rl_dateContainer.setLayoutParams(params4);
-            holder.trashView1.setLayoutParams(params5);
-            holder.trashView2.setLayoutParams(params6);
-            holder.trashView3.setLayoutParams(params7);
-            holder.trashView4.setLayoutParams(params8);
 
             view.setTag(holder);
         }else
@@ -153,11 +110,9 @@ public class Adapter extends BaseAdapter {
 
         if (arrayList.get(position).getdeleteClicked())
         {
-            holder.ll_deleteContainer.setVisibility(View.GONE);
             holder.iv_DeleteIcon.setVisibility(View.VISIBLE);
         }else
         {
-            holder.ll_deleteContainer.setVisibility(View.VISIBLE);
             holder.iv_DeleteIcon.setVisibility(View.GONE);
         }
 
@@ -289,16 +244,7 @@ public class Adapter extends BaseAdapter {
         TextView tv_Txt;
         TextView tv_Date;
         ImageView iv_DeleteIcon;
-        LinearLayout ll_deleteContainer;
 
-        RelativeLayout rl_dateContainer;
-        LinearLayout ll_txtContainer;
-        LinearLayout ll_picContainer;
-
-        View trashView1;
-        View trashView2;
-        View trashView3;
-        View trashView4;
     }
 
 }

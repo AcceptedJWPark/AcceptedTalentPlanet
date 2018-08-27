@@ -16,27 +16,24 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.ContextThemeWrapper;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.volley.NetworkResponse;
-import com.android.volley.Request;
-import com.android.volley.Response;
 import com.accepted.acceptedtalentplanet.R;
 import com.accepted.acceptedtalentplanet.SaveSharedPreference;
 import com.accepted.acceptedtalentplanet.VolleyMultipartRequest;
 import com.accepted.acceptedtalentplanet.VolleySingleton;
+import com.android.volley.NetworkResponse;
+import com.android.volley.Request;
+import com.android.volley.Response;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -57,15 +54,8 @@ public class MainActivity extends AppCompatActivity {
     private Spinner spn_ClaimType;
     private TextView tv_SharingList;
     private TextView tv_Txt;
-    private LinearLayout ll_preContainer;
     private EditText et_Claim;
 
-    private LinearLayout ll_Toolbar;
-    private LinearLayout ll_Container1;
-    private LinearLayout ll_Container2;
-    private LinearLayout ll_Container3;
-    private LinearLayout ll_Container4;
-    private LinearLayout ll_Container5;
 
     private View v_Divider;
     private TextView tv_TxtCount;
@@ -83,6 +73,16 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.customerservice_claimactivity);
+
+        ((ImageView)findViewById(R.id.iv_leftBtn_Toolbar)).setImageResource(R.drawable.icon_backbtn);
+        ((ImageView)findViewById(R.id.iv_leftBtn_Toolbar)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+        ((ImageView)findViewById(R.id.iv_RightBtn_Toolbar)).setVisibility(View.GONE);
+        ((TextView) findViewById(R.id.tv_toolbarTitle)).setText("신고하기");
 
         isSelect = getIntent().getBooleanExtra("isSelected", false);
         if (isSelect) {
@@ -120,14 +120,6 @@ public class MainActivity extends AppCompatActivity {
         }
 
 
-        ll_preContainer = (LinearLayout) findViewById(R.id.ll_preContainer_Claim);
-        ll_preContainer.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
-
         et_Claim = (EditText) findViewById(R.id.et_Content_Claim);
         tv_TxtCount = (TextView) findViewById(R.id.tv_TxtCount_Claim);
         et_Claim.setPrivateImeOptions("defaultInputmode=korean;");
@@ -156,13 +148,6 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-
-
-        ll_Toolbar = (LinearLayout) findViewById(R.id.ll_Toolbar_Claim);
-        ll_Container1 = (LinearLayout) findViewById(R.id.ll_Container1_claim);
-        ll_Container2 = (LinearLayout) findViewById(R.id.ll_Container2_claim);
-        ll_Container4 = (LinearLayout) findViewById(R.id.ll_Container4_claim);
-        ll_Container5 = (LinearLayout) findViewById(R.id.ll_Container5_claim);
 
         v_Divider = findViewById(R.id.v_Divider_Claim);
         tv_Txt = (TextView) findViewById(R.id.tv_txt_Claim);
@@ -203,48 +188,6 @@ public class MainActivity extends AppCompatActivity {
                                                  }
                                              }
                                          });
-
-
-        DisplayMetrics metrics = new DisplayMetrics();
-        WindowManager windowManager = (WindowManager) getApplicationContext().getSystemService(Context.WINDOW_SERVICE);
-        windowManager.getDefaultDisplay().getMetrics(metrics);
-
-        int claim_Toolbar_height = (int) (metrics.heightPixels * 0.055);
-        int claim_LL1_height = (int) (metrics.heightPixels * 0.17);
-        int claim_LL2_height = (int) (metrics.heightPixels * 0.21);
-        int claim_LL4_height = (int) (metrics.heightPixels * 0.04);
-        int claim_Devider1_height = (int) (metrics.heightPixels * 0.00625);
-        int claim_Txt_height1 = (int) (metrics.heightPixels * 0.075);
-        int claim_Txt_height2 = (int) (metrics.heightPixels * 0.09);
-
-        ViewGroup.LayoutParams params1 = ll_Toolbar.getLayoutParams();
-        ViewGroup.LayoutParams params2 = ll_Container1.getLayoutParams();
-        ViewGroup.LayoutParams params3 = ll_Container2.getLayoutParams();
-        ViewGroup.LayoutParams params5 = ll_Container4.getLayoutParams();
-        ViewGroup.LayoutParams params6 = v_Divider.getLayoutParams();
-        ViewGroup.LayoutParams params9 = tv_Txt.getLayoutParams();
-        ViewGroup.LayoutParams params10 = ll_Container5.getLayoutParams();
-
-        params1.height = claim_Toolbar_height;
-
-        params2.height = claim_LL1_height;
-        params3.height = claim_LL2_height;
-        params5.height = claim_LL4_height;
-
-        params6.height = claim_Devider1_height;
-
-        params9.height = claim_Txt_height1;
-        params10.height = claim_Txt_height2;
-
-        ll_Toolbar.setLayoutParams(params1);
-        ll_Container1.setLayoutParams(params2);
-        ll_Container2.setLayoutParams(params3);
-        ll_Container4.setLayoutParams(params5);
-        ll_Container5.setLayoutParams(params10);
-
-        v_Divider.setLayoutParams(params6);
-        tv_Txt.setLayoutParams(params9);
-
     }
 
 

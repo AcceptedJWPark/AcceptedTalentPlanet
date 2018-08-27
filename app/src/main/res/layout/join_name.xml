@@ -12,9 +12,6 @@
     >
 
     <RelativeLayout
-        android:id="@+id/rl_preContainer_join_name"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:gravity="center_vertical"
@@ -49,7 +46,6 @@
 
 
         <TextView
-            android:id="@+id/tv_TitleContainer_join_name"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_gravity="center"
@@ -61,10 +57,9 @@
 
 
     <LinearLayout
-            android:id="@+id/ll_nameContainer_join_name"
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="45dp"
+            android:layout_height="40dp"
             >
 
         <EditText
@@ -92,10 +87,6 @@
             android:textSize="@dimen/Edit_Hint" />
         </LinearLayout>
 
-    <View
-        android:id="@+id/trashView_join_name"
-        android:layout_width="match_parent"
-        android:layout_height="10dp"/>
 
 
     <Button
@@ -103,6 +94,7 @@
         android:layout_width="match_parent"
         android:layout_height="30dp"
         android:layout_marginLeft="60dp"
+        android:layout_marginTop="20dp"
         android:layout_marginRight="60dp"
         android:background="@drawable/bgr_bigbtn"
         android:onClick="goNext"

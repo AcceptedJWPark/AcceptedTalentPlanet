@@ -15,7 +15,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:background="#ffffff"
-        android:weightSum="22.1">
+        >
 
 
 
@@ -24,7 +24,7 @@
             android:layout_height="0dp"
             android:gravity="center"
             android:background="#faf8f8"
-            android:layout_weight="2.6"
+            android:layout_weight="2.5"
             >
 
             <LinearLayout
@@ -35,8 +35,8 @@
 
                 <RelativeLayout
                     android:id="@+id/MyProfile_Picture_Container"
-                    android:layout_width="@dimen/DrawerLayout_Picture"
-                    android:layout_height="@dimen/DrawerLayout_Picture"
+                    android:layout_width="@dimen/ProfilePicture"
+                    android:layout_height="@dimen/ProfilePicture"
                     android:background="@drawable/bgr_picture_container"
                     android:layout_marginTop="5dp"
                     android:padding="3dp"
@@ -62,16 +62,15 @@
                     android:layout_gravity="center"
                     android:padding="10dp"
                     android:textColor="@color/textColor_txtpage"
-                    android:textSize="@dimen/BigBtn"
+                    android:textSize="@dimen/MainTxt"
                     android:layout_weight="3"
                     android:textStyle="bold"
                     />
 
                 <ImageView
                     android:id="@+id/DrawerCloseImg"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.4"
+                    android:layout_width="@dimen/BigImg"
+                    android:layout_height="@dimen/BigImg"
                     android:adjustViewBounds="true"
                     android:layout_gravity="center"
                     android:layout_marginRight="10dp"
@@ -85,8 +84,7 @@
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.1"
+            android:layout_height="3dp"
             android:background="#eeeeee">
         </View>
 
@@ -95,13 +93,13 @@
             android:id="@+id/SlidingMenu_Profile"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1.9"
+            android:layout_weight="2"
             android:background="@drawable/bgr_drawerlayout_divider"
             android:gravity="center_vertical"
             android:onClick="slideMenuProfile"
             android:paddingLeft="20dp"
             android:textColor="@color/textColor_object"
-            android:textSize="@dimen/DrawerLL_Title"
+            android:textSize="@dimen/SubTxt"
             android:textStyle="bold"
             android:text="My Profile"
             />
@@ -112,11 +110,11 @@
             android:id="@+id/SlidingMenu_MyTalentResister"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1.9"
+            android:layout_weight="2"
             android:background="@drawable/bgr_drawerlayout_divider"
             android:gravity="center_vertical"
             android:onClick="slideMenuTalent"
-            android:textSize="@dimen/DrawerLL_Title"
+            android:textSize="@dimen/SubTxt"
             android:paddingLeft="20dp"
             android:textColor="@color/textColor_object"
             android:text="My Talent"
@@ -126,10 +124,10 @@
             android:id="@+id/SlidingMenu_MyTalentProcess"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1.9"
+            android:layout_weight="2"
             android:gravity="center_vertical"
             android:onClick="slideMenuMyTalent"
-            android:textSize="@dimen/DrawerLL_Title"
+            android:textSize="@dimen/SubTxt"
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
             android:textColor="@color/textColor_object"
@@ -139,10 +137,8 @@
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.1"
+            android:layout_height="3dp"
             android:background="#eeeeee">
-
         </View>
 
 
@@ -150,11 +146,11 @@
             android:id="@+id/SlidingMenu_TSharing"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1.9"
+            android:layout_weight="2"
             android:background="@drawable/bgr_drawerlayout_divider"
             android:gravity="center_vertical"
             android:onClick="slideMenuTS"
-            android:textSize="@dimen/DrawerLL_Title"
+            android:textSize="@dimen/SubTxt"
             android:paddingLeft="20dp"
             android:text="T . Sharing"
             android:textColor="@color/textColor_object"
@@ -166,34 +162,34 @@
             android:id="@+id/SlidingMenu_SharingList"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1.9"
+            android:layout_weight="2"
             android:background="@drawable/bgr_drawerlayout_divider"
             android:gravity="center_vertical"
             android:onClick="slideMenuTalentSharingList"
             android:paddingLeft="20dp"
             android:text="재능 공유 내역"
             android:textColor="@color/textColor_object"
-            android:textSize="@dimen/DrawerLL_Title"
+            android:textSize="@dimen/SubTxt"
             android:textStyle="bold" />
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.1"
+            android:layout_height="3dp"
             android:background="#eeeeee">
         </View>
+
 
         <TextView
             android:id="@+id/SlidingMenu_FriendList"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1.9"
+            android:layout_weight="2"
             android:text="친구 목록"
             android:textStyle="bold"
             android:onClick="slideFriendList"
             android:gravity="center_vertical"
             android:background="@drawable/bgr_drawerlayout_divider"
-            android:textSize="@dimen/DrawerLL_Title"
+            android:textSize="@dimen/SubTxt"
             android:textColor="@color/textColor_object"
             android:paddingLeft="20dp"
             />
@@ -205,7 +201,7 @@
             android:layout_height="0dp"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:layout_weight="1.9"
+            android:layout_weight="2"
             android:background="@drawable/bgr_drawerlayout_divider"
             android:paddingLeft="20dp"
             android:paddingRight="20dp">
@@ -217,7 +213,7 @@
                 android:gravity="center_vertical"
                 android:text="Messanger"
                 android:textColor="@color/textColor_object"
-                android:textSize="@dimen/DrawerLL_Title"
+                android:textSize="@dimen/SubTxt"
                 android:textStyle="bold" />
 
             <TextView
@@ -228,7 +224,7 @@
                 android:layout_centerInParent="true"
                 android:gravity="center"
                 android:textColor="@color/colorPrimaryDark"
-                android:textSize="@dimen/DrawerLL_Title"
+                android:textSize="@dimen/SubTxt"
                 android:text="NEW"
                 android:textStyle="bold"
                 android:visibility="gone"
@@ -239,15 +235,15 @@
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.1"
+            android:layout_height="3dp"
             android:background="#eeeeee">
         </View>
+
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1.9"
+            android:layout_weight="2"
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
             android:background="@drawable/bgr_drawerlayout_divider"
@@ -258,7 +254,7 @@
             android:layout_height="match_parent"
             android:gravity="center_vertical"
             android:text="고객센터"
-            android:textSize="@dimen/DrawerLL_Title"
+            android:textSize="@dimen/SubTxt"
             android:onClick="slideMenuCustomerService"
             android:textColor="@color/textColor_object"
             android:textStyle="bold"
@@ -271,7 +267,7 @@
                 android:layout_centerInParent="true"
                 android:gravity="center"
                 android:textColor="@color/colorPrimaryDark"
-                android:textSize="@dimen/DrawerLL_Title"
+                android:textSize="@dimen/SubTxt"
                 android:text="NEW"
                 android:textStyle="bold"
                 android:visibility="gone"
@@ -284,9 +280,9 @@
             android:id="@+id/SlidingMenu_System"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1.9"
+            android:layout_weight="2"
             android:gravity="center_vertical"
-            android:textSize="@dimen/DrawerLL_Title"
+            android:textSize="@dimen/SubTxt"
             android:background="@drawable/bgr_drawerlayout_divider"
             android:text="설정"
             android:textColor="@color/textColor_object"
@@ -295,26 +291,25 @@
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.1"
+            android:layout_height="3dp"
             android:background="#eeeeee">
         </View>
+
 
 
         <LinearLayout
             android:id="@+id/SlidingMenu_LogOut"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1.9"
+            android:layout_weight="2"
             android:background="@drawable/bgr_drawerlayout_divider"
             android:orientation="horizontal"
             android:paddingLeft="20dp">
 
             <ImageView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.5"
-                android:gravity="center_vertical"
+                android:layout_width="@dimen/MediumImg"
+                android:layout_height="@dimen/MediumImg"
+                android:layout_gravity="center_vertical"
                 android:adjustViewBounds="true"
                 android:src="@drawable/icon_logout" />
 
@@ -323,7 +318,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_weight="9"
-                android:textSize="@dimen/DrawerLL_Title"
+                android:textSize="@dimen/SubTxt"
                 android:textStyle="bold"
                 android:gravity="center_vertical"
                 android:textColor="@color/textColor_object"
