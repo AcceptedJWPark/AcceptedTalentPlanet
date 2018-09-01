@@ -129,14 +129,6 @@ public class MainActivity extends AppCompatActivity {
 
                     expandableListView.setAdapter(new ELVAdapter(mContext, arrayList_Parent, arrayList_Child));
 
-                    ll_preContainer = (LinearLayout) findViewById(R.id.ll_preContainer_Update);
-                    ll_preContainer.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            finish();
-                        }
-                    });
-
                 } catch (JSONException e) {
                     e.printStackTrace();
                 } catch (Exception e) {

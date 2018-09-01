@@ -71,15 +71,6 @@ public class MainActivity extends AppCompatActivity {
         ((ImageView)findViewById(R.id.iv_RightBtn_Toolbar)).setVisibility(View.GONE);
         ((TextView) findViewById(R.id.tv_toolbarTitle)).setText("1:1 문의하기");
 
-
-        ll_PreContainer = (LinearLayout) findViewById(R.id.ll_PreContainer_Question);
-        ll_PreContainer.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
-
         tv_TxtCount = (TextView) findViewById(R.id.tv_TxtCount_Question);
         et_Question = (EditText) findViewById(R.id.et_Question_Question);
         btn_Save = (Button) findViewById(R.id.btn_Save_Question);
