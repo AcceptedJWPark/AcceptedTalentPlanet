@@ -18,6 +18,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/Height150dp"
         android:orientation="vertical"
+        android:layout_marginTop="@dimen/Height50dp"
         android:gravity="center"
         >
 
@@ -37,6 +38,7 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/Height20dp"
         android:layout_marginLeft="40dp"
         android:layout_marginRight="40dp"
         android:layout_below="@+id/ll_title_Login"

@@ -3,26 +3,26 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/Height60dp"
+    android:layout_height="@dimen/Height70dp"
+    android:gravity="center"
     android:background="#ffffff"
     android:paddingTop="5dp"
     android:paddingBottom="5dp"
-    android:gravity="center"
     >
 
     <LinearLayout
         android:id="@+id/ll_picContainer_Alarm"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
+        android:layout_width="@dimen/Height50dp"
+        android:layout_height="@dimen/Height50dp"
         android:background="@drawable/bgr_picture_container"
-        android:layout_weight="1"
         android:layout_marginLeft="10dp"
+        android:padding="5dp"
         android:gravity="center"
         >
     <ImageView
         android:id="@+id/iv_Picture_Alarm"
-        android:layout_width="@dimen/Pic40dp"
-        android:layout_height="@dimen/Pic40dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:adjustViewBounds="false"
         android:background="@drawable/picure_basic"
         android:scaleType="fitXY"
@@ -78,7 +78,7 @@
 
     <RelativeLayout
         android:id="@+id/rl_deleteContainer_Alarm"
-        android:layout_weight="1"
+        android:layout_weight="1.5"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_marginRight="10dp"

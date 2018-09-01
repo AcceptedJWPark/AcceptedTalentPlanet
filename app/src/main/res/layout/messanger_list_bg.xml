@@ -4,7 +4,8 @@
     android:id="@+id/ll_Messanger_List"
     android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:layout_height="60dp"
+    android:layout_height="@dimen/Height70dp"
+    android:background="#ffffff"
     android:paddingTop="5dp"
     android:paddingBottom="5dp"
     android:gravity="center"
@@ -15,13 +16,13 @@
 
     <LinearLayout
         android:id="@+id/ll_pictureContainer_List_Messanger"
-        android:layout_width="0dp"
-        android:layout_weight="1"
-        android:layout_height="match_parent"
+        android:layout_width="@dimen/Height50dp"
+        android:layout_height="@dimen/Height50dp"
         android:background="@drawable/bgr_picture_container"
-        android:padding="3dp"
+        android:padding="5dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
+        android:gravity="center"
         >
 
         <ImageView
@@ -29,7 +30,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:adjustViewBounds="false"
-            android:gravity="center"
             android:background="@drawable/picure_basic"
             android:scaleType="fitXY"
             />
@@ -40,7 +40,7 @@
     <LinearLayout
         android:id="@+id/ll_txtContainer_List_Messanger"
         android:layout_width="0dp"
-        android:layout_weight="4.5"
+        android:layout_weight="5"
 
         android:layout_height="match_parent"
         android:gravity="center_vertical"

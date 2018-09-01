@@ -3,24 +3,22 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:layout_height="60dp"
+    android:layout_height="@dimen/Height70dp"
+    android:gravity="center"
     android:background="#ffffff"
     android:paddingTop="5dp"
     android:paddingBottom="5dp"
-    android:gravity="center"
     >
 
-    <View
-        android:id="@+id/trashView1_FriendList"
-        android:layout_width="10dp"
-        android:layout_height="match_parent"/>
 
     <LinearLayout
         android:id="@+id/ll_pictureContainer_FriendList"
-        android:layout_width="50dp"
-        android:layout_height="match_parent"
+        android:layout_width="@dimen/Height50dp"
+        android:layout_height="@dimen/Height50dp"
         android:background="@drawable/bgr_picture_container"
-        android:padding="1dp"
+        android:padding="5dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         >
         <ImageView
             android:id="@+id/im_Picture_FriendList"
@@ -33,15 +31,13 @@
             />
     </LinearLayout>
 
-    <View
-        android:id="@+id/trashView2_FriendList"
-        android:layout_width="10dp"
-        android:layout_height="match_parent"/>
 
 
     <LinearLayout
         android:id="@+id/ll_txtContainer_FriendList"
-        android:layout_width="300dp"
+        android:layout_width="0dp"
+        android:layout_weight="6"
+        android:layout_marginRight="10dp"
         android:layout_height="match_parent"
         android:gravity="center_vertical"
         android:orientation="vertical">
@@ -132,11 +128,6 @@
         </LinearLayout>
     </LinearLayout>
 
-
-    <View
-        android:id="@+id/trashView3_FriendList"
-        android:layout_width="10dp"
-        android:layout_height="match_parent"/>
 
 </LinearLayout>
 

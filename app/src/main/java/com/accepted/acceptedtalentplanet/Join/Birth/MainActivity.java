@@ -37,7 +37,7 @@ import static com.accepted.acceptedtalentplanet.SaveSharedPreference.hideKeyboar
 
 public class MainActivity extends AppCompatActivity {
 
-    public String email;
+    public String email, phone;
     public String pw;
     public String name;
     public String gender;
@@ -62,6 +62,7 @@ public class MainActivity extends AppCompatActivity {
         //TODO:월에 01이 아니라 1로 입력하면 잘못저장됨. 확인필요
 
         email = intent.getStringExtra("email");
+        phone = intent.getStringExtra("phone");
         pw = intent.getStringExtra("pw");
         name = intent.getStringExtra("name");
         gender = intent.getStringExtra("gender");
@@ -175,6 +176,7 @@ public class MainActivity extends AppCompatActivity {
                     params.put("userName", name);
                     params.put("userGender", gender);
                     params.put("userBirth", birth);
+                    params.put("phone", phone);
                     params.put("genderFlag", (genderPBS)?"Y":"N");
                     params.put("birthFlag", (birthPBS)?"Y":"N");
                     return params;
