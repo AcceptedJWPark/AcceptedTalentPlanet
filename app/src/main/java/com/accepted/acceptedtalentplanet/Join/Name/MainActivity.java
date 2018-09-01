@@ -19,7 +19,7 @@ import static com.accepted.acceptedtalentplanet.SaveSharedPreference.hideKeyboar
 
 public class MainActivity extends  AppCompatActivity {
 
-    public String email;
+    public String email, phone;
     public String pw;
 
     private Context mContext;
@@ -44,6 +44,7 @@ public class MainActivity extends  AppCompatActivity {
 
         Intent intent = getIntent();
         email = intent.getStringExtra("email");
+        phone = intent.getStringExtra("phone");
         pw = intent.getStringExtra("pw");
 
         EditText firstName = (EditText)findViewById(R.id.et_Firstname_Name_Join) ;
@@ -109,6 +110,7 @@ public class MainActivity extends  AppCompatActivity {
         {
             Intent intent = new Intent(this, com.accepted.acceptedtalentplanet.Join.Gender.MainActivity.class);
             intent.putExtra("email", email);
+            intent.putExtra("phone", phone);
             intent.putExtra("pw", pw);
             intent.putExtra("name", et_Firstname.getText().toString() + et_Lasttname.getText().toString());
             startActivity(intent);

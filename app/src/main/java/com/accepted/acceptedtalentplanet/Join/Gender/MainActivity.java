@@ -22,7 +22,7 @@ public class MainActivity extends  AppCompatActivity {
     private Spinner spn_Gender;
     private String[] genderList = {"성별 선택", "남자", "여자"};
 
-    public String email;
+    public String email, phone;
     public String pw;
     public String name;
     private Context mContext;
@@ -52,6 +52,7 @@ public class MainActivity extends  AppCompatActivity {
 
         Intent intent = getIntent();
         email = intent.getStringExtra("email");
+        phone = intent.getStringExtra("phone");
         pw = intent.getStringExtra("pw");
         name = intent.getStringExtra("name");
     }
@@ -68,6 +69,7 @@ public class MainActivity extends  AppCompatActivity {
             boolean genderPBS = !cb_isShowGender.isChecked();
             Intent intent = new Intent(this, com.accepted.acceptedtalentplanet.Join.Birth.MainActivity.class);
             intent.putExtra("email", email);
+            intent.putExtra("phone", phone);
             intent.putExtra("pw", pw);
             intent.putExtra("name", name);
             intent.putExtra("gender", spn_Gender.getSelectedItem().toString());

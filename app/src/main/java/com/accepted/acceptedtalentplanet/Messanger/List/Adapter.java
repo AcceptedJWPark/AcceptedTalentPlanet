@@ -207,26 +207,27 @@ public class Adapter extends BaseAdapter {
             holder.Messanger_List_DateLL.setVisibility(View.VISIBLE);
             holder.Messanger_List_DeleteList.setVisibility(View.GONE);
         }
-            if(messanger_Arraylist.get(position).getFilePath().equals("NODATA")) {
-                holder.messsanger_Pic.setBackgroundResource(messanger_Arraylist.get(position).getMesssanger_Pic());
-            }
-            else
-            {
-                Glide.with(mContext).load(SaveSharedPreference.getImageUri() + messanger_Arraylist.get(position).getFilePath()).into(holder.messsanger_Pic);
-            }
-            holder.messanger_Name.setText(messanger_Arraylist.get(position).getMessanger_Name());
-            holder.messanger_Content.setText(messanger_Arraylist.get(position).getMessanger_Content());
-            holder.messanger_Date.setText(messanger_Arraylist.get(position).getMessanger_Date());
-            holder.messanger_Count.setText(String.valueOf(messanger_Arraylist.get(position).getMessanger_Count()));
 
-            if(messanger_Arraylist.get(position).getMessanger_Count() == 0)
-            {
-                holder.messanger_Count.setVisibility(View.INVISIBLE);
-                holder.Messanger_List_LL.setBackgroundColor(0);
+        if(messanger_Arraylist.get(position).getFilePath().equals("NODATA")) {
+            holder.messsanger_Pic.setBackgroundResource(messanger_Arraylist.get(position).getMesssanger_Pic());
+        }
+        else
+        {
+            Glide.with(mContext).load(SaveSharedPreference.getImageUri() + messanger_Arraylist.get(position).getFilePath()).into(holder.messsanger_Pic);
+        }
+        holder.messanger_Name.setText(messanger_Arraylist.get(position).getMessanger_Name());
+        holder.messanger_Content.setText(messanger_Arraylist.get(position).getMessanger_Content());
+        holder.messanger_Date.setText(messanger_Arraylist.get(position).getMessanger_Date());
+        holder.messanger_Count.setText(String.valueOf(messanger_Arraylist.get(position).getMessanger_Count()));
+
+        if(messanger_Arraylist.get(position).getMessanger_Count() == 0)
+        {
+            holder.messanger_Count.setVisibility(View.INVISIBLE);
+            holder.Messanger_List_LL.setBackgroundColor(0);
         }else
         {
-            int messanger_Unread_Color = view.getResources().getColor(R.color.messangerList);
-            holder.Messanger_List_LL.setBackgroundColor(messanger_Unread_Color);
+//            int messanger_Unread_Color = view.getResources().getColor(R.color.messangerList);
+//            holder.Messanger_List_LL.setBackgroundColor(messanger_Unread_Color);
         }
 
         return view;
