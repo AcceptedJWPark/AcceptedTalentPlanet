@@ -19,7 +19,7 @@ import static com.accepted.acceptedtalentplanet.SaveSharedPreference.hideKeyboar
 
 public class MainActivity extends  AppCompatActivity {
 
-    public String email;
+    public String email, phone;
     private Context mContext;
     private EditText et_Password;
 
@@ -41,6 +41,7 @@ public class MainActivity extends  AppCompatActivity {
 
         Intent intent = getIntent();
         email = intent.getStringExtra("email");
+        phone = intent.getStringExtra("phone");
 
         et_Password = (EditText)findViewById(R.id.et_Password_pw_join) ;
         et_Password.setOnFocusChangeListener(new View.OnFocusChangeListener() {
@@ -76,6 +77,7 @@ public class MainActivity extends  AppCompatActivity {
         {
             Intent intent = new Intent(this, com.accepted.acceptedtalentplanet.Join.Name.MainActivity.class);
             intent.putExtra("email", email);
+            intent.putExtra("phone", phone);
             intent.putExtra("pw", et_Password.getText().toString());
             startActivity(intent);
         }
