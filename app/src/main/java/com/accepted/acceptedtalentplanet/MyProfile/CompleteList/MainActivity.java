@@ -6,16 +6,18 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.TextView;
 
+import com.accepted.acceptedtalentplanet.R;
+import com.accepted.acceptedtalentplanet.SaveSharedPreference;
+import com.accepted.acceptedtalentplanet.VolleySingleton;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.StringRequest;
-import com.accepted.acceptedtalentplanet.R;
-import com.accepted.acceptedtalentplanet.SaveSharedPreference;
-import com.accepted.acceptedtalentplanet.VolleySingleton;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -56,17 +58,20 @@ public class MainActivity extends AppCompatActivity {
         }else {
             setContentView(R.layout.myprofile_completelist_activity);
 
-
-            listView = (ListView) findViewById(R.id.listView_CompleteList_MyProfile);
-
-            getPointHistory();
-            ll_PreContainer = (LinearLayout) findViewById(R.id.ll_PreContainer_CompleteList_MyProfile);
-            ll_PreContainer.setOnClickListener(new View.OnClickListener() {
+            ((ImageView)findViewById(R.id.iv_leftBtn_Toolbar)).setImageResource(R.drawable.icon_backbtn);
+            ((ImageView)findViewById(R.id.iv_leftBtn_Toolbar)).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     finish();
                 }
             });
+            ((ImageView)findViewById(R.id.iv_RightBtn_Toolbar)).setVisibility(View.GONE);
+            ((TextView) findViewById(R.id.tv_toolbarTitle)).setText("포인트 사용 내역");
+
+
+            listView = (ListView) findViewById(R.id.listView_CompleteList_MyProfile);
+
+            getPointHistory();
         }
 
     }

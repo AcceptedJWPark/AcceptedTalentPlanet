@@ -74,13 +74,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
-        ll_PreContainer = (LinearLayout) findViewById(R.id.ll_PreContainer_Manual);
-        ll_PreContainer.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
 
         tv_MyProfile.setOnClickListener(new View.OnClickListener() {
             @Override

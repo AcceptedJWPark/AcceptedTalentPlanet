@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    android:id="@+id/CompleteList_WholeLL"
+<LinearLayout android:id="@+id/CompleteList_WholeLL"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
@@ -9,64 +8,31 @@
     android:weightSum="24"
     android:clickable="true"
     android:focusableInTouchMode="true"
-    >
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <LinearLayout
-        android:id="@+id/ll_Toolbar_Question"
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/customerservice_toolbar"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1.5"
-        android:gravity="center"
-        android:background="@color/toolbarcolor_background"
+        android:layout_height="40dp"
+        android:contentInsetStart="0dp"
+        android:contentInsetLeft="0dp"
+        app:contentInsetLeft="0dp"
+        app:contentInsetStart="0dp"
+        android:padding="0dp"
+        android:fitsSystemWindows="true"
         >
+        <include
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            layout="@layout/toolbarlayout"/>
+    </android.support.v7.widget.Toolbar>
 
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:paddingLeft="15dp"
-            android:paddingRight="15dp"
-            >
-
-            <LinearLayout
-                android:id="@+id/ll_PreContainer_CompleteList_MyProfile"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                >
-
-                <ImageView
-                    android:layout_width="@dimen/Toolbar_Pre_Img"
-                    android:layout_height="@dimen/Toolbar_Pre_Img"
-                    android:textColor="@color/toolbarcolor_txtandimage"
-                    android:src="@drawable/icon_backbtn"
-                    android:textSize="@dimen/Toolbar_Pre_Txt"
-                    />
-
-
-            </LinearLayout>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="포인트 사용 내역"
-                android:textSize="@dimen/ToolbarTxt"
-                android:gravity="center"
-                android:layout_centerInParent="true"
-                android:textColor="@color/toolbarcolor_txtandimage"
-                />
-
-        </RelativeLayout>
-
-
-    </LinearLayout>
 
 
     <ListView
         android:id="@+id/listView_CompleteList_MyProfile"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="22.5"
+        android:layout_height="match_parent"
         android:layout_marginRight="5dp"
         android:layout_marginLeft="5dp"
         >

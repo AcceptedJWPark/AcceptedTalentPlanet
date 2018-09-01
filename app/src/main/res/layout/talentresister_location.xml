@@ -16,7 +16,9 @@
     <LinearLayout
         android:id="@+id/ll_TxtContainer_TalentResister"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
         android:gravity="center_vertical"
         android:orientation="vertical">
 
@@ -28,13 +30,13 @@
             android:gravity="center"
             android:text="&quot;재능 공유 장소를 입력해주세요.&quot;"
             android:textColor="@color/textColor_txtpage"
-            android:textSize="@dimen/Page_Txt" />
+            android:textSize="@dimen/SubTxt" />
 
     </LinearLayout>
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="0.5dp"
+        android:layout_height="1dp"
         android:background="@color/textColor_subject"
         />
 
@@ -47,7 +49,7 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="0.5dp"
+        android:layout_height="1dp"
         android:background="@color/textColor_subject"
         />
 

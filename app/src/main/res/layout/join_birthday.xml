@@ -14,7 +14,7 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="@dimen/Height40dp"
             android:gravity="center_vertical"
             >
 
@@ -27,8 +27,8 @@
 
         <ImageView
             android:id="@+id/preImg"
-            android:layout_width="@dimen/Toolbar_Pre_Img"
-            android:layout_height="@dimen/Toolbar_Pre_Img"
+            android:layout_width="@dimen/Toolbar_Img"
+            android:layout_height="@dimen/Toolbar_Img"
             android:src="@drawable/icon_backbtn_join"
             android:layout_marginRight="5dp"
             android:layout_alignTop="@+id/textView"
@@ -39,7 +39,7 @@
             android:layout_height="wrap_content"
             android:layout_toRightOf="@+id/preImg"
             android:text="성별"
-            android:textSize="@dimen/Toolbar_Pre_Txt"
+            android:textSize="@dimen/MainTxt"
             android:textColor="@color/textColor_normal"
             android:id="@+id/textView" />
             </LinearLayout>
@@ -48,10 +48,12 @@
 
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="20dp"
             android:gravity="center"
-            android:textSize="@dimen/Page_Txt"
+            android:textSize="@dimen/SubTxt"
             android:textColor="@color/textColor_txtpage"
             android:text="&quot;생년월일을 입력해주세요!&quot;"
             />
@@ -75,20 +77,20 @@
             android:hint="YYYY"
             android:gravity="center"
             android:inputType="number"
-            android:textSize="@dimen/Edit_Hint" />
+            android:textSize="@dimen/AdditionTxt" />
 
         <EditText
             android:id="@+id/et_Month_birth_Join"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:background="@drawable/bgr_inputbox"
-            android:layout_marginLeft="@dimen/Margin_et"
-            android:layout_marginRight="@dimen/Margin_et"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:layout_weight="1"
             android:hint="MM"
             android:gravity="center"
             android:inputType="number"
-            android:textSize="@dimen/Edit_Hint"
+            android:textSize="@dimen/AdditionTxt"
             />
 
         <EditText
@@ -100,7 +102,7 @@
             android:hint="DD"
             android:gravity="center"
             android:inputType="number"
-            android:textSize="@dimen/Edit_Hint"
+            android:textSize="@dimen/AdditionTxt"
             />
 
         <LinearLayout
@@ -108,7 +110,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1.2"
             android:gravity="center"
-            android:layout_marginLeft="@dimen/Margin_et"
+            android:layout_marginLeft="10dp"
             >
         <CheckBox
             android:id="@+id/Join_BirthDayNoShowCheck"
@@ -116,7 +118,7 @@
             android:layout_height="wrap_content"
             android:text="비공개"
             android:textColor="@color/textColor_normal"
-            android:textSize="@dimen/CheckBox_Txt"
+            android:textSize="@dimen/SubTxt"
             android:layout_gravity="center"
             android:gravity="center"
             />
@@ -135,7 +137,7 @@
         android:background="@drawable/bgr_bigbtn"
         android:onClick="goRegist"
         android:text="가입 완료"
-        android:textSize="@dimen/BigBtn"
+        android:textSize="@dimen/MainTxt"
         android:textColor="@color/textcolor_bigbtn"
         />
 

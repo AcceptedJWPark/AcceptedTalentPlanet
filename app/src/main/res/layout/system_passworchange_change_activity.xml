@@ -15,10 +15,12 @@
     <TextView
         android:id="@+id/tv_TitleContainer_psw_System"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="20dp"
         android:gravity="center"
-        android:textSize="@dimen/Page_Txt"
+        android:textSize="@dimen/SubTxt"
         android:textColor="@color/textColor_txtpage"
         android:text="&quot;기존 비밀번호와 새로운 비밀번호를 입력해주세요.&quot;"
         />
@@ -27,11 +29,9 @@
     <LinearLayout
         android:id="@+id/ll_NewPswContainer_Old_System"
         android:layout_width="match_parent"
-        android:layout_height="45dp"
+        android:layout_height="40dp"
         android:layout_marginLeft="70dp"
         android:layout_marginRight="70dp"
-        android:paddingTop="@dimen/Margin_et"
-        android:paddingBottom="@dimen/Margin_et"
         android:orientation="horizontal">
 
         <EditText
@@ -42,23 +42,18 @@
             android:background="@drawable/bgr_inputbox"
             android:hint="기존 비밀번호 입력"
             android:inputType="textPassword"
-            android:textSize="@dimen/Edit_Hint" />
+            android:textSize="@dimen/AdditionTxt" />
 
     </LinearLayout>
 
-    <View
-        android:id="@+id/trashView1_psw_System"
-        android:layout_width="match_parent"
-        android:layout_height="10dp"/>
 
     <LinearLayout
         android:id="@+id/ll_NewPswContainer_New_System"
         android:layout_width="match_parent"
-        android:layout_height="45dp"
+        android:layout_height="40dp"
         android:layout_marginLeft="70dp"
         android:layout_marginRight="70dp"
-        android:paddingTop="@dimen/Margin_et"
-        android:paddingBottom="@dimen/Margin_et"
+        android:layout_marginTop="10dp"
         android:orientation="horizontal">
 
         <EditText
@@ -69,24 +64,21 @@
             android:paddingLeft="10dp"
             android:background="@drawable/bgr_inputbox"
             android:inputType="textPassword"
-            android:textSize="@dimen/Edit_Hint" />
+            android:textSize="@dimen/AdditionTxt" />
 
     </LinearLayout>
 
-    <View
-        android:id="@+id/trashView2_psw_System"
-        android:layout_width="match_parent"
-        android:layout_height="10dp"/>
 
 
     <Button
         android:id="@+id/btn_Next_PasswordChange_System"
         android:layout_width="match_parent"
         android:layout_height="30dp"
+        android:layout_marginTop="20dp"
         android:layout_marginLeft="70dp"
         android:layout_marginRight="70dp"
         android:text="변경 완료"
-        android:textSize="@dimen/BigBtn"
+        android:textSize="@dimen/MainTxt"
         android:textColor="@color/textcolor_bigbtn"
         android:background="@drawable/bgr_bigbtn"
         />

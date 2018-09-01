@@ -31,7 +31,7 @@
             android:gravity="center"
             android:textColor="@color/textColor_txtpage"
             android:text="&quot;입력한 키워드를 통해 재능 매칭이 됩니다. (3개 필수 입력)&quot;"
-            android:textSize="@dimen/Page_Txt"
+            android:textSize="@dimen/SubTxt"
             />
 
         <TextView
@@ -42,7 +42,7 @@
             android:textColor="@color/textColor_object"
             android:text="Ex) 기타,  기타 연주,  기타 독학"
             android:layout_gravity="center"
-            android:textSize="@dimen/Page_Txt_Example"
+            android:textSize="@dimen/AdditionTxt"
             />
 
     </LinearLayout>
@@ -64,7 +64,7 @@
             android:id="@+id/et_Talent_TalentRegister"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:textSize="@dimen/Edit_Hint"
+            android:textSize="@dimen/AdditionTxt"
             android:paddingLeft="10dp"
             android:maxLines="1"
             android:hint="재능 입력"
@@ -95,7 +95,7 @@
                 android:layout_marginBottom="10dp"
                 android:text="등록"
                 android:textColor="@color/textcolor_smallbtn"
-                android:textSize="@dimen/ListView_Btn"
+                android:textSize="@dimen/MainTxt"
                 />
         </LinearLayout>
     </LinearLayout>
@@ -108,7 +108,7 @@
             android:layout_height="wrap_content"
             android:dividerHeight="10dp"
             android:divider="#ffffff"
-            android:layout_marginBottom="@dimen/Margin_btn"
+            android:layout_marginBottom="10dp"
             android:layout_marginLeft="80dp"
             android:layout_marginRight="80dp"
             >
@@ -123,7 +123,7 @@
         android:onClick="goNext"
         android:text="다 음"
         android:textAllCaps="false"
-        android:textSize="@dimen/BigBtn"
+        android:textSize="@dimen/MainTxt"
         android:textColor="@color/textcolor_bigbtn"
         android:layout_marginLeft="80dp"
         android:layout_marginRight="80dp"

@@ -43,7 +43,7 @@
                         android:background="#ffffff"
                         android:textColor="@color/textColor_normal"
                         android:textStyle="bold"
-                        android:textSize="@dimen/ListView_ChildTxt_Question"
+                        android:textSize="@dimen/SubTxt"
                         android:text="신고 대상 : "
                         />
                     <TextView
@@ -54,7 +54,7 @@
                         android:layout_marginLeft="5dp"
                         android:singleLine="true"
                         android:textColor="@color/textColor_object"
-                        android:textSize="@dimen/ListView_ChildTxt_Question"
+                        android:textSize="@dimen/SubTxt"
                         android:text="박종우님과 재능 드림 기타, 드럼, 피아노 완료의 건"
                         />
 
@@ -79,7 +79,7 @@
                         android:background="#ffffff"
                         android:textStyle="bold"
                         android:textColor="@color/textColor_normal"
-                        android:textSize="@dimen/ListView_ChildTxt_Question"
+                        android:textSize="@dimen/SubTxt"
                         android:text="신고 유형 : "
                         />
 
@@ -91,7 +91,7 @@
                         android:layout_marginLeft="5dp"
                         android:singleLine="true"
                         android:textColor="@color/textColor_object"
-                        android:textSize="@dimen/ListView_ChildTxt_Question"
+                        android:textSize="@dimen/SubTxt"
                         android:text="금품 요구"
                         />
 
@@ -116,7 +116,7 @@
                 android:background="#ffffff"
                     android:textColor="@color/textColor_normal"
                     android:textStyle="bold"
-                android:textSize="@dimen/ListView_ChildTxt_Question"
+                android:textSize="@dimen/SubTxt"
                 android:text="신고 일자 : "
                 />
 
@@ -128,7 +128,7 @@
                         android:layout_height="match_parent"
                         android:singleLine="true"
                         android:textColor="@color/textColor_object"
-                        android:textSize="@dimen/ListView_ChildTxt_Question"
+                        android:textSize="@dimen/SubTxt"
                         android:text="2017.12.11 21:32"
                         />
                 </LinearLayout>
@@ -152,7 +152,7 @@
                         android:background="#ffffff"
                         android:textColor="@color/textColor_normal"
                         android:textStyle="bold"
-                        android:textSize="@dimen/ListView_ChildTxt_Question"
+                        android:textSize="@dimen/SubTxt"
                         android:text="신고 내용 : "
                         />
 
@@ -164,7 +164,7 @@
                         android:layout_height="match_parent"
                         android:textColor="@color/textColor_object"
                         android:lineSpacingExtra="10dp"
-                        android:textSize="@dimen/ListView_ChildTxt_Question"
+                        android:textSize="@dimen/SubTxt"
                         android:text="박종우님과 재 드림 기타, 드럼, 종우님과 재 드림 기타, 드럼, 피, 드럼, 피아노 완료의 건"
                         />
                 </LinearLayout>
@@ -175,8 +175,8 @@
 
             <LinearLayout
                 android:gravity="center|left"
-                android:paddingTop="@dimen/Margin_btn"
-                android:paddingBottom="@dimen/Margin_btn"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
                 android:paddingLeft="20dp"
                 android:paddingRight="20dp"
                 android:layout_width="match_parent"
@@ -192,7 +192,7 @@
                     android:layout_height="match_parent"
                     android:lineSpacingExtra="10dp"
                     android:textColor="@color/textColor_txtpage"
-                    android:textSize="@dimen/ListView_ChildTxt_Question"
+                    android:textSize="@dimen/SubTxt"
                     android:text="박종우님과 재 드림 기타, 드럼, 종우님과 재 드림 기타, 드럼, 피, 드럼, 피아노 완료의 건"
                     />
 

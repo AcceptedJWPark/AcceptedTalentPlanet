@@ -21,8 +21,7 @@
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1.5"
+            android:layout_height="40dp"
             android:contentInsetStart="0dp"
             android:contentInsetLeft="0dp"
             app:contentInsetLeft="0dp"
@@ -39,12 +38,12 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1.08"
+            android:layout_weight="1"
             android:paddingLeft="15dp"
             android:textStyle="bold"
             android:gravity="center_vertical"
             android:text="알람 설정"
-            android:textSize="@dimen/Divider"
+            android:textSize="@dimen/SubTxt"
             android:textColor="@color/textcolor_devider"
             android:background="@drawable/brg_divider"/>
 
@@ -53,7 +52,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="2.02"
+            android:layout_weight="2.5"
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
             android:orientation="horizontal"
@@ -67,7 +66,7 @@
                     android:gravity="center_vertical"
                     android:textColor="@color/textColor_subject"
                     android:text="Message 알람 설정"
-                    android:textSize="@dimen/List_Title"
+                    android:textSize="@dimen/SubTxt"
                     />
 
             <Switch
@@ -79,7 +78,7 @@
                 android:gravity="center"
                 android:textColor="@color/textColor_subject"
                 android:text="켜짐"
-                android:textSize="@dimen/List_Title"
+                android:textSize="@dimen/SubTxt"
                 android:textOff="꺼짐"
                 android:textOn="켜짐"
                 tools:checked="true" />
@@ -88,14 +87,13 @@
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.05"
+            android:layout_height="1dp"
             android:background="#f2f2f2"/>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="2.02"
+            android:layout_weight="2.5"
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
             android:orientation="horizontal"
@@ -109,7 +107,7 @@
                 android:gravity="center_vertical"
                 android:textColor="@color/textColor_subject"
                 android:text="재능상태 알람 설정"
-                android:textSize="@dimen/List_Title"
+                android:textSize="@dimen/SubTxt"
                 />
 
             <Switch
@@ -121,7 +119,7 @@
                 android:gravity="center"
                 android:textColor="@color/textColor_subject"
                 android:text="켜짐"
-                android:textSize="@dimen/List_Title"
+                android:textSize="@dimen/SubTxt"
                 android:textOff="꺼짐"
                 android:textOn="켜짐"
                 tools:checked="true" />
@@ -130,14 +128,13 @@
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.05"
+            android:layout_height="1dp"
             android:background="#f2f2f2"/>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="2.02"
+            android:layout_weight="2.5"
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
             android:orientation="horizontal"
@@ -150,7 +147,7 @@
                 android:layout_weight="7.5"
                 android:gravity="center_vertical"
                 android:text="답변여부 알람 설정"
-                android:textSize="@dimen/List_Title"
+                android:textSize="@dimen/SubTxt"
                 android:textColor="@color/textColor_subject"
                 />
 
@@ -163,7 +160,7 @@
                 android:gravity="center"
                 android:textColor="@color/textColor_subject"
                 android:text="켜짐"
-                android:textSize="@dimen/List_Title"
+                android:textSize="@dimen/SubTxt"
                 android:textOff="꺼짐"
                 android:textOn="켜짐"
                 tools:checked="true" />
@@ -180,19 +177,19 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1.08"
+            android:layout_weight="1"
             android:gravity="center_vertical"
             android:text="계정 설정"
             android:paddingLeft="15dp"
             android:textColor="@color/textcolor_devider"
             android:textStyle="bold"
-            android:textSize="@dimen/Divider"
+            android:textSize="@dimen/SubTxt"
             android:background="@drawable/brg_divider"/>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="2.02"
+            android:layout_weight="2.5"
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
             android:orientation="horizontal"
@@ -207,7 +204,7 @@
                 android:gravity="center_vertical"
                 android:text="비밀번호 변경"
                 android:textColor="@color/textColor_subject"
-                android:textSize="@dimen/List_Title"
+                android:textSize="@dimen/SubTxt"
                 />
 
 
@@ -232,14 +229,13 @@
         <Button
             android:id="@+id/btn_Save_System"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:layout_marginTop="@dimen/Margin_btn"
+            android:layout_height="30dp"
+            android:layout_marginTop="20dp"
             android:layout_marginLeft="120dp"
             android:layout_marginRight="120dp"
             android:text="저장 하기"
             android:textColor="@color/textcolor_bigbtn"
-            android:textSize="@dimen/BigBtn"
+            android:textSize="@dimen/MainTxt"
             android:background="@drawable/bgr_bigbtn"
             />
 

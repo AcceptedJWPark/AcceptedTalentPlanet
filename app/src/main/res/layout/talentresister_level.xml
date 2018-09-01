@@ -12,8 +12,9 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="70dp"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:layout_marginBottom="30dp"
         android:layout_marginTop="30dp"
         >
 
@@ -25,7 +26,7 @@
             android:text="&quot;입력한 재능의 본인 수준을 선택해주세요.&quot;"
             android:layout_gravity="center_horizontal"
             android:textColor="@color/textColor_txtpage"
-            android:textSize="@dimen/Page_Txt"
+            android:textSize="@dimen/SubTxt"
             />
 
     </LinearLayout>
@@ -59,7 +60,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:textColor="@color/textColor_normal"
-                android:textSize="@dimen/CheckBox_Txt"
+                android:textSize="@dimen/SubTxt"
                 android:text="시작 단계"
                 />
         </LinearLayout>
@@ -79,7 +80,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:textSize="@dimen/CheckBox_Txt"
+                android:textSize="@dimen/SubTxt"
                 android:text="초급 수준"
                 />
         </LinearLayout>
@@ -100,7 +101,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:textColor="@color/textColor_normal"
-                android:textSize="@dimen/CheckBox_Txt"
+                android:textSize="@dimen/SubTxt"
                 android:text="중급 수준"
                 />
         </LinearLayout>
@@ -120,7 +121,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:textColor="@color/textColor_normal"
-                android:textSize="@dimen/CheckBox_Txt"
+                android:textSize="@dimen/SubTxt"
                 android:text="상급 수준"
                 />
         </LinearLayout>
@@ -140,7 +141,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:textColor="@color/textColor_normal"
-                android:textSize="@dimen/CheckBox_Txt"
+                android:textSize="@dimen/SubTxt"
                 android:text="전문가"
                 />
         </LinearLayout>
@@ -158,7 +159,7 @@
         android:background="@drawable/bgr_bigbtn"
         android:onClick="goNext"
         android:text="다 음"
-        android:textSize="@dimen/BigBtn"
+        android:textSize="@dimen/MainTxt"
         android:textAllCaps="false"
         android:textColor="@color/textcolor_bigbtn"
         />

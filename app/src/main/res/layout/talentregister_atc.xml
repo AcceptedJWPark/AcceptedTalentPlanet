@@ -2,12 +2,12 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:gravity="center"
-    android:paddingTop="@dimen/Margin_btn"
-    android:paddingBottom="@dimen/Margin_btn"
+    android:paddingTop="10dp"
+    android:paddingBottom="10dp"
     android:background="#fafafa"
     android:textColor="@color/textColor_normal"
     android:textStyle="bold"
-    android:textSize="@dimen/Page_ItemSubTitle"
+    android:textSize="@dimen/SubTxt"
     xmlns:android="http://schemas.android.com/apk/res/android" />
 
 

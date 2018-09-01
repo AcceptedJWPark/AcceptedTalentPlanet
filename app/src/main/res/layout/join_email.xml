@@ -27,8 +27,8 @@
             >
             <ImageView
                 android:id="@+id/preImg"
-                android:layout_width="@dimen/Toolbar_Pre_Img"
-                android:layout_height="@dimen/Toolbar_Pre_Img"
+                android:layout_width="@dimen/Toolbar_Img"
+                android:layout_height="@dimen/Toolbar_Img"
                 android:src="@drawable/icon_backbtn_join"
                 android:layout_marginRight="5dp"
                 android:layout_alignTop="@+id/textView"
@@ -39,7 +39,7 @@
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@+id/preImg"
                 android:text="휴대폰 인증"
-                android:textSize="@dimen/Toolbar_Pre_Txt"
+                android:textSize="@dimen/MainTxt"
                 android:textColor="@color/textColor_normal"
                 android:id="@+id/textView" />
         </LinearLayout>
@@ -48,17 +48,19 @@
 
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:gravity="center"
             android:textColor="@color/textColor_txtpage"
-            android:textSize="@dimen/Page_Txt"
+            android:textSize="@dimen/MainTxt"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="20dp"
             android:text="&quot;ID로 사용 될 E-mail을 입력해주세요!&quot;"
             />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="45dp"
+        android:layout_height="@dimen/Height40dp"
         android:layout_marginLeft="50dp"
         android:layout_marginRight="50dp"
         android:orientation="horizontal">
@@ -72,7 +74,7 @@
             android:hint="E-mail"
             android:paddingLeft="10dp"
             android:inputType="textEmailAddress"
-            android:textSize="@dimen/Edit_Hint" />
+            android:textSize="@dimen/AdditionTxt" />
 
         <LinearLayout
             android:layout_width="0dp"
@@ -93,7 +95,7 @@
                 android:text="중복 확인"
                 android:textAllCaps="false"
                 android:textColor="@color/textcolor_bigbtn"
-                android:textSize="@dimen/ListView_Btn"
+                android:textSize="@dimen/MainTxt"
                 android:onClick="emailCheck"
                 android:includeFontPadding="false"
                 />
@@ -119,7 +121,7 @@
         android:visibility="visible"
         android:textColor="@color/textcolor_bigbtn"
         android:textAllCaps="false"
-        android:textSize="@dimen/BigBtn"
+        android:textSize="@dimen/MainTxt"
         />
 
 

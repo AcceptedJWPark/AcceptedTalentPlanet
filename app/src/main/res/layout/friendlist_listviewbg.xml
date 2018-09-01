@@ -57,7 +57,7 @@
             android:layout_height="match_parent"
             android:gravity="center|left"
             android:text="박종우"
-            android:textSize="@dimen/List_Title"
+            android:textSize="@dimen/MainTxt"
             android:textColor="@color/textcolor_nameortitle"
             android:textStyle="bold" />
 
@@ -67,7 +67,7 @@
             android:layout_height="match_parent"
             android:gravity="center|left"
             android:text=" 님의 재능은 현재 대기 중입니다."
-            android:textSize="@dimen/List_SubTitle"
+            android:textSize="@dimen/SubTxt"
             android:textColor="@color/textColor_object"
             />
         </LinearLayout>
@@ -91,7 +91,7 @@
                 android:singleLine="true"
                 android:text="Guitar"
                 android:textColor="@color/textColor_subject"
-                android:textSize="@dimen/ListView_SecondLine"
+                android:textSize="@dimen/SubTxt"
                 android:textStyle="bold" />
 
             <TextView
@@ -101,7 +101,7 @@
                 android:text="Vocal"
                 android:gravity="center"
                 android:textColor="@color/textColor_subject"
-                android:textSize="@dimen/ListView_SecondLine"
+                android:textSize="@dimen/SubTxt"
                 android:singleLine="true"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
@@ -120,7 +120,7 @@
                 android:text="Dance"
                 android:gravity="center"
                 android:textColor="@color/textColor_subject"
-                android:textSize="@dimen/ListView_SecondLine"
+                android:textSize="@dimen/SubTxt"
                 android:singleLine="true"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"

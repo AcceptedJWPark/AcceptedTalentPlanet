@@ -81,25 +81,9 @@ public class MainActivity extends AppCompatActivity {
             ((TextView) findViewById(R.id.tv_toolbarTitle)).setText("나의 문의내역");
 
 
-            ll_PreContainer = (LinearLayout) findViewById(R.id.ll_PreContainer_Question);
-            ll_PreContainer.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    finish();
-                }
-            });
-
-
 
             expandableListView = (ExpandableListView) this.findViewById(R.id.expandableListView_QuestionList);
             getQuestionList();
-            ll_PreContainer = (LinearLayout) findViewById(R.id.ll_PreContainer_QuestionList);
-            ll_PreContainer.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    finish();
-                }
-            });
 
             expandableListView.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
                 int lastClickedPosition = 0;

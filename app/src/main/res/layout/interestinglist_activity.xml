@@ -1,74 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:weightSum="24"
     android:background="#ffffff"
-    android:orientation="vertical"
-    >
+    android:orientation="vertical">
 
-    <LinearLayout
-        android:id="@+id/ll_Toolbar_Question"
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/customerservice_toolbar"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1.5"
-        android:gravity="center"
-        android:background="@color/toolbarcolor_background"
+        android:layout_height="40dp"
+        android:contentInsetStart="0dp"
+        android:contentInsetLeft="0dp"
+        app:contentInsetLeft="0dp"
+        app:contentInsetStart="0dp"
+        android:padding="0dp"
+        android:fitsSystemWindows="true"
         >
-
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:paddingLeft="15dp"
-            android:paddingRight="15dp"
-            >
-
-            <LinearLayout
-                android:id="@+id/ll_PreContainer_InterestingList"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                >
-
-                <ImageView
-                    android:layout_width="@dimen/Toolbar_Pre_Img"
-                    android:layout_height="@dimen/Toolbar_Pre_Img"
-                    android:textColor="@color/toolbarcolor_txtandimage"
-                    android:src="@drawable/icon_backbtn"
-                    />
-
-
-            </LinearLayout>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Shall we List"
-                android:textSize="@dimen/ToolbarTxt"
-                android:gravity="center"
-                android:layout_centerInParent="true"
-                android:textColor="@color/toolbarcolor_txtandimage"
-                />
-
-        </RelativeLayout>
-
-    </LinearLayout>
-
-
+        <include
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            layout="@layout/toolbarlayout"/>
+    </android.support.v7.widget.Toolbar>
 
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:layout_marginTop="@dimen/Margin_btn"
-        android:layout_marginBottom="@dimen/Margin_btn"
+        android:layout_height="@dimen/clickedContainer"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
-        android:paddingTop="1dp"
-        android:paddingBottom="1dp"
         android:gravity="center"
         >
 
@@ -81,7 +42,7 @@
             android:textColor="@color/textcolor_giveortake_clicked"
             android:background="@drawable/bgr_giveortake_clicked"
             android:text="재능 드림"
-            android:textSize="@dimen/GiveorTakeBtn"
+            android:textSize="@dimen/MainTxt"
             />
 
         <Button
@@ -92,26 +53,26 @@
             android:textColor="@color/textcolor_giveortake_unclicked"
             android:background="@drawable/bgr_giveortake_unclicked"
             android:text="관심 재능"
-            android:textSize="@dimen/GiveorTakeBtn"
+            android:textSize="@dimen/MainTxt"
             />
     </LinearLayout>
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_height="wrap_content"
         android:text="재능 공유 진행 시 모든 Shall we List는 삭제 됩니다."
         android:gravity="center"
-        android:textSize="@dimen/Page_Txt"
+        android:textSize="@dimen/SubTxt"
         android:textColor="@color/textColor_txtpage"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
         />
 
 
     <ListView
         android:id="@+id/lv_InterestingList"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="20.86"
+        android:layout_height="match_parent"
         >
     </ListView>
 

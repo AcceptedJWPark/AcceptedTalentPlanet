@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AbsListView;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ScrollView;
@@ -23,13 +24,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.accepted.acceptedtalentplanet.MyFirebaseMessagingService;
+import com.accepted.acceptedtalentplanet.R;
 import com.accepted.acceptedtalentplanet.SaveSharedPreference;
 import com.accepted.acceptedtalentplanet.VolleySingleton;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.StringRequest;
-import com.accepted.acceptedtalentplanet.R;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -89,19 +90,21 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
         mContext = getApplicationContext();
         receiverID = getIntent().getStringExtra("userID");
         roomID = getIntent().getIntExtra("roomID", 0);
-        tv_User = (TextView)findViewById(R.id.tv_User_Chatting_Messanger);
-        tv_User.setText(getIntent().getStringExtra("userName"));
 
-        Log.d("receiverID : ",receiverID);
-        Log.d("receiverID : ", String.valueOf(roomID));
-        Log.d("receiverID : ",getIntent().getStringExtra("userName"));
-
-        ((LinearLayout)findViewById(R.id.ll_PreContainer_Chatting_Messanger)).setOnClickListener(new View.OnClickListener() {
+        ((ImageView)findViewById(R.id.iv_leftBtn_Toolbar)).setImageResource(R.drawable.icon_backbtn);
+        ((ImageView)findViewById(R.id.iv_leftBtn_Toolbar)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
             }
         });
+        ((ImageView)findViewById(R.id.iv_RightBtn_Toolbar)).setVisibility(View.GONE);
+        ((TextView) findViewById(R.id.tv_toolbarTitle)).setText(getIntent().getStringExtra("userName"));
+
+
+        Log.d("receiverID : ",receiverID);
+        Log.d("receiverID : ", String.valueOf(roomID));
+        Log.d("receiverID : ",getIntent().getStringExtra("userName"));
 
         String dbName = "/accepted.db";
         try {

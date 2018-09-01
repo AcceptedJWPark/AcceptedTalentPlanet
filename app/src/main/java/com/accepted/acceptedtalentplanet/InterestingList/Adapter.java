@@ -2,20 +2,17 @@ package com.accepted.acceptedtalentplanet.InterestingList;
 
 import android.content.Context;
 import android.content.Intent;
-import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
 import com.accepted.acceptedtalentplanet.InterestingList.Popup.MainActivity;
 import com.accepted.acceptedtalentplanet.R;
 import com.accepted.acceptedtalentplanet.SaveSharedPreference;
+import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 
@@ -71,49 +68,6 @@ public class Adapter extends BaseAdapter {
             holder.iv_GiveTakeIcon = view.findViewById(R.id.iv_GiveTakeIcon_InterestingList);
             holder.tv_GiveTakeTxt = view.findViewById(R.id.tv_GiveTakeTxt_InterestingList);
 
-            holder.ll_pictureContainer = view.findViewById(R.id.ll_pictureContainer_InterestingList);
-            holder.ll_txtContainer = view.findViewById(R.id.ll_txtContainer_InterestingList);
-            holder.ll_iconContainer = view.findViewById(R.id.ll_iconContainer_InterestingList);
-            holder.trashView1 = view.findViewById(R.id.trashView1_InterestingList);
-            holder.trashView2 = view.findViewById(R.id.trashView2_InterestingList);
-            holder.trashView3 = view.findViewById(R.id.trashView3_InterestingList);
-            holder.trashView4 = view.findViewById(R.id.trashView4_InterestingList);
-
-
-            DisplayMetrics metrics = new DisplayMetrics();
-            WindowManager windowManager = (WindowManager) mContext.getSystemService(Context.WINDOW_SERVICE);
-            windowManager.getDefaultDisplay().getMetrics(metrics);
-            int Interesting_ListView_height = (int) (metrics.heightPixels * 0.1);
-            int Interesting_ListView_width = metrics.widthPixels;
-
-            ViewGroup.LayoutParams params1 = view.getLayoutParams();
-            ViewGroup.LayoutParams params2 = holder.ll_pictureContainer.getLayoutParams();
-            ViewGroup.LayoutParams params3 = holder.ll_txtContainer.getLayoutParams();
-            ViewGroup.LayoutParams params4 = holder.ll_iconContainer.getLayoutParams();
-            ViewGroup.LayoutParams params5 = holder.trashView1.getLayoutParams();
-            ViewGroup.LayoutParams params6 = holder.trashView2.getLayoutParams();
-            ViewGroup.LayoutParams params7 = holder.trashView3.getLayoutParams();
-            ViewGroup.LayoutParams params8 = holder.trashView4.getLayoutParams();
-
-            params1.height = Interesting_ListView_height;
-            params2.width = (int) (Interesting_ListView_width * 0.13);
-            params2.height = (int) (Interesting_ListView_width * 0.13);
-            params3.width = (int) (Interesting_ListView_width * 0.6);
-            params4.width = (int) (Interesting_ListView_width * 0.13);
-            params5.width = (int) (Interesting_ListView_width * 0.04);
-            params6.width = (int) (Interesting_ListView_width * 0.04);
-            params7.width = (int) (Interesting_ListView_width * 0.04);
-            params8.width = (int) (Interesting_ListView_width * 0.04);
-
-
-            view.setLayoutParams(params1);
-            holder.ll_pictureContainer.setLayoutParams(params2);
-            holder.ll_txtContainer.setLayoutParams(params3);
-            holder.ll_iconContainer.setLayoutParams(params4);
-            holder.trashView1.setLayoutParams(params5);
-            holder.trashView2.setLayoutParams(params6);
-            holder.trashView3.setLayoutParams(params7);
-            holder.trashView4.setLayoutParams(params8);
 
 
             view.setOnClickListener(new View.OnClickListener() {
@@ -161,15 +115,6 @@ public class Adapter extends BaseAdapter {
 
         ImageView iv_GiveTakeIcon;
         TextView tv_GiveTakeTxt;
-
-        LinearLayout ll_pictureContainer;
-        LinearLayout ll_txtContainer;
-        LinearLayout ll_iconContainer;
-
-        View trashView1;
-        View trashView2;
-        View trashView3;
-        View trashView4;
     }
 
 

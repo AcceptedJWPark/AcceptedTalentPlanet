@@ -17,8 +17,8 @@
 
         <ImageView
             android:id="@+id/iv_Close_pictureExpand"
-            android:layout_width="@dimen/Toolbar_Pre_Img"
-            android:layout_height="@dimen/Toolbar_Pre_Img"
+            android:layout_width="@dimen/Toolbar_Img"
+            android:layout_height="@dimen/Toolbar_Img"
             android:src="@drawable/icon_close2"
 
             />

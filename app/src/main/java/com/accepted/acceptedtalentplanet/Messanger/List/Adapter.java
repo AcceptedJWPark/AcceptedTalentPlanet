@@ -7,13 +7,11 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.support.v7.app.AlertDialog;
-import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -21,6 +19,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.accepted.acceptedtalentplanet.R;
 import com.accepted.acceptedtalentplanet.SaveSharedPreference;
 import com.accepted.acceptedtalentplanet.TalentSharing.Popup.MainActivity;
 import com.accepted.acceptedtalentplanet.VolleySingleton;
@@ -29,7 +28,6 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.StringRequest;
 import com.bumptech.glide.Glide;
-import com.accepted.acceptedtalentplanet.R;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -112,49 +110,6 @@ public class Adapter extends BaseAdapter {
             holder.ll_pictureContainer = view.findViewById(R.id.ll_pictureContainer_List_Messanger);
             holder.ll_txtContainer = view.findViewById(R.id.ll_txtContainer_List_Messanger);
             holder.rl_dateContainer = view.findViewById(R.id.rl_dateContainer_List_Messanger);
-
-            holder.trashView1 = view.findViewById(R.id.trashView1_MessageList);
-            holder.trashView2 = view.findViewById(R.id.trashView2_MessageList);
-            holder.trashView3 = view.findViewById(R.id.trashView3_MessageList);
-            holder.trashView4 = view.findViewById(R.id.trashView4_MessageList);
-
-            DisplayMetrics metrics = new DisplayMetrics();
-            WindowManager windowManager = (WindowManager) mContext.getSystemService(Context.WINDOW_SERVICE);
-            windowManager.getDefaultDisplay().getMetrics(metrics);
-            int messanger_ListView_height = (int) (metrics.heightPixels*0.1);
-            int Interesting_ListView_width = metrics.widthPixels;
-
-            ViewGroup.LayoutParams params1 = view.getLayoutParams();
-            ViewGroup.LayoutParams params2 = holder.ll_pictureContainer.getLayoutParams();
-            ViewGroup.LayoutParams params3 = holder.ll_txtContainer.getLayoutParams();
-            ViewGroup.LayoutParams params4 = holder.rl_dateContainer.getLayoutParams();
-            ViewGroup.LayoutParams params5 = holder.trashView1.getLayoutParams();
-            ViewGroup.LayoutParams params6 = holder.trashView2.getLayoutParams();
-            ViewGroup.LayoutParams params7 = holder.trashView3.getLayoutParams();
-            ViewGroup.LayoutParams params8 = holder.trashView4.getLayoutParams();
-
-            params1.height = messanger_ListView_height;
-            params2.width = (int) (Interesting_ListView_width * 0.13);
-            params2.height = (int) (Interesting_ListView_width * 0.13);
-            params3.width = (int) (Interesting_ListView_width * 0.57);
-            params4.width = (int) (Interesting_ListView_width * 0.16);
-            params5.width = (int) (Interesting_ListView_width * 0.04);
-            params6.width = (int) (Interesting_ListView_width * 0.04);
-            params7.width = (int) (Interesting_ListView_width * 0.04);
-            params8.width = (int) (Interesting_ListView_width * 0.04);
-
-            view.setLayoutParams(params1);
-            holder.ll_pictureContainer.setLayoutParams(params2);
-            holder.ll_txtContainer.setLayoutParams(params3);
-            holder.rl_dateContainer.setLayoutParams(params4);
-            holder.trashView1.setLayoutParams(params5);
-            holder.trashView2.setLayoutParams(params6);
-            holder.trashView3.setLayoutParams(params7);
-            holder.trashView4.setLayoutParams(params8);
-
-
-
-
 
         view.setTag(holder);
 
@@ -291,11 +246,6 @@ public class Adapter extends BaseAdapter {
         LinearLayout ll_pictureContainer;
         LinearLayout ll_txtContainer;
         RelativeLayout rl_dateContainer;
-
-        View trashView1;
-        View trashView2;
-        View trashView3;
-        View trashView4;
     }
 
     public void getTalentID(final String userID, final View finalView) {

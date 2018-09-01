@@ -4,23 +4,18 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.DisplayMetrics;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
+import com.accepted.acceptedtalentplanet.R;
 import com.accepted.acceptedtalentplanet.SaveSharedPreference;
 import com.accepted.acceptedtalentplanet.VolleySingleton;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.StringRequest;
-import com.accepted.acceptedtalentplanet.R;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -37,12 +32,6 @@ public class MainActivity extends AppCompatActivity {
     private EditText et_NewPassword;
     private Context mContext;
     private String userID;
-
-    private LinearLayout ll_TitleContainer;
-    private TextView tv_TitleContainer;
-    private LinearLayout ll_NewPswContainer;
-    private View trashView1;
-    private View trashView2;
     private Button btn_Next;
 
 
@@ -67,12 +56,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        tv_TitleContainer = (TextView) findViewById(R.id.tv_TitleContainer_pswlost_change);
-        ll_TitleContainer = findViewById(R.id.ll_TitleContainer_pswlost_change);
-        ll_NewPswContainer = (LinearLayout) findViewById(R.id.ll_NewPswContainer_Change_PasswordLost);
-        trashView1 = findViewById(R.id.trashView1_psw_Change);
-        trashView2 = findViewById(R.id.trashView2_psw_Change);
-
 
         btn_Next = (Button)findViewById(R.id.btn_Next_Change_PasswordLost);
         btn_Next.setOnClickListener(new View.OnClickListener(){
@@ -81,34 +64,6 @@ public class MainActivity extends AppCompatActivity {
                 changePasswrord();
             }
         });
-
-
-        DisplayMetrics metrics = new DisplayMetrics();
-        WindowManager windowManager = (WindowManager) getApplicationContext().getSystemService(Context.WINDOW_SERVICE);
-        windowManager.getDefaultDisplay().getMetrics(metrics);
-
-        int Title_height = (int) (metrics.heightPixels*0.1);
-        int newPsw_height = (int) (metrics.heightPixels*0.05);
-        int trashView1_height= (int) (metrics.heightPixels*0.02);
-        int nextBtn_height= (int) (metrics.heightPixels*0.04);
-
-        ViewGroup.LayoutParams params1 = ll_TitleContainer.getLayoutParams();
-        ViewGroup.LayoutParams params2 = ll_NewPswContainer.getLayoutParams();
-        ViewGroup.LayoutParams params3 = btn_Next.getLayoutParams();
-        ViewGroup.LayoutParams params4 = trashView1.getLayoutParams();
-        ViewGroup.LayoutParams params5 = trashView2.getLayoutParams();
-
-        params1.height = Title_height;
-        params2.height = newPsw_height;
-        params3.height = nextBtn_height;
-        params4.height = trashView1_height;
-        params4.height = trashView1_height;
-
-        tv_TitleContainer.setLayoutParams(params1);
-        ll_NewPswContainer.setLayoutParams(params2);
-        btn_Next.setLayoutParams(params3);
-        trashView1.setLayoutParams(params4);
-        trashView2.setLayoutParams(params5);
 
     }
 
