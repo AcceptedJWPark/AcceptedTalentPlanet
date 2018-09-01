@@ -58,9 +58,9 @@ public class SaveSharedPreference{
     static final String PREF_USER_ID = "userid";
     static final String PREF_USER_PW = "userpw";
     static final String SERVER_IP = "https://13.209.191.97/Accepted/";
-    static final String SERVER_IP2 = "https://221.162.94.43:8443/Accepted/";
+    static final String SERVER_IP2 = "https://119.193.35.130:8443/Accepted/";
     static final String IMAGE_URI = "http://13.209.191.97/Accepted/";
-    static final String IMAGE_URI2 = "http://221.162.94.43:8080/Accepted/";
+    static final String IMAGE_URI2 = "http://119.193.35.130:8080/Accepted/";
     static final String PREF_GIVE_DATA = "giveData";
     static final String PREF_TAKE_DATA = "takeData";
     static final String PREF_GEO_POINT = "geoPoint";
@@ -307,11 +307,11 @@ public class SaveSharedPreference{
     }
 
     public static String getServerIp(){
-        return SERVER_IP;
+        return SERVER_IP2;
     }
 
     public static String getImageUri(){
-        return IMAGE_URI;
+        return IMAGE_URI2;
     }
 
     public static String getLevel(String Level) {
