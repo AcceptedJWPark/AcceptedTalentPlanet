@@ -100,7 +100,7 @@
                 android:textAllCaps="false"
                 android:textColor="@color/textcolor_bigbtn"
                 android:textSize="@dimen/MainTxt"
-                android:onClick="emailCheck"
+                android:onClick="sendSMS"
                 android:includeFontPadding="false"
                 />
 
@@ -152,7 +152,7 @@
                 android:textAllCaps="false"
                 android:textColor="@color/textcolor_bigbtn"
                 android:textSize="@dimen/MainTxt"
-                android:onClick="emailCheck"
+                android:onClick="confirmPhone"
                 android:includeFontPadding="false"
                 />
 
