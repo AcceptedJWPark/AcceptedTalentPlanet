@@ -108,6 +108,7 @@ public class MainActivity extends AppCompatActivity {
 
                     expandableListView.setAdapter(new ELVAdapter(mContext, arrayList_Parent, arrayList_Child));
 
+
                 } catch (JSONException e) {
                     e.printStackTrace();
                 } catch(Exception e){

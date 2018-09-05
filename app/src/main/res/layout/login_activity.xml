@@ -16,14 +16,14 @@
     <LinearLayout
         android:id="@+id/ll_title_Login"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="@dimen/Height150dp"
         android:orientation="vertical"
         android:gravity="center"
         >
 
             <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/Login_Logo"
+                android:layout_height="@dimen/Height50dp"
                 android:layout_centerInParent="true"
                 android:adjustViewBounds="true"
                 android:src="@drawable/bgr_logintitle"
@@ -45,13 +45,13 @@
         <EditText
             android:id="@+id/Login_ID"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="@dimen/Height40dp"
             android:hint="E-mail"
             android:paddingLeft="10dp"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="5dp"
             android:inputType="textEmailAddress"
-            android:textSize="@dimen/LogIn_Edit_Hint"
+            android:textSize="@dimen/MainTxt"
             android:background="@drawable/bgr_edittxt_box_login"
             >
         </EditText>
@@ -59,13 +59,13 @@
         <EditText
             android:id="@+id/Login_Password"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="@dimen/Height40dp"
             android:hint="Password"
             android:paddingLeft="10dp"
             android:layout_marginTop="10dp"
             android:background="@drawable/bgr_edittxt_box_login"
             android:inputType="textWebPassword"
-            android:textSize="@dimen/LogIn_Edit_Hint"
+            android:textSize="@dimen/MainTxt"
 
             />
 
@@ -95,7 +95,7 @@
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/LogIn_PageSubTxt"
+            android:textSize="@dimen/SubTxt"
             android:textColor="@color/loginMainTitle"
             android:text="회원 가입"
             />
@@ -106,7 +106,7 @@
             android:layout_weight="1"
             android:layout_height="wrap_content"
             android:gravity="right"
-            android:textSize="@dimen/LogIn_PageTxt"
+            android:textSize="@dimen/SubTxt"
             android:onClick="goRegist"
             android:text="Click here"
             android:textColor="@color/loginPasswordLost"
@@ -126,7 +126,7 @@
         android:layout_width="0dp"
         android:layout_weight="1"
         android:layout_height="wrap_content"
-        android:textSize="@dimen/LogIn_PageSubTxt"
+        android:textSize="@dimen/SubTxt"
         android:textColor="@color/loginMainTitle"
         android:text="비밀번호 찾기"
        />
@@ -135,7 +135,7 @@
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/LogIn_PageTxt"
+            android:textSize="@dimen/SubTxt"
             android:gravity="right"
             android:onClick="PasswordLost"
             android:text="Click here"
@@ -151,13 +151,15 @@
     <Button
         android:id="@+id/btn_Login_Login"
         android:textAllCaps="false"
-        android:layout_width="@dimen/Login_btn"
+        android:layout_width="match_parent"
         android:layout_height="30dp"
         android:layout_marginTop="20dp"
+        android:layout_marginLeft="100dp"
+        android:layout_marginRight="100dp"
         android:layout_gravity="center_horizontal"
         android:background="@drawable/bgr_bigbtn2"
         android:textColor="@color/textcolor_bigbtn"
-        android:textSize="@dimen/BigBtn"
+        android:textSize="@dimen/MainTxt"
         android:layout_centerHorizontal="true"
         android:onClick="loginClicked"
         android:text="로그인"
@@ -169,7 +171,7 @@
     android:layout_height="200dp"
     android:text="Accepted ⓒompany : Talent Planet 2018"
     android:gravity="center|bottom"
-    android:textSize="@dimen/Page_Txt"
+    android:textSize="@dimen/SubTxt"
     android:textColor="@color/loginMainTitle"
     android:layout_alignParentBottom="true"
         android:paddingBottom="10dp"

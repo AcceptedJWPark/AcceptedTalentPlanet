@@ -11,8 +11,9 @@ import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
-import android.widget.LinearLayout;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.accepted.acceptedtalentplanet.MyFirebaseMessagingService;
 import com.accepted.acceptedtalentplanet.R;
@@ -30,9 +31,6 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
     Adapter messanger_ArrayAdapter;
     ListView messanger_Listview;
 
-    LinearLayout MessangerList_Prebtn;
-    LinearLayout MessangerList_Deletebtn;
-
     boolean deleteBtn_Clicked;
 
     SQLiteDatabase sqliteDatabase;
@@ -45,38 +43,41 @@ public class MainActivity extends AppCompatActivity implements MyFirebaseMessagi
         setContentView(R.layout.messanger_list);
 
         mContext = getApplicationContext();
-        messanger_Listview = (ListView) findViewById(R.id.Messanger_List_ListView);
-        messanger_Listview.setAdapter(messanger_ArrayAdapter);
-        MessangerList_Deletebtn = (LinearLayout) findViewById(R.id.MessangerList_DeleteBtn);
-        MessangerList_Prebtn = (LinearLayout) findViewById(R.id.MessangerList_PreBtn);
-        MessangerList_Prebtn.setOnClickListener(new View.OnClickListener() {
+
+        ((ImageView)findViewById(R.id.iv_leftBtn_Toolbar)).setImageResource(R.drawable.icon_backbtn);
+        ((ImageView)findViewById(R.id.iv_leftBtn_Toolbar)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
             }
         });
-
-        deleteBtn_Clicked = false;
-        MessangerList_Deletebtn.setOnClickListener(new View.OnClickListener() {
+        ((ImageView)findViewById(R.id.iv_RightBtn_Toolbar)).setVisibility(View.VISIBLE);
+        ((ImageView)findViewById(R.id.iv_RightBtn_Toolbar)).setImageResource(R.drawable.icon_delete);
+        ((ImageView)findViewById(R.id.iv_RightBtn_Toolbar)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!deleteBtn_Clicked)
-                {
-                    deleteBtn_Clicked = true;
-                    messanger_Listview.setAdapter(messanger_ArrayAdapter);
-                    messanger_ArrayAdapter.switchFlag_deleteBtn(true);
-                    messanger_ArrayAdapter.notifyDataSetChanged();
+                    if(!deleteBtn_Clicked)
+                    {
+                        deleteBtn_Clicked = true;
+                        messanger_Listview.setAdapter(messanger_ArrayAdapter);
+                        messanger_ArrayAdapter.switchFlag_deleteBtn(true);
+                        messanger_ArrayAdapter.notifyDataSetChanged();
+                    }
+                    else
+                    {
+                        deleteBtn_Clicked = false;
+                        messanger_Listview.setAdapter(messanger_ArrayAdapter);
+                        messanger_ArrayAdapter.switchFlag_deleteBtn(false);
+                        messanger_ArrayAdapter.notifyDataSetChanged();
+                    }
                 }
-                else
-                {
-                    deleteBtn_Clicked = false;
-                    messanger_Listview.setAdapter(messanger_ArrayAdapter);
-                    messanger_ArrayAdapter.switchFlag_deleteBtn(false);
-                    messanger_ArrayAdapter.notifyDataSetChanged();
-                }
-            }
         });
+        ((TextView) findViewById(R.id.tv_toolbarTitle)).setText("메신저");
 
+
+        messanger_Listview = (ListView) findViewById(R.id.Messanger_List_ListView);
+        messanger_Listview.setAdapter(messanger_ArrayAdapter);
+        deleteBtn_Clicked = false;
 
         refreshChatLog();
     }

@@ -69,8 +69,8 @@
 
                 <ImageView
                     android:id="@+id/DrawerCloseImg"
-                    android:layout_width="@dimen/BigImg"
-                    android:layout_height="@dimen/BigImg"
+                    android:layout_width="@dimen/Icon30dp"
+                    android:layout_height="@dimen/Icon30dp"
                     android:adjustViewBounds="true"
                     android:layout_gravity="center"
                     android:layout_marginRight="10dp"
@@ -219,7 +219,7 @@
             <TextView
                 android:id="@+id/Icon_NewMessage"
                 android:layout_width="wrap_content"
-                android:layout_height="@dimen/Toolbar_Pre_Img"
+                android:layout_height="@dimen/Toolbar_Img"
                 android:layout_alignParentRight="true"
                 android:layout_centerInParent="true"
                 android:gravity="center"
@@ -262,7 +262,7 @@
 
             <TextView
                 android:layout_width="wrap_content"
-                android:layout_height="@dimen/Toolbar_Pre_Img"
+                android:layout_height="@dimen/Toolbar_Img"
                 android:layout_alignParentRight="true"
                 android:layout_centerInParent="true"
                 android:gravity="center"
@@ -307,8 +307,8 @@
             android:paddingLeft="20dp">
 
             <ImageView
-                android:layout_width="@dimen/MediumImg"
-                android:layout_height="@dimen/MediumImg"
+                android:layout_width="@dimen/Icon20dp"
+                android:layout_height="@dimen/Icon20dp"
                 android:layout_gravity="center_vertical"
                 android:adjustViewBounds="true"
                 android:src="@drawable/icon_logout" />

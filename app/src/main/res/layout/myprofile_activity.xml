@@ -19,7 +19,7 @@
         <android.support.v7.widget.Toolbar
             android:id="@+id/ll_Toolbar_MyProfile"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/MyProfile_Toolbar"
+            android:layout_height="40dp"
             android:contentInsetStart="0dp"
             android:contentInsetLeft="0dp"
             app:contentInsetLeft="0dp"
@@ -59,14 +59,14 @@
                 <RelativeLayout
                     android:id="@+id/rl_Container_MyProfile"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/MyProfile_Picture_Layout"
+                    android:layout_height="@dimen/Height100dp"
                     >
 
 
                     <RelativeLayout
                         android:id="@+id/rl_PictureContainer_MyProfile"
-                        android:layout_width="@dimen/Picture_Width"
-                        android:layout_height="@dimen/Picture_Height"
+                        android:layout_width="@dimen/Pic68dp"
+                        android:layout_height="@dimen/Pic68dp"
                         android:background="@drawable/bgr_picture_container"
                         android:padding="5dp"
                         android:clickable="false"
@@ -91,8 +91,8 @@
 
                     <ImageView
                         android:id="@+id/iv_PictureIcon_MyProfile"
-                        android:layout_width="@dimen/Toolbar_Img"
-                        android:layout_height="@dimen/Toolbar_Img"
+                        android:layout_width="@dimen/Icon20dp"
+                        android:layout_height="@dimen/Icon20dp"
                         android:layout_alignBottom="@+id/rl_PictureContainer_MyProfile"
                         android:layout_marginLeft="5dp"
                         android:layout_toRightOf="@+id/rl_PictureContainer_MyProfile"
@@ -106,12 +106,12 @@
                 <TextView
                     android:id="@+id/tv_Divider1_MyProfile"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/MyProfile_Divider"
+                    android:layout_height="@dimen/Height20dp"
                     android:background="@drawable/brg_divider"
                     android:textColor="@color/textcolor_devider"
                     android:textStyle="bold"
                     android:gravity="center_vertical"
-                    android:textSize="@dimen/Divider"
+                    android:textSize="@dimen/SubTxt"
                     android:paddingLeft="15dp"
                     android:text="계정 정보"
                     />
@@ -123,7 +123,7 @@
                 <LinearLayout
                     android:id="@+id/ll_Container2_MyProfile"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/MyProfile_List_Layout"
+                    android:layout_height="@dimen/Height50dp"
                     android:gravity="center"
                     android:orientation="horizontal"
                     android:paddingLeft="30dp"
@@ -138,7 +138,7 @@
                         android:text="E-mail"
                         android:textColor="@color/textColor_normal"
                         android:textStyle="bold"
-                        android:textSize="@dimen/List_Title"
+                        android:textSize="@dimen/SubTxt"
                         />
 
                     <TextView
@@ -149,7 +149,7 @@
                         android:gravity="left"
                         android:text="pjw910123@naver.com"
                         android:textColor="@color/textColor_object"
-                        android:textSize="@dimen/List_SubTitle"
+                        android:textSize="@dimen/SubTxt"
                         />
                 </LinearLayout>
 
@@ -157,7 +157,7 @@
                 <LinearLayout
                     android:id="@+id/ll_Container3_MyProfile"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/MyProfile_List_Layout"
+                    android:layout_height="@dimen/Height50dp"
                     android:gravity="center"
                     android:orientation="horizontal"
                     android:paddingLeft="30dp"
@@ -171,7 +171,7 @@
                         android:gravity="center|left"
                         android:text="이 름"
                         android:textColor="@color/textColor_normal"
-                        android:textSize="@dimen/List_Title"
+                        android:textSize="@dimen/SubTxt"
                         android:textStyle="bold" />
 
                     <TextView
@@ -182,7 +182,7 @@
                         android:gravity="left"
                         android:textColor="@color/textColor_object"
                         android:text="박종우"
-                        android:textSize="@dimen/List_SubTitle"
+                        android:textSize="@dimen/SubTxt"
                         />
                 </LinearLayout>
 
@@ -191,7 +191,7 @@
                 <LinearLayout
                     android:id="@+id/ll_Container4_MyProfile"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/MyProfile_List_Layout"
+                    android:layout_height="@dimen/Height50dp"
                     android:gravity="center"
                     android:orientation="horizontal"
                     android:paddingLeft="30dp"
@@ -205,7 +205,7 @@
                         android:gravity="center|left"
                         android:text="성 별"
                         android:textColor="@color/textColor_normal"
-                        android:textSize="@dimen/List_Title"
+                        android:textSize="@dimen/SubTxt"
                         android:textStyle="bold" />
 
                     <LinearLayout
@@ -223,7 +223,7 @@
                             android:gravity="left|center"
                             android:textColor="@color/textColor_object"
                             android:text="남 자"
-                            android:textSize="@dimen/List_SubTitle"
+                            android:textSize="@dimen/SubTxt"
                             />
 
                         <CheckBox
@@ -233,7 +233,7 @@
                             android:layout_weight="0.8"
                             android:text="비공개"
                             android:textColor="@color/textColor_object"
-                            android:textSize="@dimen/CheckBox_Txt"
+                            android:textSize="@dimen/SubTxt"
                             />
                         <View
                             android:layout_width="0dp"
@@ -249,7 +249,7 @@
                 <LinearLayout
                     android:id="@+id/ll_Container5_MyProfile"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/MyProfile_List_Layout"
+                    android:layout_height="@dimen/Height50dp"
                     android:gravity="center"
                     android:orientation="horizontal"
                     android:paddingLeft="30dp"
@@ -263,7 +263,7 @@
                         android:gravity="center|left"
                         android:text="생년월일"
                         android:textColor="@color/textColor_normal"
-                        android:textSize="@dimen/List_Title"
+                        android:textSize="@dimen/SubTxt"
                         android:textStyle="bold" />
 
                     <LinearLayout
@@ -279,7 +279,7 @@
                             android:gravity="left|center"
                             android:textColor="@color/textColor_object"
                             android:text="1991.01.23"
-                            android:textSize="@dimen/List_SubTitle"
+                            android:textSize="@dimen/SubTxt"
                             />
 
                         <CheckBox
@@ -289,7 +289,7 @@
                             android:layout_weight="0.8"
                             android:text="비공개"
                             android:textColor="@color/textColor_object"
-                            android:textSize="@dimen/CheckBox_Txt"
+                            android:textSize="@dimen/SubTxt"
                             />
 
                         <View
@@ -306,7 +306,7 @@
                 <LinearLayout
                     android:id="@+id/ll_Container6_MyProfile"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/MyProfile_List_Layout"
+                    android:layout_height="@dimen/Height50dp"
                     android:gravity="center"
                     android:orientation="horizontal"
                     android:paddingLeft="30dp"
@@ -320,7 +320,7 @@
                         android:gravity="center|left"
                         android:text="직 업"
                         android:textColor="@color/textColor_normal"
-                        android:textSize="@dimen/List_Title"
+                        android:textSize="@dimen/SubTxt"
                         android:textStyle="bold" />
 
                     <LinearLayout
@@ -340,7 +340,7 @@
                             android:textColor="@color/textColor_object"
                             android:singleLine="true"
                             android:hint="미등록"
-                            android:textSize="@dimen/List_SubTitle"
+                            android:textSize="@dimen/SubTxt"
                             />
 
 
@@ -351,7 +351,7 @@
                             android:layout_weight="0.8"
                             android:text="비공개"
                             android:textColor="@color/textColor_object"
-                            android:textSize="@dimen/CheckBox_Txt"
+                            android:textSize="@dimen/SubTxt"
                             />
 
                         <View
@@ -367,12 +367,12 @@
                 <TextView
                     android:id="@+id/tv_Divider2_MyProfile"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/MyProfile_Divider"
+                    android:layout_height="@dimen/Height20dp"
                     android:background="@drawable/brg_divider"
                     android:textColor="@color/textcolor_devider"
                     android:textStyle="bold"
                     android:gravity="center_vertical"
-                    android:textSize="@dimen/Divider"
+                    android:textSize="@dimen/SubTxt"
                     android:paddingLeft="15dp"
                     android:text="재능 정보"
                     />
@@ -381,7 +381,7 @@
                 <LinearLayout
                     android:id="@+id/ll_Container7_MyProfile"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/MyProfile_List_Layout"
+                    android:layout_height="@dimen/Height50dp"
                     android:gravity="center"
                     android:orientation="horizontal"
                     android:paddingLeft="30dp"
@@ -395,7 +395,7 @@
                         android:gravity="center|left"
                         android:text="재능드림"
                         android:textColor="@color/textColor_normal"
-                        android:textSize="@dimen/List_Title"
+                        android:textSize="@dimen/SubTxt"
                         android:textStyle="bold" />
 
                     <LinearLayout
@@ -412,7 +412,7 @@
                             android:gravity="left"
                             android:text="Guitar"
                             android:textColor="@color/textColor_object"
-                            android:textSize="@dimen/List_SubTitle"
+                            android:textSize="@dimen/SubTxt"
                             android:ellipsize="end"
                             android:lines="1"
                             />
@@ -426,7 +426,7 @@
                             android:gravity="left"
                             android:text="Piano"
                             android:textColor="@color/textColor_object"
-                            android:textSize="@dimen/List_SubTitle"
+                            android:textSize="@dimen/SubTxt"
                             android:ellipsize="end"
                             android:lines="1"
                             />
@@ -440,7 +440,7 @@
                             android:gravity="left"
                             android:text="Drum"
                             android:textColor="@color/textColor_object"
-                            android:textSize="@dimen/List_SubTitle"
+                            android:textSize="@dimen/SubTxt"
                             android:ellipsize="end"
                             android:lines="1"
                             />
@@ -452,7 +452,7 @@
                 <LinearLayout
                     android:id="@+id/ll_Container8_MyProfile"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/MyProfile_List_Layout"
+                    android:layout_height="@dimen/Height50dp"
                     android:gravity="center"
                     android:orientation="horizontal"
                     android:paddingLeft="30dp"
@@ -466,7 +466,7 @@
                         android:gravity="center|left"
                         android:text="관심재능"
                         android:textColor="@color/textColor_normal"
-                        android:textSize="@dimen/List_Title"
+                        android:textSize="@dimen/SubTxt"
                         android:textStyle="bold" />
 
                     <LinearLayout
@@ -485,7 +485,7 @@
                             android:lines="1"
                             android:text="농구"
                             android:textColor="@color/textColor_object"
-                            android:textSize="@dimen/List_SubTitle"
+                            android:textSize="@dimen/SubTxt"
                             />
 
                         <TextView
@@ -499,7 +499,7 @@
                             android:lines="1"
                             android:textColor="@color/textColor_object"
                             android:text="야구"
-                            android:textSize="@dimen/List_SubTitle"
+                            android:textSize="@dimen/SubTxt"
                             />
 
                         <TextView
@@ -513,7 +513,7 @@
                             android:lines="1"
                             android:textColor="@color/textColor_object"
                             android:text="축구"
-                            android:textSize="@dimen/List_SubTitle"
+                            android:textSize="@dimen/SubTxt"
                             />
                     </LinearLayout>
 
@@ -524,7 +524,7 @@
                 <LinearLayout
                     android:id="@+id/ll_Container1_MyProfile"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/MyProfile_List_Layout"
+                    android:layout_height="@dimen/Height50dp"
                     android:gravity="center"
                     android:orientation="horizontal"
                     android:paddingLeft="30dp"
@@ -538,7 +538,7 @@
                         android:gravity="center|left"
                         android:text="포인트"
                         android:textColor="@color/textColor_normal"
-                        android:textSize="@dimen/List_Title"
+                        android:textSize="@dimen/SubTxt"
                         android:textStyle="bold" />
 
                     <LinearLayout
@@ -556,7 +556,7 @@
                             android:gravity="left|center"
                             android:text="350P"
                             android:textColor="@color/textColor_object"
-                            android:textSize="@dimen/List_SubTitle" />
+                            android:textSize="@dimen/SubTxt" />
 
 
                             <ImageView
@@ -572,12 +572,13 @@
                 </LinearLayout>
 
 
-
                     <Button
                         android:id="@+id/btn_Save_MyProfile"
-                        android:layout_width="@dimen/Login_btn"
+                        android:layout_width="match_parent"
+                        android:layout_marginLeft="80dp"
+                        android:layout_marginRight="80dp"
                         android:layout_height="30dp"
-                        android:textSize="@dimen/BigBtn"
+                        android:textSize="@dimen/MainTxt"
                         android:background="@drawable/bgr_bigbtn"
                         android:layout_gravity="center"
                         android:text="저장하기"

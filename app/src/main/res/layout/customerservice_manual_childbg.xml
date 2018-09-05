@@ -12,8 +12,8 @@
         android:layout_marginTop="5dp"
         android:background="@drawable/bgr_answer"
         android:orientation="horizontal"
-        android:paddingTop="@dimen/Margin_btn"
-        android:paddingBottom="@dimen/Margin_btn"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
         >
@@ -26,7 +26,7 @@
             android:lineSpacingExtra="10dp"
             android:text="박종우님과 재 드림 기타, 드럼, 종우님과 재 드림 기타, 드럼, 피, 드럼, 피아노 완료의 건"
             android:textColor="@color/textColor_txtpage"
-            android:textSize="@dimen/ListView_ChildTxt_Question" />
+            android:textSize="@dimen/SubTxt" />
 
     </LinearLayout>
 

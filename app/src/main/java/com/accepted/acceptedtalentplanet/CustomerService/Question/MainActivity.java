@@ -5,15 +5,10 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.DisplayMetrics;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -39,16 +34,9 @@ import static com.accepted.acceptedtalentplanet.SaveSharedPreference.hideKeyboar
 
 public class MainActivity extends AppCompatActivity {
 
-    private LinearLayout ll_PreContainer;
     private EditText et_Question;
     private TextView tv_TxtCount;
     private Button btn_Save;
-
-
-    private LinearLayout ll_Toolbar;
-    private TextView tv_Title;
-    private RelativeLayout rl_QuestionContainer;
-
 
 
     private Context mContext;
@@ -71,37 +59,11 @@ public class MainActivity extends AppCompatActivity {
         ((ImageView)findViewById(R.id.iv_RightBtn_Toolbar)).setVisibility(View.GONE);
         ((TextView) findViewById(R.id.tv_toolbarTitle)).setText("1:1 문의하기");
 
+
+
         tv_TxtCount = (TextView) findViewById(R.id.tv_TxtCount_Question);
         et_Question = (EditText) findViewById(R.id.et_Question_Question);
         btn_Save = (Button) findViewById(R.id.btn_Save_Question);
-
-        ll_Toolbar = (LinearLayout) findViewById(R.id.ll_Toolbar_Question);
-        tv_Title = (TextView) findViewById(R.id.tv_Title_Question);
-        rl_QuestionContainer = (RelativeLayout) findViewById(R.id.rl_QuestionContainer_Question);
-
-        DisplayMetrics metrics = new DisplayMetrics();
-        WindowManager windowManager = (WindowManager) getApplicationContext().getSystemService(Context.WINDOW_SERVICE);
-        windowManager.getDefaultDisplay().getMetrics(metrics);
-
-        int ll_Toolbar_height = (int) (metrics.heightPixels*0.055);
-        int tv_Title_height = (int) (metrics.heightPixels*0.1);
-        int rl_qustionContainer_height = (int) (metrics.heightPixels*0.2);
-        int btn_Save_height = (int) (metrics.heightPixels*0.04);
-
-        ViewGroup.LayoutParams params1 = ll_Toolbar.getLayoutParams();
-        ViewGroup.LayoutParams params2 = tv_Title.getLayoutParams();
-        ViewGroup.LayoutParams params3 = rl_QuestionContainer.getLayoutParams();
-        ViewGroup.LayoutParams params4 = btn_Save.getLayoutParams();
-
-        params1.height = ll_Toolbar_height;
-        params2.height = tv_Title_height;
-        params3.height = rl_qustionContainer_height;
-        params4.height = btn_Save_height;
-
-        ll_Toolbar.setLayoutParams(params1);
-        tv_Title.setLayoutParams(params2);
-        rl_QuestionContainer.setLayoutParams(params3);
-        btn_Save.setLayoutParams(params4);
 
 
         et_Question.addTextChangedListener(new TextWatcher() {

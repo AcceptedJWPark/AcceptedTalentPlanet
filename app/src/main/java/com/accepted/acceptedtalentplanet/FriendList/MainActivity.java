@@ -9,17 +9,19 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.TextView;
 
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.toolbox.StringRequest;
 import com.accepted.acceptedtalentplanet.Friend;
 import com.accepted.acceptedtalentplanet.R;
 import com.accepted.acceptedtalentplanet.SaveSharedPreference;
 import com.accepted.acceptedtalentplanet.VolleySingleton;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.toolbox.StringRequest;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -58,6 +60,18 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         mContext = getApplicationContext();
+
+        ((ImageView)findViewById(R.id.iv_leftBtn_Toolbar)).setImageResource(R.drawable.icon_backbtn);
+        ((ImageView)findViewById(R.id.iv_leftBtn_Toolbar)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+        ((ImageView)findViewById(R.id.iv_RightBtn_Toolbar)).setVisibility(View.GONE);
+        ((TextView) findViewById(R.id.tv_toolbarTitle)).setText("친구 목록");
+
+
         networkState = SaveSharedPreference.getWhatKindOfNetwork(mContext);
         if(networkState.equals(SaveSharedPreference.NONE_STATE) || (networkState.equals(SaveSharedPreference.WIFI_STATE) && !SaveSharedPreference.isOnline())){
             setContentView(R.layout.error_page);
@@ -150,13 +164,6 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
 
-            ll_PreContainer = (LinearLayout) findViewById(R.id.ll_PreContainer_FriendList);
-            ll_PreContainer.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    finish();
-                }
-            });
 
         }
     }

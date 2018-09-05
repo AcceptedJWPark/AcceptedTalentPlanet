@@ -8,22 +8,20 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AlertDialog;
-import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.ContextThemeWrapper;
 import android.view.Display;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.accepted.acceptedtalentplanet.Friend;
 import com.accepted.acceptedtalentplanet.MyTalent;
+import com.accepted.acceptedtalentplanet.R;
 import com.accepted.acceptedtalentplanet.SaveSharedPreference;
 import com.accepted.acceptedtalentplanet.VolleySingleton;
 import com.accepted.acceptedtalentplanet.pictureExpand;
@@ -32,7 +30,6 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.StringRequest;
 import com.bumptech.glide.Glide;
-import com.accepted.acceptedtalentplanet.R;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -54,7 +51,6 @@ public class MainActivity extends FragmentActivity {
 
     private ImageView iv_CloseIcon;
 
-    private RelativeLayout rl_FriendIconContainer;
 
     private ImageView iv_AddFriendOn;
     private ImageView iv_AddFriendOff;
@@ -95,22 +91,11 @@ public class MainActivity extends FragmentActivity {
 
             Display display = ((WindowManager) getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();
             mContext = getApplicationContext();
+
             int width = (int) (display.getWidth() * 1);
             int height = (int) (display.getHeight() * 0.9);
             getWindow().getAttributes().width = width;
             getWindow().getAttributes().height = height;
-
-
-            rl_FriendIconContainer = findViewById(R.id.Interesting_popup_container);
-            DisplayMetrics metrics = new DisplayMetrics();
-            WindowManager windowManager = (WindowManager) getApplicationContext().getSystemService(Context.WINDOW_SERVICE);
-            windowManager.getDefaultDisplay().getMetrics(metrics);
-
-            int picturewidth = (int) (metrics.heightPixels * 0.164 * 0.8 * 0.85);
-            ViewGroup.LayoutParams params = rl_FriendIconContainer.getLayoutParams();
-            params.width = (int) picturewidth;
-            params.height = (int) picturewidth;
-            rl_FriendIconContainer.setLayoutParams(params);
 
 
             talentID = getIntent().getStringExtra("TalentID");

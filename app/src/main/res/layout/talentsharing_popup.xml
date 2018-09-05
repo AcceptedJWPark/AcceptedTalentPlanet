@@ -43,8 +43,8 @@
 
         <RelativeLayout
             android:id="@+id/TalentSharing_popup_container"
-            android:layout_width="@dimen/Picture_Width"
-            android:layout_height="@dimen/Picture_Height"
+            android:layout_width="@dimen/Pic68dp"
+            android:layout_height="@dimen/Pic68dp"
             android:background="@drawable/bgr_picture_container"
             android:padding="5dp"
             android:layout_centerInParent="true"
@@ -91,7 +91,7 @@
         android:textColor="@color/textcolor_devider"
         android:textStyle="bold"
         android:gravity="center_vertical"
-        android:textSize="@dimen/Divider"
+        android:textSize="@dimen/SubTxt"
         android:paddingLeft="15dp"
         android:text="회원 정보"
         />
@@ -114,7 +114,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1.9"
                     android:textColor="@color/textColor_normal"
-                    android:textSize="@dimen/Popup_ItemTitle"
+                    android:textSize="@dimen/SubTxt"
                     android:textStyle="bold"
                     android:gravity="center|left"
                     android:text="이름" />
@@ -125,7 +125,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="8"
                     android:textColor="@color/textColor_object"
-                    android:textSize="@dimen/Popup_ItemSubTitle"
+                    android:textSize="@dimen/SubTxt"
                     android:paddingLeft="10dp"
                     android:text="박종우" />
             </LinearLayout>
@@ -147,7 +147,7 @@
                     android:layout_weight="2"
                     android:gravity="center|left"
                     android:textColor="@color/textColor_normal"
-                    android:textSize="@dimen/Popup_ItemTitle"
+                    android:textSize="@dimen/SubTxt"
                     android:textStyle="bold"
                     android:text="성별" />
 
@@ -158,7 +158,7 @@
                     android:layout_weight="8"
                     android:paddingLeft="10dp"
                     android:textColor="@color/textColor_object"
-                    android:textSize="@dimen/Popup_ItemSubTitle"
+                    android:textSize="@dimen/SubTxt"
                     android:text="남자" />
             </LinearLayout>
 
@@ -180,7 +180,7 @@
                     android:gravity="center|left"
                     android:text="생년월일"
                     android:textColor="@color/textColor_normal"
-                    android:textSize="@dimen/Popup_ItemTitle"
+                    android:textSize="@dimen/SubTxt"
                     android:textStyle="bold" />
 
                 <TextView
@@ -190,7 +190,7 @@
                     android:layout_weight="8"
                     android:paddingLeft="10dp"
                     android:textColor="@color/textColor_object"
-                    android:textSize="@dimen/Popup_ItemSubTitle"
+                    android:textSize="@dimen/SubTxt"
                     android:text="1991.01.23" />
             </LinearLayout>
 
@@ -211,7 +211,7 @@
                     android:layout_weight="2"
                     android:gravity="center|left"
                     android:textColor="@color/textColor_normal"
-                    android:textSize="@dimen/Popup_ItemTitle"
+                    android:textSize="@dimen/SubTxt"
                     android:textStyle="bold"
                     android:text="직업" />
 
@@ -222,7 +222,7 @@
                     android:layout_weight="8"
                     android:paddingLeft="10dp"
                     android:textColor="@color/textColor_object"
-                    android:textSize="@dimen/Popup_ItemSubTitle"
+                    android:textSize="@dimen/SubTxt"
                     android:text="무직" />
             </LinearLayout>
 
@@ -237,7 +237,7 @@
         android:textColor="@color/textcolor_devider"
         android:textStyle="bold"
         android:gravity="center_vertical"
-        android:textSize="@dimen/Divider"
+        android:textSize="@dimen/SubTxt"
         android:paddingLeft="15dp"
         android:text="재능 드림"
         />
@@ -261,7 +261,7 @@
                 android:gravity="center|left"
                 android:text="키워드"
                 android:textColor="@color/textColor_normal"
-                android:textSize="@dimen/Popup_ItemTitle"
+                android:textSize="@dimen/SubTxt"
                 android:textStyle="bold" />
 
             <LinearLayout
@@ -279,7 +279,7 @@
                     android:paddingLeft="10dp"
                     android:text="Guitar"
                     android:textColor="@color/textColor_object"
-                    android:textSize="@dimen/Popup_ItemSubTitle"
+                    android:textSize="@dimen/SubTxt"
                     />
 
                 <TextView
@@ -292,7 +292,7 @@
                     android:paddingLeft="10dp"
                     android:text="Piano"
                     android:textColor="@color/textColor_object"
-                    android:textSize="@dimen/Popup_ItemSubTitle"
+                    android:textSize="@dimen/SubTxt"
                     />
 
                 <TextView
@@ -305,7 +305,7 @@
                     android:paddingLeft="10dp"
                     android:text="Drum"
                     android:textColor="@color/textColor_object"
-                    android:textSize="@dimen/Popup_ItemSubTitle"
+                    android:textSize="@dimen/SubTxt"
                     />
 
             </LinearLayout>
@@ -339,7 +339,7 @@
                     android:gravity="center|left"
                     android:text="위 치"
                     android:textColor="@color/textColor_normal"
-                    android:textSize="@dimen/Popup_ItemTitle"
+                    android:textSize="@dimen/SubTxt"
                     android:textStyle="bold" />
 
 
@@ -363,7 +363,7 @@
                     android:lines="1"
                     android:text="서울시 마포구 상수동"
                     android:textColor="@color/textColor_object"
-                    android:textSize="@dimen/Popup_ItemSubTitle"
+                    android:textSize="@dimen/SubTxt"
                     />
 
 
@@ -390,7 +390,7 @@
                 android:gravity="center|left"
                 android:text="수 준"
                 android:textColor="@color/textColor_normal"
-                android:textSize="@dimen/Popup_ItemTitle"
+                android:textSize="@dimen/SubTxt"
                 android:textStyle="bold" />
 
             <TextView
@@ -401,7 +401,7 @@
                 android:paddingLeft="10dp"
                 android:text="시작단계(Beginner)"
                 android:textColor="@color/textColor_object"
-                android:textSize="@dimen/Popup_ItemSubTitle"
+                android:textSize="@dimen/SubTxt"
                 />
         </LinearLayout>
 
@@ -422,7 +422,7 @@
                 android:gravity="center|left"
                 android:text="포인트"
                 android:textColor="@color/textColor_normal"
-                android:textSize="@dimen/Popup_ItemTitle"
+                android:textSize="@dimen/SubTxt"
                 android:textStyle="bold" />
 
             <TextView
@@ -433,7 +433,7 @@
                 android:paddingLeft="10dp"
                 android:text="120P"
                 android:textColor="@color/textColor_object"
-                android:textSize="@dimen/Popup_ItemSubTitle"
+                android:textSize="@dimen/SubTxt"
                 />
         </LinearLayout>
 
@@ -456,7 +456,7 @@
             android:background="@drawable/bgr_bigbtn"
             android:textColor="@color/textcolor_bigbtn"
             android:layout_marginRight="5dp"
-            android:textSize="@dimen/Popup_BigBtn"
+            android:textSize="@dimen/MainTxt"
             android:layout_weight="1"
             android:text="Message"
             />
@@ -471,7 +471,7 @@
             android:textAllCaps="false"
             android:text="Shall we?"
             android:textColor="@color/textcolor_bigbtn"
-            android:textSize="@dimen/Popup_BigBtn"
+            android:textSize="@dimen/MainTxt"
             />
 
     </LinearLayout>

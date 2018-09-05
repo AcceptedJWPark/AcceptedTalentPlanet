@@ -27,7 +27,7 @@
         android:layout_marginBottom="10dp"
         android:layout_centerHorizontal="true"
         android:text="시작하기"
-        android:textSize="@dimen/TalentCondition_Title"
+        android:textSize="@dimen/MainTxt"
         android:textColor="#ffffff"
         android:visibility="gone"
         />
@@ -47,7 +47,7 @@
             android:id="@+id/text_Intro"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/Page_Txt"
+            android:textSize="@dimen/SubTxt"
             android:textColor="#ffffff"
             android:text="1 "
             />
@@ -55,7 +55,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/Page_Txt"
+            android:textSize="@dimen/SubTxt"
             android:textColor="#ffffff"
             android:text="/ 3"
             />

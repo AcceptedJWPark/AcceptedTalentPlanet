@@ -80,6 +80,8 @@ public class MainActivity extends AppCompatActivity {
             ((ImageView)findViewById(R.id.iv_RightBtn_Toolbar)).setVisibility(View.GONE);
             ((TextView) findViewById(R.id.tv_toolbarTitle)).setText("나의 문의내역");
 
+
+
             expandableListView = (ExpandableListView) this.findViewById(R.id.expandableListView_QuestionList);
             getQuestionList();
 

@@ -3,25 +3,24 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:layout_height="60dp"
+    android:layout_height="@dimen/Height60dp"
     android:background="#ffffff"
     android:paddingTop="5dp"
     android:paddingBottom="5dp"
     android:gravity="center"
     >
 
-    <View
-        android:id="@+id/trashView1_TalentSharing"
-        android:layout_width="10dp"
-        android:layout_height="match_parent"/>
 
 
     <LinearLayout
         android:id="@+id/ll_pictureContainer_TalentSharing"
-        android:layout_width="50dp"
+        android:layout_width="0dp"
+        android:layout_weight="1"
         android:layout_height="match_parent"
         android:background="@drawable/bgr_picture_container"
-        android:padding="2dp"
+        android:padding="3dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         >
         <ImageView
             android:id="@+id/iv_picture_TalentSharing"
@@ -33,13 +32,10 @@
             />
     </LinearLayout>
 
-    <View
-        android:id="@+id/trashView2_TalentSharing"
-        android:layout_width="10dp"
-        android:layout_height="match_parent"/>
     <LinearLayout
         android:id="@+id/ll_txtContainer_TalentSharing"
-        android:layout_width="270dp"
+        android:layout_width="0dp"
+        android:layout_weight="5"
         android:layout_height="match_parent"
         android:gravity="center_vertical"
         android:orientation="vertical">
@@ -51,7 +47,7 @@
             android:layout_weight="0.8"
             android:gravity="center|left"
             android:text="박종우"
-            android:textSize="@dimen/List_Title"
+            android:textSize="@dimen/MainTxt"
             android:textColor="@color/textcolor_nameortitle"
             android:textStyle="bold" />
 
@@ -70,7 +66,7 @@
                 android:text="Guitar"
                 android:textStyle="bold"
                 android:textColor="@color/textColor_subject"
-                android:textSize="@dimen/ListView_SecondLine"
+                android:textSize="@dimen/SubTxt"
                 android:singleLine="true"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
@@ -87,7 +83,7 @@
                 android:gravity="center"
                 android:textStyle="bold"
                 android:textColor="@color/textColor_subject"
-                android:textSize="@dimen/ListView_SecondLine"
+                android:textSize="@dimen/SubTxt"
                 android:singleLine="true"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
@@ -106,7 +102,7 @@
                 android:gravity="center"
                 android:textStyle="bold"
                 android:textColor="@color/textColor_subject"
-                android:textSize="@dimen/ListView_SecondLine"
+                android:textSize="@dimen/SubTxt"
                 android:singleLine="true"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
@@ -117,28 +113,23 @@
         </LinearLayout>
     </LinearLayout>
 
-    <View
-        android:id="@+id/trashView3_TalentSharing"
-        android:layout_width="10dp"
-        android:layout_height="match_parent"/>
 
     <TextView
         android:id="@+id/tv_distance_TalentSharing"
-        android:layout_width="50dp"
+        android:layout_width="0dp"
+        android:layout_weight="1"
         android:layout_height="match_parent"
         android:paddingRight="5dp"
         android:text="9km"
         android:singleLine="true"
         android:gravity="center|right"
         android:textStyle="bold"
-        android:textSize="@dimen/List_Title"
+        android:textSize="@dimen/SubTxt"
         android:textColor="@color/textcolor_nameortitle"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         />
 
-    <View
-        android:id="@+id/trashView4_TalentSharing"
-        android:layout_width="10dp"
-        android:layout_height="match_parent"/>
 
 </LinearLayout>
 

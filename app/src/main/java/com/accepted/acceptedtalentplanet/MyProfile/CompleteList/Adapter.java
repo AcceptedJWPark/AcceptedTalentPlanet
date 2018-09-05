@@ -2,11 +2,9 @@ package com.accepted.acceptedtalentplanet.MyProfile.CompleteList;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -65,14 +63,6 @@ public class Adapter extends BaseAdapter{
             holder.tv_Talent3 = view.findViewById(R.id.tv_Talent3_CompleteList);
             holder.tv_Point = view.findViewById(R.id.tv_Point_CompleteList);
             holder.iv_GiveTakeIcon = view.findViewById(R.id.iv_GiveTakeIcon_CompleteList);
-
-            DisplayMetrics metrics = new DisplayMetrics();
-            WindowManager windowManager = (WindowManager) mContext.getSystemService(Context.WINDOW_SERVICE);
-            windowManager.getDefaultDisplay().getMetrics(metrics);
-            int Interesting_ListView_height = (int) (metrics.heightPixels * 0.10);
-            ViewGroup.LayoutParams params1 = view.getLayoutParams();
-            params1.height = Interesting_ListView_height;
-            view.setLayoutParams(params1);
 
             view.setTag(holder);
 

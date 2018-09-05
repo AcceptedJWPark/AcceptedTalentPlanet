@@ -26,8 +26,8 @@
 
         <ImageView
             android:id="@+id/preImg"
-            android:layout_width="@dimen/Toolbar_Pre_Img"
-            android:layout_height="@dimen/Toolbar_Pre_Img"
+            android:layout_width="@dimen/Toolbar_Img"
+            android:layout_height="@dimen/Toolbar_Img"
             android:layout_marginRight="5dp"
             android:src="@drawable/icon_backbtn_join"
             android:layout_alignTop="@+id/textView"
@@ -38,7 +38,7 @@
             android:layout_height="wrap_content"
             android:layout_toRightOf="@+id/preImg"
             android:text="이름"
-            android:textSize="@dimen/Toolbar_Pre_Txt"
+            android:textSize="@dimen/MainTxt"
             android:textColor="@color/textColor_normal"
             android:id="@+id/textView" />
         </LinearLayout>
@@ -47,10 +47,12 @@
 
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:gravity="center"
-            android:textSize="@dimen/Page_Txt"
+            android:textSize="@dimen/SubTxt"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="20dp"
             android:textColor="@color/textColor_txtpage"
             android:text="&quot;성별을 선택해주세요! 비공개 설정이 가능합니다.&quot;"
             />
@@ -60,7 +62,7 @@
     <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="@dimen/Height40dp"
             android:layout_marginRight="60dp"
             android:layout_marginLeft="60dp"
             >
@@ -72,7 +74,7 @@
                 android:background="@drawable/bgr_inputbox"
                 android:layout_weight="5"
                 android:layout_gravity="center"
-                android:textSize="@dimen/SpinnerTxt"
+                android:textSize="@dimen/SubTxt"
                 android:paddingLeft="3dp"
                 android:paddingRight="3dp"
 
@@ -83,7 +85,7 @@
             android:layout_height="match_parent"
             android:layout_weight="2"
             android:gravity="center"
-            android:layout_marginLeft="@dimen/Margin_et"
+            android:layout_marginLeft="10dp"
             >
             <CheckBox
                 android:id="@+id/cb_isShowGender_Gender_Join"
@@ -91,7 +93,7 @@
                 android:layout_height="wrap_content"
                 android:text="비공개"
                 android:textColor="@color/textColor_normal"
-                android:textSize="@dimen/CheckBox_Txt"
+                android:textSize="@dimen/SubTxt"
                 android:layout_gravity="center"
                 android:gravity="center"
                 />
@@ -112,7 +114,7 @@
         android:onClick="goNext"
         android:text="다 음"
         android:textColor="@color/textcolor_bigbtn"
-        android:textSize="@dimen/BigBtn"
+        android:textSize="@dimen/MainTxt"
         />
 
 

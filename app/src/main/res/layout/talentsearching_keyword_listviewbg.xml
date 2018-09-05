@@ -26,7 +26,7 @@
             android:layout_weight="7"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:textSize="@dimen/Page_ItemSubTitle"
+            android:textSize="@dimen/SubTxt"
             android:singleLine="true"
             android:textColor="@color/textColor_object"
             android:text="경기도 파주시 광탄면"

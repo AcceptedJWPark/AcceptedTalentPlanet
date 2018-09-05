@@ -26,8 +26,8 @@
 
         <ImageView
             android:id="@+id/preImg"
-            android:layout_width="@dimen/Toolbar_Pre_Img"
-            android:layout_height="@dimen/Toolbar_Pre_Img"
+            android:layout_width="@dimen/Toolbar_Img"
+            android:layout_height="@dimen/Toolbar_Img"
             android:src="@drawable/icon_backbtn_join"
             android:layout_marginRight="5dp"
             android:layout_alignTop="@+id/textView"
@@ -38,7 +38,7 @@
             android:layout_height="wrap_content"
             android:layout_toRightOf="@+id/preImg"
             android:text="비밀번호"
-            android:textSize="@dimen/Toolbar_Pre_Txt"
+            android:textSize="@dimen/MainTxt"
             android:textColor="@color/textColor_normal"
             android:id="@+id/textView" />
         </LinearLayout>
@@ -47,11 +47,13 @@
 
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:gravity="center"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="20dp"
             android:textColor="@color/textColor_txtpage"
-            android:textSize="@dimen/Page_Txt"
+            android:textSize="@dimen/SubTxt"
             android:text="&quot;이름을 입력해주세요!&quot;"
             />
 
@@ -72,19 +74,19 @@
             android:layout_weight="1"
             android:paddingLeft="10dp"
             android:hint="성"
-            android:textSize="@dimen/Edit_Hint" />
+            android:textSize="@dimen/AdditionTxt" />
 
         <EditText
             android:id="@+id/et_Lastname_Name_Join"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/bgr_inputbox"
-            android:layout_marginLeft="@dimen/Margin_et"
+            android:layout_marginLeft="5dp"
             android:layout_marginRight="60dp"
             android:layout_weight="1"
             android:paddingLeft="10dp"
             android:hint="이름"
-            android:textSize="@dimen/Edit_Hint" />
+            android:textSize="@dimen/AdditionTxt" />
         </LinearLayout>
 
 
@@ -100,7 +102,7 @@
         android:onClick="goNext"
         android:textColor="@color/textcolor_bigbtn"
         android:text="다 음"
-        android:textSize="@dimen/BigBtn"
+        android:textSize="@dimen/MainTxt"
         />
 
 </LinearLayout>

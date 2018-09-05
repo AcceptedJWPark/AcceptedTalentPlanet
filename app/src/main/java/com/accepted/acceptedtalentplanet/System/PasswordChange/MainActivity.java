@@ -5,25 +5,20 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
-import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
+import com.accepted.acceptedtalentplanet.R;
+import com.accepted.acceptedtalentplanet.SaveSharedPreference;
 import com.accepted.acceptedtalentplanet.VolleySingleton;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.StringRequest;
-import com.accepted.acceptedtalentplanet.R;
-import com.accepted.acceptedtalentplanet.SaveSharedPreference;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -38,18 +33,11 @@ public class MainActivity extends AppCompatActivity {
 
 
     private Context mContext;
-    private LinearLayout ll_NewPswContainer_Old;
-    private LinearLayout ll_NewPswContainer_New;
-
-    private TextView tv_TitleContainer;
 
     private EditText et_OldPassword;
     private EditText et_NewPassword;
 
     private Button btn_Save;
-
-    private View trashView1;
-    private View trashView2;
 
     private InputMethodManager imm;
 
@@ -62,45 +50,9 @@ public class MainActivity extends AppCompatActivity {
 
         mContext = getApplicationContext();
 
-        tv_TitleContainer = findViewById(R.id.tv_TitleContainer_psw_System);
-        ll_NewPswContainer_Old = findViewById(R.id.ll_NewPswContainer_Old_System);
-        ll_NewPswContainer_New = findViewById(R.id.ll_NewPswContainer_New_System);
         et_OldPassword = findViewById(R.id.et_OldPassword_System);
         et_NewPassword = findViewById(R.id.et_NewPassword_System);
         btn_Save = findViewById(R.id.btn_Next_PasswordChange_System);
-        trashView1 = findViewById(R.id.trashView1_psw_System);
-        trashView2 = findViewById(R.id.trashView2_psw_System);
-
-        DisplayMetrics metrics = new DisplayMetrics();
-        WindowManager windowManager = (WindowManager) getApplicationContext().getSystemService(Context.WINDOW_SERVICE);
-        windowManager.getDefaultDisplay().getMetrics(metrics);
-
-        int Title_height = (int) (metrics.heightPixels*0.1);
-        int password_height = (int) (metrics.heightPixels*0.06);
-        int trashView1_height= (int) (metrics.heightPixels*0.01);
-        int trashView2_height= (int) (metrics.heightPixels*0.02);
-        int nextBtn_height = (int) (metrics.heightPixels*0.04);
-
-        ViewGroup.LayoutParams params1 = tv_TitleContainer.getLayoutParams();
-        ViewGroup.LayoutParams params2 = ll_NewPswContainer_Old.getLayoutParams();
-        ViewGroup.LayoutParams params3 = ll_NewPswContainer_New.getLayoutParams();
-        ViewGroup.LayoutParams params4 = trashView1.getLayoutParams();
-        ViewGroup.LayoutParams params5 = trashView2.getLayoutParams();
-        ViewGroup.LayoutParams params6 = btn_Save.getLayoutParams();
-
-        params1.height = Title_height;
-        params2.height = password_height;
-        params3.height = password_height;
-        params4.height = trashView1_height;
-        params5.height = trashView2_height;
-        params6.height = nextBtn_height;
-
-        tv_TitleContainer.setLayoutParams(params1);
-        ll_NewPswContainer_Old.setLayoutParams(params2);
-        ll_NewPswContainer_New.setLayoutParams(params3);
-        trashView1.setLayoutParams(params4);
-        trashView2.setLayoutParams(params5);
-        btn_Save.setLayoutParams(params6);
 
         et_OldPassword.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override

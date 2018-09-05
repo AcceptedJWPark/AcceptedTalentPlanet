@@ -4,24 +4,20 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.accepted.acceptedtalentplanet.GeoPoint;
 import com.accepted.acceptedtalentplanet.MyTalent;
+import com.accepted.acceptedtalentplanet.R;
+import com.accepted.acceptedtalentplanet.SaveSharedPreference;
 import com.accepted.acceptedtalentplanet.VolleySingleton;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.StringRequest;
-import com.accepted.acceptedtalentplanet.R;
-import com.accepted.acceptedtalentplanet.SaveSharedPreference;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -44,7 +40,6 @@ public class MainActivity extends AppCompatActivity {
 
     private GeoPoint geoPoint = null;
 
-    private Button btn_point;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,20 +72,6 @@ public class MainActivity extends AppCompatActivity {
             point = data.getPoint();
             et_Point.setText(String.valueOf(point));
         }
-
-        btn_point = (Button) findViewById(R.id.btn_point_TalentRegister);
-
-        DisplayMetrics metrics = new DisplayMetrics();
-        WindowManager windowManager = (WindowManager) getApplicationContext().getSystemService(Context.WINDOW_SERVICE);
-        windowManager.getDefaultDisplay().getMetrics(metrics);
-
-        int Btn_height = (int) (metrics.heightPixels*0.04);
-
-        ViewGroup.LayoutParams params1 = btn_point.getLayoutParams();
-        params1.height = Btn_height;
-        btn_point.setLayoutParams(params1);
-
-
     }
 
     public void goSave(View v){

@@ -16,15 +16,14 @@
         android:layout_height="match_parent"
         android:background="@drawable/bgr_picture_container"
         android:layout_weight="1"
-        android:padding="3dp"
         android:layout_marginLeft="10dp"
+        android:gravity="center"
         >
     <ImageView
         android:id="@+id/iv_Picture_Alarm"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="@dimen/Pic40dp"
+        android:layout_height="@dimen/Pic40dp"
         android:adjustViewBounds="false"
-        android:gravity="center"
         android:background="@drawable/picure_basic"
         android:scaleType="fitXY"
     />
@@ -34,7 +33,7 @@
     <LinearLayout
         android:id="@+id/ll_txtContainer_Alarm"
         android:layout_width="0dp"
-        android:layout_weight="5"
+        android:layout_weight="6"
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:layout_marginLeft="10dp"
@@ -56,7 +55,7 @@
             android:layout_height="wrap_content"
             android:text="박종우"
             android:singleLine="true"
-            android:textSize="@dimen/List_Title"
+            android:textSize="@dimen/MainTxt"
             android:textColor="#000000"
             android:textStyle="bold" />
 
@@ -71,7 +70,7 @@
             android:gravity="center|left"
             android:text="새로운 메세지가 도착하였습니다."
             android:singleLine="true"
-            android:textSize="@dimen/List_SubTitle"
+            android:textSize="@dimen/SubTxt"
             android:textColor="@color/textColor_txtpage"
             />
 
@@ -110,8 +109,8 @@
 
         <ImageView
             android:id="@+id/iv_DeleteIcon_Alarm"
-            android:layout_width="@dimen/BigImg"
-            android:layout_height="@dimen/BigImg"
+            android:layout_width="@dimen/Icon30dp"
+            android:layout_height="@dimen/Icon30dp"
             android:src="@drawable/icon_deletecheck"
             android:layout_centerInParent="true"
             android:gravity="center"

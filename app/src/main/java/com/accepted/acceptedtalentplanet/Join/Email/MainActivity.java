@@ -15,7 +15,6 @@ import android.util.DisplayMetrics;
 import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -46,7 +45,6 @@ public class MainActivity extends  AppCompatActivity {
     private Context mContext;
     private EditText et_Email;
 
-    private Button btn_Accept;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

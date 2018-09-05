@@ -41,7 +41,7 @@
         android:textColor="#000000"
         android:includeFontPadding="false"
         android:textStyle="bold"
-        android:textSize="@dimen/List_SubTitle"
+        android:textSize="@dimen/SubTxt"
         />
 
 
@@ -81,7 +81,7 @@
                     android:singleLine="true"
                     android:lineSpacingMultiplier="1.5"
                     android:textColor="@color/textColor_object"
-                    android:textSize="@dimen/List_SubTitle"
+                    android:textSize="@dimen/SubTxt"
                     />
 
                 <TextView
@@ -99,7 +99,7 @@
                     android:singleLine="true"
                     android:text="기타"
                     android:textColor="@color/textColor_subject"
-                    android:textSize="@dimen/List_SubTitle"
+                    android:textSize="@dimen/SubTxt"
                     android:textStyle="bold" />
                 <TextView
                     android:id="@+id/tv_Talent2_SharingList"
@@ -112,7 +112,7 @@
                     android:textStyle="bold"
                     android:lineSpacingMultiplier="1.5"
                     android:textColor="@color/textColor_subject"
-                    android:textSize="@dimen/List_SubTitle"
+                    android:textSize="@dimen/SubTxt"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
                     android:paddingLeft="10dp"
@@ -132,7 +132,7 @@
                     android:textStyle="bold"
                     android:lineSpacingMultiplier="1.5"
                     android:textColor="@color/textColor_subject"
-                    android:textSize="@dimen/List_SubTitle"
+                    android:textSize="@dimen/SubTxt"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
                     android:paddingTop="3dp"
@@ -149,7 +149,7 @@
                     android:singleLine="true"
                     android:lineSpacingMultiplier="1.5"
                     android:textColor="@color/textColor_object"
-                    android:textSize="@dimen/List_SubTitle"
+                    android:textSize="@dimen/SubTxt"
                     />
 
 
@@ -169,7 +169,7 @@
                     android:layout_height="wrap_content"
                     android:ellipsize="end"
                     android:lines="1"
-                    android:textSize="@dimen/ListView_SecondLine"
+                    android:textSize="@dimen/SubTxt"
                     android:text="등록 일자 : "
                     android:textColor="@color/textColor_subject"
                     />
@@ -180,7 +180,7 @@
                     android:layout_height="wrap_content"
                     android:ellipsize="end"
                     android:lines="1"
-                    android:textSize="@dimen/ListView_SecondLine"
+                    android:textSize="@dimen/SubTxt"
                     android:text="2017.11.03 16:24"
                     android:textColor="@color/textColor_subject"
                     />
@@ -209,50 +209,37 @@
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:layout_centerInParent="true"
-            android:paddingLeft="3dp"
-            android:paddingRight="3dp">
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="0.9"/>
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_weight="0.4"
-                android:layout_height="0dp"
-                android:focusable="false"
-                android:src="@android:drawable/radiobutton_off_background"
-                android:gravity="center"
-                />
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="0.3"/>
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_weight="0.4"
-                android:layout_height="0dp"
-                android:focusable="false"
-                android:src="@android:drawable/radiobutton_off_background"
-                android:gravity="center"
-                />
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="0.3"/>
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:paddingTop="15dp"
+            android:paddingBottom="15dp"
+            >
 
             <ImageView
                 android:layout_width="match_parent"
-                android:layout_weight="0.4"
+                android:layout_weight="1"
                 android:layout_height="0dp"
                 android:focusable="false"
                 android:src="@android:drawable/radiobutton_off_background"
                 android:gravity="center"
                 />
-            <View
+            <ImageView
                 android:layout_width="match_parent"
+                android:layout_weight="1"
                 android:layout_height="0dp"
-                android:layout_weight="0.9"/>
+                android:focusable="false"
+                android:src="@android:drawable/radiobutton_off_background"
+                android:gravity="center"
+                />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:layout_height="0dp"
+                android:focusable="false"
+                android:src="@android:drawable/radiobutton_off_background"
+                android:gravity="center"
+                />
 
         </LinearLayout>
 
