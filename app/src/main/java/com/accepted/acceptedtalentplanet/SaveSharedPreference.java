@@ -307,11 +307,11 @@ public class SaveSharedPreference{
     }
 
     public static String getServerIp(){
-        return SERVER_IP2;
+        return SERVER_IP;
     }
 
     public static String getImageUri(){
-        return IMAGE_URI2;
+        return IMAGE_URI;
     }
 
     public static String getLevel(String Level) {
